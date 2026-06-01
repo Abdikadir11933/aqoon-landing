@@ -190,14 +190,18 @@
   .rstep p{font-size:13.5px;color:var(--muted);line-height:1.55;}
   @media(max-width:860px){.rflow{grid-template-columns:1fr;}}
 
-  /* TUOTOKSET — deliverables 2x2 */
-  .dcard-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:44px;}
-  .dcard{background:var(--paper);border:1px solid rgba(14,36,64,.1);border-radius:22px;padding:30px;transition:transform .2s,box-shadow .2s,border-color .2s;}
-  .dcard:hover{transform:translateY(-3px);box-shadow:0 16px 34px -18px rgba(14,36,64,.25);border-color:var(--navy);}
-  .dcard .dicon{width:26px;height:26px;color:var(--teal);margin-bottom:16px;}
-  .dcard h3{font-family:var(--display);font-size:19px;font-weight:600;color:var(--navy);margin-bottom:9px;}
-  .dcard p{font-size:14.5px;color:var(--muted);line-height:1.6;}
-  @media(max-width:860px){.dcard-grid{grid-template-columns:1fr;}}
+  /* TUOTOKSET — deliverables list */
+  .dlist{display:flex;flex-direction:column;gap:12px;margin-top:44px;}
+  .drow{display:flex;align-items:flex-start;gap:0;background:var(--paper);border:1px solid rgba(14,36,64,.08);border-radius:16px;padding:22px 26px;border-left:3px solid transparent;transition:border-left-color 200ms,box-shadow 200ms;}
+  .drow:hover{border-left-color:var(--teal);box-shadow:0 4px 16px -8px rgba(14,36,64,.15);}
+  .drow-icon{width:52px;flex-shrink:0;display:flex;align-items:flex-start;padding-top:2px;}
+  .drow-icon .dicon{width:26px;height:26px;color:var(--teal);}
+  .drow-icon.sand .dicon{color:var(--sand);}
+  .drow-content{flex:1;min-width:0;}
+  .drow-content h3{font-family:var(--display);font-size:18px;font-weight:600;color:var(--navy);margin-bottom:6px;}
+  .drow-content p{font-size:14px;color:var(--muted);line-height:1.6;}
+  .drow-phase{flex-shrink:0;align-self:flex-start;margin-top:2px;margin-left:16px;font-size:11px;font-weight:600;letter-spacing:.05em;color:var(--tealdk);background:rgba(15,181,174,.1);padding:4px 10px;border-radius:100px;white-space:nowrap;}
+  @media(max-width:860px){.drow{flex-wrap:wrap;}.drow-phase{margin-left:0;margin-top:8px;}}
 
   /* HANKKEET — active projects */
   #hankkeet{background:var(--cream);}
@@ -212,9 +216,7 @@
 
 
   /* deliverable card solo (5th card centered in 2-col grid) */
-  .dcard.solo{grid-column:1 / -1;max-width:calc(50% - 10px);margin:0 auto;}
-  .dcard.solo .hchip{display:inline-block;margin-top:14px;font-size:11px;font-weight:600;letter-spacing:.03em;color:var(--navy);background:rgba(14,36,64,.05);padding:5px 12px;border-radius:100px;}
-  @media(max-width:860px){.dcard.solo{max-width:100%;}}
+  /* dcard.solo removed in v2.4 (list layout) */
 
   /* PAKETIT — service packages */
   #paketit{background:var(--paper);}
@@ -241,14 +243,15 @@
     .bcard, .bcard-body, .bcard-plus,
     .fnode, .flow-fill,
     .pkg-panel, .pkg-tab { transition: none !important; animation: none !important; }
-    .bcard-body { max-height: none !important; opacity: 1 !important; padding-top: 10px !important; }
+    .expanded-content { max-height: none !important; opacity: 1 !important; padding-top: 10px !important; }
     .fnode { opacity: 1 !important; }
     .pkg-tabs { display: none !important; }
     .pkg-panel { display: block !important; opacity: 1 !important; margin-bottom: 16px; }
   }
 
-  /* ── BRIDGE CARDS — click to expand ───────────────────────── */
-  .bcard { cursor: pointer; position: relative; }
+  /* ── BRIDGE CARDS — accordion (one open at a time) ──────── */
+  .bcard { cursor: pointer; position: relative; transition: transform 200ms ease-out, border-color 200ms, box-shadow 200ms; }
+  .bridge-card:not(.is-open):hover { transform: translateY(-1px); border-color: rgba(15,181,174,.3) !important; }
   .bcard-top { display: flex; flex-direction: column; }
   .bcard-plus {
     position: absolute; top: 12px; right: 12px;
@@ -257,17 +260,20 @@
     font-size: 16px; font-weight: 300; line-height: 1;
     color: var(--muted); border-radius: 50%;
     border: 1px solid rgba(14,36,64,.15);
-    transition: transform 280ms ease-out, color 200ms, border-color 200ms;
+    transition: transform 200ms ease-out, color 200ms, border-color 200ms;
     flex-shrink: 0;
   }
   .bcard-plus::before { content: '+'; }
-  .bcard.expanded .bcard-plus { transform: rotate(45deg); color: var(--tealdk); border-color: var(--teal); }
-  .bcard-body { max-height: 0; overflow: hidden; opacity: 0; transition: max-height 280ms ease-out, opacity 240ms ease-out; }
-  .bcard.expanded .bcard-body { max-height: 220px; opacity: 1; padding-top: 10px; }
-  .bcard.expanded { border-color: rgba(15,181,174,.35) !important; box-shadow: 0 8px 28px -12px rgba(14,36,64,.22); }
+  .bridge-card.is-open .bcard-plus { transform: rotate(45deg); color: var(--tealdk); border-color: var(--teal); }
+  .bc-hint { display: block; font-size: 11px; font-weight: 500; color: var(--muted); margin-top: 8px; letter-spacing: .02em; }
+  .bc-hint-open { display: none; }
+  .bridge-card.is-open .bc-hint-closed { display: none; }
+  .bridge-card.is-open .bc-hint-open { display: block; color: var(--tealdk); }
+  .expanded-content { max-height: 0; overflow: hidden; opacity: 0; transition: max-height 320ms ease-out, opacity 220ms ease-out; }
+  .bridge-card.is-open .expanded-content { max-height: 400px; opacity: 1; padding-top: 10px; }
+  .bridge-card.is-open { border-color: rgba(15,181,174,.35) !important; box-shadow: 0 8px 28px -12px rgba(14,36,64,.22); transform: none; }
   .bcard:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
   .bcard:focus { outline: none; }
-  .bcard:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
 
   /* ── PHASE FLOW — step-by-step ─────────────────────────────── */
   .flow-fill { position: absolute; top: 34px; left: 8%; width: 0; height: 2px; background: var(--teal); z-index: 1; transition: width 320ms ease-out; pointer-events: none; }
@@ -336,7 +342,7 @@
     .bcard,.dcard,.hcard{background:#FBFAF7 !important;}
     .rstep{background:#F3F0E9 !important;}
     .bcard h3,.bcard .bnum,.hcard h3,.dcard h3,.rstep h3{color:#0E2440 !important;}
-    .bcard p,.bcard .bquote,.hcard p,.dcard p,.rstep p{color:#4A5563 !important;}
+    .bcard p,.bcard .bquote,.hcard p,.dcard p,.drow-content p,.rstep p{color:#4A5563 !important;}
     .hcard .hstatus{color:#0A8F89 !important;}
     .founder{background-color:#F3F0E9 !important;}
     .hero h1{color:#0E2440 !important;}
@@ -367,7 +373,7 @@
   .bcard, .dcard, .hcard{background:#FBFAF7 !important;}
   .rstep{background:#F3F0E9 !important;}
   .bcard h3,.bcard .bnum,.hcard h3,.dcard h3,.rstep h3{color:#0E2440 !important;}
-  .bcard p,.bcard .bquote,.hcard p,.dcard p,.rstep p{color:#4A5563 !important;}
+  .bcard p,.bcard .bquote,.hcard p,.dcard p,.drow-content p,.rstep p{color:#4A5563 !important;}
   .hcard .hstatus{color:#0A8F89 !important;}
   .founder{background-color:#F3F0E9 !important;}
   #ratkaisu h2, #kenelle h2, .jcard h3, .fnode h3, .aud h3,
@@ -488,62 +494,72 @@
       <p class="lead2">Maahanmuuttajaperhe ei jää avun ulkopuolelle yhdestä syystä. Tunnistamme viisi rakenteellisesti erilaista estettä ja rakennamme jokaiselle oman sillan.</p>
     </div>
     <div class="bridge-grid reveal">
-      <div class="bcard" tabindex="0" role="button" aria-expanded="false">
+      <div class="bcard bridge-card" tabindex="0" role="button" aria-expanded="false">
         <div class="bcard-top">
           <svg class="bicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           <div class="bnum">01</div>
           <h3>Institutionaalinen pelko</h3>
           <span class="bcard-plus" aria-hidden="true"></span>
         </div>
-        <div class="bcard-body">
+        <span class="bc-hint bc-hint-closed" aria-hidden="true">Klikkaa lisätietoa &rarr;</span>
+        <span class="bc-hint bc-hint-open" aria-hidden="true">Sulje &uarr;</span>
+        <div class="expanded-content">
           <p class="bquote">"Migri kuulee. Lastensuojelu tulee. Sossut ottavat lapset."</p>
           <p>Pelko viranomaiskontaktista pidättelee perheen kotona.</p>
         </div>
       </div>
-      <div class="bcard sand-icon" tabindex="0" role="button" aria-expanded="false">
+      <div class="bcard sand-icon bridge-card" tabindex="0" role="button" aria-expanded="false">
         <div class="bcard-top">
           <svg class="bicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
           <div class="bnum">02</div>
           <h3>Tiedollinen epäsymmetria</h3>
           <span class="bcard-plus" aria-hidden="true"></span>
         </div>
-        <div class="bcard-body">
+        <span class="bc-hint bc-hint-closed" aria-hidden="true">Klikkaa lisätietoa &rarr;</span>
+        <span class="bc-hint bc-hint-open" aria-hidden="true">Sulje &uarr;</span>
+        <div class="expanded-content">
           <p class="bquote">"En tienyt että voin hakea. Luulin että se on kallista."</p>
           <p>Palvelu on olemassa mutta perhe ei tiedä siitä, tai luulee virheellisesti.</p>
         </div>
       </div>
-      <div class="bcard" tabindex="0" role="button" aria-expanded="false">
+      <div class="bcard bridge-card" tabindex="0" role="button" aria-expanded="false">
         <div class="bcard-top">
           <svg class="bicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
           <div class="bnum">03</div>
           <h3>Digitaalinen ekskluusio</h3>
           <span class="bcard-plus" aria-hidden="true"></span>
         </div>
-        <div class="bcard-body">
+        <span class="bc-hint bc-hint-closed" aria-hidden="true">Klikkaa lisätietoa &rarr;</span>
+        <span class="bc-hint bc-hint-open" aria-hidden="true">Sulje &uarr;</span>
+        <div class="expanded-content">
           <p class="bquote">"Wilma, OmaKela, Enter Finland, en osaa."</p>
           <p>Suomenkieliset digitaaliset järjestelmät sulkevat ulos perheet jotka pärjäisivät muuten.</p>
         </div>
       </div>
-      <div class="bcard sand-icon" tabindex="0" role="button" aria-expanded="false">
+      <div class="bcard sand-icon bridge-card" tabindex="0" role="button" aria-expanded="false">
         <div class="bcard-top">
           <svg class="bicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           <div class="bnum">04</div>
           <h3>Stigma</h3>
           <span class="bcard-plus" aria-hidden="true"></span>
         </div>
-        <div class="bcard-body">
+        <span class="bc-hint bc-hint-closed" aria-hidden="true">Klikkaa lisätietoa &rarr;</span>
+        <span class="bc-hint bc-hint-open" aria-hidden="true">Sulje &uarr;</span>
+        <div class="expanded-content">
           <p class="bquote">"Tätä ei voi sanoa ääneen."</p>
           <p>Mielenterveys, velka, perheväkivalta, yhteisön sisäinen häpeä estää avunhaun.</p>
         </div>
       </div>
-      <div class="bcard" tabindex="0" role="button" aria-expanded="false">
+      <div class="bcard bridge-card" tabindex="0" role="button" aria-expanded="false">
         <div class="bcard-top">
           <svg class="bicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           <div class="bnum">05</div>
           <h3>Käytännön logistiikka</h3>
           <span class="bcard-plus" aria-hidden="true"></span>
         </div>
-        <div class="bcard-body">
+        <span class="bc-hint bc-hint-closed" aria-hidden="true">Klikkaa lisätietoa &rarr;</span>
+        <span class="bc-hint bc-hint-open" aria-hidden="true">Sulje &uarr;</span>
+        <div class="expanded-content">
           <p class="bquote">"Ei ole aikaa. Ei ole dokumentteja. Ei tiedä miten täytetään."</p>
           <p>Perhe tietää mitä pitäisi tehdä mutta arki ei anna periksi.</p>
         </div>
@@ -591,32 +607,56 @@
       <h2>Mitä saatte konkreettisesti.</h2>
       <p class="lead2">Jokainen kampanja tuottaa mitattavaa työtä, ei vain raporttia.</p>
     </div>
-    <div class="dcard-grid reveal">
-      <div class="dcard">
-        <svg class="dicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        <h3>Kenttätyö ja luottamus</h3>
-        <p>Somalinkielinen jalkautuva tiimi alueellanne. Päivittäiset käyntikirjaukset, lämpimät perheet listalla.</p>
+    <div class="dlist reveal">
+      <div class="drow">
+        <div class="drow-icon">
+          <svg class="dicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="drow-content">
+          <h3>Kenttätyö ja luottamus</h3>
+          <p>Somalinkielinen jalkautuva tiimi alueellanne. Päivittäiset käyntikirjaukset, lämpimät perheet listalla.</p>
+        </div>
+        <span class="drow-phase">Vaihe 1</span>
       </div>
-      <div class="dcard">
-        <svg class="dicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-        <h3>Sisältö joka tavoittaa monessa kanavassa</h3>
-        <p>TikTok-videoita @waalidsupport-kanavalla, yhteistyö luotettujen somali-vaikuttajien kanssa, suorat WhatsApp-viestit äitiryhmässä ja puhelut perheille jotka haluavat kuulla lisää. Sama viesti monella kanavalla, perheiden omilla sanoilla.</p>
+      <div class="drow">
+        <div class="drow-icon sand">
+          <svg class="dicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+        </div>
+        <div class="drow-content">
+          <h3>Sisältö joka tavoittaa monessa kanavassa</h3>
+          <p>TikTok-videoita @waalidsupport-kanavalla, yhteistyö luotettujen somali-vaikuttajien kanssa, suorat WhatsApp-viestit äitiryhmässä ja puhelut perheille jotka haluavat kuulla lisää. Sama viesti monella kanavalla, perheiden omilla sanoilla.</p>
+        </div>
+        <span class="drow-phase">Vaihe 2</span>
       </div>
-      <div class="dcard">
-        <svg class="dicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg>
-        <h3>Asiantuntijahaastattelut ja podcastit</h3>
-        <p>Pitkät videot ja audio-versiot. Toimme asiantuntijan suoraan yhteisön luokse, omalla kielellä. Käsittelemme pelot, stigmat ja väärinkäsitykset auki. Sisältö jää, kasvattaa luottamusta ja vie keskustelua eteenpäin.</p>
+      <div class="drow">
+        <div class="drow-icon">
+          <svg class="dicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg>
+        </div>
+        <div class="drow-content">
+          <h3>Asiantuntijahaastattelut ja podcastit</h3>
+          <p>Pitkät videot ja audio-versiot. Tuomme asiantuntijan suoraan yhteisön luokse, omalla kielellä. Käsittelemme pelot, stigmat ja väärinkäsitykset auki.</p>
+        </div>
+        <span class="drow-phase">Vaihe 1-2</span>
       </div>
-      <div class="dcard">
-        <svg class="dicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        <h3>Hakemus-talkoot ja perheen tuki</h3>
-        <p>Fyysiset tilaisuudet alueella. Perhe täyttää hakemuksen vieressä, oppii tekemään itse.</p>
+      <div class="drow">
+        <div class="drow-icon sand">
+          <svg class="dicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <div class="drow-content">
+          <h3>Hakemus-talkoot ja perheen tuki</h3>
+          <p>Fyysiset tilaisuudet alueella. Perhe täyttää hakemuksen vieressä, oppii tekemään itse.</p>
+        </div>
+        <span class="drow-phase">Vaihe 4</span>
       </div>
-      <div class="dcard solo">
-        <svg class="dicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        <h3>AQOON-sovellus pysyvyyden tukena</h3>
-        <p>Kun perheet ovat sisällä, kommunikointi jatkuu. Sovelluksemme auttaa vanhempia ymmärtämään viestinne suomeksi ja vastaamaan niihin somaliksi. Vähemmän väärinkäsityksiä, parempi pysyvyys.</p>
-        <span class="hchip">Vaihe 5, Pysyvyys</span>
+      <div class="drow">
+        <div class="drow-icon">
+          <svg class="dicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div class="drow-content">
+          <h3>AQOON-sovellus pysyvyyden tukena</h3>
+          <p>Kun perheet ovat sisällä, kommunikointi jatkuu. Sovelluksemme auttaa vanhempia ymmärtämään viestinne suomeksi ja vastaamaan niihin somaliksi. Vähemmän väärinkäsityksiä, parempi pysyvyys.</p>
+        </div>
+        <span class="drow-phase">Vaihe 5</span>
       </div>
     </div>
   </div>
@@ -779,10 +819,18 @@
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // ── Bridge cards: click to expand ──────────────────────────
-    document.querySelectorAll('.bcard').forEach(function(card) {
+    var bridgeCards = document.querySelectorAll('.bridge-card');
+    bridgeCards.forEach(function(card) {
       card.addEventListener('click', function() {
-        var exp = card.classList.toggle('expanded');
-        card.setAttribute('aria-expanded', exp);
+        var wasOpen = card.classList.contains('is-open');
+        bridgeCards.forEach(function(c) {
+          c.classList.remove('is-open');
+          c.setAttribute('aria-expanded', 'false');
+        });
+        if (!wasOpen) {
+          card.classList.add('is-open');
+          card.setAttribute('aria-expanded', 'true');
+        }
       });
       card.addEventListener('keydown', function(e) {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
