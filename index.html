@@ -11,11 +11,11 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://aqoon.live/">
 <meta property="og:title" content="AQOON · Apu on jo olemassa. Me viemme sen perille.">
-<meta property="og:description" content="Tavoittaminen, luottamus ja sitouttaminen — somaliperheiden ja muiden maahanmuuttajaperheiden polku rahoitettujen palveluiden pariin.">
+<meta property="og:description" content="Tavoittaminen, luottamus ja sitouttaminen, somaliperheiden ja muiden maahanmuuttajaperheiden polku rahoitettujen palveluiden pariin.">
 <meta property="og:locale" content="fi_FI">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="AQOON · Apu on jo olemassa. Me viemme sen perille.">
-<meta name="twitter:description" content="Tavoittaminen, luottamus ja sitouttaminen — somaliperheiden polku rahoitettujen palveluiden pariin.">
+<meta name="twitter:description" content="Tavoittaminen, luottamus ja sitouttaminen, somaliperheiden polku rahoitettujen palveluiden pariin.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,800;9..144,900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -201,7 +201,7 @@
 
   /* HANKKEET — active projects */
   #hankkeet{background:var(--cream);}
-  .hgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px;}
+  .hgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:48px;}
   .hcard{background:var(--paper);border-radius:22px;padding:28px 24px;border-left:3px solid var(--teal);transition:transform .2s,box-shadow .2s;}
   .hcard:hover{transform:translateY(-3px);box-shadow:0 20px 40px -20px rgba(14,36,64,.28);}
   .hcard .hstatus{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tealdk);margin-bottom:12px;}
@@ -210,12 +210,35 @@
   .hchip{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.03em;color:var(--navy);background:rgba(14,36,64,.05);padding:5px 12px;border-radius:100px;}
   @media(max-width:860px){.hgrid{grid-template-columns:1fr;}}
 
+
+  /* deliverable card solo (5th card centered in 2-col grid) */
+  .dcard.solo{grid-column:1 / -1;max-width:calc(50% - 10px);margin:0 auto;}
+  .dcard.solo .hchip{display:inline-block;margin-top:14px;font-size:11px;font-weight:600;letter-spacing:.03em;color:var(--navy);background:rgba(14,36,64,.05);padding:5px 12px;border-radius:100px;}
+  @media(max-width:860px){.dcard.solo{max-width:100%;}}
+
+  /* PAKETIT — service packages */
+  #paketit{background:var(--paper);}
+  .pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px;}
+  .pkg{background:var(--paper);border:1px solid rgba(14,36,64,.08);border-radius:24px;padding:32px 28px;transition:transform .2s,box-shadow .2s,border-color .2s;}
+  .pkg:hover{transform:translateY(-3px);box-shadow:0 16px 34px -18px rgba(14,36,64,.25);border-color:var(--teal);}
+  .pkg .pnum{font-family:var(--display);font-size:30px;font-weight:800;color:var(--teal);margin-bottom:14px;line-height:1;}
+  .pkg h3{font-family:var(--display);font-size:21px;font-weight:600;color:var(--navy);margin-bottom:10px;}
+  .pkg .pdur{display:inline-block;font-size:12px;font-weight:600;color:var(--tealdk);background:rgba(15,181,174,.1);padding:5px 13px;border-radius:100px;margin-bottom:14px;}
+  .pkg>p{font-size:15px;color:var(--muted);margin-bottom:16px;line-height:1.6;}
+  .pkg ul{list-style:none;display:flex;flex-direction:column;gap:7px;}
+  .pkg ul li{font-size:13.5px;color:var(--muted);padding-left:18px;position:relative;line-height:1.5;}
+  .pkg ul li::before{content:'';position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:var(--teal);}
+  .pkg-cta{text-align:center;margin-top:36px;}
+  .pkg-cta>p{font-size:15px;color:var(--muted);margin-bottom:16px;}
+  .pkg-cta .pkg-btn{font-size:14px;padding:13px 26px;}
+  @media(max-width:860px){.pkg-grid{grid-template-columns:1fr;}}
+
   /* Hard lock against in-app/forced dark mode */
   @media (prefers-color-scheme: dark){
     html,body{background:#FBFAF7 !important;color:#16202E !important;}
     .hero,#ratkaisu,.founder,#kenelle{background-color:#FBFAF7 !important;}
     #silta,#tutkimus,#hankkeet{background-color:#F3F0E9 !important;}
-    #tuotokset{background-color:#FBFAF7 !important;}
+    #tuotokset,#paketit{background-color:#FBFAF7 !important;}
     .bcard,.dcard,.hcard{background:#FBFAF7 !important;}
     .rstep{background:#F3F0E9 !important;}
     .bcard h3,.bcard .bnum,.hcard h3,.dcard h3,.rstep h3{color:#0E2440 !important;}
@@ -245,7 +268,7 @@
   .hero h1 em{color:#0A8F89 !important;}
   .hero .lead{color:#4A5563 !important;}
   .hero .lead b{color:#16202E !important;}
-  #ratkaisu, #kenelle, #tuotokset{background-color:#FBFAF7 !important;}
+  #ratkaisu, #kenelle, #tuotokset, #paketit{background-color:#FBFAF7 !important;}
   #silta, #tutkimus, #hankkeet{background-color:#F3F0E9 !important;}
   .bcard, .dcard, .hcard{background:#FBFAF7 !important;}
   .rstep{background:#F3F0E9 !important;}
@@ -285,9 +308,9 @@
       <a href="#ratkaisu" class="btn ghost">Miten se toimii &rarr;</a>
     </div>
     <div class="stats reveal">
-      <div class="stat"><div class="n">3 hanketta</div><div class="l">käynnissä tai sovittuna · Pilke, Vantaa, Espoo</div></div>
-      <div class="stat"><div class="n">60+ perhettä</div><div class="l">tavoitettu suorilla keskusteluilla</div></div>
-      <div class="stat"><div class="n">@waalidsupport</div><div class="l">444 seuraajaa · 46k+ katselua 60 päivässä</div></div>
+      <div class="stat"><div class="n">3 hanketta</div><div class="l">kesäkuu 2026</div></div>
+      <div class="stat"><div class="n">464 perhettä</div><div class="l">tavoitettu kentällä ja yhteisön kanavilla</div></div>
+      <div class="stat"><div class="n">46k+ katselua</div><div class="l">60 päivässä, 27 % jakoaste somali-yhteisössä</div></div>
     </div>
   </div>
 </header>
@@ -384,7 +407,7 @@
         <svg class="bicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
         <div class="bnum">03</div>
         <h3>Digitaalinen ekskluusio</h3>
-        <p class="bquote">"Wilma, OmaKela, Enter Finland — en osaa."</p>
+        <p class="bquote">"Wilma, OmaKela, Enter Finland, en osaa."</p>
         <p>Suomenkieliset digitaaliset järjestelmät sulkevat ulos perheet jotka pärjäisivät muuten.</p>
       </div>
       <div class="bcard sand-icon">
@@ -392,7 +415,7 @@
         <div class="bnum">04</div>
         <h3>Stigma</h3>
         <p class="bquote">"Tätä ei voi sanoa ääneen."</p>
-        <p>Mielenterveys, velka, perheväkivalta — yhteisön sisäinen häpeä estää avunhaun.</p>
+        <p>Mielenterveys, velka, perheväkivalta, yhteisön sisäinen häpeä estää avunhaun.</p>
       </div>
       <div class="bcard">
         <svg class="bicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -410,18 +433,18 @@
     <div class="reveal">
       <div class="tagline">Tutkimus</div>
       <h2>Emme arvaa. Tutkimme.</h2>
-      <p class="lead2">Jokainen kampanja alkaa kentällä. Asiantuntijahaastattelut, suorat keskustelut perheiden kanssa, ja oma alueellinen tietopääoma Uudenmaan somali-yhteisöstä — kaikki ennen kuin yhtäkään videota tuotetaan.</p>
+      <p class="lead2">Jokainen kampanja alkaa kentällä. Asiantuntijahaastattelut, suorat keskustelut perheiden kanssa, ja oma alueellinen tietopääoma Uudenmaan somali-yhteisöstä, kaikki ennen kuin yhtäkään videota tuotetaan.</p>
     </div>
     <div class="rflow reveal">
       <div class="rstep">
         <div class="rnum">01</div>
         <h3>Asiantuntijahaastattelut</h3>
-        <p>Ohjelman omistajien kanssa. Mekaniikka, hakuprosessi, todelliset esteet — kerrottuna sisältäpäin.</p>
+        <p>Ohjelman omistajien kanssa. Mekaniikka, hakuprosessi, todelliset esteet, kerrottuna sisältäpäin.</p>
       </div>
       <div class="rstep">
         <div class="rnum">02</div>
         <h3>Kenttäkeskustelut</h3>
-        <p>50–100 perheen kanssa per kampanja. Kuuntelemme ensin, myynti vasta myöhemmin.</p>
+        <p>50-100 perheen kanssa per kampanja. Kuuntelemme ensin, myynti vasta myöhemmin.</p>
       </div>
       <div class="rstep">
         <div class="rnum">03</div>
@@ -442,7 +465,7 @@
     <div class="reveal">
       <div class="tagline">Tuotokset</div>
       <h2>Mitä saatte konkreettisesti.</h2>
-      <p class="lead2">Jokainen kampanja tuottaa mitattavaa työtä — ei vain raporttia.</p>
+      <p class="lead2">Jokainen kampanja tuottaa mitattavaa työtä, ei vain raporttia.</p>
     </div>
     <div class="dcard-grid reveal">
       <div class="dcard">
@@ -452,19 +475,80 @@
       </div>
       <div class="dcard">
         <svg class="dicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-        <h3>TikTok-sisältö somali-äänellä</h3>
-        <p>2–5 lyhytvideota viikossa @waalidsupport-kanavalla. Käsikirjoitukset perustuvat kentältä kuultuihin sitaatteihin.</p>
+        <h3>Sisältö joka tavoittaa monessa kanavassa</h3>
+        <p>TikTok-videoita @waalidsupport-kanavalla, yhteistyö luotettujen somali-vaikuttajien kanssa, suorat WhatsApp-viestit äitiryhmässä ja puhelut perheille jotka haluavat kuulla lisää. Sama viesti monella kanavalla, perheiden omilla sanoilla.</p>
       </div>
       <div class="dcard">
         <svg class="dicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg>
         <h3>Asiantuntijahaastattelut ja podcastit</h3>
-        <p>Pitkät videot ja audio-versiot. Sisältö joka jää, ei katoa algoritmiin.</p>
+        <p>Pitkät videot ja audio-versiot. Toimme asiantuntijan suoraan yhteisön luokse, omalla kielellä. Käsittelemme pelot, stigmat ja väärinkäsitykset auki. Sisältö jää, kasvattaa luottamusta ja vie keskustelua eteenpäin.</p>
       </div>
       <div class="dcard">
         <svg class="dicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
         <h3>Hakemus-talkoot ja perheen tuki</h3>
         <p>Fyysiset tilaisuudet alueella. Perhe täyttää hakemuksen vieressä, oppii tekemään itse.</p>
       </div>
+      <div class="dcard solo">
+        <svg class="dicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <h3>AQOON-sovellus pysyvyyden tukena</h3>
+        <p>Kun perheet ovat sisällä, kommunikointi jatkuu. Sovelluksemme auttaa vanhempia ymmärtämään viestinne suomeksi ja vastaamaan niihin somaliksi. Vähemmän väärinkäsityksiä, parempi pysyvyys.</p>
+        <span class="hchip">Vaihe 5, Pysyvyys</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="paketit">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="tagline">Pakettimme</div>
+      <h2>Räätälöityjä paketteja eri vaiheisiin.</h2>
+      <p class="lead2">AQOON rakennetaan moduuleina. Voit ostaa yhden vaiheen tai koko polun. Jokainen paketti perustuu samaan menetelmään: tutkimus ennen viestä, luottamus ennen tavoittamista.</p>
+    </div>
+    <div class="pkg-grid reveal">
+      <div class="pkg">
+        <div class="pnum">01</div>
+        <h3>Tutkimuspaketti</h3>
+        <span class="pdur">1, 2 tai 3 kuukautta</span>
+        <p>Aloituskohta. Menemme alueellenne, opimme yhteisön todelliset esteet ja myytit, ja annamme teille raportin joka muuttaa miten kohderyhmäänne lähestytään.</p>
+        <ul>
+          <li>Asiantuntijahaastattelut ohjelmastanne</li>
+          <li>50-100 suoraa kenttäkeskustelua perheiden kanssa</li>
+          <li>Tutkimusvideot @waalidsupport-kanavalla</li>
+          <li>Aluekohtainen synteesi: esteet, myytit, viestien testaaminen</li>
+          <li>Loppuraportti suosituksin</li>
+        </ul>
+      </div>
+      <div class="pkg">
+        <div class="pnum">02</div>
+        <h3>Onboarding-paketti</h3>
+        <span class="pdur">2, 3 tai 4 kuukautta</span>
+        <p>Kun tutkimus on tehty, käynnistämme tavoittamisen. Kohdennetut videot, hakemus-talkoot, ja hand-holding hakemusprosessin läpi.</p>
+        <ul>
+          <li>Kohdennettu sisältöstrategia tutkimustulosten pohjalta</li>
+          <li>TikTok-videot, vaikuttajayhteistyö, WhatsApp-äitiryhmät</li>
+          <li>Hakemus-talkoot alueella, hand-holding hakemuksessa</li>
+          <li>Lämpimien perheiden seuranta ilmoittautumiseen asti</li>
+          <li>Konversioraportointi</li>
+        </ul>
+      </div>
+      <div class="pkg">
+        <div class="pnum">03</div>
+        <h3>Pysyvyyspaketti</h3>
+        <span class="pdur">Jatkuva sopimus</span>
+        <p>Perheen mukana pitäminen aloituksen jälkeen. WhatsApp-tuki, AQOON-sovellus kommunikaation helpottamiseksi, ja vuosittainen pysyvyysraportti.</p>
+        <ul>
+          <li>WhatsApp-yhteyshenkilö perheille</li>
+          <li>AQOON-sovellus: viestien selittäminen somaliksi</li>
+          <li>Toistuvat tilanteet selitettyinä</li>
+          <li>Kuukausittainen pysyvyysseuranta</li>
+          <li>3, 6 ja 12 kuukauden raportit</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pkg-cta reveal">
+      <p>Räätälöity hinnoittelu, ota yhteyttä keskustellaksesi tarpeistanne.</p>
+      <a href="https://cal.com/abducadir-abdullahi-aligure-tw1bge/30min" class="btn primary pkg-btn">Varaa tapaaminen &rarr;</a>
     </div>
   </div>
 </section>
@@ -493,9 +577,9 @@
     </div>
     <div class="aud-wrap reveal">
       <div class="aud"><h3>Kunnat ja kaupungit</h3><p>KOTO24-uudistus antaa kunnille lakisääteisen tehtävän tavoittaa kotivanhemmat ja työvoiman ulkopuoliset. Autamme nostamaan kotoutumisohjelman tavoittamis- ja suoritusprosenttia.</p></div>
-      <div class="aud"><h3>Yksityiset palveluntuottajat</h3><p>Päiväkodit ja palvelut, joilla on kapasiteettia mutta jotka eivät tavoita oikeita perheitä. Suomenkielinen markkinointi ei pure — me täytämme paikkanne somaliperheillä jotka eivät muuten löytäneet teitä.</p></div>
-      <div class="aud"><h3>Järjestöt ja hankkeet</h3><p>STEA-, AMIF- ja ESR+-rahoitteiset hankkeet jotka tarvitsevat aitoa tavoittamislukua raporttiinne. Toimimme alihankkijana — te säilytätte avustuksen, me toteutamme.</p></div>
-      <div class="aud"><h3>Työllisyystoimijat</h3><p>Henkilöstövuokraus ja työnantajat aloilla joilla on työvoimapula. Sama Somali-puhuva työntekijä joka aloittaa ja jää — ei se joka lopettaa kolmen kuukauden jälkeen.</p></div>
+      <div class="aud"><h3>Yksityiset palveluntuottajat</h3><p>Päiväkodit ja palvelut, joilla on kapasiteettia mutta jotka eivät tavoita oikeita perheitä. Suomenkielinen markkinointi ei pure, me täytämme paikkanne somaliperheillä jotka eivät muuten löytäneet teitä.</p></div>
+      <div class="aud"><h3>Järjestöt ja hankkeet</h3><p>STEA-, AMIF- ja ESR+-rahoitteiset hankkeet jotka tarvitsevat aitoa tavoittamislukua raporttiinne. Toimimme alihankkijana, te säilytätte avustuksen, me toteutamme.</p></div>
+      <div class="aud"><h3>Työllisyystoimijat</h3><p>Henkilöstövuokraus ja työnantajat aloilla joilla on työvoimapula. Sama Somali-puhuva työntekijä joka aloittaa ja jää, ei se joka lopettaa kolmen kuukauden jälkeen.</p></div>
     </div>
   </div>
 </section>
@@ -505,26 +589,20 @@
     <div class="reveal">
       <div class="tagline">Meillä on työtä käynnissä</div>
       <h2>Aktiiviset hankkeet.</h2>
-      <p class="lead2">Olemme ottaneet ensimmäiset askeleemme oikeiden kumppaneiden kanssa kesällä 2026.</p>
+      <p class="lead2">Kaksi hanketta on käynnissä tai sopimusvaiheessa kesäkuussa 2026. Lisää keskustellaan.</p>
     </div>
     <div class="hgrid reveal">
       <div class="hcard">
-        <div class="hstatus">Pilot käynnissä — heinäkuu 2026</div>
-        <h3>Yksityinen päiväkotiketju · Vantaa</h3>
-        <p>Somaliperheiden tavoittaminen Koivuhaan, Koivukylän ja Tikkurilan alueelta syksyn ilmoittautumiseen. 30 päivän kenttäkampanja, hakemus-talkoot, sisällöntuotanto.</p>
-        <span class="hchip">Vaihe 1 — Tutkimus &amp; luottamus</span>
+        <div class="hstatus">Pilot käynnissä, heinäkuu 2026</div>
+        <h3>Yksityinen päiväkotiketju · Uusimaa</h3>
+        <p>Somaliperheiden tavoittaminen kohdealueelta syksyn ilmoittautumiseen. 30 päivän kenttäkampanja, hakemus-talkoot, sisällöntuotanto.</p>
+        <span class="hchip">Vaihe 1, Tutkimus ja luottamus</span>
       </div>
       <div class="hcard">
         <div class="hstatus">Sopimus neuvotteluvaiheessa</div>
-        <h3>Vantaan kaupunki · Harrastusten Vantaa</h3>
-        <p>Vieraskielisten perheiden tavoittaminen Harrastamisen Suomen mallin syksyn ilmoittautumiseen. Havukoski, Länsimäki, Hakunila — alueet joissa 56–58 % vieraskielisiä asukkaita.</p>
-        <span class="hchip">Vaihe 0 — Ohjelmaymmärrys</span>
-      </div>
-      <div class="hcard">
-        <div class="hstatus">Ensitapaaminen 8. kesäkuuta 2026</div>
-        <h3>Espoon kaupunki · Koto-Espoo</h3>
-        <p>Kotoutumispalvelut kotivanhemmille ja työvoiman ulkopuolisille. KOTO24-uudistuksen tuoma uusi kunnan vastuu vaatii uusia tavoittamiskanavia.</p>
-        <span class="hchip">Aloitustapaaminen</span>
+        <h3>Harrastusohjelma · pääkaupunkiseutu</h3>
+        <p>Vieraskielisten perheiden tavoittaminen Harrastamisen Suomen mallin syksyn ilmoittautumiseen. Itäisten kaupunginosien alueet, joilla 56-58 % vieraskielisiä asukkaita.</p>
+        <span class="hchip">Vaihe 0, Ohjelmaymmärrys</span>
       </div>
     </div>
   </div>
@@ -536,7 +614,7 @@
     <div class="reveal">
       <div class="tagline" style="color:var(--teal);">Aloitetaan</div>
       <h2>Onko teillä palvelu, joka ei tavoita perheitä?</h2>
-      <p>Olemme avoinna 1–2 uudelle hankkeelle syksylle 2026. Varaa lyhyt tapaaminen tai lähetä viesti — kerromme miten voimme auttaa.</p>
+      <p>Olemme avoinna 1-2 uudelle hankkeelle syksylle 2026. Varaa lyhyt tapaaminen tai lähetä viesti, kerromme miten voimme auttaa.</p>
       <div class="actions">
         <a href="https://cal.com/abducadir-abdullahi-aligure-tw1bge/30min" class="btn primary">Varaa tapaaminen &rarr;</a>
         <a href="mailto:abducadir_abdullahi@aqoon.live" class="btn ghost">Lähetä viesti</a>
