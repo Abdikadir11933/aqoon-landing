@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.aqoon.live" }],
+      "destination": "https://aqoon.live/$1",
+      "permanent": true
+    }
+  ]
+}
