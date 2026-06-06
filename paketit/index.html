@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="color-scheme" content="light only">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDgwIDgwIiBmaWxsPSJub25lIj48cmVjdCB3aWR0aD0iODAiIGhlaWdodD0iODAiIHJ4PSIxOCIgZmlsbD0iIzBFMjQ0MCIvPjxwYXRoIGQ9Ik0yNiA2MCBMNDAgMjYgTDU0IDYwIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBhdGggZD0iTTMzIDQ3IEw0NyA0NyIgc3Ryb2tlPSIjMEZCNUFFIiBzdHJva2Utd2lkdGg9IjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvc3ZnPg==">
+<title>Paketit · AQOON</title>
+<meta name="description" content="AQOON:n palvelupaketit: Tutkimuspaketti, Onboarding-paketti ja Pysyvyyspaketti. Osta yksi vaihe tai koko polku — räätälöity hinnoittelu.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aqoon.live/paketit">
+<meta property="og:title" content="Paketit · AQOON">
+<meta property="og:description" content="Tutkimus, onboarding ja pysyvyys — osta yksi vaihe tai koko polku.">
+<meta property="og:locale" content="fi_FI">
+<meta property="og:image" content="/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Paketit · AQOON">
+<meta name="twitter:description" content="Tutkimus, onboarding ja pysyvyys — osta yksi vaihe tai koko polku.">
+<meta name="twitter:image" content="/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,800;9..144,900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-in">
+    <a href="/" class="logo"><svg width="32" height="32" viewBox="0 0 96 96" fill="none"><path d="M26 74 L48 26 L70 74" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M37 56 L59 56" stroke="#0FB5AE" stroke-width="9" stroke-linecap="round"/><circle cx="48" cy="56" r="4.5" fill="#E8A766"/></svg><span>AQOON</span></a>
+    <div class="nav-links" id="nav-links">
+      <a href="/palvelut" class="nav-link">Palvelut</a>
+      <a href="/paketit" class="nav-link active">Paketit</a>
+      <a href="/miksi" class="nav-link">Miksi AQOON</a>
+      <a href="/kenelle" class="nav-link">Kenelle</a>
+      <a href="/yhteys" class="nav-cta">Yhteys</a>
+    </div>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Avaa valikko" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<section id="paketit">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="tagline">Pakettimme</div>
+      <h2>Räätälöityjä paketteja eri vaiheisiin.</h2>
+      <p class="lead2">AQOON rakennetaan moduuleina. Voit ostaa yhden vaiheen tai koko polun. Jokainen paketti perustuu samaan menetelmään: tutkimus ennen viestä, luottamus ennen tavoittamista.</p>
+    </div>
+    <nav class="sub-nav" aria-label="Paketit">
+      <button type="button" data-pkg="0">Tutkimus</button>
+      <button type="button" data-pkg="1">Onboarding</button>
+      <button type="button" data-pkg="2">Pysyvyys</button>
+    </nav>
+    <div class="pkg-tabs reveal" role="tablist" aria-label="Palvelupaketit">
+      <button class="pkg-tab active" role="tab" id="ptab-01" aria-controls="ppanel-01" aria-selected="true" tabindex="0">
+        <span class="ptnum">01</span>
+        <span class="ptname">Tutkimus</span>
+      </button>
+      <button class="pkg-tab" role="tab" id="ptab-02" aria-controls="ppanel-02" aria-selected="false" tabindex="-1">
+        <span class="ptnum">02</span>
+        <span class="ptname">Onboarding</span>
+      </button>
+      <button class="pkg-tab" role="tab" id="ptab-03" aria-controls="ppanel-03" aria-selected="false" tabindex="-1">
+        <span class="ptnum">03</span>
+        <span class="ptname">Pysyvyys</span>
+      </button>
+    </div>
+    <div class="pkg-panels reveal">
+      <div class="pkg-panel active" role="tabpanel" id="ppanel-01" aria-labelledby="ptab-01">
+        <div class="pnum">01</div>
+        <h3>Tutkimuspaketti</h3>
+        <span class="pdur">1, 2 tai 3 kuukautta</span>
+        <p>Aloituskohta. Menemme alueellenne, opimme yhteisön todelliset esteet ja myytit, ja annamme teille raportin joka muuttaa miten kohderyhmäänne lähestytään.</p>
+        <ul>
+          <li>Asiantuntijahaastattelut ohjelmastanne</li>
+          <li>50-100 suoraa kenttäkeskustelua perheiden kanssa</li>
+          <li>Tutkimusvideot useassa kanavassa: @waalidsupport, vaikuttajayhteistyö, WhatsApp-ryhmät</li>
+          <li>Aluekohtainen synteesi: esteet, myytit, viestien testaaminen</li>
+          <li>Loppuraportti suosituksin</li>
+        </ul>
+      </div>
+      <div class="pkg-panel" role="tabpanel" id="ppanel-02" aria-labelledby="ptab-02" hidden>
+        <div class="pnum">02</div>
+        <h3>Onboarding-paketti</h3>
+        <span class="pdur">Räätälöity laajuus</span>
+        <p>Kun tutkimus on tehty, käynnistämme tavoittamisen. Kohdennetut videot, hakemus-talkoot, ja hand-holding hakemusprosessin läpi.</p>
+        <ul>
+          <li>Kohdennettu sisältöstrategia tutkimustulosten pohjalta</li>
+          <li>TikTok-videot, vaikuttajayhteistyö, WhatsApp-äitiryhmät</li>
+          <li>Hakemus-talkoot alueella, hand-holding hakemuksessa</li>
+          <li>Lämpimien perheiden seuranta ilmoittautumiseen asti</li>
+          <li>Konversioraportointi</li>
+        </ul>
+      </div>
+      <div class="pkg-panel" role="tabpanel" id="ppanel-03" aria-labelledby="ptab-03" hidden>
+        <div class="pnum">03</div>
+        <h3>Pysyvyyspaketti</h3>
+        <span class="pdur">Jatkuva sopimus</span>
+        <p>Perheen mukana pitäminen aloituksen jälkeen. WhatsApp-tuki, AQOON-sovellus kommunikaation helpottamiseksi, ja vuosittainen pysyvyysraportti.</p>
+        <ul>
+          <li>WhatsApp-yhteyshenkilö perheille</li>
+          <li>AQOON-sovellus: viestien selittäminen somaliksi</li>
+          <li>Toistuvat tilanteet selitettyinä</li>
+          <li>Kuukausittainen pysyvyysseuranta</li>
+          <li>3, 6 ja 12 kuukauden raportit</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pkg-cta reveal">
+      <p>Räätälöity hinnoittelu, ota yhteyttä keskustellaksesi tarpeistanne.</p>
+      <a href="https://cal.com/abducadir-abdullahi-aligure-tw1bge/30min" class="btn primary pkg-btn">Varaa tapaaminen &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<section id="yhteys" class="cta">
+  <div class="cta-bg"></div>
+  <div class="wrap">
+    <div class="reveal">
+      <div class="tagline" style="color:var(--teal);">Aloitetaan</div>
+      <h2>Onko teillä palvelu, joka ei tavoita perheitä?</h2>
+      <p>Olemme avoinna 1-2 uudelle hankkeelle syksylle 2026. Varaa lyhyt tapaaminen tai lähetä viesti, kerromme miten voimme auttaa.</p>
+      <div class="actions">
+        <a href="https://cal.com/abducadir-abdullahi-aligure-tw1bge/30min" class="btn primary">Varaa tapaaminen &rarr;</a>
+        <a href="mailto:abducadir_abdullahi@aqoon.live" class="btn ghost">Lähetä viesti</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <a href="/" class="logo"><svg width="32" height="32" viewBox="0 0 96 96" fill="none"><path d="M26 74 L48 26 L70 74" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M37 56 L59 56" stroke="#0FB5AE" stroke-width="9" stroke-linecap="round"/><circle cx="48" cy="56" r="4.5" fill="#E8A766"/></svg><span>AQOON</span></a>
+    <div>Abducadir Aligure &middot; abducadir_abdullahi@aqoon.live &middot; +358 45 259 1438</div>
+  </div>
+</footer>
+
+<script src="/assets/main.js"></script>
+<script>
+(function(){
+  var tabs   = document.querySelectorAll('.pkg-tab');
+  var panels = document.querySelectorAll('.pkg-panel');
+
+  function activatePkg(i) {
+    tabs.forEach(function(t, j) {
+      t.classList.toggle('active', j === i);
+      t.setAttribute('aria-selected', j === i ? 'true' : 'false');
+      t.setAttribute('tabindex', j === i ? '0' : '-1');
+    });
+    panels.forEach(function(p, j) {
+      if (j === i) { p.classList.add('active'); p.removeAttribute('hidden'); }
+      else         { p.classList.remove('active'); p.setAttribute('hidden', ''); }
+    });
+  }
+
+  tabs.forEach(function(tab, i) {
+    tab.addEventListener('click', function() { activatePkg(i); tab.focus(); });
+    tab.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowRight') { activatePkg((i + 1) % tabs.length); tabs[(i + 1) % tabs.length].focus(); }
+      if (e.key === 'ArrowLeft')  { activatePkg((i - 1 + tabs.length) % tabs.length); tabs[(i - 1 + tabs.length) % tabs.length].focus(); }
+    });
+  });
+  activatePkg(0);
+
+  // Subnav buttons activate tabs
+  document.querySelectorAll('.sub-nav [data-pkg]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var i = parseInt(btn.getAttribute('data-pkg'), 10);
+      activatePkg(i);
+      document.getElementById('paketit').scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -225,6 +225,26 @@ h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,4vw,46px);lin
 .pkg-cta>p{font-size:15px;color:var(--muted);margin-bottom:16px;}
 .pkg-cta .pkg-btn{font-size:14px;padding:13px 26px;}
 
+/* ── ANKKURI-SUBNAV ─────────────────────────────────────────── */
+.sub-nav{display:flex;gap:8px;flex-wrap:wrap;margin:28px 0 8px;}
+.sub-nav a,.sub-nav button{font-size:13px;font-weight:600;color:var(--navy);background:transparent;border:1.5px solid rgba(14,36,64,.18);border-radius:100px;padding:7px 18px;text-decoration:none;transition:border-color .15s,color .15s,background .15s;cursor:pointer;font-family:inherit;line-height:1;}
+.sub-nav a:hover,.sub-nav button:hover{border-color:var(--teal);color:var(--tealdk);background:rgba(15,181,174,.05);}
+
+/* ── TUOTOKSET ACCORDION ────────────────────────────────────── */
+.dlist.accordion .drow{cursor:pointer;user-select:none;}
+.dlist.accordion .drow-content p{max-height:0;overflow:hidden;opacity:0;transition:max-height .35s cubic-bezier(.4,0,.2,1),opacity .25s ease;margin-top:0;}
+.dlist.accordion .drow.drow-open .drow-content p{max-height:200px;opacity:1;margin-top:8px;}
+.drow-expand{flex-shrink:0;align-self:center;width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(14,36,64,.2);display:flex;align-items:center;justify-content:center;font-size:16px;line-height:1;color:var(--muted);transition:transform .25s ease,border-color .2s,color .2s;}
+.dlist.accordion .drow:hover .drow-expand{border-color:var(--teal);}
+.dlist.accordion .drow.drow-open .drow-expand{transform:rotate(45deg);border-color:var(--teal);color:var(--tealdk);}
+
+/* ── PAKETTI-TEASER (palvelut-sivun nostokortti) ─────────────── */
+.pkg-teaser{display:flex;align-items:center;justify-content:space-between;gap:32px;background:var(--cloud);border-radius:22px;padding:36px 40px;margin-top:48px;}
+.pkg-teaser>div{flex:1;}
+.pkg-teaser h3{font-family:var(--display);font-size:22px;font-weight:700;color:var(--navy);margin:0 0 10px;}
+.pkg-teaser p{font-size:15px;color:var(--muted);margin:0;}
+@media(max-width:800px){.pkg-teaser{flex-direction:column;gap:20px;padding:28px 24px;}}
+
 /* ── CTA / YHTEYS ────────────────────────────────────────────── */
 .cta{background:var(--navy);color:#fff;text-align:center;}
 .cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 50% 0%,rgba(15,181,174,.2),transparent 65%);}

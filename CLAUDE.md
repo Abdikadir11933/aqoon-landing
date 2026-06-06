@@ -4,7 +4,8 @@
 
 B2B-sivusto (monisivu):
 - `index.html` — etusivu (hero + ongelma + 3 nostokorttia + CTA)
-- `palvelut/index.html` — 5-vaihemenetelmä + tuotokset + paketit
+- `palvelut/index.html` — 5-vaihemenetelmä + tuotokset + paketti-teaser
+- `paketit/index.html` — 3 pakettia välilehtineen (Tutkimus, Onboarding, Pysyvyys)
 - `miksi/index.html` — silta-kortit (5 estettä) + tutkimusmenetelmä
 - `kenelle/index.html` — perustaja + kohderyhmät + aktiiviset hankkeet
 - `yhteys/index.html` — yhteydenottosektiö
@@ -18,7 +19,7 @@ Kampanjasivut (älä koske):
 Muu:
 - `BRAND.md` — brändi-, fontti- ja kielitotuus; **lue ennen mitään UI-muutosta**
 
-**Nav ja footer** toistuvat kaikilla 5 B2B-sivulla (`index.html`, `palvelut/`, `miksi/`, `kenelle/`, `yhteys/`). Muutos johonkin näistä vaatii päivityksen **kaikkiin viiteen** tiedostoon.
+**Nav ja footer** toistuvat kaikilla 6 B2B-sivulla (`index.html`, `palvelut/`, `paketit/`, `miksi/`, `kenelle/`, `yhteys/`). Muutos johonkin näistä vaatii päivityksen **kaikkiin kuuteen** tiedostoon.
 
 ## Ennen UI-muutoksia
 
