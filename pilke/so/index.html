@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="so">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<title>Päiväkoti Vantaa · caawimaad bilaash ah af-Soomaali · AQOON</title>
+<meta name="description" content="Ma Vantaa baad deggan tahay, mana leedahay ilmo 2–6 jir ah? Waxaan kugu caawinayaa af-Soomaali sidaad goob päiväkoti ah u hesho. Adiga waa kuu bilaash, Pilke ayaa i siisa lacagta.">
+<meta property="og:title" content="Päiväkoti Vantaa · waan kugu caawinayaa af-Soomaali, waa kuu bilaash">
+<meta property="og:description" content="Waan kuu sharxayaa, waan kuu turjumayaa, codsiyadana waynu wada buuxinaynaa. Qoysas badan päiväkoti waa 0 €/bishii palveluseteli.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0E2440; --ink:#0A1A30; --teal:#0FB5AE; --tealdk:#0A8F89;
+    --sand:#E8A766; --paper:#FBFAF7; --cream:#F3F0E9;
+    --text:#16202E; --muted:#5C6675; --wa:#1FAF5A;
+    --display:'Fraunces',Georgia,serif; --body:'Outfit',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;background:var(--paper);}
+  body{font-family:var(--body);color:var(--text);background:var(--paper);line-height:1.55;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:560px;margin:0 auto;padding:0 22px;}
+  a{color:inherit;text-decoration:none;}
+
+  header{background:var(--navy);color:#fff;padding:30px 0 46px;position:relative;overflow:hidden;}
+  header::after{content:"";position:absolute;inset:0;background:
+    radial-gradient(ellipse 70% 55% at 85% 0%,rgba(15,181,174,.25),transparent 60%),
+    radial-gradient(ellipse 55% 45% at 0% 100%,rgba(232,167,102,.18),transparent 60%);pointer-events:none;}
+  .topbar{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:900;letter-spacing:.5px;font-size:19px;}
+  .brand svg{flex-shrink:0;}
+  .langsw{font-size:13px;font-weight:600;color:#9FB2C8;border:1px solid rgba(255,255,255,.25);padding:7px 14px;border-radius:100px;}
+  header h1{position:relative;z-index:1;font-family:var(--display);font-weight:900;font-size:clamp(29px,7.6vw,40px);line-height:1.1;letter-spacing:-.01em;margin-top:26px;}
+  header h1 em{font-style:italic;color:var(--teal);}
+  header .sub{position:relative;z-index:1;margin-top:16px;font-size:17px;color:#cdd9e8;}
+  header .sub b{color:#fff;}
+  .freechip{position:relative;z-index:1;display:inline-flex;align-items:center;gap:8px;margin-top:22px;background:rgba(15,181,174,.15);border:1px solid rgba(15,181,174,.5);color:#7FE6E1;font-weight:600;font-size:14px;padding:9px 16px;border-radius:100px;}
+
+  .qualify{margin-top:-22px;position:relative;z-index:2;}
+  .qcard{background:#fff;border:1px solid rgba(14,36,64,.1);border-radius:18px;padding:24px 22px;box-shadow:0 18px 40px -20px rgba(14,36,64,.35);}
+  .qcard h2{font-family:var(--display);font-size:20px;font-weight:700;color:var(--navy);margin-bottom:14px;}
+  .qrow{display:flex;gap:12px;align-items:flex-start;padding:10px 0;}
+  .qrow + .qrow{border-top:1px dashed rgba(14,36,64,.12);}
+  .tick{flex-shrink:0;width:26px;height:26px;border-radius:8px;background:rgba(15,181,174,.14);color:var(--tealdk);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;}
+  .qrow p{font-size:15.5px;padding-top:2px;}
+  .qcard .then{margin-top:14px;font-size:15px;color:var(--muted);}
+  .qcard .then b{color:var(--navy);}
+
+  section{padding:40px 0 6px;}
+  .tag{font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--tealdk);margin-bottom:10px;}
+  h3.big{font-family:var(--display);font-size:24px;font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:14px;}
+
+  .fact{background:#fff;border:1px solid rgba(14,36,64,.1);border-radius:16px;padding:20px;margin-bottom:14px;}
+  .fact .n{font-family:var(--display);font-size:26px;font-weight:900;color:var(--navy);line-height:1.1;}
+  .fact .n span{color:var(--teal);}
+  .fact p{font-size:15px;color:var(--muted);margin-top:7px;}
+  .fact p b{color:var(--text);}
+
+  .how{background:var(--cream);border-radius:20px;padding:26px 22px;margin-top:8px;}
+  .how h3{font-family:var(--display);font-size:21px;font-weight:700;color:var(--navy);margin-bottom:6px;}
+  .steps{display:grid;gap:0;}
+  .step{display:flex;gap:14px;padding:13px 0;border-top:1px solid rgba(14,36,64,.1);}
+  .step .no{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;}
+  .step p{font-size:15px;padding-top:3px;}
+  .honest{margin-top:18px;background:rgba(232,167,102,.14);border:1px solid rgba(232,167,102,.45);border-radius:14px;padding:16px;font-size:14.5px;}
+  .honest b{color:var(--navy);}
+
+  .formwrap{background:var(--navy);border-radius:22px;padding:28px 22px 24px;margin-top:34px;color:#fff;position:relative;overflow:hidden;}
+  .formwrap::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 90% 0%,rgba(15,181,174,.22),transparent 65%);pointer-events:none;}
+  .formwrap > *{position:relative;z-index:1;}
+  .formwrap h3{font-family:var(--display);font-size:24px;font-weight:900;line-height:1.15;}
+  .formwrap .fsub{margin-top:8px;font-size:14.5px;color:#cdd9e8;}
+  .spots{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:rgba(232,167,102,.16);border:1px solid rgba(232,167,102,.5);color:#F6C690;font-size:13.5px;font-weight:600;padding:7px 14px;border-radius:100px;}
+  .spots .dot{width:8px;height:8px;border-radius:50%;background:var(--sand);animation:pulse 1.6s infinite;}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  form{margin-top:20px;display:grid;gap:13px;}
+  label{font-size:13px;font-weight:600;letter-spacing:.04em;color:#9FB2C8;display:block;margin-bottom:6px;}
+  input[type=text],input[type=tel],select{width:100%;padding:14px 15px;border-radius:12px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.07);color:#fff;font-family:var(--body);font-size:16px;outline:none;transition:border-color .2s,background .2s;}
+  input:focus,select:focus{border-color:var(--teal);background:rgba(255,255,255,.12);}
+  input::placeholder{color:#7d90a8;}
+  select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%239FB2C8' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 15px center;}
+  select option{color:var(--text);}
+  .send{margin-top:6px;width:100%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;background:var(--wa);color:#fff;font-family:var(--body);font-weight:700;font-size:17px;padding:17px;border-radius:100px;box-shadow:0 10px 26px rgba(31,175,90,.4);transition:transform .15s;}
+  .send:active{transform:scale(.98);}
+  .send:disabled{opacity:.6;cursor:not-allowed;transform:none;}
+  .privacy{margin-top:12px;font-size:12.5px;color:#8da1ba;text-align:center;}
+  .err{display:none;margin-top:4px;background:rgba(232,103,103,.15);border:1px solid rgba(232,103,103,.5);color:#FBD2D2;font-size:13.5px;padding:10px 14px;border-radius:10px;}
+  .err.show{display:block;}
+  .success-msg{text-align:center;padding:30px 0;}
+  .success-msg .check{width:56px;height:56px;border-radius:50%;background:rgba(15,181,174,.2);border:2px solid var(--teal);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;}
+  .success-msg p{font-size:18px;font-weight:600;color:#fff;line-height:1.5;}
+
+  footer{padding:34px 0 44px;text-align:center;font-size:13.5px;color:var(--muted);}
+  footer b{color:var(--navy);}
+  footer .tk{margin-top:6px;}
+  .herocta{position:relative;z-index:1;display:inline-flex;align-items:center;justify-content:center;margin-top:18px;background:var(--wa);color:#fff;font-family:var(--body);font-weight:700;font-size:17px;padding:16px 30px;border-radius:100px;box-shadow:0 10px 26px rgba(31,175,90,.4);}
+  .herocta:active{transform:scale(.98);}
+  .floatcta{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:50;background:var(--wa);color:#fff;font-family:var(--body);font-weight:700;font-size:16px;padding:14px 28px;border-radius:100px;box-shadow:0 10px 26px rgba(31,175,90,.45);white-space:nowrap;transition:opacity .25s;}
+  .floatcta.hidden{opacity:0;pointer-events:none;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <svg width="26" height="26" viewBox="0 0 96 96" fill="none"><path d="M26 74 L48 26 L70 74" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M37 56 L59 56" stroke="#0FB5AE" stroke-width="9" stroke-linecap="round"/></svg>
+        AQOON
+      </div>
+      <a class="langsw" href="/pilke">Suomeksi</a>
+    </div>
+    <h1>Päiväkoti Vantaa? <em>Waan kugu caawinayaa af-Soomaali.</em></h1>
+    <p class="sub">Waxaan kuu sharxayaa sida päiväkoti iyo palveluseteli u shaqeeyaan, waan kuu turjumayaa, haddii aad rabtidna <b>codsiyada (hakemukset) waynu wada buuxinaynaa</b>.</p>
+    <div class="freechip">✓ &nbsp;Adiga waa kuu bilaash 100 % — Pilke ayaa i siisa lacagta</div>
+    <a href="#foomka" class="herocta" id="hero-cta">Halkan ku qor xogtaada ⬇</a>
+  </div>
+</header>
+
+<div class="wrap qualify">
+  <div class="qcard">
+    <h2>Tani ma adigaa khusaysa?</h2>
+    <div class="qrow"><div class="tick">✓</div><p>Waxaad deggan tahay Vantaa</p></div>
+    <div class="qrow"><div class="tick">✓</div><p>Waxaad leedahay ilmo 2–6 jir ah</p></div>
+    <div class="qrow"><div class="tick">✓</div><p>Waxaad rabtaa goob päiväkoti ah, ama weli waad ka fikiraysaa</p></div>
+    <p class="then">Haddii aad tidhi haa, <b>hoos ku qor magacaaga iyo lambarkaaga</b> — waan kula soo xiriirayaa. Wax khasab ah ma jiro, mar kasta "maya" ayaad dhihi kartaa.</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <section>
+    <div class="tag">Waa fiican inaad ogaato</div>
+    <h3 class="big">Saddex arrimood oo dad badan aanay ogayn</h3>
+
+    <div class="fact">
+      <div class="n">0 €<span>/bishii</span></div>
+      <p><b>Päiväkoti gaar loo leeyahay (yksityinen) qaali ma aha.</b> Palveluseteli waxay ka dhigaysaa isla qiimaha päiväkoti-ga degmada (kunta). Vantaa gudaheeda carruurta in ka badan kala badh päiväkoti waa u bilaash gebi ahaanba, Pohjantähti-na lacag dheeraad ah kaama qaado.</p>
+    </div>
+
+    <div class="fact">
+      <div class="n">Dhaqso<span>.</span></div>
+      <p><b>Bilo badan ma sugaysid.</b> Safka degmadu wuxuu qaadan karaa 4 bilood. Pilke goob ayaad ka heli kartaa si aad uga dhaqso badan, xitaa haddii shaqo ama iskuul kuu bilaabmayo dhowaan.</p>
+    </div>
+
+    <div class="fact">
+      <div class="n">Suomi + English</div>
+      <p><b>Pohjantähti waa päiväkoti laba luqadood ah</b> oo ku yaal Koivuhaka (Mesikukantie 13). Ilmuhu ciyaar buu ku bartaa af-Finnish iyo af-Ingiriisi, af-Soomaaliguna guriga ayuu ku sii xoogaysanayaa. Ilmaha goor hore bilaaba, af-Finnishkiisu wuu diyaar yahay marka fasalka koowaad la gaadho.</p>
+    </div>
+
+    <div class="fact">
+      <div class="n">Meel kale Vantaa ah?</div>
+      <p><b>Pilke waxay päiväkotiyaal ku leedahay meelo kala duwan oo Vantaa ah.</b> Haddii Koivuhaka idinka fog tahay, nala soo xiriir, waxaynu raadinaynaa meel idiin dhow oo idiin habboon.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="how">
+      <h3>Sidee bay u shaqaysaa?</h3>
+      <div class="steps" style="margin-top:16px;">
+        <div class="step"><div class="no">1</div><p>Hoos ku qor magacaaga iyo lambarkaaga.</p></div>
+        <div class="step"><div class="no">2</div><p>Fariin ayaan kuu soo dirayaa ama waan ku soo wacayaa. Af-Soomaali ama af-Finnish, sidaad doorato.</p></div>
+        <div class="step"><div class="no">3</div><p>Waxaan kuu sharxayaa qiimaha iyo lacagaha Kela, su'aal kastana waan ka jawaabayaa. Kaliya kotihoidon tuki ayaa ka joogsata ilmaha päiväkoti bilaabaya, lacagaha kale isma beddelaan.</p></div>
+        <div class="step"><div class="no">4</div><p>Haddii aad goob rabto, codsiyada waynu wada buuxinaynaa, agtaada ayaan fadhiyaa oo qodob kasta waan kuu turjumayaa.</p></div>
+      </div>
+      <div class="honest"><b>Si daacad ah:</b> aniga ma ihi qofka go'aanka gaadha, Pilke iyo degmada ayaa go'aamiya. Shaqadaydu waa inaad adigu wax walba fahanto iyo in codsiyadu si sax ah u baxaan, si aanay biil lama filaan ah kuugu iman.</div>
+    </div>
+  </section>
+
+  <div class="formwrap" id="foomka">
+    <div id="form-content">
+      <h3>Halkan ku qor xogtaada</h3>
+      <p class="fsub">1–2 maalmood gudahood ayaan kula soo xiriirayaa. Xogtaadu aniga kaliya ayay ii timaadaa, cid kale lama wadaago.</p>
+      <div class="spots"><span class="dot"></span> Xagaagan waxaan qaadayaa 20-ka qoys ee ugu horreeya</div>
+
+      <form id="waitlist" novalidate>
+        <div>
+          <label for="nimi">Magaca</label>
+          <input type="text" id="nimi" placeholder="Magaca hore ayaa ku filan" autocomplete="name">
+        </div>
+        <div>
+          <label for="alue">Xaggee Vantaa ah ayaad deggan tihiin?</label>
+          <select id="alue">
+            <option value="" selected disabled>Dooro degaanka</option>
+            <option>Koivukylä / Koivuhaka / Havukoski</option>
+            <option>Tikkurila / Hiekkaharju</option>
+            <option>Asola / Rekola / Mikkola</option>
+            <option>Hakunila / Länsimäki</option>
+            <option>Korso</option>
+            <option>Myyrmäki / Martinlaakso</option>
+            <option>Meel kale oo Vantaa ah</option>
+            <option>Kama deggani Vantaa</option>
+          </select>
+        </div>
+        <div>
+          <label for="nlapsi">Immisa carruur ah ayaad leedihiin?</label>
+          <select id="nlapsi">
+            <option value="" selected disabled>Dooro</option>
+            <option>1 ilmo</option>
+            <option>2 carruur</option>
+            <option>3 carruur ama ka badan</option>
+          </select>
+        </div>
+        <div>
+          <label for="ika">Da'da ilmaha (haddii carruur badan tahay, fariinta ku sheeg)</label>
+          <select id="ika">
+            <option value="" selected disabled>Dooro da'da</option>
+            <option>Ka yar 2 jir</option>
+            <option>2 jir</option>
+            <option>3 jir</option>
+            <option>4 jir</option>
+            <option>5 jir</option>
+            <option>6 jir</option>
+          </select>
+        </div>
+        <div>
+          <label for="puh">Lambarka telefoonka (WhatsApp)</label>
+          <input type="tel" id="puh" placeholder="+358..." autocomplete="tel">
+        </div>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" style="display:none;position:absolute;left:-9999px;">
+        <div class="err" id="virhe"></div>
+        <button type="submit" class="send" id="send-btn">Ku biir liiska</button>
+        <p class="privacy">Xogtaadu aniga kaliya ayay ii timaadaa. Mar kasta waad iga codsan kartaa in la tirtiro.</p>
+      </form>
+    </div>
+
+    <div id="kiitos" style="display:none;">
+      <div class="success-msg">
+        <div class="check">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0FB5AE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <p>Mahadsanid! 1–2 maalmood gudahood ayaan kula soo xiriirayaa.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <b>AQOON</b><br>
+    <div class="tk">TikTok @waalidsupport · WhatsApp +358 45 259 1438</div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var URL = 'https://qxracwbsyfibcelasxbs.supabase.co/rest/v1/waitlist';
+  var KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF4cmFjd2JzeWZpYmNlbGFzeGJzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg0MDEyMDYsImV4cCI6MjA5Mzk3NzIwNn0.RuLR2jqsRYN1vLEfa4u_wFpVRp-LRd6yP-5bCNXZyDg';
+
+  document.getElementById('waitlist').addEventListener('submit', function(e){
+    e.preventDefault();
+    var nimi   = document.getElementById('nimi').value.trim();
+    var alue   = document.getElementById('alue').value;
+    var nlapsi = document.getElementById('nlapsi').value;
+    var ika    = document.getElementById('ika').value;
+    var puh    = document.getElementById('puh').value.trim();
+    var honey  = document.getElementById('website').value;
+    var err    = document.getElementById('virhe');
+    var btn    = document.getElementById('send-btn');
+
+    if(honey) return;
+
+    if(!nimi || !alue || !nlapsi || !ika || !puh){
+      err.textContent = 'Fadlan buuxi magaca, degaanka, tirada carruurta, da\'da ilmaha iyo lambarka.';
+      err.classList.add('show');
+      return;
+    }
+    err.classList.remove('show');
+    btn.disabled = true;
+    btn.textContent = 'La dirayaa...';
+
+    fetch(URL, {
+      method:'POST',
+      headers:{
+        'apikey': KEY,
+        'Authorization': 'Bearer ' + KEY,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({
+        lang: 'so',
+        campaign: 'pilke',
+        name: nimi,
+        area: alue,
+        num_children: nlapsi,
+        child_age: ika,
+        phone: puh
+      })
+    }).then(function(res){
+      if(res.ok){
+        document.getElementById('form-content').style.display = 'none';
+        document.getElementById('kiitos').style.display = 'block';
+        window.dispatchEvent(new Event('pilke-done'));
+      } else {
+        throw new Error(res.status);
+      }
+    }).catch(function(){
+      err.textContent = 'Dirista way fashilantay. Mar kale isku day ama WhatsApp noogu soo qor: +358 45 259 1438.';
+      err.classList.add('show');
+      btn.disabled = false;
+      btn.textContent = 'Ku biir liiska';
+    });
+  });
+})();
+</script>
+
+<a href="#foomka" class="floatcta hidden" id="floatcta">Ku biir liiska ⬇</a>
+
+<script>
+(function(){
+  var floatBtn = document.getElementById('floatcta');
+  var done = false, heroVisible = true, formVisible = false;
+
+  function updateFloat(){
+    if(done || heroVisible || formVisible){ floatBtn.classList.add('hidden'); }
+    else { floatBtn.classList.remove('hidden'); }
+  }
+
+  window.addEventListener('pilke-done', function(){ done = true; updateFloat(); });
+
+  new IntersectionObserver(function(e){ heroVisible = e[0].isIntersecting; updateFloat(); })
+    .observe(document.getElementById('hero-cta'));
+  new IntersectionObserver(function(e){ formVisible = e[0].isIntersecting; updateFloat(); })
+    .observe(document.querySelector('.formwrap'));
+
+  function focusNimi(){
+    setTimeout(function(){ var n = document.getElementById('nimi'); if(n) n.focus({preventScroll:true}); }, 400);
+  }
+  document.getElementById('hero-cta').addEventListener('click', focusNimi);
+  floatBtn.addEventListener('click', focusNimi);
+})();
+</script>
+</body>
+</html>

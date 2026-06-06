@@ -1,10 +1,14 @@
 {
+  "cleanUrls": true,
+  "trailingSlash": false,
   "redirects": [
     {
       "source": "/(.*)",
       "has": [{ "type": "host", "value": "www.aqoon.live" }],
       "destination": "https://aqoon.live/$1",
       "permanent": true
-    }
+    },
+    { "source": "/pilke_landing.html", "destination": "/pilke", "permanent": true },
+    { "source": "/pilke_landing_so.html", "destination": "/pilke/so", "permanent": true }
   ]
 }
