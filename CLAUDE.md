@@ -2,10 +2,23 @@
 
 ## Repo-rakenne
 
-- `index.html` — B2B-markkinointisivu (ostajille: kunnat, päiväkodit, järjestöt)
+B2B-sivusto (monisivu):
+- `index.html` — etusivu (hero + ongelma + 3 nostokorttia + CTA)
+- `palvelut/index.html` — 5-vaihemenetelmä + tuotokset + paketit
+- `miksi/index.html` — silta-kortit (5 estettä) + tutkimusmenetelmä
+- `kenelle/index.html` — perustaja + kohderyhmät + aktiiviset hankkeet
+- `yhteys/index.html` — yhteydenottosektiö
+- `assets/styles.css` — kaikki jaettu CSS (nav, hero, sektioit, dark-mode-lock)
+- `assets/main.js` — jaettu JS (nav scroll, IntersectionObserver reveal, hamburger)
+
+Kampanjasivut (älä koske):
 - `pilke/index.html` — FI kampanjasivu perheille (TikTok-liikenne, mobiili edellä)
 - `pilke/so/index.html` — SO kampanjasivu perheille (identtinen rakenne, somali)
+
+Muu:
 - `BRAND.md` — brändi-, fontti- ja kielitotuus; **lue ennen mitään UI-muutosta**
+
+**Nav ja footer** toistuvat kaikilla 5 B2B-sivulla (`index.html`, `palvelut/`, `miksi/`, `kenelle/`, `yhteys/`). Muutos johonkin näistä vaatii päivityksen **kaikkiin viiteen** tiedostoon.
 
 ## Ennen UI-muutoksia
 
