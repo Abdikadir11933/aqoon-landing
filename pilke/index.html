@@ -102,8 +102,17 @@
   footer .tk{margin-top:6px;}
   .herocta{position:relative;z-index:1;display:inline-flex;align-items:center;justify-content:center;margin-top:18px;background:var(--wa);color:#fff;font-family:var(--body);font-weight:700;font-size:17px;padding:16px 30px;border-radius:100px;box-shadow:0 10px 26px rgba(31,175,90,.4);}
   .herocta:active{transform:scale(.98);}
-  .floatcta{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:50;background:var(--wa);color:#fff;font-family:var(--body);font-weight:700;font-size:16px;padding:14px 28px;border-radius:100px;box-shadow:0 10px 26px rgba(31,175,90,.45);white-space:nowrap;transition:opacity .25s;}
+  .floatcta{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:50;display:inline-flex;align-items:center;gap:8px;background:var(--wa);color:var(--ink);font-family:var(--body);font-weight:700;font-size:16px;padding:14px 28px;border-radius:100px;box-shadow:0 10px 26px rgba(31,175,90,.45);white-space:nowrap;transition:opacity .25s;}
   .floatcta.hidden{opacity:0;pointer-events:none;}
+
+  /* DIRECT CONTACT CTAS */
+  .ctarow{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px;}
+  .ctabtn{flex:1 1 190px;min-height:52px;display:flex;align-items:center;justify-content:center;gap:9px;border-radius:100px;font-family:var(--body);font-weight:700;font-size:16px;line-height:1.2;padding:14px 18px;text-align:center;transition:transform .15s;}
+  .ctabtn:active{transform:scale(.98);}
+  .ctabtn.wa{background:var(--wa);color:var(--ink);box-shadow:0 10px 26px rgba(31,175,90,.4);}
+  .ctabtn.call{background:var(--teal);color:var(--ink);box-shadow:0 10px 26px rgba(15,181,174,.35);}
+  .ctaor{margin-top:18px;font-size:13.5px;color:#9FB2C8;text-align:center;}
+  footer a.fonum{color:var(--tealdk);font-weight:600;}
 </style>
 </head>
 <body>
@@ -119,7 +128,7 @@
     </div>
     <h1>Päiväkotipaikka Vantaalla, <em>autan somaliksi.</em></h1>
     <p class="sub">Selitän miten päiväkoti ja palveluseteli toimivat, tulkkaan, ja jos haluatte, <b>täytetään hakemukset yhdessä</b>.</p>
-    <div class="freechip">✓ &nbsp;Sinulle 100 % ilmaista — Pilke maksaa minulle</div>
+    <div class="freechip">✓ &nbsp;Sinulle 100 % ilmaista: Pilke maksaa minulle</div>
     <a href="#lomake" class="herocta" id="hero-cta">Jätä yhteystietosi ⬇</a>
   </div>
 </header>
@@ -137,16 +146,17 @@
 <div class="wrap">
   <section>
     <div class="tag">Hyvä tietää</div>
-    <h3 class="big">Kolme asiaa, joita moni ei tiedä</h3>
+    <h3 class="big">Muutama asia, jota moni ei tiedä</h3>
 
     <div class="fact">
       <div class="n">0 €<span>/kk</span></div>
       <p><b>Yksityinen päiväkoti ei ole kallis.</b> Palvelusetelillä se maksaa saman kuin kunnan päiväkoti. Vantaalla yli puolet lapsista saa päiväkodin kokonaan maksutta, ja Pohjantähti ei peri mitään lisämaksua.</p>
+      <p style="margin-top:10px;"><b>Palveluseteli tarkoittaa:</b> kaupunki maksaa suurimman osan päiväkodista puolestasi. Autan sinua hakemaan sen.</p>
     </div>
 
     <div class="fact">
-      <div class="n">Nopeasti<span>.</span></div>
-      <p><b>Ei tarvitse jonottaa kuukausia.</b> Kunnan jono voi kestää 4 kuukautta. Pilkkeeltä paikka voi järjestyä paljon nopeammin, myös jos työ tai koulu alkaa pian.</p>
+      <div class="n">Tukesi<span>.</span></div>
+      <p><b>Vain sen lapsen kotihoidon tuki loppuu, joka aloittaa päiväkodissa.</b> Muut tukesi pysyvät ennallaan. Jos olet epävarma, käymme sen yhdessä läpi ennen kuin mitään tapahtuu.</p>
     </div>
 
     <div class="fact">
@@ -155,8 +165,8 @@
     </div>
 
     <div class="fact">
-      <div class="n">Muualla Vantaalla?</div>
-      <p><b>Pilkellä on päiväkoteja eri puolilla Vantaata.</b> Jos Koivuhaka on kaukana, ota silti yhteyttä, etsitään teille sopivin paikka lähempää.</p>
+      <div class="n">Tavallinen<span>.</span></div>
+      <p><b>Päiväkoti on tavallinen palvelu, jonka jokainen perhe Suomessa voi valita.</b> Se on tukea sinulle ja lapsellesi, ei mitään muuta.</p>
     </div>
   </section>
 
@@ -169,6 +179,7 @@
         <div class="step"><div class="no">3</div><p>Selitän hinnat, tuet ja vastaan kaikkiin kysymyksiin. Vain kotihoidon tuki loppuu siitä lapsesta joka aloittaa, muut tuet eivät muutu.</p></div>
         <div class="step"><div class="no">4</div><p>Jos haluatte paikan, täytetään hakemukset yhdessä, istun vieressäsi ja tulkkaan joka kohdan.</p></div>
       </div>
+      <p style="margin-top:16px;font-size:15px;"><b>Hakemuksia on kaksi:</b> yksi päiväkotiin ja yksi palvelusetelille. Et tee niitä yksin. Istun vieressäsi ja täytämme molemmat yhdessä, alusta loppuun.</p>
       <div class="honest"><b>Rehellisesti:</b> minä en päätä paikoista, Pilke ja kaupunki päättävät. Minun työni on varmistaa että ymmärrät kaiken ja että hakemukset menevät oikein, niin ettei tule yllätyslaskuja.</div>
     </div>
   </section>
@@ -178,6 +189,18 @@
       <h3>Jätä yhteystietosi</h3>
       <p class="fsub">Olen yhteydessä 1–2 päivän sisällä. Tietosi tulevat vain minulle, ei kenellekään muulle.</p>
       <div class="spots"><span class="dot"></span> Otan kesällä mukaan 20 ensimmäistä perhettä</div>
+
+      <div class="ctarow">
+        <a class="ctabtn wa" href="https://wa.me/358453155558?text=Hei%2C%20n%C3%A4in%20videonne%20ja%20haluaisin%20apua%20p%C3%A4iv%C3%A4kotiasiassa" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#0A1A30"><path d="M12 2a10 10 0 0 0-8.6 15.05L2 22l5.1-1.34A10 10 0 1 0 12 2Zm5.5 14.1c-.23.65-1.36 1.26-1.88 1.3-.5.05-1.1.07-1.78-.11-.41-.13-.94-.31-1.62-.6-2.85-1.23-4.7-4.1-4.85-4.29-.14-.19-1.16-1.54-1.16-2.94 0-1.4.73-2.08 1-2.37.27-.29.59-.36.78-.36l.56.01c.18.01.42-.07.66.5.23.58.79 2 .86 2.14.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.16-.29.36-.42.49-.14.14-.28.29-.12.57.16.29.71 1.17 1.53 1.9 1.05.93 1.94 1.22 2.22 1.36.28.14.44.12.6-.07.16-.19.69-.8.87-1.08.18-.28.36-.23.6-.14.25.1 1.57.74 1.84.88.27.14.45.21.52.32.07.12.07.66-.16 1.31Z"/></svg>
+          Ota yhteyttä WhatsAppissa
+        </a>
+        <a class="ctabtn call" href="tel:+358453155558">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A1A30" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0 1 22 16.92Z"/></svg>
+          Soita nyt
+        </a>
+      </div>
+      <p class="ctaor">Tai jätä yhteystietosi alla, niin otan yhteyttä sinuun.</p>
 
       <form id="waitlist" novalidate>
         <div>
@@ -242,7 +265,7 @@
 
   <footer>
     <b>AQOON</b><br>
-    <div class="tk">TikTok @waalidsupport · WhatsApp +358 45 259 1438</div>
+    <div class="tk">TikTok @waalidsupport · WhatsApp <a class="fonum" href="tel:+358453155558">+358 45 315 5558</a></div>
   </footer>
 </div>
 
@@ -299,7 +322,7 @@
         throw new Error(res.status);
       }
     }).catch(function(){
-      err.textContent = 'Lähetys epäonnistui. Yritä uudelleen tai laita viesti WhatsAppissa: +358 45 259 1438.';
+      err.textContent = 'Lähetys epäonnistui. Yritä uudelleen tai laita viesti WhatsAppissa: +358 45 315 5558.';
       err.classList.add('show');
       btn.disabled = false;
       btn.textContent = 'Liity listalle';
@@ -308,7 +331,7 @@
 })();
 </script>
 
-<a href="#lomake" class="floatcta hidden" id="floatcta">Liity listalle ⬇</a>
+<a href="https://wa.me/358453155558?text=Hei%2C%20n%C3%A4in%20videonne%20ja%20haluaisin%20apua%20p%C3%A4iv%C3%A4kotiasiassa" target="_blank" rel="noopener" class="floatcta hidden" id="floatcta"><svg width="18" height="18" viewBox="0 0 24 24" fill="#0A1A30" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.05L2 22l5.1-1.34A10 10 0 1 0 12 2Zm5.5 14.1c-.23.65-1.36 1.26-1.88 1.3-.5.05-1.1.07-1.78-.11-.41-.13-.94-.31-1.62-.6-2.85-1.23-4.7-4.1-4.85-4.29-.14-.19-1.16-1.54-1.16-2.94 0-1.4.73-2.08 1-2.37.27-.29.59-.36.78-.36l.56.01c.18.01.42-.07.66.5.23.58.79 2 .86 2.14.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.16-.29.36-.42.49-.14.14-.28.29-.12.57.16.29.71 1.17 1.53 1.9 1.05.93 1.94 1.22 2.22 1.36.28.14.44.12.6-.07.16-.19.69-.8.87-1.08.18-.28.36-.23.6-.14.25.1 1.57.74 1.84.88.27.14.45.21.52.32.07.12.07.66-.16 1.31Z"/></svg>Ota yhteyttä</a>
 
 <script>
 (function(){
@@ -331,7 +354,6 @@
     setTimeout(function(){ var n = document.getElementById('nimi'); if(n) n.focus({preventScroll:true}); }, 400);
   }
   document.getElementById('hero-cta').addEventListener('click', focusNimi);
-  floatBtn.addEventListener('click', focusNimi);
 })();
 </script>
 </body>

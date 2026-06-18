@@ -97,8 +97,17 @@
   footer .tk{margin-top:6px;}
   .herocta{position:relative;z-index:1;display:inline-flex;align-items:center;justify-content:center;margin-top:18px;background:var(--wa);color:#fff;font-family:var(--body);font-weight:700;font-size:17px;padding:16px 30px;border-radius:100px;box-shadow:0 10px 26px rgba(31,175,90,.4);}
   .herocta:active{transform:scale(.98);}
-  .floatcta{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:50;background:var(--wa);color:#fff;font-family:var(--body);font-weight:700;font-size:16px;padding:14px 28px;border-radius:100px;box-shadow:0 10px 26px rgba(31,175,90,.45);white-space:nowrap;transition:opacity .25s;}
+  .floatcta{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:50;display:inline-flex;align-items:center;gap:8px;background:var(--wa);color:var(--ink);font-family:var(--body);font-weight:700;font-size:16px;padding:14px 28px;border-radius:100px;box-shadow:0 10px 26px rgba(31,175,90,.45);white-space:nowrap;transition:opacity .25s;}
   .floatcta.hidden{opacity:0;pointer-events:none;}
+
+  /* DIRECT CONTACT CTAS */
+  .ctarow{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px;}
+  .ctabtn{flex:1 1 190px;min-height:52px;display:flex;align-items:center;justify-content:center;gap:9px;border-radius:100px;font-family:var(--body);font-weight:700;font-size:16px;line-height:1.2;padding:14px 18px;text-align:center;transition:transform .15s;}
+  .ctabtn:active{transform:scale(.98);}
+  .ctabtn.wa{background:var(--wa);color:var(--ink);box-shadow:0 10px 26px rgba(31,175,90,.4);}
+  .ctabtn.call{background:var(--teal);color:var(--ink);box-shadow:0 10px 26px rgba(15,181,174,.35);}
+  .ctaor{margin-top:18px;font-size:13.5px;color:#9FB2C8;text-align:center;}
+  footer a.fonum{color:var(--tealdk);font-weight:600;}
 </style>
 </head>
 <body>
@@ -114,7 +123,7 @@
     </div>
     <h1>Päiväkoti Vantaa? <em>Waan kugu caawinayaa af-Soomaali.</em></h1>
     <p class="sub">Waxaan kuu sharxayaa sida päiväkoti iyo palveluseteli u shaqeeyaan, waan kuu turjumayaa, haddii aad rabtidna <b>codsiyada (hakemukset) waynu wada buuxinaynaa</b>.</p>
-    <div class="freechip">✓ &nbsp;Adiga waa kuu bilaash 100 % — Pilke ayaa i siisa lacagta</div>
+    <div class="freechip">✓ &nbsp;Adiga waa kuu bilaash 100 %: Pilke ayaa i siisa lacagta</div>
     <a href="#foomka" class="herocta" id="hero-cta">Halkan ku qor xogtaada ⬇</a>
   </div>
 </header>
@@ -125,23 +134,24 @@
     <div class="qrow"><div class="tick">✓</div><p>Waxaad deggan tahay Vantaa</p></div>
     <div class="qrow"><div class="tick">✓</div><p>Waxaad leedahay ilmo 2–6 jir ah</p></div>
     <div class="qrow"><div class="tick">✓</div><p>Waxaad rabtaa goob päiväkoti ah, ama weli waad ka fikiraysaa</p></div>
-    <p class="then">Haddii aad tidhi haa, <b>hoos ku qor magacaaga iyo lambarkaaga</b> — waan kula soo xiriirayaa. Wax khasab ah ma jiro, mar kasta "maya" ayaad dhihi kartaa.</p>
+    <p class="then">Haddii aad tidhi haa, <b>hoos ku qor magacaaga iyo lambarkaaga.</b> Waan kula soo xiriirayaa. Wax khasab ah ma jiro, mar kasta "maya" ayaad dhihi kartaa.</p>
   </div>
 </div>
 
 <div class="wrap">
   <section>
     <div class="tag">Waa fiican inaad ogaato</div>
-    <h3 class="big">Saddex arrimood oo dad badan aanay ogayn</h3>
+    <h3 class="big">Dhowr arrimood oo dad badan aanay ogayn</h3>
 
     <div class="fact">
       <div class="n">0 €<span>/bishii</span></div>
       <p><b>Päiväkoti gaar loo leeyahay (yksityinen) qaali ma aha.</b> Palveluseteli waxay ka dhigaysaa isla qiimaha päiväkoti-ga degmada (kunta). Vantaa gudaheeda carruurta in ka badan kala badh päiväkoti waa u bilaash gebi ahaanba, Pohjantähti-na lacag dheeraad ah kaama qaado.</p>
+      <p style="margin-top:10px;"><b>Palveluseteli macnaheedu waa:</b> kaupunki (degmada) ayaa inta badan päiväkoti-ga kaa bixisa. Waan kaa caawinayaa codsashadeeda.</p>
     </div>
 
     <div class="fact">
-      <div class="n">Dhaqso<span>.</span></div>
-      <p><b>Bilo badan ma sugaysid.</b> Safka degmadu wuxuu qaadan karaa 4 bilood. Pilke goob ayaad ka heli kartaa si aad uga dhaqso badan, xitaa haddii shaqo ama iskuul kuu bilaabmayo dhowaan.</p>
+      <div class="n">Lacagahaaga<span>.</span></div>
+      <p><b>Kaliya ilmaha päiväkoti bilaabaya kotihoidon tuki-giisa ayaa joogsanaya.</b> Lacagahaaga kale way sii socdaan sidoodii. Haddii aad shaki qabto, waynu wada eegaynaa ka hor inta aanay wax dhicin.</p>
     </div>
 
     <div class="fact">
@@ -150,8 +160,8 @@
     </div>
 
     <div class="fact">
-      <div class="n">Meel kale Vantaa ah?</div>
-      <p><b>Pilke waxay päiväkotiyaal ku leedahay meelo kala duwan oo Vantaa ah.</b> Haddii Koivuhaka idinka fog tahay, nala soo xiriir, waxaynu raadinaynaa meel idiin dhow oo idiin habboon.</p>
+      <div class="n">Caadi<span>.</span></div>
+      <p><b>Päiväkoti waa adeeg caadi ah oo qoys kasta oo Finland jooga uu dooran karo.</b> Waa caawimaad adiga iyo ilmahaaga, wax kale maaha.</p>
     </div>
   </section>
 
@@ -164,6 +174,7 @@
         <div class="step"><div class="no">3</div><p>Waxaan kuu sharxayaa qiimaha iyo lacagaha Kela, su'aal kastana waan ka jawaabayaa. Kaliya kotihoidon tuki ayaa ka joogsata ilmaha päiväkoti bilaabaya, lacagaha kale isma beddelaan.</p></div>
         <div class="step"><div class="no">4</div><p>Haddii aad goob rabto, codsiyada waynu wada buuxinaynaa, agtaada ayaan fadhiyaa oo qodob kasta waan kuu turjumayaa.</p></div>
       </div>
+      <p style="margin-top:16px;font-size:15px;"><b>Codsiyada (hakemukset) waa laba:</b> mid päiväkoti iyo mid palveluseteli. Keligaa ma samaynaysid. Agtaada ayaan fadhiyaa oo labadaba waynu wada buuxinaynaa, bilow ilaa dhammaad.</p>
       <div class="honest"><b>Si daacad ah:</b> aniga ma ihi qofka go'aanka gaadha, Pilke iyo degmada ayaa go'aamiya. Shaqadaydu waa inaad adigu wax walba fahanto iyo in codsiyadu si sax ah u baxaan, si aanay biil lama filaan ah kuugu iman.</div>
     </div>
   </section>
@@ -173,6 +184,18 @@
       <h3>Halkan ku qor xogtaada</h3>
       <p class="fsub">1–2 maalmood gudahood ayaan kula soo xiriirayaa. Xogtaadu aniga kaliya ayay ii timaadaa, cid kale lama wadaago.</p>
       <div class="spots"><span class="dot"></span> Xagaagan waxaan qaadayaa 20-ka qoys ee ugu horreeya</div>
+
+      <div class="ctarow">
+        <a class="ctabtn wa" href="https://wa.me/358453155558?text=Asalaamu%20calaykum%2C%20waxaan%20arkay%20video-gaaga%2C%20waxaan%20jeclaan%20lahaa%20caawimaad%20ku%20saabsan%20p%C3%A4iv%C3%A4koti" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#0A1A30"><path d="M12 2a10 10 0 0 0-8.6 15.05L2 22l5.1-1.34A10 10 0 1 0 12 2Zm5.5 14.1c-.23.65-1.36 1.26-1.88 1.3-.5.05-1.1.07-1.78-.11-.41-.13-.94-.31-1.62-.6-2.85-1.23-4.7-4.1-4.85-4.29-.14-.19-1.16-1.54-1.16-2.94 0-1.4.73-2.08 1-2.37.27-.29.59-.36.78-.36l.56.01c.18.01.42-.07.66.5.23.58.79 2 .86 2.14.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.16-.29.36-.42.49-.14.14-.28.29-.12.57.16.29.71 1.17 1.53 1.9 1.05.93 1.94 1.22 2.22 1.36.28.14.44.12.6-.07.16-.19.69-.8.87-1.08.18-.28.36-.23.6-.14.25.1 1.57.74 1.84.88.27.14.45.21.52.32.07.12.07.66-.16 1.31Z"/></svg>
+          Nala soo xidhiidh WhatsApp
+        </a>
+        <a class="ctabtn call" href="tel:+358453155558">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A1A30" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0 1 22 16.92Z"/></svg>
+          Hadda wac
+        </a>
+      </div>
+      <p class="ctaor">Ama hoos ku qor xogtaada, waan kula soo xiriiri doonaa.</p>
 
       <form id="waitlist" novalidate>
         <div>
@@ -237,7 +260,7 @@
 
   <footer>
     <b>AQOON</b><br>
-    <div class="tk">TikTok @waalidsupport · WhatsApp +358 45 259 1438</div>
+    <div class="tk">TikTok @waalidsupport · WhatsApp <a class="fonum" href="tel:+358453155558">+358 45 315 5558</a></div>
   </footer>
 </div>
 
@@ -294,7 +317,7 @@
         throw new Error(res.status);
       }
     }).catch(function(){
-      err.textContent = 'Dirista way fashilantay. Mar kale isku day ama WhatsApp noogu soo qor: +358 45 259 1438.';
+      err.textContent = 'Dirista way fashilantay. Mar kale isku day ama WhatsApp noogu soo qor: +358 45 315 5558.';
       err.classList.add('show');
       btn.disabled = false;
       btn.textContent = 'Ku biir liiska';
@@ -303,7 +326,7 @@
 })();
 </script>
 
-<a href="#foomka" class="floatcta hidden" id="floatcta">Ku biir liiska ⬇</a>
+<a href="https://wa.me/358453155558?text=Asalaamu%20calaykum%2C%20waxaan%20arkay%20video-gaaga%2C%20waxaan%20jeclaan%20lahaa%20caawimaad%20ku%20saabsan%20p%C3%A4iv%C3%A4koti" target="_blank" rel="noopener" class="floatcta hidden" id="floatcta"><svg width="18" height="18" viewBox="0 0 24 24" fill="#0A1A30" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.05L2 22l5.1-1.34A10 10 0 1 0 12 2Zm5.5 14.1c-.23.65-1.36 1.26-1.88 1.3-.5.05-1.1.07-1.78-.11-.41-.13-.94-.31-1.62-.6-2.85-1.23-4.7-4.1-4.85-4.29-.14-.19-1.16-1.54-1.16-2.94 0-1.4.73-2.08 1-2.37.27-.29.59-.36.78-.36l.56.01c.18.01.42-.07.66.5.23.58.79 2 .86 2.14.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.16-.29.36-.42.49-.14.14-.28.29-.12.57.16.29.71 1.17 1.53 1.9 1.05.93 1.94 1.22 2.22 1.36.28.14.44.12.6-.07.16-.19.69-.8.87-1.08.18-.28.36-.23.6-.14.25.1 1.57.74 1.84.88.27.14.45.21.52.32.07.12.07.66-.16 1.31Z"/></svg>Nala soo xidhiidh</a>
 
 <script>
 (function(){
@@ -326,7 +349,6 @@
     setTimeout(function(){ var n = document.getElementById('nimi'); if(n) n.focus({preventScroll:true}); }, 400);
   }
   document.getElementById('hero-cta').addEventListener('click', focusNimi);
-  floatBtn.addEventListener('click', focusNimi);
 })();
 </script>
 </body>
