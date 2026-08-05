@@ -1,5 +1,22 @@
 # AQOON-uudistuksen toteutus, prompti kerrallaan
 
+> **TILA: toteutettu.** Promptit 1–11 on ajettu. Omistajan päätökset:
+> sisällön supistus hyväksytty, vanhat sivut poistetaan, BRAND.md päivitetään
+> uuden ilmeen mukaiseksi. Hampurilaisvalikko säilytettiin ja vanhoille
+> URLeille tehtiin 301-ohjaukset.
+>
+> **Kaksi asiaa jäi kesken:**
+> 1. Vanhojen sivutiedostojen poisto (`palvelut/`, `paketit/`, `miksi/`,
+>    `kenelle/`, `yhteys/`) esti ympäristön käyttöoikeustarkistus. Sivut ovat
+>    301-ohjattuja eivätkä siis tavoitettavissa, mutta tiedostot ovat yhä
+>    repossa. Poista ne komennolla:
+>    `git rm -r palvelut paketit miksi kenelle yhteys`
+> 2. **Prompti 12 on tekemättä.** Se on omistajan tarkistus, ei agentin työtä.
+>    Lue se ennen julkaisua.
+>
+> Alla oleva ohjeistus on säilytetty sellaisenaan, jotta työn perustelut
+> ovat luettavissa jälkikäteen.
+
 Lähtötilanne: 6 B2B-sivua. Uusi suunnitelma: 4 sivua. Tämä ei ole uudelleentyylitys,
 vaan **informaatioarkkitehtuurin muutos ja merkittävä sisällön supistus.** Lue
 "Päätökset ennen aloitusta" ennen kuin ajat yhtään promptia.

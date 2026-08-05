@@ -8,6 +8,11 @@
       "destination": "https://aqoon.live/$1",
       "permanent": true
     },
+    { "source": "/palvelut", "destination": "/menetelma", "permanent": true },
+    { "source": "/miksi", "destination": "/menetelma", "permanent": true },
+    { "source": "/paketit", "destination": "/hinnat", "permanent": true },
+    { "source": "/kenelle", "destination": "/", "permanent": true },
+    { "source": "/yhteys", "destination": "/#yhteys", "permanent": true },
     { "source": "/pilke_landing.html", "destination": "/pilke", "permanent": true },
     { "source": "/pilke_landing_so.html", "destination": "/pilke/so", "permanent": true }
   ]
