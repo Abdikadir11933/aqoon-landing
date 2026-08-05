@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Menetelmä, AQOON</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,900;1,9..144,900&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FBFAF7;color:#16202E;font-family:Outfit,system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:#07706B}a:hover{color:#0E2440}
+:focus-visible{outline:3px solid #0FB5AE;outline-offset:2px;border-radius:4px}
+summary::-webkit-details-marker{display:none}
+summary::marker{content:""}
+details[open] > summary .dets-bar{transform:rotate(90deg)}
+button[aria-expanded="true"] .dets-bar{transform:rotate(90deg)}
+details::details-content{opacity:0;block-size:0;overflow:hidden;transition:content-visibility 0.3s allow-discrete,opacity 0.3s,block-size 0.3s}
+details[open]::details-content{opacity:1;block-size:auto}
+@supports (interpolate-size: allow-keywords){:root{interpolate-size:allow-keywords}}
+@media (prefers-reduced-motion: reduce){details::details-content{transition:none}.dets-bar{transition:none}}
+</style>
+</helmet>
+<header style="position: sticky; top: 0; z-index: 20; background: rgba(251,250,247,0.94); backdrop-filter: blur(8px); border-bottom: 1px solid #E7E3D8;">
+  <div style="max-width: 1140px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap;">
+    <a href="Etusivu.dc.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #0E2440;">
+      <svg width="30" height="30" viewBox="0 0 96 96" fill="none" aria-hidden="true"><path d="M26 74 L48 26 L70 74" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"></path><path d="M37 56 L59 56" stroke="#0FB5AE" stroke-width="9" stroke-linecap="round"></path><circle cx="48" cy="56" r="4.5" fill="#E8A766"></circle></svg>
+      <span style="font-family: Fraunces, Georgia, serif; font-weight: 900; font-size: 20px; letter-spacing: 0.02em;">AQOON</span>
+    </a>
+    <nav aria-label="Päävalikko" style="display: flex; align-items: center; gap: 20px; margin-left: auto; flex-wrap: wrap;">
+      <a href="tapaus.dc.html" style="text-decoration: none; color: #16202E; font-weight: 500; font-size: 15px;" style-hover="color: #07706B;">Tapaus</a>
+      <a href="menetelma.dc.html" aria-current="page" style="text-decoration: none; color: #0E2440; font-weight: 700; font-size: 15px; border-bottom: 2px solid #0FB5AE;">Menetelmä</a>
+      <a href="hinnat.dc.html" style="text-decoration: none; color: #16202E; font-weight: 500; font-size: 15px;" style-hover="color: #07706B;">Hinnat</a>
+      <a href="https://cal.com/abducadir-abdullahi-aligure-tw1bge/30min" style="display: inline-block; background: #0E2440; color: #FBFAF7; padding: 10px 22px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 15px;" style-hover="background: #0A1A30; color: #FBFAF7;">Varaa puhelu</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section data-screen-label="Menetelmä hero" style="padding: clamp(72px, 11vw, 128px) 24px clamp(40px, 6vw, 64px);">
+  <div style="max-width: 800px; margin: 0 auto;">
+    <h1 style="font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: clamp(2.3rem, 6vw, 4.2rem); line-height: 1.06; letter-spacing: -0.01em; margin: 0; text-wrap: pretty;">Emme arvaa. Me <em style="color: #0A8F89;">selvitämme.</em></h1>
+    <p style="font-size: clamp(1.1rem, 2vw, 1.3rem); max-width: 52ch; margin: 28px 0 0; text-wrap: pretty;">Useimmat yritykset tavoittaa maahanmuuttajaperheitä alkavat käännöksestä. Se on väärä ensimmäinen askel, koska este ei yleensä ollut kieli.</p>
+  </div>
+</section>
+
+<section data-screen-label="Menetelmän osiot" style="padding: clamp(40px, 6vw, 72px) 24px clamp(56px, 9vw, 112px);">
+  <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px;">
+
+    <details open="{{ true }}" style="background: #FBFAF7; border: 1px solid #E7E3D8; border-radius: 20px;">
+      <summary style="cursor: pointer; padding: 24px 28px; display: flex; gap: 18px; align-items: baseline;">
+        <span style="flex: 1;">
+          <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: clamp(1.25rem, 2.6vw, 1.6rem); line-height: 1.2;">Kääntäminen ei ole tavoittamista</h2>
+          <span style="display: block; color: #5C6675; font-size: 15.5px; margin-top: 6px;">Este ei yleensä ollut kieli.</span>
+        </span>
+        <span class="dets-bar" aria-hidden="true" style="display: inline-block; width: 22px; height: 3px; border-radius: 3px; background: #0A8F89; transition: transform 0.3s; flex-shrink: 0; align-self: center;"></span>
+      </summary>
+      <div style="padding: 0 28px 30px;">
+        <p style="margin: 0 0 18px; font-size: 1.05rem; max-width: 60ch;">Käännetty esite kertoo mitä tekstissä lukee. Se ei kerro mitä se tarkoittaa perheelle, kenen puoleen käännytään, mitä siitä seuraa, tai onko sitä turvallista tehdä.</p>
+        <p style="margin: 0 0 18px; font-size: 1.05rem; max-width: 60ch;">Suomalainen kotouttaminen ei epäonnistu ohjelmien takia. Ohjelmat ovat yleensä hyvin suunniteltuja, laillisesti turvattuja ja usein maksuttomia. Ne epäonnistuvat koska apu ja avuntarvitsija eivät löydä toisiaan.</p>
+        <p style="margin: 0; font-size: 1.05rem; max-width: 60ch;">Siksi työ alkaa aina samasta paikasta: selvitetään mitä perheet oikeasti ajattelevat, pelkäävät ja uskovat. Vasta sen jälkeen tiedetään mitä pitäisi sanoa.</p>
+      </div>
+    </details>
+
+    <details style="background: #FBFAF7; border: 1px solid #E7E3D8; border-radius: 20px;">
+      <summary style="cursor: pointer; padding: 24px 28px; display: flex; gap: 18px; align-items: baseline;">
+        <span style="flex: 1;">
+          <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: clamp(1.25rem, 2.6vw, 1.6rem); line-height: 1.2;">Missä työ tehdään</h2>
+          <span style="display: block; color: #5C6675; font-size: 15.5px; margin-top: 6px;">Menemme sinne missä perheet jo ovat.</span>
+        </span>
+        <span class="dets-bar" aria-hidden="true" style="display: inline-block; width: 22px; height: 3px; border-radius: 3px; background: #0A8F89; transition: transform 0.3s; flex-shrink: 0; align-self: center;"></span>
+      </summary>
+      <div style="padding: 0 28px 30px;">
+        <h3 style="font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: 1.2rem; line-height: 1.2; margin: 0 0 14px;">Miksi TikTok eikä virallinen kanava</h3>
+        <p style="margin: 0 0 18px; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: 1.15rem; line-height: 1.45; max-width: 50ch; text-wrap: pretty;">Kysymys ei ole siitä mikä kanava on hieno. Kysymys on siitä missä ihmiset jo ovat.</p>
+        <p style="margin: 0 0 18px; font-size: 1.05rem; max-width: 60ch;">Virallinen kanava vaatii perheiltä kolme asiaa yhtä aikaa. Heidän pitää tietää että kanava on olemassa, opetella käyttämään sitä, ja luottaa siihen. Jokainen näistä on este, ja kaikki kolme pitäisi ylittää ennen kuin he edes näkevät viestin.</p>
+        <p style="margin: 0 0 18px; font-size: 1.05rem; max-width: 60ch;">Yhteisö on jo TikTokissa. Siellä on äiti joka tuli Suomeen viisikymppisenä eikä käytä muita sovelluksia. Siellä ollaan päivittäin, ilman että kenenkään tarvitsee opetella mitään uutta ja ilman että kenenkään tarvitsee ensin luottaa viranomaiseen.</p>
+        <p style="margin: 0 0 24px; font-size: 1.05rem; max-width: 60ch;">Sama koskee WhatsAppia. Se on paikka jossa keskustelu jatkuu, jossa asiat lähetetään eteenpäin sukulaiselle, ja jossa uskalletaan kysyä sellaista mitä ei kysytä virallisella lomakkeella.</p>
+        <p style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: clamp(1.2rem, 2.2vw, 1.45rem); line-height: 1.4; max-width: 46ch; text-wrap: pretty;">Emme siis pyydä perheitä tulemaan sinne missä te olette. <em style="color: #0A8F89;">Menemme sinne missä he ovat.</em></p>
+      </div>
+    </details>
+
+    <div style="background: #F3F0E9; border: 1px solid #E2DDCF; border-radius: 20px; padding: 28px;">
+      <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: clamp(1.25rem, 2.6vw, 1.6rem); line-height: 1.2;">Neljä välinettä, neljä eri tehtävää</h2>
+      <p style="margin: 6px 0 24px; color: #5C6675; font-size: 15.5px;">Yksikään ei toimi yksin. Ne tekevät eri asiat.</p>
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; min-width: 600px; font-size: 15px;">
+          <thead>
+            <tr>
+              <th scope="col" style="text-align: left; padding: 10px 14px 10px 0; border-bottom: 2px solid #0E2440; text-transform: uppercase; letter-spacing: 0.1em; font-size: 12px; color: #0E2440;">Väline</th>
+              <th scope="col" style="text-align: left; padding: 10px 14px; border-bottom: 2px solid #0E2440; text-transform: uppercase; letter-spacing: 0.1em; font-size: 12px; color: #0E2440;">Mitä se tekee</th>
+              <th scope="col" style="text-align: left; padding: 10px 0 10px 14px; border-bottom: 2px solid #0E2440; text-transform: uppercase; letter-spacing: 0.1em; font-size: 12px; color: #0E2440;">Mitä se ei tee</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row" style="text-align: left; vertical-align: top; padding: 14px 14px 14px 0; border-bottom: 1px solid #E2DDCF; color: #0E2440;">Lyhytvideo yhteisön omalla kielellä</th>
+              <td style="vertical-align: top; padding: 14px; border-bottom: 1px solid #E2DDCF;">Tuottaa laajan tavoittavuuden erittäin pienellä kustannuksella ja leviää yhteisön sisällä jakamisen kautta</td>
+              <td style="vertical-align: top; padding: 14px 0 14px 14px; border-bottom: 1px solid #E2DDCF;">Ei vastaa yksittäisen perheen tilanteeseen eikä vie hakemusta läpi</td>
+            </tr>
+            <tr>
+              <th scope="row" style="text-align: left; vertical-align: top; padding: 14px 14px 14px 0; border-bottom: 1px solid #E2DDCF; color: #0E2440;">Jalkatyö kentällä</th>
+              <td style="vertical-align: top; padding: 14px; border-bottom: 1px solid #E2DDCF;">Syvyys ja kasvokkainen kohtaaminen yhdellä alueella. Perheet kertovat kasvotusten sellaista mitä eivät kirjoita mihinkään</td>
+              <td style="vertical-align: top; padding: 14px 0 14px 14px; border-bottom: 1px solid #E2DDCF;">Ei skaalaudu. Yksi ihminen ehtii yhden alueen</td>
+            </tr>
+            <tr>
+              <th scope="row" style="text-align: left; vertical-align: top; padding: 14px 14px 14px 0; border-bottom: 1px solid #E2DDCF; color: #0E2440;">Omankielinen viestituki</th>
+              <td style="vertical-align: top; padding: 14px; border-bottom: 1px solid #E2DDCF;">Keskustelu jatkuu, kysymykset tulevat esiin, ja hakemus etenee loppuun asti</td>
+              <td style="vertical-align: top; padding: 14px 0 14px 14px; border-bottom: 1px solid #E2DDCF;">Ei tavoita ketään uutta itsestään</td>
+            </tr>
+            <tr>
+              <th scope="row" style="text-align: left; vertical-align: top; padding: 14px 14px 14px 0; border-bottom: 1px solid #E2DDCF; color: #0E2440;">Raportti ja data</th>
+              <td style="vertical-align: top; padding: 14px; border-bottom: 1px solid #E2DDCF;">Jää teille. Kertoo mikä esti, mikä puri, ja mitä pitää korjata omassa prosessissanne</td>
+              <td style="vertical-align: top; padding: 14px 0 14px 14px; border-bottom: 1px solid #E2DDCF;">Ei tee mitään yksinään</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin: 24px 0 0; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: clamp(1.15rem, 2vw, 1.4rem); line-height: 1.45; max-width: 50ch; text-wrap: pretty;">Video tuo ihmiset lähelle. Jalkatyö tuo luottamuksen. Viestituki vie asian loppuun. Raportti jää teille sen jälkeen kun me olemme lähteneet.</p>
+    </div>
+
+    <details style="background: #FBFAF7; border: 1px solid #E7E3D8; border-radius: 20px;">
+      <summary style="cursor: pointer; padding: 24px 28px; display: flex; gap: 18px; align-items: baseline;">
+        <span style="flex: 1;">
+          <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: clamp(1.25rem, 2.6vw, 1.6rem); line-height: 1.2;">Kaksi eri videotyyppiä</h2>
+          <span style="display: block; color: #5C6675; font-size: 15.5px; margin-top: 6px;">Sama kanava, kaksi eri tehtävää. Sekoittaminen pilaa molemmat.</span>
+        </span>
+        <span class="dets-bar" aria-hidden="true" style="display: inline-block; width: 22px; height: 3px; border-radius: 3px; background: #0A8F89; transition: transform 0.3s; flex-shrink: 0; align-self: center;"></span>
+      </summary>
+      <div style="padding: 0 28px 30px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-bottom: 24px;">
+          <div style="background: #F3F0E9; border-radius: 16px; padding: 22px;">
+            <h3 style="margin: 0 0 8px; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: 1.15rem;">Tietoisuusvideo</h3>
+            <p style="margin: 0; font-size: 15px;">Lyhyt, ja sen ainoa tehtävä on saada ihminen pysähtymään. Se ei opeta mitään. Se kertoo että jotain on olemassa ja että sinun kannattaa tietää siitä.</p>
+          </div>
+          <div style="background: #F3F0E9; border-radius: 16px; padding: 22px;">
+            <h3 style="margin: 0 0 8px; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: 1.15rem;">Opetusvideo</h3>
+            <p style="margin: 0; font-size: 15px;">Pidempi, ja se tehdään vasta kenttätyön jälkeen. Sitä ei tehdä oletusten pohjalta vaan vasta kun tiedetään mitkä kaksi tai kolme kysymystä toistuvat eniten. Se vastaa juuri niihin.</p>
+          </div>
+        </div>
+        <p style="margin: 0 0 20px; font-size: 1.05rem; max-width: 60ch;">Järjestys on tärkeä. Opetusvideo ennen kenttätyötä vastaa kysymyksiin joita kukaan ei ole esittänyt.</p>
+        <p style="margin: 0 0 14px; font-size: 1.05rem; max-width: 60ch; font-variant-numeric: tabular-nums;"><strong>Mitä mittaus kertoi näistä.</strong> Tarinamuotoinen video piti katsojan kiinni noin puolet pidempään kuin faktamuotoinen ja tuotti lähes kolminkertaisen konversion. Kustannus yhtä yhteydenottoa kohden oli tarinavideolla noin kolmasosa faktavideon hinnasta.</p>
+        <p style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: 1.2rem; line-height: 1.4;">Ero ei ollut aiheessa vaan ensimmäisissä kahdessa sekunnissa.</p>
+      </div>
+    </details>
+
+    <div style="background: #F3F0E9; border: 1px solid #E2DDCF; border-radius: 20px; padding: 28px;">
+      <h2 style="margin: 0 0 18px; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: clamp(1.25rem, 2.6vw, 1.6rem); line-height: 1.2;">Mitä mittaus opetti</h2>
+      <p style="margin: 0 0 18px; font-size: 1.05rem; max-width: 62ch;">Kolme asiaa toistui. Jakaminen kertoo luottamuksesta enemmän kuin katselumäärä. Oikea kieli ja oikea aihe löytävät oikeat ihmiset ilman kohdennusta. Ja näkyvyys seuraa julkaisutahtia, se ei kerry itsestään.</p>
+      <p style="margin: 0 0 24px; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: clamp(1.15rem, 2vw, 1.4rem); line-height: 1.45; max-width: 50ch; text-wrap: pretty;">Viimeinen on syy siihen miksi tätä myydään jatkuvana työnä eikä kertakampanjana. Kampanja ostaa yhden hakukauden. Jatkuva työ ostaa yleisön joka on <em style="color: #0A8F89;">ensi vuonna suurempi kuin nyt.</em></p>
+      <a href="tapaus.dc.html#luvut" style="color: #07706B; font-weight: 600; font-size: 1.05rem;">Luvut ja koko suppilo →</a>
+    </div>
+
+    <div style="background: #F3F0E9; border: 1px solid #E2DDCF; border-radius: 20px; padding: 28px;">
+      <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: clamp(1.25rem, 2.6vw, 1.6rem); line-height: 1.2;">Viisi porrasta</h2>
+      <p style="margin: 6px 0 28px; color: #5C6675; font-size: 15.5px;">Osta yksi tai kaikki. Avaa askelma klikkaamalla.</p>
+      <div ref="{{ wrap }}" style="position: relative; display: flex; align-items: flex-start;">
+        <span ref="{{ line }}" aria-hidden="true" style="position: absolute; background: #0A8F89; left: 10%; right: 10%; top: 19px; height: 2px;"></span>
+        <button type="button" onClick="{{ go1 }}" style="position: relative; flex: 1 1 0; min-width: 0; min-height: 44px; background: none; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 0; font-family: inherit;">
+          <span style="width: 38px; height: 38px; border-radius: 50%; background: #FBFAF7; border: 2px solid #0A8F89; color: #0E2440; font-family: Fraunces, Georgia, serif; font-weight: 900; font-variant-numeric: tabular-nums; display: flex; align-items: center; justify-content: center; font-size: 16px; box-sizing: border-box; flex-shrink: 0;">1</span>
+          <span style="font-weight: 600; font-size: 14.5px; color: #5C6675;">Kartoitus</span>
+        </button>
+        <button type="button" onClick="{{ go2 }}" style="position: relative; flex: 1 1 0; min-width: 0; min-height: 44px; background: none; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 0; font-family: inherit;">
+          <span style="width: 38px; height: 38px; border-radius: 50%; background: #FBFAF7; border: 2px solid #0A8F89; color: #0E2440; font-family: Fraunces, Georgia, serif; font-weight: 900; font-variant-numeric: tabular-nums; display: flex; align-items: center; justify-content: center; font-size: 16px; box-sizing: border-box; flex-shrink: 0;">2</span>
+          <span style="font-weight: 600; font-size: 14.5px; color: #5C6675;">Viesti</span>
+        </button>
+        <button type="button" onClick="{{ go3 }}" style="position: relative; flex: 1 1 0; min-width: 0; min-height: 44px; background: none; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 0; font-family: inherit;">
+          <span style="width: 38px; height: 38px; border-radius: 50%; background: #FBFAF7; border: 2px solid #0A8F89; color: #0E2440; font-family: Fraunces, Georgia, serif; font-weight: 900; font-variant-numeric: tabular-nums; display: flex; align-items: center; justify-content: center; font-size: 16px; box-sizing: border-box; flex-shrink: 0;">3</span>
+          <span style="font-weight: 600; font-size: 14.5px; color: #5C6675;">Sisäänpääsy</span>
+        </button>
+        <button type="button" onClick="{{ go4 }}" style="position: relative; flex: 1 1 0; min-width: 0; min-height: 44px; background: none; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 0; font-family: inherit;">
+          <span style="width: 38px; height: 38px; border-radius: 50%; background: #FBFAF7; border: 2px solid #0A8F89; color: #0E2440; font-family: Fraunces, Georgia, serif; font-weight: 900; font-variant-numeric: tabular-nums; display: flex; align-items: center; justify-content: center; font-size: 16px; box-sizing: border-box; flex-shrink: 0;">4</span>
+          <span style="font-weight: 600; font-size: 14.5px; color: #5C6675;">Tukilinja</span>
+        </button>
+        <button type="button" onClick="{{ go5 }}" style="position: relative; flex: 1 1 0; min-width: 0; min-height: 44px; background: none; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 0; font-family: inherit;">
+          <span style="width: 38px; height: 38px; border-radius: 50%; background: #FBFAF7; border: 2px solid #0A8F89; color: #0E2440; font-family: Fraunces, Georgia, serif; font-weight: 900; font-variant-numeric: tabular-nums; display: flex; align-items: center; justify-content: center; font-size: 16px; box-sizing: border-box; flex-shrink: 0;">5</span>
+          <span style="font-weight: 600; font-size: 14.5px; color: #5C6675;">Tulos</span>
+        </button>
+      </div>
+      <div style="margin-top: 28px; border-top: 2px solid #0A8F89; padding-top: 24px;">
+        <sc-if value="{{ is1 }}" hint-placeholder-val="{{ true }}">
+          <h3 style="margin: 0 0 6px; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: 1.25rem;">Kartoitus</h3>
+          <p style="margin: 0 0 16px; font-weight: 700; color: #0E2440; font-size: 1rem;">Selvitämme miksi he eivät tule.</p>
+          <p style="margin: 0 0 14px; font-size: 15.5px; max-width: 62ch;">Kenttätyötä siellä missä yhteisö oikeasti liikkuu, ei siellä missä instituutio julkaisee. Keskustelut käydään perheen omalla kielellä, ei tulkin kautta. Mukana asiantuntijahaastattelu teidän omasta organisaatiostanne, koska prosessi kaatuu usein kohdassa jota tekijät eivät itse näe.</p>
+          <p style="margin: 0 0 14px; font-size: 15.5px; max-width: 62ch;">Kirjaamme ennen aloitusta mitä oletamme löytävämme. Lopussa kerromme mikä oletuksista piti paikkansa ja mikä ei. Se erottaa tutkimuksen markkinoinnista.</p>
+          <p style="margin: 0; font-size: 15.5px; max-width: 62ch;"><strong>Saatte:</strong> todelliset esteet perheiden omin sanoin, määrälliset luvut, ja ehdotuksen seuraavaksi.</p>
+        </sc-if>
+        <sc-if value="{{ is2 }}" hint-placeholder-val="{{ false }}">
+          <h3 style="margin: 0 0 6px; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: 1.25rem;">Viesti</h3>
+          <p style="margin: 0 0 16px; font-weight: 700; color: #0E2440; font-size: 1rem;">Korjaamme sen miten heille puhutaan.</p>
+          <p style="margin: 0 0 14px; font-size: 15.5px; max-width: 62ch;">Nykyisen materiaalin ja mainonnan läpikäynti: mikä on väärin, mitä puuttuu, mikä ymmärretään päinvastoin kuin on tarkoitettu.</p>
+          <p style="margin: 0 0 14px; font-size: 15.5px; max-width: 62ch;">Sen jälkeen tuotamme sisällön kohderyhmän omalla kielellä ja niissä kanavissa joissa he oikeasti ovat. Sisältö vastaa kartoituksessa löydettyihin esteisiin, ei oletuksiin.</p>
+          <p style="margin: 0; font-size: 15.5px; max-width: 62ch;"><strong>Saatte:</strong> toimivan materiaalin, mitatun tavoittavuuden, ja viestipohjat omaan käyttöönne.</p>
+        </sc-if>
+        <sc-if value="{{ is3 }}" hint-placeholder-val="{{ false }}">
+          <h3 style="margin: 0 0 6px; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: 1.25rem;">Sisäänpääsy</h3>
+          <p style="margin: 0 0 16px; font-weight: 700; color: #0E2440; font-size: 1rem;">Viemme perheen hakemuksen läpi.</p>
+          <p style="margin: 0 0 14px; font-size: 15.5px; max-width: 62ch;">Emme lähetä linkkiä. Istumme vierellä, perhe täyttää hakemuksen omalla puhelimellaan ja me neuvomme. Näin he osaavat tehdä sen myös ensi kerralla.</p>
+          <p style="margin: 0 0 14px; font-size: 15.5px; max-width: 62ch;">Tämä porras on olemassa siksi, että este ei lopu kiinnostukseen. Perheet voivat kiinnostua, löytää paikan, aloittaa hakemuksen ja menettää sen silti, koska kaksi järjestelmää odotti toisiaan eikä kumpikaan kertonut heille mitään.</p>
+          <p style="margin: 0; font-size: 15.5px; max-width: 62ch;"><strong>Saatte:</strong> kiinnostuneista tulee aloittaneita, ja tiedon siitä missä kohtaa oma prosessinne kaatuu.</p>
+        </sc-if>
+        <sc-if value="{{ is4 }}" hint-placeholder-val="{{ false }}">
+          <h3 style="margin: 0 0 6px; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: 1.25rem;">Tukilinja</h3>
+          <p style="margin: 0 0 16px; font-weight: 700; color: #0E2440; font-size: 1rem;">Olemme paikalla sen jälkeen.</p>
+          <p style="margin: 0 0 14px; font-size: 15.5px; max-width: 62ch;">Omankielinen puhelin- ja viestituki perheillenne sovittuina aikoina. Ensimmäisen tason kysymykset hoidetaan suoraan, vaikeat ohjataan teille valmiiksi selvitettynä.</p>
+          <p style="margin: 0 0 14px; font-size: 15.5px; max-width: 62ch;">Tätä ei voi ratkaista palkkaamalla. Tarvitsette omankielistä asiakaspalvelua ehkä muutaman tunnin viikossa, eikä ihmistä voi palkata muutamaksi tunniksi viikossa.</p>
+          <p style="margin: 0; font-size: 15.5px; max-width: 62ch;"><strong>Saatte:</strong> perheet pysyvät mukana, ja kuukausiraportin siitä mitä kysyttiin ja mikä toistui. Se on jatkuvaa kartoitusta ilman erillistä projektia.</p>
+        </sc-if>
+        <sc-if value="{{ is5 }}" hint-placeholder-val="{{ false }}">
+          <h3 style="margin: 0 0 6px; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: 1.25rem;">Tulos</h3>
+          <p style="margin: 0 0 16px; font-weight: 700; color: #0E2440; font-size: 1rem;">Halutessanne maksatte tuloksesta.</p>
+          <p style="margin: 0; font-size: 15.5px; max-width: 62ch;">Kiinteän perusmaksun päälle voidaan sopia tulospalkkio. Malli sovitaan tapauskohtaisesti ja se on mahdollinen vain silloin kun valinta ei ole viranomaistehtävä.</p>
+        </sc-if>
+      </div>
+    </div>
+
+    <div style="background: #F3F0E9; border: 1px solid #E2DDCF; border-radius: 20px; padding: 28px;">
+      <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: clamp(1.25rem, 2.6vw, 1.6rem); line-height: 1.2;">Mitä muuta voisitte tehdä</h2>
+      <p style="margin: 6px 0 24px; color: #5C6675; font-size: 15.5px;">Kuusi vaihtoehtoa ja mitä kukin jättää ratkaisematta.</p>
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; min-width: 600px; font-size: 15px;">
+          <thead>
+            <tr>
+              <th scope="col" style="text-align: left; padding: 10px 14px 10px 0; border-bottom: 2px solid #0E2440; text-transform: uppercase; letter-spacing: 0.1em; font-size: 12px; color: #0E2440;">Vaihtoehto</th>
+              <th scope="col" style="text-align: left; padding: 10px 14px; border-bottom: 2px solid #0E2440; text-transform: uppercase; letter-spacing: 0.1em; font-size: 12px; color: #0E2440;">Mitä se ratkaisee</th>
+              <th scope="col" style="text-align: left; padding: 10px 0 10px 14px; border-bottom: 2px solid #0E2440; text-transform: uppercase; letter-spacing: 0.1em; font-size: 12px; color: #0E2440;">Mitä se jättää ratkaisematta</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row" style="text-align: left; vertical-align: top; padding: 14px 14px 14px 0; border-bottom: 1px solid #E2DDCF; color: #0E2440;">Käännöstoimisto</th>
+              <td style="vertical-align: top; padding: 14px; border-bottom: 1px solid #E2DDCF;">Materiaali on olemassa monella kielellä</td>
+              <td style="vertical-align: top; padding: 14px 0 14px 14px; border-bottom: 1px solid #E2DDCF;">Este ei ollut kieli. Käännetty esite on yhä esite jota kukaan ei lue</td>
+            </tr>
+            <tr>
+              <th scope="row" style="text-align: left; vertical-align: top; padding: 14px 14px 14px 0; border-bottom: 1px solid #E2DDCF; color: #0E2440;">Mainostoimisto</th>
+              <td style="vertical-align: top; padding: 14px; border-bottom: 1px solid #E2DDCF;">Kampanja on ammattimainen ja näyttää hyvältä</td>
+              <td style="vertical-align: top; padding: 14px 0 14px 14px; border-bottom: 1px solid #E2DDCF;">Ei pääsyä yhteisöön eikä luottamusta siellä. Mainos tunnistetaan mainokseksi</td>
+            </tr>
+            <tr>
+              <th scope="row" style="text-align: left; vertical-align: top; padding: 14px 14px 14px 0; border-bottom: 1px solid #E2DDCF; color: #0E2440;">Tulkkipalvelu</th>
+              <td style="vertical-align: top; padding: 14px; border-bottom: 1px solid #E2DDCF;">Ymmärrys syntyy kun perhe on jo paikalla</td>
+              <td style="vertical-align: top; padding: 14px 0 14px 14px; border-bottom: 1px solid #E2DDCF;">Ei tavoita ketään. Reagoi, ei etsi</td>
+            </tr>
+            <tr>
+              <th scope="row" style="text-align: left; vertical-align: top; padding: 14px 14px 14px 0; border-bottom: 1px solid #E2DDCF; color: #0E2440;">Järjestöhanke</th>
+              <td style="vertical-align: top; padding: 14px; border-bottom: 1px solid #E2DDCF;">Työ tehdään ja se tehdään usein hyvin</td>
+              <td style="vertical-align: top; padding: 14px 0 14px 14px; border-bottom: 1px solid #E2DDCF;">Loppuu kun rahoitus loppuu. Oppi ei kerry teille eikä kukaan vastaa teille tuloksesta</td>
+            </tr>
+            <tr>
+              <th scope="row" style="text-align: left; vertical-align: top; padding: 14px 14px 14px 0; border-bottom: 1px solid #E2DDCF; color: #0E2440;">Oma monikielinen työntekijä</th>
+              <td style="vertical-align: top; padding: 14px; border-bottom: 1px solid #E2DDCF;">Osaaminen on talon sisällä</td>
+              <td style="vertical-align: top; padding: 14px 0 14px 14px; border-bottom: 1px solid #E2DDCF;">Tarvitsette muutaman tunnin viikossa, mutta joudutte palkkaamaan kokoaikaisen</td>
+            </tr>
+            <tr style="background: #FBFAF7;">
+              <th scope="row" style="text-align: left; vertical-align: top; padding: 14px 14px 14px 10px; color: #0E2440; border-bottom: 1px solid #E2DDCF;">AQOON</th>
+              <td style="vertical-align: top; padding: 14px; font-weight: 600; border-bottom: 1px solid #E2DDCF;">Selvitys, tavoittaminen, läpivienti ja jatkuva tuki samalta taholta</td>
+              <td style="vertical-align: top; padding: 14px 10px 14px 14px; font-weight: 600; border-bottom: 1px solid #E2DDCF;">Emme tee mitään mitä emme ole ensin selvittänyt</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+        <details style="background: #FBFAF7; border: 1px solid #E7E3D8; border-radius: 20px;">
+      <summary style="cursor: pointer; padding: 24px 28px; display: flex; gap: 18px; align-items: baseline;">
+        <span style="flex: 1;">
+          <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: clamp(1.25rem, 2.6vw, 1.6rem); line-height: 1.2;">Mitä emme tee</h2>
+          <span style="display: block; color: #5C6675; font-size: 15.5px; margin-top: 6px;">Neljä rajausta.</span>
+        </span>
+        <span class="dets-bar" aria-hidden="true" style="display: inline-block; width: 22px; height: 3px; border-radius: 3px; background: #0A8F89; transition: transform 0.3s; flex-shrink: 0; align-self: center;"></span>
+      </summary>
+      <div style="padding: 0 28px 30px;">
+        <ul style="list-style: none; margin: 0; padding: 0;">
+          <li style="padding: 14px 0; border-top: 1px solid #E7E3D8; font-size: 1.05rem;">Emme lupaa määriä joita emme ole todistaneet</li>
+          <li style="padding: 14px 0; border-top: 1px solid #E7E3D8; font-size: 1.05rem;">Emme kutsu kiinnostunutta perheeksi emmekä yhteydenottoa ilmoittautumiseksi</li>
+          <li style="padding: 14px 0; border-top: 1px solid #E7E3D8; font-size: 1.05rem;">Emme käännä materiaalia jota emme ole ensin testanneet</li>
+          <li style="padding: 14px 0; border-top: 1px solid #E7E3D8; border-bottom: 1px solid #E7E3D8; font-size: 1.05rem;">Emme kerää perheiden yhteystietoja teidän nimissänne ilman perheen suostumusta</li>
+        </ul>
+      </div>
+    </details>
+
+  </div>
+</section>
+</main>
+
+<footer style="background: #0E2440; color: #C9D2DE; padding: 48px 24px;">
+  <div style="max-width: 1140px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 32px; align-items: center; justify-content: space-between;">
+    <div style="display: flex; align-items: center; gap: 10px; color: #FBFAF7;">
+      <svg width="26" height="26" viewBox="0 0 96 96" fill="none" aria-hidden="true"><path d="M26 74 L48 26 L70 74" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"></path><path d="M37 56 L59 56" stroke="#0FB5AE" stroke-width="9" stroke-linecap="round"></path><circle cx="48" cy="56" r="4.5" fill="#E8A766"></circle></svg>
+      <span style="font-family: Fraunces, Georgia, serif; font-weight: 900; font-size: 18px;">AQOON</span>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 24px; font-size: 15px; font-variant-numeric: tabular-nums;">
+      <a href="mailto:abducadir_abdullahi@aqoon.live" style="color: #C9D2DE;" style-hover="color: #0FB5AE;">abducadir_abdullahi@aqoon.live</a>
+      <a href="tel:+358452591438" style="color: #C9D2DE; text-decoration: none;" style-hover="color: #0FB5AE;">+358 45 259 1438</a>
+      <span>aqoon.live</span>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { step: 0 };
+  constructor(p) {
+    super(p);
+    this.wrap = React.createRef();
+    this.line = React.createRef();
+  }
+  componentDidMount() {
+    this.onR = () => this.layout();
+    addEventListener('resize', this.onR, { passive: true });
+    this.layout();
+  }
+  componentDidUpdate() { this.layout(); }
+  componentWillUnmount() { removeEventListener('resize', this.onR); }
+  layout() {
+    const w = this.wrap.current, l = this.line.current;
+    if (!w || !l) return;
+    const col = innerWidth < 680;
+    w.style.flexDirection = col ? 'column' : 'row';
+    w.style.gap = col ? '16px' : '0';
+    if (col) {
+      l.style.left = '19px'; l.style.right = 'auto'; l.style.top = '20px'; l.style.bottom = '20px'; l.style.width = '2px'; l.style.height = 'auto';
+    } else {
+      l.style.left = '10%'; l.style.right = '10%'; l.style.top = '19px'; l.style.bottom = 'auto'; l.style.height = '2px'; l.style.width = 'auto';
+    }
+    w.querySelectorAll('button').forEach((b, i) => {
+      const on = i === this.state.step;
+      b.setAttribute('aria-expanded', on ? 'true' : 'false');
+      b.style.flexDirection = col ? 'row' : 'column';
+      b.style.textAlign = col ? 'left' : 'center';
+      const c = b.children[0], t = b.children[1];
+      if (c) { c.style.background = on ? '#0E2440' : '#FBFAF7'; c.style.color = on ? '#FBFAF7' : '#0E2440'; c.style.borderColor = on ? '#0E2440' : '#0A8F89'; }
+      if (t) { t.style.color = on ? '#0E2440' : '#5C6675'; }
+    });
+  }
+  renderVals() {
+    const s = this.state.step;
+    const go = (i) => () => this.setState({ step: i });
+    return {
+      wrap: this.wrap, line: this.line,
+      go1: go(0), go2: go(1), go3: go(2), go4: go(3), go5: go(4),
+      is1: s === 0, is2: s === 1, is3: s === 2, is4: s === 3, is5: s === 4
+    };
+  }
+}
+</script>
+</body>
+</html>
