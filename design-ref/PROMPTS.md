@@ -8,8 +8,9 @@
 > Vanhat sivut (`palvelut/`, `paketit/`, `miksi/`, `kenelle/`, `yhteys/`) on
 > poistettu ja 301-ohjattu.
 >
-> **Yksi asia on kesken: Prompti 12.** Se on omistajan tarkistus, ei agentin
-> työtä. Lue se ennen julkaisua.
+> **Prompti 12 on käyty läpi.** Omistaja on vahvistanut kynnysarvoa koskevan
+> muotoilun `/hinnat`-sivulla sekä sen, että `/tapaus` on kirjoitettu niin
+> ettei asiakasta nimetä. Sivusto on julkaisuvalmis omistajan puolesta.
 >
 > Alla oleva ohjeistus on säilytetty sellaisenaan, jotta työn perustelut
 > ovat luettavissa jälkikäteen.
