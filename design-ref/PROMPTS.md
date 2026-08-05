@@ -5,14 +5,11 @@
 > uuden ilmeen mukaiseksi. Hampurilaisvalikko säilytettiin ja vanhoille
 > URLeille tehtiin 301-ohjaukset.
 >
-> **Kaksi asiaa jäi kesken:**
-> 1. Vanhojen sivutiedostojen poisto (`palvelut/`, `paketit/`, `miksi/`,
->    `kenelle/`, `yhteys/`) esti ympäristön käyttöoikeustarkistus. Sivut ovat
->    301-ohjattuja eivätkä siis tavoitettavissa, mutta tiedostot ovat yhä
->    repossa. Poista ne komennolla:
->    `git rm -r palvelut paketit miksi kenelle yhteys`
-> 2. **Prompti 12 on tekemättä.** Se on omistajan tarkistus, ei agentin työtä.
->    Lue se ennen julkaisua.
+> Vanhat sivut (`palvelut/`, `paketit/`, `miksi/`, `kenelle/`, `yhteys/`) on
+> poistettu ja 301-ohjattu.
+>
+> **Yksi asia on kesken: Prompti 12.** Se on omistajan tarkistus, ei agentin
+> työtä. Lue se ennen julkaisua.
 >
 > Alla oleva ohjeistus on säilytetty sellaisenaan, jotta työn perustelut
 > ovat luettavissa jälkikäteen.
