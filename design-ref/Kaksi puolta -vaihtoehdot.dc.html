@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="design_doc_mode" content="canvas">
+<title>Kaksi puolta, vaihtoehdot</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,900;1,9..144,900&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#EDEAE2;color:#16202E;font-family:Outfit,system-ui,sans-serif;line-height:1.6}
+a{color:#07706B}a:hover{color:#0E2440}
+</style>
+</helmet>
+<section style="padding: 40px; display: flex; flex-direction: column; gap: 24px;">
+  <p style="margin: 0; font-weight: 700; color: #0E2440; font-size: 15px;">Kaksi puolta, kolme tapaa näyttää sama asia. Väli on joka versiossa se joka kantaa merkityksen.</p>
+  <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start;">
+
+    <div id="1a" style="position: relative; width: 1120px; max-width: 100%;">
+      <span style="position: absolute; top: -14px; left: -14px; z-index: 2; background: #0E2440; color: #FBFAF7; font-weight: 700; font-size: 14px; padding: 4px 12px; border-radius: 100px;">1a</span>
+      <div style="background: #FBFAF7; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(14,36,64,0.10);">
+        <div style="display: flex; min-height: 520px;">
+          <div style="flex: 1 1 0; background: #0E2440; padding: 56px 48px; display: flex; flex-direction: column; justify-content: center; align-items: flex-end; text-align: right;">
+            <p style="margin: 0 0 20px; text-transform: uppercase; letter-spacing: 0.12em; font-size: 13px; font-weight: 700; color: #0FB5AE;">Mitä instituutio näkee</p>
+            <p style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 900; font-size: 1.7rem; line-height: 1.3; color: #FBFAF7; max-width: 18ch; text-wrap: pretty;">Palvelu on maksuton. Rahoitus on kunnossa. Paikkoja on vapaana.</p>
+            <p style="margin: 28px 0 0; font-family: Fraunces, Georgia, serif; font-weight: 900; font-size: 2.3rem; line-height: 1.15; color: #0FB5AE; max-width: 14ch;">Hakemuksia ei tule.</p>
+          </div>
+          <div style="flex: 0 0 150px; display: flex; align-items: center; justify-content: center; padding: 24px 16px; text-align: center;">
+            <p style="margin: 0; font-size: 14.5px; color: #5C6675; line-height: 1.6;">Molemmat pitävät paikkansa. Väliin ei ole rakennettu mitään.</p>
+          </div>
+          <div style="flex: 1 1 0; background: #F3F0E9; padding: 56px 48px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; text-align: left;">
+            <p style="margin: 0 0 20px; text-transform: uppercase; letter-spacing: 0.12em; font-size: 13px; font-weight: 700; color: #7A4E1E;">Mitä perheet sanovat</p>
+            <p style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 900; font-size: 1.7rem; line-height: 1.3; color: #0E2440; max-width: 20ch; text-wrap: pretty;">Meille ei ole mitään. Kukaan ei ole kertonut mistään, eikä kukaan auta. En ymmärrä mitä minun pitäisi tehdä.</p>
+            <p style="margin: 28px 0 0; font-family: Fraunces, Georgia, serif; font-weight: 900; font-size: 2.3rem; line-height: 1.15; color: #7A4E1E; max-width: 14ch;">Voisiko joku auttaa?</p>
+          </div>
+        </div>
+      </div>
+      <p style="margin: 12px 0 0; font-size: 14.5px; color: #444d59; max-width: 70ch;"><strong>Kaksi kenttää, sauma.</strong> Ei kortteja vaan kaksi täyttä maailmaa jotka törmäävät kapeaan tyhjään kaistaan. Molemmat puolet katsovat kohti saumaa. Vieritysliike kaventaa kaistaa entisestään.</p>
+    </div>
+
+    <div id="1b" style="position: relative; width: 1120px; max-width: 100%;">
+      <span style="position: absolute; top: -14px; left: -14px; z-index: 2; background: #0E2440; color: #FBFAF7; font-weight: 700; font-size: 14px; padding: 4px 12px; border-radius: 100px;">1b</span>
+      <div style="background: #FBFAF7; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(14,36,64,0.10); padding: 72px 56px 56px;">
+        <div style="display: grid; grid-template-columns: 1fr 140px 1fr; align-items: start;">
+          <div>
+            <p style="margin: 0 0 20px; text-transform: uppercase; letter-spacing: 0.12em; font-size: 13px; font-weight: 700; color: #07706B;">Mitä instituutio näkee</p>
+            <p style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 900; font-size: 1.7rem; line-height: 1.3; color: #0E2440; max-width: 20ch; text-wrap: pretty;">Palvelu on maksuton. Rahoitus on kunnossa. Paikkoja on vapaana.</p>
+            <p style="margin: 26px 0 0; font-family: Fraunces, Georgia, serif; font-weight: 900; font-size: 2.3rem; line-height: 1.15; color: #07706B;">Hakemuksia ei tule.</p>
+          </div>
+          <div></div>
+          <div>
+            <p style="margin: 0 0 20px; text-transform: uppercase; letter-spacing: 0.12em; font-size: 13px; font-weight: 700; color: #7A4E1E;">Mitä perheet sanovat</p>
+            <p style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 900; font-size: 1.7rem; line-height: 1.3; color: #0E2440; max-width: 22ch; text-wrap: pretty;">Meille ei ole mitään. Kukaan ei ole kertonut mistään, eikä kukaan auta. En ymmärrä mitä minun pitäisi tehdä.</p>
+            <p style="margin: 26px 0 0; font-family: Fraunces, Georgia, serif; font-weight: 900; font-size: 2.3rem; line-height: 1.15; color: #7A4E1E;">Voisiko joku auttaa?</p>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 28px; margin-top: 64px;">
+          <span aria-hidden="true" style="flex: 1; height: 4px; border-radius: 4px; background: #0A8F89;"></span>
+          <p style="margin: 0; font-size: 14.5px; color: #5C6675; text-align: center; max-width: 34ch;">Molemmat pitävät paikkansa. Väliin ei ole rakennettu mitään.</p>
+          <span aria-hidden="true" style="flex: 1; height: 4px; border-radius: 4px; background: #0A8F89;"></span>
+        </div>
+      </div>
+      <p style="margin: 12px 0 0; font-size: 14.5px; color: #444d59; max-width: 70ch;"><strong>Katkennut poikkiviiva.</strong> Puhdas typografia vaalealla, ei laatikoita. Alla logon poikkiviiva joka kurottaa molemmilta puolilta eikä yllä perille, ja katkoksessa lukee miksi. Kevyin ja lehtimäisin.</p>
+    </div>
+
+    <div id="1c" style="position: relative; width: 1120px; max-width: 100%;">
+      <span style="position: absolute; top: -14px; left: -14px; z-index: 2; background: #0E2440; color: #FBFAF7; font-weight: 700; font-size: 14px; padding: 4px 12px; border-radius: 100px;">1c</span>
+      <div style="background: #FBFAF7; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(14,36,64,0.10); padding: 56px 48px;">
+        <div style="width: 62%; background: #0E2440; border-radius: 22px; padding: 44px 48px;">
+          <p style="margin: 0 0 18px; text-transform: uppercase; letter-spacing: 0.12em; font-size: 13px; font-weight: 700; color: #0FB5AE;">Mitä instituutio näkee</p>
+          <p style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 900; font-size: 1.6rem; line-height: 1.3; color: #FBFAF7; max-width: 24ch; text-wrap: pretty;">Palvelu on maksuton. Rahoitus on kunnossa. Paikkoja on vapaana.</p>
+          <p style="margin: 22px 0 0; font-family: Fraunces, Georgia, serif; font-weight: 900; font-size: 2.1rem; line-height: 1.15; color: #0FB5AE;">Hakemuksia ei tule.</p>
+        </div>
+        <div style="display: flex; justify-content: center; padding: 26px 0;">
+          <p style="margin: 0; font-size: 14.5px; color: #5C6675; text-align: center;">Molemmat pitävät paikkansa. Väliin ei ole rakennettu mitään.</p>
+        </div>
+        <div style="width: 62%; margin-left: auto; background: #F3F0E9; border: 1px solid #EBD9BE; border-radius: 22px; padding: 44px 48px;">
+          <p style="margin: 0 0 18px; text-transform: uppercase; letter-spacing: 0.12em; font-size: 13px; font-weight: 700; color: #7A4E1E;">Mitä perheet sanovat</p>
+          <p style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 900; font-size: 1.6rem; line-height: 1.3; color: #0E2440; max-width: 26ch; text-wrap: pretty;">Meille ei ole mitään. Kukaan ei ole kertonut mistään, eikä kukaan auta. En ymmärrä mitä minun pitäisi tehdä.</p>
+          <p style="margin: 22px 0 0; font-family: Fraunces, Georgia, serif; font-weight: 900; font-size: 2.1rem; line-height: 1.15; color: #7A4E1E;">Voisiko joku auttaa?</p>
+        </div>
+      </div>
+      <p style="margin: 12px 0 0; font-size: 14.5px; color: #444d59; max-width: 70ch;"><strong>Ohi toisistaan.</strong> Lohkot ovat eri riveillä ja eri laidoissa: ne eivät koskaan kohtaa, ja kapea väli jossa selitys asuu kulkee niiden välistä. Toimii sellaisenaan myös mobiilissa.</p>
+    </div>
+
+  </div>
+</section>
+</x-dc>
+</body>
+</html>
