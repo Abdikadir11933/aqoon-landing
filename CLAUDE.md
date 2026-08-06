@@ -6,7 +6,7 @@ B2B-sivusto, neljä sivua:
 - `index.html` — etusivu (hero + kaksi totuutta + yleiskuva-details + perustaja + paketit + CTA `#yhteys`)
 - `tapaus/index.html` — pilottitapaus: kuusi estettä, rakenteellinen löydös, luvut (`#luvut`), suppilo
 - `menetelma/index.html` — menetelmä, neljä välinettä, viisi porrasta (askelvalitsin), vertailutaulukko
-- `hinnat/index.html` — kolme pakettia, hankinta-lohko, miten edetään
+- `paketit/index.html` — kolme pakettia, hankinta-lohko, miten edetään
 - `assets/styles.css` — kaikki jaettu CSS (nav, sektioit, details, taulukot, dark-mode-lock)
 - `assets/main.js` — jaettu JS (reveal, hamburger, askelvalitsin, estekortit, liuku)
 - `assets/perustaja.webp` / `.jpg` — perustajan kuva
@@ -20,9 +20,9 @@ Muu:
 - `BRAND.md` — brändi-, fontti- ja kielitotuus; **lue ennen mitään UI-muutosta**
 - `design-ref/` — uudistuksen lähdeaineisto ja toteutusohje, tilapäinen
 
-**Nav ja footer** toistuvat kaikilla 4 B2B-sivulla (`index.html`, `tapaus/`, `menetelma/`, `hinnat/`). Muutos johonkin näistä vaatii päivityksen **kaikkiin neljään** tiedostoon.
+**Nav ja footer** toistuvat kaikilla 4 B2B-sivulla (`index.html`, `tapaus/`, `menetelma/`, `paketit/`). Muutos johonkin näistä vaatii päivityksen **kaikkiin neljään** tiedostoon.
 
-Vanhat URLit `/palvelut`, `/miksi`, `/paketit`, `/kenelle` ja `/yhteys` on 301-ohjattu `vercel.json`:issa. Älä poista ohjauksia.
+Vanhat URLit `/palvelut`, `/miksi`, `/hinnat`, `/kenelle` ja `/yhteys` on 301-ohjattu `vercel.json`:issa. Älä poista ohjauksia.
 
 ## JS-moduulit
 
@@ -32,7 +32,8 @@ Vanhat URLit `/palvelut`, `/miksi`, `/paketit`, `/kenelle` ja `/yhteys` on 301-o
 |---|---|
 | `[data-stepper]` + `[data-step]` / `[data-step-panel]` | Askelvalitsin, tab-kuvio nuolinäppäimillä |
 | `[data-cards]` + `[data-card-toggle]` | Yksi kortti auki kerrallaan |
-| `[data-parallax-pair]` + `[data-parallax="left\|right"]` | Koristeliuku, ei aja alle 860 px eikä reduced motion -tilassa |
+| `[data-parallax-pair]` + `[data-parallax="left\|right\|bar-left\|bar-right"]` | Koristeliuku, ei aja alle 860 px eikä reduced motion -tilassa |
+| `[data-toggle-all]` + `aria-controls` | Avaa/sulje kaikki details-lohkot |
 
 **Jokaisen sivun on oltava luettava ilman JavaScriptiä.** Paneelit ovat DOM:issa,
 eivät renderöityjä.

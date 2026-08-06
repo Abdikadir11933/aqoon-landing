@@ -49,6 +49,30 @@
     });
   }
 
+  /* ── Avaa kaikki / Sulje kaikki [data-toggle-all] ───────────
+     Ohjaa kaikkia sivun details-lohkoja. Ilman JS:ää nappi on
+     piilotettu, koska se ei tekisi mitään. */
+  document.querySelectorAll('[data-toggle-all]').forEach(function (btn) {
+    var stack = document.getElementById(btn.getAttribute('aria-controls'));
+    if (!stack) return;
+    var panels = Array.prototype.slice.call(stack.querySelectorAll('details'));
+    if (!panels.length) return;
+
+    var sync = function () {
+      var allOpen = panels.every(function (d) { return d.open; });
+      btn.textContent = allOpen ? 'Sulje kaikki' : 'Avaa kaikki';
+      return allOpen;
+    };
+
+    btn.addEventListener('click', function () {
+      var open = !sync();
+      panels.forEach(function (d) { d.open = open; });
+      sync();
+    });
+    panels.forEach(function (d) { d.addEventListener('toggle', sync); });
+    sync();
+  });
+
   /* ── Askelvalitsin [data-stepper] ───────────────────────────── */
   document.querySelectorAll('[data-stepper]').forEach(function (root) {
     var tabs = Array.prototype.slice.call(root.querySelectorAll('[data-step]'));

@@ -1,4 +1,4 @@
-/* AQOON shared styles — B2B-sivut (/, /tapaus, /menetelma, /hinnat).
+/* AQOON shared styles — B2B-sivut (/, /tapaus, /menetelma, /paketit).
    Kampanjasivut pilke/ käyttävät omia inline-tyylejään, eivät tätä. */
 
 :root{
@@ -58,7 +58,7 @@ img{max-width:100%;display:block;}
 .nav-links{display:flex;align-items:center;gap:20px;margin-left:auto;}
 .nav-link{
   color:var(--text);font-weight:500;font-size:15px;
-  padding:4px 0;border-bottom:2px solid transparent;transition:color .2s;
+  padding:10px 2px;border-bottom:2px solid transparent;transition:color .2s;
 }
 .nav-link:hover{color:var(--link);}
 .nav-link[aria-current="page"]{color:var(--navy);font-weight:700;border-bottom-color:var(--teal);}
@@ -185,6 +185,18 @@ summary::marker{content:"";}
 .dets[open]::details-content{opacity:1;block-size:auto;}
 @supports (interpolate-size:allow-keywords){:root{interpolate-size:allow-keywords;}}
 
+/* Avaa kaikki / Sulje kaikki. Piilossa ilman JS:ää, koska nappi ei
+   tekisi mitään, ja lohkot ovat silloin muutenkin auki. */
+.dets-toolbar{display:none;}
+.js .dets-toolbar{display:flex;justify-content:flex-end;}
+.toggle-all{
+  background:none;border:1px solid var(--line);border-radius:100px;
+  padding:10px 18px;font-family:inherit;font-size:14.5px;font-weight:600;
+  color:var(--link);cursor:pointer;min-height:44px;white-space:nowrap;
+  transition:border-color .2s,background .2s;
+}
+.toggle-all:hover{border-color:var(--tealdk);background:var(--cream);}
+
 /* ── PANEELIT (ei-avattava kortti) ───────────────────────────── */
 .panel{background:#F3F0E9 !important;border:1px solid var(--line-cream);border-radius:20px;padding:28px;}
 .panel > h2{font-size:clamp(1.25rem,2.6vw,1.6rem);line-height:1.2;}
@@ -245,7 +257,10 @@ summary::marker{content:"";}
   .truths{grid-template-columns:1fr;row-gap:40px;}
   .truths .truth-spacer{display:none;}
   .truth{transform:none !important;}
-  .truth-rule span{transform:none !important;}
+  /* Viivat eivät toimi kapealla: keskilause seisoo yksin. */
+  .truth-rule span{display:none;}
+  .truth-rule{gap:0;}
+  .truth-rule p{max-width:none;text-align:left;}
 }
 
 /* ── ONGELMA, KENELLE, PAKETIT (avoimet listalohkot) ─────────── */
@@ -293,6 +308,14 @@ summary::marker{content:"";}
 .price-step{font-weight:700;font-size:1.05rem;color:var(--navy);}
 .price p{font-size:15.5px;}
 .price-incl{margin:auto 0 0;padding-top:12px;border-top:1px solid var(--line-cream);font-size:15px;color:var(--muted);}
+.price-badge{
+  align-self:flex-start;background:var(--navy);color:var(--paper);
+  font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  line-height:19px;padding:6px 12px;border-radius:100px;white-space:nowrap;
+}
+/* Kortit joilla ei ole merkkiä saavat saman verran tilaa, jotta otsikot
+   ovat samalla rivillä. Ei tarvitse tyhjää elementtiä merkintään. */
+.price:not(:has(.price-badge))::before{content:'';display:block;height:31px;flex-shrink:0;}
 
 /* numeroidut vaihekortit */
 .stepcards{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;}
@@ -383,7 +406,7 @@ summary::marker{content:"";}
 .funnel .is-pending .fn{color:var(--muted);}
 .funnel-note{margin-top:20px;font-size:14.5px;color:var(--muted);font-style:italic;font-variant-numeric:tabular-nums;}
 
-/* ── HANKINTA-LOHKO (/hinnat) ────────────────────────────────── */
+/* ── HANKINTA-LOHKO (/paketit) ───────────────────────────────── */
 .procure{background:#0E2440 !important;border-radius:22px;padding:clamp(36px,6vw,72px);}
 .procure .kicker{color:var(--teal);margin-bottom:20px;}
 .procure p{
@@ -410,14 +433,21 @@ summary::marker{content:"";}
 /* ── CTA ─────────────────────────────────────────────────────── */
 .cta{text-align:center;}
 .cta h2{font-size:clamp(1.9rem,4.5vw,3.2rem);margin-bottom:16px;}
+.cta h2.h2-cta{font-size:clamp(1.6rem,3.4vw,2.4rem);line-height:1.15;margin-bottom:14px;}
 .cta p{font-size:1.15rem;margin-bottom:40px;}
+.cta .h2-cta + p{margin-bottom:36px;}
+.endlinks{display:flex;flex-direction:column;gap:26px;align-items:flex-start;}
 
 /* ── FOOTER ──────────────────────────────────────────────────── */
 footer{background:#0E2440 !important;color:var(--on-navy);padding:48px 0;}
 .foot-in{display:flex;flex-wrap:wrap;gap:32px;align-items:center;justify-content:space-between;}
 .foot-in .logo{color:var(--paper);font-size:18px;}
 .foot-in .logo svg{color:var(--paper);}
+.foot-nav{display:flex;flex-wrap:wrap;gap:22px;font-size:15px;}
+.foot-nav a{padding:6px 0;}
+.foot-nav a:hover{color:var(--teal);}
 .foot-contact{display:flex;flex-wrap:wrap;gap:24px;font-size:15px;font-variant-numeric:tabular-nums;}
+.foot-contact a{padding:6px 0;}
 .foot-contact a:hover{color:var(--teal);}
 
 /* ── ANKKURIT STICKY-NAVIN ALLA ──────────────────────────────── */
