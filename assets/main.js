@@ -117,17 +117,23 @@
   });
 
   /* ── Kahden totuuden liuku [data-parallax-pair] ─────────────
-     Puhtaasti koristeellinen. Ei aja mobiilissa eikä reduced motion -tilassa. */
+     Sarakkeet liukuvat toisiaan kohti ja niiden alla olevat viivat
+     kasvavat. Puhtaasti koristeellinen: ei aja mobiilissa eikä
+     reduced motion -tilassa, ja sisältö on ilman sitä täysin luettava. */
   var pair = document.querySelector('[data-parallax-pair]');
   if (pair) {
     var left = pair.querySelector('[data-parallax="left"]');
     var right = pair.querySelector('[data-parallax="right"]');
+    var barL = pair.querySelector('[data-parallax="bar-left"]');
+    var barR = pair.querySelector('[data-parallax="bar-right"]');
     if (left && right) {
       var ticking = false;
       var apply = function () {
         ticking = false;
         if (reduceMotion.matches || window.innerWidth < 860) {
           left.style.transform = ''; right.style.transform = '';
+          if (barL) barL.style.transform = '';
+          if (barR) barR.style.transform = '';
           return;
         }
         var r = pair.getBoundingClientRect();
@@ -135,6 +141,9 @@
         var shift = Math.round(p * 40);
         left.style.transform = 'translateX(' + shift + 'px)';
         right.style.transform = 'translateX(' + (-shift) + 'px)';
+        var grow = 'scaleX(' + (0.75 + p * 0.25) + ')';
+        if (barL) barL.style.transform = grow;
+        if (barR) barR.style.transform = grow;
       };
       var onScroll = function () {
         if (!ticking) { ticking = true; window.requestAnimationFrame(apply); }
