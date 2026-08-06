@@ -6,7 +6,7 @@
   --teal:#0FB5AE; --tealdk:#0A8F89; --link:#07706B;
   --sand:#E8A766; --brown:#7A4E1E;
   --paper:#FBFAF7; --cream:#F3F0E9;
-  --text:#16202E; --muted:#5C6675;
+  --text:#16202E; --muted:#5C6675; --muted-strong:#444D59;
   --line:#E7E3D8; --line-cream:#E2DDCF; --line-sand:#EBD9BE;
   --on-navy:#C9D2DE; --on-navy-strong:#E2E7EE; --dashed:#B9C0CB;
   --display:'Fraunces',Georgia,serif;
@@ -134,6 +134,11 @@ h3{font-size:1.2rem;line-height:1.25;}
 .btn-primary:hover{background:var(--ink);color:var(--paper);}
 .btn-outline{background:transparent;color:var(--navy);padding:13px 30px;border:2px solid var(--navy);}
 .btn-outline:hover{background:var(--navy);color:var(--paper);}
+/* Vaalea pari tummalle taustalle. */
+.btn-light{background:var(--paper);color:var(--navy);padding:13px 26px;font-size:15.5px;}
+.btn-light:hover{background:var(--cream);color:var(--navy);}
+.btn-outline-light{background:transparent;color:var(--paper);padding:11px 26px;font-size:15.5px;border:2px solid rgba(251,250,247,.6);}
+.btn-outline-light:hover{background:rgba(251,250,247,.08);border-color:var(--paper);color:var(--paper);}
 /* Kosketuskohteiden vähimmäiskorkeus: pystypehmuste, ei suurempi fontti. */
 .tlink{color:var(--link);font-weight:600;font-size:1.05rem;display:inline-block;padding:9px 0;}
 .tlink:hover{color:var(--navy);}
@@ -210,34 +215,69 @@ summary::marker{content:"";}
 .ladder-text{padding:6px 0 22px;font-size:1.05rem;}
 .ladder li:last-child .ladder-text{padding-bottom:0;}
 
-/* ── KAKSI TOTUUTTA (etusivu) ────────────────────────────────── */
-.truths{display:flex;align-items:stretch;row-gap:24px;}
-.truth{border-radius:22px;padding:clamp(32px,5vw,56px);flex:1 1 300px;will-change:transform;}
-.truth-inst{background:#0A1A30 !important;color:var(--paper);}
-.truth-fam{background:#F3F0E9 !important;border:1px solid var(--line-sand);}
-.truth-mid{
-  flex:0 1 220px;min-width:180px;display:flex;align-items:center;justify-content:center;
-  padding:28px 36px;text-align:center;
-}
-.truth-mid p{font-size:16px;color:var(--on-navy);line-height:1.55;}
+/* ── KAKSI TOTUUTTA (etusivu) ────────────────────────────────
+   Ei kortteja eikä tummaa taustaa. Kaksi typografista saraketta
+   paperin päällä, ja niiden alla kaksi viivaa jotka kasvavat
+   kohti keskellä olevaa lausetta. */
+.truths{display:grid;grid-template-columns:1fr 140px 1fr;align-items:start;}
+.truth{will-change:transform;}
 .truth .kicker{margin-bottom:20px;}
+.truth-inst .kicker{color:var(--link);}
 .truth-fam .kicker{color:var(--brown);}
 .truth-q{
-  font-family:var(--display);font-weight:900;
-  font-size:clamp(1.3rem,2.4vw,1.8rem);line-height:1.32;text-wrap:pretty;
+  font-family:var(--display);font-weight:900;color:var(--navy);
+  font-size:clamp(1.3rem,2.4vw,1.8rem);line-height:1.3;text-wrap:pretty;
 }
-.truth-inst .truth-q{color:var(--paper);}
-.truth-fam .truth-q{color:var(--navy);}
+.truth-inst .truth-q{max-width:20ch;}
+.truth-fam .truth-q{max-width:22ch;}
 .truth-punch{
-  margin-top:30px;font-family:var(--display);font-weight:900;
+  margin-top:26px;font-family:var(--display);font-weight:900;
   font-size:clamp(1.7rem,3.4vw,2.5rem);line-height:1.15;
 }
-.truth-inst .truth-punch{color:var(--teal);}
+.truth-inst .truth-punch{color:var(--link);}
 .truth-fam .truth-punch{color:var(--brown);}
+.truth-rule{display:flex;align-items:center;gap:28px;margin-top:clamp(40px,6vw,64px);}
+.truth-rule span{flex:1;height:4px;border-radius:4px;background:var(--tealdk);}
+.truth-rule span:first-child{transform-origin:left center;}
+.truth-rule span:last-child{transform-origin:right center;}
+.truth-rule p{font-size:14.5px;color:var(--muted);text-align:center;max-width:34ch;}
 @media(max-width:860px){
-  .truths{flex-direction:column;}
-  .truth,.truth-mid{transform:none !important;}
+  .truths{grid-template-columns:1fr;row-gap:40px;}
+  .truths .truth-spacer{display:none;}
+  .truth{transform:none !important;}
+  .truth-rule span{transform:none !important;}
 }
+
+/* ── ONGELMA, KENELLE, PAKETIT (avoimet listalohkot) ─────────── */
+.h2-sec{font-size:clamp(1.6rem,3.2vw,2.3rem);line-height:1.15;}
+.sec-intro{margin:12px 0 28px;font-size:1.05rem;color:var(--muted);max-width:56ch;}
+.rows-lg li{padding:16px 0;}
+
+/* ── VIISI PORRASTA (etusivu, avoin ruudukko) ────────────────── */
+.ladder-head{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;margin-bottom:36px;}
+.ladder-head p{color:var(--muted);font-size:1rem;}
+.ladder-grid{
+  list-style:none;margin:0 0 32px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;
+}
+.ladder-grid li{background:#FBFAF7 !important;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:6px;}
+.ladder-grid .n{font-family:var(--display);font-weight:900;color:var(--tealdk);font-size:1.2rem;font-variant-numeric:tabular-nums;}
+.ladder-grid h3{font-size:1.1rem;}
+.ladder-grid p{font-size:14.5px;color:var(--muted-strong);}
+
+/* ── TAPAUS-NOSTO (etusivu, navy) ────────────────────────────── */
+.case-band h2{color:var(--paper);font-size:clamp(1.7rem,3.4vw,2.4rem);line-height:1.15;margin-bottom:28px;}
+.case-band h2 em{color:var(--teal);}
+.case-band p{color:var(--on-navy-strong);font-size:1.05rem;max-width:60ch;margin-bottom:18px;}
+.case-band p:last-of-type{margin-bottom:32px;}
+
+/* ── HERO-VESILEIMA ──────────────────────────────────────────── */
+.hero-home{position:relative;overflow:hidden;}
+.hero-mark{
+  position:absolute;right:-4%;bottom:-22%;
+  width:min(58vw,620px);height:auto;opacity:.06;pointer-events:none;
+}
+.hero-home .wrap{position:relative;}
 
 /* ── KORTTIRUUDUKOT ──────────────────────────────────────────── */
 .cardgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
@@ -390,17 +430,17 @@ footer{background:#0E2440 !important;color:var(--on-navy);padding:48px 0;}
   .js .reveal{opacity:1 !important;transform:none !important;transition:none !important;}
   .dets::details-content{transition:none;}
   .dets-bar,.este,.stepper-dot,.stepper-label,.btn,.nav-link{transition:none !important;}
-  .truth{transform:none !important;}
+  .truth,.truth-rule span{transform:none !important;}
 }
 
 /* ── DARK MODE LOCK ──────────────────────────────────────────── */
 @media(prefers-color-scheme:dark){
   html,body{background:#FBFAF7 !important;color:#16202E !important;}
   .sec-cream,.panel,.card,.price,.dets-cream{background-color:#F3F0E9 !important;}
-  .dets,.stepcards li,.este,.funnel li,.tbl .row-hl,.dets-cream .card,.panel .card{background-color:#FBFAF7 !important;}
+  .dets,.stepcards li,.este,.funnel li,.tbl .row-hl,.dets-cream .card,.panel .card,.ladder-grid li{background-color:#FBFAF7 !important;}
   .sec-navy,.dets-navy,.procure,footer{background-color:#0E2440 !important;}
-  .truth-inst{background-color:#0A1A30 !important;}
-  .truth-fam{background-color:#F3F0E9 !important;}
+  .case-band h2{color:#FBFAF7 !important;}
+  .truth-q{color:#0E2440 !important;}
   .stepper-dot{background-color:#FBFAF7 !important;}
   .stepper-btn[aria-selected="true"] .stepper-dot{background-color:#0E2440 !important;}
   .funnel .is-pending{background-color:transparent !important;}
