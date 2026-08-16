@@ -415,6 +415,10 @@ summary::marker{content:"";}
   font-variant-numeric:tabular-nums;text-wrap:pretty;
 }
 .procure em{font-style:normal;color:var(--teal);}
+.procure p.procure-note{
+  font-family:var(--body);font-weight:400;color:var(--on-navy);
+  font-size:15.5px;line-height:1.6;max-width:60ch;margin-top:22px;
+}
 
 /* ── PERUSTAJA ───────────────────────────────────────────────── */
 .founder{display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,64px);align-items:flex-start;}
