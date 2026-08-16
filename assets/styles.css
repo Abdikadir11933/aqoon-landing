@@ -375,8 +375,13 @@ summary::marker{content:"";}
 .este-btn[aria-expanded="true"] .dets-bar{transform:rotate(90deg);}
 .este-body{padding:0 20px 20px;font-size:15px;}
 
-/* ── TAULUKOT ────────────────────────────────────────────────── */
-.tablewrap{overflow-x:auto;}
+/* ── TAULUKOT ─────────────────────────────────────────────────
+   Leveänä oikea taulukko. Kapeana jokainen rivi omaksi kortikseen,
+   jolloin kaikki kolme saraketta näkyvät ilman vaakavieritystä.
+   Sarakeotsikko toistuu solun sisällä data-label-attribuutista.
+   Roolit on kirjoitettu auki, koska display-arvon ylikirjoitus
+   veisi taulukolta natiivit semantiikat. */
+.tablewrap{overflow-x:auto;container-type:inline-size;}
 .tbl{width:100%;border-collapse:collapse;min-width:600px;font-size:15px;}
 .tbl th[scope="col"]{
   text-align:left;padding:10px 14px;border-bottom:2px solid var(--navy);
@@ -390,6 +395,34 @@ summary::marker{content:"";}
 .tbl .row-hl{background:#FBFAF7 !important;}
 .tbl .row-hl th[scope="row"]{padding-left:10px;}
 .tbl .row-hl td{font-weight:600;}
+
+@container (max-width:640px){
+  .tablewrap{overflow-x:visible;}
+  .tbl{display:block;min-width:0;}
+  /* Otsikkorivi piiloon näkyvistä, jää ruudunlukijalle. */
+  .tbl thead{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;}
+  .tbl tbody{display:block;}
+  .tbl tr{
+    display:block;background:#FBFAF7 !important;
+    border:1px solid var(--line-cream);border-radius:16px;
+    padding:18px 20px;margin-bottom:14px;
+  }
+  .tbl tr:last-child{margin-bottom:0;}
+  .tbl th[scope="row"]{
+    display:block;padding:0 0 14px;border:0;
+    font-family:var(--display);font-weight:900;font-size:1.05rem;line-height:1.3;
+  }
+  .tbl td{
+    display:block;padding:12px 0 0;border:0;border-top:1px solid var(--line-cream);
+  }
+  .tbl td::before{
+    content:attr(data-label);display:block;margin-bottom:4px;
+    font-size:12px;font-weight:700;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--muted);
+  }
+  .tbl .row-hl{border-color:var(--tealdk);border-width:2px;}
+  .tbl .row-hl th[scope="row"]{padding-left:0;}
+}
 
 /* ── LUVUT (/tapaus) ─────────────────────────────────────────── */
 .bignum{
