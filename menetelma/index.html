@@ -95,35 +95,35 @@
     <div class="panel reveal">
       <h2>Neljä välinettä, neljä eri tehtävää</h2>
       <p class="panel-sub">Yksikään ei toimi yksin. Ne tekevät eri asiat.</p>
-      <div class="tablewrap" role="group" tabindex="0" aria-label="Taulukko, vieritä sivusuunnassa">
-        <table class="tbl">
-          <thead>
-            <tr>
-              <th scope="col">Väline</th>
-              <th scope="col">Mitä se tekee</th>
-              <th scope="col">Mitä se ei tee</th>
+      <div class="tablewrap">
+        <table class="tbl" role="table">
+          <thead role="rowgroup">
+            <tr role="row">
+              <th scope="col" role="columnheader">Väline</th>
+              <th scope="col" role="columnheader">Mitä se tekee</th>
+              <th scope="col" role="columnheader">Mitä se ei tee</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row">Lyhytvideo yhteisön omalla kielellä</th>
-              <td>Tuottaa laajan tavoittavuuden erittäin pienellä kustannuksella ja leviää yhteisön sisällä jakamisen kautta</td>
-              <td>Ei vastaa yksittäisen perheen tilanteeseen eikä vie hakemusta läpi</td>
+          <tbody role="rowgroup">
+            <tr role="row">
+              <th scope="row" role="rowheader">Lyhytvideo yhteisön omalla kielellä</th>
+              <td role="cell" data-label="Mitä se tekee">Tuottaa laajan tavoittavuuden erittäin pienellä kustannuksella ja leviää yhteisön sisällä jakamisen kautta</td>
+              <td role="cell" data-label="Mitä se ei tee">Ei vastaa yksittäisen perheen tilanteeseen eikä vie hakemusta läpi</td>
             </tr>
-            <tr>
-              <th scope="row">Jalkatyö kentällä</th>
-              <td>Syvyys ja kasvokkainen kohtaaminen yhdellä alueella. Perheet kertovat kasvotusten sellaista mitä eivät kirjoita mihinkään</td>
-              <td>Ei skaalaudu. Yksi ihminen ehtii yhden alueen</td>
+            <tr role="row">
+              <th scope="row" role="rowheader">Jalkatyö kentällä</th>
+              <td role="cell" data-label="Mitä se tekee">Syvyys ja kasvokkainen kohtaaminen yhdellä alueella. Perheet kertovat kasvotusten sellaista mitä eivät kirjoita mihinkään</td>
+              <td role="cell" data-label="Mitä se ei tee">Ei skaalaudu. Yksi ihminen ehtii yhden alueen</td>
             </tr>
-            <tr>
-              <th scope="row">Omankielinen viestituki</th>
-              <td>Keskustelu jatkuu, kysymykset tulevat esiin, ja hakemus etenee loppuun asti</td>
-              <td>Ei tavoita ketään uutta itsestään</td>
+            <tr role="row">
+              <th scope="row" role="rowheader">Omankielinen viestituki</th>
+              <td role="cell" data-label="Mitä se tekee">Keskustelu jatkuu, kysymykset tulevat esiin, ja hakemus etenee loppuun asti</td>
+              <td role="cell" data-label="Mitä se ei tee">Ei tavoita ketään uutta itsestään</td>
             </tr>
-            <tr>
-              <th scope="row">Raportti ja data</th>
-              <td>Jää teille. Kertoo mikä esti, mikä puri, ja mitä pitää korjata omassa prosessissanne</td>
-              <td>Ei tee mitään yksinään</td>
+            <tr role="row">
+              <th scope="row" role="rowheader">Raportti ja data</th>
+              <td role="cell" data-label="Mitä se tekee">Jää teille. Kertoo mikä esti, mikä puri, ja mitä pitää korjata omassa prosessissanne</td>
+              <td role="cell" data-label="Mitä se ei tee">Ei tee mitään yksinään</td>
             </tr>
           </tbody>
         </table>
@@ -225,45 +225,45 @@
     <div class="panel reveal">
       <h2>Mitä muuta voisitte tehdä</h2>
       <p class="panel-sub">Kuusi vaihtoehtoa ja mitä kukin jättää ratkaisematta.</p>
-      <div class="tablewrap" role="group" tabindex="0" aria-label="Taulukko, vieritä sivusuunnassa">
-        <table class="tbl">
-          <thead>
-            <tr>
-              <th scope="col">Vaihtoehto</th>
-              <th scope="col">Mitä se ratkaisee</th>
-              <th scope="col">Mitä se jättää ratkaisematta</th>
+      <div class="tablewrap">
+        <table class="tbl" role="table">
+          <thead role="rowgroup">
+            <tr role="row">
+              <th scope="col" role="columnheader">Vaihtoehto</th>
+              <th scope="col" role="columnheader">Mitä se ratkaisee</th>
+              <th scope="col" role="columnheader">Mitä se jättää ratkaisematta</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row">Käännöstoimisto</th>
-              <td>Materiaali on olemassa monella kielellä</td>
-              <td>Este ei ollut kieli. Käännetty esite on yhä esite jota kukaan ei lue</td>
+          <tbody role="rowgroup">
+            <tr role="row">
+              <th scope="row" role="rowheader">Käännöstoimisto</th>
+              <td role="cell" data-label="Mitä se ratkaisee">Materiaali on olemassa monella kielellä</td>
+              <td role="cell" data-label="Mitä se jättää ratkaisematta">Este ei ollut kieli. Käännetty esite on yhä esite jota kukaan ei lue</td>
             </tr>
-            <tr>
-              <th scope="row">Mainostoimisto</th>
-              <td>Kampanja on ammattimainen ja näyttää hyvältä</td>
-              <td>Ei pääsyä yhteisöön eikä luottamusta siellä. Mainos tunnistetaan mainokseksi</td>
+            <tr role="row">
+              <th scope="row" role="rowheader">Mainostoimisto</th>
+              <td role="cell" data-label="Mitä se ratkaisee">Kampanja on ammattimainen ja näyttää hyvältä</td>
+              <td role="cell" data-label="Mitä se jättää ratkaisematta">Ei pääsyä yhteisöön eikä luottamusta siellä. Mainos tunnistetaan mainokseksi</td>
             </tr>
-            <tr>
-              <th scope="row">Tulkkipalvelu</th>
-              <td>Ymmärrys syntyy kun perhe on jo paikalla</td>
-              <td>Ei tavoita ketään. Reagoi, ei etsi</td>
+            <tr role="row">
+              <th scope="row" role="rowheader">Tulkkipalvelu</th>
+              <td role="cell" data-label="Mitä se ratkaisee">Ymmärrys syntyy kun perhe on jo paikalla</td>
+              <td role="cell" data-label="Mitä se jättää ratkaisematta">Ei tavoita ketään. Reagoi, ei etsi</td>
             </tr>
-            <tr>
-              <th scope="row">Järjestöhanke</th>
-              <td>Työ tehdään ja se tehdään usein hyvin</td>
-              <td>Loppuu kun rahoitus loppuu. Oppi ei kerry teille eikä kukaan vastaa teille tuloksesta</td>
+            <tr role="row">
+              <th scope="row" role="rowheader">Järjestöhanke</th>
+              <td role="cell" data-label="Mitä se ratkaisee">Työ tehdään ja se tehdään usein hyvin</td>
+              <td role="cell" data-label="Mitä se jättää ratkaisematta">Loppuu kun rahoitus loppuu. Oppi ei kerry teille eikä kukaan vastaa teille tuloksesta</td>
             </tr>
-            <tr>
-              <th scope="row">Oma monikielinen työntekijä</th>
-              <td>Osaaminen on talon sisällä</td>
-              <td>Tarvitsette muutaman tunnin viikossa, mutta joudutte palkkaamaan kokoaikaisen</td>
+            <tr role="row">
+              <th scope="row" role="rowheader">Oma monikielinen työntekijä</th>
+              <td role="cell" data-label="Mitä se ratkaisee">Osaaminen on talon sisällä</td>
+              <td role="cell" data-label="Mitä se jättää ratkaisematta">Tarvitsette muutaman tunnin viikossa, mutta joudutte palkkaamaan kokoaikaisen</td>
             </tr>
-            <tr class="row-hl">
-              <th scope="row">AQOON</th>
-              <td>Selvitys, tavoittaminen, läpivienti ja jatkuva tuki samalta taholta</td>
-              <td>Emme tee mitään mitä emme ole ensin selvittänyt</td>
+            <tr class="row-hl" role="row">
+              <th scope="row" role="rowheader">AQOON</th>
+              <td role="cell" data-label="Mitä se ratkaisee">Selvitys, tavoittaminen, läpivienti ja jatkuva tuki samalta taholta</td>
+              <td role="cell" data-label="Mitä se jättää ratkaisematta">Emme tee mitään mitä emme ole ensin selvittänyt</td>
             </tr>
           </tbody>
         </table>
