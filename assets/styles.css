@@ -300,6 +300,51 @@ summary::marker{content:"";}
 .card h3{font-size:1.15rem;margin-bottom:8px;}
 .card p{font-size:15px;}
 .dets-cream .card,.panel .card{background:#FBFAF7 !important;}
+/* Kortti tummalla pohjalla, esim. kolme kaupunkia -vertailu .dets-navy:n sisällä. */
+.card-navy{background:rgba(251,250,247,.06) !important;border:1px solid rgba(251,250,247,.16);}
+.card-navy h3{color:var(--paper);}
+.card-navy p{color:var(--on-navy-strong);}
+
+/* ── LUKKIUTUMAPOLKU (/tapaus) ────────────────────────────────
+   Pystysuora askelketju joka näyttää missä kohtaa perhe putoaa
+   pois vaihtoehdoista ja missä kohtaa valinta lukittuu. Ei vaadi
+   JS:ää eikä vaakavieritystä. */
+.polku{list-style:none;margin:24px 0 0;padding:0;}
+.polku__vaihe{
+  position:relative;padding:0 0 22px 40px;
+  margin-left:10px;border-left:2px solid rgba(251,250,247,.25);
+}
+.polku__vaihe:last-child{padding-bottom:0;border-left-color:transparent;}
+.polku__nro{
+  position:absolute;left:-15px;top:0;width:30px;height:30px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--paper);color:var(--navy);
+  font-family:var(--display);font-weight:900;font-variant-numeric:tabular-nums;
+  font-size:14px;
+}
+.polku__vaihe h3{color:var(--paper);font-size:1.05rem;margin:2px 0 6px;}
+.polku__vaihe p{color:var(--on-navy-strong);font-size:15px;margin:0;max-width:60ch;}
+.polku__lippu{
+  margin-top:10px !important;padding:10px 14px;
+  border-left:3px solid var(--sand);background:rgba(251,250,247,.06);
+  font-size:14.5px !important;color:var(--on-navy) !important;
+}
+.polku__lippu--lukko{border-left-color:var(--teal);font-weight:600;}
+.polku__vaihe--lukko .polku__nro{background:var(--teal);color:var(--navy);}
+.polku__vaihe--pudotus .polku__nro{background:var(--sand);color:var(--navy);}
+
+/* ── TYÖN ALLA (pipeline) ─────────────────────────────────────
+   Visuaalisesti erotettu valmiista tuloksista. Ei koskaan
+   numerokenttiä, jotta lukua ei voi liittää tähän vahingossa. */
+.pipeline{
+  display:block;border:2px dashed var(--sand) !important;background:var(--cream) !important;
+  border-radius:20px;padding:28px;
+}
+.pipeline-status{
+  margin:0 0 10px;font-weight:700;color:var(--navy);
+  font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;
+}
+.pipeline h2{margin-bottom:14px;}
 
 /* hintakortit */
 .price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
@@ -514,4 +559,6 @@ footer{background:#0E2440 !important;color:var(--on-navy);padding:48px 0;}
   h1,h2,h3{color:#0E2440 !important;}
   .dets-navy .dets-head h2,.procure p,.truth-inst .truth-q{color:#FBFAF7 !important;}
   .truth-fam .truth-q{color:#0E2440 !important;}
+  .dets-navy .card-navy h3,.dets-navy .polku__vaihe h3{color:#FBFAF7 !important;}
+  .pipeline{background-color:#F3F0E9 !important;}
 }
