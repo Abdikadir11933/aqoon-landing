@@ -361,6 +361,9 @@ summary::marker{content:"";}
 /* Kortit joilla ei ole merkkiä saavat saman verran tilaa, jotta otsikot
    ovat samalla rivillä. Ei tarvitse tyhjää elementtiä merkintään. */
 .price:not(:has(.price-badge))::before{content:'';display:block;height:31px;flex-shrink:0;}
+.home-offers .price::before{display:none;}
+.home-offers .price{min-height:180px;}
+.home-offers .price p{margin-top:auto;font-size:1rem;}
 
 /* numeroidut vaihekortit */
 .stepcards{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;}
