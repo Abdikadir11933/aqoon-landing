@@ -49,6 +49,14 @@
       });
     };
 
+    var keepSelectionInView = function () {
+      if (window.innerWidth > 720) return;
+      widget.scrollIntoView({
+        behavior: reducedMotion.matches ? 'auto' : 'smooth',
+        block: 'start'
+      });
+    };
+
     var select = function (index, focus, animate) {
       index = (index + tabs.length) % tabs.length;
       widget.style.setProperty('--step', index);
@@ -74,6 +82,7 @@
         showPanel(index);
         if (panelWrap) panelWrap.classList.remove('is-changing');
       }
+      if (animate) window.setTimeout(keepSelectionInView, 170);
     };
 
     tabs.forEach(function (tab, index) {
