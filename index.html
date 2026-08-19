@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600&family=Caveat:wght@500;600&family=Fraunces:opsz,wght@9..144,900&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/site.css">
+  <link rel="stylesheet" href="/assets/site.css?v=20260819-3">
 </head>
 <body>
   <a class="skip" href="#main">Siirry sisältöön</a>
@@ -39,43 +39,53 @@
   </header>
 
   <main id="main">
-    <section class="route-hero connection-hero">
-      <div class="wrap">
-        <p class="eyebrow">AQOON · Ensin ymmärrys, sitten viesti</p>
-        <h1 class="display"><span>Tarve on.</span><span>Kiinnostus on.</span><em>Yhteys puuttuu.</em></h1>
-        <div class="hero-bottom">
-          <div class="hero-actions">
-            <a class="button" href="https://cal.com/abducadir-abdullahi-aligure-tw1bge/30min">Varaa keskustelu</a>
-            <a class="button" href="#palvelupolku">Katso, missä yhteys katkeaa</a>
-          </div>
-          <p>AQOON selvittää, miksi tieto ei löydy, luottamus ei synny tai seuraava askel jää ottamatta – ja auttaa korjaamaan yhteyden käytännössä.</p>
+    <section class="bridge-story" data-bridge-story aria-labelledby="bridge-title">
+      <div class="bridge-stage">
+        <div class="bridge-camera">
+        <p class="bridge-eyebrow">AQOON · Ensin ymmärrys, sitten viesti</p>
+
+        <h1 class="bridge-title" id="bridge-title">
+          <span class="bridge-title-need">Tarve on.</span>
+          <span class="bridge-title-interest">Kiinnostus on.</span>
+          <span class="bridge-title-gap">Yhteys puuttuu.</span>
+        </h1>
+
+        <div class="bridge-offers" aria-label="Tarjolla olevia mahdollisuuksia">
+          <p class="bridge-label">Tarjolla</p>
+          <div class="bridge-offer" style="--order:0"><i></i>Vapaa paikka</div>
+          <div class="bridge-offer" style="--order:1"><i></i>Maksuton ohjelma</div>
+          <div class="bridge-offer" style="--order:2"><i></i>Neuvontaa ja tukea</div>
+        </div>
+
+        <div class="bridge-family">
+          <p class="bridge-label">Ihminen</p>
+          <div class="bridge-quote"><span>“Tarvitsen tätä.”</span><b>“En tiennyt tästä.”</b></div>
+          <img src="/assets/aqoon-family-route-3d.webp" width="900" height="600" alt="Perhe matkalla yhdessä" fetchpriority="high" decoding="async">
+        </div>
+
+        <div class="bridge-track" aria-hidden="true">
+          <span class="bridge-track-base"></span>
+          <span class="bridge-track-flow"></span>
+          <span class="bridge-track-gap"></span>
+          <span class="bridge-track-fix"></span>
+          <span class="bridge-signal bridge-signal-a"></span>
+          <span class="bridge-signal bridge-signal-b"></span>
+          <span class="bridge-signal bridge-signal-c"></span>
+          <span class="bridge-node">AQOON</span>
+          <span class="bridge-barrier bridge-barrier-a">väärä kanava</span>
+          <span class="bridge-barrier bridge-barrier-b">luottamus puuttuu</span>
+          <span class="bridge-barrier bridge-barrier-c">epäselvä seuraava askel</span>
+          <span class="bridge-method">Ymmärtää · tavoittaa · ohjaa eteenpäin</span>
+        </div>
+
+          <p class="bridge-ending"><i></i>AQOON selvittää, mikä yhteyden katkaisee – ja auttaa korjaamaan sen.</p>
         </div>
       </div>
-      <div class="connection-demo" aria-label="Tarjolla oleva mahdollisuus ja sitä tarvitseva perhe ovat olemassa, mutta yhteys niiden välillä voi katketa.">
-        <div class="connection-offers">
-          <span class="connection-label">Tarjolla</span>
-          <div class="offer-card offer-card-a"><i></i>Vapaa paikka</div>
-          <div class="offer-card offer-card-b"><i></i>Maksuton ohjelma</div>
-          <div class="offer-card offer-card-c"><i></i>Neuvontaa ja tukea</div>
-        </div>
 
-        <div class="connection-link" aria-hidden="true">
-          <span class="link-start"></span>
-          <span class="link-end"></span>
-          <span class="link-bridge"><b>AQOON</b></span>
-          <span class="link-signal"></span>
-          <span class="link-note link-note-a">väärä kanava</span>
-          <span class="link-note link-note-b">epäselvä seuraava askel</span>
-          <span class="link-note link-note-c">luottamus puuttuu</span>
-        </div>
-
-        <div class="connection-family">
-          <span class="connection-label">Ihminen</span>
-          <div class="family-answer">“Tarvitsen tätä.<br>En tiennyt tästä.”</div>
-          <img src="/assets/aqoon-family-route-3d.webp" width="900" height="600" alt="Perhe matkalla yhdessä">
-        </div>
-
-        <p class="connection-caption"><strong>AQOON selvittää katkoksen.</strong><span>Ymmärtää · tavoittaa · ohjaa eteenpäin</span></p>
+      <div class="bridge-actions wrap">
+        <a class="button" href="https://cal.com/abducadir-abdullahi-aligure-tw1bge/30min">Varaa keskustelu</a>
+        <a class="button" href="#palvelupolku">Kokeile palvelupolkua</a>
+        <p>Tarpeen ja kiinnostuksen jälkeen ratkaisee se, pääseekö ihminen käytännössä eteenpäin.</p>
       </div>
     </section>
 
@@ -197,6 +207,6 @@
       <div class="footer-contact"><a href="mailto:abducadir_abdullahi@aqoon.live">abducadir_abdullahi@aqoon.live</a><a href="tel:+358452591438">+358 45 259 1438</a></div>
     </div>
   </footer>
-  <script src="/assets/site.js"></script>
+  <script src="/assets/site.js?v=20260819-3"></script>
 </body>
 </html>

@@ -21,6 +21,20 @@
     });
   }
 
+  var bridgeStory = document.querySelector('[data-bridge-story]');
+  if (bridgeStory && 'IntersectionObserver' in window) {
+    var storyVisible = true;
+    var syncStory = function () {
+      bridgeStory.classList.toggle('is-paused', !storyVisible || document.hidden);
+    };
+    var storyObserver = new IntersectionObserver(function (entries) {
+      storyVisible = entries[0].isIntersecting;
+      syncStory();
+    }, { rootMargin: '120px 0px', threshold: 0 });
+    storyObserver.observe(bridgeStory);
+    document.addEventListener('visibilitychange', syncStory);
+  }
+
   document.querySelectorAll('[data-route-widget]').forEach(function (widget) {
     var tabs = Array.prototype.slice.call(widget.querySelectorAll('[data-route-tab]'));
     var panels = Array.prototype.slice.call(widget.querySelectorAll('[data-route-panel]'));
