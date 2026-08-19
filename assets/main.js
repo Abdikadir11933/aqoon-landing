@@ -6,6 +6,26 @@
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
+  /* ── Este-seinä ───────────────────────────────────────────────
+     Sisältö on aina näkyvä. Vain seinän palat asettuvat rauhallisesti
+     paikoilleen, kun visualisointi tulee näkymään. */
+  var barrier = document.querySelector('[data-barrier]');
+  if (barrier) {
+    if (reduceMotion.matches || !('IntersectionObserver' in window)) {
+      barrier.classList.add('is-seen');
+    } else {
+      var barrierObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            barrier.classList.add('is-seen');
+            barrierObserver.disconnect();
+          }
+        });
+      }, { threshold: .28 });
+      barrierObserver.observe(barrier);
+    }
+  }
+
   /* ── Reveal ─────────────────────────────────────────────────── */
   var revealables = document.querySelectorAll('.reveal');
   if (revealables.length && 'IntersectionObserver' in window) {
