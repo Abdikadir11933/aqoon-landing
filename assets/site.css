@@ -306,9 +306,9 @@ button{font:inherit}
   .bridge-title .bridge-title-gap{line-height:.84}.bridge-title-gap::after{height:4px}
   .bridge-offers{left:14px;top:318px;width:34%}.bridge-label{font-size:8px;margin-bottom:7px}
   .bridge-offer{min-height:41px;margin-top:6px;padding:0 8px;gap:6px;border-radius:8px;font-size:10px;line-height:1.15}.bridge-offer i{width:6px;height:6px}
-  .bridge-family{left:57%;top:300px;width:42%;height:250px}.bridge-family>.bridge-label{left:auto;right:8px;top:17%}
+  .bridge-family{left:61%;top:300px;width:38%;height:250px}.bridge-family>.bridge-label{left:auto;right:8px;top:17%}
   .bridge-quote{left:2%;top:0;font-size:1.15rem}.bridge-family img{bottom:0}
-  .bridge-track{left:34%;top:425px;z-index:1;width:63%;height:120px}.bridge-track-gap{top:calc(46% - 14px);height:32px}.bridge-track-gap::before,.bridge-track-gap::after{top:5px;height:20px}.bridge-node{left:30%;top:calc(46% - 18px);width:66px;height:36px;font-size:.72rem}.bridge-method{top:77%;font-size:7px;letter-spacing:.04em}
+  .bridge-track{left:34%;top:425px;z-index:1;width:63%;height:120px}.bridge-track-gap{top:calc(46% - 14px);height:32px}.bridge-track-gap::before,.bridge-track-gap::after{top:5px;height:20px}.bridge-node{left:18%;top:calc(46% - 18px);width:66px;height:36px;font-size:.72rem}.bridge-method{top:77%;font-size:7px;letter-spacing:.04em}
   .bridge-barrier{padding:4px 6px;font-size:7px}.bridge-barrier-a{left:0;top:3%}.bridge-barrier-b{right:0;top:6%}.bridge-barrier-c{left:25%;bottom:0}
   .bridge-ending{left:14px;top:625px;width:calc(100% - 28px);font-size:1rem}.bridge-ending i{width:58px;height:4px;margin-bottom:12px}
   .bridge-actions{grid-template-columns:1fr;padding-block:18px}.bridge-actions p{grid-column:auto;font-size:14px}.bridge-actions .button{width:100%}
@@ -329,15 +329,18 @@ button{font:inherit}
   .route-panel{grid-template-columns:1fr;gap:18px}
   .route-question{font-size:clamp(1.85rem,9vw,2.25rem)}
   .route-copy{font-size:14px}
-  .method-list li{grid-template-columns:40px 1fr;gap:10px;align-items:start}.method-list h3{grid-column:2;margin-bottom:6px}.method-list p{grid-column:2}
+  .method-list,.tool-grid,.finding-grid{display:grid;grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(250px,82vw);gap:0;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:inline mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .method-list::-webkit-scrollbar,.tool-grid::-webkit-scrollbar,.finding-grid::-webkit-scrollbar{display:none}
+  .method-list li{display:grid;grid-template-columns:36px 1fr;grid-template-rows:auto 1fr;gap:8px 10px;min-height:220px;padding:24px 18px;border-right:1px solid var(--line);border-bottom:0;scroll-snap-align:start;scroll-snap-stop:always}
+  .method-list h3{grid-column:2;margin:0}.method-list p{grid-column:1/-1;align-self:end}
   .insight-section h2,.service-section h2,.founder-copy h2,.page-hero h1,.tool-head h2,.finding-head h2,.package-head h2,.collaboration-head h2,.knowledge-intro h2{font-size:clamp(3.7rem,17vw,5.35rem);max-width:100%}
   .page-hero>div>p:last-child,.package-head h2,.collaboration-head h2,.knowledge-intro h2{overflow-wrap:anywhere}
   .metric-grid{grid-template-columns:1fr}.metric-grid article{min-height:145px}.metric-grid article+article{border-left:0;border-top:1px solid #3e3e3a}
   .service-list h3{font-size:2.05rem}
   .founder-grid{gap:45px}.founder-grid figure{max-width:none}
   .page-hero>div>p:last-child{font-size:17px;margin-left:0}
-  .tool-grid,.finding-grid{grid-template-columns:1fr}
-  .tool-grid article+article,.tool-grid article:nth-child(3),.finding-grid article+article{border-left:0;border-top:1px solid var(--line);padding-left:0}
+  .tool-grid article,.finding-grid article,.tool-grid article+article,.tool-grid article:nth-child(3),.tool-grid article:nth-child(4),.finding-grid article+article{min-height:250px;padding:24px 18px;border-top:0;border-left:0;border-right:1px solid var(--line);scroll-snap-align:start;scroll-snap-stop:always}
+  .tool-grid h3,.finding-grid h3{margin:28px 0 14px}
   .final-cta h2{font-size:clamp(4.2rem,18vw,6rem)}
   .footer-links,.footer-contact{gap:16px}
   .knowledge-grid,.glossary-list{grid-template-columns:1fr}.knowledge-card:nth-child(even),.glossary-term:nth-child(even){border-left:0;padding-left:0}
