@@ -68,7 +68,7 @@ button{font:inherit}
    The whole entrance is finished by 600ms; the travelling dot is the only
    thing that loops. */
 .bridge-diagram{
-  display:grid;grid-template-columns:.95fr 1.3fr 1.05fr;
+  display:grid;grid-template-columns:1fr 1.25fr 1fr;
   grid-template-areas:'service bridge person' 'break break break';
   gap:clamp(14px,2vw,26px) clamp(8px,1.4vw,20px);
   align-items:center;margin-top:clamp(22px,3.2vw,38px);
@@ -77,6 +77,7 @@ button{font:inherit}
 .bd-service{grid-area:service;animation-delay:.06s}
 .bd-bridge{grid-area:bridge;animation-delay:.1s}
 .bd-person{grid-area:person;animation-delay:.14s}
+.bd-service,.bd-person{align-self:start}
 .bd-break{grid-area:break;animation-delay:.18s;padding-top:clamp(12px,1.6vw,18px);border-top:1px dashed rgb(174 97 41 / .45)}
 .bd-label{margin-bottom:8px;font-size:clamp(9px,.85vw,12px);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgb(22 32 44 / .55)}
 
@@ -116,8 +117,10 @@ button{font:inherit}
 .bd-node::after{content:'';position:absolute;left:50%;top:100%;width:2px;height:11px;margin-left:-1px;background:var(--teal)}
 .bd-method{margin-top:10px;text-align:center;color:#087d78;font-size:clamp(9px,.9vw,13px);font-weight:600;letter-spacing:.05em}
 
-.bd-photo{overflow:hidden;border-radius:14px;background:#fdf2e4}
-.bd-photo img{width:100%;aspect-ratio:3/2;object-fit:cover;object-position:50% 28%}
+.bd-service-photo,.bd-photo{overflow:hidden;border-radius:14px;background:#fdf2e4}
+.bd-service-photo img,.bd-photo img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.bd-service-photo img{object-position:50% 44%;transform:scale(1.035);animation:sceneSettle .6s cubic-bezier(.16,1,.3,1) .08s both}
+.bd-photo img{object-position:50% 28%}
 .bd-asks{margin-top:14px}
 .bd-asks p{padding:9px 0;border-bottom:1px solid rgb(22 32 44 / .12);font-family:var(--script);font-size:clamp(15px,1.55vw,23px);font-weight:700;line-height:1.2;color:#16202c}
 .bd-asks p:first-child{border-top:1px solid rgb(22 32 44 / .12);color:#ae6129}
@@ -134,6 +137,7 @@ button{font:inherit}
 .bridge-actions .button:nth-child(2){background:transparent;color:var(--ink);border:1px solid #9d9d97}.bridge-actions p{justify-self:end;max-width:48ch;font-size:15px}
 
 @keyframes heroIn{to{opacity:1;transform:none}}
+@keyframes sceneSettle{from{transform:scale(1.08)}to{transform:scale(1.035)}}
 @keyframes railGrow{to{transform:scaleX(1)}}
 @keyframes railShow{to{opacity:1}}
 @keyframes nodePop{to{opacity:1;transform:translate(-50%,0) scale(1)}}
@@ -148,7 +152,7 @@ button{font:inherit}
 }
 
 /* Shared journey */
-.journey-section{background:var(--cream);padding:clamp(82px,10vw,145px) 0;overflow:hidden}
+.journey-section{background:var(--cream);padding:clamp(56px,6.5vw,96px) 0;overflow:hidden}
 .journey-section.alt{background:var(--fog)}
 .journey-head{display:grid;grid-template-columns:1.25fr .75fr;gap:60px;align-items:end}
 .journey-head .eyebrow{grid-column:1/-1}
@@ -185,25 +189,40 @@ button{font:inherit}
 /* Homepage method band. Deliberately not a second numbered ladder: the
    journey widget above already states what AQOON does at each stage, so
    this only carries the vocabulary and hands off to /menetelma. */
-.method-band{background:var(--fog);padding:clamp(56px,7vw,104px) 0}
+.method-band{background:var(--fog);padding:clamp(52px,6vw,88px) 0}
 .method-band h2{font-size:clamp(2.8rem,4.6vw,4.4rem);margin:18px 0 20px}
 .method-band-copy>p:last-child{max-width:58ch;font-size:17px}
 /* Two phases, not five equal steps: the five verbs are the two halves of
    "ensin ymmärrys, sitten viesti", so the dividing line is the argument. */
-.method-phases{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(20px,3vw,48px);margin-top:clamp(28px,4vw,44px);align-items:start}
-.method-phase{padding-top:15px;border-top:3px solid #ae6129}
-.method-phase-then{border-top-color:var(--teal)}
-.method-phase-label{font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#ae6129}
-.method-phase-then .method-phase-label{color:var(--teal-dark)}
-.method-phase-label span{display:block;margin-top:4px;font-size:13.5px;font-weight:400;font-style:italic;letter-spacing:0;text-transform:none;color:var(--muted)}
-.method-phase ul{list-style:none;margin-top:14px}
-.method-phase li{padding:9px 0;border-bottom:1px solid var(--line);font-size:15.5px;color:#4f4f4a}
-.method-phase li:last-child{border-bottom:0}
-.method-phase b{margin-right:9px;font-family:var(--display);font-size:1.3rem;font-weight:400;line-height:1;text-transform:uppercase;letter-spacing:-.02em;color:var(--ink)}
+/* Five steps read across, never stacked. The phase tag on each card is what
+   carries "ensin ymmarrys, sitten viesti" once the cards are separated. */
+.method-flow{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);margin-top:clamp(28px,4vw,44px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.method-flow li{display:grid;align-content:start;padding:22px 22px 30px 0;border-top:4px solid var(--teal)}
+.method-flow li+li{border-left:1px solid var(--line);padding-left:22px}
+.method-flow .mf-understand{border-top-color:#ae6129}
+.method-flow .mf-phase{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-dark)}
+.method-flow .mf-understand .mf-phase{color:#ae6129}
+.method-flow .mf-num{margin-top:16px;font-family:var(--display);font-size:22px;color:var(--teal)}
+.method-flow .mf-understand .mf-num{color:#ae6129}
+.method-flow h3{margin:6px 0 10px;font-family:var(--display);font-size:clamp(1.6rem,2.3vw,2.3rem);font-weight:400;line-height:1}
+.method-flow .mf-text{font-size:15px;color:#4f4f4a}
 .method-band .text-link{margin-top:26px}
 
+/* Carousel controls, shown only while a list actually overflows. */
+.carousel-bar{display:flex;align-items:center;gap:14px;margin-top:18px}
+.carousel-bar[hidden]{display:none}
+.carousel-btn{display:grid;place-content:center;width:46px;height:46px;border:1px solid var(--line);border-radius:50%;background:#fffcf6;color:var(--ink);cursor:pointer;transition:background .2s,border-color .2s,opacity .2s}
+.carousel-btn svg{width:22px;height:22px}
+.carousel-btn:hover:not(:disabled){background:var(--teal);border-color:var(--teal);color:#fff}
+.carousel-btn:disabled{opacity:.32;cursor:default}
+.carousel-count{font-family:var(--display);font-size:19px;letter-spacing:.06em;color:var(--muted);font-variant-numeric:tabular-nums}
+.carousel-count b{font-weight:400;color:var(--ink)}
+.insight-section .carousel-btn,.service-section .carousel-btn{background:transparent;border-color:#3e3e3a;color:#fff}
+.insight-section .carousel-count,.service-section .carousel-count{color:#8d8d88}
+.insight-section .carousel-count b,.service-section .carousel-count b{color:#fff}
+
 /* Contextual evidence */
-.insight-section{background:var(--ink);color:#fff;padding:clamp(80px,10vw,140px) 0}
+.insight-section{background:var(--ink);color:#fff;padding:clamp(56px,6.5vw,96px) 0}
 .insight-grid{display:grid;grid-template-columns:minmax(0,1fr)}
 .insight-section h2{font-size:clamp(3.3rem,5.4vw,5rem);margin:30px 0 38px;color:#fff}
 .insight-copy>p{max-width:62ch;color:#c8c8c2;font-size:17px}
@@ -215,7 +234,7 @@ button{font:inherit}
 .insight-links{display:flex;flex-wrap:wrap;gap:0 32px}
 
 /* Services */
-.service-section{background:var(--ink);color:#fff;padding:clamp(80px,10vw,140px) 0;border-top:1px solid #33332f}
+.service-section{background:var(--ink);color:#fff;padding:clamp(56px,6.5vw,96px) 0;border-top:1px solid #33332f}
 .service-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:8vw}
 .service-section h2{font-size:clamp(3.3rem,5.4vw,5rem);margin-top:38px;color:#fff}
 .service-list{align-self:end}
@@ -227,7 +246,7 @@ button{font:inherit}
 .service-list b{font-size:24px;font-weight:400}
 
 /* Founder */
-.founder-section{background:var(--paper);padding:clamp(72px,8vw,120px) 0}
+.founder-section{background:var(--paper);padding:clamp(52px,6vw,88px) 0}
 .founder-grid{display:grid;grid-template-columns:.5fr 1.5fr;gap:clamp(36px,5vw,72px);align-items:start}
 .founder-grid figure{max-width:300px;border-radius:22px;overflow:hidden;background:#ddd}
 .founder-grid img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center top}
@@ -236,11 +255,11 @@ button{font:inherit}
 .founder-copy>p+p{margin-top:17px}
 
 /* Detail page hero and cards */
-.page-hero{background:var(--fog);padding:clamp(70px,9vw,130px) 0 clamp(80px,10vw,145px)}
+.page-hero{background:var(--fog);padding:clamp(48px,5.5vw,84px) 0 clamp(56px,6.5vw,96px)}
 .page-hero h1{font-size:clamp(3.8rem,6.4vw,6rem);margin:30px 0 45px;max-width:13ch}
 .page-hero>div>p:last-child{font-size:clamp(1.1rem,2vw,1.45rem);max-width:68ch;margin-left:auto}
-.tool-section,.finding-section{background:var(--paper);padding:clamp(80px,10vw,140px) 0}
-.tool-head,.finding-head{display:grid;grid-template-columns:.75fr 1.25fr;gap:7vw;align-items:start;margin-bottom:60px}
+.tool-section,.finding-section{background:var(--paper);padding:clamp(56px,6.5vw,96px) 0}
+.tool-head,.finding-head{display:grid;grid-template-columns:.75fr 1.25fr;gap:7vw;align-items:start;margin-bottom:42px}
 .tool-head h2,.finding-head h2{font-size:clamp(3.3rem,5.4vw,5rem)}
 .tool-grid,.finding-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .finding-grid{grid-template-columns:repeat(3,1fr)}
@@ -251,8 +270,8 @@ button{font:inherit}
 .tool-grid p,.finding-grid p{font-size:15px;color:#4f4f4a}
 
 /* Services */
-.package-section{background:var(--paper);padding:clamp(82px,10vw,145px) 0}
-.package-head{display:grid;grid-template-columns:.72fr 1.28fr;gap:7vw;align-items:start;margin-bottom:65px}
+.package-section{background:var(--paper);padding:clamp(56px,6.5vw,96px) 0}
+.package-head{display:grid;grid-template-columns:.72fr 1.28fr;gap:7vw;align-items:start;margin-bottom:44px}
 .package-head h2{font-size:clamp(3.3rem,5.4vw,5rem)}
 .package-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .package-card{position:relative;padding:32px clamp(22px,3vw,42px) 42px 0}
@@ -266,34 +285,37 @@ button{font:inherit}
 .package-card li{padding:12px 0 12px 22px;border-bottom:1px solid var(--line);font-size:14px;position:relative}
 .package-card li::before{content:'→';position:absolute;left:0;color:var(--teal)}
 .package-card .text-link{font-size:14px}
-.collaboration-section{background:var(--fog);padding:clamp(82px,10vw,145px) 0}
-.collaboration-head{display:grid;grid-template-columns:1.15fr .85fr;gap:7vw;align-items:end;margin-bottom:58px}
+.collaboration-section{background:var(--fog);padding:clamp(56px,6.5vw,96px) 0}
+.collaboration-head{display:grid;grid-template-columns:1.15fr .85fr;gap:7vw;align-items:end;margin-bottom:42px}
 .collaboration-head .eyebrow{grid-column:1/-1}
 .collaboration-head h2{font-size:clamp(3.3rem,5.4vw,5rem)}
 .collaboration-head>p:last-child{max-width:36ch;font-size:18px;padding-bottom:8px}
-.collaboration-steps{list-style:none;border-top:1px solid var(--line)}
-.collaboration-steps li{display:grid;grid-template-columns:80px 1fr;gap:30px;padding:27px 0;border-bottom:1px solid var(--line)}
+/* Three steps read side by side, same column pattern as the packages and
+   tools above, so the page moves across rather than only down. */
+.collaboration-steps{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.collaboration-steps li{display:grid;align-content:start;padding:28px 28px 34px 0}
+.collaboration-steps li+li{border-left:1px solid var(--line);padding-left:28px}
 .collaboration-steps li>span{font-family:var(--display);font-size:24px;color:var(--teal)}
-.collaboration-steps h3{font-family:var(--display);font-size:clamp(1.7rem,2.4vw,2.4rem);font-weight:400;margin-bottom:6px}
-.collaboration-steps p{max-width:70ch}
+.collaboration-steps h3{font-family:var(--display);font-size:clamp(1.7rem,2.4vw,2.4rem);font-weight:400;margin:32px 0 8px}
+.collaboration-steps p{max-width:46ch}
 
 /* Knowledge hub and articles */
-.knowledge-section{background:var(--paper);padding:clamp(82px,10vw,145px) 0}
-.knowledge-intro{display:grid;grid-template-columns:.75fr 1.25fr;gap:7vw;align-items:start;margin-bottom:62px}
+.knowledge-section{background:var(--paper);padding:clamp(56px,6.5vw,96px) 0}
+.knowledge-intro{display:grid;grid-template-columns:.75fr 1.25fr;gap:7vw;align-items:start;margin-bottom:44px}
 .knowledge-intro h2{font-size:clamp(3.3rem,5.4vw,5rem)}
 .knowledge-grid{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line)}
-.knowledge-card{display:flex;flex-direction:column;min-width:0;min-height:360px;padding:32px 34px 34px 0;border-bottom:1px solid var(--line)}
+.knowledge-card{display:flex;flex-direction:column;min-width:0;min-height:0;padding:32px 34px 34px 0;border-bottom:1px solid var(--line)}
 .knowledge-card:nth-child(even){border-left:1px solid var(--line);padding-left:34px}
 .knowledge-card .eyebrow{color:var(--teal-dark)}
 .knowledge-card h2,.knowledge-card h3{font-family:var(--display);font-size:clamp(2.2rem,3.4vw,3.4rem);font-weight:300;line-height:.9;margin:42px 0 20px;overflow-wrap:break-word;hyphens:auto}
 .knowledge-card p{max-width:56ch;color:#4f4f4a}
 .knowledge-card .text-link{margin-top:auto;align-self:flex-start}
-.article-hero{background:var(--fog);padding:clamp(65px,8vw,115px) 0}
+.article-hero{background:var(--fog);padding:clamp(48px,5.5vw,80px) 0}
 .article-hero .wrap{max-width:1050px}
 .article-hero h1{font-size:clamp(3.4rem,5.8vw,5.4rem);margin:28px 0 34px;max-width:14ch}
 .article-lead{max-width:64ch;font-size:clamp(1.15rem,2vw,1.45rem)}
 .article-meta{margin-top:30px;color:var(--muted);font-size:13px}
-.article-body{background:var(--paper);padding:clamp(70px,9vw,125px) 0}
+.article-body{background:var(--paper);padding:clamp(52px,6vw,88px) 0}
 .article-body .article-layout{width:min(100% - 48px,1050px);margin:auto;display:grid;grid-template-columns:210px minmax(0,700px);gap:70px;align-items:start}
 .article-aside{position:sticky;top:100px;font-size:13px;color:var(--muted)}
 .article-aside strong{display:block;color:var(--ink);margin-bottom:10px}
@@ -308,7 +330,7 @@ button{font:inherit}
 .article-callout{margin:35px 0;padding:24px 28px;border-left:4px solid var(--teal);background:var(--cream);font-size:18px;font-weight:650}
 .article-note{margin-top:50px;padding-top:24px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
 /* Series navigation: the four havainnot are one route read in order. */
-.article-more{background:var(--fog);padding:clamp(52px,7vw,96px) 0}
+.article-more{background:var(--fog);padding:clamp(48px,5.5vw,84px) 0}
 .article-more-inner{width:min(100% - 48px,1050px);margin-inline:auto}
 .article-more h2{font-size:clamp(2.6rem,4.6vw,4.2rem);margin:18px 0 20px}
 .article-more-lead{max-width:56ch;color:#4f4f4a;font-size:17px}
@@ -333,9 +355,9 @@ button{font:inherit}
 .glossary-term a{color:var(--teal-dark);font-weight:700}
 
 /* CTA and footer */
-.final-cta{background:var(--ink);color:#fff;padding:clamp(90px,12vw,180px) 0}
+.final-cta{background:var(--ink);color:#fff;padding:clamp(64px,7.5vw,120px) 0}
 .final-cta .script-note{font-family:var(--script);font-size:clamp(1.6rem,2.5vw,2.4rem);color:var(--teal);margin-bottom:24px}
-.final-cta h2{font-size:clamp(3.6rem,6.6vw,6.2rem);color:#fff;margin-bottom:55px}
+.final-cta h2{font-size:clamp(3.6rem,6.6vw,6.2rem);color:#fff;margin-bottom:40px}
 .site-footer{background:var(--ink);color:#fff;border-top:1px solid #33332f;padding:34px 0}
 .footer-inner{display:grid;grid-template-columns:auto 1fr auto;gap:50px;align-items:center}
 .site-footer .brand{color:#fff}
@@ -383,30 +405,32 @@ button{font:inherit}
   .route-panel{grid-template-columns:1fr;gap:18px}
   .route-question{font-size:clamp(1.85rem,9vw,2.25rem)}
   .route-copy{font-size:14px}
-  .tool-grid,.finding-grid,.collaboration-steps,.package-grid{display:grid;grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:100%;gap:0;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:inline mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-  .tool-grid::-webkit-scrollbar,.finding-grid::-webkit-scrollbar,.collaboration-steps::-webkit-scrollbar,.package-grid::-webkit-scrollbar{display:none}
+  .method-flow,.tool-grid,.finding-grid,.collaboration-steps,.package-grid{display:grid;grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:100%;gap:0;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:inline mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .method-flow::-webkit-scrollbar,.tool-grid::-webkit-scrollbar,.finding-grid::-webkit-scrollbar,.collaboration-steps::-webkit-scrollbar,.package-grid::-webkit-scrollbar{display:none}
+  .method-flow li,.method-flow li+li{min-height:0;padding:22px 18px 26px;border-left:0;scroll-snap-align:start;scroll-snap-stop:always}
   .package-card,.package-card+.package-card{padding:26px 18px 34px;border-top:0;border-left:0;scroll-snap-align:start;scroll-snap-stop:always}
   .package-card h3{margin:26px 0 16px}
-  .collaboration-steps li{grid-template-columns:36px 1fr;gap:10px;min-height:210px;padding:24px 18px;align-content:start;border-bottom:0;scroll-snap-align:start;scroll-snap-stop:always}
+  .collaboration-steps li,.collaboration-steps li+li{grid-template-columns:1fr;min-height:0;padding:24px 18px;border-left:0;border-bottom:0;scroll-snap-align:start;scroll-snap-stop:always}
+  .collaboration-steps h3{margin:22px 0 8px}
   .insight-section h2,.service-section h2,.founder-copy h2,.page-hero h1,.tool-head h2,.finding-head h2,.package-head h2,.collaboration-head h2,.knowledge-intro h2{font-size:clamp(2.7rem,11.5vw,3.7rem);max-width:100%}
   .page-hero>div>p:last-child,.package-head h2,.collaboration-head h2,.knowledge-intro h2{overflow-wrap:anywhere}
-  .method-phases{grid-template-columns:1fr}
   .metric-grid{grid-template-columns:1fr}.metric-grid article{min-height:145px}.metric-grid article+article{border-left:0;border-top:1px solid #3e3e3a}
   .service-list h3{font-size:1.7rem}
   .founder-grid{gap:32px}.founder-grid figure{max-width:240px}
   .page-hero>div>p:last-child{font-size:17px;margin-left:0}
-  .tool-grid article,.finding-grid article,.tool-grid article+article,.tool-grid article:nth-child(3),.tool-grid article:nth-child(4),.finding-grid article+article{min-height:250px;padding:24px 18px;border-top:0;border-left:0;border-right:1px solid var(--line);scroll-snap-align:start;scroll-snap-stop:always}
-  .tool-grid h3,.finding-grid h3{margin:28px 0 14px}
+  .tool-grid article,.finding-grid article,.tool-grid article+article,.tool-grid article:nth-child(3),.tool-grid article:nth-child(4),.finding-grid article+article{min-height:0;padding:24px 18px 30px;border-top:0;border-left:0;border-right:0;scroll-snap-align:start;scroll-snap-stop:always}
+  .tool-grid h3,.finding-grid h3{margin:20px 0 10px}
   .final-cta h2{font-size:clamp(3rem,13vw,4.2rem)}
   .footer-links,.footer-contact{gap:16px}
   .knowledge-grid,.glossary-list{grid-template-columns:1fr}.knowledge-card:nth-child(even),.glossary-term:nth-child(even){border-left:0;padding-left:0}
-  .knowledge-card{min-height:320px}
+  .knowledge-card{min-height:0;padding-bottom:28px}
   .article-body .article-layout{width:min(100% - 28px,1050px);grid-template-columns:1fr;gap:40px}.article-aside{position:static;border-bottom:1px solid var(--line);padding-bottom:25px}
 }
 
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .route-progress,.route-family,.route-panels,.button,.service-list a{transition:none!important}
+  .bd-service-photo img{animation:none!important;transform:scale(1.035)!important}
   .bridge-eyebrow,.bridge-title,.bd-col,.bd-break,.bridge-resolve{animation:none!important;opacity:1!important;transform:none!important}
   .bd-live,.bd-fix{animation:none!important;transform:scaleX(1)!important}
   .bd-gap,.bd-dot{animation:none!important;opacity:1!important}
