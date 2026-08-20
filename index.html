@@ -17,6 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600&family=Caveat:wght@500;600&family=Fraunces:opsz,wght@9..144,900&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/site.css?v=20260819-5">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","@id":"https://aqoon.live/#org","name":"AQOON","url":"https://aqoon.live/","email":"abducadir_abdullahi@aqoon.live","telephone":"+358452591438","description":"AQOON selvittää, miksi palvelu ei löydy, luottamus ei synny tai hakeminen jää kesken, ja auttaa korjaamaan palvelupolun katkoskohdat.","areaServed":{"@type":"Country","name":"Suomi"},"availableLanguage":["fi","so","en"],"founder":{"@type":"Person","name":"Abducadir Aligure"},"knowsAbout":["palvelupolku","omakielinen viestintä","palvelumuotoilu","osallistumissuppilo","monikielinen tavoittaminen","varhaiskasvatus"]}</script>
 </head>
 <body>
   <a class="skip" href="#main">Siirry sisältöön</a>
@@ -39,9 +40,8 @@
   </header>
 
   <main id="main">
-    <section class="bridge-story" data-bridge-story aria-labelledby="bridge-title">
-      <div class="bridge-stage">
-        <div class="bridge-camera">
+    <section class="bridge-story" aria-labelledby="bridge-title">
+      <div class="wrap bridge-stage">
         <p class="bridge-eyebrow">AQOON · Ensin ymmärrys, sitten viesti</p>
 
         <h1 class="bridge-title" id="bridge-title">
@@ -50,35 +50,54 @@
           <span class="bridge-title-gap">Yhteys puuttuu.</span>
         </h1>
 
-        <div class="bridge-offers" aria-label="Tarjolla olevia mahdollisuuksia">
-          <p class="bridge-label">Tarjolla</p>
-          <div class="bridge-offer" style="--order:0"><i></i>Vapaa paikka</div>
-          <div class="bridge-offer" style="--order:1"><i></i>Maksuton ohjelma</div>
-          <div class="bridge-offer" style="--order:2"><i></i>Neuvontaa ja tukea</div>
+        <div class="bridge-diagram">
+          <div class="bd-col bd-service" aria-label="Tarjolla olevia mahdollisuuksia">
+            <p class="bd-label">Tarjolla</p>
+            <span class="bd-chip"><i></i>Vapaa paikka</span>
+            <span class="bd-chip"><i></i>Maksuton ohjelma</span>
+            <span class="bd-chip"><i></i>Neuvontaa ja tukea</span>
+          </div>
+
+          <div class="bd-col bd-bridge">
+            <div class="bd-rail" aria-hidden="true">
+              <span class="bd-base"></span>
+              <span class="bd-live"></span>
+              <span class="bd-gap"></span>
+              <span class="bd-fix"></span>
+              <span class="bd-dot bd-dot-start"></span>
+              <span class="bd-dot bd-dot-end"></span>
+              <span class="bd-flow"></span>
+              <span class="bd-node">AQOON</span>
+            </div>
+            <p class="bd-method">Ymmärtää · tavoittaa · ohjaa eteenpäin</p>
+          </div>
+
+          <div class="bd-col bd-person">
+            <p class="bd-label">Asiakas</p>
+            <div class="bd-photo">
+              <img src="/assets/aqoon-family-route-3d.webp" width="900" height="600" alt="Perhe matkalla yhdessä" fetchpriority="high" decoding="async">
+            </div>
+            <div class="bd-asks">
+              <p>“En tiennyt tästä.”</p>
+              <p>“Mistä löydän tämän?”</p>
+              <p>“Miten haen?”</p>
+            </div>
+          </div>
+
+          <div class="bd-break">
+            <p class="bd-label">Tässä yhteys katkeaa</p>
+            <div class="bd-tags">
+              <span class="bd-tag">väärä markkinointikanava</span>
+              <span class="bd-tag">jää tavoittamatta</span>
+              <span class="bd-tag">ei luottamusta</span>
+              <span class="bd-tag">epäselvä seuraava askel</span>
+              <span class="bd-tag">monimutkainen hakemus</span>
+            </div>
+          </div>
         </div>
 
-        <div class="bridge-family">
-          <p class="bridge-label">Ihminen</p>
-          <div class="bridge-quote"><span>“Tarvitsen tätä.”</span><b>“En tiennyt tästä.”</b></div>
-          <img src="/assets/aqoon-family-route-3d.webp" width="900" height="600" alt="Perhe matkalla yhdessä" fetchpriority="high" decoding="async">
-        </div>
-
-        <div class="bridge-track" aria-hidden="true">
-          <span class="bridge-track-base"></span>
-          <span class="bridge-track-flow"></span>
-          <span class="bridge-track-gap"></span>
-          <span class="bridge-track-fix"></span>
-          <span class="bridge-signal bridge-signal-a"></span>
-          <span class="bridge-signal bridge-signal-b"></span>
-          <span class="bridge-signal bridge-signal-c"></span>
-          <span class="bridge-node">AQOON</span>
-          <span class="bridge-barrier bridge-barrier-a">väärä kanava</span>
-          <span class="bridge-barrier bridge-barrier-b">luottamus puuttuu</span>
-          <span class="bridge-barrier bridge-barrier-c">epäselvä seuraava askel</span>
-          <span class="bridge-method">Ymmärtää · tavoittaa · ohjaa eteenpäin</span>
-        </div>
-
-          <p class="bridge-ending"><i></i>AQOON selvittää, mikä yhteyden katkaisee – ja auttaa korjaamaan sen.</p>
+        <div class="bridge-resolve">
+          <p class="bridge-ending">AQOON selvittää, mikä yhteyden katkaisee, ja auttaa korjaamaan sen.</p>
         </div>
       </div>
 
@@ -131,37 +150,22 @@
       </div>
     </section>
 
-    <section class="method-summary" aria-labelledby="method-title">
-      <div class="wrap">
-        <div class="method-summary-head">
+    <section class="method-band" aria-labelledby="method-title">
+      <div class="wrap method-band-inner">
+        <div class="method-band-copy">
           <p class="eyebrow">Menetelmä</p>
-          <h2 class="display" id="method-title">Viisi tekoa.<em>Yksi polku.</em></h2>
-          <p>Emme aloita kampanjasta. Aloitamme kohdasta, jota organisaatio ei vielä näe.</p>
+          <h2 class="display" id="method-title">Emme aloita<em>kampanjasta.</em></h2>
+          <p>Aloitamme kohdasta, jota organisaatio ei vielä näe. Jokainen yllä oleva väli korjataan samalla viidellä teolla, samassa järjestyksessä.</p>
         </div>
-        <ol class="method-list">
-          <li><span>01</span><h3>Löydä</h3><p>Alue, ihmiset, palvelu ja todellinen osallistumisreitti.</p></li>
-          <li><span>02</span><h3>Ymmärrä</h3><p>Kysymykset, pelot ja syyt sille, miksi matka pysähtyy.</p></li>
-          <li><span>03</span><h3>Tavoita</h3><p>Viesti oikealla kielellä, oikeassa paikassa ja todellisten havaintojen perusteella.</p></li>
-          <li><span>04</span><h3>Ohjaa</h3><p>Käytännön apu hakemiseen, ilmoittautumiseen ja seuraavaan vaiheeseen.</p></li>
-          <li><span>05</span><h3>Mittaa</h3><p>Tavoittaminen, kiinnostus, hakemus, vahvistus ja aloitus erikseen.</p></li>
-        </ol>
-        <a class="text-link" href="/menetelma">Tutustu koko menetelmään ↗</a>
-      </div>
-    </section>
-
-    <section class="insight-section" aria-labelledby="insight-title">
-      <div class="wrap insight-grid">
-        <div class="insight-copy">
-          <p class="eyebrow">Ensimmäisen pilotin tärkein oppi</p>
-          <h2 class="display" id="insight-title">Kiinnostus ei puuttunut.<em>Vaihtoehtoa ei tunnettu.</em></h2>
-          <p>Noin sadassa keskustelussa sama asia toistui kahdessa eri kanavassa: moni perhe ei ollut hylännyt palvelua. Se ei ollut koskaan päätynyt heidän harkintaansa.</p>
-          <p>Kun koko reitti selitettiin – hinta, oikeus palveluun, hakemukset ja seuraavat vaiheet – kiinnostus syntyi lähes joka kerta. Siksi tavoittaminen, hakeminen ja aloitus pitää nähdä yhtenä ketjuna.</p>
-          <a class="text-link" href="/tapaus">Katso, miten havainto syntyi ↗</a>
-        </div>
-        <div class="metric-grid">
-          <article><strong>50+</strong><span>kasvokkaista keskustelua</span></article>
-          <article><strong>50+</strong><span>puhelua samoista kysymyksistä</span></article>
-          <article><strong>25/50</strong><span>ei tuntenut yksityistä vaihtoehtoa</span></article>
+        <div class="method-band-steps">
+          <ol aria-label="AQOON-menetelmän viisi tekoa">
+            <li>Löydä</li>
+            <li>Ymmärrä</li>
+            <li>Tavoita</li>
+            <li>Ohjaa</li>
+            <li>Mittaa</li>
+          </ol>
+          <a class="text-link" href="/menetelma">Tutustu koko menetelmään ↗</a>
         </div>
       </div>
     </section>
@@ -173,6 +177,71 @@
           <a href="/paketit"><h3>Esteiden kartoitus</h3><p>Kun ette vielä tiedä, miksi palvelua ei löydetä tai käytetä.</p><b aria-hidden="true">↗</b></a>
           <a href="/paketit"><h3>Yhteisönäkymä</h3><p>Kun päätöksiin tarvitaan haastatteluja ja anonymisoitua näyttöä.</p><b aria-hidden="true">↗</b></a>
           <a href="/paketit"><h3>Osallistumispilotti</h3><p>Kun kiinnostus pitää muuttaa hakemukseksi, osallistumiseksi tai aloitukseksi.</p><b aria-hidden="true">↗</b></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="insight-section" aria-labelledby="insight-title">
+      <div class="wrap insight-grid">
+        <div class="insight-copy">
+          <p class="eyebrow">Ensimmäisen pilotin tärkein oppi</p>
+          <h2 class="display" id="insight-title">Kiinnostus ei puuttunut.<em>Vaihtoehtoa ei tunnettu.</em></h2>
+          <p>Noin sadassa keskustelussa sama asia toistui kahdessa eri kanavassa: moni perhe ei ollut hylännyt palvelua. Se ei ollut koskaan päätynyt heidän harkintaansa.</p>
+          <p>Kun koko reitti selitettiin: hinta, oikeus palveluun, hakemukset ja seuraavat vaiheet, kiinnostus syntyi lähes joka kerta. Siksi tavoittaminen, hakeminen ja aloitus pitää nähdä yhtenä ketjuna.</p>
+          <p class="insight-now"><b>Käynnissä nyt</b>Harrastusohjelman osallistumispilotti Uudellamaalla. Tulokset julkaistaan vasta, kun jakso on päättynyt ja tilaaja on hyväksynyt raportin.</p>
+          <a class="text-link" href="/tapaus">Katso luvut ja miten havainto syntyi ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="channel-section" aria-labelledby="channel-title">
+      <div class="wrap">
+        <div class="channel-head">
+          <p class="eyebrow">Tavoittaminen</p>
+          <h2 class="display" id="channel-title">Ihminen ei opettele<em>uutta järjestelmää.</em></h2>
+          <p>Palvelu, jota kukaan tuttu ei ole käyttänyt, ei ole yhteisössä olemassa. Siksi emme pyydä ihmistä tulemaan järjestelmään. Viemme tiedon sinne, missä hän jo on, ja sillä kielellä jota hän käyttää.</p>
+        </div>
+
+        <div class="channel-contrast">
+          <div class="channel-side channel-side-cost">
+            <p class="channel-label">Mitä järjestelmä pyytää</p>
+            <ul>
+              <li>Kirjautuminen Wilmaan</li>
+              <li>Oikean linkin löytäminen</li>
+              <li>Kaksi rinnakkaista hakemusta</li>
+              <li>Odotus ilman tietoa seuraavasta vaiheesta</li>
+            </ul>
+          </div>
+          <div class="channel-side channel-side-work">
+            <p class="channel-label">Mistä ihminen jo löytyy</p>
+            <ul>
+              <li>Omakielinen video puhelimessa</li>
+              <li>Jako tutulle, ei mainos tuntemattomalta</li>
+              <li>Kasvot ja ääni, jotka tunnistetaan</li>
+              <li>Vastaus kysymykseen ennen hakemista</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="channel-metrics">
+          <article><strong>55 500</strong><span>näyttökertaa yhdellä omakielisellä kanavalla</span></article>
+          <article><strong>89,3 %</strong><span>tavoittamisesta For You -syötteestä, ei seuraajilta</span></article>
+          <article><strong>372</strong><span>jakoa: video lähetettiin eteenpäin tutulle</span></article>
+          <article><strong>7</strong><span>videota, alle kaksi kuukautta</span></article>
+        </div>
+        <p class="channel-note">Luvut ovat yhden anonymisoidun pilotin tavoittamisesta ajalta 30.4.–12.8.2026. Ne mittaavat tavoittamista, eivät hakemuksia tai aloituksia.</p>
+
+        <div class="funnel-strip">
+          <p class="channel-label">Tavoittamisen jälkeen jokainen vaihe mitataan erikseen</p>
+          <ol>
+            <li>Tavoittaminen</li>
+            <li>Kiinnostus</li>
+            <li>Hakemuksen tuki</li>
+            <li>Valmis hakemus</li>
+            <li>Vahvistettu paikka</li>
+            <li>Aloitus</li>
+            <li>Jatkaminen</li>
+          </ol>
         </div>
       </div>
     </section>
