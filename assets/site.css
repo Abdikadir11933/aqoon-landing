@@ -181,12 +181,23 @@ button{font:inherit}
    journey widget above already states what AQOON does at each stage, so
    this only carries the vocabulary and hands off to /menetelma. */
 .method-band{background:var(--fog);padding:clamp(56px,7vw,104px) 0}
-.method-band-inner{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,4vw,72px);align-items:end}
 .method-band h2{font-size:clamp(2.8rem,4.6vw,4.4rem);margin:18px 0 20px}
-.method-band-copy>p:last-child{max-width:54ch;font-size:17px}
-.method-band-steps ol{list-style:none;display:flex;flex-wrap:wrap;gap:14px 0}
-.method-band-steps li{padding:2px 18px;border-left:2px solid var(--teal);font-family:var(--display);font-size:clamp(1.35rem,2.1vw,2rem);font-weight:400;line-height:1;text-transform:uppercase;letter-spacing:-.02em}
-.method-band-steps .text-link{margin-top:26px}
+.method-band-copy>p:last-child{max-width:58ch;font-size:17px}
+/* Two phases, not five equal steps: the five verbs are the two halves of
+   "ensin ymmärrys, sitten viesti", so the dividing line is the argument. */
+.method-phases{display:grid;grid-template-columns:.88fr 1.12fr;gap:clamp(16px,2.5vw,32px);margin-top:clamp(32px,4.5vw,52px);align-items:start}
+.method-phase{padding:clamp(20px,2.5vw,30px);border-radius:18px;background:#fffcf6;border:1px solid var(--line)}
+.method-phase-first{border-color:rgb(174 97 41 / .35);background:rgb(232 167 102 / .1)}
+.method-phase-then{border-color:rgb(7 157 151 / .32)}
+.method-phase-label{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#ae6129}
+.method-phase-then .method-phase-label{color:var(--teal-dark)}
+.method-phase-note{margin-top:6px;font-size:14px;font-style:italic;color:var(--muted)}
+.method-phase dl{margin-top:20px;border-top:1px solid var(--line)}
+.method-phase dl>div{padding:14px 0;border-bottom:1px solid var(--line)}
+.method-phase dl>div:last-child{border-bottom:0;padding-bottom:0}
+.method-phase dt{font-family:var(--display);font-size:clamp(1.4rem,2vw,1.9rem);font-weight:400;line-height:1;text-transform:uppercase;letter-spacing:-.02em}
+.method-phase dd{margin-top:6px;font-size:15px;color:#4f4f4a;max-width:46ch}
+.method-band .text-link{margin-top:30px}
 
 /* Contextual evidence */
 .insight-section{background:var(--ink);color:#fff;padding:clamp(80px,10vw,140px) 0}
@@ -198,6 +209,7 @@ button{font:inherit}
 .insight-now{position:relative;margin-top:30px;padding:16px 20px 16px 42px;border:1px solid #3e3e3a;border-radius:14px;background:rgb(255 255 255 / .04);font-size:15px;color:#c8c8c2;max-width:60ch}
 .insight-now::before{content:'';position:absolute;left:20px;top:23px;width:9px;height:9px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 4px rgb(7 157 151 / .22)}
 .insight-now b{display:block;margin-bottom:5px;color:#fff;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.insight-links{display:flex;flex-wrap:wrap;gap:0 32px}
 
 /* Services */
 .service-section{background:var(--ink);color:#fff;padding:clamp(80px,10vw,140px) 0;border-top:1px solid #33332f}
@@ -210,35 +222,6 @@ button{font:inherit}
 .service-list h3{font-family:var(--display);font-size:clamp(1.7rem,2.4vw,2.4rem);font-weight:400}
 .service-list p{font-size:14px;color:#bcbcb6}
 .service-list b{font-size:24px;font-weight:400}
-
-/* Why familiar channels work: the barrier the system creates, next to the
-   place the person already is, then the reach it produced. */
-.channel-section{background:var(--cream);padding:clamp(72px,9vw,130px) 0}
-.channel-head{max-width:62ch}
-.channel-section h2{font-size:clamp(3.3rem,5.4vw,5rem);margin:22px 0 26px}
-.channel-head>p:last-child{font-size:17px;max-width:60ch}
-.channel-contrast{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.5vw,32px);margin-top:clamp(36px,5vw,56px)}
-.channel-side{padding:clamp(20px,2.5vw,30px);border-radius:18px}
-.channel-side-cost{background:rgb(174 97 41 / .09);border:1px dashed rgb(174 97 41 / .4)}
-.channel-side-work{background:#fffcf6;border:1px solid rgb(7 157 151 / .3)}
-.channel-label{margin-bottom:14px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.channel-side-cost .channel-label{color:#ae6129}
-.channel-side-work .channel-label{color:var(--teal-dark)}
-.channel-side ul{list-style:none}
-.channel-side li{position:relative;padding:9px 0 9px 26px;font-size:15.5px;border-top:1px solid rgb(22 32 44 / .08)}
-.channel-side li:first-child{border-top:0}
-.channel-side-cost li::before{content:'\00d7';position:absolute;left:0;font-size:17px;color:#ae6129}
-.channel-side-work li::before{content:'\2192';position:absolute;left:0;color:var(--teal-dark)}
-.channel-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:clamp(36px,5vw,56px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.channel-metrics article{padding:24px 20px 26px 0}
-.channel-metrics article+article{border-left:1px solid var(--line);padding-left:20px}
-.channel-metrics strong{display:block;font-family:var(--display);font-size:clamp(2.6rem,4.4vw,4rem);font-weight:300;line-height:.85;font-variant-numeric:tabular-nums}
-.channel-metrics span{display:block;margin-top:12px;font-size:13.5px;color:#4f4f4a;max-width:22ch}
-.channel-note{margin-top:16px;font-size:13.5px;color:var(--muted);max-width:70ch;font-variant-numeric:tabular-nums}
-.funnel-strip{margin-top:clamp(36px,5vw,56px);padding-top:clamp(24px,3vw,34px);border-top:1px solid var(--line)}
-.funnel-strip ol{list-style:none;display:flex;flex-wrap:wrap;gap:8px;counter-reset:fs}
-.funnel-strip li{counter-increment:fs;display:flex;align-items:center;gap:9px;padding:10px 16px;border:1px solid var(--line);border-radius:999px;background:#fffcf6;font-size:14px;font-weight:600}
-.funnel-strip li::before{content:counter(fs);font-family:var(--display);font-size:16px;font-weight:400;color:var(--teal)}
 
 /* Founder */
 .founder-section{background:var(--paper);padding:clamp(72px,8vw,120px) 0}
@@ -404,12 +387,7 @@ button{font:inherit}
   .collaboration-steps li{grid-template-columns:36px 1fr;gap:10px;min-height:210px;padding:24px 18px;align-content:start;border-bottom:0;scroll-snap-align:start;scroll-snap-stop:always}
   .insight-section h2,.service-section h2,.founder-copy h2,.page-hero h1,.tool-head h2,.finding-head h2,.package-head h2,.collaboration-head h2,.knowledge-intro h2{font-size:clamp(2.7rem,11.5vw,3.7rem);max-width:100%}
   .page-hero>div>p:last-child,.package-head h2,.collaboration-head h2,.knowledge-intro h2{overflow-wrap:anywhere}
-  .channel-contrast{grid-template-columns:1fr}
-  .channel-metrics{grid-template-columns:1fr 1fr}
-  .channel-metrics article,.channel-metrics article+article{padding:20px 14px 22px 0;border-left:0}
-  .channel-metrics article:nth-child(even){border-left:1px solid var(--line);padding-left:16px}
-  .channel-metrics article:nth-child(n+3){border-top:1px solid var(--line)}
-  .funnel-strip li{font-size:13px;padding:9px 13px}
+  .method-phases{grid-template-columns:1fr}
   .metric-grid{grid-template-columns:1fr}.metric-grid article{min-height:145px}.metric-grid article+article{border-left:0;border-top:1px solid #3e3e3a}
   .service-list h3{font-size:1.7rem}
   .founder-grid{gap:32px}.founder-grid figure{max-width:240px}
