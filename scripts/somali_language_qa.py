@@ -3,8 +3,8 @@ import re
 from html import unescape
 
 ROOT = Path(__file__).resolve().parents[1]
-SUSPECT = re.compile(r"\b(official|programme|programmes|deadline|route|resource|resources|eligibility|benefit|application|registration|openings?|jobseeker|jobs|support|current|random|quality check|workshops?)\b", re.I)
-# Finnish sentence fragments are useful as official names/terms, but long runs should be reviewed.
+SUSPECT = re.compile(r"\b(official|programme|programmes|deadline|route|resource|resources|eligibility|benefit|application|registration|openings?|jobseeker|jobs|support|current|random|quality check|workshops?|material)\b", re.I)
+# Finnish service names and isolated system terms are expected. Long Finnish grammatical runs need review.
 FI_WORD = re.compile(r"\b(?:maahanmuutt\w*|maahan muuttane\w*|työnhakij\w*|koulut\w*|palvelu\w*|suomen\s+kielt\w*|työelämä\w*|opinto\w*|hakem\w*|haku\w*|tuke\w*|voi\w*|jossa|joilla|joissain|myös|muille|kuin|kautta|tarkoitettu|maksuton|vuotiaille)\b", re.I)
 
 
@@ -25,7 +25,6 @@ for p in sorted((ROOT / "so").rglob("index.html")):
         a=max(0,m.start()-70); b=min(len(text),m.end()+100)
         hits.append((rel,"EN",text[a:b]))
     fi=list(FI_WORD.finditer(text))
-    # Report pages with at least 3 Finnish grammatical words; isolated service terms are expected.
     if len(fi) >= 3:
         for m in fi[:8]:
             a=max(0,m.start()-70); b=min(len(text),m.end()+110)
