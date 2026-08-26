@@ -11,6 +11,8 @@
   <url><loc>https://aqoon.live/so/linkit</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
   <url><loc>https://aqoon.live/so/maxaan-codsan-karaa</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
   <url><loc>https://aqoon.live/so/maxaan-xaq-u-leeyahay</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aqoon.live/so/tietosuoja</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://aqoon.live/so/disclaimer</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
 
   <!-- Work -->
   <url><loc>https://aqoon.live/so/shaqo</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
@@ -58,6 +60,7 @@
   <url><loc>https://aqoon.live/havainnot</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://aqoon.live/sanasto</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aqoon.live/tietosuoja</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://aqoon.live/disclaimer</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
   <url><loc>https://aqoon.live/pilke</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aqoon.live/pilke/so</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>
