@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow,noarchive" />
+  <meta name="theme-color" content="#FBFAF7" />
+  <title>AQOON Family Lead Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,900;1,9..144,900&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light only;
+      --navy:#0E2440;--ink:#0A1A30;--teal:#0FB5AE;--tealdk:#0A8F89;--link:#07706B;
+      --sand:#E8A766;--paper:#FBFAF7;--cream:#F3F0E9;--text:#16202E;--muted:#5C6675;
+      --line:#E7E3D8;--line-cream:#E2DDCF;--danger:#9C2B2B;--success:#177A46;--warning:#9A6418;
+      --shadow:0 14px 38px rgba(14,36,64,.08);
+    }
+    *{box-sizing:border-box}
+    html{background:var(--paper)}
+    body{margin:0;background:var(--paper);color:var(--text);font-family:"Outfit",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.45}
+    button,input,select,textarea{font:inherit}
+    button{cursor:pointer}
+    a{color:var(--link)}
+    :focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+    .shell{width:min(1180px,calc(100% - 28px));margin:0 auto;padding:22px 0 72px}
+    .topbar{position:sticky;top:0;z-index:20;background:rgba(251,250,247,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+    .topbar-inner{width:min(1180px,calc(100% - 28px));margin:0 auto;min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .brand{display:flex;align-items:center;gap:12px;min-width:0}
+    .mark{width:38px;height:38px;border-radius:13px;background:var(--navy);display:grid;place-items:center;color:white;font-family:"Fraunces",serif;font-weight:900;font-size:22px;box-shadow:inset 0 -3px 0 rgba(15,181,174,.55)}
+    .brand-copy{min-width:0}
+    .brand-name{font-family:"Fraunces",serif;font-weight:900;color:var(--navy);font-size:20px;line-height:1}
+    .brand-sub{color:var(--muted);font-size:13px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .top-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    .btn{border:0;border-radius:100px;padding:10px 15px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;transition:.18s ease}
+    .btn-primary{background:var(--navy);color:var(--paper)}
+    .btn-primary:hover{background:var(--ink)}
+    .btn-secondary{background:transparent;color:var(--navy);border:2px solid var(--navy);padding:8px 14px}
+    .btn-secondary:hover{background:var(--navy);color:white}
+    .btn-soft{background:var(--cream);color:var(--navy);border:1px solid var(--line-cream)}
+    .btn-danger{background:#fff5f3;color:var(--danger);border:1px solid #efc8c0}
+    .hero{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(280px,.8fr);gap:26px;align-items:end;padding:48px 0 26px}
+    h1,h2,h3{font-family:"Fraunces",serif;color:var(--navy);font-weight:900;text-wrap:pretty;margin:0}
+    h1{font-size:clamp(38px,6vw,66px);line-height:.98;letter-spacing:-.035em;max-width:760px}
+    h1 em{color:var(--tealdk);font-style:italic}
+    h2{font-size:clamp(25px,3.2vw,36px);line-height:1.05}
+    h3{font-size:20px;line-height:1.15}
+    .lede{font-size:18px;color:var(--muted);max-width:58ch;margin:17px 0 0}
+    .privacy-card{border:1px solid var(--line);background:var(--cream);padding:18px;border-radius:20px}
+    .privacy-card strong{color:var(--navy)}
+    .privacy-card p{margin:7px 0 0;color:var(--muted);font-size:14px}
+    .stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:8px 0 28px}
+    .stat{background:white;border:1px solid var(--line);border-radius:18px;padding:16px;min-height:106px}
+    .stat-label{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700}
+    .stat-value{font-family:"Fraunces",serif;font-weight:900;color:var(--navy);font-size:34px;line-height:1;margin-top:8px;font-variant-numeric:tabular-nums}
+    .stat-note{font-size:12px;color:var(--muted);margin-top:7px}
+    .grid{display:grid;grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);gap:18px;align-items:start}
+    .panel{background:white;border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:var(--shadow)}
+    .panel + .panel{margin-top:18px}
+    .panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px}
+    .eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--tealdk);font-weight:700;margin-bottom:6px}
+    .helper{color:var(--muted);font-size:14px;margin:6px 0 0}
+    textarea,input,select{width:100%;border:1px solid var(--line-cream);background:var(--paper);color:var(--text);border-radius:14px;padding:11px 12px;min-height:44px}
+    textarea{min-height:175px;resize:vertical}
+    label{display:block;color:var(--navy);font-size:13px;font-weight:700;margin-bottom:6px}
+    .field{margin-top:13px}
+    .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+    .form-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .preview{display:none;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+    .preview.show{display:block}
+    .badge{display:inline-flex;align-items:center;gap:6px;border-radius:100px;padding:5px 9px;font-size:12px;font-weight:700;white-space:nowrap}
+    .badge-tier1{background:#e8f7ef;color:var(--success)}
+    .badge-tier2{background:#fff3dd;color:var(--warning)}
+    .badge-open{background:#edf2f7;color:var(--navy)}
+    .badge-contacted{background:#e6f7f6;color:#08726d}
+    .badge-resolved{background:#e8f7ef;color:var(--success)}
+    .filters{display:grid;grid-template-columns:1.4fr repeat(3,minmax(110px,.7fr));gap:10px;margin:15px 0}
+    .tablewrap{overflow:auto;border:1px solid var(--line);border-radius:16px;background:var(--paper)}
+    table{width:100%;border-collapse:collapse;min-width:900px;font-variant-numeric:tabular-nums}
+    th,td{padding:12px 10px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;font-size:13px}
+    th{position:sticky;top:0;background:var(--cream);color:var(--navy);font-size:11px;text-transform:uppercase;letter-spacing:.06em;z-index:1}
+    tbody tr:last-child td{border-bottom:0}
+    tbody tr:hover{background:white}
+    .name-cell{font-weight:700;color:var(--navy);max-width:160px}
+    .privacy-on .sensitive{filter:blur(6px);user-select:none}
+    .privacy-on .sensitive:hover{filter:blur(3px)}
+    .status-stack{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+    .icon-btn{border:1px solid var(--line);background:white;border-radius:10px;min-width:34px;min-height:34px;padding:6px 9px;color:var(--navy);font-weight:700}
+    .icon-btn:hover{border-color:var(--teal)}
+    .empty{padding:42px 18px;text-align:center;color:var(--muted)}
+    .empty strong{display:block;color:var(--navy);font-family:"Fraunces",serif;font-size:20px;margin-bottom:4px}
+    .breakdowns{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .bar-list{display:grid;gap:12px;margin-top:15px}
+    .bar-row{display:grid;grid-template-columns:minmax(90px,1fr) minmax(120px,2fr) 34px;gap:10px;align-items:center;font-size:13px}
+    .bar-label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--navy);font-weight:600}
+    .bar-track{height:10px;background:var(--cream);border-radius:100px;overflow:hidden}
+    .bar-fill{height:100%;background:var(--teal);border-radius:100px;min-width:3px}
+    .bar-count{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums}
+    .pitch-box{background:var(--navy);color:#E2E7EE;border-radius:20px;padding:18px;margin-top:18px}
+    .pitch-box h3{color:white}
+    .pitch-box p{color:#E2E7EE;margin:8px 0 0}
+    .pitch-box .btn{margin-top:12px;background:white;color:var(--navy)}
+    .toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,18px);opacity:0;pointer-events:none;background:var(--ink);color:white;padding:11px 16px;border-radius:100px;font-weight:700;box-shadow:0 10px 32px rgba(0,0,0,.18);transition:.2s ease;z-index:80}
+    .toast.show{opacity:1;transform:translate(-50%,0)}
+    .modal-backdrop{position:fixed;inset:0;background:rgba(10,26,48,.48);display:none;align-items:center;justify-content:center;padding:18px;z-index:70}
+    .modal-backdrop.show{display:flex}
+    .modal{width:min(560px,100%);max-height:90vh;overflow:auto;background:var(--paper);border-radius:22px;padding:20px;box-shadow:0 25px 80px rgba(10,26,48,.24)}
+    .modal-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+    .modal-close{border:0;background:transparent;color:var(--muted);font-size:22px;padding:0 4px}
+    .modal .field:first-of-type{margin-top:18px}
+    .small{font-size:12px;color:var(--muted)}
+    .danger-zone{margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}
+    @media (max-width:900px){.hero{grid-template-columns:1fr}.stats{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:1fr}.breakdowns{grid-template-columns:1fr}.filters{grid-template-columns:1fr 1fr}.panel{box-shadow:none}}
+    @media (max-width:600px){.shell,.topbar-inner{width:min(100% - 20px,1180px)}.topbar-inner{min-height:64px}.brand-sub{display:none}.top-actions .label{display:none}.btn{padding:9px 12px;min-height:40px}.hero{padding-top:30px}.stats{grid-template-columns:1fr 1fr}.stat{min-height:94px}.row2,.row3{grid-template-columns:1fr}.filters{grid-template-columns:1fr}.panel{padding:16px;border-radius:18px}.panel-head{display:block}.panel-head .btn{margin-top:10px}.bar-row{grid-template-columns:minmax(85px,1fr) minmax(90px,1.4fr) 28px}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand"><div class="mark" aria-hidden="true">A</div><div class="brand-copy"><div class="brand-name">AQOON</div><div class="brand-sub">Family Lead Tracker</div></div></div>
+      <div class="top-actions"><button class="btn btn-soft" id="privacyToggle" type="button" aria-pressed="false">👁 <span class="label">Privacy mode</span></button><button class="btn btn-secondary" id="backupBtn" type="button">Backup</button></div>
+    </div>
+  </header>
+
+  <main class="shell" id="app">
+    <section class="hero">
+      <div><div class="eyebrow">Internal family support tool</div><h1>Turn WhatsApp messages into <em>usable demand data.</em></h1><p class="lede">Paste the structured message from the family intake funnel. The tracker pulls out the family name, city and need, assigns the support tier, and keeps the lead searchable.</p></div>
+      <aside class="privacy-card"><strong>Family data stays on this device.</strong><p>This page does not send lead records to AQOON, Vercel, Supabase or an analytics service. Records are stored only in this browser. Export a backup before clearing browser data or changing devices.</p></aside>
+    </section>
+
+    <section class="stats" aria-label="Lead summary">
+      <article class="stat"><div class="stat-label">All leads</div><div class="stat-value" id="statAll">0</div><div class="stat-note">Saved in this browser</div></article>
+      <article class="stat"><div class="stat-label">Open</div><div class="stat-value" id="statOpen">0</div><div class="stat-note">Not resolved yet</div></article>
+      <article class="stat"><div class="stat-label">Contacted</div><div class="stat-value" id="statContacted">0</div><div class="stat-note">Reply sent</div></article>
+      <article class="stat"><div class="stat-label">Tier 1</div><div class="stat-value" id="statTier1">0</div><div class="stat-note">Daycare + hobbies</div></article>
+      <article class="stat"><div class="stat-label">Tier 2</div><div class="stat-value" id="statTier2">0</div><div class="stat-note">Work + education</div></article>
+    </section>
+
+    <section class="grid">
+      <div>
+        <article class="panel">
+          <div class="panel-head"><div><div class="eyebrow">New lead</div><h2>Paste the WhatsApp message</h2><p class="helper">The parser understands the structured message from the intake funnel. You can edit every field before saving.</p></div></div>
+          <label for="whatsappInput">Message</label>
+          <textarea id="whatsappInput" placeholder="Assalamu Calaykum Aligure! 👋&#10;📍 Magaalo: Vantaa&#10;🎯 Baahida: Carruurta — päiväkoti hakemuksen apu&#10;👤 Magaca: Amina"></textarea>
+          <div class="form-actions"><button class="btn btn-primary" id="parseBtn" type="button">Parse message</button><button class="btn btn-soft" id="sampleBtn" type="button">Use example</button></div>
+
+          <div class="preview" id="preview">
+            <div class="row2"><div class="field"><label for="leadName">Name</label><input id="leadName" autocomplete="off" /></div><div class="field"><label for="leadCity">City</label><input id="leadCity" autocomplete="off" /></div></div>
+            <div class="row2"><div class="field"><label for="leadMainNeed">Main need</label><select id="leadMainNeed"><option value="Carruurta">Carruurta (kids)</option><option value="Shaqo">Shaqo (work)</option><option value="Waxbarasho">Waxbarasho (education)</option><option value="Other">Other</option></select></div><div class="field"><label for="leadSubNeed">Sub-need</label><input id="leadSubNeed" autocomplete="off" /></div></div>
+            <div class="row2"><div class="field"><label for="leadDate">Date</label><input id="leadDate" type="date" /></div><div class="field"><label for="leadTier">Tier</label><select id="leadTier"><option value="1">Tier 1 - full hands-on help</option><option value="2">Tier 2 - routing + lead logging</option></select></div></div>
+            <div class="field"><label for="leadNotes">Notes</label><textarea id="leadNotes" style="min-height:86px" placeholder="Deadline, next action, referral, anything useful..."></textarea></div>
+            <div class="form-actions"><button class="btn btn-primary" id="saveLeadBtn" type="button">Save lead</button><button class="btn btn-soft" id="resetFormBtn" type="button">Reset</button></div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head"><div><div class="eyebrow">Demand picture</div><h2>What families are asking for</h2><p class="helper">Counts update automatically from your saved leads.</p></div></div>
+          <div class="breakdowns"><div><h3>By city</h3><div class="bar-list" id="cityBreakdown"></div></div><div><h3>By main need</h3><div class="bar-list" id="needBreakdown"></div></div></div>
+          <div class="pitch-box"><h3>Pitch-ready summary</h3><p id="pitchSummary">No leads yet. Add the first message and this becomes a compact demand sentence you can use in partner conversations.</p><button class="btn" id="copyPitchBtn" type="button">Copy summary</button></div>
+        </article>
+      </div>
+
+      <div>
+        <article class="panel">
+          <div class="panel-head"><div><div class="eyebrow">Lead log</div><h2>Search, follow up, resolve</h2><p class="helper">Contacted means you replied. Resolved means the family’s actual need was addressed.</p></div><button class="btn btn-soft" id="exportCsvBtn" type="button">Export CSV</button></div>
+          <div class="filters"><input id="searchInput" type="search" placeholder="Search name, city, need or notes" aria-label="Search leads" /><select id="cityFilter" aria-label="Filter by city"><option value="">All cities</option></select><select id="needFilter" aria-label="Filter by need"><option value="">All needs</option><option>Carruurta</option><option>Shaqo</option><option>Waxbarasho</option><option>Other</option></select><select id="statusFilter" aria-label="Filter by status"><option value="">All statuses</option><option value="open">Open</option><option value="contacted">Contacted</option><option value="resolved">Resolved</option></select></div>
+          <div class="tablewrap"><table><thead><tr><th>Date</th><th>Name</th><th>City</th><th>Need</th><th>Tier</th><th>Status</th><th>Notes</th><th>Actions</th></tr></thead><tbody id="leadRows"></tbody></table><div class="empty" id="emptyState"><strong>No leads yet</strong>Paste a structured WhatsApp message to create the first record.</div></div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <div class="modal-backdrop" id="editModal" role="presentation">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="editTitle">
+      <div class="modal-head"><div><div class="eyebrow">Edit lead</div><h2 id="editTitle">Update record</h2></div><button class="modal-close" id="closeModalBtn" type="button" aria-label="Close">×</button></div>
+      <input type="hidden" id="editId" />
+      <div class="row2"><div class="field"><label for="editName">Name</label><input id="editName" /></div><div class="field"><label for="editCity">City</label><input id="editCity" /></div></div>
+      <div class="row2"><div class="field"><label for="editMainNeed">Main need</label><select id="editMainNeed"><option>Carruurta</option><option>Shaqo</option><option>Waxbarasho</option><option>Other</option></select></div><div class="field"><label for="editSubNeed">Sub-need</label><input id="editSubNeed" /></div></div>
+      <div class="row3"><div class="field"><label for="editDate">Date</label><input id="editDate" type="date" /></div><div class="field"><label for="editTier">Tier</label><select id="editTier"><option value="1">Tier 1</option><option value="2">Tier 2</option></select></div><div class="field"><label for="editStatus">Status</label><select id="editStatus"><option value="open">Open</option><option value="contacted">Contacted</option><option value="resolved">Resolved</option></select></div></div>
+      <div class="field"><label for="editNotes">Notes</label><textarea id="editNotes" style="min-height:100px"></textarea></div>
+      <div class="form-actions"><button class="btn btn-primary" id="saveEditBtn" type="button">Save changes</button><button class="btn btn-soft" id="cancelEditBtn" type="button">Cancel</button></div>
+      <div class="danger-zone"><button class="btn btn-danger" id="deleteLeadBtn" type="button">Delete this lead</button><div class="small" style="margin-top:8px">Deletion is permanent unless you have a JSON backup.</div></div>
+    </div>
+  </div>
+
+  <input type="file" id="importFile" accept="application/json,.json" hidden />
+
+  <script>
+  (() => {
+    'use strict';
+    const STORAGE_KEY = 'aqoon-family-leads-v1';
+    const PRIVACY_KEY = 'aqoon-family-leads-privacy-v1';
+    const sampleMessage = `Assalamu Calaykum Aligure! 👋 Waxaan ka soo booqday app-kaaga.\n📍 Magaalo: Vantaa\n🎯 Baahida: Carruurta — päiväkoti hakemuksen apu\n👤 Magaca: Amina\nFadlan ila soo xiriir marka aad heshid, mahadsanid! 🙏`;
+
+    const $ = (id) => document.getElementById(id);
+    const els = {
+      app:$('app'), privacyToggle:$('privacyToggle'), backupBtn:$('backupBtn'), importFile:$('importFile'),
+      whatsappInput:$('whatsappInput'), parseBtn:$('parseBtn'), sampleBtn:$('sampleBtn'), preview:$('preview'),
+      leadName:$('leadName'), leadCity:$('leadCity'), leadMainNeed:$('leadMainNeed'), leadSubNeed:$('leadSubNeed'), leadDate:$('leadDate'), leadTier:$('leadTier'), leadNotes:$('leadNotes'), saveLeadBtn:$('saveLeadBtn'), resetFormBtn:$('resetFormBtn'),
+      statAll:$('statAll'), statOpen:$('statOpen'), statContacted:$('statContacted'), statTier1:$('statTier1'), statTier2:$('statTier2'),
+      cityBreakdown:$('cityBreakdown'), needBreakdown:$('needBreakdown'), pitchSummary:$('pitchSummary'), copyPitchBtn:$('copyPitchBtn'),
+      searchInput:$('searchInput'), cityFilter:$('cityFilter'), needFilter:$('needFilter'), statusFilter:$('statusFilter'), leadRows:$('leadRows'), emptyState:$('emptyState'), exportCsvBtn:$('exportCsvBtn'), toast:$('toast'),
+      editModal:$('editModal'), closeModalBtn:$('closeModalBtn'), cancelEditBtn:$('cancelEditBtn'), saveEditBtn:$('saveEditBtn'), deleteLeadBtn:$('deleteLeadBtn'), editId:$('editId'), editName:$('editName'), editCity:$('editCity'), editMainNeed:$('editMainNeed'), editSubNeed:$('editSubNeed'), editDate:$('editDate'), editTier:$('editTier'), editStatus:$('editStatus'), editNotes:$('editNotes')
+    };
+
+    let leads = loadLeads();
+    let toastTimer;
+
+    function loadLeads() {
+      try { const raw = localStorage.getItem(STORAGE_KEY); if (!raw) return []; const parsed = JSON.parse(raw); return Array.isArray(parsed) ? parsed.filter(Boolean) : []; }
+      catch (error) { console.error('Could not read lead data', error); return []; }
+    }
+    function saveLeads() { localStorage.setItem(STORAGE_KEY, JSON.stringify(leads)); render(); }
+    function todayIso() { const now = new Date(); const local = new Date(now.getTime() - now.getTimezoneOffset() * 60000); return local.toISOString().slice(0,10); }
+    function makeId() { return (crypto && crypto.randomUUID) ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`; }
+    function normalizeMainNeed(value='') { const s = value.toLowerCase(); if (s.includes('carruur') || s.includes('child') || s.includes('kid') || s.includes('päiväk') || s.includes('hobby') || s.includes('harrast')) return 'Carruurta'; if (s.includes('shaqo') || s.includes('work') || s.includes('job') || s.includes('työ')) return 'Shaqo'; if (s.includes('waxbar') || s.includes('education') || s.includes('school') || s.includes('finnish') || s.includes('yki') || s.includes('koulutus')) return 'Waxbarasho'; return value.trim() || 'Other'; }
+    function inferTier(mainNeed) { return normalizeMainNeed(mainNeed) === 'Carruurta' ? '1' : '2'; }
+    function parseMessage(text) {
+      const cleaned = text.replace(/\r/g,'').trim();
+      const cityMatch = cleaned.match(/(?:📍\s*)?(?:Magaalo|City|Kaupunki)\s*:\s*([^\n]+)/i);
+      const needMatch = cleaned.match(/(?:🎯\s*)?(?:Baahida|Need|Tarve)\s*:\s*([^\n]+)/i);
+      const nameMatch = cleaned.match(/(?:👤\s*)?(?:Magaca|Name|Nimi)\s*:\s*([^\n]+)/i);
+      let mainNeed = ''; let subNeed = '';
+      if (needMatch) { const rawNeed = needMatch[1].trim(); const split = rawNeed.split(/\s+[—–-]\s+/); mainNeed = normalizeMainNeed(split.shift() || rawNeed); subNeed = split.join(' - ').trim(); }
+      return { name: nameMatch ? nameMatch[1].trim() : '', city: cityMatch ? cityMatch[1].trim() : '', mainNeed: mainNeed || 'Other', subNeed, tier: inferTier(mainNeed || 'Other') };
+    }
+    function showPreview(parsed) { els.leadName.value = parsed.name || ''; els.leadCity.value = parsed.city || ''; els.leadMainNeed.value = ['Carruurta','Shaqo','Waxbarasho','Other'].includes(parsed.mainNeed) ? parsed.mainNeed : 'Other'; els.leadSubNeed.value = parsed.subNeed || ''; els.leadTier.value = parsed.tier || inferTier(parsed.mainNeed); els.leadDate.value = todayIso(); els.preview.classList.add('show'); setTimeout(() => els.leadName.focus(), 0); }
+    function resetForm() { els.whatsappInput.value=''; els.leadName.value=''; els.leadCity.value=''; els.leadMainNeed.value='Carruurta'; els.leadSubNeed.value=''; els.leadTier.value='1'; els.leadDate.value=todayIso(); els.leadNotes.value=''; els.preview.classList.remove('show'); }
+    function addLead() { const name=els.leadName.value.trim(); const city=els.leadCity.value.trim(); if(!name||!city){toast('Add at least the family name and city.');(!name?els.leadName:els.leadCity).focus();return;} leads.unshift({id:makeId(),date:els.leadDate.value||todayIso(),name,city,mainNeed:els.leadMainNeed.value,subNeed:els.leadSubNeed.value.trim(),tier:els.leadTier.value,contacted:false,resolved:false,notes:els.leadNotes.value.trim(),createdAt:new Date().toISOString()}); saveLeads(); resetForm(); toast('Lead saved.'); }
+    function statusOf(lead){if(lead.resolved)return'resolved';if(lead.contacted)return'contacted';return'open';}
+    function filteredLeads(){const q=els.searchInput.value.trim().toLowerCase();const city=els.cityFilter.value;const need=els.needFilter.value;const status=els.statusFilter.value;return leads.filter(lead=>{const hay=[lead.name,lead.city,lead.mainNeed,lead.subNeed,lead.notes].join(' ').toLowerCase();return(!q||hay.includes(q))&&(!city||lead.city===city)&&(!need||lead.mainNeed===need)&&(!status||statusOf(lead)===status);});}
+    function escapeHtml(value=''){return String(value).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#039;','"':'&quot;'}[c]));}
+    function renderRows(){const rows=filteredLeads();els.emptyState.style.display=rows.length?'none':'block';els.leadRows.innerHTML=rows.map(lead=>{const status=statusOf(lead);const statusLabel=status.charAt(0).toUpperCase()+status.slice(1);const tierClass=lead.tier==='1'?'badge-tier1':'badge-tier2';return `<tr><td>${escapeHtml(lead.date||'')}</td><td class="name-cell sensitive">${escapeHtml(lead.name)}</td><td>${escapeHtml(lead.city)}</td><td><strong>${escapeHtml(lead.mainNeed)}</strong><br><span class="small">${escapeHtml(lead.subNeed||'Not specified')}</span></td><td><span class="badge ${tierClass}">Tier ${escapeHtml(lead.tier)}</span></td><td><div class="status-stack"><span class="badge badge-${status}">${statusLabel}</span></div></td><td style="max-width:220px">${escapeHtml(lead.notes||'')}</td><td><div class="status-stack">${status==='open'?`<button class="icon-btn" data-action="contact" data-id="${lead.id}" title="Mark contacted">Reply</button>`:''}${status!=='resolved'?`<button class="icon-btn" data-action="resolve" data-id="${lead.id}" title="Mark resolved">Resolve</button>`:''}<button class="icon-btn" data-action="edit" data-id="${lead.id}" title="Edit lead">Edit</button></div></td></tr>`;}).join('');}
+    function updateStats(){const all=leads.length;const open=leads.filter(l=>!l.resolved).length;const contacted=leads.filter(l=>l.contacted&&!l.resolved).length;const tier1=leads.filter(l=>String(l.tier)==='1').length;const tier2=leads.filter(l=>String(l.tier)==='2').length;els.statAll.textContent=all;els.statOpen.textContent=open;els.statContacted.textContent=contacted;els.statTier1.textContent=tier1;els.statTier2.textContent=tier2;}
+    function countBy(key){return leads.reduce((acc,lead)=>{const value=(lead[key]||'Not specified').trim()||'Not specified';acc[value]=(acc[value]||0)+1;return acc;},{});}
+    function renderBars(target,counts){const entries=Object.entries(counts).sort((a,b)=>b[1]-a[1]);if(!entries.length){target.innerHTML='<div class="small">No data yet.</div>';return;}const max=Math.max(...entries.map(([,n])=>n));target.innerHTML=entries.map(([label,count])=>`<div class="bar-row"><div class="bar-label" title="${escapeHtml(label)}">${escapeHtml(label)}</div><div class="bar-track"><div class="bar-fill" style="width:${Math.max(5,(count/max)*100)}%"></div></div><div class="bar-count">${count}</div></div>`).join('');}
+    function refreshCityFilter(){const current=els.cityFilter.value;const cities=[...new Set(leads.map(l=>l.city).filter(Boolean))].sort((a,b)=>a.localeCompare(b));els.cityFilter.innerHTML='<option value="">All cities</option>'+cities.map(city=>`<option value="${escapeHtml(city)}">${escapeHtml(city)}</option>`).join('');if(cities.includes(current))els.cityFilter.value=current;}
+    function makePitchSummary(){if(!leads.length)return'No leads yet. Add the first message and this becomes a compact demand sentence you can use in partner conversations.';const now=new Date();const thisMonth=leads.filter(l=>{if(!l.date)return false;const d=new Date(`${l.date}T12:00:00`);return d.getFullYear()===now.getFullYear()&&d.getMonth()===now.getMonth();});const source=thisMonth.length?thisMonth:leads;const label=thisMonth.length?'this month':'in the current tracker';const needs=Object.entries(source.reduce((acc,l)=>{acc[l.mainNeed]=(acc[l.mainNeed]||0)+1;return acc;},{})).sort((a,b)=>b[1]-a[1]);const cities=Object.entries(source.reduce((acc,l)=>{acc[l.city]=(acc[l.city]||0)+1;return acc;},{})).sort((a,b)=>b[1]-a[1]);const needText=needs.slice(0,3).map(([k,v])=>`${v} ${k}`).join(', ');const cityText=cities.slice(0,2).map(([k,v])=>`${v} from ${k}`).join(', ');return `AQOON logged ${source.length} family ${source.length===1?'lead':'leads'} ${label}: ${needText||'needs not yet categorized'}${cityText?`. City concentration: ${cityText}.`:'.'}`;}
+    function render(){updateStats();refreshCityFilter();renderRows();renderBars(els.cityBreakdown,countBy('city'));renderBars(els.needBreakdown,countBy('mainNeed'));els.pitchSummary.textContent=makePitchSummary();}
+    function toast(message){clearTimeout(toastTimer);els.toast.textContent=message;els.toast.classList.add('show');toastTimer=setTimeout(()=>els.toast.classList.remove('show'),2200);}
+    function setPrivacy(enabled){document.body.classList.toggle('privacy-on',enabled);els.privacyToggle.setAttribute('aria-pressed',String(enabled));els.privacyToggle.innerHTML=enabled?'🙈 <span class="label">Names hidden</span>':'👁 <span class="label">Privacy mode</span>';localStorage.setItem(PRIVACY_KEY,enabled?'1':'0');}
+    function openEdit(id){const lead=leads.find(l=>l.id===id);if(!lead)return;els.editId.value=lead.id;els.editName.value=lead.name;els.editCity.value=lead.city;els.editMainNeed.value=lead.mainNeed;els.editSubNeed.value=lead.subNeed||'';els.editDate.value=lead.date||todayIso();els.editTier.value=String(lead.tier||inferTier(lead.mainNeed));els.editStatus.value=statusOf(lead);els.editNotes.value=lead.notes||'';els.editModal.classList.add('show');document.body.style.overflow='hidden';setTimeout(()=>els.editName.focus(),0);}
+    function closeEdit(){els.editModal.classList.remove('show');document.body.style.overflow='';}
+    function saveEdit(){const lead=leads.find(l=>l.id===els.editId.value);if(!lead)return;if(!els.editName.value.trim()||!els.editCity.value.trim()){toast('Name and city are required.');return;}lead.name=els.editName.value.trim();lead.city=els.editCity.value.trim();lead.mainNeed=els.editMainNeed.value;lead.subNeed=els.editSubNeed.value.trim();lead.date=els.editDate.value||todayIso();lead.tier=els.editTier.value;lead.notes=els.editNotes.value.trim();const status=els.editStatus.value;lead.contacted=status==='contacted'||status==='resolved';lead.resolved=status==='resolved';lead.updatedAt=new Date().toISOString();saveLeads();closeEdit();toast('Lead updated.');}
+    function deleteCurrentLead(){const id=els.editId.value;const lead=leads.find(l=>l.id===id);if(!lead)return;if(!confirm(`Delete ${lead.name}'s lead? This cannot be undone without a backup.`))return;leads=leads.filter(l=>l.id!==id);saveLeads();closeEdit();toast('Lead deleted.');}
+    function download(filename,content,type='application/json'){const blob=new Blob([content],{type});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);}
+    function exportJson(){const payload={version:1,exportedAt:new Date().toISOString(),leads};download(`aqoon-family-leads-${todayIso()}.json`,JSON.stringify(payload,null,2));toast('Backup downloaded.');}
+    function exportCsv(){const headers=['Date','Name','City','Main need','Sub-need','Tier','Contacted','Resolved','Notes'];const quote=v=>`"${String(v??'').replace(/"/g,'""')}"`;const lines=[headers.map(quote).join(','),...leads.map(l=>[l.date,l.name,l.city,l.mainNeed,l.subNeed,l.tier,l.contacted?'Yes':'No',l.resolved?'Yes':'No',l.notes].map(quote).join(','))];download(`aqoon-family-leads-${todayIso()}.csv`,`\ufeff${lines.join('\n')}`,'text/csv;charset=utf-8');toast('CSV exported.');}
+    function importJson(file){const reader=new FileReader();reader.onload=()=>{try{const parsed=JSON.parse(reader.result);const incoming=Array.isArray(parsed)?parsed:parsed.leads;if(!Array.isArray(incoming))throw new Error('Invalid backup');if(!confirm(`Import ${incoming.length} lead${incoming.length===1?'':'s'}? Existing leads stay in place and duplicates are skipped by ID.`))return;const existingIds=new Set(leads.map(l=>l.id));const added=incoming.filter(l=>l&&l.id&&!existingIds.has(l.id));leads=[...added,...leads];saveLeads();toast(`${added.length} lead${added.length===1?'':'s'} imported.`);}catch(error){console.error(error);toast('That file is not a valid AQOON backup.');}};reader.readAsText(file);}
+
+    els.parseBtn.addEventListener('click',()=>{const text=els.whatsappInput.value.trim();if(!text){toast('Paste a WhatsApp message first.');return;}showPreview(parseMessage(text));});
+    els.sampleBtn.addEventListener('click',()=>{els.whatsappInput.value=sampleMessage;showPreview(parseMessage(sampleMessage));});
+    els.saveLeadBtn.addEventListener('click',addLead);els.resetFormBtn.addEventListener('click',resetForm);els.leadMainNeed.addEventListener('change',()=>{els.leadTier.value=inferTier(els.leadMainNeed.value);});
+    [els.searchInput,els.cityFilter,els.needFilter,els.statusFilter].forEach(el=>el.addEventListener(el===els.searchInput?'input':'change',renderRows));
+    els.leadRows.addEventListener('click',event=>{const btn=event.target.closest('button[data-action]');if(!btn)return;const lead=leads.find(l=>l.id===btn.dataset.id);if(!lead)return;if(btn.dataset.action==='contact'){lead.contacted=true;saveLeads();toast('Marked contacted.');}else if(btn.dataset.action==='resolve'){lead.contacted=true;lead.resolved=true;saveLeads();toast('Marked resolved.');}else if(btn.dataset.action==='edit'){openEdit(lead.id);}});
+    els.privacyToggle.addEventListener('click',()=>setPrivacy(!document.body.classList.contains('privacy-on')));
+    els.backupBtn.addEventListener('click',()=>{if(confirm('Download a full JSON backup? Choose Cancel if you want to import a previous backup instead.')){exportJson();}else{els.importFile.click();}});
+    els.importFile.addEventListener('change',()=>{const file=els.importFile.files&&els.importFile.files[0];if(file)importJson(file);els.importFile.value='';});
+    els.exportCsvBtn.addEventListener('click',exportCsv);els.copyPitchBtn.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(makePitchSummary());toast('Summary copied.');}catch{toast('Copy failed. Select the summary manually.');}});
+    els.closeModalBtn.addEventListener('click',closeEdit);els.cancelEditBtn.addEventListener('click',closeEdit);els.saveEditBtn.addEventListener('click',saveEdit);els.deleteLeadBtn.addEventListener('click',deleteCurrentLead);els.editModal.addEventListener('click',event=>{if(event.target===els.editModal)closeEdit();});document.addEventListener('keydown',event=>{if(event.key==='Escape'&&els.editModal.classList.contains('show'))closeEdit();});
+
+    els.leadDate.value=todayIso();setPrivacy(localStorage.getItem(PRIVACY_KEY)==='1');render();
+  })();
+  </script>
+</body>
+</html>
