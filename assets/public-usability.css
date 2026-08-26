@@ -1,0 +1,20 @@
+/* Shared public-page usability layer. No copy changes. */
+html{-webkit-text-size-adjust:100%}
+body{overflow-wrap:anywhere}
+a,button,input,select,textarea{-webkit-tap-highlight-color:transparent}
+a,button{touch-action:manipulation}
+:focus-visible{outline:3px solid #0FB5AE;outline-offset:3px;border-radius:6px}
+.cta,.button,.choice,.topic,.subchoice,.toc a,.seo-links a,.back,.mini-link{min-height:44px}
+.cta,.button,.choice,.topic,.subchoice,.toc a,.seo-links a{display:inline-flex;align-items:center}
+input,select,textarea{font-size:16px}
+@media (hover:hover) and (pointer:fine){a:hover,button:hover{filter:brightness(.97)}}
+@media(max-width:700px){
+  body{font-size:16px}
+  .cta,.button,.choice,.topic,.subchoice,.toc a,.seo-links a,.back,.mini-link{min-height:48px}
+  .lead,.intro,.hero p,.card p,.info-card p,.support p,.note,.qa,.pain{font-size:max(16px,1rem)}
+  .choice small,.topic small,.subchoice small,.fineprint,.tag,.meta{font-size:max(12px,.75rem)}
+  .w,.wrap{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}
+  .toc,.seo-links{gap:10px}
+}
+@media(min-width:1200px){.w{max-width:980px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*{animation:none!important;transition:none!important}}
