@@ -1,6 +1,14 @@
 (function () {
   'use strict';
 
+  if (!document.querySelector('link[data-aqoon-usability]')) {
+    var usability = document.createElement('link');
+    usability.rel = 'stylesheet';
+    usability.href = '/assets/public-usability.css?v=1';
+    usability.setAttribute('data-aqoon-usability', '');
+    document.head.appendChild(usability);
+  }
+
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   var menu = document.querySelector('[data-menu]');
