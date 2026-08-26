@@ -5,6 +5,7 @@ from html import unescape
 ROOT = Path(__file__).resolve().parents[1]
 SUSPECT = re.compile(r"\b(official|programme|programmes|deadline|route|resource|resources|eligibility|benefit|application|registration|openings?|jobseeker|jobs|support|current|random|quality check|workshops?|material)\b", re.I)
 # Finnish service names and isolated system terms are expected. Long Finnish grammatical runs need review.
+# This scan is intentionally conservative: it reports candidates for human review rather than auto-translating system names.
 FI_WORD = re.compile(r"\b(?:maahanmuutt\w*|maahan muuttane\w*|työnhakij\w*|koulut\w*|palvelu\w*|suomen\s+kielt\w*|työelämä\w*|opinto\w*|hakem\w*|haku\w*|tuke\w*|voi\w*|jossa|joilla|joissain|myös|muille|kuin|kautta|tarkoitettu|maksuton|vuotiaille)\b", re.I)
 
 
