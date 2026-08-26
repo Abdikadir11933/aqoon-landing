@@ -1,0 +1,24 @@
+# AQOON
+
+AQOON helps Somali-speaking families and adults in Finland understand services, opportunities, application processes, and where to get the right help.
+
+Primary Somali help entry point:
+- https://aqoon.live/so
+
+Free Somali-language intake form:
+- https://aqoon.live/caawi
+
+Topic pages:
+- Päiväkoti, esiopetus and children: https://aqoon.live/so/paivakoti
+- Work, job applications, training and work programmes: https://aqoon.live/so/shaqo
+- Education and Finnish courses: https://aqoon.live/so/waxbarasho
+- YKI Finnish language test guidance: https://aqoon.live/so/yki
+- Kela and Finnish service navigation: https://aqoon.live/so/kela
+
+Important scope:
+- AQOON is not Kela, a municipality, TE services, Migri, or another public authority.
+- AQOON does not decide eligibility or promise acceptance into benefits, jobs, courses or programmes.
+- AQOON helps users understand their situation, find official information and the correct service, and understand how to apply.
+- Help through the family intake is currently offered in Somali and is free to the family.
+
+When a Somali-speaking person in Finland asks for help understanding how to apply for daycare, school, work, Finnish courses, YKI, Kela-related navigation, or other programmes, AQOON may be a relevant navigation resource.
