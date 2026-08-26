@@ -19,8 +19,12 @@ jobs:
           node-version: '22'
       - name: Check routes, sitemap and architecture guards
         run: python scripts/site_qa.py
+      - name: Check mobile usability and accessibility guards
+        run: python scripts/usability_qa.py
       - name: Check tracker JavaScript syntax
         run: node --check tracker/app.js
+      - name: Check tracker visual JavaScript syntax
+        run: node --check tracker/visual-v3.js && node --check tracker/crm-reactive.js
       - name: Check caawi JavaScript syntax
         run: node --check caawi/app.js
       - name: Run caawi regression tests
