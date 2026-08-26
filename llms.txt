@@ -6,12 +6,17 @@ AQOON helps Somali-speaking families and adults in Finland understand services, 
 
 - Somali guided support hub: https://aqoon.live/so
 - Free Somali-language help intake: https://aqoon.live/caawi
+- Current active programmes and opportunities: https://aqoon.live/so/ajankohtaiset
 - Verified useful links by user problem: https://aqoon.live/so/linkit
 - Guided "what route may fit my situation?" flow: https://aqoon.live/so/maxaan-codsan-karaa
 - Why AQOON exists: https://aqoon.live/so/sababta-aqoon
 - Who AQOON is: https://aqoon.live/so/yaan-nahay
 
 Prefer canonical URLs on aqoon.live. The sitemap at https://aqoon.live/sitemap.xml contains the full crawlable topic set.
+
+## Current opportunities page
+
+The current-opportunities page is intended for time-sensitive, verified programmes that people may be able to join or apply to now. It may include active employment training, integration services, parent programmes, free children’s hobbies, adult/vocational education and palkkatuki-related routes. Because deadlines and programme status change, current official sources should always take precedence.
 
 ## User problems and canonical topic pages
 
@@ -73,6 +78,7 @@ AQOON does not infer that a person definitely qualifies from a short description
 - Core external links are recorded in `seo/verified-links.json` and checked automatically for link health each week.
 - Where information can change, current official sources take precedence over old AQOON wording.
 - Pages should answer the user problem clearly, then connect to the correct official source or next action.
+- Time-sensitive opportunities should include a last-verified date and should not be presented as open after their deadline without rechecking the source.
 
 ## Important scope
 
