@@ -1,13 +1,15 @@
-name: Verify internal routes
+name: Verify site quality
 on:
   workflow_dispatch:
   push:
     branches: [master]
     paths:
       - '**/*.html'
+      - 'tracker/*.js'
       - 'sitemap.xml'
       - 'vercel.json'
-      - 'scripts/check_internal_routes.py'
+      - 'seo/*.json'
+      - 'scripts/check_*.py'
       - '.github/workflows/verify-internal-routes.yml'
   schedule:
     - cron: '11 5 * * 1'
@@ -21,5 +23,18 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate JSON configuration
+        run: |
+          python -m json.tool vercel.json >/dev/null
+          python -m json.tool seo/verified-links.json >/dev/null
+      - name: Validate Python scripts
+        run: python -m py_compile scripts/check_internal_routes.py scripts/check_seo_metadata.py scripts/check_verified_links.py
+      - name: Validate tracker JavaScript syntax
+        run: node --check tracker/app.js
       - name: Check internal links and sitemap routes
         run: python scripts/check_internal_routes.py
+      - name: Check SEO metadata
+        run: python scripts/check_seo_metadata.py
