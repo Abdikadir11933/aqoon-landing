@@ -3,21 +3,54 @@
   <url><loc>https://aqoon.live/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
   <url><loc>https://aqoon.live/caawi</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
   <url><loc>https://aqoon.live/so</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+
+  <!-- Somali navigation and trust -->
   <url><loc>https://aqoon.live/so/sababta-aqoon</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://aqoon.live/so/yaan-nahay</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://aqoon.live/so/linkit</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
   <url><loc>https://aqoon.live/so/maxaan-codsan-karaa</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://aqoon.live/so/tyonhakijaksi</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://aqoon.live/so/cv-tyohakemus</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://aqoon.live/so/paivakoti</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aqoon.live/so/maxaan-xaq-u-leeyahay</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+
+  <!-- Work -->
   <url><loc>https://aqoon.live/so/shaqo</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aqoon.live/so/tyonhakijaksi</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aqoon.live/so/tyoton-tyonhakija</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aqoon.live/so/tyohakemus</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aqoon.live/so/cv-tyohakemus</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+
+  <!-- Education and language -->
   <url><loc>https://aqoon.live/so/waxbarasho</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aqoon.live/so/finnish-course</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://aqoon.live/so/yki</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aqoon.live/so/ammatillinen-koulutus</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aqoon.live/so/dib-ugu-noqo-dugsi</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+
+  <!-- Children, daycare and school -->
+  <url><loc>https://aqoon.live/so/paivakoti</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aqoon.live/so/paivakoti-codsi</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aqoon.live/so/esiopetus</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aqoon.live/so/palveluseteli</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aqoon.live/so/koulu-tuki</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aqoon.live/so/harrastus-ilmainen</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aqoon.live/so/vantaa-paivakoti</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aqoon.live/so/helsinki-paivakoti</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aqoon.live/so/espoo-paivakoti</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aqoon.live/so/tampere-paivakoti</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+
+  <!-- Kela and household support -->
   <url><loc>https://aqoon.live/so/kela</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aqoon.live/so/kela-warqad</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aqoon.live/so/asumistuki</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aqoon.live/so/toimeentulotuki</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aqoon.live/so/kotihoidon-tuki</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+
+  <!-- Household contracts: SEO discovery pages -->
   <url><loc>https://aqoon.live/so/liittyma</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aqoon.live/so/sahkosopimus</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aqoon.live/so/vakuutus</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aqoon.live/so/laskut-sopimukset</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Main AQOON organisation pages -->
   <url><loc>https://aqoon.live/tapaus</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://aqoon.live/menetelma</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://aqoon.live/paketit</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
