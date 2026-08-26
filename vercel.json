@@ -14,13 +14,33 @@
     {
       "source": "/tracker",
       "headers": [
-        { "key": "Cache-Control", "value": "no-store, max-age=0" }
+        { "key": "Cache-Control", "value": "no-store, no-cache, max-age=0, must-revalidate, proxy-revalidate" },
+        { "key": "Pragma", "value": "no-cache" },
+        { "key": "Expires", "value": "0" }
       ]
     },
     {
       "source": "/tracker/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "no-store, max-age=0" }
+        { "key": "Cache-Control", "value": "no-store, no-cache, max-age=0, must-revalidate, proxy-revalidate" },
+        { "key": "Pragma", "value": "no-cache" },
+        { "key": "Expires", "value": "0" }
+      ]
+    },
+    {
+      "source": "/caawi",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store, no-cache, max-age=0, must-revalidate, proxy-revalidate" },
+        { "key": "Pragma", "value": "no-cache" },
+        { "key": "Expires", "value": "0" }
+      ]
+    },
+    {
+      "source": "/caawi/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store, no-cache, max-age=0, must-revalidate, proxy-revalidate" },
+        { "key": "Pragma", "value": "no-cache" },
+        { "key": "Expires", "value": "0" }
       ]
     }
   ],
@@ -38,7 +58,6 @@
     { "source": "/yhteys", "destination": "/#yhteys", "permanent": true },
     { "source": "/pilke_landing.html", "destination": "/pilke", "permanent": true },
     { "source": "/pilke_landing_so.html", "destination": "/pilke/so", "permanent": true },
-
     { "source": "/so/suomen-kurssi", "destination": "/so/finnish-course", "permanent": true },
     { "source": "/so/takaisin-kouluun", "destination": "/so/dib-ugu-noqo-dugsi", "permanent": true },
     { "source": "/so/ammattikoulu", "destination": "/so/ammatillinen-koulutus", "permanent": true },
