@@ -27,6 +27,8 @@ jobs:
         run: node --check tracker/app.js
       - name: Check tracker visual JavaScript syntax
         run: node --check tracker/visual-v3.js && node --check tracker/crm-reactive.js
+      - name: Check interview matching JavaScript syntax
+        run: node --check tracker/interview-match.js
       - name: Check caawi JavaScript syntax
         run: node --check caawi/app.js
       - name: Run caawi regression tests
