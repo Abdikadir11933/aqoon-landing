@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="so">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light only">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>Caawimaad Af-Soomaali ah · AQOON</title>
+  <meta name="description" content="AQOON waxay kaa caawisaa arrimaha carruurta, shaqada iyo waxbarashada. Caawimaad Af-Soomaali ah oo bilaash ah.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,900;1,9..144,900&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      color-scheme:light only;
+      --navy:#0E2440;--ink:#0A1A30;--teal:#0FB5AE;--tealdk:#0A8F89;
+      --sand:#E8A766;--paper:#FBFAF7;--cream:#F3F0E9;--text:#16202E;
+      --muted:#5C6675;--line:#E7E3D8;--success:#16784A;--danger:#9C2B2B;
+      --display:'Fraunces',Georgia,serif;--body:'Outfit',system-ui,sans-serif;
+    }
+    *{box-sizing:border-box}
+    html,body{min-height:100%;background:var(--paper)}
+    body{margin:0;font-family:var(--body);color:var(--text);-webkit-font-smoothing:antialiased}
+    button,input{font:inherit}
+    button{cursor:pointer}
+    :focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+    .page{min-height:100dvh;display:flex;flex-direction:column;background:
+      radial-gradient(circle at 10% 0%,rgba(15,181,174,.07),transparent 28%),
+      radial-gradient(circle at 90% 100%,rgba(232,167,102,.10),transparent 30%),var(--paper)}
+    .pattern{height:18px;display:flex;justify-content:center;align-items:center;gap:8px;overflow:hidden;flex:0 0 auto}
+    .diamond{width:10px;height:10px;transform:rotate(45deg);background:var(--teal)}
+    .diamond:nth-child(even){background:var(--sand)}
+    .shell{width:min(100% - 28px,460px);margin:auto;padding:28px 0 36px}
+    .brand{display:flex;justify-content:center;align-items:center;gap:9px;margin-bottom:22px;color:var(--navy);font-family:var(--display);font-weight:900;letter-spacing:.04em}
+    .brandmark{width:34px;height:34px;border-radius:12px;background:var(--navy);color:white;display:grid;place-items:center;font-family:var(--display);font-size:20px;box-shadow:inset 0 -3px 0 rgba(15,181,174,.65)}
+    .screen{display:none;animation:in .22s ease both}
+    .screen.active{display:block}
+    @keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+    .hero{text-align:center}
+    .hero .bigmark{width:82px;height:82px;border-radius:50%;background:var(--teal);color:white;display:grid;place-items:center;margin:0 auto 24px;font-family:var(--display);font-size:38px;font-weight:900;box-shadow:0 14px 36px rgba(15,181,174,.24)}
+    h1,h2{font-family:var(--display);font-weight:900;color:var(--navy);text-wrap:pretty;margin:0}
+    h1{font-size:clamp(34px,9vw,46px);line-height:1.02;letter-spacing:-.025em}
+    h2{font-size:30px;line-height:1.08;text-align:center}
+    .hero p{font-size:18px;line-height:1.55;color:var(--muted);margin:16px auto 0;max-width:36ch}
+    .hero .free{font-weight:700;color:var(--tealdk);margin-top:10px}
+    .primary{width:100%;border:0;border-radius:18px;background:var(--sand);color:var(--ink);font-weight:700;font-size:20px;padding:18px 20px;min-height:62px;margin-top:30px;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 12px 30px rgba(232,167,102,.28)}
+    .primary.teal{background:var(--teal);color:var(--ink);box-shadow:0 12px 30px rgba(15,181,174,.23)}
+    .primary:disabled{background:#D7D5CF;color:#8A8984;box-shadow:none;cursor:not-allowed}
+    .back{border:0;background:transparent;color:var(--muted);font-weight:700;display:inline-flex;align-items:center;gap:7px;padding:10px 5px;margin:0 0 8px -5px}
+    .progress{display:flex;justify-content:center;gap:7px;margin:0 0 24px}
+    .dot{height:8px;width:8px;border-radius:100px;background:#D6D2C9;transition:.18s}
+    .dot.done{background:var(--teal)}
+    .dot.current{width:30px;background:var(--teal)}
+    .options{display:grid;gap:12px;margin-top:24px}
+    .option{width:100%;border:2px solid var(--line);background:white;border-radius:20px;padding:18px 18px;min-height:82px;display:flex;align-items:center;gap:15px;text-align:left;color:var(--text);transition:.15s}
+    .option:active{transform:scale(.99)}
+    .option.selected{border-color:var(--teal);background:#F0FBFA}
+    .icon{width:48px;height:48px;border-radius:50%;background:#FFF0D9;display:grid;place-items:center;flex:0 0 auto;font-size:23px}
+    .option strong{display:block;color:var(--navy);font-size:20px;line-height:1.15}
+    .option small{display:block;color:var(--muted);font-size:14px;margin-top:4px}
+    .custom{margin-top:12px;padding:16px;border-radius:18px;background:white;border:1px solid var(--line)}
+    label{display:block;font-size:14px;font-weight:700;color:var(--navy);margin-bottom:7px}
+    input{width:100%;border:2px solid var(--line);background:white;border-radius:16px;padding:15px 16px;font-size:18px;min-height:56px;color:var(--text)}
+    input::placeholder{color:#A0A09B}
+    .explain-icon{width:74px;height:74px;border-radius:50%;background:#FFF0D9;display:grid;place-items:center;margin:8px auto 20px;font-size:34px}
+    .explainer{font-size:18px;line-height:1.6;text-align:center;color:#394553;margin:16px auto 0;max-width:36ch}
+    .final-note{text-align:center;color:var(--muted);font-size:14px;line-height:1.5;margin:9px auto 20px;max-width:34ch}
+    .field{margin-top:14px}
+    .fieldbox{position:relative}
+    .fieldbox .fieldicon{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:20px;pointer-events:none}
+    .fieldbox input{padding-left:49px}
+    .privacy{margin-top:14px;padding:13px 14px;border-radius:14px;background:var(--cream);color:var(--muted);font-size:13px;line-height:1.5;text-align:center}
+    .error{display:none;margin-top:12px;padding:12px 14px;border-radius:14px;background:#FFF1EF;border:1px solid #EDC7C0;color:var(--danger);font-size:14px;font-weight:600;text-align:center}
+    .error.show{display:block}
+    .success{text-align:center}
+    .check{width:84px;height:84px;border-radius:50%;background:#E8F7EF;display:grid;place-items:center;margin:0 auto 22px;color:var(--success);font-size:42px;font-weight:900}
+    .success p{font-size:18px;line-height:1.55;color:var(--muted);margin:13px auto 0;max-width:34ch}
+    .summary{margin:24px 0 0;border:1px solid var(--line);background:white;border-radius:18px;padding:16px;text-align:left}
+    .summary-row{display:flex;justify-content:space-between;gap:18px;padding:7px 0;font-size:14px}
+    .summary-row + .summary-row{border-top:1px solid var(--line)}
+    .summary-row span:first-child{color:var(--muted)}
+    .summary-row strong{text-align:right;color:var(--navy)}
+    .reset{width:100%;border:0;background:var(--cream);color:var(--navy);border-radius:16px;padding:15px;font-weight:700;font-size:17px;margin-top:24px}
+    #website{position:absolute;left:-9999px;opacity:0;pointer-events:none}
+    @media(max-width:390px){.shell{width:min(100% - 22px,460px);padding-top:20px}.option{padding:16px 14px}.option strong{font-size:18px}h2{font-size:27px}}
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="pattern" aria-hidden="true">
+    <i class="diamond"></i><i class="diamond"></i><i class="diamond"></i><i class="diamond"></i><i class="diamond"></i><i class="diamond"></i><i class="diamond"></i><i class="diamond"></i><i class="diamond"></i>
+  </div>
+
+  <main class="shell">
+    <div class="brand"><span class="brandmark">A</span><span>AQOON</span></div>
+
+    <section class="screen active hero" data-screen="hero">
+      <div class="bigmark">A</div>
+      <h1>Ma rabtaa qof kaa caawiya?</h1>
+      <p>Xanaano, shaqo, iyo Finnish. Waan kaa caawin karaa, Af-Soomaali ah.</p>
+      <p class="free">Caawimaaddu waa bilaash.</p>
+      <button class="primary" type="button" data-go="city">Bilow <span aria-hidden="true">→</span></button>
+    </section>
+
+    <section class="screen" data-screen="city">
+      <button class="back" type="button" data-back>← Dib u noqo</button>
+      <div class="progress" data-progress></div>
+      <h2>Magaalada aad ku nooshahay?</h2>
+      <div class="options" id="cityOptions"></div>
+      <div class="custom" id="customCityWrap" hidden>
+        <label for="customCity">Qor magaalada</label>
+        <input id="customCity" type="text" autocomplete="address-level2" placeholder="Tusaale Lahti">
+        <button class="primary teal" type="button" id="customCityContinue" disabled>Sii wad →</button>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="need">
+      <button class="back" type="button" data-back>← Dib u noqo</button>
+      <div class="progress" data-progress></div>
+      <h2>Maxaad u baahan tahay?</h2>
+      <div class="options" id="needOptions"></div>
+    </section>
+
+    <section class="screen" data-screen="age">
+      <button class="back" type="button" data-back>← Dib u noqo</button>
+      <div class="progress" data-progress></div>
+      <h2>Immisa jir buu ama bay yahay ilmahaagu?</h2>
+      <div class="options">
+        <button class="option" type="button" data-age="under7"><span class="icon">👶</span><span><strong>Ka yar 7 sano</strong></span></button>
+        <button class="option" type="button" data-age="over7"><span class="icon">🧒</span><span><strong>7 sano ama ka weyn</strong></span></button>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="explain">
+      <button class="back" type="button" data-back>← Dib u noqo</button>
+      <div class="progress" data-progress></div>
+      <div class="explain-icon" id="explainIcon">✓</div>
+      <h2>Sidee ayaan kaa caawin karaa?</h2>
+      <p class="explainer" id="explainerText"></p>
+      <button class="primary teal" type="button" data-go="sub">Sii wad →</button>
+    </section>
+
+    <section class="screen" data-screen="sub">
+      <button class="back" type="button" data-back>← Dib u noqo</button>
+      <div class="progress" data-progress></div>
+      <h2>Kee ayaa kugu habboon?</h2>
+      <div class="options" id="subOptions"></div>
+    </section>
+
+    <section class="screen" data-screen="contact">
+      <button class="back" type="button" data-back>← Dib u noqo</button>
+      <div class="progress" data-progress></div>
+      <h2>Sideen kula soo xiriiraa?</h2>
+      <p class="final-note">Qor magacaaga iyo lambarkaaga telefoonka. Aniga ayaa kula soo xiriiri doona.</p>
+      <div class="field">
+        <label for="name">Magacaaga</label>
+        <div class="fieldbox"><span class="fieldicon">👤</span><input id="name" type="text" autocomplete="name" placeholder="Magacaaga"></div>
+      </div>
+      <div class="field">
+        <label for="phone">Lambarka telefoonka</label>
+        <div class="fieldbox"><span class="fieldicon">☎</span><input id="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="040 123 4567"></div>
+      </div>
+      <input id="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="error" id="submitError"></div>
+      <button class="primary teal" type="button" id="submitBtn">Dir codsiga</button>
+      <div class="privacy">Xogtaada waxaa loo isticmaalaa oo keliya in AQOON kula soo xiriiro arrinta aad caawimaadda uga baahan tahay.</div>
+    </section>
+
+    <section class="screen success" data-screen="confirm">
+      <div class="check">✓</div>
+      <h2 id="thanksTitle">Mahadsanid!</h2>
+      <p>Codsigaaga waan helay. Waxaan kula soo xiriiri doonaa 48 saacadood gudahood.</p>
+      <div class="summary" id="summary"></div>
+      <button class="reset" type="button" id="resetBtn">Dib u bilow</button>
+    </section>
+  </main>
+
+  <div class="pattern" aria-hidden="true">
+    <i class="diamond"></i><i class="diamond"></i><i class="diamond"></i><i class="diamond"></i><i class="diamond"></i><i class="diamond"></i><i class="diamond"></i><i class="diamond"></i><i class="diamond"></i>
+  </div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  var SUPABASE_URL = 'https://qxracwbsyfibcelasxbs.supabase.co/rest/v1/waitlist';
+  var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF4cmFjd2JzeWZpYmNlbGFzeGJzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg0MDEyMDYsImV4cCI6MjA5Mzk3NzIwNn0.RuLR2jqsRYN1vLEfa4u_wFpVRp-LRd6yP-5bCNXZyDg';
+
+  var CITIES = ['Vantaa','Helsinki','Espoo','Tampere'];
+  var NEEDS = [
+    {id:'kids',label:'Carruurta',sub:'Xanaano ama ciyaaro',icon:'👶'},
+    {id:'work',label:'Shaqo',sub:'Shaqo ama kaararka',icon:'💼'},
+    {id:'school',label:'Waxbarasho',sub:'Finnish iyo is dhexgal',icon:'🎓'}
+  ];
+  var EXPLAINERS = {
+    daycare:'Waan kaa caawin karaa inaad heshid xanaano oo dhow. Waan kula socon doonaa codsiga ilaa dhammaadka. Caawimaaddaydu waa bilaash 100%.',
+    hobby:'Waan kaa caawin karaa inaad heshid ciyaaro bilaash ah oo dhow, iyo diiwaangelinta. Waxaan sidoo kale ka jawaabi karaa su\'aalo ku saabsan dugsiga. Caawimaaddaydu waa bilaash 100%.',
+    work:'Waxaan kaa caawin karaa kaararka shaqada, codsiga shaqada, ama inaad ogaato barnaamijyada aad xaq u leedahay. Caawimaaddaydu waa bilaash 100%.',
+    school:'Waxaa jira barnaamijyo badan oo kaa caawin kara Finnish, imtixaanka YKI, ama waxbarasho kale. Waan kaa caawin karaa inaad ogaato ta kuu habboon. Caawimaaddaydu waa bilaash 100%.'
+  };
+  var ICONS = {daycare:'👶',hobby:'🧒',work:'💼',school:'🎓'};
+  var SUBS = {
+    daycare:['Meel xanaano ah oo dhow','Caawimaad codsiga','Ma hubo, waan rabaa inaan wax badan ogaado'],
+    hobby:['Ciyaaro u dhow','Caawimaad diiwaangelinta','Su\'aalo ku saabsan dugsiga','Ma hubo, waan rabaa inaan wax badan ogaado'],
+    work:['Kaararka shaqada','Codsiga shaqada','Ganacsi aan bilaabo','Barnaamijyada aan xaq u leeyahay','Wax kale'],
+    school:['Imtixaanka YKI','Koorso Finnish ah','Dhammaystirka dugsiga','Wax kale']
+  };
+
+  var state = {screen:'hero',city:'',customCity:'',mainNeed:'',age:'',subNeed:'',name:'',phone:''};
+  var screens = Array.from(document.querySelectorAll('[data-screen]'));
+  var cityOptions = document.getElementById('cityOptions');
+  var needOptions = document.getElementById('needOptions');
+  var subOptions = document.getElementById('subOptions');
+  var customCityWrap = document.getElementById('customCityWrap');
+  var customCity = document.getElementById('customCity');
+  var customCityContinue = document.getElementById('customCityContinue');
+  var nameInput = document.getElementById('name');
+  var phoneInput = document.getElementById('phone');
+  var submitBtn = document.getElementById('submitBtn');
+  var submitError = document.getElementById('submitError');
+
+  function path(){ return state.mainNeed === 'kids' ? ['city','need','age','explain','sub','contact'] : ['city','need','explain','sub','contact']; }
+  function bucket(){ return state.mainNeed === 'kids' ? (state.age === 'under7' ? 'daycare' : 'hobby') : state.mainNeed; }
+  function finalCity(){ return state.city === 'Meel kale' ? state.customCity.trim() : state.city; }
+  function needLabel(){ var found=NEEDS.find(function(n){return n.id===state.mainNeed;}); return found ? found.label : ''; }
+
+  function renderProgress(){
+    document.querySelectorAll('[data-progress]').forEach(function(el){
+      var p=path(), idx=p.indexOf(state.screen);
+      el.innerHTML=p.map(function(_,i){return '<i class="dot '+(i<idx?'done ':i===idx?'current ':'')+'"></i>';}).join('');
+    });
+  }
+
+  function show(screen){
+    state.screen=screen;
+    screens.forEach(function(el){el.classList.toggle('active',el.getAttribute('data-screen')===screen);});
+    renderProgress();
+    window.scrollTo({top:0,behavior:'smooth'});
+    if(screen==='explain'){
+      var b=bucket();
+      document.getElementById('explainerText').textContent=EXPLAINERS[b]||'';
+      document.getElementById('explainIcon').textContent=ICONS[b]||'✓';
+    }
+    if(screen==='sub') renderSubs();
+    if(screen==='contact') setTimeout(function(){nameInput.focus({preventScroll:true});},200);
+  }
+
+  function optionHtml(label,sub,icon,attrs){
+    return '<button class="option" type="button" '+attrs+'>'+(icon?'<span class="icon">'+icon+'</span>':'')+'<span><strong>'+label+'</strong>'+(sub?'<small>'+sub+'</small>':'')+'</span></button>';
+  }
+
+  function renderCities(){
+    cityOptions.innerHTML=CITIES.map(function(c){return optionHtml(c,'','📍','data-city="'+c+'"');}).join('')+optionHtml('Meel kale','','📍','data-city="Meel kale"');
+  }
+  function renderNeeds(){
+    needOptions.innerHTML=NEEDS.map(function(n){return optionHtml(n.label,n.sub,n.icon,'data-need="'+n.id+'"');}).join('');
+  }
+  function renderSubs(){
+    subOptions.innerHTML=(SUBS[bucket()]||[]).map(function(s,i){return optionHtml(s,'','', 'data-sub-index="'+i+'"');}).join('');
+  }
+
+  cityOptions.addEventListener('click',function(e){
+    var btn=e.target.closest('[data-city]'); if(!btn)return;
+    state.city=btn.getAttribute('data-city');
+    if(state.city==='Meel kale'){
+      customCityWrap.hidden=false; customCity.focus(); return;
+    }
+    state.customCity=''; customCityWrap.hidden=true; show('need');
+  });
+  customCity.addEventListener('input',function(){state.customCity=customCity.value;customCityContinue.disabled=!state.customCity.trim();});
+  customCityContinue.addEventListener('click',function(){if(state.customCity.trim())show('need');});
+
+  needOptions.addEventListener('click',function(e){
+    var btn=e.target.closest('[data-need]'); if(!btn)return;
+    state.mainNeed=btn.getAttribute('data-need'); state.age=''; state.subNeed='';
+    show(state.mainNeed==='kids'?'age':'explain');
+  });
+
+  document.querySelectorAll('[data-age]').forEach(function(btn){btn.addEventListener('click',function(){state.age=btn.getAttribute('data-age');show('explain');});});
+  subOptions.addEventListener('click',function(e){
+    var btn=e.target.closest('[data-sub-index]'); if(!btn)return;
+    var list=SUBS[bucket()]||[]; state.subNeed=list[Number(btn.getAttribute('data-sub-index'))]||''; show('contact');
+  });
+
+  document.querySelectorAll('[data-go]').forEach(function(btn){btn.addEventListener('click',function(){show(btn.getAttribute('data-go'));});});
+  document.querySelectorAll('[data-back]').forEach(function(btn){btn.addEventListener('click',function(){
+    var p=path(), idx=p.indexOf(state.screen);
+    if(idx<=0){show('hero');return;}
+    show(p[idx-1]);
+  });});
+
+  function validPhone(value){return value.replace(/\D/g,'').length>=7;}
+  function setError(msg){submitError.textContent=msg;submitError.classList.toggle('show',!!msg);}
+
+  submitBtn.addEventListener('click',function(){
+    state.name=nameInput.value.trim(); state.phone=phoneInput.value.trim();
+    if(document.getElementById('website').value)return;
+    if(!state.name){setError('Fadlan qor magacaaga.');nameInput.focus();return;}
+    if(!validPhone(state.phone)){setError('Fadlan qor lambarka telefoonka saxda ah.');phoneInput.focus();return;}
+    setError(''); submitBtn.disabled=true; submitBtn.textContent='Waa la dirayaa...';
+
+    /* Existing waitlist table is reused for the MVP. campaign identifies these rows.
+       num_children stores the main need and child_age stores the selected detail so
+       no public SELECT permission is required and no family record can be read back. */
+    var detail=bucket()+' | '+state.subNeed+(state.age?' | '+state.age:'');
+    fetch(SUPABASE_URL,{
+      method:'POST',
+      headers:{'apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},
+      body:JSON.stringify({
+        lang:'so',
+        campaign:'family-intake-v1',
+        name:state.name,
+        area:finalCity(),
+        num_children:needLabel(),
+        child_age:detail,
+        phone:state.phone
+      })
+    }).then(function(res){
+      if(!res.ok)throw new Error(String(res.status));
+      document.getElementById('thanksTitle').textContent='Mahadsanid, '+state.name+'!';
+      document.getElementById('summary').innerHTML=
+        '<div class="summary-row"><span>Magaalo</span><strong>'+escapeHtml(finalCity())+'</strong></div>'+ 
+        '<div class="summary-row"><span>Waxaad u baahan tahay</span><strong>'+escapeHtml(needLabel())+'</strong></div>'+ 
+        '<div class="summary-row"><span>Faahfaahin</span><strong>'+escapeHtml(state.subNeed)+'</strong></div>';
+      show('confirm');
+    }).catch(function(){
+      setError('Codsiga lama dirin. Fadlan mar kale isku day.');
+      submitBtn.disabled=false;submitBtn.textContent='Dir codsiga';
+    });
+  });
+
+  function escapeHtml(value){return String(value||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c];});}
+
+  document.getElementById('resetBtn').addEventListener('click',function(){
+    state={screen:'hero',city:'',customCity:'',mainNeed:'',age:'',subNeed:'',name:'',phone:''};
+    customCity.value='';nameInput.value='';phoneInput.value='';customCityWrap.hidden=true;customCityContinue.disabled=true;setError('');submitBtn.disabled=false;submitBtn.textContent='Dir codsiga';show('hero');
+  });
+
+  renderCities();renderNeeds();renderProgress();
+})();
+</script>
+</body>
+</html>
