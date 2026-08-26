@@ -21,3 +21,7 @@ jobs:
         run: python scripts/site_qa.py
       - name: Check tracker JavaScript syntax
         run: node --check tracker/app.js
+      - name: Check caawi JavaScript syntax
+        run: node --check caawi/app.js
+      - name: Run caawi regression tests
+        run: node --test tests/caawi.test.js
