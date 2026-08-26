@@ -45,13 +45,27 @@ test('multi-need payload keeps one primary lead and attaches extra needs', () =>
   const state = { name: 'Test User', phone: '+358401234567' };
   const requests = [
     { main_need: 'Shaqo', sub_need: 'Barnaamij shaqo ama tababar', age_group: null },
-    { main_need: 'Waxbarasho', sub_need: 'Baro Finnish ama hel koorso', age_group: null }
+    { main_need: 'Waxbarasho', sub_need: 'Baro Finnish ama hel koorso', age_group: null },
+    { main_need: 'Barnaamijyo', sub_need: 'Barnaamij ama hanke', age_group: null }
   ];
   const payload = core.buildSubmitPayload(state, IDS, { utm_source: 'test' }, 'Vantaa', requests);
   assert.equal(payload.main_need, 'Shaqo');
   assert.equal(payload.sub_need, 'Barnaamij shaqo ama tababar');
-  assert.equal(payload.additional_needs.length, 1);
+  assert.equal(payload.additional_needs.length, 2);
   assert.equal(payload.additional_needs[0].main_need, 'Waxbarasho');
+  assert.equal(payload.additional_needs[1].main_need, 'Barnaamijyo');
+  assert.equal(payload.form_version, 'phone-first-v2-multineed');
+});
+
+test('up to four distinct help categories can stay in one request', () => {
+  const list = core.normalizeRequests([
+    { main_need: 'Shaqo', sub_need: 'A' },
+    { main_need: 'Waxbarasho', sub_need: 'B' },
+    { main_need: 'Carruurta', sub_need: 'C', age_group: 'under7' },
+    { main_need: 'Barnaamijyo', sub_need: 'D' }
+  ]);
+  assert.equal(list.length, 4);
+  assert.equal(list[3].main_need, 'Barnaamijyo');
 });
 
 test('duplicate categories are collapsed to one request', () => {
@@ -64,6 +78,12 @@ test('duplicate categories are collapsed to one request', () => {
     { main_need: 'Shaqo', sub_need: 'A', age_group: null },
     { main_need: 'Waxbarasho', sub_need: 'C', age_group: null }
   ]);
+});
+
+test('contact payload is tagged with current form version', () => {
+  const state = { name: 'Test User', phone: '+358401234567' };
+  const payload = core.buildContactPayload(state, IDS, {}, '');
+  assert.equal(payload.form_version, 'phone-first-v2-multineed');
 });
 
 test('final selection sends one lead request then confirms', async () => {
