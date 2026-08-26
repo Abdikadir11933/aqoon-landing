@@ -6,6 +6,7 @@ on:
     paths:
       - '**/*.html'
       - 'sitemap.xml'
+      - 'vercel.json'
       - 'scripts/check_internal_routes.py'
       - '.github/workflows/verify-internal-routes.yml'
   schedule:
