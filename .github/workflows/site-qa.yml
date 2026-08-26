@@ -21,6 +21,8 @@ jobs:
         run: python scripts/site_qa.py
       - name: Check mobile usability and accessibility guards
         run: python scripts/usability_qa.py
+      - name: Check legal, independence and privacy guards
+        run: python scripts/legal_trust_qa.py
       - name: Check tracker JavaScript syntax
         run: node --check tracker/app.js
       - name: Check tracker visual JavaScript syntax
