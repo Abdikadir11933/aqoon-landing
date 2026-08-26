@@ -3,6 +3,8 @@
   <url><loc>https://aqoon.live/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
   <url><loc>https://aqoon.live/caawi</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
   <url><loc>https://aqoon.live/so</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://aqoon.live/so/sababta-aqoon</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aqoon.live/so/yaan-nahay</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://aqoon.live/so/linkit</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
   <url><loc>https://aqoon.live/so/maxaan-codsan-karaa</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
   <url><loc>https://aqoon.live/so/tyonhakijaksi</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
