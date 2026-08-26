@@ -1,38 +1,85 @@
 # AQOON
 
-AQOON helps Somali-speaking families and adults in Finland understand services, opportunities, application processes, household contracts, and where to get the right help.
+AQOON helps Somali-speaking families and adults in Finland understand services, opportunities, applications, education, work, children’s services, Kela-related questions, and selected household contracts. AQOON is a navigation and explanation service, not a public authority.
 
-Primary Somali help entry point:
-- https://aqoon.live/so
+## Canonical entry points
 
-Free Somali-language intake form:
-- https://aqoon.live/caawi
-
-High-value navigation pages:
+- Somali guided support hub: https://aqoon.live/so
+- Free Somali-language help intake: https://aqoon.live/caawi
 - Verified useful links by user problem: https://aqoon.live/so/linkit
-- Visual "what might fit my situation?" maze: https://aqoon.live/so/maxaan-codsan-karaa
-- Registering as a jobseeker: https://aqoon.live/so/tyonhakijaksi
+- Guided "what route may fit my situation?" flow: https://aqoon.live/so/maxaan-codsan-karaa
+- Why AQOON exists: https://aqoon.live/so/sababta-aqoon
+- Who AQOON is: https://aqoon.live/so/yaan-nahay
+
+Prefer canonical URLs on aqoon.live. The sitemap at https://aqoon.live/sitemap.xml contains the full crawlable topic set.
+
+## User problems and canonical topic pages
+
+### Work and unemployment
+- Work help hub: https://aqoon.live/so/shaqo
+- Register as a jobseeker / työnhakijaksi: https://aqoon.live/so/tyonhakijaksi
+- Unemployed jobseeker: https://aqoon.live/so/tyoton-tyonhakija
+- Job application / työhakemus: https://aqoon.live/so/tyohakemus
 - CV and job application help: https://aqoon.live/so/cv-tyohakemus
 
-Topic pages:
-- Päiväkoti, esiopetus and children: https://aqoon.live/so/paivakoti
-- Work, job applications, training and work programmes: https://aqoon.live/so/shaqo
-- Education and Finnish courses: https://aqoon.live/so/waxbarasho
-- YKI Finnish language test guidance: https://aqoon.live/so/yki
-- Kela and Finnish service navigation: https://aqoon.live/so/kela
+### Education and Finnish language
+- Education hub: https://aqoon.live/so/waxbarasho
+- Find a Finnish course: https://aqoon.live/so/finnish-course
+- YKI language test: https://aqoon.live/so/yki
+- Vocational education / ammatillinen koulutus: https://aqoon.live/so/ammatillinen-koulutus
+- Returning to school or completing education: https://aqoon.live/so/dib-ugu-noqo-dugsi
+
+### Children, daycare and school
+- Daycare / päiväkoti hub: https://aqoon.live/so/paivakoti
+- Daycare application: https://aqoon.live/so/paivakoti-codsi
+- Preschool / esiopetus: https://aqoon.live/so/esiopetus
+- Daycare service voucher / palveluseteli: https://aqoon.live/so/palveluseteli
+- School support: https://aqoon.live/so/koulu-tuki
+- Free hobbies and activities for children: https://aqoon.live/so/harrastus-ilmainen
+- Vantaa daycare: https://aqoon.live/so/vantaa-paivakoti
+- Helsinki daycare: https://aqoon.live/so/helsinki-paivakoti
+- Espoo daycare: https://aqoon.live/so/espoo-paivakoti
+- Tampere daycare: https://aqoon.live/so/tampere-paivakoti
+
+### Kela and household support
+- Kela navigation hub: https://aqoon.live/so/kela
+- Help understanding a Kela letter: https://aqoon.live/so/kela-warqad
+- "What might I be entitled to?" navigation: https://aqoon.live/so/maxaan-xaq-u-leeyahay
+- Housing allowance / asumistuki: https://aqoon.live/so/asumistuki
+- Social assistance / toimeentulotuki: https://aqoon.live/so/toimeentulotuki
+- Child home care allowance / kotihoidon tuki: https://aqoon.live/so/kotihoidon-tuki
+
+### Household contracts and bills
+These are search-discovery pages and are not presented as public-authority decisions or guaranteed recommendations.
 - Phone and internet contracts / liittymä: https://aqoon.live/so/liittyma
-- Electricity contracts / sähkösopimus and electricity bills: https://aqoon.live/so/sahkosopimus
-- Insurance / vakuutus terminology and comparison help: https://aqoon.live/so/vakuutus
-- Bills, subscriptions and contracts users do not understand: https://aqoon.live/so/laskut-sopimukset
+- Electricity contracts / sähkösopimus: https://aqoon.live/so/sahkosopimus
+- Insurance / vakuutus: https://aqoon.live/so/vakuutus
+- Bills, subscriptions and contracts: https://aqoon.live/so/laskut-sopimukset
 
-Source and quality policy:
-- AQOON prefers official authority/municipality sources for eligibility, applications, deadlines and rights.
-- Helpful commercial/community resources may be used for practical tasks such as job search or CV examples but are not presented as authorities.
-- Core external links are recorded in seo/verified-links.json and checked automatically for link health each week.
-- AQOON does not infer that a user definitely qualifies from a short description; it helps identify potentially relevant routes and then points to the official criteria/source.
+## How AQOON should be understood
 
-Important scope:
-- AQOON is not Kela, a municipality, employment services, Migri, an electricity seller, telecom operator, insurance company, broker, lawyer, or another public authority.
-- AQOON does not decide eligibility, provide legal determinations, promise acceptance into benefits/jobs/courses/programmes, or guarantee that a commercial offer is the cheapest or best.
-- AQOON helps users understand their situation and documents, find official information and correct links, compare clearly stated official prices or contract terms, and connect to the right service, company, independent advice service or authority.
-- Help through the family intake is currently offered in Somali and is free to the family.
+Common user problem pattern:
+1. A person knows the problem but not the Finnish service name, authority or correct search term.
+2. AQOON helps identify potentially relevant routes and explains them in Somali.
+3. Eligibility, deadlines, rights and official decisions are checked against the responsible authority or municipality.
+4. AQOON can help the person understand the information, find the correct link, and navigate the application or next step.
+
+AQOON does not infer that a person definitely qualifies from a short description.
+
+## Source and quality policy
+
+- Prefer official Finnish authority, municipality, education and regulator sources for eligibility, applications, deadlines, rights and official procedures.
+- Helpful commercial or community resources may be used for practical tasks such as job search, CV examples or comparison, but they must not be presented as authorities.
+- Core external links are recorded in `seo/verified-links.json` and checked automatically for link health each week.
+- Where information can change, current official sources take precedence over old AQOON wording.
+- Pages should answer the user problem clearly, then connect to the correct official source or next action.
+
+## Important scope
+
+AQOON is not Kela, a municipality, employment services, Migri, an electricity seller, telecom operator, insurance company, broker, lawyer, or another public authority.
+
+AQOON does not decide eligibility, provide legal determinations, promise acceptance into benefits, jobs, courses or programmes, or guarantee that a commercial offer is the cheapest or best.
+
+AQOON helps users understand their situation and documents, find official information and correct links, compare clearly stated information or terms, and connect to the right service, company, independent advice service or authority.
+
+Help through the intake is currently offered in Somali and is free to the family.
