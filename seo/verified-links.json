@@ -1,0 +1,25 @@
+{
+  "checked_at": "2026-08-26",
+  "policy": "Official links are preferred for eligibility, applications and rights. Helpful links may support job search or learning but are never presented as authorities.",
+  "links": [
+    {"id":"jobseeker-register","category":"work","type":"official","owner":"Job Market Finland","pain":"I became unemployed or need to register as a jobseeker","url":"https://tyomarkkinatori.fi/en/personal-customers/information-about-working-life/search-for-work/registration-as-a-job-seeker"},
+    {"id":"jobmarket-eservices","category":"work","type":"official","owner":"Job Market Finland","pain":"I need to handle employment-service matters","url":"https://tyomarkkinatori.fi/en/personal-customers/official-matters"},
+    {"id":"kela-unemployed","category":"work","type":"official","owner":"Kela","pain":"I became unemployed and need to understand the benefit route","url":"https://www.kela.fi/if-you-become-unemployed"},
+    {"id":"kela-unemployment-benefits","category":"work","type":"official","owner":"Kela","pain":"I need current unemployment-benefit information","url":"https://www.kela.fi/unemployment-benefits"},
+    {"id":"duunitori-jobs","category":"work","type":"helpful","owner":"Duunitori","pain":"I want to search open jobs","url":"https://duunitori.fi/tyopaikat"},
+    {"id":"duunitori-application","category":"work","type":"helpful","owner":"Duunitori","pain":"I need examples for a job application","url":"https://duunitori.fi/tyoelama/tyonhakuopas/tyohakemus/"},
+    {"id":"helsinki-cv","category":"work","type":"official-help","owner":"City of Helsinki","pain":"I need a CV or application guide, including Somali CV material","url":"https://www.hel.fi/fi/yritykset-ja-tyo/tyonhakijat/kehita-tyonhakutaitojasi/tee-cv-ja-tyohakemus"},
+    {"id":"studyinfo","category":"education","type":"official","owner":"Finnish National Agency for Education / Studyinfo","pain":"I need to search education and application options","url":"https://opintopolku.fi/konfo/en/"},
+    {"id":"yki-register","category":"education","type":"official","owner":"Finnish National Agency for Education","pain":"I need to register for YKI","url":"https://www.oph.fi/en/education-and-qualifications/registering-yki-test"},
+    {"id":"finnishcourses","category":"education","type":"helpful","owner":"Finnishcourses.fi","pain":"I want to search Finnish-language courses","url":"https://finnishcourses.fi/"},
+    {"id":"helsinki-daycare","category":"children","type":"official","owner":"City of Helsinki","pain":"I need to apply for early childhood education in Helsinki","url":"https://www.hel.fi/en/childhood-and-education/early-childhood-education/applying-for-early-childhood-education"},
+    {"id":"vantaa-daycare","category":"children","type":"official","owner":"City of Vantaa","pain":"I need to apply for early childhood education in Vantaa","url":"https://www.vantaa.fi/en/education-and-learning/early-childhood-education/applying-early-childhood-education"},
+    {"id":"espoo-daycare","category":"children","type":"official","owner":"City of Espoo","pain":"I need to apply for municipal early childhood education in Espoo","url":"https://www.espoo.fi/en/childcare-and-education/early-childhood-education/applying-municipal-early-childhood-education"},
+    {"id":"tampere-daycare","category":"children","type":"official","owner":"City of Tampere","pain":"I need to apply for early childhood education in Tampere","url":"https://www.tampere.fi/en/early-childhood-education-and-pre-primary-education/early-childhood-education/applying-and-terminating-place-early-childhood-education-and-care/applying-early-childhood-education"},
+    {"id":"electricity-compare","category":"household","type":"official","owner":"Energy Authority comparison service","pain":"I want to compare electricity contracts","url":"https://www.sahkonhinta.fi/"},
+    {"id":"traficom-subscription","category":"household","type":"official","owner":"Traficom","pain":"I do not understand a phone or broadband subscription contract","url":"https://www.traficom.fi/en/telephone-and-broadband/telephone-and-broadband-users/subscriber-connection-agreement"},
+    {"id":"fine","category":"household","type":"official-independent","owner":"FINE","pain":"I need independent insurance or financial advice","url":"https://www.fine.fi/en"},
+    {"id":"kkv-contracts","category":"household","type":"official","owner":"KKV","pain":"I do not understand a consumer contract or its terms","url":"https://www.kkv.fi/en/consumer-affairs/contracts/"},
+    {"id":"kkv-advice","category":"household","type":"official","owner":"KKV Consumer Advisory Services","pain":"I have a consumer dispute or need guidance","url":"https://www.kkv.fi/en/consumer-affairs/consumer-advisory-services/"}
+  ]
+}
