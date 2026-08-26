@@ -1,0 +1,24 @@
+name: Verify internal routes
+on:
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - '**/*.html'
+      - 'sitemap.xml'
+      - 'scripts/check_internal_routes.py'
+      - '.github/workflows/verify-internal-routes.yml'
+  schedule:
+    - cron: '11 5 * * 1'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check internal links and sitemap routes
+        run: python scripts/check_internal_routes.py
