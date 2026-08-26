@@ -42,10 +42,13 @@ def meta_content(html, name):
 required = [
     "index.html",
     "caawi/index.html",
+    "caawi/app.css",
+    "caawi/app.js",
     "so/index.html",
     "tracker/index.html",
     "tracker/app.css",
     "tracker/app.js",
+    "tests/caawi.test.js",
     "robots.txt",
     "sitemap.xml",
     "llms.txt",
@@ -57,6 +60,7 @@ for path in required:
 tracker = (ROOT / "tracker/index.html").read_text(encoding="utf-8")
 robots = (ROOT / "robots.txt").read_text(encoding="utf-8")
 caawi = (ROOT / "caawi/index.html").read_text(encoding="utf-8")
+caawi_js = (ROOT / "caawi/app.js").read_text(encoding="utf-8")
 llms = (ROOT / "llms.txt").read_text(encoding="utf-8")
 
 # Tracker privacy + asset integrity.
@@ -69,12 +73,19 @@ if "Disallow: /tracker" not in robots:
     fail("robots.txt must disallow /tracker")
 
 # Family intake architecture guardrails.
+for asset in ("/caawi/app.css", "/caawi/app.js"):
+    if asset not in caawi:
+        fail(f"caawi/index.html does not reference {asset}")
+if re.search(r"<style(?:\s|>)", caawi, re.I):
+    fail("caawi styles should stay in caawi/app.css, not inline")
+if re.search(r"<script(?![^>]*\bsrc=)[^>]*>", caawi, re.I):
+    fail("caawi application JavaScript should stay in caawi/app.js, not inline")
 for endpoint in ("family-intake-contact", "family-intake-submit", "family-funnel-track"):
-    if endpoint not in caawi:
-        fail(f"caawi is missing expected Edge Function reference: {endpoint}")
+    if endpoint not in caawi_js:
+        fail(f"caawi/app.js is missing expected Edge Function reference: {endpoint}")
 for forbidden in ("SUPABASE_SERVICE_ROLE_KEY", "service_role", "SUPABASE_ANON_KEY"):
-    if forbidden in caawi:
-        fail(f"caawi contains forbidden browser credential marker: {forbidden}")
+    if forbidden in caawi or forbidden in caawi_js:
+        fail(f"caawi browser code contains forbidden credential marker: {forbidden}")
 if 'rel="canonical" href="https://aqoon.live/caawi"' not in caawi:
     fail("caawi canonical URL is missing or changed")
 if "index,follow" not in caawi.replace(" ", "").lower():
