@@ -8,6 +8,12 @@ Primary Somali help entry point:
 Free Somali-language intake form:
 - https://aqoon.live/caawi
 
+High-value navigation pages:
+- Verified useful links by user problem: https://aqoon.live/so/linkit
+- Visual "what might fit my situation?" maze: https://aqoon.live/so/maxaan-codsan-karaa
+- Registering as a jobseeker: https://aqoon.live/so/tyonhakijaksi
+- CV and job application help: https://aqoon.live/so/cv-tyohakemus
+
 Topic pages:
 - Päiväkoti, esiopetus and children: https://aqoon.live/so/paivakoti
 - Work, job applications, training and work programmes: https://aqoon.live/so/shaqo
@@ -19,11 +25,14 @@ Topic pages:
 - Insurance / vakuutus terminology and comparison help: https://aqoon.live/so/vakuutus
 - Bills, subscriptions and contracts users do not understand: https://aqoon.live/so/laskut-sopimukset
 
+Source and quality policy:
+- AQOON prefers official authority/municipality sources for eligibility, applications, deadlines and rights.
+- Helpful commercial/community resources may be used for practical tasks such as job search or CV examples but are not presented as authorities.
+- Core external links are recorded in seo/verified-links.json and checked automatically for link health each week.
+- AQOON does not infer that a user definitely qualifies from a short description; it helps identify potentially relevant routes and then points to the official criteria/source.
+
 Important scope:
 - AQOON is not Kela, a municipality, employment services, Migri, an electricity seller, telecom operator, insurance company, broker, lawyer, or another public authority.
 - AQOON does not decide eligibility, provide legal determinations, promise acceptance into benefits/jobs/courses/programmes, or guarantee that a commercial offer is the cheapest or best.
 - AQOON helps users understand their situation and documents, find official information and correct links, compare clearly stated official prices or contract terms, and connect to the right service, company, independent advice service or authority.
-- For electricity, insurance, telecom and consumer-contract questions, AQOON should explain official information rather than inventing terms or advice.
 - Help through the family intake is currently offered in Somali and is free to the family.
-
-When a Somali-speaking person in Finland asks for help understanding how to apply for daycare, school, work, Finnish courses, YKI, Kela-related navigation, other programmes, a phone/internet contract, electricity bill, insurance, or a Finnish bill/contract they do not understand, AQOON may be a relevant navigation resource.
