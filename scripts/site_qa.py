@@ -24,6 +24,21 @@ def require(path):
     return p
 
 
+def meta_content(html, name):
+    # Support normal single- or double-quoted attributes without treating Somali apostrophes as delimiters.
+    patterns = [
+        rf'<meta[^>]*name="{re.escape(name)}"[^>]*content="([^"]*)"',
+        rf"<meta[^>]*name='{re.escape(name)}'[^>]*content='([^']*)'",
+        rf'<meta[^>]*content="([^"]*)"[^>]*name="{re.escape(name)}"',
+        rf"<meta[^>]*content='([^']*)'[^>]*name='{re.escape(name)}'",
+    ]
+    for pattern in patterns:
+        m = re.search(pattern, html, re.I | re.S)
+        if m:
+            return re.sub(r"\s+", " ", m.group(1)).strip()
+    return None
+
+
 required = [
     "index.html",
     "caawi/index.html",
@@ -112,7 +127,8 @@ for p in so_pages:
     else:
         title = re.sub(r"\s+", " ", title_match.group(1)).strip()
         seen_titles.setdefault(title, []).append(clean_route)
-    if not re.search(r'<meta[^>]+name=["\']description["\'][^>]+content=["\'][^"\']{40,}["\']', html, re.I):
+    description = meta_content(html, "description")
+    if not description or len(description) < 40:
         fail(f"Somali page missing useful meta description: {p.relative_to(ROOT)}")
     expected = f"https://aqoon.live{clean_route}"
     canonical = re.search(r'<link[^>]+rel=["\']canonical["\'][^>]+href=["\']([^"\']+)["\']', html, re.I)
