@@ -1,0 +1,21 @@
+/* Final usability/accessibility safeguards. No copy or flow changes. */
+button,a,input,select,textarea{-webkit-tap-highlight-color:transparent}
+.back,.reset,.leave-anyway,.seo-link a{min-height:48px}
+.back{padding:8px 0}
+.option,.primary{min-height:52px}
+input{font-size:16px}
+.hero-copy,.success p,.leave-card p{font-size:16px}
+.final-note{font-size:15px}
+.privacy{font-size:12px}
+.phone-help,.form-time,.seo-link small,.option small{font-size:12px}
+:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+@media (hover:hover) and (pointer:fine){.option:hover,.seo-link a:hover,.reset:hover,.leave-anyway:hover{border-color:var(--teal)}.primary:hover{filter:brightness(.98)}}
+@media(max-width:520px){
+  .shell{width:min(100% - 28px,410px)}
+  .back,.reset,.leave-anyway,.seo-link a,.primary,.option{min-height:48px}
+  .hero-copy{font-size:16px;line-height:1.55}
+  .chip{font-size:13px}
+  .free{font-size:14px}
+}
+@media(min-width:900px){.shell{width:min(100% - 48px,430px)}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
