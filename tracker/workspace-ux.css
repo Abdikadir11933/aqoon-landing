@@ -1,0 +1,86 @@
+/* Operational density layer. Keep decisions visible, reveal detail on demand. */
+.today-pulse{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:0 0 11px}
+.today-pulse button{min-width:0;border:1px solid var(--l);border-radius:14px;background:#fff;padding:10px 8px;text-align:left;color:var(--n);cursor:pointer;box-shadow:var(--shadow)}
+.today-pulse button:first-child{border-color:#f0d79d;background:#fffaf0}
+.today-pulse strong{display:block;font:900 21px/1 var(--f);font-variant-numeric:tabular-nums}
+.today-pulse span{display:block;margin-top:4px;color:var(--m);font-size:8px;line-height:1.15}
+.today-flow-grid{display:grid;gap:11px}
+.clock-card,.pipeline-card{cursor:pointer}
+.queue-note{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:9px 1px 8px;padding:0 2px;color:var(--m);font-size:9px}
+.queue-note strong{color:var(--n);font-size:11px}.queue-note span{text-align:right;max-width:230px}
+.family-queues{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(104px,1fr);gap:7px;overflow-x:auto;overscroll-behavior-inline:contain;padding:1px 0 8px;margin:0 -1px 3px;scrollbar-width:none}
+.family-queues::-webkit-scrollbar{display:none}
+.family-queues button{display:flex;justify-content:space-between;align-items:center;gap:8px;border:1px solid var(--l);border-radius:13px;background:#fff;color:var(--m);padding:9px 10px;white-space:nowrap;font-size:9px;font-weight:700;cursor:pointer}
+.family-queues button strong{display:grid;place-items:center;min-width:21px;height:21px;border-radius:999px;background:var(--c);color:var(--n);font-size:9px;font-variant-numeric:tabular-nums}
+.family-queues button.on{background:var(--n);border-color:var(--n);color:#fff}.family-queues button.on strong{background:#ffffff1f;color:#fff}
+.supporting-filters{display:none}
+.crm-view .result-meta{display:flex;justify-content:space-between;gap:10px;color:var(--m);font-size:8px;margin:8px 2px}
+.crm-view .triage-label{display:none}
+.crm-view .lead-list{gap:6px}
+.crm-view .lead{border-radius:13px;box-shadow:none}
+.crm-view .lead-summary{min-height:57px;padding:8px 10px;border-left-width:3px;gap:8px}
+.crm-view .lead-summary h3{font-size:12px;line-height:1.1}
+.crm-view .lead-summary .pills{margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.crm-view .lead-summary .pill{font-size:8px}
+.crm-view .sla-ring{width:36px;height:36px}.crm-view .sla-ring:after{inset:4px}.crm-view .sla-ring span{font-size:8px}
+.partial-lead .lead-summary{cursor:default}.partial-lead .pills .pill{color:#9a7a3f}
+.partial-actions{display:flex;gap:5px;align-items:center;flex-wrap:nowrap}
+.partial-actions .btn,.partial-delete{min-height:34px;border-radius:9px;padding:7px 10px;font-size:8px;white-space:nowrap}
+.partial-actions .partial-call{background:var(--c);color:var(--n)}
+.partial-actions .partial-finish{background:var(--n);color:#fff}
+.partial-delete{width:34px;overflow:hidden;color:transparent;position:relative;background:#fee8e5}
+.partial-delete:after{content:'×';position:absolute;inset:0;display:grid;place-items:center;color:#a83f37;font-size:17px;font-weight:500}
+.show-more{width:100%;border:1px solid var(--l);border-radius:12px;background:#fff;color:var(--n);padding:11px;margin-top:8px;font-size:10px;font-weight:700;cursor:pointer}
+
+.sales-view{max-width:900px}
+.sales-health>div{min-width:0}.sales-health span{line-height:1.15;display:block}
+.sales-pipeline{gap:7px}
+.opportunity{position:relative;display:grid;grid-template-columns:4px minmax(0,1fr) 18px;gap:10px;align-items:center;min-height:0!important;padding:0 11px 0 0;overflow:hidden;border-radius:15px}
+.opp-rail{align-self:stretch;background:var(--t)}.opp-rail.waiting{background:var(--sand)}.opp-rail.at_risk,.opp-rail.blocked{background:var(--r)}
+.opp-content{padding:11px 0;min-width:0}.opp-open{color:#aaa;font-size:22px}
+.opp-top{align-items:center}.opp-top h3{font-size:13px}.opp-contact{font-size:8px}
+.opp-now{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:7px;margin-top:8px;padding:8px 9px;border-radius:10px;background:#f7f4ed}
+.opp-now span{font-size:7px;font-weight:800;letter-spacing:.08em;color:#9a968f}.opp-now strong{font-size:9px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.opp-now time{font-size:8px;color:var(--m);white-space:nowrap}
+.opp-summary{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;margin:7px 1px 0;font-size:8px}
+.opp-progress{margin-top:8px}.opp-progress i{height:3px}
+
+.ops-modal{padding:0;place-items:end center;background:#091726aa}
+.ops-modal-card{display:flex;flex-direction:column;width:min(720px,100%);height:min(92dvh,780px);max-height:none;overflow:hidden;border-radius:22px 22px 0 0;padding:0;background:var(--p)}
+.ops-modal-card>.drawer-top{flex:0 0 auto;position:static;top:auto;padding:14px 16px 10px;background:var(--p);border-bottom:1px solid var(--l)}
+.ops-modal-card>.drawer-top h2{font-size:19px}.ops-modal-card>.drawer-top small{font-size:8px}
+#opsFormBody{flex:1;overflow:auto;padding:0 15px 18px}
+.ops-editor-tabs{position:sticky;top:0;z-index:3;display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:9px 0;background:var(--p)}
+.ops-editor-tabs button{border:0;border-radius:10px;background:#eae5db;color:#8b8984;padding:9px;font-size:9px;font-weight:800;cursor:pointer}
+.ops-editor-tabs button.on{background:var(--n);color:#fff}.ops-editor-tabs span{opacity:.7}
+.ops-editor-panel{padding:1px 0}
+.editor-intro{display:flex;justify-content:space-between;align-items:start;gap:14px;margin:7px 1px 2px}
+.editor-intro strong{font-size:11px}.editor-intro span{max-width:240px;color:var(--m);font-size:8px;text-align:right;line-height:1.3}
+.ops-field{margin-top:8px}.ops-field label{font-size:8px;margin-bottom:4px}
+.ops-field input,.ops-field select,.ops-field textarea{border-radius:11px;padding:10px 11px;font-size:11px;min-height:40px}
+.ops-field textarea{min-height:52px;max-height:180px;resize:none;overflow-y:auto}
+.ops-form-actions{flex:0 0 auto;position:relative;z-index:4;margin:0;padding:10px 15px max(10px,env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--l)}
+.ops-form-actions #saveOpsRecord{margin-left:auto;min-width:118px}.ops-form-actions #deleteOpsRecord{margin-right:auto}
+.ops-timeline{margin:0;border:0;padding:4px 0}.timeline-row{padding:8px 1px;margin:0;border-bottom:1px solid var(--l)}
+.activity-composer{margin-top:12px;padding:11px;border-radius:14px;background:#fff;border:1px solid var(--l)}
+.compact-empty{padding:16px 6px;font-size:9px}
+
+@media(min-width:700px){
+  .today-flow-grid{grid-template-columns:1fr 1.25fr}.today-flow-grid .command-card{height:100%}
+  .sales-pipeline{grid-template-columns:1fr 1fr}.opportunity{min-height:150px!important}
+  .ops-modal{place-items:center;padding:22px}.ops-modal-card{border-radius:22px;height:min(86dvh,760px)}
+}
+@media(max-width:520px){
+  .today-pulse{gap:5px}.today-pulse button{padding:9px 6px}.today-pulse strong{font-size:18px}.today-pulse span{font-size:7px}
+  .clock-card{padding-bottom:7px}.clock-card .sla-clock{height:82px;padding-top:22px}.pipeline-card{padding-bottom:10px}
+  .today-mini-grid{grid-template-columns:1fr 1fr}.mini-command{min-height:106px}.leak-bars,.spark-bars{height:27px;margin-top:8px}
+  .queue-note span{display:none}.family-queues{grid-auto-columns:112px}
+  .crm-view .lead-summary{min-height:58px}.partial-actions .btn,.partial-delete{padding:7px 9px}.partial-actions .partial-call{width:34px;color:transparent;position:relative}.partial-actions .partial-call:after{content:'☎';position:absolute;inset:0;display:grid;place-items:center;color:var(--n);font-size:12px}
+  .sales-head{align-items:center}.sales-head h2{font-size:23px}.sales-head p{display:none}.sales-head .btn{min-height:36px;padding:8px 11px;font-size:9px}
+  .sales-health>div{padding:8px 7px}.sales-health strong{font-size:16px}.sales-health span{font-size:7px}
+  .opp-summary{display:none}.opp-now{grid-template-columns:auto minmax(0,1fr)}.opp-now time{grid-column:2}.opp-progress{margin-top:7px}
+  .ops-grid{gap:7px}.editor-intro{display:block}.editor-intro span{display:block;max-width:none;text-align:left;margin-top:3px}
+}
+@media(max-width:380px){
+  .family-queues{grid-auto-columns:105px}.partial-actions{gap:4px}.partial-actions .partial-finish{padding-inline:8px}.partial-delete{width:31px}
+  .today-pulse span{min-height:16px}.opp-now time{display:none}
+}
