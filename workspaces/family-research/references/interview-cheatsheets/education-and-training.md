@@ -1,102 +1,53 @@
-# Education, training and workplace-learning cheat sheet
+# Education and training cheat sheet
 
-Last verified: 2026-08-27. Primary sources: Finnish National Agency for Education (OPH) and Job Market Finland.
+Updated 2026-08-27. Before a client starts studies, check how the studies affect unemployment support.
 
-## 1. Oppisopimus — apprenticeship
+## Työvoimakoulutus
+**What it is:** Training procured/organised by employment services to improve employment prospects. Can include vocational, entrepreneurship and integration training.
 
-**One-sentence explanation:** “You work for an employer, receive salary, and learn toward a vocational qualification or qualification unit at the same time.”
+**Criteria:** Programme criteria + authority/provider selection.
 
-**Paid?** **Yes — salary.** The learner is in an employment/official-service relationship and pay follows the applicable collective agreement / agreed employment terms.
+**Paid?** Normally free to participant. Unemployment benefit usually continues when conditions are met; expense allowance may be possible.
 
-**Minimum age:** 15.
+**How to start:** Search available labour-market training and apply through specified employment-service route.
 
-**Work time:** average at least **25 hours/week**.
+**Ask:** Target profession? Finnish? Schedule? Childcare? Travel? Required work cards? Is job search active?
 
-**What can be completed:** whole vocational qualification, qualification unit(s), or smaller vocational competence; not every form of preparatory training can be done as an apprenticeship.
+**Watch out:** Licence/card-related costs can differ by programme.
 
-**What is needed:**
-- suitable workplace and tasks that allow required competence to be learned
-- employer willing to employ the learner
-- education provider approves workplace as a learning environment
-- HOKS/personal competence-development plan for the apprenticeship
-- written apprenticeship/employment agreement
+## Omaehtoinen opiskelu työttömyysetuudella
+**What it is:** Ordinary education chosen by client that can under specific rules be compatible with unemployment benefit.
 
-**How to start:** Usually find or discuss a suitable employer and contact a vocational education provider/apprenticeship service. The education provider checks the workplace and builds the HOKS with the parties.
+**Criteria:** Different rules for short-term, part-time and full-time studies. For supported full-time study, authority normally assesses training need and agrees studies before they start. Current guidance describes short-term study as up to 6 months subject to other conditions.
 
-**If client says YES but only if paid:** note that **oppisopimus is the paid version** of workplace learning. Confirm actual wage and hours with employer/provider.
+**Paid?** Not salary; unemployment benefit may continue if allowed/approved.
 
-**If client says NO:** ask why — field, hours, childcare, language, salary concern, or does not want a qualification. Explain it is a normal paid employment relationship combined with study, not an unpaid placement.
+**How to start:** Contact employment authority while planning or immediately after applying; do not wait until studies are already underway.
 
-**Possible extra support:** On non-paid school learning days, apprenticeship students can under rules receive certain study-social benefits; check provider/current rules for the exact case.
+**Ask:** What programme? School? Start date? End date? Full-time? Already started? Discussed with employment services?
 
-Source: https://www.oph.fi/fi/koulutus-ja-tutkinnot/tyoelamassa-oppiminen
+**Watch out:** Never advise “start first, ask about benefit later.”
 
----
+## TUVA
+**What it is:** Preparatory education before vocational school or upper-secondary school for people needing skills/guidance and without an upper-secondary qualification.
 
-## 2. Koulutussopimus — training agreement
+**Paid?** Education, not employment. Student financing depends on individual situation.
 
-**One-sentence explanation:** “You learn at a workplace as a student, but you are not employed by that workplace.”
+**How to start:** Apply through provider / Studyinfo route appropriate to the applicant.
 
-**Paid salary?** **No.** There is no employment relationship and the workplace does not pay salary or other compensation to the student for the work placement.
+**Next:** Can strengthen study language/basic skills/grades and lead into vocational or lukio studies.
 
-**Difference from oppisopimus:**
-- oppisopimus = paid employment + study
-- koulutussopimus = student workplace learning, no employment salary
+**Ask:** Is upper-secondary qualification missing? Is Finnish/study skill the barrier? Does client want vocational study?
 
-**Length:** No statutory minimum duration; length follows the individual learning need.
+## Ammatillinen koulutus
+**What it is:** Vocational qualification or qualification units for a profession.
 
-**How arranged:** Education provider + workplace make the training agreement and the relevant HOKS part defines learning tasks/goals. Student approves their HOKS.
+**Criteria:** Provider-specific; route can be joint application or continuous admission depending on background.
 
-**When useful:** Person is already a vocational student and needs workplace-based competence but does not yet have a paid apprenticeship/employment arrangement.
+**Paid?** Education. Can also be completed through paid oppisopimus if suitable employer/arrangement exists.
 
-Source: https://www.oph.fi/fi/koulutus-ja-tutkinnot/tyoelamassa-oppiminen
+**How to start:** Search Opintopolku/provider pages; adults with prior qualifications often use continuous admission.
 
----
+**Next:** Provider assesses admission and creates HOKS.
 
-## 3. Työvoimakoulutus — labour-market training
-
-**What it is:** Training procured/arranged by the employment authority to improve vocational skills and employment. It can include vocational, entrepreneurship or integration training.
-
-**Tuition cost:** Normally **free** to the participant; some card/licence training can still have fees.
-
-**Income while studying:** If unemployed, the person can receive the same unemployment benefit as while unemployed when conditions are met; expense allowance may also be possible for participation costs.
-
-**How to apply:** Through Job Market Finland/local employment services to a specific labour-market training. Selection criteria depend on the training and authority/provider.
-
-**Good fit:** retraining, missing current vocational skills, language + occupation route, employer-linked recruitment training.
-
-Source: https://tyomarkkinatori.fi/lisatietoa-palveluista/tyovoimakoulutus
-
----
-
-## 4. Omaehtoinen opiskelu työttömyysetuudella — self-motivated study with unemployment benefit
-
-**What it is:** Ordinary education chosen/provided by an educational institution, but in certain cases the person may keep unemployment benefit while studying.
-
-**Critical rule:** Do **not** tell a client to start full-time study first and ask later. The effect on unemployment benefit must be checked/agreed with employment services according to the study type and person's situation.
-
-**Possible categories:** short-term, part-time, and in some circumstances full-time studies can be supported.
-
-**Short-term study:** Current Job Market Finland guidance describes studies of up to six months as short-term under this route, subject to conditions.
-
-**Ongoing obligations:** The person may still have duties to seek/accept work and participate in services depending on the route.
-
-**Good interview questions:**
-- exact course/qualification and provider
-- start/end date
-- full-time or part-time
-- has study already started?
-- is it already discussed/agreed with employment services?
-- current benefit payer
-
-Source: https://tyomarkkinatori.fi/lisatietoa-palveluista/omaehtoinen-opiskelu-tyottomyysetuudella
-
----
-
-## 5. Vocational education / HOKS quick note
-
-Vocational education is individualized through a HOKS. From 1.8.2026 the learning-support framework was updated: students have a right to learning support throughout studies when needed to reach qualification competence goals, and special support when ordinary learning support is insufficient.
-
-For a family interview, ask about previous education, certificates, Finnish/English level, target occupation, schedule/childcare, travel, and whether recognition of earlier competence can shorten the route.
-
-Source: https://www.oph.fi/fi/uutiset/2026/oppimisen-tuen-uudistus-vahvistaa-opiskelijoiden-oikeutta-tukeen-ammatillisessa
+**Ask:** Target profession? Prior qualification? Certificates? Finnish level? Could paid oppisopimus fit better?

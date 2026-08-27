@@ -1,157 +1,99 @@
 # Work and unemployment cheat sheet
 
-Last verified: 2026-08-27. Primary source owner: Job Market Finland / local employment authority; benefit payer: Kela or unemployment fund.
+Updated 2026-08-27. Recheck live Työmarkkinatori/Kela rules before case-specific promises.
 
-## 1. Ilmoittautuminen työnhakijaksi — registering as a jobseeker
+## Ilmoittautuminen työttömäksi työnhakijaksi
+**What it is:** Official registration as an unemployed jobseeker with the local employment authority through Työmarkkinatori.
 
-**What it is:** Opening an official job search with the person's municipality employment services through Job Market Finland's Asiointi service.
+**Criteria / when it fits:** Person is unemployed or becoming unemployed and available for job search. Benefit rights are assessed separately.
 
-**Why it matters:** It gives access to employment services and is normally required before unemployment benefit can be paid.
+**Paid?** No. Registration itself is not money.
 
-**Paid?** Registration itself is not a payment. It is the gateway to services and to a labour-policy statement used by Kela/unemployment funds.
+**How to start:** Työmarkkinatori -> Asiointi -> register as jobseeker. Do it by the first day of unemployment if support is needed from the start.
 
-**When:** Register no later than the first day of unemployment if the person wants unemployment benefit from the start of unemployment.
+**What opens next:** Employment authority can assess labour-policy conditions and services; Kela/unemployment fund separately decides payment.
 
-**How:** Job Market Finland → Asiointi → register as a jobseeker. If electronic identification is a problem, route to the local employment authority for another channel.
+**Ask:** Onko työnhaku juuri nyt voimassa? Milloin se alkoi? Onko tullut tehtäviä tai viestejä Työmarkkinatorille?
 
-**Ask in interview:**
-- Is job search active RIGHT NOW, not just previously registered?
-- Which municipality is the registered home municipality?
-- Is there an open request/task/deadline in Asiointi?
-- Is the person available for work and able to receive offers/services?
+**Watch out:** Registration is a key first door, not a guarantee of benefit.
 
-**If they say no:** explain: “This is the official registration that usually has to be active before unemployment support and many employment services can work.” Ask if they want help registering.
+## Yleistuki
+**What it is:** Kela unemployment support from 1 May 2026, replacing Kela’s old työmarkkinatuki and peruspäiväraha.
 
-**Do not promise:** that registration automatically creates a right to money.
+**Criteria / when it fits:** Generally unemployed jobseeker aged 18-64, permanently living in Finland, without earnings-related allowance or after it has ended; income rules can reduce amount.
 
-Source: https://tyomarkkinatori.fi/henkiloasiakkaat/tietoa-tyoelamasta/tilanteet/olen-tyoton-tai-jaamassa-tyottomaksi
+**Paid?** Yes - Kela benefit. 2026 basic amount in the operator PDF is EUR 37.21/day, about EUR 800/month before tax at full amount. Recheck current amount before quoting it.
 
----
+**How to apply:** Apply in OmaKela after registering as unemployed. Kela also offers combined online application for yleistuki + general housing allowance.
 
-## 2. Työllistymissuunnitelma — employment plan
+**Next:** Send unemployment-period reports and report work/income changes as required.
 
-**What it is:** A plan made together with the employment authority about the person's job-search duties, goals and agreed services.
+**Ask:** Oletko hakenut Kelasta? Mitä nykyisessä päätöksessä lukee? Oletko lähettänyt viimeisimmän työttömyysajan ilmoituksen?
 
-**What can be inside it:** job-search obligations, coaching, työkokeilu, training, integration-related services, palkkatuki route and other agreed next steps.
+## Työllistymissuunnitelma
+**What it is:** Employment plan made with employment services. It can record job-search duties and agreed services.
 
-**Paid?** The plan is not money. Some services written into the plan may allow unemployment benefit/expense allowance while participating.
+**Paid?** No; the plan itself is not money.
 
-**Criteria:** The employment authority decides the appropriate plan based on the person's situation. Different plans can be used, including employment, activation, integration or multidisciplinary employment plans.
+**What it can open:** coaching, training, työkokeilu, supported study and other employment services.
 
-**If they say “I don't have one / don't know”:** ask when they last met employment services and whether they can see a plan/tasks in Job Market Finland Asiointi.
+**Ask:** Onko suunnitelma voimassa? Milloin viimeksi puhuit työllisyyspalveluiden kanssa? Mitä siinä on sovittu?
 
-**Why AQOON cares:** Several services require that they are agreed with the authority/recorded in the plan before participation.
+## Työkokeilu - UNPAID
+**What it is:** Temporary workplace trial to explore a field, test work fit or support return to working life. It is not an employment relationship.
 
-Source: https://tyomarkkinatori.fi/henkiloasiakkaat/tietoa-tyoelamasta/tyonhaku/asiointi-tyovoimapalveluissa/tyollistymissuunnitelma
+**Criteria:** Registered jobseeker + agreed in employment plan + employment authority assesses it as appropriate.
 
----
+**Paid?** No salary. The person generally gets the unemployment benefit they would otherwise receive; expense allowance may also be possible.
 
-## 3. Työkokeilu — work trial
+**How to start:** Employment authority agreement first; then formal placement arrangement before starting.
 
-**One-sentence explanation for client:** “It is a temporary trial at a real workplace to see whether an occupation suits you or to support return to work; it is not a normal job contract.”
+**Next:** Can build recent Finnish workplace experience or clarify career direction, but does not guarantee a job.
 
-**Paid salary?** **No salary.** It is not an employment relationship. A participant normally receives the same unemployment benefit as while unemployed, and may receive expense allowance for participation days depending on the rules/payer.
+**Ask when client says no:** Is it because it is unpaid? Would it be acceptable if unemployment benefit continues? Only own field? Childcare/travel/schedule/language issue?
 
-**Common reasons:**
-- unsure which occupation fits
-- changing field
-- little/no recent Finnish work experience
-- long absence from work
-- need to test ability/fit before the next route
+**Watch out:** Current operator guidance uses up to 6 months. Recheck if important.
 
-**Main criteria/routing:**
-- person is working with the local employment authority
-- työkokeilu is assessed as appropriate for the person's situation
-- it is agreed with the employment authority and workplace before starting
-- purpose must be career/occupational clarification or work-life return support, not replacing a normal employee
+## Oppisopimus - PAID
+**What it is:** Paid employment + vocational education. Can lead to full qualification, qualification units or smaller competence packages.
 
-**Length:** may last up to 6 months; exact duration/hours are agreed case by case.
+**Criteria:** Suitable employer + suitable work tasks + education provider + HOKS. Average work time at least 25 h/week under current OPH guidance.
 
-**If client says NO:** ask why. Useful note options:
-- only interested if paid salary
-- worries it is “free work”
-- childcare/time problem
-- transport problem
-- already knows target occupation and wants paid work only
+**Paid?** Yes - employer pays salary.
 
-Then explain the key distinction: “Työkokeilu itself is unpaid, but it can be used to get Finnish workplace exposure while unemployment benefit usually continues. It is optional and must be agreed by employment services.”
+**How to start:** Find employer/position and contact vocational provider; provider assesses workplace and makes apprenticeship arrangement.
 
-**AQOON next step:** if interested, ask employment-services expert whether työkokeilu is appropriate and whether a suitable workplace can be arranged.
+**Ask:** Did you know it is paid? What field? Is 25+ h/week possible? Need help finding employer?
 
-Sources:
-- https://tyomarkkinatori.fi/uutiset/tyokokeilussa-paaset-tutustumaan-ammatteihin-kaytannossa
-- https://tyomarkkinatori.fi/henkiloasiakkaat/tietoa-tyoelamasta/tilanteet/tyottomyyteni-on-jatkunut-pitkaan
+**Watch out:** Do not confuse with koulutussopimus.
 
----
+## Koulutussopimus - UNPAID
+**What it is:** Workplace learning as part of vocational studies, arranged by the education provider.
 
-## 4. Palkkatuki — wage subsidy
+**Paid?** No salary from workplace; not an employment relationship.
 
-**One-sentence explanation:** “The employment authority may pay part of the wage cost to an employer so the employer is more able to hire a specific unemployed jobseeker.”
+**Ask:** Is the goal a paid job or workplace learning that belongs to existing studies?
 
-**Who gets the money?** **The employer, not the jobseeker.**
+## Palkkatuki - PAID JOB
+**What it is:** Subsidy employment services may pay to an employer who hires an unemployed jobseeker.
 
-**Does the worker get normal salary?** Yes. It is a real employment relationship; employer must pay at least the applicable collective-agreement wage or otherwise customary/reasonable wage.
+**Who gets the subsidy?** Employer.
 
-**Can it be used for:** permanent or fixed-term full-time employment, sometimes part-time employment, and apprenticeship when conditions are met.
+**Does worker get paid?** Yes - normal salary under applicable pay rules.
 
-**Criteria:** It starts from the unemployed jobseeker's service need. The local employment authority decides whether wage subsidy is appropriate, its duration and amount. It is not something AQOON or the employer can promise in advance.
+**Criteria:** Employment authority assesses the specific person/job. Employer applies.
 
-**Typical support level:** often 50% of eligible wage costs, but exact amount/duration must be checked for the case.
+**How to start:** Client asks employment services whether palkkatuki may be possible. Employer applies before employment starts; job should start only after subsidy decision.
 
-**Interview questions:**
-- Is the person an unemployed registered jobseeker?
-- Has employment services said/written that palkkatuki may be possible?
-- Is it in the plan or is there a palkkatukikortti?
-- Is there already an employer interested?
+**Next:** Can make hiring easier and can potentially support oppisopimus when conditions are met.
 
-**If client says “No / never heard of it”:** explain that it can make hiring easier because the employer receives support, while the person receives normal wage. Suggest asking employment services whether the person can be presented to employers as potentially palkkatuki-eligible.
+**Ask:** Onko työllisyyspalvelut sanonut, että palkkatuki voisi sopia? Onko siitä kirjallista tietoa? Mille työnantajalle?
 
-Source: https://tyomarkkinatori.fi/etusivu/lisatietoa-palveluista/palkkatuki
+**Watch out:** Never tell an employer “she has palkkatuki” until it is confirmed.
 
----
+## Fast memory
+**UNPAID:** työkokeilu, koulutussopimus.
 
-## 5. Työnhakuvalmennus — job-search coaching
+**PAID:** normal job, palkkatukityö, oppisopimus.
 
-**What it helps with:** job-search channels, identifying suitable jobs, CV/application and independent job search.
-
-**Paid salary?** No salary. It is an employment service, not a job. Benefits during participation depend on the person's unemployment-benefit situation and the service decision.
-
-**Usual criteria:** registered jobseeker + authority assesses a need + agreed in employment plan. Authority decides admission.
-
-**If no:** explain: “This is practical help with finding and applying for jobs; it is not school and not a job.”
-
-Source: https://tyomarkkinatori.fi/lisatietoa-palveluista/tyonhakuvalmennus
-
----
-
-## 6. Uravalmennus — career coaching
-
-**What it helps with:** choosing an occupation/field, changing field, returning to work, identifying strengths, training routes and sometimes entrepreneurship direction.
-
-**Usual criteria:** registered jobseeker + authority assesses it as appropriate + agreed in employment plan.
-
-**Good fit when:** person says “I will do any job,” has no qualification, has been away from work, or does not know which realistic field to target.
-
-Source: https://tyomarkkinatori.fi/lisatietoa-palveluista/uravalmennus
-
----
-
-## 7. Työhönvalmennus — individual job coaching
-
-**What it helps with:** more personal help finding a job or apprenticeship, applications/interviews, employment contract and stabilising work after starting.
-
-**Usual criteria:** registered jobseeker + authority assesses it as the right service + agreed in plan.
-
-**Good fit when:** person knows roughly what work they want but needs hands-on help getting an employer.
-
-Source: https://tyomarkkinatori.fi/henkiloasiakkaat/tietoa-tyoelamasta/tilanteet/tyottomyyteni-on-jatkunut-pitkaan
-
----
-
-## Fast operator distinction
-
-- **Työkokeilu:** no salary; unemployment benefit may continue; test/return-to-work purpose.
-- **Palkkatukityö:** real paid job; employer may receive wage subsidy.
-- **Oppisopimus:** real paid job + vocational learning/qualification.
-- **Koulutussopimus:** workplace learning as a student; no employment relationship and no salary.
-- **Valmennus:** coaching/service, not employment.
+**Golden follow-up:** Is this a real no, or is it because of salary, childcare, transport, language, hours, cost or uncertainty?

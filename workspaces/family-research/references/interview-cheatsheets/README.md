@@ -1,28 +1,40 @@
 # AQOON first-interview operator cheat sheets
 
-Last verified: 2026-08-27.
+Status: operator reference. Updated 2026-08-27 to match the expanded 21-page operator PDF.
 
-Purpose: a fast operator reference during first interviews. These are NOT entitlement decisions. Use them to explain what a service is, whether it is normally paid/unpaid, what must usually be true, what to ask next, and how to route the family.
+These files are the repo version of the phone/PDF cheat sheet. They are organised by the same practical categories used during interviews:
 
-## Categories matching AQOON interview routes
+1. `quick-map.md` - fastest routing: what opens what
+2. `work-and-unemployment.md` - jobseeker registration, yleistuki, employment plan, työkokeilu, oppisopimus, koulutussopimus, palkkatuki
+3. `programmes-and-coaching.md` - työnhakuvalmennus, työhönvalmennus, uravalmennus, ammatinvalinta- ja uraohjaus
+4. `integration.md` - integration plan, integration training, YKI
+5. `education-and-training.md` - labour-market training, supported self-motivated study, TUVA, vocational education
+6. `daycare-and-early-childhood.md` - municipal daycare, urgent/unforeseen need, family daycare, service voucher, home-care/private-care support, pre-primary education
+7. `children-and-school.md` - S2, current group-level and pupil-specific support, preparatory education
+8. `kela-and-income.md` - housing allowance, social assistance, child benefit, student aid/housing supplement and unemployment-support routing
+9. `service-support-and-contracts.md` - applications, requests for information, decisions, appeals, letters and universal document triage
+10. `entrepreneurship.md` - start-up grant and business guidance
 
-- `work-and-unemployment.md` — työnhakijaksi registration, unemployment benefit, employment plan, työkokeilu, palkkatuki, job/career coaching.
-- `integration.md` — integration service-needs assessment, kotoutumissuunnitelma, kotoutumiskoulutus.
-- `education-and-training.md` — oppisopimus, koulutussopimus, työvoimakoulutus, omaehtoinen opiskelu työttömyysetuudella, vocational study basics.
-- `entrepreneurship.md` — starttiraha and entrepreneurship routing.
-- `children-and-school.md` — daycare/school/hobby interview reminders and what AQOON must verify locally.
-- `kela-and-income.md` — yleistuki and unemployment-income basics.
-- `service-support-and-contracts.md` — common letters/decisions/contracts and operator guardrails.
+## Operator card format
 
-## Operator rule
+For every term, try to answer in this order:
 
-During an interview, separate four things:
+**What is it? -> Criteria / when it fits -> Paid or unpaid? -> How to apply/start -> What happens next -> What to ask -> Watch out.**
 
-1. **What the person says happened.**
-2. **What an official/provider source currently says.**
-3. **What AQOON can help them do next.**
-4. **What only the authority/provider/employer can decide.**
+## Core rule when the client says NO
 
-If the client says “no” or “I don’t know” to a service, do not treat that as refusal until you have explained it in one sentence and checked whether they mean “not interested,” “never heard of it,” or “only interested under certain conditions.”
+Do not treat “no” as a final preference until you check whether the client understands the option. Ask whether the real issue is salary, childcare, transport, language, schedule, cost, field, or uncertainty about what the service means.
 
-For anything involving eligibility, deadlines, money, current programme openings, immigration/right-to-work, or a provider decision, recheck the current primary source before giving case-specific advice.
+Examples:
+- työkokeilu: “Is the problem that there is no salary?”
+- oppisopimus: “Did you know this is paid employment?”
+- training: “Too easy, too hard, wrong time, childcare, travel, or would you rather work now?”
+- daycare: “Do you think you cannot apply before you have a job, or is cost/schedule the barrier?”
+
+## Safety and freshness
+
+This is a navigation aid, not authority decision-making. AQOON can explain, compare, prepare and help apply. The authority/provider/employer makes the final decision.
+
+Recheck live official sources before case-specific promises, especially for deadlines, benefit amounts, fees, income limits, programme openings, application periods, urgent-daycare evidence rules and appeal deadlines.
+
+Primary starting points: Työmarkkinatori, Kela, OPH, Opintopolku, relevant municipality, Finlex.

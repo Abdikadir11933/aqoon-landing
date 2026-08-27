@@ -1,55 +1,54 @@
-# Kela and unemployment-income cheat sheet
+# Kela and family income cheat sheet
 
-Last verified: 2026-08-27. Primary source: Kela + Job Market Finland.
+Updated 2026-08-27. Think in layers: primary benefit first -> housing support where relevant -> toimeentulotuki only as last-resort support.
 
-## 1. Yleistuki — Kela unemployment support from 1 May 2026
+## Yleistuki
+See `work-and-unemployment.md` for full routing. Key point: jobseeker registration and Kela application are separate steps.
 
-**Important 2026 change:** Kela's old työmarkkinatuki and peruspäiväraha were replaced by **yleistuki** on 1.5.2026. Do not give new clients the old benefit names as if they are current Kela unemployment benefits.
+## Yleinen asumistuki
+**What it is:** Housing allowance for low-income households; household income/assets and eligible housing costs affect amount.
 
-**Who can generally receive it:** a person who is unemployed, 18–64, permanently resident in Finland, registered as an unemployed jobseeker with local employment services, and does not have a right to earnings-related allowance or has exhausted it. Additional restrictions can apply, including to some under-25s/persons without vocational or higher qualification.
+**Criteria:** Low income + eligible housing arrangement. Students usually use student housing supplement instead, with exceptions such as some students living with a child or receiving another benefit.
 
-**Amount in 2026:** 37.21 euros/day, paid for 5 days/week, approximately 800 euros/month before tax at full rate. Income can reduce it.
+**Paid?** Yes - Kela benefit.
 
-**Needs separate application?** Yes. Jobseeker registration does not automatically start payment. Apply to Kela in OmaKela (or appropriate alternative channel).
+**How to apply:** OmaKela; attach rental agreement if Kela does not receive it directly. Operator PDF notes it can generally be granted retroactively for up to 1 month; recheck current rule.
 
-**If unemployment continues:** submit unemployment-time report to Kela every 4 weeks.
+**Ask:** Who belongs to household? Rent? Move? Income? Student? Children?
 
-**Income:** wages can be adjusted against yleistuki; other income such as certain capital/other income can also reduce it under means-testing. Savings/assets themselves do not generally reduce it under the current rule, while other income can.
+## Toimeentulotuki
+**What it is:** Last-resort social assistance when available income/assets and primary benefits are insufficient for necessary expenses.
 
-**Interview checklist:**
-- job search active?
-- Kela or unemployment fund payer?
-- if fund member, could there be earnings-related allowance instead?
-- has application been submitted?
-- latest decision/request for information?
-- four-week report up to date?
-- any wages/entrepreneur income/other income?
+**Criteria:** Means-tested for family; primary benefits should be applied for first.
 
-Sources:
-- https://www.kela.fi/tyottomyys-yleistuki
-- https://www.kela.fi/ajankohtaista/muutoksia-kelan-etuuksiin-vuonna-2026
-- https://tyomarkkinatori.fi/henkiloasiakkaat/tietoa-tyoelamasta/tilanteet/olen-tyoton-tai-jaamassa-tyottomaksi
+**Paid?** Yes - Kela last-resort support.
 
----
+**How to apply:** OmaKela with bank statements, bills/receipts and requested attachments.
 
-## 2. Ansiopäiväraha — earnings-related allowance
+**Next:** A Kela decision can also be needed before supplementary/preventive support from wellbeing-area social services.
 
-If the person belongs to an unemployment fund and meets its work/membership conditions, the unemployment fund—not Kela—may be the correct payer. AQOON should not decide eligibility from a short interview; ask the fund or check its current criteria.
+**Ask:** Other benefits applied? Bank statements? Rent/bills? Urgent food/medicine/housing need?
 
-**Fast distinction:**
-- unemployment fund + qualifying conditions → possibly ansiopäiväraha
-- otherwise / after max period → possibly Kela yleistuki
+**Watch out:** Operator PDF notes that from 1 Feb 2026 the basic amount can be reduced by up to 50% in specified situations if person does not seek full-time work/apply for benefits they are entitled to. Verify current Kela rule before case-specific advice.
 
----
+## Lapsilisä
+**What it is:** Monthly Kela child benefit.
 
-## 3. Participation in employment services
+**Paid?** Yes.
 
-Työkokeilu, labour-market training and some agreed employment-promoting services can allow unemployment benefit to continue while the person participates. Expense allowance may also be possible. The exact benefit result depends on the person's benefit status and the official service decision, so verify before promising money.
+**How to apply:** OmaKela; paper LL1 if needed.
 
----
+**Ask:** Already receiving? New child? Single-parent supplement relevant?
 
-## 4. Never say during interview
+## Opintotuki / opiskelijan asumislisä
+**What it is:** Student financial aid and student housing supplement for eligible students.
 
-Avoid: “You will get Kela,” “you qualify,” “this is definitely paid,” or “Kela will cover it.”
+**Criteria:** Depends on studies, age/living situation, progress and other rules. Many students do not receive general housing allowance anymore; exceptions exist.
 
-Use: “This service normally works like this. Your payment/eligibility still has to be confirmed by Kela, your unemployment fund or employment services.”
+**Paid?** Yes - Kela student support where eligible.
+
+**How to apply:** OmaKela after/around accepting an eligible study place; check current study/housing conditions.
+
+**Ask:** Study place? Full-time? Living with child? Receiving unemployment benefit during studies?
+
+**Watch out:** Do not mix student aid with unemployment-benefit-supported study; determine which system applies first.

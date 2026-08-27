@@ -1,37 +1,31 @@
 # Entrepreneurship cheat sheet
 
-Last verified: 2026-08-27. Primary source: Job Market Finland / local employment authority.
+Updated 2026-08-27. The timing of starttiraha application is critical.
 
-## Starttiraha — start-up grant
+## Starttiraha
+**What it is:** Discretionary personal support for early phase of full-time entrepreneurship when business income is still low.
 
-**One-sentence explanation:** “A temporary personal income support for the early stage of becoming a full-time entrepreneur while business income is still small.”
+**Criteria / when it fits:** Can fit unemployed people or people moving from work/study/home duties to full-time entrepreneurship, and part-time entrepreneurs expanding to full-time. Authority assesses readiness and business viability.
 
-**Who receives it?** The new entrepreneur personally; it is not a business investment grant.
+**Paid?** Yes - personal livelihood support. Operator PDF records first period 6 months and possible extension up to 12 months total; recheck current rules before quoting.
 
-**Paid?** Yes, as a grant for livelihood. It is paid for five days per calendar week. Current guidance says the amount equals the basic component of earnings-related unemployment allowance; verify the current euro amount before quoting it.
+**How to apply:** Contact local employment authority and submit application BEFORE starting full-time entrepreneurship or expanding to full-time. Application route through Työmarkkinatori Asiointi.
 
-**Length:** Granted first for 6 months; extension can bring total duration up to 12 months.
+**Next:** Authority decides. After positive decision, payment is claimed according to instructions.
 
-**Very important timing rule:** Application must reach the employment authority **before** starting full-time business or expanding part-time business to full-time.
+**Ask:** Has business already started? Full-time or side business? Business plan? Profitability calculations? Financing? Customers? Pricing?
 
-**Who may apply:** unemployed jobseeker, person moving from employment/study/home work into full-time entrepreneurship, or a part-time entrepreneur expanding to full-time, subject to authority assessment.
+**Watch out:** Starting full-time before application reaches authority can prevent starttiraha. Never tell client to “just start first.”
 
-**Authority assesses:**
-- sufficient capability/readiness for entrepreneurship
-- realistic conditions for profitable business
-- other case-specific conditions
+## Yritysneuvonta / business plan support
+**What it is:** Free or locally provided guidance to turn an idea into realistic plan, calculations, registration/start steps.
 
-**How to apply:** Contact local employment authority early; apply through the employment-services e-service with required attachments. Payment is claimed afterward according to the decision/payment process.
+**Paid?** Advice is often free; setting up/running business can have costs.
 
-**Interview questions:**
-- idea vs already operating?
-- has full-time activity already started?
-- business plan ready?
-- revenue/cost/profitability calculations?
-- permits/qualification requirements?
-- target customers and price?
-- has starttiraha been discussed/applied before starting?
+**How to start:** Local employment/business services or enterprise agencies; build plan/numbers before financial commitments.
 
-**If they already started full-time:** do not promise starttiraha; flag as MUST VERIFY because the timing rule can block initial grant.
+**Next:** Can strengthen starttiraha application and clarify viability.
 
-Source: https://tyomarkkinatori.fi/lisatietoa-palveluista/starttiraha
+**Ask:** What is sold? To whom? Price? Costs? Permits? First customers?
+
+**Verify as relevant:** local city/business services, Suomi.fi, PRH, Vero.
