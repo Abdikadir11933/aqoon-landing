@@ -21,4 +21,8 @@ window.fetch=async function(input,init){
     return new Response(JSON.stringify(data),{status:response.status,statusText:response.statusText,headers});
   }catch(_){return response;}
 };
+const scenarioScript=document.createElement('script');
+scenarioScript.src='/tracker/scenario-learning.js?v=1';
+scenarioScript.async=false;
+document.head.appendChild(scenarioScript);
 })();
