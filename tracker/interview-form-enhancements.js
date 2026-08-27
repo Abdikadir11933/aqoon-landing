@@ -50,6 +50,10 @@ function addSection(root,id,title,subtitle){
   root.appendChild(s);
 }
 
+function routeReady(root){
+  return !!root.querySelector('[data-key="client_age"],[data-key="care_goal"],[data-key="grade"],[data-key="business_stage"],[data-key="service_area"],[data-key="known_service"]');
+}
+
 function addJobSearchProfile(root){
   const anchor=root.querySelector('.choice-row[data-key="jobseeker_active"]');
   if(!anchor||root.querySelector('[data-key="job_search_profile"]'))return;
@@ -63,6 +67,7 @@ function addJobSearchProfile(root){
 }
 
 function addCoreEvidence(root){
+  if(!routeReady(root))return;
   addSection(root,'acquisition','Quick evidence check','Ask naturally. These fields let AQOON prove where demand came from, what families already knew, and whether one first need opens other needs.');
   addChoiceQuestion(root,'aqoon_discovery','How did they first find AQOON?',['TikTok video','TikTok comment/DM','Friend or family','WhatsApp','Google / website','In person','Other / not sure']);
   addChoiceQuestion(root,'prior_awareness','Before AQOON, did they know this option/service existed?',['Yes – knew it','Had heard of it but did not understand','No','Not sure']);
@@ -73,7 +78,7 @@ function addCoreEvidence(root){
 }
 
 function addHobbyEvidence(root){
-  if(!root.querySelector('[data-key="grade"]')||root.querySelector('[data-evidence-section="hobby-proof"]'))return;
+  if(!routeReady(root)||!root.querySelector('[data-key="grade"]')||root.querySelector('[data-evidence-section="hobby-proof"]'))return;
   addSection(root,'hobby-proof','Hobby / Vantaa proof','Short questions for aggregated pilot reporting. Grade and school are already collected above.');
   addChoiceQuestion(root,'hobby_before','Was the child already doing a regular hobby before this?',['Yes','No','Stopped recently','Not sure']);
   addChoiceQuestion(root,'harrastusten_vantaa_awareness','Before AQOON, had they heard of Harrastusten Vantaa / Harrastamisen Suomen malli?',['Yes – knew it','Had heard the name only','No','Not sure']);
@@ -83,7 +88,7 @@ function addHobbyEvidence(root){
 }
 
 function addDaycareEvidence(root){
-  if(!root.querySelector('[data-key="care_goal"]')||root.querySelector('[data-evidence-section="daycare-proof"]'))return;
+  if(!routeReady(root)||!root.querySelector('[data-key="care_goal"]')||root.querySelector('[data-evidence-section="daycare-proof"]'))return;
   addSection(root,'daycare-proof','Daycare decision proof','Keep this quick. These fields update the evidence behind the Pilke funnel and reveal whether the old barriers still hold.');
   addChoiceQuestion(root,'daycare_current_state','Current situation before this call?',['Child at home','Municipal application / waiting','Municipal daycare','Private daycare','Changing daycare','Future need only','Not sure']);
   addChoiceQuestion(root,'private_daycare_awareness','Before AQOON, did they know private daycare could be a realistic option?',['Yes – understood it','Had heard of private daycare but assumed it was not for us','No','Not sure']);
