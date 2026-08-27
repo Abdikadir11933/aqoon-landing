@@ -17,6 +17,25 @@ Updated 2026-08-27. Recheck live Työmarkkinatori/Kela rules before case-specifi
 
 **Watch out:** Registration is a key first door, not a guarantee of benefit.
 
+## Työnhakuprofiili - new obligation from 1.9.2026
+**What it is:** A usually anonymous Job Market Finland profile containing the jobseeker's education, work experience, skills and job wishes. It can also include a short introduction and external links such as LinkedIn.
+
+**What changes on 1 September 2026:** Publishing and keeping the profile published becomes part of the job-search process when the legal obligation applies.
+
+**For a new jobseeker:** Current official guidance says the person generally gets 15 working days from the start of job search to publish the profile.
+
+**For job search started before 1.9.2026:** The obligation normally starts at the person's next interaction with employment services after the change takes effect.
+
+**Paid?** No. This is a job-search obligation/tool, not a benefit.
+
+**How to do it:** Työmarkkinatori -> create/update Työnhakuprofiili -> publish it and keep it published while job search remains active when required.
+
+**Ask from September onward:** Onko Työnhakuprofiili julkaistu? Milloin työnhaku alkoi? Oletko ollut yhteydessä työllisyyspalveluihin 1.9. jälkeen? Tarvitsetko apua profiilin tekemiseen?
+
+**Watch out:** Do not treat this as only a CV suggestion after 1.9. It can be an actual job-search obligation. Check the person's current Työmarkkinatori instructions because the exact start of the obligation depends on their situation.
+
+**Verify:** Työmarkkinatori, “Työnhakuprofiilin julkaisemista koskeva lakimuutos astuu voimaan syyskuun alusta” (17.8.2026).
+
 ## Yleistuki
 **What it is:** Kela unemployment support from 1 May 2026, replacing Kela’s old työmarkkinatuki and peruspäiväraha.
 
