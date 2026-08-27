@@ -11,7 +11,9 @@ const TEXT=new Map([
   ['new','New'],
   ['contacted','Contacted'],
   ['resolved','Resolved'],
-  ['Dugsiga iyo taageerada ilmaha','Skuulka iyo taageerada ilmaha']
+  ['Dugsiga iyo taageerada ilmaha','Skuulka iyo taageerada ilmaha'],
+  ['Ciyaaro iyo hiwaayado','Ciyaaro iyo harrastukset'],
+  ['Hel ciyaar ama hobby ku habboon ilmaha','Hel ciyaar ama harrastus ku habboon ilmaha']
 ]);
 
 function cleanElement(el){
@@ -36,11 +38,9 @@ function replaceText(root=document){
   const nodes=[];let n;
   while((n=walker.nextNode()))nodes.push(n);
   nodes.forEach(node=>{
-    const parent=node.parentElement;
-    if(!parent)return;
-    const raw=node.nodeValue.trim();
-    if(TEXT.has(raw))node.nodeValue=node.nodeValue.replace(raw,TEXT.get(raw));
-    if(node.nodeValue.includes('Dugsiga iyo taageerada ilmaha'))node.nodeValue=node.nodeValue.replaceAll('Dugsiga iyo taageerada ilmaha','Skuulka iyo taageerada ilmaha');
+    let out=node.nodeValue;
+    TEXT.forEach((next,old)=>{if(out.includes(old))out=out.split(old).join(next)});
+    node.nodeValue=out;
   });
 }
 
