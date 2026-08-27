@@ -87,6 +87,7 @@ function addHobbyEvidence(root){
   addChoiceQuestion(root,'hobby_free_awareness','Before AQOON, did they know these groups can be free?',['Yes','No','Not sure']);
   addChoiceQuestion(root,'hobby_registration_help','How much help do they need with registration?',['None – can do it alone','Link/explanation is enough','Need help while filling it','Need to do it together','Not sure']);
   addChoiceQuestion(root,'hobby_main_barrier','Main reason the child was not already participating?',['Did not know about it','Could not find suitable activity','Registration was difficult','Group full / no place','Transport','Schedule','Language','Cost assumption','Child not interested','Parent not sure / trust','Other','Not applicable']);
+  addChoiceQuestion(root,'hobby_outcome_stage','Where is this hobby case now?',['Need confirmed','Link / options sent','Registration started','Registered','Child started','No suitable place / group full','Waiting / follow-up','Did not proceed']);
 }
 
 function addDaycareEvidence(root){
@@ -98,6 +99,8 @@ function addDaycareEvidence(root){
   addChoiceQuestion(root,'private_daycare_consider','If the real fee, location and place fit, would they consider private daycare?',['Yes','Maybe','No','Already chose private']);
   addChoiceQuestion(root,'daycare_priorities','What matters most when choosing daycare?',['Close to home','Language / bilingual','Educational focus','Fast place / start date','Price','Opening hours','Sibling / friends','Trust / recommendation','Other'],{multi:true});
   addChoiceQuestion(root,'application_steps_known','Before AQOON, did they understand the application steps needed for the route they want?',['Yes','Partly','No','Not sure']);
+  addChoiceQuestion(root,'daycare_application_help','How much application help do they need?',['Can do it alone','Explanation / links are enough','Need help while filling it','Need to do it together','Not sure']);
+  addChoiceQuestion(root,'daycare_action_stage','Where is this daycare case now?',['Exploring options','Private daycare chosen','Application steps explained','Application started','Application submitted','Place confirmed','Child started','Waiting / follow-up','Did not proceed']);
 }
 
 function countField(interviews,key){
@@ -112,7 +115,8 @@ function countField(interviews,key){
 }
 function rows(title,data,max=8){
   const entries=Object.entries(data.c).sort((a,b)=>b[1]-a[1]).slice(0,max);
-  return '<div style="margin-top:14px"><strong>'+title+'</strong><small class="muted" style="margin-left:6px">n='+data.n+'</small>'+(entries.length?'<div class="bars" style="margin-top:8px">'+entries.map(([k,v])=>'<div class="bar-row"><span>'+k+'</span><div class="bar-track"><i style="width:'+Math.max(6,Math.round(v/Math.max(...entries.map(e=>e[1]))*100))+'%"></i></div><strong>'+v+'</strong></div>').join('')+'</div>':'<p class="sub">No recorded answers yet.</p>')+'</div>';
+  const peak=entries.length?Math.max(...entries.map(e=>Number(e[1])||0)):1;
+  return '<div style="margin-top:14px"><strong>'+title+'</strong><small class="muted" style="margin-left:6px">n='+data.n+'</small>'+(entries.length?'<div class="bars" style="margin-top:8px">'+entries.map(([k,v])=>'<div class="bar-row"><span>'+k+'</span><div class="bar-track"><i style="width:'+Math.max(6,Math.round(Number(v)/peak*100))+'%"></i></div><strong>'+v+'</strong></div>').join('')+'</div>':'<p class="sub">No recorded answers yet.</p>')+'</div>';
 }
 function latestInterviews(list){
   const m=new Map();
@@ -143,10 +147,10 @@ async function loadEvidence(force=false){
     const r=await fetch(ADMIN,{method:'POST',headers:{'Content-Type':'application/json','x-tracker-password':pw},body:JSON.stringify({action:'list'}),cache:'no-store'});
     const d=await r.json();if(!r.ok)throw Error(d.detail||d.error||'Request failed');
     const ints=latestInterviews(d.interviews||[]),leads=d.leads||[];
-    const hobby=ints.filter(i=>i.answers&&(i.answers.harrastusten_vantaa_awareness!==undefined||i.answers.hobby_registration_help!==undefined));
-    const daycare=ints.filter(i=>i.answers&&(i.answers.private_daycare_awareness!==undefined||i.answers.private_daycare_consider!==undefined));
+    const hobby=ints.filter(i=>i.answers&&(i.answers.harrastusten_vantaa_awareness!==undefined||i.answers.hobby_registration_help!==undefined||i.answers.hobby_outcome_stage!==undefined));
+    const daycare=ints.filter(i=>i.answers&&(i.answers.private_daycare_awareness!==undefined||i.answers.private_daycare_consider!==undefined||i.answers.daycare_action_stage!==undefined));
     const grades=countField(hobby,'grade');
-    const grade19=Object.entries(grades.c).filter(([k])=>/^[1-9]$/.test(k)).reduce((s,[,v])=>s+v,0);
+    const grade19=Object.entries(grades.c).filter(([k])=>/^[1-9]$/.test(k)).reduce((s,[,v])=>s+Number(v),0);
     const stages={};leads.forEach(l=>{const k=l.journey_stage||'reach';stages[k]=(stages[k]||0)+1;});
     body.innerHTML='<div class="analytics-secondary" style="margin-top:12px"><span>Completed evidence interviews <strong>'+ints.filter(i=>i.answers&&i.answers.aqoon_discovery!==undefined).length+'</strong></span><span>Hobby/Vantaa <strong>'+hobby.length+'</strong></span><span>Daycare <strong>'+daycare.length+'</strong></span></div>'+
       rows('How families first found AQOON',countField(ints,'aqoon_discovery'))+
@@ -159,12 +163,15 @@ async function loadEvidence(force=false){
       rows('Knew groups can be free',countField(hobby,'hobby_free_awareness'))+
       rows('Registration-help intensity',countField(hobby,'hobby_registration_help'))+
       rows('Main participation barrier',countField(hobby,'hobby_main_barrier'))+
+      rows('Current hobby case stage',countField(hobby,'hobby_outcome_stage'))+
       '<hr style="border:0;border-top:1px solid #eee;margin:20px 0"><strong>Daycare / Pilke evidence refresh</strong>'+
       rows('Private daycare awareness before AQOON',countField(daycare,'private_daycare_awareness'))+
       rows('Prior private-daycare cost belief',countField(daycare,'private_daycare_cost_belief'))+
       rows('Would consider private daycare if fit',countField(daycare,'private_daycare_consider'))+
       rows('Daycare decision priorities',countField(daycare,'daycare_priorities'))+
       rows('Understood application steps before AQOON',countField(daycare,'application_steps_known'))+
+      rows('Application-help intensity',countField(daycare,'daycare_application_help'))+
+      rows('Current daycare case stage',countField(daycare,'daycare_action_stage'))+
       rows('Current CRM journey stages',{n:leads.length,c:stages});
     evidenceLoadedAt=Date.now();
   }catch(e){body.innerHTML='<p class="sub">Could not load interview evidence: '+String(e.message||e)+'</p>';}
