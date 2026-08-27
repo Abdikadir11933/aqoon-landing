@@ -2,7 +2,7 @@
 .analytics-view{overflow-x:hidden}
 .analytics-view .command-card{overflow:hidden}
 .traffic-card{padding-bottom:12px}
-#trafficChart.traffic-chart{width:100%!important;min-width:0!important;max-width:100%!important;overflow:hidden!important;display:grid!important;grid-template-columns:repeat(24,minmax(0,1fr))!important;gap:2px!important;height:126px!important;padding:10px 0 0!important;align-items:stretch!important}
+#trafficChart.traffic-chart{width:100%!important;min-width:0!important;max-width:100%!important;overflow:hidden!important;display:grid!important;grid-template-columns:repeat(var(--hour-cols,24),minmax(0,1fr))!important;gap:2px!important;height:126px!important;padding:10px 0 0!important;align-items:stretch!important}
 #trafficChart .tcol{width:auto!important;min-width:0!important;max-width:none!important;height:116px!important;display:grid!important;grid-template-rows:minmax(0,1fr) 15px!important;align-items:end!important;gap:3px!important}
 #trafficChart .tbar{width:100%!important;min-width:0!important;max-width:18px!important;margin:0 auto!important;border-radius:4px 4px 2px 2px!important}
 #trafficChart .tcol small{font-size:7px!important;line-height:1!important;text-align:center!important;color:#a4a5a3!important;white-space:nowrap!important;overflow:visible!important}
@@ -19,7 +19,7 @@
 .aq-research-kpi{padding:10px 8px;min-width:0}
 .aq-research-kpi+.aq-research-kpi{border-left:1px solid var(--l)}
 .aq-research-kpi span{display:block;font-size:7px;line-height:1.15;color:#9a9da2;text-transform:uppercase;letter-spacing:.04em;min-height:17px}
-.aq-research-kpi strong{display:block;margin-top:4px;font:900 19px/1 var(--f);color:var(--n)}
+.aq-research-kpi strong{display:block;margin-top:4px;font:900 19px/1 var(--f);color:var(--n);font-variant-numeric:tabular-nums}
 .aq-research-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;background:var(--c);padding:3px;border-radius:10px;margin-bottom:11px}
 .aq-research-tab{border:0;background:transparent;border-radius:8px;padding:8px 4px;font-size:8px;font-weight:700;color:#8f918f;min-width:0}
 .aq-research-tab.on{background:var(--n);color:#fff}
@@ -28,13 +28,13 @@
 .aq-signal.wide{grid-column:1/-1}
 .aq-signal label{display:block;font-size:9px;font-weight:700;line-height:1.2;color:var(--n);min-height:22px}
 .aq-signal-main{display:flex;align-items:baseline;justify-content:space-between;gap:6px;margin-top:7px}
-.aq-signal-main strong{font:900 21px/1 var(--f);color:var(--n)}
-.aq-signal-main small{font-size:8px;color:var(--m);white-space:nowrap}
+.aq-signal-main strong{font:900 21px/1 var(--f);color:var(--n);font-variant-numeric:tabular-nums}
+.aq-signal-main small{font-size:8px;color:var(--m);white-space:nowrap;font-variant-numeric:tabular-nums}
 .aq-meter{height:6px;border-radius:999px;background:#eeeae2;overflow:hidden;margin-top:7px}
 .aq-meter i{display:block;height:100%;border-radius:inherit;background:var(--t)}
 .aq-rank{display:grid;grid-template-columns:minmax(82px,1fr) minmax(70px,1.4fr) 20px;align-items:center;gap:6px;margin-top:7px;font-size:8px}
 .aq-rank span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--n)}
 .aq-rank .aq-meter{margin:0;height:5px}
-.aq-rank b{text-align:right;font-size:8px}
+.aq-rank b{text-align:right;font-size:8px;font-variant-numeric:tabular-nums}
 .aq-empty{grid-column:1/-1;padding:12px 2px;color:var(--m);font-size:9px}
 @media(max-width:380px){.aq-research-pane{grid-template-columns:1fr}.aq-signal.wide{grid-column:auto}.aq-research-kpi strong{font-size:17px}.aq-research-tab{font-size:7px}}
