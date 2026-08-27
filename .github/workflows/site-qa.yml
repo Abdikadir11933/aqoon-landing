@@ -30,7 +30,7 @@ jobs:
       - name: Check tracker core JavaScript syntax
         run: node --check tracker/app.js && node --check tracker/visual-v3.js && node --check tracker/crm-reactive.js
       - name: Check tracker adapters, matching and scenario learning syntax
-        run: node --check tracker/multineed-adapter.js && node --check tracker/interview-match.js && node --check tracker/scenario-learning.js
+        run: node --check tracker/multineed-adapter.js && node --check tracker/interview-match.js && node --check tracker/scenario-learning.js && node --check tracker/interview-form-enhancements.js
       - name: Check public site JavaScript syntax
         run: node --check assets/main.js && node --check assets/site.js && node --check caawi/app.js
       - name: Run caawi regression tests
