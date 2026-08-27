@@ -1,73 +1,43 @@
-# CLAUDE.md — AQOON landing repo
+# AQOON Repository Router
 
-## Repo-rakenne
+This repository is a context-routing operating system, not a single handbook.
 
-B2B-sivusto, neljä sivua:
-- `index.html` — etusivu (hero + kaksi totuutta + yleiskuva-details + perustaja + paketit + CTA `#yhteys`)
-- `tapaus/index.html` — pilottitapaus: kuusi estettä, rakenteellinen löydös, luvut (`#luvut`), suppilo
-- `menetelma/index.html` — menetelmä, neljä välinettä, viisi porrasta (askelvalitsin), vertailutaulukko
-- `paketit/index.html` — kolme pakettia, hankinta-lohko, miten edetään
-- `assets/styles.css` — kaikki jaettu CSS (nav, sektioit, details, taulukot, dark-mode-lock)
-- `assets/main.js` — jaettu JS (reveal, hamburger, askelvalitsin, estekortit, liuku)
-- `assets/perustaja.webp` / `.jpg` — perustajan kuva
+## Start here
 
-Kampanjasivut (älä koske):
-- `pilke/index.html` — FI kampanjasivu perheille (TikTok-liikenne, mobiili edellä)
-- `pilke/so/index.html` — SO kampanjasivu perheille (identtinen rakenne, somali)
-- Näillä on omat inline-tyylinsä. Ne **eivät** käytä `assets/styles.css`:ää.
+Read `CONTEXT.md` first.
 
-Muu:
-- `BRAND.md` — brändi-, fontti- ja kielitotuus; **lue ennen mitään UI-muutosta**
-- `design-ref/` — uudistuksen lähdeaineisto ja toteutusohje, tilapäinen
+## Task routing
 
-**Nav ja footer** toistuvat kaikilla 4 B2B-sivulla (`index.html`, `tapaus/`, `menetelma/`, `paketit/`). Muutos johonkin näistä vaatii päivityksen **kaikkiin neljään** tiedostoon.
-
-Vanhat URLit `/palvelut`, `/miksi`, `/hinnat`, `/kenelle` ja `/yhteys` on 301-ohjattu `vercel.json`:issa. Älä poista ohjauksia.
-
-## JS-moduulit
-
-`assets/main.js` on data-attribuuttiohjattu. Sivut eivät sisällä omia skriptejä.
-
-| Attribuutti | Käyttö |
+| Task | Go to |
 |---|---|
-| `[data-stepper]` + `[data-step]` / `[data-step-panel]` | Askelvalitsin, tab-kuvio nuolinäppäimillä |
-| `[data-cards]` + `[data-card-toggle]` | Yksi kortti auki kerrallaan |
-| `[data-parallax-pair]` + `[data-parallax="left\|right\|bar-left\|bar-right"]` | Koristeliuku, ei aja alle 860 px eikä reduced motion -tilassa |
-| `[data-toggle-all]` + `aria-controls` | Avaa/sulje kaikki details-lohkot |
+| Parent-facing intake | `caawi/CONTEXT.md` |
+| Family CRM / tracker | `tracker/CONTEXT.md` |
+| Somali public guidance | `so/CONTEXT.md` |
+| Research a family case | `workspaces/family-research/CONTEXT.md` |
+| Verify evidence or an external claim | `workspaces/evidence-and-research/CONTEXT.md` |
+| Messaging / website / sales copy | `workspaces/messaging/CONTEXT.md` |
+| Site-wide QA | `workspaces/product-qa/CONTEXT.md` |
+| Shared rules and schemas | `_core/CONVENTIONS.md` |
+| Pilke campaign | PROTECTED — only when explicitly requested |
 
-**Jokaisen sivun on oltava luettava ilman JavaScriptiä.** Paneelit ovat DOM:issa,
-eivät renderöityjä.
+## Non-negotiable boundaries
 
-## Ennen UI-muutoksia
+- Public GitHub contains product code, public verified knowledge, routing rules and sanitized evidence only.
+- Family PII, interview notes, phone numbers and case history stay in private systems such as Supabase.
+- Confidential sales, buyer conversations, pilot raw notes and commercial strategy do not belong in this public repository.
+- Every reusable fact has one canonical home. Other files link to its ID rather than copying the claim.
+- High-volatility and live facts must be rechecked from the current official/provider source before case-specific advice.
+- AQOON can explain, navigate, compare, prepare and help a user apply. AQOON does not decide legal eligibility, benefits, permits, school/daycare placement, jobs, grants or authority outcomes.
+- Never touch `pilke/` unless the user explicitly asks for Pilke work.
 
-Lue `BRAND.md`. Noudata värejä, fontteja, muotokieltä ja äänensävyä tarkasti.
+## Production-route safety
 
-## Supabase-waitlist (pilke-sivut)
+Do not move production routes merely to make the repository look cleaner. `/caawi`, `/tracker`, `/so`, `/pilke` and the current B2B pages keep their physical paths unless a route migration is explicitly planned and tested.
 
-- Käytettävä avain on anon-julkinen avain — VAIN `INSERT`, ei koskaan `SELECT`-policyä
-- Ei koskaan service-role-avainta frontendiin
-- Honeypot-kenttä (`id="website"`, `display:none`) säilytettävä kaikissa lomakeversioissa
-- Taulun kentät: `lang`, `campaign`, `name`, `area`, `num_children`, `child_age`, `phone`
+## UI changes
 
-## Työtapa
-
-- Muutokset inkrementaalisesti — yksi asia kerrallaan, ei useita tiedostoja kerralla
-- Kampanjasivuilla: **FI-sivu ensin**, hyväksyntä omistajalta, sitten SO-sivu identtisenä rakenteeltaan
-- Regression guard: älä muuta mitään mitä tehtävä ei vaadi
-- **Poistot vain omistajan vahvistuksella** — kysy aina ennen poistoa
-
-## Testaus
-
-- Mobiilileveydet 360 px ja 390 px aina
-- **Ilman JS:ää**: jokainen B2B-sivu luettava, askelvalitsimen paneelit näkyvissä
-- Tumma tila: sivuston pysyttävä vaaleana (dark-mode-lukko `styles.css`:n lopussa)
-- Taulukot vierittyvät omassa `.tablewrap`-kontissaan, `body` ei koskaan sivusuunnassa
-- Lomake (pilke): täytä kaikki 5 kenttää, lähetä, varmista että Supabaseen tulee rivi
-- Kielilinkit: FI ↔ SO ristilinkit molemmat suuntiin
+Read `BRAND.md` before visual changes. Preserve accessibility, mobile behavior and existing route contracts.
 
 ## Deploy
 
-- Vercel static, `cleanUrls: true`, `trailingSlash: false`
-- www → apex-redirect hoituu Vercel-projektiasetuksissa
-- **Omistaja deployaa itse** — älä deployaa ilman lupaa
-- TikTok-mainosten kohde-URL: `aqoon.live/pilke/so` (somalinkielinen yleisö → SO-sivu)
+Vercel is the production host. A task is not complete merely because code is committed: verify that the intended commit is deployed and READY before calling it live.
