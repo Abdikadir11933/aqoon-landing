@@ -1,73 +1,92 @@
-# CLAUDE.md — AQOON landing repo
+# CLAUDE.md — AQOON repository operating rules
 
-## Repo-rakenne
+Read `CONTEXT.md` first. This repo uses progressive disclosure: root rules route you to the nearest folder-level `CONTEXT.md`, canonical `knowledge/` records, then dated `research/` evidence only when needed.
 
-B2B-sivusto, neljä sivua:
-- `index.html` — etusivu (hero + kaksi totuutta + yleiskuva-details + perustaja + paketit + CTA `#yhteys`)
-- `tapaus/index.html` — pilottitapaus: kuusi estettä, rakenteellinen löydös, luvut (`#luvut`), suppilo
-- `menetelma/index.html` — menetelmä, neljä välinettä, viisi porrasta (askelvalitsin), vertailutaulukko
-- `paketit/index.html` — kolme pakettia, hankinta-lohko, miten edetään
-- `assets/styles.css` — kaikki jaettu CSS (nav, sektioit, details, taulukot, dark-mode-lock)
-- `assets/main.js` — jaettu JS (reveal, hamburger, askelvalitsin, estekortit, liuku)
-- `assets/perustaja.webp` / `.jpg` — perustajan kuva
+## Non-negotiable boundaries
 
-Kampanjasivut (älä koske):
-- `pilke/index.html` — FI kampanjasivu perheille (TikTok-liikenne, mobiili edellä)
-- `pilke/so/index.html` — SO kampanjasivu perheille (identtinen rakenne, somali)
-- Näillä on omat inline-tyylinsä. Ne **eivät** käytä `assets/styles.css`:ää.
+### Protected Pilke campaign pages
 
-Muu:
-- `BRAND.md` — brändi-, fontti- ja kielitotuus; **lue ennen mitään UI-muutosta**
-- `design-ref/` — uudistuksen lähdeaineisto ja toteutusohje, tilapäinen
+Do not modify:
 
-**Nav ja footer** toistuvat kaikilla 4 B2B-sivulla (`index.html`, `tapaus/`, `menetelma/`, `paketit/`). Muutos johonkin näistä vaatii päivityksen **kaikkiin neljään** tiedostoon.
+- `pilke/index.html`
+- `pilke/so/index.html`
 
-Vanhat URLit `/palvelut`, `/miksi`, `/hinnat`, `/kenelle` ja `/yhteys` on 301-ohjattu `vercel.json`:issa. Älä poista ohjauksia.
+or their campaign behavior/styles unless the owner explicitly asks for Pilke changes. A repo-wide refactor is not permission to touch them.
 
-## JS-moduulit
+### Public repository privacy
 
-`assets/main.js` on data-attribuuttiohjattu. Sivut eivät sisällä omia skriptejä.
+Never commit:
 
-| Attribuutti | Käyttö |
-|---|---|
-| `[data-stepper]` + `[data-step]` / `[data-step-panel]` | Askelvalitsin, tab-kuvio nuolinäppäimillä |
-| `[data-cards]` + `[data-card-toggle]` | Yksi kortti auki kerrallaan |
-| `[data-parallax-pair]` + `[data-parallax="left\|right\|bar-left\|bar-right"]` | Koristeliuku, ei aja alle 860 px eikä reduced motion -tilassa |
-| `[data-toggle-all]` + `aria-controls` | Avaa/sulje kaikki details-lohkot |
+- family names, phone numbers or case histories
+- interview answers or free-text family PII
+- tracker plaintext password
+- Supabase service-role keys
+- private email/messages
+- confidential partner/customer material
 
-**Jokaisen sivun on oltava luettava ilman JavaScriptiä.** Paneelit ovat DOM:issa,
-eivät renderöityjä.
+`internal/`, `working/`, `research/`, `references/` and `knowledge/` are all still public GitHub content.
 
-## Ennen UI-muutoksia
+### Official-information safety
 
-Lue `BRAND.md`. Noudata värejä, fontteja, muotokieltä ja äänensävyä tarkasti.
+AQOON explains and routes. It is not Kela, a municipality, an employment authority, a school, Migri, legal counsel or another public authority.
 
-## Supabase-waitlist (pilke-sivut)
+Do not invent or guarantee:
 
-- Käytettävä avain on anon-julkinen avain — VAIN `INSERT`, ei koskaan `SELECT`-policyä
-- Ei koskaan service-role-avainta frontendiin
-- Honeypot-kenttä (`id="website"`, `display:none`) säilytettävä kaikissa lomakeversioissa
-- Taulun kentät: `lang`, `campaign`, `name`, `area`, `num_children`, `child_age`, `phone`
+- eligibility/entitlement
+- acceptance to a programme or school
+- benefit amount
+- deadline exception
+- legal conclusion
+- authority decision
 
-## Työtapa
+Current programmes, deadlines, benefit rules, service names, fees and application procedures must be verified against a live official source before publication or operator use.
 
-- Muutokset inkrementaalisesti — yksi asia kerrallaan, ei useita tiedostoja kerralla
-- Kampanjasivuilla: **FI-sivu ensin**, hyväksyntä omistajalta, sitten SO-sivu identtisenä rakenteeltaan
-- Regression guard: älä muuta mitään mitä tehtävä ei vaadi
-- **Poistot vain omistajan vahvistuksella** — kysy aina ennen poistoa
+## Repository architecture
 
-## Testaus
+Canonical architecture and stage contracts live in `CONTEXT.md`.
 
-- Mobiilileveydet 360 px ja 390 px aina
-- **Ilman JS:ää**: jokainen B2B-sivu luettava, askelvalitsimen paneelit näkyvissä
-- Tumma tila: sivuston pysyttävä vaaleana (dark-mode-lukko `styles.css`:n lopussa)
-- Taulukot vierittyvät omassa `.tablewrap`-kontissaan, `body` ei koskaan sivusuunnassa
-- Lomake (pilke): täytä kaikki 5 kenttää, lähetä, varmista että Supabaseen tulee rivi
-- Kielilinkit: FI ↔ SO ristilinkit molemmat suuntiin
+Important local contexts:
 
-## Deploy
+- `caawi/CONTEXT.md` — public Somali intake
+- `tracker/CONTEXT.md` — private operator CRM/analytics
+- `so/CONTEXT.md` — Somali public knowledge pages
+- `knowledge/CONTEXT.md` — canonical facts and source governance
+- `research/CONTEXT.md` — evidence-gathering workflow
+- `operations/QA.md` — content + implementation QA and deploy verification
 
-- Vercel static, `cleanUrls: true`, `trailingSlash: false`
-- www → apex-redirect hoituu Vercel-projektiasetuksissa
-- **Omistaja deployaa itse** — älä deployaa ilman lupaa
-- TikTok-mainosten kohde-URL: `aqoon.live/pilke/so` (somalinkielinen yleisö → SO-sivu)
+The runtime route folders stay where Vercel expects them. The architectural rebuild is about canonical ownership and context, not moving production URLs merely for neatness.
+
+## B2B public site
+
+Main routes:
+
+- `index.html`
+- `tapaus/index.html`
+- `menetelma/index.html`
+- `paketit/index.html`
+
+Shared visual rules: read `BRAND.md` before UI work. Keep existing redirects in `vercel.json` unless the owner explicitly changes URL strategy.
+
+## `/caawi`
+
+Phone/name first is intentional. Keep server-side validated intake through Supabase Edge Functions. No direct browser database writes. Do not redesign the current working flow unless explicitly requested.
+
+## `/tracker`
+
+Private/noindex operator tool. Data is live from protected Supabase APIs. Do not restore the retired localStorage/WhatsApp-parser lead database. Never mix anonymous funnel metrics with CRM lead counts.
+
+## `/so`
+
+Use natural modern Somali, short/direct sentences and familiar Finnish service names where that helps real-world recognition. Production page copy is a presentation surface, not the canonical source of truth.
+
+## Working method
+
+For substantial knowledge/site work use the stage order defined in `CONTEXT.md`:
+
+discover → map → define canonical homes/schemas → scaffold → migrate/audit → verify live sources → add missing research → content QA → implementation QA → publish.
+
+For large Finland-wide knowledge releases, run three separate content audits before the final deployment as defined in `operations/QA.md`.
+
+## Deployment
+
+Vercel is static with clean URLs. When the owner has explicitly requested deployment, deploy and verify the exact intended Git commit is the READY production deployment. Do not report a GitHub commit as live without production verification.
