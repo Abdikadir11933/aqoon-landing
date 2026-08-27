@@ -1,9 +1,8 @@
 (()=>{'use strict';
 const ROOT='#questions';
 const ADMIN='https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-leads-admin';
-let loading=false,lastLoaded=0;
+let loading=false,lastLoaded=0,currentResearchTab='overview';
 
-// Rotating research/funder question. Use a NEW id whenever wording/meaning changes.
 const WEEKLY={enabled:false,id:'',label:'',values:['Yes','No','Not sure'],city:null};
 const EXCLUSIVE=new Set(['No children','None of these','Not sure','Nothing else now']);
 const ALIASES={
@@ -81,8 +80,74 @@ function scrapeAnswers(){
 function patchSaveFetch(){if(window.__aqoonUniversalSavePatch)return;window.__aqoonUniversalSavePatch=1;const original=window.fetch.bind(window);window.fetch=async function(input,init){try{const url=typeof input==='string'?input:(input&&input.url)||'';if(url.includes('family-leads-admin')&&init?.body){const body=JSON.parse(init.body);if(body.action==='save_interview'){const extra=scrapeAnswers();body.answers=Object.assign({},body.answers||{},extra);const lines=Object.entries(extra).map(([k,v])=>'- '+k+': '+(Array.isArray(v)?v.join(', '):v));if(lines.length)body.research_prompt=(body.research_prompt||'')+'\n\nUNIVERSAL INTERVIEW EVIDENCE / CROSS-NEEDS\n'+lines.join('\n');init=Object.assign({},init,{body:JSON.stringify(body)});}}}catch(e){console.warn('AQOON universal interview save merge skipped',e);}return original(input,init);};}
 
 function count(ints,key){const c={};let n=0;(ints||[]).forEach(i=>{let v=i.answers&&i.answers[key];if(v===undefined&&ALIASES[key])for(const s of ALIASES[key]){if(i.answers?.[s]!==undefined){v=i.answers[s];break;}}if(v===undefined||v===null||v==='')return;n++;(Array.isArray(v)?v:[v]).forEach(x=>c[x]=(c[x]||0)+1)});return{n,c};}
-function bars(title,d){const es=Object.entries(d.c).sort((a,b)=>b[1]-a[1]);if(!es.length)return'<div style="margin-top:12px"><strong>'+esc(title)+'</strong><p class="sub">No answers yet.</p></div>';const p=Math.max(...es.map(x=>x[1]));return'<div style="margin-top:12px"><strong>'+esc(title)+'</strong><small class="muted" style="margin-left:6px">n='+d.n+'</small><div class="bars" style="margin-top:8px">'+es.map(([k,v])=>'<div class="bar-row"><span>'+esc(k)+'</span><div class="bar-track"><i style="width:'+Math.max(6,Math.round(v/p*100))+'%"></i></div><strong>'+v+'</strong></div>').join('')+'</div></div>'}
-function ensureAnalytics(){if(document.getElementById('universalProofAnalytics'))return document.getElementById('universalProofAnalytics');const anchor=document.getElementById('interviewEvidenceCard')||document.querySelector('.analytics-view .breakdown-card');if(!anchor)return null;const d=document.createElement('details');d.className='command-card';d.id='universalProofAnalytics';d.innerHTML='<summary>Universal interview evidence</summary><p class="sub">Same baseline across all interviews, with conditional denominators for work, daycare, school and Vantaa hobbies.</p><div id="universalProofBody"><p class="sub">Open to load.</p></div>';anchor.insertAdjacentElement('afterend',d);d.addEventListener('toggle',()=>{if(d.open)load(false)});return d;}
-async function load(force){const card=ensureAnalytics(),body=document.getElementById('universalProofBody');if(!card||!body||loading)return;if(!force&&lastLoaded&&Date.now()-lastLoaded<30000)return;const pw=sessionStorage.getItem('aqoon_tracker_password')||'';if(!pw)return;loading=true;body.innerHTML='<p class="sub">Loading…</p>';try{const r=await fetch(ADMIN,{method:'POST',headers:{'Content-Type':'application/json','x-tracker-password':pw},body:JSON.stringify({action:'list'}),cache:'no-store'}),d=await r.json();if(!r.ok)throw Error(d.detail||d.error||'Request failed');const m=new Map();(d.interviews||[]).filter(i=>i.status==='completed').forEach(i=>{const o=m.get(i.lead_id);if(!o||String(i.updated_at)>String(o.updated_at))m.set(i.lead_id,i)});const ints=[...m.values()],core=ints.filter(i=>i.answers&&i.answers.aqoon_awareness_before!==undefined);body.innerHTML='<div class="analytics-secondary"><span>Universal-check interviews <strong>'+core.length+'</strong></span></div>'+bars('Knew AQOON before',count(core,'aqoon_awareness_before'))+bars('Knew entry service/programme',count(core,'entry_service_awareness'))+bars('Could navigate without AQOON',count(core,'entry_service_self_navigation'))+bars('Main blockers',count(core,'entry_blockers'))+bars('Children in household',count(core,'household_children'))+bars('Work relevance',count(core,'work_interest_gate'))+bars('Active jobseeker status',count(core,'jobseeker'))+bars('Employment / integration plan status',count(core,'employment_plan_status'))+bars('Work supports understood before',count(core,'work_support_awareness'))+bars('Private-daycare awareness',count(core,'private_daycare_awareness_all'))+bars('Daycare need timing',count(core,'daycare_possible_need_all'))+bars('Could navigate daycare application',count(core,'daycare_application_awareness_all'))+bars('Vantaa hobby awareness',count(core,'vantaa_hobbies_awareness_all'))+bars('Possible Vantaa hobby need',count(core,'vantaa_hobbies_possible_need'))+bars('School support need uncovered',count(core,'school_help_possible'))+bars('Other needs uncovered',count(core,'cross_service_needs_all'))+bars('Would return to AQOON',count(core,'aqoon_return_intent'))+bars('Relevant update permission',count(core,'relevant_updates_ok'))+bars('Outcome follow-up okay',count(core,'outcome_followup_ok'));lastLoaded=Date.now();}catch(e){body.innerHTML='<p class="sub">Could not load: '+esc(e.message||e)+'</p>';}finally{loading=false;}}
-const obs=new MutationObserver(()=>ensure());function start(){patchSaveFetch();const r=document.querySelector(ROOT);if(r)obs.observe(r,{childList:true,subtree:true});ensure();ensureAnalytics();}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();document.addEventListener('click',e=>{if(e.target.closest('[data-interview]'))setTimeout(ensure,180);if(e.target.closest('[data-tab="analytics"]'))setTimeout(()=>{ensureAnalytics();load(false)},300);if(e.target.closest('#refresh'))setTimeout(()=>load(true),400)},false);
+function pct(d,match){if(!d.n)return 0;let v=0;Object.entries(d.c).forEach(([k,n])=>{if(match(k))v+=n});return Math.round(v/d.n*100);}
+function metric(label,value){return'<div class="research-kpi"><span>'+esc(label)+'</span><strong>'+esc(value)+'</strong></div>';}
+function question(title,d){const es=Object.entries(d.c).sort((a,b)=>b[1]-a[1]);if(!es.length)return'';const max=Math.max(...es.map(x=>x[1]),1);return'<div class="research-question"><div class="research-qtop"><strong>'+esc(title)+'</strong><small>n='+d.n+'</small></div>'+es.map(([k,v])=>'<div class="research-answer"><span title="'+esc(k)+'">'+esc(k)+'</span><div class="research-track"><div class="research-fill" style="width:'+Math.max(4,Math.round(v/max*100))+'%"></div></div><b>'+v+' · '+Math.round(v/d.n*100)+'%</b></div>').join('')+'</div>';}
+function pane(id,questions,emptyText){const html=questions.filter(Boolean).join('');return'<div class="research-pane" data-research-pane="'+id+'" '+(id===currentResearchTab?'':'hidden')+'>'+(html||'<div class="research-empty">'+esc(emptyText||'No answers in this section yet.')+'</div>')+'</div>';}
+function tabButton(id,label){return'<button type="button" class="research-tab '+(id===currentResearchTab?'on':'')+'" data-research-tab="'+id+'">'+esc(label)+'</button>';}
+function ensureAnalytics(){
+  document.getElementById('interviewEvidenceCard')?.remove();
+  let card=document.getElementById('universalProofAnalytics');if(card)return card;
+  const anchor=document.querySelector('.analytics-view .breakdown-card');if(!anchor)return null;
+  card=document.createElement('article');card.className='command-card research-card';card.id='universalProofAnalytics';card.innerHTML='<div class="research-head"><div><h3>Interview insights</h3><p class="sub">Aggregated answers from completed first interviews.</p></div><div class="research-count" id="researchCount">0</div></div><div id="universalProofBody"><div class="research-empty">Loading interview insights…</div></div>';
+  anchor.insertAdjacentElement('afterend',card);return card;
+}
+function bindResearchTabs(){document.querySelectorAll('[data-research-tab]').forEach(b=>b.onclick=()=>{currentResearchTab=b.dataset.researchTab;document.querySelectorAll('[data-research-tab]').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('[data-research-pane]').forEach(p=>p.hidden=p.dataset.researchPane!==currentResearchTab);});}
+async function load(force){
+  const card=ensureAnalytics(),body=document.getElementById('universalProofBody');if(!card||!body||loading)return;if(!force&&lastLoaded&&Date.now()-lastLoaded<30000)return;
+  const pw=sessionStorage.getItem('aqoon_tracker_password')||'';if(!pw)return;loading=true;body.innerHTML='<div class="research-empty">Loading interview insights…</div>';
+  try{
+    const r=await fetch(ADMIN,{method:'POST',headers:{'Content-Type':'application/json','x-tracker-password':pw},body:JSON.stringify({action:'list'}),cache:'no-store'}),d=await r.json();if(!r.ok)throw Error(d.detail||d.error||'Request failed');
+    const m=new Map();(d.interviews||[]).filter(i=>i.status==='completed').forEach(i=>{const o=m.get(i.lead_id);if(!o||String(i.updated_at)>String(o.updated_at))m.set(i.lead_id,i)});
+    const ints=[...m.values()],core=ints.filter(i=>i.answers&&Object.keys(i.answers).some(k=>['aqoon_awareness_before','entry_service_awareness','prior_awareness','household_children','work_interest_gate'].includes(k)));
+    document.getElementById('researchCount').textContent=core.length;
+    const aware=count(core,'entry_service_awareness'),navigate=count(core,'entry_service_self_navigation'),other=count(core,'cross_service_needs_all');
+    const unawarePct=pct(aware,k=>k==='No'||k.includes('did not understand'));
+    const needsCount=Object.entries(other.c).filter(([k])=>k!=='Nothing else now').reduce((s,[,v])=>s+v,0);
+    const workRelevant=core.filter(i=>{const v=i.answers?.work_interest_gate;return v==='Looking for work now'||v==='Likely within 12 months'});
+    const young=core.filter(i=>{const v=i.answers?.household_children;const a=Array.isArray(v)?v:[v];return a.includes('Under 3')||a.includes('Age 3–6')});
+    const school=core.filter(i=>{const v=i.answers?.household_children;const a=Array.isArray(v)?v:[v];return a.includes('Grades 1–9')});
+    const vantaa=school.filter(i=>{const lead=(d.leads||[]).find(l=>l.id===i.lead_id);return String(lead?.city||'').toLowerCase()==='vantaa'||i.answers?.vantaa_hobbies_awareness_all!==undefined||i.answers?.harrastusten_vantaa_awareness!==undefined});
+    body.innerHTML='<div class="research-kpis">'+metric('Interviewed',core.length)+metric('Didn’t know entry',aware.n?unawarePct+'%':'—')+metric('Extra needs',other.n?needsCount:'—')+'</div>'+
+      '<div class="research-tabs">'+tabButton('overview','Overview')+tabButton('work','Work')+tabButton('daycare','Daycare')+tabButton('vantaa','Vantaa')+tabButton('next','Next needs')+'</div>'+
+      pane('overview',[
+        question('Knew AQOON before',count(core,'aqoon_awareness_before')),
+        question('Knew the service / programme',aware),
+        question('Could navigate without AQOON',navigate),
+        question('What blocked action',count(core,'entry_blockers')),
+        question('Children in household',count(core,'household_children'))
+      ],'Complete a few interviews and the baseline awareness picture will appear here.')+
+      pane('work',[
+        question('Work situation',count(core,'work_interest_gate')),
+        question('Active jobseeker registration',count(workRelevant,'jobseeker')),
+        question('Employment / integration plan',count(workRelevant,'employment_plan_status')),
+        question('Supports understood before',count(workRelevant,'work_support_awareness'))
+      ],'No work-relevant interview answers yet.')+
+      pane('daycare',[
+        question('Private daycare awareness',count(young,'private_daycare_awareness_all')),
+        question('Daycare need timing',count(young,'daycare_possible_need_all')),
+        question('Could apply without help',count(young,'daycare_application_awareness_all')),
+        question('Would a future reminder help',count(young,'daycare_future_reminder'))
+      ],'No interviews with a daycare-age child have answered these questions yet.')+
+      pane('vantaa',[
+        question('Harrastusten Vantaa awareness',count(vantaa,'vantaa_hobbies_awareness_all')),
+        question('Possible free-hobby need',count(vantaa,'vantaa_hobbies_possible_need')),
+        question('Reminder before next opening',count(vantaa,'vantaa_hobbies_reminder')),
+        question('School / Wilma support need',count(school,'school_help_possible'))
+      ],'No relevant Vantaa school-age family answers yet.')+
+      pane('next',[
+        question('Other needs uncovered',other),
+        question('Would return to AQOON',count(core,'aqoon_return_intent')),
+        question('Relevant update permission',count(core,'relevant_updates_ok')),
+        question('Outcome follow-up okay',count(core,'outcome_followup_ok'))
+      ],'No cross-need or follow-up answers yet.')+
+      '<div class="research-callout">Percentages use only people who were actually asked and answered that question. Conditional sections do not use all interviews as the denominator.</div>';
+    bindResearchTabs();lastLoaded=Date.now();
+  }catch(e){body.innerHTML='<div class="research-empty">Could not load interview insights: '+esc(e.message||e)+'</div>';}finally{loading=false;}
+}
+
+const obs=new MutationObserver(()=>{ensure();document.getElementById('interviewEvidenceCard')?.remove();});
+function start(){patchSaveFetch();const r=document.querySelector(ROOT);if(r)obs.observe(r,{childList:true,subtree:true});ensure();ensureAnalytics();}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
+document.addEventListener('click',e=>{if(e.target.closest('[data-interview]'))setTimeout(ensure,180);if(e.target.closest('[data-tab="analytics"]'))setTimeout(()=>{ensureAnalytics();load(false)},300);if(e.target.closest('#refresh'))setTimeout(()=>load(true),400)},false);
 })();
