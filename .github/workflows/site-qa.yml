@@ -28,7 +28,7 @@ jobs:
       - name: Check legal, independence and privacy guards
         run: python scripts/legal_trust_qa.py
       - name: Check tracker core JavaScript syntax
-        run: node --check tracker/app.js && node --check tracker/visual-v3.js && node --check tracker/crm-reactive.js
+        run: node --check tracker/app.js && node --check tracker/visual-v3.js && node --check tracker/crm-reactive.js && node --check tracker/operations-system.js && node --check tracker/interview-smart-notes.js && node --check tracker/incomplete-intake.js
       - name: Check tracker adapters, matching and scenario learning syntax
         run: node --check tracker/multineed-adapter.js && node --check tracker/interview-match.js && node --check tracker/scenario-learning.js && node --check tracker/interview-form-enhancements.js
       - name: Check public site JavaScript syntax
