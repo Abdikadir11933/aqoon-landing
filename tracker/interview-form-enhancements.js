@@ -1,5 +1,7 @@
 (()=>{'use strict';
 const QUESTIONS='#questions';
+const ADMIN='https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-leads-admin';
+let evidenceLoadedAt=0;
 
 function wireChoiceRow(row){
   if(!row||row.dataset.wired==='1')return;
@@ -98,6 +100,76 @@ function addDaycareEvidence(root){
   addChoiceQuestion(root,'application_steps_known','Before AQOON, did they understand the application steps needed for the route they want?',['Yes','Partly','No','Not sure']);
 }
 
+function countField(interviews,key){
+  const c={};let n=0;
+  interviews.forEach(i=>{
+    const v=i.answers&&i.answers[key];
+    if(v===undefined||v===null||v==='')return;
+    n++;
+    (Array.isArray(v)?v:[v]).forEach(x=>{const k=String(x);c[k]=(c[k]||0)+1;});
+  });
+  return {n,c};
+}
+function rows(title,data,max=8){
+  const entries=Object.entries(data.c).sort((a,b)=>b[1]-a[1]).slice(0,max);
+  return '<div style="margin-top:14px"><strong>'+title+'</strong><small class="muted" style="margin-left:6px">n='+data.n+'</small>'+(entries.length?'<div class="bars" style="margin-top:8px">'+entries.map(([k,v])=>'<div class="bar-row"><span>'+k+'</span><div class="bar-track"><i style="width:'+Math.max(6,Math.round(v/Math.max(...entries.map(e=>e[1]))*100))+'%"></i></div><strong>'+v+'</strong></div>').join('')+'</div>':'<p class="sub">No recorded answers yet.</p>')+'</div>';
+}
+function latestInterviews(list){
+  const m=new Map();
+  (list||[]).filter(i=>i.status==='completed').forEach(i=>{const old=m.get(i.lead_id);if(!old||String(i.updated_at)>String(old.updated_at))m.set(i.lead_id,i);});
+  return [...m.values()];
+}
+function ensureEvidenceCard(){
+  if(document.getElementById('interviewEvidenceCard'))return document.getElementById('interviewEvidenceCard');
+  const analytics=document.querySelector('.analytics-view');
+  const anchor=analytics?.querySelector('.breakdown-card');
+  if(!analytics||!anchor)return null;
+  const card=document.createElement('details');
+  card.className='command-card';
+  card.id='interviewEvidenceCard';
+  card.innerHTML='<summary>Interview evidence & pilot questions</summary><p class="sub">Live aggregate of completed first interviews. No family names or phone numbers are shown here.</p><div id="interviewEvidenceBody"><p class="sub">Open to load.</p></div>';
+  anchor.insertAdjacentElement('afterend',card);
+  card.addEventListener('toggle',()=>{if(card.open)loadEvidence(false)});
+  return card;
+}
+async function loadEvidence(force=false){
+  const card=ensureEvidenceCard(),body=document.getElementById('interviewEvidenceBody');
+  if(!card||!body)return;
+  if(!force&&evidenceLoadedAt&&Date.now()-evidenceLoadedAt<30000)return;
+  const pw=sessionStorage.getItem('aqoon_tracker_password')||'';
+  if(!pw)return;
+  body.innerHTML='<p class="sub">Loading interview evidence…</p>';
+  try{
+    const r=await fetch(ADMIN,{method:'POST',headers:{'Content-Type':'application/json','x-tracker-password':pw},body:JSON.stringify({action:'list'}),cache:'no-store'});
+    const d=await r.json();if(!r.ok)throw Error(d.detail||d.error||'Request failed');
+    const ints=latestInterviews(d.interviews||[]),leads=d.leads||[];
+    const hobby=ints.filter(i=>i.answers&&(i.answers.harrastusten_vantaa_awareness!==undefined||i.answers.hobby_registration_help!==undefined));
+    const daycare=ints.filter(i=>i.answers&&(i.answers.private_daycare_awareness!==undefined||i.answers.private_daycare_consider!==undefined));
+    const grades=countField(hobby,'grade');
+    const grade19=Object.entries(grades.c).filter(([k])=>/^[1-9]$/.test(k)).reduce((s,[,v])=>s+v,0);
+    const stages={};leads.forEach(l=>{const k=l.journey_stage||'reach';stages[k]=(stages[k]||0)+1;});
+    body.innerHTML='<div class="analytics-secondary" style="margin-top:12px"><span>Completed evidence interviews <strong>'+ints.filter(i=>i.answers&&i.answers.aqoon_discovery!==undefined).length+'</strong></span><span>Hobby/Vantaa <strong>'+hobby.length+'</strong></span><span>Daycare <strong>'+daycare.length+'</strong></span></div>'+
+      rows('How families first found AQOON',countField(ints,'aqoon_discovery'))+
+      rows('Prior awareness of the entry service/opportunity',countField(ints,'prior_awareness'))+
+      rows('Would they have known the next step without AQOON?',countField(ints,'self_navigation'))+
+      rows('Barriers before contact',countField(ints,'access_barriers'))+
+      rows('Additional needs discovered',countField(ints,'other_needs_discovered'))+
+      '<hr style="border:0;border-top:1px solid #eee;margin:20px 0"><strong>Hobby / Vantaa reporting</strong><p class="sub">Recorded grade 1–9 children: <b>'+grade19+'</b></p>'+
+      rows('Harrastusten Vantaa awareness',countField(hobby,'harrastusten_vantaa_awareness'))+
+      rows('Knew groups can be free',countField(hobby,'hobby_free_awareness'))+
+      rows('Registration-help intensity',countField(hobby,'hobby_registration_help'))+
+      rows('Main participation barrier',countField(hobby,'hobby_main_barrier'))+
+      '<hr style="border:0;border-top:1px solid #eee;margin:20px 0"><strong>Daycare / Pilke evidence refresh</strong>'+
+      rows('Private daycare awareness before AQOON',countField(daycare,'private_daycare_awareness'))+
+      rows('Prior private-daycare cost belief',countField(daycare,'private_daycare_cost_belief'))+
+      rows('Would consider private daycare if fit',countField(daycare,'private_daycare_consider'))+
+      rows('Daycare decision priorities',countField(daycare,'daycare_priorities'))+
+      rows('Understood application steps before AQOON',countField(daycare,'application_steps_known'))+
+      rows('Current CRM journey stages',{n:leads.length,c:stages});
+    evidenceLoadedAt=Date.now();
+  }catch(e){body.innerHTML='<p class="sub">Could not load interview evidence: '+String(e.message||e)+'</p>';}
+}
+
 function enhance(){
   const root=document.querySelector(QUESTIONS);
   if(!root)return;
@@ -109,6 +181,7 @@ function enhance(){
   addHobbyEvidence(root);
   addDaycareEvidence(root);
   root.querySelectorAll('.choice-row').forEach(wireChoiceRow);
+  ensureEvidenceCard();
 }
 
 const observer=new MutationObserver(()=>enhance());
@@ -116,7 +189,12 @@ const start=()=>{
   const root=document.querySelector(QUESTIONS);
   if(root)observer.observe(root,{childList:true,subtree:true});
   enhance();
+  ensureEvidenceCard();
 };
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
-document.addEventListener('click',e=>{if(e.target.closest('[data-interview]'))setTimeout(enhance,80)},false);
+document.addEventListener('click',e=>{
+  if(e.target.closest('[data-interview]'))setTimeout(enhance,80);
+  if(e.target.closest('[data-tab="analytics"]'))setTimeout(()=>{ensureEvidenceCard();loadEvidence(false)},250);
+  if(e.target.closest('#refresh'))setTimeout(()=>loadEvidence(true),350);
+},false);
 })();
