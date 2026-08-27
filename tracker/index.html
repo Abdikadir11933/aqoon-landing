@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="/tracker/research-analytics.css?v=1">
 <link rel="stylesheet" href="/tracker/analytics-mobile-v2.css?v=2">
 <link rel="stylesheet" href="/tracker/crm-manage.css?v=1">
+<link rel="stylesheet" href="/tracker/analytics-actions.css?v=1">
 </head>
 <body>
 <section class="lock" id="lock">
@@ -30,7 +31,7 @@
 <main class="wrap"><div id="err" class="error hidden"></div>
 
 <section id="dashboard" class="view today-view">
-  <div class="today-intro"><div><span class="eyebrow" id="todayDate">TODAY</span><h2 id="todayHeadline">Loading today’s work…</h2></div><div class="status-ring" id="todayRing"><span>0</span></div></div>
+  <div class="today-intro"><div><span class="eyebrow" id="todayDate">TODAY</span><h2 id="todayHeadline">Loading today’s work…</h2><small class="updated-at" id="updatedAt">Refreshing…</small></div><div class="status-ring" id="todayRing"><span>0</span></div></div>
   <article class="command-card clock-card" data-go="crm"><div class="card-title"><h3>First-contact clock</h3><span>48h promise</span></div><div id="slaClock" class="sla-clock"><div class="clock-line"><i></i></div><div class="clock-axis"><span>now</span><span>24h left</span><span>48h left</span></div></div></article>
   <article class="command-card pipeline-card" data-go="crm"><div class="card-title"><h3 id="pipelineTitle">Where the families are</h3></div><strong id="dashStage" class="sr-only">—</strong><div id="dashStages" class="sr-only"></div><div id="stageStrip" class="pipeline-strip"></div><div id="pipelineLabels" class="pipeline-labels"></div></article>
   <div class="today-mini-grid">
@@ -53,6 +54,7 @@
   <div class="analytics-kpis"><div><span>VISITORS</span><strong id="aVisitors">0</strong></div><div><span>SESSIONS</span><strong id="aSessions">0</strong></div><div><span>CONV.</span><strong id="aConv">0%</strong></div></div>
   <div class="analytics-secondary"><span>Page views <strong id="aViews">0</strong></span><span>CRM leads <strong id="aLeadRecords">0</strong></span><span>Completed <strong id="aCompleted">0</strong></span></div>
   <div class="notice analytics-note"><strong>Traffic</strong> uses the selected date range. <strong>Current funnel</strong> uses only the phone-first form. <strong>CRM leads</strong> are actual database rows.</div>
+  <article class="command-card action-health"><div class="card-title"><div><h3>What needs action now</h3><p class="sub">Live operational health across every family.</p></div><span>CRM</span></div><div class="health-grid"><div><strong id="hFirstContact">0</strong><span>awaiting first contact</span></div><div><strong id="hSixHours">0</strong><span>waiting 6h+</span></div><div><strong id="hIncomplete">0</strong><span>incomplete intakes</span></div><div><strong id="hFollowups">0</strong><span>follow-ups due</span></div></div><div id="healthInsight" class="health-insight"></div><div id="journeyHealth" class="journey-health"></div></article>
   <article class="command-card funnel-card"><div class="card-title"><div><h3>Form funnel</h3><p class="sub" id="flowSince">Comparable sessions only.</p></div><span>distinct sessions</span></div><div id="fullFunnel" class="funnel"></div><div id="validationNote" class="validation hidden"></div></article>
   <div class="data-sinks" aria-hidden="true"><div id="bigLeak"></div><div id="bigLeakText"></div><div id="bigLeakRate"></div></div>
   <article class="command-card traffic-card"><div class="card-title"><h3>Sessions by hour</h3><span id="trafficPeak"></span></div><div id="trafficChart" class="traffic-chart"></div></article>
@@ -63,5 +65,5 @@
 </main></section>
 
 <section id="drawer" class="drawer hidden"><div class="drawer-card"><div class="drawer-top"><div><h2 id="dName">First interview</h2><small class="muted" id="dMeta"></small></div><button class="btn secondary" id="closeDrawer">Close</button></div><div id="questions"></div><div class="question"><label>Urgency</label><select id="iUrgency"><option value="normal">Normal</option><option value="high">High</option><option value="urgent">Urgent</option><option value="low">Low</option></select></div><div class="question"><label>Next call / meeting</label><input id="iFollow" type="datetime-local"></div><div class="question"><label>Anything important in their own words?</label><textarea id="iNotes" rows="3" placeholder="Short notes"></textarea></div><div class="interview-actions"><button class="btn primary" id="saveInterview" style="width:100%;padding:14px">Save interview & build deep-research brief</button><div id="promptWrap" class="hidden"><div class="promptbox" id="promptBox"></div><button class="btn teal" id="copyPrompt" style="width:100%;margin-top:8px">Copy complete research brief</button></div></div></div></section>
-<script src="/tracker/multineed-adapter.js?v=1" defer></script><script src="/tracker/scenario-learning.js?v=1" defer></script><script src="/tracker/app.js?v=4" defer></script><script src="/tracker/visual-v3.js?v=4" defer></script><script src="/tracker/crm-reactive.js?v=1" defer></script><script src="/tracker/interview-form-enhancements.js?v=1" defer></script><script src="/tracker/universal-proof-questions.js?v=4" defer></script><script src="/tracker/incomplete-intake.js?v=1" defer></script><script src="/tracker/human-labels.js?v=1" defer></script><script src="/tracker/analytics-mobile-v2.js?v=2" defer></script><script src="/tracker/crm-manage.js?v=2" defer></script>
+<script src="/tracker/multineed-adapter.js?v=1" defer></script><script src="/tracker/scenario-learning.js?v=1" defer></script><script src="/tracker/app.js?v=5" defer></script><script src="/tracker/visual-v3.js?v=5" defer></script><script src="/tracker/crm-reactive.js?v=1" defer></script><script src="/tracker/interview-form-enhancements.js?v=1" defer></script><script src="/tracker/universal-proof-questions.js?v=4" defer></script><script src="/tracker/incomplete-intake.js?v=1" defer></script><script src="/tracker/human-labels.js?v=1" defer></script><script src="/tracker/analytics-mobile-v2.js?v=2" defer></script><script src="/tracker/crm-manage.js?v=2" defer></script>
 </body></html>
