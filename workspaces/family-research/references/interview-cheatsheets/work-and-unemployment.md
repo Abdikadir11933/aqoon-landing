@@ -1,6 +1,6 @@
 # Work and unemployment cheat sheet
 
-Updated 2026-08-27. Recheck live Työmarkkinatori/Kela rules before case-specific promises.
+Updated 2026-08-28. Recheck live Työmarkkinatori/Kela rules before case-specific promises.
 
 ## Ilmoittautuminen työttömäksi työnhakijaksi
 **What it is:** Official registration as an unemployed jobseeker with the local employment authority through Työmarkkinatori.
@@ -20,21 +20,25 @@ Updated 2026-08-27. Recheck live Työmarkkinatori/Kela rules before case-specifi
 ## Työnhakuprofiili - new obligation from 1.9.2026
 **What it is:** A usually anonymous Job Market Finland profile containing the jobseeker's education, work experience, skills and job wishes. It can also include a short introduction and external links such as LinkedIn.
 
-**What changes on 1 September 2026:** Publishing and keeping the profile published becomes part of the job-search process when the legal obligation applies.
+**What changes on 1 September 2026:** Creating, publishing and keeping the profile published becomes a job-search obligation when the statutory obligation applies.
 
-**For a new jobseeker:** Current official guidance says the person generally gets 15 working days from the start of job search to publish the profile.
+**For a new jobseeker:** Current official guidance says the person generally gets 15 working days from the start of job search to complete and publish the profile.
 
-**For job search started before 1.9.2026:** The obligation normally starts at the person's next interaction with employment services after the change takes effect.
+**For job search started before 1.9.2026:** The obligation normally starts when the person next has a `työnhakukeskustelu`. After that discussion, the person generally has 15 working days to complete and publish the profile. They may publish it earlier voluntarily.
+
+**Exceptions:** The law contains situations where the profile does not have to be published, including examples such as full-time work, full-time study or entrepreneurship, or when the employment authority assesses that the person cannot independently use the profile in job search. Verify the person's own instructions rather than assuming the exception applies.
+
+**If the deadline is missed:** Current official guidance says the employment authority can publish the minimum profile information. The profile-publication issue itself does not end the person's job search or directly affect unemployment security.
 
 **Paid?** No. This is a job-search obligation/tool, not a benefit.
 
 **How to do it:** Työmarkkinatori -> create/update Työnhakuprofiili -> publish it and keep it published while job search remains active when required.
 
-**Ask from September onward:** Onko Työnhakuprofiili julkaistu? Milloin työnhaku alkoi? Oletko ollut yhteydessä työllisyyspalveluihin 1.9. jälkeen? Tarvitsetko apua profiilin tekemiseen?
+**Ask from September onward:** Onko Työnhakuprofiili julkaistu? Milloin työnhaku alkoi? Jos työnhaku alkoi ennen 1.9., onko sinulla ollut työnhakukeskustelu 1.9. jälkeen? Mikä määräpäivä näkyy omissa ohjeissasi? Tarvitsetko apua profiilin tekemiseen?
 
-**Watch out:** Do not treat this as only a CV suggestion after 1.9. It can be an actual job-search obligation. Check the person's current Työmarkkinatori instructions because the exact start of the obligation depends on their situation.
+**Watch out:** Do not treat this as only a CV suggestion after 1.9. It can be an actual job-search obligation, but do not incorrectly threaten loss of benefit or job-search status if the profile has not yet been published.
 
-**Verify:** Työmarkkinatori, “Työnhakuprofiilin julkaisemista koskeva lakimuutos astuu voimaan syyskuun alusta” (17.8.2026).
+**Verify:** Työmarkkinatori, “Työnhakuprofiilin julkaisemista koskeva lakimuutos astuu voimaan syyskuun alusta” (17.8.2026): https://tyomarkkinatori.fi/uutiset/tyonhakuprofiilin-julkaisemista-koskeva-lakimuutos-astuu-voimaan-syyskuun-alusta
 
 ## Yleistuki
 **What it is:** Kela unemployment support from 1 May 2026, replacing Kela’s old työmarkkinatuki and peruspäiväraha.
