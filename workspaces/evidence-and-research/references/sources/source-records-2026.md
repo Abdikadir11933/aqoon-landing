@@ -21,6 +21,9 @@ Publisher: Job Market Finland / KEHA Centre | level: official-primary | URL: htt
 ## src.vantaa.integration-plan
 Publisher: City of Vantaa | level: official-primary | URL: https://www.vantaa.fi/fi/palveluhakemisto/palvelu/kotoutumissuunnitelma | volatility: high | status: active
 
+## src.vantaa.integration-needs-assessment
+Publisher: City of Vantaa | level: official-primary | URL: https://www.vantaa.fi/fi/palveluhakemisto/palvelu/osaamisen-ja-kotoutumisen-palvelutarpeen-arviointi | volatility: high | status: active
+
 ## src.oph.s2-2026
 Publisher: OPH | level: official-primary | URL: https://www.oph.fi/fi/uutiset/2026/perustemuutokset-voimaan-182026-muutoksilla-edistetaan-maahanmuuttotaustaisten | volatility: high | status: active
 
