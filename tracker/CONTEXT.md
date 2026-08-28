@@ -29,6 +29,20 @@ Evolve the tracker into a company operating system in which Abducadir and Mustaf
 
 The target is outcome-based, not a predetermined schema or UI. Any implementation must first map the current runtime, database, Edge Functions, automations and real workflow, then choose the smallest safe architecture that achieves the goal.
 
+## File map (27 flat asset files, added 28 Aug 2026 for navigability)
+
+`tracker/` has no subfolders — every JS/CSS file sits flat next to `index.html`. Deliberately not reorganized into subfolders (would require rewriting every `<script>`/`<link>` path in `index.html` with real risk of silently breaking a live feature, including login, with no way to test the result end-to-end from an agent session — see `docs/qa/full-repository-audit-2026-08-28.md`). This map exists instead, so grouping is visible without opening every file. **A prior audit session missed several of these files entirely** because a truncated directory listing hid them in the flat structure — read this map, or `git ls-files tracker/`, never a truncated `ls`.
+
+**Bootstrap / identity** — `operator-identity.js` (sign-in/sign-up, JWT attribution, ownership badges) · `crm-reactive.js` (small live-state strip on the analytics tab — **also the file that dynamically injects `interview-match.js` into the page**; that file has no static `<script>` tag of its own) · `multineed-adapter.js` (patches `list` API responses to surface `additional_needs` in lead-card notes).
+
+**Core rendering** — `app.js` (the entire engine: login/unlock, dashboard, CRM list/filter/render, analytics rendering, and its **own older, simpler built-in interview question set** used as a fallback — see the interview note below) · `visual-v3.js` (SLA rings, triage grouping labels, tab icons, funnel drop annotations) · `human-labels.js` (translates internal status/stage codes and a few Somali label variants to consistent display text) · `crm-manage.js` (manual add/remove family, `family-leads-manage`) · `incomplete-intake.js` ("finish this partial intake" drawer, `family-incomplete-admin`).
+
+**Interview** (see also "First interview architecture" below and `docs/decisions/0002-two-operator-os-interview-and-data-foundation.md` §1–2 for the field-ID-drift and evidence-layer-duplication history) — `interview-match.js` (route-specific matching questions + deep-research prompt builder; **loaded dynamically by `crm-reactive.js`, not a static tag** — if that injection ever silently fails, the tracker falls back to `app.js`'s own different, older question set and a different save handler without any visible error) · `interview-form-enhancements.js` (older evidence layer, partly superseded but intentionally still active for hobby/daycare Pilke-depth questions) · `universal-proof-questions.js` (canonical universal-evidence + branching layer; also renders the "Interview insights" analytics tab) · `interview-smart-notes.js` (suggests structured answers from free-text call notes) · `scenario-learning.js` (PII-free scenario matching + "save verified research"; correctly wired but zero production rows so far, per the full audit).
+
+**Sales & analytics** — `operations-system.js` (sales pipeline + agenda, `ops-admin`) · `call-outcomes.js` ("what happened on this call" modal, `record_call_outcome`) · `analytics-mobile-v2.js` (mobile-specific analytics tab enhancements).
+
+**CSS** — one file per matching JS/section: `app.css`, `usability.css`, `workspace-ux.css`, `analytics-actions.css`, `analytics-mobile-v2.css`, `call-outcomes.css`, `crm-manage.css`, `crm-reactive.css`, `operations-system.css`, `research-analytics.css`.
+
 ## First interview architecture
 
 Every first interview has three layers:
