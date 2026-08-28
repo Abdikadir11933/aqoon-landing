@@ -13,3 +13,7 @@ Rules:
 - do not add eligibility promises to intake copy.
 - UI work must preserve mobile speed and submit reliability.
 - PII is runtime/private data, never reference material.
+- the free intake is the family's trusted entry door; it must give useful help even when no commercial partner match exists.
+- consent to contact about the stated problem is separate from consent to share information with a partner, receive unrelated offers or join continuing marketing.
+- when AQOON may be paid by a recommended provider, disclose that relationship before the family acts on the recommendation.
+- intake may capture several confirmed needs, but must not become a long universal questionnaire. Progressive questions belong in the operator interview.

@@ -20,7 +20,7 @@ Do not collapse these levels. A view is not a lead. A saved phone is not a compl
 
 ## Current funnel evidence
 
-The current dated aggregate snapshot is `references/aqoon-funnel-evidence-2026-08-27.md`. It is a launch-cohort snapshot, not a permanent benchmark. When newer cohorts exist, create a new dated snapshot rather than silently replacing the old denominator.
+The dated launch snapshots are `references/aqoon-funnel-evidence-2026-08-27.md` and `references/aqoon-funnel-evidence-2026-08-28.md`. They are cohort snapshots, not permanent benchmarks. Create a new dated snapshot when the observation window or denominator changes; never silently replace an older denominator.
 
 Interview evidence needed to validate the wider AQOON thesis is defined in `/tracker/CONTEXT.md`. In particular, track prior awareness, ability to self-navigate, barriers, additional needs discovered and later outcomes. This allows the business to test whether a specific entry problem creates a broader ongoing navigation relationship.
 
@@ -31,3 +31,9 @@ Client reports may use anonymised aggregate AQOON evidence, but buyer-specific c
 For programme-specific reporting, preserve the exact promised outcome chain. Example: a hobby pilot should separate awareness, eligible child, registration help, registration, start and persistence; a daycare funnel should separate awareness, application route, application/action and verified daycare start.
 
 Early rates must be labelled provisional when the cohort is small, incomplete or observed for less than a full reporting window.
+
+## Aggregate learning as infrastructure
+
+The internal brain may learn reusable, PII-free routes from private family work, but a case note is not canonical knowledge. A reusable record needs an official/provider source, verification state, effective or checked date, volatility/recheck date and an audit trail. Expired or changed information must stop being recommended until reviewed.
+
+The same verified record may support operator guidance, public pages and content ideas, but publication is a separate human-reviewed action. Never allow an automated research or QA process to silently publish official-looking advice, change production logic or overwrite a verified record without a traceable review step.

@@ -1,6 +1,6 @@
 # AQOON
 
-AQOON helps Somali-speaking families and adults in Finland understand services, opportunities, applications, education, work, children’s services, Kela-related questions, and selected household contracts. AQOON is a navigation and explanation service, not a public authority.
+AQOON is a demand-to-outcome company. It helps families and adults understand services and opportunities, find the right route and complete the next action. For organisations, AQOON can connect trusted multilingual acquisition, assisted applications/onboarding and verified outcomes. Its strongest current public support and evidence are Somali-language, but the underlying service-path problem is not limited to one background. AQOON is independent and is not a public authority.
 
 ## Canonical entry points
 
@@ -68,6 +68,13 @@ Common user problem pattern:
 2. AQOON helps identify potentially relevant routes and explains them in Somali.
 3. Eligibility, deadlines, rights and official decisions are checked against the responsible authority or municipality.
 4. AQOON can help the person understand the information, find the correct link, and navigate the application or next step.
+
+For organisations, AQOON's current service architecture is:
+1. AQOON Outcomes: acquisition, qualification, assisted action and verification of an agreed outcome.
+2. AQOON Journey: multilingual decision support, application guidance, onboarding and retention improvements tied to measured friction.
+3. AQOON Enablement: practical staff and leadership training tied to real service-path handoffs and customer questions.
+
+AQOON does not sell raw family contact lists. A paid provider relationship must be disclosed before a family acts on a commercial recommendation, and help should remain useful when no paid match exists.
 
 AQOON does not infer that a person definitely qualifies from a short description.
 

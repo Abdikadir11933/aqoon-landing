@@ -9,6 +9,25 @@ Source-of-truth rules:
 - research outputs should be structured handoffs, not copied into canonical public knowledge without verification.
 - never infer an answer that the family did not give. `Not sure` is valid evidence.
 
+## Current implementation boundary (V1, verified 28 Aug 2026)
+
+The production tracker is functional but designed around one operator:
+
+- the private admin functions use one shared tracker password, not operator identities;
+- family leads, interviews, sales records and calendar events have no durable owner/assignee field;
+- the agenda combines explicit `ops_events`, family follow-up dates and sales next-action dates, but it is not yet a real two-person work calendar;
+- call outcomes can record reached/no answer/call later, but do not record who called;
+- funnel analytics separate anonymous reach from CRM leads, but downstream action, outcome, persistence, operator workload and time-to-stage reporting remain incomplete;
+- reusable PII-free scenario tables and matching logic exist, but the internal brain is not operationally populated yet.
+
+Do not describe planned V2 capabilities as current behaviour. The implementation goal and audit brief live in `../docs/briefs/aqoon-two-operator-os-v2-fast-start.md`.
+
+## Two-operator target
+
+Evolve the tracker into a company operating system in which Abducadir and Mustafe can see their own work, deliberately accept or reassign ownership, finish a family relationship without accidental mid-case switching, cover each other when needed and leave a trustworthy history of actions and decisions. The system must remain useful when more operators, languages, partners and service categories are added.
+
+The target is outcome-based, not a predetermined schema or UI. Any implementation must first map the current runtime, database, Edge Functions, automations and real workflow, then choose the smallest safe architecture that achieves the goal.
+
 ## First interview architecture
 
 Every first interview has three layers:

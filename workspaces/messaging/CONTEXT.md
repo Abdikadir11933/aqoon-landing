@@ -36,7 +36,21 @@ Buyer-facing:
 3. explain that AQOON combines trusted distribution, navigation and outcome measurement;
 4. distinguish proven evidence from the next hypothesis being tested.
 
+## Canonical buyer proposition
+
+AQOON is not positioned as a translation agency, a generic marketing agency or three unrelated consultancies. It is one demand-to-outcome operating partner. Its shared engine can be purchased through three connected outcomes:
+
+1. **AQOON Outcomes** - acquire, qualify, guide and verify applications, starts or other agreed outcomes. A sensible commercial structure to test is a base retainer plus a clearly defined outcome fee; pricing is not yet canonical.
+2. **AQOON Journey** - improve multilingual messages, decision support, application instructions, onboarding materials and early retention where the measured funnel shows friction. This is journey conversion, not word-for-word translation.
+3. **AQOON Enablement** - practical Mustafe-led training for frontline staff, unit leaders and management, tied to observed family questions, handoff failures and retention risks rather than a generic culture lecture.
+
+The shared moat is the consented relationship, verified route knowledge and aggregate learning across the journey. Raw family identities and contact lists are not a buyer product.
+
+When a free family-side service can lead to a paid partner offer, disclose the commercial relationship clearly before the recommendation or handoff. Help must remain useful even when no paid match exists.
+
 Current evidence source: `../evidence-and-research/references/aqoon-funnel-evidence-2026-08-27.md`.
+
+Latest operational snapshot: `../evidence-and-research/references/aqoon-funnel-evidence-2026-08-28.md`. Pilke follow-up learning: `../evidence-and-research/references/pilke-phase-1-follow-up-2026-08-28.md`.
 
 ## Claim language
 

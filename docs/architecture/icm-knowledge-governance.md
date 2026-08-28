@@ -10,4 +10,10 @@ Business evidence flows separately:
 
 `AQOON primary data -> evidence registry -> business architecture -> messaging -> activation`
 
+Operational learning closes a controlled loop:
+
+`private case work -> PII-free scenario -> source verification -> human review -> operator guidance / public content -> new measured outcomes`
+
+The loop may improve recommendations and content, but private case facts never become public knowledge and automated QA never silently promotes a draft into authoritative advice.
+
 Private operational data stays outside public GitHub. This document records the architecture; `CLAUDE.md`, `CONTEXT.md`, `_core/` policies/schemas and workspace stage contracts implement it.
