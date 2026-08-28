@@ -9,6 +9,18 @@ Publisher: Kela | level: official-primary | URL: https://laskurit.kela.fi/genera
 ## src.jobmarket.te24
 Publisher: Job Market Finland / public employment services | level: official-primary | URL: https://tyomarkkinatori.fi/en/news/uudenmaan-te-toimisto-lakkautetaan-ja-tyonhakijoiden-palvelut-siirtyvat-tyollisyysalueille-1.1.2025 | volatility: medium | status: active
 
+## src.jobmarket.jobseeker-registration
+Publisher: Job Market Finland / KEHA Centre | level: official-primary | URL: https://tyomarkkinatori.fi/henkiloasiakkaat/tietoa-tyoelamasta/tyonhaku/ilmoittautuminen-tyonhakijaksi | volatility: high | status: active
+
+## src.jobmarket.employment-plan
+Publisher: Job Market Finland / KEHA Centre | level: official-primary | URL: https://tyomarkkinatori.fi/henkiloasiakkaat/tietoa-tyoelamasta/tyonhaku/asiointi-tyovoimapalveluissa/tyollistymissuunnitelma | volatility: high | status: active
+
+## src.jobmarket.integration-plan
+Publisher: Job Market Finland / KEHA Centre | level: official-primary | URL: https://tyomarkkinatori.fi/henkiloasiakkaat/tietoa-tyoelamasta/kansainvalisyys/maahanmuuttajan-palvelut-ja-kotoutumissuunnitelma | volatility: high | status: active
+
+## src.vantaa.integration-plan
+Publisher: City of Vantaa | level: official-primary | URL: https://www.vantaa.fi/fi/palveluhakemisto/palvelu/kotoutumissuunnitelma | volatility: high | status: active
+
 ## src.oph.s2-2026
 Publisher: OPH | level: official-primary | URL: https://www.oph.fi/fi/uutiset/2026/perustemuutokset-voimaan-182026-muutoksilla-edistetaan-maahanmuuttotaustaisten | volatility: high | status: active
 
