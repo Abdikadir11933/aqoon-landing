@@ -9,7 +9,7 @@ const EVENT_TYPES = ["call","meeting","deadline","task"];
 const EVENT_STATUS = ["planned","done","cancelled"];
 const headers = () => ({
   "Access-Control-Allow-Origin": ORIGIN,
-  "Access-Control-Allow-Headers": "content-type, x-tracker-password",
+  "Access-Control-Allow-Headers": "content-type, x-tracker-password, authorization",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
   "Content-Type": "application/json; charset=utf-8",
   "Cache-Control": "no-store"
@@ -19,6 +19,20 @@ const text = (v:unknown, max=6000) => typeof v === "string" ? v.trim().slice(0,m
 const arr = (v:unknown) => Array.isArray(v) ? v.map(x=>text(x,1000)).filter(Boolean).slice(0,30) : [];
 const date = (v:unknown) => { if(!v) return null; const d=new Date(String(v)); return Number.isNaN(d.getTime())?null:d.toISOString(); };
 const opId = (b:any) => typeof b.operator_id === "string" && b.operator_id.trim() ? b.operator_id.trim() : null;
+async function resolveOperatorId(req:Request,b:any,db:any){
+  const auth=req.headers.get("authorization")||"";
+  const m=auth.match(/^Bearer\s+(.+)$/i);
+  if(m){
+    try{
+      const{data,error}=await db.auth.getUser(m[1]);
+      if(!error&&data?.user){
+        const{data:op}=await db.from("operators").select("id").eq("auth_user_id",data.user.id).maybeSingle();
+        if(op)return op.id;
+      }
+    }catch(e){}
+  }
+  return opId(b);
+}
 const json = (body:unknown, status:number, h:Record<string,string>) => new Response(JSON.stringify(body),{status,headers:h});
 
 Deno.serve(async req => {
@@ -55,6 +69,7 @@ Deno.serve(async req => {
   if(action==="save_opportunity"){
     const organization=text(b.organization,200);
     if(!organization) return json({error:"organization_required"},400,h);
+    const operatorId=await resolveOperatorId(req,b,db);
     const payload:any={
       organization, contact_name:text(b.contact_name,160), contact_role:text(b.contact_role,160),
       stage:STAGES.includes(b.stage)?b.stage:"lead", health:HEALTH.includes(b.health)?b.health:"on_track",
@@ -64,6 +79,7 @@ Deno.serve(async req => {
       source:text(b.source,200), updated_at:new Date().toISOString()
     };
     if(Object.prototype.hasOwnProperty.call(b,"owner_operator_id")) payload.owner_operator_id=b.owner_operator_id?String(b.owner_operator_id):null;
+    else if(!b.id&&operatorId) payload.owner_operator_id=operatorId;
     let q=b.id?db.from("sales_opportunities").update(payload).eq("id",String(b.id)):db.from("sales_opportunities").insert(payload);
     const {data:record,error}=await q.select().single();
     if(error) return json({error:"db_error",detail:error.message},500,h);
@@ -80,7 +96,8 @@ Deno.serve(async req => {
   if(action==="add_activity"){
     const opportunity_id=String(b.opportunity_id||""), title=text(b.title,300), activity_type=TYPES.includes(b.activity_type)?b.activity_type:"note";
     if(!opportunity_id||!title)return json({error:"missing_fields"},400,h);
-    const payload:any={opportunity_id,activity_type,title,notes:text(b.notes),happened_at:date(b.happened_at),due_at:date(b.due_at),completed_at:date(b.completed_at),operator_id:opId(b)};
+    const operatorId=await resolveOperatorId(req,b,db);
+    const payload:any={opportunity_id,activity_type,title,notes:text(b.notes),happened_at:date(b.happened_at),due_at:date(b.due_at),completed_at:date(b.completed_at),operator_id:operatorId};
     const {data:record,error}=await db.from("sales_activities").insert(payload).select().single();
     if(error)return json({error:"db_error",detail:error.message},500,h);
     return json({activity:record},200,h);
@@ -89,8 +106,9 @@ Deno.serve(async req => {
   if(action==="save_event"){
     const title=text(b.title,300), starts_at=date(b.starts_at);
     if(!title||!starts_at)return json({error:"missing_fields"},400,h);
+    const operatorId=await resolveOperatorId(req,b,db);
     const payload:any={title,starts_at,ends_at:date(b.ends_at),event_type:EVENT_TYPES.includes(b.event_type)?b.event_type:"task",status:EVENT_STATUS.includes(b.status)?b.status:"planned",notes:text(b.notes),opportunity_id:b.opportunity_id||null,family_lead_id:b.family_lead_id||null,updated_at:new Date().toISOString()};
-    if(Object.prototype.hasOwnProperty.call(b,"operator_id")) payload.operator_id=opId(b);
+    if(operatorId) payload.operator_id=operatorId;
     let q=b.id?db.from("ops_events").update(payload).eq("id",String(b.id)):db.from("ops_events").insert(payload);
     const {data:record,error}=await q.select().single();
     if(error)return json({error:"db_error",detail:error.message},500,h);
