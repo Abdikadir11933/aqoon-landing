@@ -8,6 +8,12 @@ Vie AQOONin nykyinen yhden operaattorin V1-järjestelmä turvallisesti kohti oik
 
 Sinulle annetaan tavoite ja rajat, ei valmista toteutusreseptiä. Käytä omaa harkintaasi, tutki vaihtoehdot ja perustele ratkaisu havaituilla tosiasioilla.
 
+## Ensimmäisen vaiheen ehdoton portti
+
+Ensimmäinen työvaihe on vain nykytilan ymmärtäminen. Älä muuta tuotantokoodia, käyttöliittymää, Supabase-skeemaa, Edge Functioneita, automaatioita tai live-dataa tämän vaiheen aikana.
+
+Ennen suunnittelua tai toteutusta sinun pitää toimittaa Abducadirille todennettava nykytilaraportti ja saada häneltä erillinen hyväksyntä jatkaa. Nykytilaraportin jälkeen seuraava erikseen hyväksyttävä vaihe on ulkoinen deep research ja tavoitearkkitehtuurin vaihtoehdot. Vasta niiden jälkeen voidaan hyväksyä redesign ja toteutus.
+
 ## Liiketoimintatavoite
 
 AQOON on yksi demand-to-outcome-yritys:
@@ -109,11 +115,11 @@ Mallinna Abducadirin ja Mustafen työ konkreettisina vastuina ensimmäisestä ko
 
 Älä oleta, että nykyiset statuskentät ovat oikea lopullinen malli. Älä myöskään pura toimivaa V1:tä vain siksi, että jokin toinen arkkitehtuuri on elegantimpi.
 
-### 3. Vaihtoehdot ja päätös
+### 3. Vaihtoehdot ja päätös - vasta erillisellä hyväksynnällä
 
 Esitä tarvittaessa muutama realistinen arkkitehtuurivaihtoehto. Vertaa niitä turvallisuuden, käyttöönoton riskin, operaattorin nopeuden, audit trailin, analytiikan, ylläpidon ja tulevan kasvun kannalta. Tee sitten päätös ja tallenna kestävä päätösperustelu `docs/decisions/`-hakemistoon.
 
-### 4. Inkrementaalinen toteutus
+### 4. Inkrementaalinen toteutus - vasta erillisellä hyväksynnällä
 
 Toteuta pieninä, varmennettavina viipaleina siten, että jokainen vaihe parantaa oikeaa päivittäistä työtä. Älä tee suurta kertavaihtoa ilman rinnakkaista varmennusta. Lisää deterministiset testit niihin sääntöihin, jotka voidaan testata.
 
@@ -132,14 +138,18 @@ Lopputuloksena tarvitaan:
 - käyttöönotto- ja rollback-suunnitelma;
 - lista asioista, joita ei vielä ratkaistu ja miksi.
 
-## Ensimmäinen vastaus, jonka haluan sinulta
+## Ensimmäisen vaiheen luovutus
 
-Älä aloita pitkällä filosofialla äläkä lupaa vielä lopullista ratkaisua. Vastaa ensimmäisen auditoinnin jälkeen tiiviisti:
+Älä aloita pitkällä filosofialla äläkä lupaa vielä lopullista ratkaisua. Toimita ensimmäisen auditoinnin jälkeen:
 
 1. Näin järjestelmä toimii nyt.
 2. Näin Abducadir löytää tämän päivän työnsä nyt.
 3. Näin Mustafe voisi käyttää sitä nyt, ja nämä kohdat estävät turvallisen kahden operaattorin käytön.
 4. Tässä ovat suurimmat riskit ja pullonkaulat.
-5. Tässä järjestyksessä etenisin kohti tavoitetta, ja näin varmennan jokaisen vaiheen.
+5. Tässä ovat kaikki järjestelmän yhteyspisteet: selain, Edge Functions, Supabase-taulut, automaatiot, ulkoiset palvelut, analytiikka ja julkaisuputki.
+6. Tässä ovat kunkin nykyisen vaiheen tehtävä, syöte, vastuullinen ihminen/järjestelmä, tallennettava tieto, seuraava vaihe ja valmistumisen määritelmä.
+7. Tässä ovat repo-, live-skeema-, deploy- ja dokumentaatiopoikkeamat.
+8. Tässä ovat kysymykset, joihin ei voi vastata nykyisestä aineistosta arvaamatta.
+9. Tässä järjestyksessä tekisin seuraavan deep-research- ja suunnitteluvaiheen, jos Abducadir hyväksyy sen.
 
-Sen jälkeen aloita ensimmäinen turvallinen, eniten arvoa tuottava toteutusviipale.
+Pysähdy tämän luovutuksen jälkeen. Älä aloita deep researchia, redesignia tai toteutusta ennen Abducadirin nimenomaista hyväksyntää.
