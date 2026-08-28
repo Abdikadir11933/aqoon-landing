@@ -15,5 +15,8 @@ Municipal employment areas provide public employment services from 1.1.2025. Nat
 ## authority.municipality
 Municipalities are competent for their own local services such as early childhood education and many integration/employment routes. Always resolve the municipality/city before using a local route.
 
+## authority.vantaa-employment
+Vantaa employment and integration services. Provides the local employment-authority/customer route for Vantaa residents, including jobseeker and integration-plan service paths. Canonical site: https://www.vantaa.fi/fi/tyonhaku-ja-tyollistaminen . It does not decide Kela payments, residence permits, school places or provider admission.
+
 ## authority.finlex
 Finlex is the official source for Finnish legislation: https://www.finlex.fi/
