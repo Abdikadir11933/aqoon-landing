@@ -86,6 +86,17 @@ for endpoint in ("family-intake-contact", "family-intake-submit", "family-funnel
 for forbidden in ("SUPABASE_SERVICE_ROLE_KEY", "service_role", "SUPABASE_ANON_KEY"):
     if forbidden in caawi or forbidden in caawi_js:
         fail(f"caawi browser code contains forbidden credential marker: {forbidden}")
+
+# Tracker browser code must never carry the service-role credential either,
+# even though it legitimately embeds the public anon key (used for the
+# operator sign-in flow). Flagged as a coverage gap in
+# docs/qa/current-state-audit-2026-08-28.md: this check previously only
+# scanned caawi/, leaving tracker/ unguarded.
+for js_path in sorted((ROOT / "tracker").glob("*.js")):
+    js_text = js_path.read_text(encoding="utf-8")
+    for forbidden in ("SUPABASE_SERVICE_ROLE_KEY", "service_role"):
+        if forbidden in js_text:
+            fail(f"tracker/{js_path.name} contains forbidden credential marker: {forbidden}")
 if 'rel="canonical" href="https://aqoon.live/caawi"' not in caawi:
     fail("caawi canonical URL is missing or changed")
 if "index,follow" not in caawi.replace(" ", "").lower():

@@ -1,5 +1,7 @@
 # AQOON — First-call questionnaires
 
+**Historical reference, not canonical.** This free-text design predates and was superseded by the field-ID-based interview implemented in `tracker/interview-match.js`, `tracker/interview-form-enhancements.js` and `tracker/universal-proof-questions.js`, whose design rationale is `workspaces/evidence-and-research/references/interview-instrument-design-2026-08-27.md`. Flagged as an orphaned duplicate source of truth during the 28 Aug 2026 full-repository audit: none of the code reads this file, and its "5–10 minutes" target and question wording no longer match production. Kept for historical context only; do not treat it as the current interview design.
+
 Purpose: collect only the facts needed to understand the person's situation and match them to the right official service, programme, school, daycare route or support. Do not promise eligibility on the call. The first call should usually take about 5–10 minutes.
 
 ## Universal opening
