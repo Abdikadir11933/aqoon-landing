@@ -6,6 +6,14 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 
 ## Priority routes
 
+### Helsinki
+
+- **Impact Academy, syksy 2026** — Suomen Somalia-verkosto
+  - Fits: 16–29-year-olds who want to clarify their study or career direction, build presentation, influencing and leadership skills, gain relevant experience or work with a mentor.
+  - Helps with: education and career planning, practical skills, mentoring, networks and experience that can support future applications.
+  - Status: free; the next season starts in September 2026 and registration is open. The provider has not published a closing date, so re-check the form and provider page before presenting it as available.
+  - Official: https://www.somaliaverkosto.fi/fi/toiminta-suomessa/impact-academy/
+
 ### Vantaa
 
 - **Vanhemmat mukaan (VAMU)** — Vantaan kaupunki
