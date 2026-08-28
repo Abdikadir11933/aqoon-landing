@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 26.8.2026
+Last compiled: 28.8.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -9,9 +9,9 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 ### Vantaa
 
 - **Vanhemmat mukaan (VAMU)** — Vantaan kaupunki
-  - Fits: immigrant parents, including stay-at-home parents; Finnish not required; child can come along.
+  - Fits: immigrant parents in Vantaa with a valid residence permit and Finnish at about A1–A2.2; literacy is not required and a small child can come along.
   - Helps with: Finnish, integration, understanding school/daycare, path toward studies/work.
-  - Status: active/open.
+  - Status: Myyrmäki group running from 4.8.; Koivukylä starts 1.9.; Hakunila ended 21.8. and no longer accepts registrations.
   - Official: https://www.vantaa.fi/fi/hankkeet/hanke/vanhemmat-mukaan
 
 - **Osaamiskeskus Vantaa** — Vantaan kaupunki
@@ -113,20 +113,58 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: active service model in 2026.
   - Official: https://www.espoo.fi/fi/uutiset/2026/01/kotivanhemmille-suunnatut-suomen-kielen-kurssit-vakiintuvat-osaksi-espoon-kotoutumispalveluita
 
+- **Let's speak Finnish — Finnish language cafe** — City of Espoo / Elinvoima
+  - Fits: anyone who wants to practise spoken Finnish; beginners welcome.
+  - Helps with: everyday spoken Finnish in a free, low-threshold setting.
+  - Status: Mondays 31.8.–21.12.2026, 17.30–19.00, Kajuutta, Espoonlahdenkatu 8; free, no advance registration.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagp5x5bnxy
+
 ### Tampere
 
 - **Arjen avaimet 2026–2027** — Tampereen seudun työväenopisto / Tampereen kaupunki
-  - Fits: immigrant women outside work, insufficient Finnish, including some spouses and people beyond the integration period.
+  - Fits: immigrant women outside work, in work but needing stronger Finnish, beyond the integration period, and some spouses of workers/students.
   - Helps with: Finnish, job search, society, digital skills, personal finances.
-  - Selection test: 3.9.2026.
+  - Selection test: 3.9.2026, 13–15 at Sampola; the official page does not currently show a separate clearly open application form, so verify participation with the organiser rather than presenting this as ordinary open enrolment.
   - Official: https://www.tampere.fi/kaupunki-ja-paatoksenteko/organisaatio/arjen-avaimet-maahanmuuttajanaisten-tyollistymista-edistava-koulutus
 
+- **Career Boost Workshop** — International House Tampere
+  - Fits: international jobseekers living in Tampere and international students studying in Tampere.
+  - Helps with: CV/application, networking, recruiter approach, job-search channels and interview preparation.
+  - Status: free, max 30; remaining autumn dates after 28.8. are 25.9. and 30.10.2026, 12–16. Register by email to iht.talentadvisor@tampere.fi; one-time participation only.
+  - Official: https://internationalhouse.tampere.fi/en/working/career-boost-workshop/
+
+- **Job Fair Tampere 2026** — International House Tampere / City of Tampere
+  - Fits: all jobseekers; especially useful for international jobseekers and students.
+  - Helps with: meeting employers, recruitment and networking, with particular focus on roles that may not require Finnish.
+  - Status: 22.9.2026, 12–16, Tampere-talo; free and held in English. Do not imply every attending company has an open vacancy.
+  - Official: https://internationalhouse.tampere.fi/en/job-fair/
+
+- **SIMHE counselling** — Tampere University of Applied Sciences / International House Tampere
+  - Fits: people already living in Finland who have completed upper-secondary education, studied in higher education or completed a higher-education degree.
+  - Helps with: higher-education options, applications, recognising prior learning and career direction.
+  - Status: free walk-in 28.8., 18.9., 25.9., 2.10., 23.10., 13.11., 20.11. and 4.12.2026, 13–15; appointments also available via simhe@tuni.fi.
+  - Official: https://internationalhouse.tampere.fi/en/studying/counselling-on-higher-education-studies/
+
 ### Finland-wide / case-by-case
+
+- **Työnhakuprofiili — obligation from 1.9.2026**
+  - Fits: jobseekers for whom the statutory profile obligation applies.
+  - Important: a new jobseeker generally has 15 working days after job search starts to publish the profile. For job search that began before 1.9., the obligation normally begins at the next työnhakukeskustelu, followed by 15 working days to publish. Statutory exceptions exist.
+  - If the person does not publish in time, the employment authority can publish minimum information. The official guidance says this does not end job search or directly affect unemployment security.
+  - Official: https://tyomarkkinatori.fi/uutiset/tyonhakuprofiilin-julkaisemista-koskeva-lakimuutos-astuu-voimaan-syyskuun-alusta
 
 - **Palkkatuki**
   - Fits: some unemployed jobseekers where employment services assess that wage subsidy may help employment.
   - Important: paid to the employer, not the worker; never promise eligibility.
   - Official starting point: https://tyomarkkinatori.fi/henkiloasiakkaat/tyottomyysturva/tyollistymista-edistavat-palvelut/palkkatuki
+
+## Partner-only / outreach — do not list as a family opportunity
+
+- **Integration 2026** — Vantaan kaupunki / KEHA-keskus
+  - Audience: integration professionals, authorities, educators, organisations, companies and other integration actors.
+  - Event: 28.–29.10.2026 at Clarion Hotel Helsinki Airport; registration window is listed as 31.8.–14.9.2026.
+  - Use: AQOON partner/networking opportunity, not a family-facing programme card.
+  - Official: https://www.vantaa.fi/fi/hankkeet/hanke/integration-2026-hanke
 
 ## Partnership / outreach priorities
 
