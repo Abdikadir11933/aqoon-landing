@@ -24,5 +24,8 @@ Publisher: Migri | level: official-primary | URL: https://migri.fi/en/-/amendmen
 ## src.migri.permanent-2026
 Publisher: Migri | level: official-primary | URL: https://migri.fi/en/application-for-a-permanent-residence-permit | volatility: high | status: active
 
+## src.migri.citizenship-2027-watch
+Publisher: Migri | level: official-primary | URL: https://migri.fi/en/-/finland-to-introduce-citizenship-test-as-changes-to-citizenship-act-take-effect-on-1-january-2027 | volatility: high | status: future_watch (applies to applications from 2027-03-01)
+
 ## src.suomifi.service-catalogue
 Publisher: DVV / Suomi.fi | level: official-primary | URL: https://www.suomi.fi/instructions-and-support/general-information/services | volatility: medium | status: active
