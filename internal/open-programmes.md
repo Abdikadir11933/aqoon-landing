@@ -107,11 +107,13 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: active/open.
   - Official: https://www.espoo.fi/fi/tyoelama/tyollisyyspalvelut/keinoja-paasta-tyoelamaan
 
-- **Kotivanhempien suomen kielen kurssit** — Espoo / Omnia / Koto-Espoo
-  - Fits: immigrant stay-at-home parents.
-  - Helps with: Finnish learning where childcare would otherwise block participation.
-  - Status: active service model in 2026.
-  - Official: https://www.espoo.fi/fi/uutiset/2026/01/kotivanhemmille-suunnatut-suomen-kielen-kurssit-vakiintuvat-osaksi-espoon-kotoutumispalveluita
+- **Kotivanhempien suomen kielen kurssit** — Koto-Espoo / Omnia / Espoon avoin varhaiskasvatus
+  - Fits: Espoo residents outside the workforce, especially immigrant stay-at-home parents.
+  - Helps with: Finnish while childcare is provided for children over 1 who are not in daycare; separate A2 baby groups allow participation with a child under 1.
+  - Status: autumn 2026 groups active in Espoon keskus and Matinkylä. Espoon keskus has A1, A2 and B1 parent groups plus baby+A2 groups; Matinkylä has A1 and B1 parent groups plus baby+A2 groups. Main autumn periods are 17.8.–30.11.2026 (A1/A2/baby) and 24.8.–30.11.2026 (B1).
+  - Registration/contact: advance registration required through Koto-Espoo; phone +358 40 634 4480 or kotoutuminen@espoo.fi.
+  - Official: https://www.espoo.fi/fi/koto-espoon-viikkokalenteri-espoon-keskus
+  - Matinkylä schedule: https://www.espoo.fi/fi/koto-espoon-viikkokalenteri-matinkylan-kartano
 
 - **Let's speak Finnish — Finnish language cafe** — City of Espoo / Elinvoima
   - Fits: anyone who wants to practise spoken Finnish; beginners welcome.
