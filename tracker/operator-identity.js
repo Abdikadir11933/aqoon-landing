@@ -7,16 +7,25 @@ const MUTATING_LEAD_ACTIONS=new Set(['save_interview','interview_save','record_c
 const MUTATING_OPS_ACTIONS=new Set(['save_opportunity','delete_opportunity','add_activity','save_event','delete_event']);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
-let operators=[],opById={},leadAttrib={},oppRecords={},autoOpened=false,badgeTimer=null,pickerMode='choose';
+let operators=[],opById={},leadAttrib={},oppRecords={},badgeTimer=null,pickerMode='signin';
 
 function pw(){return sessionStorage.getItem('aqoon_tracker_password')||''}
 function meId(){return sessionStorage.getItem('aqoon_operator_id')||''}
 function meName(){return sessionStorage.getItem('aqoon_operator_name')||''}
 function authToken(){return sessionStorage.getItem('aqoon_auth_token')||''}
-function setMe(id,name){sessionStorage.setItem('aqoon_operator_id',id);sessionStorage.setItem('aqoon_operator_name',name);renderPill();closePicker();scheduleBadgeRefresh()}
+function setMe(id,name){sessionStorage.setItem('aqoon_operator_id',id);sessionStorage.setItem('aqoon_operator_name',name);renderPill();scheduleBadgeRefresh()}
 function setAuthSession(token,refresh){if(token)sessionStorage.setItem('aqoon_auth_token',token);if(refresh)sessionStorage.setItem('aqoon_auth_refresh_token',refresh)}
-function clearMe(){sessionStorage.removeItem('aqoon_operator_id');sessionStorage.removeItem('aqoon_operator_name');sessionStorage.removeItem('aqoon_auth_token');sessionStorage.removeItem('aqoon_auth_refresh_token');autoOpened=false}
+function clearMe(){sessionStorage.removeItem('aqoon_operator_id');sessionStorage.removeItem('aqoon_operator_name');sessionStorage.removeItem('aqoon_auth_token');sessionStorage.removeItem('aqoon_auth_refresh_token');sessionStorage.removeItem('aqoon_tracker_password')}
 function nameFor(id){if(!id)return'';const o=opById[id];return o?o.display_name:''}
+
+// A real, verified sign-in makes the JWT sufficient on its own (see the
+// Edge Function OR-logic: correct shared password OR a verified operator
+// JWT). app.js still gates entirely on sessionStorage.aqoon_tracker_password,
+// so once we know the person is real, we hand it a harmless placeholder and
+// reload so app.js's own unchanged bootstrap does the rest, authenticated by
+// the JWT this script attaches to every request (patched below).
+function unlockWithSession(){sessionStorage.setItem('aqoon_tracker_password','session');location.reload()}
+function signOut(){clearMe();location.reload()}
 
 async function authRequest(path,body){
   const r=await fetch(SUPABASE_URL+path,{method:'POST',headers:{'Content-Type':'application/json',apikey:ANON_KEY},body:JSON.stringify(body)});
@@ -36,20 +45,12 @@ async function claimOperator(token,operatorId){
   if(!r.ok)throw new Error(d.error||'Could not link this account');
   return d;
 }
-async function trySilentResume(){
-  const token=authToken();
-  if(!token||meId())return;
-  try{
-    const d=await whoami(token);
-    if(d.operator){setMe(d.operator.id,d.operator.display_name);autoOpened=true;}
-  }catch(e){}
-}
 
 function injectStyles(){
   if(document.getElementById('operatorIdentityStyles'))return;
   const style=document.createElement('style');
   style.id='operatorIdentityStyles';
-  style.textContent='.operator-pill{position:fixed;top:8px;right:8px;z-index:40;background:#fff;border:1px solid var(--l,#e9e5dc);border-radius:999px;padding:7px 12px;font-size:11px;font-weight:700;color:var(--n,#0a1a30);box-shadow:0 4px 12px rgba(16,42,70,.08);cursor:pointer;display:flex;align-items:center;gap:6px}.operator-pill.hidden{display:none}.operator-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--t,#13b9aa);flex:0 0 auto}.operator-pill.unset{background:var(--sand,#f8c66f);color:#5a3d0e}.operator-modal{position:fixed;inset:0;z-index:50;background:rgba(10,26,48,.45);display:flex;align-items:center;justify-content:center;padding:20px}.operator-modal.hidden{display:none}.operator-sheet{background:#fff;border-radius:20px;padding:22px;max-width:360px;width:100%;text-align:center}.operator-sheet h2{margin:6px 0 4px;font-size:19px}.operator-options{display:grid;gap:8px;margin:16px 0 6px}.operator-choice{border:1px solid var(--l,#e9e5dc);background:var(--p,#f8f5ee);border-radius:13px;padding:13px;font-weight:700;font-size:14px;color:var(--n,#0a1a30);cursor:pointer}.operator-choice:hover{border-color:var(--t,#13b9aa)}.operator-choice.on{border-color:var(--t,#13b9aa);background:var(--t,#13b9aa);color:#052c27}.operator-dismiss{border:0;background:transparent;color:var(--m,#7a8290);font-size:11px;margin-top:10px;cursor:pointer;text-decoration:underline}.operator-badge-wrap{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:8px 0}.op-tag{background:var(--c,#f0ece3);color:var(--n,#0a1a30);border-radius:999px;padding:5px 10px;font-size:10px;font-weight:700}.op-tag-empty{background:#fee9e5;color:#9f4038}.op-touch{font-size:9px;color:var(--m,#7a8290)}.op-claim{border:0;background:var(--t,#13b9aa);color:#052c27;border-radius:999px;padding:5px 10px;font-size:10px;font-weight:700;cursor:pointer}.pill-operator{color:#5a7d78;font-weight:700}.operator-sheet{text-align:left}.operator-sheet .eyebrow,.operator-sheet h2,.operator-sheet>p{text-align:center}.operator-form{display:grid;gap:8px;margin-top:14px}.operator-form input{width:100%;border:1px solid var(--l,#e9e5dc);border-radius:12px;padding:11px 12px;font-size:14px}.operator-form-btn{border:0;background:var(--n,#0a1a30);color:#fff;border-radius:12px;padding:12px;font-weight:700;font-size:14px;cursor:pointer}.operator-error{color:#9f4038;font-size:11px;min-height:14px}.operator-switch{text-align:center;margin-top:12px;font-size:11px;color:var(--m,#7a8290)}.operator-switch a{color:var(--t,#0c8c80);font-weight:700;cursor:pointer;text-decoration:underline}.operator-hr{border:0;border-top:1px solid var(--l,#e9e5dc);margin:16px 0}';
+  style.textContent='.operator-pill{position:fixed;top:8px;right:8px;z-index:40;background:#fff;border:1px solid var(--l,#e9e5dc);border-radius:999px;padding:7px 12px;font-size:11px;font-weight:700;color:var(--n,#0a1a30);box-shadow:0 4px 12px rgba(16,42,70,.08);cursor:pointer;display:flex;align-items:center;gap:6px}.operator-pill.hidden{display:none}.operator-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--t,#13b9aa);flex:0 0 auto}.operator-badge-wrap{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:8px 0}.op-tag{background:var(--c,#f0ece3);color:var(--n,#0a1a30);border-radius:999px;padding:5px 10px;font-size:10px;font-weight:700}.op-tag-empty{background:#fee9e5;color:#9f4038}.op-touch{font-size:9px;color:var(--m,#7a8290)}.op-claim{border:0;background:var(--t,#13b9aa);color:#052c27;border-radius:999px;padding:5px 10px;font-size:10px;font-weight:700;cursor:pointer}.pill-operator{color:#5a7d78;font-weight:700}.operator-auth{display:grid;gap:8px;margin-top:2px}.operator-auth input{width:100%;border:1px solid var(--l,#e9e5dc);border-radius:12px;padding:11px 12px;font-size:14px}.operator-auth-btn{border:0;background:var(--n,#0a1a30);color:#fff;border-radius:12px;padding:12px;font-weight:700;font-size:14px;cursor:pointer;margin-top:2px}.operator-error{color:#9f4038;font-size:11px;min-height:14px}.operator-switch{text-align:center;margin-top:12px;font-size:11px;color:var(--m,#7a8290)}.operator-switch a{color:var(--t,#0c8c80);font-weight:700;cursor:pointer;text-decoration:underline}.operator-hr{border:0;border-top:1px solid var(--l,#e9e5dc);margin:14px 0}.operator-options{display:grid;gap:8px;margin:4px 0 6px}.operator-choice{border:1px solid var(--l,#e9e5dc);background:var(--p,#f8f5ee);border-radius:13px;padding:13px;font-weight:700;font-size:14px;color:var(--n,#0a1a30);cursor:pointer}.operator-choice:hover{border-color:var(--t,#13b9aa)}.operator-choice.on{border-color:var(--t,#13b9aa);background:var(--t,#13b9aa);color:#052c27}';
   document.head.appendChild(style);
 }
 
@@ -57,7 +58,8 @@ function ensurePill(){
   if(document.getElementById('operatorPill'))return;
   const pill=document.createElement('button');
   pill.type='button';pill.id='operatorPill';pill.className='operator-pill hidden';
-  pill.onclick=()=>openPicker(meId()?'choose':undefined);
+  pill.title='Sign out';
+  pill.onclick=()=>{if(confirm('Sign out of AQOON?'))signOut()};
   document.body.appendChild(pill);
 }
 function renderPill(){
@@ -66,53 +68,41 @@ function renderPill(){
   const visible=appEl&&!appEl.classList.contains('hidden');
   pill.classList.toggle('hidden',!visible);
   const name=meName();
-  pill.innerHTML=name?('<span class="dot"></span>Acting as <b>'+esc(name)+'</b> · switch'):'Who are you working as?';
-  pill.classList.toggle('unset',!name);
+  pill.innerHTML=name?('<span class="dot"></span>Acting as <b>'+esc(name)+'</b> · sign out'):'';
 }
 
-function ensurePicker(){
-  if(document.getElementById('operatorPicker'))return;
+// Replaces the original shared-password #login form with real sign-in/sign-up,
+// the moment #lock is visible. The original form stays in the DOM (hidden),
+// reachable through "Trouble signing in?" as an emergency fallback if the
+// Edge Functions still accept the old shared password.
+function ensureAuthUI(){
+  const box=document.querySelector('.lockbox');
+  if(!box||document.getElementById('operatorAuthWrap'))return;
+  const originalForm=document.getElementById('login');
+  if(originalForm)originalForm.classList.add('hidden');
   const wrap=document.createElement('div');
-  wrap.id='operatorPicker';wrap.className='operator-modal hidden';
-  wrap.innerHTML='<div class="operator-sheet" role="dialog" aria-modal="true" aria-labelledby="operatorPickerTitle"><span class="eyebrow">ACTING AS</span><h2 id="operatorPickerTitle">Who are you working as?</h2><p class="muted" id="operatorPickerSub"></p><div id="operatorPickerBody"></div><button type="button" class="operator-dismiss" id="operatorDismiss">Not now</button></div>';
-  document.body.appendChild(wrap);
-  wrap.addEventListener('click',e=>{if(e.target===wrap)closePicker()});
-  document.getElementById('operatorDismiss').onclick=closePicker;
+  wrap.id='operatorAuthWrap';
+  box.appendChild(wrap);
+  renderAuthUI();
 }
-async function fetchOperators(){
-  if(operators.length)return operators;
-  try{
-    const r=await fetch(LEADS_END,{method:'POST',headers:{'Content-Type':'application/json','x-tracker-password':pw()},body:JSON.stringify({action:'operators'})});
-    const d=await r.json();
-    if(Array.isArray(d.operators)){operators=d.operators;opById=Object.fromEntries(operators.map(o=>[o.id,o]));}
-  }catch(e){}
-  return operators;
-}
-async function openPicker(mode){
-  ensurePicker();
-  pickerMode=mode||'signin';
-  document.getElementById('operatorPicker').classList.remove('hidden');
-  await renderPickerBody();
-}
-async function renderPickerBody(){
-  const sub=document.getElementById('operatorPickerSub'),body=document.getElementById('operatorPickerBody');
-  if(!sub||!body)return;
+function renderAuthUI(){
+  const wrap=document.getElementById('operatorAuthWrap');
+  if(!wrap)return;
   if(pickerMode==='signin'||pickerMode==='signup'){
     const isSignup=pickerMode==='signup';
-    sub.textContent='Your own login ties every call, interview and update to you — no shared password to remember.';
-    body.innerHTML='<form class="operator-form" id="operatorAuthForm"><input type="email" id="operatorEmail" placeholder="Your email" autocomplete="username" required><input type="password" id="operatorPassword" placeholder="Password" autocomplete="'+(isSignup?'new-password':'current-password')+'" minlength="6" required>'+(isSignup?'<div id="operatorSignupOptions" class="operator-options"><p class="muted">Loading…</p></div>':'')+'<div class="operator-error" id="operatorAuthError"></div><button type="submit" class="operator-form-btn" id="operatorAuthSubmit">'+(isSignup?'Create my account':'Sign in')+'</button></form><div class="operator-switch">'+(isSignup?'Already have an account? <a id="operatorToSignin">Sign in</a>':'New here? <a id="operatorToSignup">Create an account</a>')+'</div><hr class="operator-hr"><div class="operator-switch">Not ready yet? <a id="operatorToChoose">Just pick your name</a></div>';
+    wrap.innerHTML='<form class="operator-auth" id="operatorAuthForm"><input type="email" id="operatorEmail" placeholder="Your email" autocomplete="username" required><input type="password" id="operatorPassword" placeholder="Password" autocomplete="'+(isSignup?'new-password':'current-password')+'" minlength="6" required>'+(isSignup?'<div id="operatorSignupOptions" class="operator-options"><p class="muted">Loading…</p></div>':'')+'<div class="operator-error" id="operatorAuthError"></div><button type="submit" class="operator-auth-btn" id="operatorAuthSubmit">'+(isSignup?'Create my account':'Unlock')+'</button></form><div class="operator-switch">'+(isSignup?'Already have an account? <a id="operatorToSignin">Sign in</a>':'New here? <a id="operatorToSignup">Create an account</a>')+'</div><hr class="operator-hr"><div class="operator-switch">Trouble signing in? <a id="operatorUseShared">Use the shared password</a></div>';
     let chosenOperatorId='';
     if(isSignup){
-      const ops=await fetchOperators();
-      const optBox=document.getElementById('operatorSignupOptions');
-      if(optBox){
+      fetchOperators().then(ops=>{
+        const optBox=document.getElementById('operatorSignupOptions');
+        if(!optBox)return;
         optBox.innerHTML=ops.length?('<p class="muted" style="margin:0 0 4px">Which one are you?</p>'+ops.map(o=>'<button type="button" class="operator-choice" data-op="'+esc(o.id)+'">'+esc(o.display_name)+'</button>').join('')):'<p class="muted">No operators configured yet.</p>';
         optBox.querySelectorAll('[data-op]').forEach(b=>b.onclick=()=>{optBox.querySelectorAll('[data-op]').forEach(x=>x.classList.remove('on'));b.classList.add('on');chosenOperatorId=b.dataset.op;});
-      }
+      });
     }
-    document.getElementById('operatorToSignup')?.addEventListener('click',()=>{pickerMode='signup';renderPickerBody()});
-    document.getElementById('operatorToSignin')?.addEventListener('click',()=>{pickerMode='signin';renderPickerBody()});
-    document.getElementById('operatorToChoose')?.addEventListener('click',()=>{pickerMode='choose';renderPickerBody()});
+    document.getElementById('operatorToSignup')?.addEventListener('click',()=>{pickerMode='signup';renderAuthUI()});
+    document.getElementById('operatorToSignin')?.addEventListener('click',()=>{pickerMode='signin';renderAuthUI()});
+    document.getElementById('operatorUseShared').onclick=()=>{wrap.classList.add('hidden');document.getElementById('login')?.classList.remove('hidden');document.getElementById('password')?.focus()};
     document.getElementById('operatorAuthForm').onsubmit=async e=>{
       e.preventDefault();
       const email=document.getElementById('operatorEmail').value.trim(),password=document.getElementById('operatorPassword').value;
@@ -127,43 +117,39 @@ async function renderPickerBody(){
         if(isSignup){
           const claimed=await claimOperator(session.access_token,chosenOperatorId);
           setMe(claimed.operator.id,claimed.operator.display_name);
+          unlockWithSession();
         }else{
           const who=await whoami(session.access_token);
-          if(who.operator){setMe(who.operator.id,who.operator.display_name);}
-          else{pickerMode='claim';await renderPickerBody();return;}
+          if(who.operator){setMe(who.operator.id,who.operator.display_name);unlockWithSession();}
+          else{pickerMode='claim';await renderAuthUI();}
         }
       }catch(ex){errEl.textContent=ex.message||'Something went wrong.';}
-      finally{btn.disabled=false;btn.textContent=isSignup?'Create my account':'Sign in';}
+      finally{btn.disabled=false;btn.textContent=isSignup?'Create my account':'Unlock';}
     };
     return;
   }
   if(pickerMode==='claim'){
-    sub.textContent='Signed in, but this account is not linked to either of you yet. Pick which one this is.';
-    const ops=await fetchOperators();
-    body.innerHTML='<div class="operator-options">'+(ops.length?ops.map(o=>'<button type="button" class="operator-choice" data-op="'+esc(o.id)+'">'+esc(o.display_name)+'</button>').join(''):'<p class="muted">No operators configured yet.</p>')+'</div><div class="operator-error" id="operatorAuthError"></div>';
-    body.querySelectorAll('[data-op]').forEach(b=>b.onclick=async()=>{
-      const errEl=document.getElementById('operatorAuthError');
-      try{const claimed=await claimOperator(authToken(),b.dataset.op);setMe(claimed.operator.id,claimed.operator.display_name);}
-      catch(ex){errEl.textContent=ex.message||'Could not link this account.';}
+    wrap.innerHTML='<p class="muted">Signed in, but this account is not linked to either of you yet. Pick which one this is.</p><div id="operatorClaimOptions" class="operator-options"><p class="muted">Loading…</p></div><div class="operator-error" id="operatorAuthError"></div>';
+    fetchOperators().then(ops=>{
+      const box=document.getElementById('operatorClaimOptions');
+      if(!box)return;
+      box.innerHTML=ops.length?ops.map(o=>'<button type="button" class="operator-choice" data-op="'+esc(o.id)+'">'+esc(o.display_name)+'</button>').join(''):'<p class="muted">No operators configured yet.</p>';
+      box.querySelectorAll('[data-op]').forEach(b=>b.onclick=async()=>{
+        const errEl=document.getElementById('operatorAuthError');
+        try{const claimed=await claimOperator(authToken(),b.dataset.op);setMe(claimed.operator.id,claimed.operator.display_name);unlockWithSession();}
+        catch(ex){errEl.textContent=ex.message||'Could not link this account.';}
+      });
     });
-    return;
   }
-  sub.textContent='This tags every call, interview and update you save, so both of you can see who did what.';
-  body.innerHTML='<div id="operatorOptions" class="operator-options"><p class="muted">Loading…</p></div><div class="operator-switch">Have your own login? <a id="operatorToSignin">Sign in instead</a></div>';
-  document.getElementById('operatorToSignin').onclick=()=>{pickerMode='signin';renderPickerBody()};
-  const box=document.getElementById('operatorOptions');
-  const ops=await fetchOperators();
-  if(!ops.length){box.innerHTML='<p class="muted">No operators configured yet.</p>';return}
-  box.innerHTML=ops.map(o=>'<button type="button" class="operator-choice" data-op="'+esc(o.id)+'">'+esc(o.display_name)+'</button>').join('');
-  box.querySelectorAll('[data-op]').forEach(b=>b.onclick=()=>{const o=opById[b.dataset.op];setMe(b.dataset.op,o?o.display_name:'')});
 }
-function closePicker(){document.getElementById('operatorPicker')?.classList.add('hidden')}
-async function maybeAutoOpen(){
-  if(autoOpened||meId())return;
-  autoOpened=true;
-  await trySilentResume();
-  if(meId())return;
-  setTimeout(()=>openPicker(),500);
+async function fetchOperators(){
+  if(operators.length)return operators;
+  try{
+    const r=await fetch(LEADS_END,{method:'POST',headers:{'Content-Type':'application/json','x-tracker-password':pw()},body:JSON.stringify({action:'operators'})});
+    const d=await r.json();
+    if(Array.isArray(d.operators)){operators=d.operators;opById=Object.fromEntries(operators.map(o=>[o.id,o]));}
+  }catch(e){}
+  return operators;
 }
 
 function leadBadgeHtml(attrib){
@@ -275,26 +261,54 @@ function patchFetch(){
     return response;
   };
 }
+// Wrap window.fetch immediately, before DOMContentLoaded: app.js's own
+// bootstrap (last line of app.js, run at parse time) fires an unauthenticated
+// ping the instant it loads. If patchFetch ran any later than this, that
+// very first request would go out without the operator's JWT attached.
+patchFetch();
+
+function showSignIn(){clearMe();renderPill();pickerMode='signin';ensureAuthUI()}
+
+// #lock has no "hidden" class in the initial markup - it is visible from
+// first paint, before app.js's own async auto-login ping has had a chance
+// to resolve. So "lock is visible" cannot be trusted as "genuinely locked
+// out" until that ping has actually settled one way or the other:
+// app.js hides #lock on success, or its lock() clears
+// sessionStorage.aqoon_tracker_password on failure (removing an absent
+// "hidden" class is a no-op that never fires a MutationObserver, so this
+// first-load case has to be polled rather than observed).
+function decideInitialAuthUI(){
+  if(!sessionStorage.getItem('aqoon_tracker_password')){showSignIn();return}
+  let tries=0;
+  const check=()=>{
+    const appEl=document.getElementById('app');
+    if(appEl&&!appEl.classList.contains('hidden'))return; // auto-login succeeded
+    if(!sessionStorage.getItem('aqoon_tracker_password')){showSignIn();return} // app.js's lock() ran: ping failed
+    if(tries++<25)setTimeout(check,120);else showSignIn(); // ~3s safety timeout
+  };
+  check();
+}
 
 function start(){
   injectStyles();
-  patchFetch();
   ensurePill();
   renderPill();
   const appEl=document.getElementById('app'),lockEl=document.getElementById('lock');
   if(appEl){
     const obs=new MutationObserver(()=>{
       renderPill();
-      if(!appEl.classList.contains('hidden')){maybeAutoOpen();scheduleBadgeRefresh();}
+      if(!appEl.classList.contains('hidden'))scheduleBadgeRefresh();
     });
     obs.observe(appEl,{attributes:true,attributeFilter:['class'],childList:true,subtree:true});
-    if(!appEl.classList.contains('hidden')){maybeAutoOpen();scheduleBadgeRefresh();}
+    if(!appEl.classList.contains('hidden'))scheduleBadgeRefresh();
   }
   if(lockEl){
-    const lockObs=new MutationObserver(()=>{if(!lockEl.classList.contains('hidden')){clearMe();renderPill();}});
+    // Later, mid-session 401s are a real hidden->visible transition (the
+    // app was unlocked, now it is not), so the observer alone is reliable here.
+    const lockObs=new MutationObserver(()=>{if(!lockEl.classList.contains('hidden'))showSignIn()});
     lockObs.observe(lockEl,{attributes:true,attributeFilter:['class']});
   }
-  document.getElementById('logout')?.addEventListener('click',()=>{clearMe();renderPill();});
+  decideInitialAuthUI();
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
