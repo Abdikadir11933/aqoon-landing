@@ -1,5 +1,7 @@
 # Full repository audit — 2026-08-28 (post two-operator-OS session)
 
+> **Lukujärjestys:** tämä on kronologisesti viimeisin tämän päivän dokumenteista. Lue ensin `docs/qa/current-state-audit-2026-08-28.md` (vaihe 1 -kartta) ja `docs/decisions/0002-two-operator-os-interview-and-data-foundation.md` (arkkitehtuuripäätös + toteutus), sitten tämä (koko-repo-syväauditointi + korjaukset niiden jälkeen).
+
 Scope: end-to-end audit requested directly by Abducadir after several rounds of live two-operator-OS work in the same session (operator identity, attribution, real login). Covers architecture inventory, security/privacy, runtime data contracts (caawi + tracker + Edge Functions + Supabase schema), CI coverage, and accessibility. Follows the format of `docs/qa/full-repository-audit-2026-08-27.md`. Protected Pilke pages were not modified.
 
 ## Strengths confirmed

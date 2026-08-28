@@ -1,5 +1,7 @@
 # AQOON — Nykytila-auditointi ennen V2 Two-Operator OS -suunnittelua
 
+> **Lukujärjestys:** tämä on vaiheen 1 (nykytilakartta) luovutus, kirjoitettu ensin samana päivänä. Katso myös samana päivänä myöhemmin syntyneet `docs/decisions/0002-two-operator-os-interview-and-data-foundation.md` (arkkitehtuuripäätös + toteutus) ja `docs/qa/full-repository-audit-2026-08-28.md` (myöhempi koko-repo-syväauditointi, korjaa mm. tämän raportin tiedostolistausvirheen kohdan 0 mukaisesti myöhemmässä dokumentissa).
+
 Tila: **vaihe 1 luovutus** — nykytilan kartoitus. Ei sisällä arkkitehtuuripäätöstä eikä V2-suunnitelmaa. Ei muuta tuotantokoodia, UI:ta, Supabase-skeemaa, Edge Functioneita, automaatioita tai live-dataa.
 
 Auditoitu kohde: GitHub `Abdikadir11933/aqoon-landing`, branch `master`, commit `ede3885016e50297b0a4d04833975ce88b8c7d79` ("Gate OS redesign behind current-state audit"). Supabase-projekti `qxracwbsyfibcelasxbs` ("aqoon", eu-west-1, Postgres 17.6.1.121), luettu vain read-only-kutsuilla. Auditointi tehty 28.8.2026. Ei perheiden nimiä, puhelinnumeroita, viestejä tai case-muistiinpanoja ole kopioitu tähän dokumenttiin — kaikki tietueesimerkit ovat rivimääriä ja skeematasoisia jakaumia.
