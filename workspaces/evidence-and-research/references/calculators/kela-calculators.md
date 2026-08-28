@@ -2,7 +2,7 @@
 
 Last checked: 2026-08-27. Volatility: high.
 
-Canonical index: https://www.kela.fi/laskurit
+Canonical indexes: https://www.kela.fi/laskurit (Finnish) · https://www.kela.fi/calculators (English)
 
 The official index currently lists calculators including general housing allowance, study support/housing supplement, pensioners' housing allowance, social assistance, general social security benefit (yleistuki), school transport support, student income limits, pregnancy/parental allowance comparison and other benefit estimators.
 
@@ -14,4 +14,4 @@ Access QA 2026-08-27: page loaded and displayed the multi-step input form. It ex
 The calculator also shows that earned income and some other benefits/income can affect the estimate and contains special handling for child home care allowance in some family situations. This makes combination advice case-specific.
 
 ## Legacy calculators
-The Kela calculator index states that yleistuki replaced labour market subsidy and basic unemployment allowance on 1.5.2026. Old calculator pages may still resolve, so route users to the current yleistuki calculator for current unemployment-based Kela support unless a historical calculation is specifically needed.
+Yleistuki replaced Kela-paid labour market subsidy and basic unemployment allowance on 1.5.2026. Old calculator/pages may still resolve or remain visible in an index, so route users to the current yleistuki calculator for current unemployment-based Kela support unless a historical calculation is specifically needed.
