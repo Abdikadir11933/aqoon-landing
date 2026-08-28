@@ -1,6 +1,6 @@
 # Decision 0002 — Two-operator OS: interview/data foundation
 
-Tila: hyväksytty ja osittain toteutettu 28.8.2026. Tämä täydentää `docs/qa/current-state-audit-2026-08-28.md` ja `docs/briefs/aqoon-two-operator-os-v2-fast-start.md`:n vaihetta 3 (vaihtoehdot ja päätös). Kattaa erityisesti Abducadirin pyytämän painopisteen: haastattelu, lomake, kysymykset, kerätty data ja operatiiviset tarpeet.
+Tila: hyväksytty ja **toteutettu** 28.8.2026 (ks. kohta 6 — operaattori-identiteetti on nyt tuotannossa, ei enää avoin kysymys). Tämä täydentää `docs/qa/current-state-audit-2026-08-28.md` ja `docs/briefs/aqoon-two-operator-os-v2-fast-start.md`:n vaihetta 3 (vaihtoehdot ja päätös). Kattaa erityisesti Abducadirin pyytämän painopisteen: haastattelu, lomake, kysymykset, kerätty data ja operatiiviset tarpeet.
 
 ## 0. Korjaus edelliseen nykytilaraporttiin
 
@@ -47,7 +47,7 @@ Tämä on koko kahden operaattorin tavoitteen ydinriippuvuus (audit-brief, kysym
 | **B. Kevyt per-operaattori-token samalla service-role-mallilla** | Jaettu salasana korvataan kahdella (tai N:llä) erillisellä salasanalla/tokenilla, jotka mäpätään `operators`-tauluun; funktiot pysyvät service role -pohjaisina mutta lisäävät `operator_id`:n jokaiseen kirjoitukseen. | Paljon pienempi muutos nykyiseen 5 funktioon; nopea käyttöönotto; ei vaadi Supabase Authin opettelua. | Ei todellista identiteetin varmennusta (token voi silti jakautua); ei tue tulevaa RLS-mallia yhtä hyvin kuin A. |
 | **C. Nimivalinta UI:ssa ilman erillistä salasanaa** | Sama jaettu salasana pysyy, mutta operaattori valitsee oman nimensä pudotusvalikosta ennen toimintoa; nimi lähetetään mukana `operator_id`:na. | Nopein mahdollinen käyttöönotto (ei backend-muutosta autentikointiin lainkaan). | Ei mitään todellista turvaa — kuka tahansa voi valita väärän nimen; sopii vain väliaikaiseksi askeleeksi kohti A:ta, ei lopulliseksi ratkaisuksi. |
 
-**Suositus:** B välivaiheena, A lopullisena tavoitteena. C ei kelpaa pysyväksi ratkaisuksi, koska se ei tuota luotettavaa audit trailia — ainoastaan UI:n väittämän siitä, kuka toimi. Tämä päätös (B vai suoraan A) **vaatii Abducadirin vahvistuksen**, koska A:n toteutus on merkittävästi suurempi ja koskee tuotannon kirjautumisvirtaa suoraan.
+**Suositus tehty 28.8.2026:** Ei B välivaiheena — suoraan A, samassa istunnossa. Abducadir pyysi eksplisiittisesti kirjautumisen yhdistämistä yhdeksi vaiheeksi ("remove the two password one, just make it one"), mikä teki B:n (kaksi näkyvää vaihetta: jaettu salasana + nimivalinta) tarkoituksettomaksi välivaiheeksi. Toteutuksen todellinen kuvaus on kohdassa 6.
 
 ## 4. Toteutettu tässä committissa: turvallinen additiivinen skeemaperusta
 
@@ -61,14 +61,31 @@ Seuraava migraatio on **puhtaasti additiivinen**: uusia sarakkeita (kaikki nulla
 - `family_call_log` (uusi taulu) — korvaa `family_leads.last_call_outcome`/`last_call_at`:n ainoan-arvon-ylikirjoitus-mallin täydellä puheluhistorialla (`operator_id`, `outcome`, `next_follow_up_at`, `notes`, `created_at`). Olemassa oleva yksittäinen arvo jokaiselta leadilta, jolla oli `last_call_outcome`, on taannehtivasti kopioitu tämän uuden taulun ensimmäiseksi riviksi (operaattori `null`, koska attribuutiota ei ollut ennen tätä muutosta) — tämä säilyttää olemassa olevan historian sen sijaan että se katoaisi hiljaa uuteen malliin siirryttäessä.
 - `family_leads.last_call_outcome`/`last_call_at` **säilytetään ennallaan** (ei poistettu) — `family-leads-admin`-Edge Function kirjoittaa niihin edelleen eikä mikään tuotantokoodi hajoa. Uusi `family_call_log` on rinnakkainen, ei korvaava, kunnes Edge Function -koodi päivitetään erikseen käyttämään sitä ensisijaisena lähteenä.
 
-**Ei tehty tässä committissa** (vaatii erillisen hyväksynnän ennen toteutusta, per audit-briefin oma portti):
-- Minkään Edge Functionin koodin muuttaminen tai uudelleendeployaus. `family-leads-admin`, `ops-admin` ym. eivät vielä lue tai kirjoita yllä olevia uusia sarakkeita — ne ovat olemassa skeemassa, mutta operatiivisesti passiivisia kunnes funktiot päivitetään käyttämään niitä.
-- Minkään tracker-UI:n muuttaminen (ei operaattorivalintaa, ei suostumusnäkymää, ei puheluhistorianäkymää).
-- Haastattelusisällön lyhentäminen tai kerrosten 2 ja 3 yhdistäminen (kohta 2).
-- Operaattori-identiteetin lopullinen mekanismi (kohta 3) — `operators`-taulu on olemassa valmiiksi kaikkia kolmea vaihtoehtoa varten, mutta mitään niistä ei ole valittu.
+**Ei tehty tässä committissa, toteutettu myöhemmin samassa istunnossa (ks. kohta 6):**
+- Edge Functionien koodin päivitys ja uudelleendeployaus — tehty.
+- Tracker-UI:n operaattorivalinta ja kirjautuminen — tehty.
+- Puheluhistorianäkymä tracker-UI:ssa — **ei tehty**. `family_call_log` kirjoittaa dataa, mutta mikään näkymä ei vielä lue/näytä sitä operaattorille.
+- Suostumusnäkymä tracker-UI:ssa — **ei tehty**. `consent_relevant_updates_ok`/`consent_outcome_followup_ok` ovat kirjoitettavissa Edge Functionin kautta, mutta mikään UI-elementti ei vielä aseta niitä.
 
-## 5. Seuraava hyväksyttävä askel
+**Yhä tekemättä, vaatii erillisen sisältöpäätöksen:**
+- Haastattelusisällön lyhentäminen tai kerrosten 2 ja 3 yhdistäminen (kohta 2) — katso `docs/qa/full-repository-audit-2026-08-28.md`, joka vahvisti tämän edelleen avoimeksi.
 
-1. Abducadir vahvistaa: vaihtoehto B (kevyt per-operaattori-token) välivaiheena vai suoraan A (Supabase Auth)?
-2. Abducadir/Mustafe vahvistavat: pidetäänkö `universal-proof-questions.js` kanonisena ja poistetaanko limittyvät kysymykset `interview-form-enhancements.js`:stä, vai päinvastoin?
-3. Vasta näiden jälkeen: `family-leads-admin`, `ops-admin` ym. -funktiot päivitetään lukemaan/kirjoittamaan uudet sarakkeet, tracker-UI saa operaattorivalinnan ja puheluhistorianäkymän, ja haastattelu lyhennetään sovitun mukaisesti. Jokainen näistä on oma pieni, varmennettavissa oleva viipale — ei yhtä suurta kertavaihtoa, per brief-vaatimus.
+## 5. Seuraava hyväksyttävä askel (päivitetty — kohta 1 tehty, ks. kohta 6)
+
+1. ~~Abducadir vahvistaa: vaihtoehto B vai suoraan A?~~ **Tehty 28.8.2026: suoraan A.**
+2. Abducadir/Mustafe vahvistavat: pidetäänkö `universal-proof-questions.js` kanonisena ja poistetaanko limittyvät kysymykset `interview-form-enhancements.js`:stä, vai päinvastoin? **Yhä avoin.**
+3. Puheluhistorianäkymä ja suostumusnäkymä tracker-UI:iin (kohta 4). **Yhä avoin.**
+4. Haastattelu lyhennetään sovitun mukaisesti kohdan 2 päätöksen jälkeen. **Yhä avoin.**
+
+## 6. Toteutettu: operaattori-identiteetti on nyt reaalinen kirjautuminen (28.8.2026, sama istunto)
+
+Abducadir pyysi live-testauksen jälkeen kirjautumisen yhdistämistä yhdeksi vaiheeksi. Toteutus:
+
+- **Migraatio `operators_auth_link`**: `operators.email`, `operators.auth_user_id` (uniikki, viittaa `auth.users(id)`). Additiivinen, ei riko mitään olemassa olevaa.
+- **Kaikki 5 salasanasuojattua Edge Functionia** (`family-leads-admin` v16, `ops-admin` v5, `family-scenario-admin` v3, `family-incomplete-admin` v3, `family-leads-manage` v2) vaihtoivat auth-portin OR-logiikkaan: **joko** oikea jaettu salasana **tai** validi Supabase Auth -JWT joka resolvoituu `operators`-riviin — ei enää pakollisesti molemmat. Jaettu salasana toimii yhä varajärjestelmänä ("Trouble signing in? Use the shared password" -linkki), mutta ei ole enää ensisijainen eikä ainoa reitti.
+- **`family-leads-admin`:iin lisätty kaksi uutta actionia**: `whoami` (palauttaa kirjautuneen käyttäjän linkitetyn operaattorin, jos on) ja `claim_operator` (linkittää tuoreen Supabase Auth -tilin yhteen `operators`-riviin, kertaalleen — ei voi varastaa toisen jo linkitettyä riviä).
+- **`tracker/operator-identity.js`** korvattiin: `#lock`-näytön ensimmäinen (ja yleensä ainoa) näkyvä vaihe on nyt oikea sähköposti+salasana-kirjautuminen/-rekisteröinti, ei jaettu salasana. Onnistuneen kirjautumisen jälkeen skripti asettaa vaarattoman `sessionStorage`-paikkamerkin ja lataa sivun uudelleen — `app.js`:n oma, koskematon bootstrap-logiikka hoitaa loppuunsaattamisen, nyt JWT:llä autentikoituna. `app.js`-tiedostoon (34 kt, koko tracker-renderöinti) ei koskettu lainkaan.
+- **Kaksi todellista virhettä löydetty ja korjattu ennen julkaisua** jäljittämällä oikea suoritusjärjestys, ei olettamalla: (1) `window.fetch`-patch piti siirtää synkroniseksi skriptin jäsennyshetkeen ja skriptitagi `app.js`:n edelle, koska `app.js`:n oma automaattinen kirjautumispingaus laukeaa heti latautuessaan; (2) `#lock`-näkyvyystarkkailija olisi tyhjentänyt juuri asetetun kirjautumissession samalla uudelleenlatauksella joka oli tarkoitus viedä loppuun, koska `#lock`:lla ei ole `hidden`-luokkaa alkuperäisessä merkkauksessa — korvattu pollauksella joka odottaa oikeaa lopputulosta.
+- Vahvistettu live-datasta committin jälkeen: `operators`-taulussa Abducadirin rivi on linkitetty oikeaan `auth.users`-tiliin (`ad0298@student.jamk.fi`).
+
+**Ei vieläkään tehty tässä:** token-refresh (JWT vanhenee ~1h, jolloin `/tracker` pyytää kirjautumaan uudelleen — ei bugi, ei vielä rakennettu mukavuusominaisuus); `verify_jwt:true`-lippu Edge Functioneille (ne käyttävät yhä omaa käsin kirjoitettua JWT-tarkistusta `db.auth.getUser()`:illa, koska OR-logiikka jaetun salasanan kanssa vaatisi Supabase-tason muutoksia jaetun salasanan käsittelyyn, jos `verify_jwt` pakotettaisiin natiivisti); jaetun salasanan poistaminen kokonaan — se on yhä tarkoituksella olemassa varajärjestelmänä.

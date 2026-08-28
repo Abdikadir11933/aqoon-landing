@@ -9,18 +9,19 @@ Source-of-truth rules:
 - research outputs should be structured handoffs, not copied into canonical public knowledge without verification.
 - never infer an answer that the family did not give. `Not sure` is valid evidence.
 
-## Current implementation boundary (V1, verified 28 Aug 2026)
+## Current implementation boundary (verified 28 Aug 2026, updated same day after real login shipped)
 
-The production tracker is functional but designed around one operator:
+The production tracker now has real per-operator identity, not just one shared operator assumption:
 
-- the private admin functions use one shared tracker password, not operator identities;
-- family leads, interviews, sales records and calendar events have no durable owner/assignee field;
-- the agenda combines explicit `ops_events`, family follow-up dates and sales next-action dates, but it is not yet a real two-person work calendar;
-- call outcomes can record reached/no answer/call later, but do not record who called;
-- funnel analytics separate anonymous reach from CRM leads, but downstream action, outcome, persistence, operator workload and time-to-stage reporting remain incomplete;
-- reusable PII-free scenario tables and matching logic exist, but the internal brain is not operationally populated yet.
+- `/tracker` primarily uses real Supabase Auth email+password sign-in (`tracker/operator-identity.js`), linked one-to-one to a row in `operators`. The original shared tracker password still works as an explicit fallback ("Trouble signing in?"), checked via OR-logic in every admin Edge Function (correct password OR a verified operator JWT) — never both required. See `../docs/decisions/0002-two-operator-os-interview-and-data-foundation.md` §6 for the exact implementation and the two execution-order bugs caught before shipping.
+- `family_leads.assigned_operator_id` and `last_actor_id`, `family_interviews.operator_id`, `sales_opportunities.owner_operator_id`, `sales_activities.operator_id` and `ops_events.operator_id` now exist and are populated by the Edge Functions on every save when the caller is signed in — no longer absent.
+- Call outcomes write to `family_call_log` (full history: operator, outcome, timestamp, notes) in addition to the older `family_leads.last_call_outcome`/`last_call_at` single-value fields, which are kept for backward compatibility.
+- The agenda still combines explicit `ops_events`, family follow-up dates and sales next-action dates as one shared list — this has not changed; there is still no "assigned to me only" agenda filter.
+- **Not yet built despite the schema/backend existing**: a call-history viewer in the tracker UI (data is captured, nothing displays it), a consent UI (columns exist and are writable, no UI sets them), and token refresh for the auth session (JWT expires after ~1h and requires signing in again — not a bug, just not built yet).
+- funnel analytics separate anonymous reach from CRM leads, but downstream action, outcome, persistence and time-to-stage reporting remain incomplete;
+- reusable PII-free scenario tables and matching logic exist and are correctly triggered after every completed interview, but `family_scenarios`/`family_scenario_research` still have 0 rows in production — the mechanism works, nobody has used it yet.
 
-Do not describe planned V2 capabilities as current behaviour. The implementation goal and audit brief live in `../docs/briefs/aqoon-two-operator-os-v2-fast-start.md`.
+Do not describe planned V2 capabilities as current behaviour without checking `docs/decisions/0002-two-operator-os-interview-and-data-foundation.md` and `docs/qa/full-repository-audit-2026-08-28.md` first — this file is a summary, not the source of truth for exact implementation state. The implementation goal and audit brief live in `../docs/briefs/aqoon-two-operator-os-v2-fast-start.md`.
 
 ## Two-operator target
 
