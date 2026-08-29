@@ -1,0 +1,319 @@
+/* Family CRM Queue-Based Layout */
+
+.crm-header {
+  padding: 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.crm-header h2 {
+  margin: 0 0 8px 0;
+  font-family: Fraunces, serif;
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--navy);
+}
+
+.crm-subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* Queue Grid Layout */
+.crm-queues-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  padding: 20px;
+  max-width: 1200px;
+}
+
+@media (max-width: 768px) {
+  .crm-queues-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Queue Cards */
+.queue-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.queue-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.queue-header {
+  background: var(--navy);
+  color: var(--on-navy-strong);
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.queue-header:hover {
+  background: var(--ink);
+}
+
+.queue-header h3 {
+  margin: 0;
+  font-family: Outfit, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.queue-count {
+  background: var(--teal);
+  color: white;
+  font-family: Outfit, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  padding: 6px 12px;
+  border-radius: 100px;
+  min-width: 40px;
+  text-align: center;
+}
+
+/* Queue Content */
+.queue-content {
+  max-height: 600px;
+  overflow-y: auto;
+  animation: slideDown 0.2s ease;
+}
+
+.queue-content.hidden {
+  display: none;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 600px;
+  }
+}
+
+/* Family List */
+.family-list {
+  padding: 12px;
+}
+
+.family-item {
+  padding: 12px;
+  margin-bottom: 8px;
+  background: var(--cream);
+  border-left: 3px solid var(--teal);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.family-item:hover {
+  background: #f0ebe3;
+  transform: translateX(4px);
+}
+
+.family-item-name {
+  font-family: Outfit, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--navy);
+  margin: 0 0 4px 0;
+}
+
+.family-item-meta {
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.family-item-operator {
+  font-size: 12px;
+  color: var(--teal);
+  font-weight: 500;
+}
+
+.family-item-time {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Empty State */
+.queue-empty {
+  padding: 20px 12px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Family Detail Panel */
+.family-panel {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  max-width: 500px;
+  height: 100vh;
+  background: var(--paper);
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  animation: slideInRight 0.3s ease;
+  overflow-y: auto;
+}
+
+.family-panel.hidden {
+  display: none;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .family-panel {
+    max-width: 100%;
+  }
+}
+
+.panel-header {
+  padding: 20px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel-header h3 {
+  margin: 0;
+  font-family: Fraunces, serif;
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--navy);
+}
+
+.panel-content {
+  padding: 20px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Panel Sections */
+.panel-section {
+  margin-bottom: 24px;
+}
+
+.panel-section-title {
+  font-family: Outfit, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 12px 0;
+}
+
+.panel-info {
+  background: var(--cream);
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.panel-info-label {
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+
+.panel-info-value {
+  color: var(--navy);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Panel Actions */
+.panel-actions {
+  padding: 20px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.panel-actions .btn {
+  flex: 1;
+  min-width: 150px;
+}
+
+/* Operator Assignment */
+.assign-operator {
+  padding: 12px;
+  background: var(--cream);
+  border-left: 2px solid var(--teal);
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.assign-label {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.assign-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.assign-buttons .btn {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 560px) {
+  .crm-queues-grid {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .queue-card {
+    border-radius: 16px;
+  }
+
+  .family-panel {
+    animation: slideInUp 0.3s ease;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
