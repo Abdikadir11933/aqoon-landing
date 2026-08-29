@@ -11,9 +11,11 @@
 .journey-health .reach{background:var(--t);color:#fff}
 .journey-health .guide{background:#83d8cf}
 .journey-health .start{background:#ded8cb}
+.journey-health .awaiting_decision{background:var(--sand);color:#6e4f14}
 .journey-health .retention{background:#ece8df}
 .journey-health .referral{background:#becbd4}
 .journey-health .resolved{background:var(--n);color:#fff}
+.journey-health .closed{background:#c8c9ca;color:#3a3c40}
 @media(max-width:520px){.health-grid{grid-template-columns:repeat(2,1fr)}}
 .family-timeline{display:grid;grid-template-columns:repeat(5,1fr);margin:4px 0 14px;overflow-x:auto}
 .family-timeline>div{position:relative;min-width:78px;padding-top:17px;color:var(--m2)}
