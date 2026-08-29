@@ -177,6 +177,18 @@ const CrmQueues = {
     // Phase-specific actions
     if (phaseId === 'incomplete') {
       content += `
+        <div class="panel-section contact-actions">
+          <h4 class="panel-section-title">Contact this person</h4>
+          <div class="assign-buttons">
+            <button class="btn primary" data-action="call-incomplete" data-lead-id="${leadId}">Call</button>
+            <button class="btn secondary" data-action="record-incomplete-reached" data-lead-id="${leadId}">Contacted</button>
+          </div>
+          <div class="assign-buttons contact-follow-up-actions">
+            <button class="btn secondary" data-action="record-incomplete-no-answer" data-lead-id="${leadId}">No answer</button>
+            <button class="btn secondary" data-action="record-incomplete-call-later" data-lead-id="${leadId}">Call later</button>
+          </div>
+          <p class="contact-action-note">The first call creates a minimal contact case. Unknown details stay marked “Not asked yet” until the interview; the outcome and follow-up are then saved in Call History.</p>
+        </div>
         <div class="panel-section assign-operator">
           <label class="assign-label">Assign this intake to yourself?</label>
           <div class="assign-buttons">
@@ -287,6 +299,27 @@ const CrmQueues = {
       if (lead) window.AqoonIncompleteIntake?.open(lead);
     } else if (action === 'delete-intake' && phaseId === 'incomplete') {
       if (lead) window.AqoonIncompleteIntake?.remove(lead, () => this.closeFamilyPanel());
+    } else if (phaseId === 'incomplete' && action.startsWith('record-incomplete-')) {
+      const outcome = action.replace('record-incomplete-', '');
+      const operatorId = sessionStorage.getItem('aqoon_operator_id');
+      window.AqoonIncompleteIntake?.createContactCase(lead, operatorId)
+        .then(newLeadId => {
+          if (outcome === 'call_later') {
+            window.AqoonCallOutcomes?.openForLead(newLeadId, lead?.name || 'Client', 'call_later');
+          } else {
+            return window.AqoonCallOutcomes?.recordForLead(newLeadId, outcome === 'reached' ? 'reached' : 'no_answer');
+          }
+        })
+        .then(() => this.closeFamilyPanel())
+        .catch(err => alert(err.message || 'Could not create the contact case.'));
+    } else if (action === 'call-incomplete' && phaseId === 'incomplete') {
+      const operatorId = sessionStorage.getItem('aqoon_operator_id');
+      window.AqoonIncompleteIntake?.createContactCase(lead, operatorId)
+        .then(newLeadId => {
+          this.closeFamilyPanel();
+          window.AqoonCallOutcomes?.callLead(newLeadId, lead?.name || 'Client', lead?.phone || '');
+        })
+        .catch(err => alert(err.message || 'Could not create the contact case.'));
     } else if (action === 'start-interview' || action === 'edit-intake') {
       this.closeFamilyPanel();
       window.openInterview(leadId);
