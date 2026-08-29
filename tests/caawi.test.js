@@ -41,6 +41,12 @@ test('additional-help route starts from need with school diagnostic', () => {
   assert.deepEqual(core.pathForNeed('school', true), ['need','school_diagnostic','explain','sub','more']);
 });
 
+test('programs route shows diagnostic gate then explain', () => {
+  assert.equal(core.nextAfterNeed('programs'), 'programs_diagnostic');
+  assert.deepEqual(core.pathForNeed('programs', false), ['contact','city','need','programs_diagnostic','explain','sub','more']);
+  assert.equal(core.nextAfterSubSelected(), 'more');
+});
+
 test('multi-need payload keeps one primary lead and attaches extra needs', () => {
   const state = { name: 'Test User', phone: '+358401234567' };
   const requests = [
