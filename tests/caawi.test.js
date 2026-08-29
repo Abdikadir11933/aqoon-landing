@@ -1,5 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
 const core = require('../caawi/app.js');
 
 const IDS = {
@@ -148,4 +149,33 @@ test('duplicate final request is blocked while first request is in flight', asyn
   const firstResult = await first;
   assert.equal(firstResult.id, 'lead-1');
   assert.equal(calls, 1);
+});
+
+test('the four public categories use the approved non-leading taxonomy, and never "Barnaamijyo"', () => {
+  const html = fs.readFileSync('caawi/index.html', 'utf8');
+  const js = fs.readFileSync('caawi/app.js', 'utf8');
+  for (const label of ['Shaqo', 'Waxbarasho', 'Carruur iyo skuul', 'Arrin kale']) {
+    assert.match(html, new RegExp(label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+    assert.match(js, new RegExp("'" + label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + "'"));
+  }
+  assert.doesNotMatch(html, /Barnaamijyo/);
+  assert.doesNotMatch(js, /Barnaamijyo/);
+});
+
+test('the "other" category never names a specific service and stays a neutral catch-all', () => {
+  const js = fs.readFileSync('caawi/app.js', 'utf8');
+  assert.match(js, /Wax aan kor ku qornayn ama haddii aadan hubin meesha laga bilaabo/);
+});
+
+test('the category screen states the intake is not an official decision or an eligibility confirmation', () => {
+  const html = fs.readFileSync('caawi/index.html', 'utf8');
+  assert.match(html, /Ma aha go.aan rasmi ah, mana xaqiijinayo inaad adeeg ama taageero xaq u leedahay/);
+});
+
+test('sending the request requires an explicit consent checkbox, checked before the button is enabled', () => {
+  const html = fs.readFileSync('caawi/index.html', 'utf8');
+  const js = fs.readFileSync('caawi/app.js', 'utf8');
+  assert.match(html, /id="contactConsent"[^>]*type="checkbox"|type="checkbox"[^>]*id="contactConsent"/);
+  assert.match(html, /id="sendRequestBtn"[^>]*disabled/);
+  assert.match(js, /contactConsent.*checked/);
 });
