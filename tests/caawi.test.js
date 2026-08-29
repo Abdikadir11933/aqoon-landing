@@ -26,25 +26,25 @@ test('successful contact save advances to city', () => {
   assert.equal(core.nextAfterContactSaved(), 'city');
 });
 
-test('child route asks age next and then asks about more help', () => {
+test('child route asks the child stage before a focused topic', () => {
   assert.equal(core.nextAfterNeed('kids'), 'age');
-  assert.deepEqual(core.pathForNeed('kids', false), ['contact','city','need','age','explain','sub','more']);
+  assert.deepEqual(core.pathForNeed('kids', false), ['contact','city','need','age','sub','more']);
 });
 
-test('work route goes directly to explain', () => {
-  assert.equal(core.nextAfterNeed('work'), 'explain');
-  assert.deepEqual(core.pathForNeed('work', false), ['contact','city','need','explain','sub','more']);
-  assert.equal(core.nextAfterSubSelected(), 'more');
+test('work route collects the focused topic then one routing question', () => {
+  assert.equal(core.nextAfterNeed('work'), 'sub');
+  assert.deepEqual(core.pathForNeed('work', false), ['contact','city','need','sub','qualify','more']);
+  assert.equal(core.nextAfterSubSelected('work'), 'qualify');
 });
 
 test('additional-help route starts from need', () => {
-  assert.deepEqual(core.pathForNeed('school', true), ['need','explain','sub','more']);
+  assert.deepEqual(core.pathForNeed('school', true), ['need','sub','qualify','more']);
 });
 
-test('programs route goes directly to explain', () => {
-  assert.equal(core.nextAfterNeed('programs'), 'explain');
-  assert.deepEqual(core.pathForNeed('programs', false), ['contact','city','need','explain','sub','more']);
-  assert.equal(core.nextAfterSubSelected(), 'more');
+test('other-help route never guesses a benefit category', () => {
+  assert.equal(core.nextAfterNeed('other'), 'more');
+  assert.deepEqual(core.pathForNeed('other', false), ['contact','city','need','more']);
+  assert.equal(core.nextAfterSubSelected('kids'), 'more');
 });
 
 test('multi-need payload keeps one primary lead and attaches extra needs', () => {
@@ -52,14 +52,14 @@ test('multi-need payload keeps one primary lead and attaches extra needs', () =>
   const requests = [
     { main_need: 'Shaqo', sub_need: 'Barnaamij shaqo ama tababar', age_group: null },
     { main_need: 'Waxbarasho', sub_need: 'Baro Finnish ama hel koorso', age_group: null },
-    { main_need: 'Barnaamijyo', sub_need: 'Barnaamij ama hanke', age_group: null }
+    { main_need: 'Wax kale', sub_need: 'Wax aan kor ku qornayn', age_group: null }
   ];
   const payload = core.buildSubmitPayload(state, IDS, { utm_source: 'test' }, 'Vantaa', requests);
   assert.equal(payload.main_need, 'Shaqo');
   assert.equal(payload.sub_need, 'Barnaamij shaqo ama tababar');
   assert.equal(payload.additional_needs.length, 2);
   assert.equal(payload.additional_needs[0].main_need, 'Waxbarasho');
-  assert.equal(payload.additional_needs[1].main_need, 'Barnaamijyo');
+  assert.equal(payload.additional_needs[1].main_need, 'Wax kale');
   assert.equal(payload.form_version, 'phone-first-v2-multineed');
 });
 
@@ -68,10 +68,10 @@ test('up to four distinct help categories can stay in one request', () => {
     { main_need: 'Shaqo', sub_need: 'A' },
     { main_need: 'Waxbarasho', sub_need: 'B' },
     { main_need: 'Carruurta', sub_need: 'C', age_group: 'under7' },
-    { main_need: 'Barnaamijyo', sub_need: 'D' }
+    { main_need: 'Wax kale', sub_need: 'D' }
   ]);
   assert.equal(list.length, 4);
-  assert.equal(list[3].main_need, 'Barnaamijyo');
+  assert.equal(list[3].main_need, 'Wax kale');
 });
 
 test('duplicate categories are collapsed to one request', () => {
@@ -90,6 +90,16 @@ test('contact payload is tagged with current form version', () => {
   const state = { name: 'Test User', phone: '+358401234567' };
   const payload = core.buildContactPayload(state, IDS, {}, '');
   assert.equal(payload.form_version, 'phone-first-v2-multineed');
+});
+
+test('routing answers are saved without making an eligibility decision', () => {
+  const state = { name: 'Test User', phone: '+358401234567' };
+  const payload = core.buildSubmitPayload(state, IDS, {}, 'Vantaa', [
+    { main_need: 'Shaqo & jid shaqo', sub_need: 'Shaqo raadis' }
+  ], { work: 'not_sure', school: 'yes' });
+  assert.equal(payload.work_diagnostic, 'not_sure');
+  assert.equal(payload.school_diagnostic, 'yes');
+  assert.equal(payload.main_need, 'Shaqo & jid shaqo');
 });
 
 test('final selection sends one lead request then confirms', async () => {
