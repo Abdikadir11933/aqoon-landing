@@ -138,7 +138,9 @@ const CrmQueues = {
   },
 
   openFamilyPanel(leadId, phaseId) {
-    const lead = (window.leads || []).find(l => l.id === leadId);
+    const leads = window.AqoonApp?.leads || [];
+    const partials = window.AqoonApp?.partials || [];
+    const lead = leads.find(l => l.id === leadId) || partials.find(l => l.id === leadId);
     if (!lead) return;
 
     this.selectedFamily = { lead, phaseId };
@@ -171,11 +173,12 @@ const CrmQueues = {
     if (phaseId === 'incomplete') {
       content += `
         <div class="panel-section assign-operator">
-          <label class="assign-label">Assign this intake to yourself?</label>
+          <label class="assign-label">Finish this intake, then interview</label>
           <div class="assign-buttons">
-            <button class="btn primary" data-action="assign-to-me" data-lead-id="${leadId}">Assign to me</button>
-            <button class="btn secondary" data-action="edit-intake" data-lead-id="${leadId}">Edit intake</button>
+            <button class="btn primary" data-action="edit-intake" data-lead-id="${leadId}">Finish intake</button>
+            <button class="btn secondary" data-action="delete-intake" data-lead-id="${leadId}">Delete</button>
           </div>
+          <p style="font-size:11px;color:var(--muted);margin-top:8px">Operator assignment isn't tracked for unfinished intakes yet — assign once the intake is finished and the family moves to the interview queue.</p>
         </div>
       `;
     } else if (phaseId === 'first_contact') {
@@ -185,6 +188,17 @@ const CrmQueues = {
           <div class="assign-buttons">
             <button class="btn primary" data-action="assign-to-me" data-lead-id="${leadId}">Assign to me</button>
             <button class="btn secondary" data-action="start-interview" data-lead-id="${leadId}">Start interview</button>
+          </div>
+        </div>
+      `;
+    } else if (phaseId === 'in_progress') {
+      content += `
+        <div class="panel-section assign-operator">
+          <label class="assign-label">Case still open</label>
+          <div class="assign-buttons">
+            <button class="btn secondary" data-action="assign-to-me" data-lead-id="${leadId}">Assign to me</button>
+            <button class="btn secondary" data-action="start-interview" data-lead-id="${leadId}">Review interview</button>
+            <button class="btn primary" data-action="mark-resolved" data-lead-id="${leadId}">Mark resolved</button>
           </div>
         </div>
       `;
@@ -206,47 +220,39 @@ const CrmQueues = {
   },
 
   handleAction(action, leadId) {
-    const lead = (window.leads || []).find(l => l.id === leadId);
-    if (!lead) return;
+    const phaseId = this.selectedFamily?.phaseId;
+    const lead = this.selectedFamily?.lead;
 
     if (action === 'assign-to-me') {
       this.assignToOperator(leadId);
-    } else if (action === 'edit-intake') {
-      window.openInterview(lead);
-    } else if (action === 'start-interview') {
-      window.openInterview(lead);
+    } else if (action === 'edit-intake' && phaseId === 'incomplete') {
+      // Incomplete-intake records live in a different table (family_intake_contacts)
+      // than real family_leads rows, so they need incomplete-intake.js's own
+      // "finish this partial" flow, not the interview drawer.
+      this.closeFamilyPanel();
+      if (lead) window.AqoonIncompleteIntake?.open(lead);
+    } else if (action === 'delete-intake' && phaseId === 'incomplete') {
+      if (lead) window.AqoonIncompleteIntake?.remove(lead, () => this.closeFamilyPanel());
+    } else if (action === 'start-interview' || action === 'edit-intake') {
+      this.closeFamilyPanel();
+      window.openInterview(leadId);
+    } else if (action === 'mark-resolved') {
+      window.AqoonApp?.updateLead(leadId, {status: 'resolved'}).then(() => this.closeFamilyPanel());
     }
   },
 
   assignToOperator(leadId) {
-    // Call Edge Function to assign lead to current operator
-    const operatorId = window.AqoonOperator?.id;
+    // Uses the same generic 'update' action app.js's updateLead() already calls
+    // successfully — family-leads-admin's update handler already accepts
+    // assigned_operator_id directly, so no separate endpoint/action is needed.
+    const operatorId = sessionStorage.getItem('aqoon_operator_id');
     if (!operatorId) {
-      alert('You must be signed in to assign leads');
+      alert('Sign in with your operator account (not just the shared password) to assign leads to yourself.');
       return;
     }
-
-    fetch('/.netlify/functions/family-leads-admin', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        action: 'assign_operator',
-        lead_id: leadId,
-        operator_id: operatorId
-      })
-    })
-      .then(r => r.json())
-      .then(data => {
-        if (data.error) {
-          alert('Error: ' + data.error);
-          return;
-        }
-        // Update local state and re-render
-        const lead = (window.leads || []).find(l => l.id === leadId);
-        if (lead) lead.assigned_operator_id = operatorId;
-        this.renderQueues();
-        this.closeFamilyPanel();
-      })
+    if (!window.AqoonApp?.updateLead) return;
+    window.AqoonApp.updateLead(leadId, { assigned_operator_id: operatorId })
+      .then(() => this.closeFamilyPanel())
       .catch(err => console.error('Assignment error:', err));
   },
 
@@ -283,7 +289,7 @@ const CrmQueues = {
 
 // Initialize when DOM ready
 document.addEventListener('DOMContentLoaded', () => {
-  // Wait for app.js to initialize window.leads
+  // Wait for app.js's first load() to populate window.AqoonApp.leads/.partials
   setTimeout(() => CrmQueues.init(), 500);
 });
 
