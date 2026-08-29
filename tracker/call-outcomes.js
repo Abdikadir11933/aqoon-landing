@@ -76,6 +76,17 @@ async function save(outcome,followUpAt){
   }catch(error){$('callOutcomeError').textContent=error.message||'Could not save call outcome'}
   finally{saving=false;buttons.forEach(button=>button.disabled=false)}
 }
+async function recordForLead(leadId,outcome,followUpAt){
+  const payload=buildOutcomePayload(leadId,outcome,followUpAt);
+  await api(payload);
+  const refresh=$('refresh');if(refresh)refresh.click();
+}
+function openForLead(leadId,name,preferredOutcome){
+  if(!leadId)return;
+  pending={id:String(leadId),name:name||'Family call'};
+  open();
+  if(preferredOutcome==='call_later')choose('call_later');
+}
 function scheduleOpen(){
   clearTimeout(openTimer);
   openTimer=setTimeout(()=>{if(document.visibilityState==='visible')open()},700);
@@ -88,4 +99,5 @@ document.addEventListener('click',event=>{
 },true);
 document.addEventListener('visibilitychange',()=>{if(pending&&document.visibilityState==='visible')scheduleOpen()});
 global.addEventListener('focus',()=>{if(pending)scheduleOpen()});
+global.AqoonCallOutcomes={recordForLead,openForLead};
 })(typeof window!=='undefined'?window:(typeof globalThis!=='undefined'?globalThis:null));
