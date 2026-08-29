@@ -308,13 +308,12 @@ const CrmQueues = {
     } else if (action === 'log-outcome') {
       window.AqoonCallOutcomes?.openForLead(leadId, lead?.name || 'Family');
     } else if (action === 'call-incomplete' && phaseId === 'incomplete') {
-      const operatorId = sessionStorage.getItem('aqoon_operator_id');
-      window.AqoonIncompleteIntake?.createContactCase(lead, operatorId)
-        .then(newLeadId => {
-          this.closeFamilyPanel();
-          window.AqoonCallOutcomes?.callLead(newLeadId, lead?.name || 'Client', lead?.phone || '');
-        })
-        .catch(err => alert(err.message || 'Could not create the contact case.'));
+      // Dialing alone must not create a contact case or move this out of the
+      // Incomplete intake queue - nothing has actually happened yet (no
+      // answer, no outcome). Only Log call outcome does that, atomically
+      // with the outcome it records, so the queue never shows a case that's
+      // "moved on" with no call history to show for it.
+      window.AqoonCallOutcomes?.callLead(lead?.id, lead?.name || 'Client', lead?.phone || '');
     } else if (action === 'start-interview' || action === 'edit-intake') {
       this.closeFamilyPanel();
       window.openInterview(leadId);

@@ -27,3 +27,12 @@ test('the incomplete panel offers call outcomes through the shared history workf
   assert.match(queue, /AqoonCallOutcomes\?\.callLead/);
   assert.match(queue, /AqoonCallOutcomes\?\.openForLead/);
 });
+
+test('dialing an incomplete intake never creates a case or advances the queue by itself - only logging an outcome does', () => {
+  const callIncompleteBlock = queue.slice(
+    queue.indexOf("action === 'call-incomplete'"),
+    queue.indexOf("action === 'start-interview'")
+  );
+  assert.doesNotMatch(callIncompleteBlock, /createContactCase/);
+  assert.match(callIncompleteBlock, /AqoonCallOutcomes\?\.callLead\(lead\?\.id/);
+});
