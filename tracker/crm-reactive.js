@@ -11,6 +11,5 @@ function scheduleSync(delay=450){clearTimeout(timer);timer=setTimeout(async()=>{
 document.addEventListener('click',e=>{const b=e.target.closest('[data-contacted],[data-resolve],[data-stage],#saveInterview');if(!b)return;scheduleSync(b.id==='saveInterview'?850:500)},true);
 const app=$('app');if(app)new MutationObserver(()=>{if(!app.classList.contains('hidden'))sync()}).observe(app,{attributes:true,attributeFilter:['class']});
 const analytics=$('analytics');if(analytics)new MutationObserver(()=>{if(!analytics.classList.contains('hidden'))sync()}).observe(analytics,{attributes:true,attributeFilter:['class']});
-if(!document.querySelector('script[data-aqoon-interview-match]')){const s=document.createElement('script');s.src='/tracker/interview-match.js?v=1';s.dataset.aqoonInterviewMatch='1';document.head.appendChild(s)}
 setTimeout(sync,700);
 })();
