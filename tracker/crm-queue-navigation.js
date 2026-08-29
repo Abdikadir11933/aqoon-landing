@@ -173,12 +173,13 @@ const CrmQueues = {
     if (phaseId === 'incomplete') {
       content += `
         <div class="panel-section assign-operator">
-          <label class="assign-label">Finish this intake, then interview</label>
+          <label class="assign-label">Assign this intake to yourself?</label>
           <div class="assign-buttons">
-            <button class="btn primary" data-action="edit-intake" data-lead-id="${leadId}">Finish intake</button>
+            <button class="btn primary" data-action="assign-to-me" data-lead-id="${leadId}">Assign to me</button>
+            <button class="btn secondary" data-action="edit-intake" data-lead-id="${leadId}">Finish intake</button>
             <button class="btn secondary" data-action="delete-intake" data-lead-id="${leadId}">Delete</button>
           </div>
-          <p style="font-size:11px;color:var(--muted);margin-top:8px">Operator assignment isn't tracked for unfinished intakes yet — assign once the intake is finished and the family moves to the interview queue.</p>
+          <p style="font-size:11px;color:var(--muted);margin-top:8px">Assignment carries over automatically once the intake is finished and the family moves to the interview queue.</p>
         </div>
       `;
     } else if (phaseId === 'first_contact') {
@@ -223,7 +224,14 @@ const CrmQueues = {
     const phaseId = this.selectedFamily?.phaseId;
     const lead = this.selectedFamily?.lead;
 
-    if (action === 'assign-to-me') {
+    if (action === 'assign-to-me' && phaseId === 'incomplete') {
+      // Incomplete-intake records live in family_intake_contacts, not
+      // family_leads, so they go through incomplete-intake.js's own
+      // assign(), not the generic family_leads update() path.
+      const operatorId = sessionStorage.getItem('aqoon_operator_id');
+      if (!operatorId) { alert('Sign in with your operator account (not just the shared password) to assign leads to yourself.'); return; }
+      if (lead) window.AqoonIncompleteIntake?.assign(lead, operatorId, () => this.closeFamilyPanel());
+    } else if (action === 'assign-to-me') {
       this.assignToOperator(leadId);
     } else if (action === 'edit-intake' && phaseId === 'incomplete') {
       // Incomplete-intake records live in a different table (family_intake_contacts)
