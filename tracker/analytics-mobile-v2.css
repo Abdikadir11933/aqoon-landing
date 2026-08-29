@@ -2,11 +2,10 @@
 .analytics-view{overflow-x:hidden}
 .analytics-view .command-card{overflow:hidden}
 .traffic-card{padding-bottom:12px}
-#trafficChart.traffic-chart{width:100%!important;min-width:0!important;max-width:100%!important;overflow:hidden!important;display:grid!important;grid-template-columns:repeat(var(--hour-cols,24),minmax(0,1fr))!important;gap:2px!important;height:126px!important;padding:10px 0 0!important;align-items:stretch!important}
-#trafficChart .tcol{width:auto!important;min-width:0!important;max-width:none!important;height:116px!important;display:grid!important;grid-template-rows:minmax(0,1fr) 15px!important;align-items:end!important;gap:3px!important}
-#trafficChart .tbar{width:100%!important;min-width:0!important;max-width:18px!important;margin:0 auto!important;border-radius:4px 4px 2px 2px!important}
-#trafficChart .tcol small{font-size:7px!important;line-height:1!important;text-align:center!important;color:#a4a5a3!important;white-space:nowrap!important;overflow:visible!important}
-#trafficChart .tcol:not(:nth-child(1)):not(:nth-child(4)):not(:nth-child(7)):not(:nth-child(10)):not(:nth-child(13)):not(:nth-child(16)):not(:nth-child(19)):not(:nth-child(22)):not(:nth-child(24)) small{visibility:hidden!important}
+#trafficChart.traffic-chart{width:100%!important;min-width:0!important;max-width:100%!important;overflow:hidden!important;display:grid!important;grid-template-columns:repeat(var(--hour-cols,24),minmax(0,1fr))!important;gap:2px!important;height:168px!important;padding:10px 0 0!important;align-items:stretch!important}
+#trafficChart .tcol{width:auto!important;min-width:0!important;max-width:none!important;height:158px!important;display:grid!important;grid-template-rows:minmax(0,1fr) 15px!important;align-items:end!important;gap:3px!important}
+#trafficChart .tbar{width:100%!important;min-width:0!important;max-width:26px!important;margin:0 auto!important;border-radius:4px 4px 2px 2px!important}
+#trafficChart .tcol small{font-size:8px!important;line-height:1!important;text-align:center!important;color:#a4a5a3!important;white-space:nowrap!important;overflow:visible!important}
 
 /* Old research dumps are superseded by the compact pulse card. */
 #interviewEvidenceCard,#universalProofAnalytics{display:none!important}
