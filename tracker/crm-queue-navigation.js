@@ -82,8 +82,8 @@ const CrmQueues = {
   },
 
   getFamiliesByPhase(phaseId) {
-    // Get families from window.leads (populated by app.js)
-    const leads = window.leads || [];
+    // Get families from window.AqoonApp.leads (populated by app.js)
+    const leads = window.AqoonApp?.leads || [];
 
     // Map internal stages to our phases
     const phaseMap = {

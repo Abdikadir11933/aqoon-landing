@@ -2,6 +2,7 @@
 const END='https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-leads-admin';
 let password='',leads=[],partials=[],analytics={},programs=[],activeLead=null,answers={},activeQuestions=[],loading=null,crmQueue='incomplete',crmExpanded=false;
 window.AqoonInterview={get activeLead(){return activeLead}};
+window.AqoonApp={get leads(){return leads},get partials(){return partials}};
 const $=id=>document.getElementById(id);
 const esc=v=>String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
 function api(body){return fetch(END,{method:'POST',headers:{'Content-Type':'application/json','x-tracker-password':password},body:JSON.stringify(body)}).then(async r=>{let d={};try{d=await r.json()}catch{}if(r.status===401){lock();throw Error('Password expired or incorrect')}if(!r.ok)throw Error(d.detail||d.error||'Request failed');return d})}
@@ -10,7 +11,7 @@ function fmtHour(v){try{return new Intl.DateTimeFormat('fi-FI',{hour:'2-digit'})
 function err(m){$('err').textContent=m||'';$('err').classList.toggle('hidden',!m)}
 function lock(){sessionStorage.removeItem('aqoon_tracker_password');password='';$('app').classList.add('hidden');$('lock').classList.remove('hidden')}
 function tab(n){document.querySelectorAll('.view').forEach(x=>x.classList.add('hidden'));$(n).classList.remove('hidden');document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.tab===n));window.scrollTo(0,0)}
-function load(){if(loading)return loading;err('');loading=Promise.all([api({action:'list'}),api({action:'analytics',days:Number($('days').value)}),api({action:'programs'})]).then(([l,a,p])=>{leads=l.leads||[];partials=l.incomplete_contacts||[];analytics=a;programs=p.programs||[];renderAll()}).catch(e=>err(e.message)).finally(()=>loading=null);return loading}
+function load(){if(loading)return loading;err('');loading=Promise.all([api({action:'list'}),api({action:'analytics',days:Number($('days').value)}),api({action:'programs'})]).then(([l,a,p])=>{leads=l.leads||[];partials=l.incomplete_contacts||[];analytics=a;programs=p.programs||[];renderAll();window.dispatchEvent(new Event('dataUpdated'))}).catch(e=>err(e.message)).finally(()=>loading=null);return loading}
 function renderAll(){renderPulse();renderDashboard();renderCRM();renderAnalytics();correctValidationNote()}
 function renderPulse(){$('pulseIncomplete').textContent=partials.length;$('pulseFirst').textContent=leads.filter(x=>x.status==='new'&&!due(x)).length;$('pulseFollowup').textContent=leads.filter(due).length;$('pulseActive').textContent=leads.filter(x=>x.status!=='new'&&x.status!=='resolved'&&!due(x)).length}
 function correctValidationNote(){const f=analytics.flow||{},val=f.validation_error||0;if(val)$('validationNote').innerHTML='<strong>'+val+' session'+(val===1?'':'s')+' hit contact validation.</strong> Some families corrected the field and continued, so this is diagnostic friction—not an automatic loss.'}
@@ -29,6 +30,7 @@ function leadCard(x){const d=due(x),stage=x.journey_stage||'reach',s=sla(x),next
 function activeFilterCount(){return[$('search').value.trim(),$('status').value,$('need').value,$('city').value].filter(Boolean).length}
 function syncFilterUI(){const n=activeFilterCount();$('filterCount').textContent=n;$('filterCount').classList.toggle('hidden',!n)}
 function renderCRM(){
+  if(!$('search'))return;
   const q=$('search').value.toLowerCase().trim(),st=$('status').value,nd=$('need').value,ct=$('city').value,needs=[...new Set(leads.map(x=>x.main_need).filter(Boolean))].sort(),cities=[...new Set(leads.map(x=>x.city).filter(Boolean))].sort();
   $('need').innerHTML='<option value="">All needs</option>'+needs.map(x=>'<option'+(x===nd?' selected':'')+'>'+esc(x)+'</option>').join('');
   $('city').innerHTML='<option value="">All cities</option>'+cities.map(x=>'<option'+(x===ct?' selected':'')+'>'+esc(x)+'</option>').join('');
