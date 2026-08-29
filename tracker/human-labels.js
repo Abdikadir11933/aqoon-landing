@@ -3,7 +3,6 @@ const TEXT=new Map([
   ['reach','First contact'],
   ['guide','Guiding'],
   ['start','Started'],
-  ['awaiting_decision','Waiting'],
   ['retention','Follow-up'],
   ['referral','Referral'],
   ['not_started','Not started'],
@@ -12,7 +11,6 @@ const TEXT=new Map([
   ['new','New'],
   ['contacted','Contacted'],
   ['resolved','Resolved'],
-  ['closed','Closed — no resolution'],
   ['Dugsiga iyo taageerada ilmaha','Skuulka iyo taageerada ilmaha'],
   ['Ciyaaro iyo hiwaayado','Ciyaaro iyo harrastukset'],
   ['Hel ciyaar ama hobby ku habboon ilmaha','Hel ciyaar ama harrastus ku habboon ilmaha']
@@ -28,14 +26,14 @@ function cleanElement(el){
     const raw=el.textContent.trim();
     if(TEXT.has(raw))el.textContent=TEXT.get(raw);
   }
-  if(el.matches('.pill.new,.pill.contacted,.pill.resolved,.pill.closed')){
+  if(el.matches('.pill.new,.pill.contacted,.pill.resolved')){
     const raw=el.textContent.trim();
     if(TEXT.has(raw))el.textContent=TEXT.get(raw);
   }
 }
 
 function replaceText(root=document){
-  root.querySelectorAll?.('.stage-btn,.pill.stage,.pill.new,.pill.contacted,.pill.resolved,.pill.closed').forEach(cleanElement);
+  root.querySelectorAll?.('.stage-btn,.pill.stage,.pill.new,.pill.contacted,.pill.resolved').forEach(cleanElement);
   const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
   const nodes=[];let n;
   while((n=walker.nextNode()))nodes.push(n);
