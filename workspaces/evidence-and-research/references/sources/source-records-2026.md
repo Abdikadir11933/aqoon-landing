@@ -57,6 +57,18 @@ Publisher: Ministry of Economic Affairs and Employment / Integration service | l
 ## src.tem.multisectoral-employment
 Publisher: Ministry of Economic Affairs and Employment | level: official-primary | URL: https://tem.fi/en/multi-sectoral-promotion-of-employment | volatility: medium | status: active
 
+## src.kela.employment-promoting-services
+Publisher: Kela | level: official-primary | URL: https://www.kela.fi/employment-promoting-services | volatility: high | status: active
+
+## src.jobmarket.job-search-coaching
+Publisher: Job Market Finland / KEHA Centre | level: official-primary | URL: https://tyomarkkinatori.fi/lisatietoa-palveluista/tyonhakuvalmennus | volatility: high | status: active
+
+## src.jobmarket.career-coaching
+Publisher: Job Market Finland / KEHA Centre | level: official-primary | URL: https://tyomarkkinatori.fi/lisatietoa-palveluista/uravalmennus | volatility: high | status: active
+
+## src.integration.labour-market-integration-training
+Publisher: Ministry of Economic Affairs and Employment / Integration service | level: official-primary | URL: https://kotoutuminen.fi/tyovoimakoulutuksena-jarjestettava-kotoutumiskoulutus | volatility: medium | status: active
+
 ## src.oph.s2-2026
 Publisher: OPH | level: official-primary | URL: https://www.oph.fi/fi/uutiset/2026/perustemuutokset-voimaan-182026-muutoksilla-edistetaan-maahanmuuttotaustaisten | volatility: high | status: active
 
