@@ -6,7 +6,7 @@ scope: Finland; resolve local employment authority before referral
 authority_ids: [authority.employment-area, authority.kela]
 decision_maker: municipal employment authority for plan/service route; Kela or unemployment fund for benefit payment
 required_inputs: [municipality, active_jobseeker_status, existing_plan_status, study_or_work_goal, course_or_employer_details_if_known, study_start_date, integration_plan_status, age, work_ability_context]
-source_ids: [src.jobmarket.work-trial, src.jobmarket.self-motivated-study, src.jobmarket.immigrant-self-motivated-study, src.jobmarket.labour-market-training, src.jobmarket.wage-subsidy, src.kela.yleistuki-benefit]
+source_ids: [src.jobmarket.work-trial, src.jobmarket.self-motivated-study, src.jobmarket.immigrant-self-motivated-study, src.jobmarket.labour-market-training, src.jobmarket.wage-subsidy, src.jobmarket.job-search-coaching, src.jobmarket.career-coaching, src.integration.labour-market-integration-training, src.kela.yleistuki-benefit, src.kela.employment-promoting-services]
 verification_state: verified
 last_verified_at: 2026-08-29
 volatility: high
@@ -26,12 +26,16 @@ Is the person an active jobseeker, and have they told their employment-services 
 - Wants a course selected by public employment services: ask about labour-market training or integration training through the employment authority.
 - Has found a course themselves: ask about self-motivated study while unemployed; give the authority the study title, provider, start date, duration, intensity and employment goal.
 - Uses an integration plan and wants full-time study: ask the authority whether immigrant customer's self-motivated study is appropriate and can be agreed in the plan.
+- Needs help applying for work or choosing a field: ask the authority whether job-search coaching or career coaching belongs in the employment plan.
 - Needs to test an occupation or re-enter work gradually: ask about a work trial; it is not an employment contract.
 - Has a potential employer or apprenticeship employer: ask the authority whether wage subsidy may be relevant. The employer—not AQOON and not the jobseeker—receives and applies for the support.
 
 ## AQOON preparation checklist
 
 Prepare the person's own description of: target occupation; previous education/work; language level; actual availability and childcare; course or employer details; start date; whether studies have already begun; and questions for the authority. Keep authority correspondence and documents with the person, not in the research repository.
+
+
+If the person asks about money during an agreed service, explain only the official boundary: Kela's general social security benefit may be paid during agreed employment-promoting services, and Kela lists a EUR 9/day expense compensation for specified services, with EUR 18/day under its stated distance/accommodation conditions. Do not quote a personal amount or assume generic self-motivated study receives the expense compensation.
 
 ## Outcome evidence
 
