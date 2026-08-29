@@ -300,8 +300,15 @@
   border-radius: 12px;
 }
 
-.contact-follow-up-actions {
-  margin-top: 8px;
+.call-workflow-row {
+  display: flex;
+  gap: 8px;
+}
+
+.call-workflow-row .btn {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 14px;
 }
 
 .contact-action-note {

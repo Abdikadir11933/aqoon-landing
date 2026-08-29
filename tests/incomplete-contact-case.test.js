@@ -15,9 +15,9 @@ test('the first incomplete-intake call creates a minimal contact case without in
 
 test('the incomplete panel offers call outcomes through the shared history workflow', () => {
   assert.match(queue, /data-action="call-incomplete"/);
-  assert.match(queue, /data-action="record-incomplete-reached"/);
-  assert.match(queue, /data-action="record-incomplete-no-answer"/);
-  assert.match(queue, /data-action="record-incomplete-call-later"/);
+  assert.match(queue, /logAction = isIncomplete \? 'log-outcome-incomplete' : 'log-outcome'/);
+  assert.match(queue, /data-action="\$\{logAction\}"/);
   assert.match(queue, /createContactCase\(lead, operatorId\)/);
   assert.match(queue, /AqoonCallOutcomes\?\.callLead/);
+  assert.match(queue, /AqoonCallOutcomes\?\.openForLead/);
 });

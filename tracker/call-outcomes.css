@@ -12,6 +12,8 @@
 .call-later-form{display:grid;grid-template-columns:1fr auto;align-items:end;gap:8px;margin-top:12px;padding-top:12px;border-top:1px solid var(--l)}
 .call-later-form label{color:var(--m);font-size:11px;font-weight:700}
 .call-later-form input{margin-top:5px}
+.call-outcome-note-label{display:block;margin-top:12px;padding-top:12px;border-top:1px solid var(--l);color:var(--m);font-size:11px;font-weight:700}
+.call-outcome-note-label textarea{display:block;width:100%;margin-top:5px;font:inherit;resize:vertical}
 .call-outcome-error{min-height:18px;margin:10px 0 0;color:var(--r);font-size:12px}
 @media(min-width:650px){.call-outcome-modal{align-items:center}}
 @media(max-width:440px){.call-outcome-modal{padding:8px}.call-outcome-sheet{border-radius:20px;padding:18px}.call-later-form{grid-template-columns:1fr}.call-later-form .btn{width:100%}}

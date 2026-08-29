@@ -14,6 +14,8 @@
 
 .call-outcome-call_later{background:#f0e9f8;color:#5a3a8a}
 
+.call-outcome-busy{background:#fdf1d9;color:#8a5a0a}
+
 .call-outcome-attempted{background:#e8ecf5;color:#1f3a6b}
 
 .call-outcome-unknown{background:var(--l,#e9e5dc);color:var(--n,#0a1a30)}

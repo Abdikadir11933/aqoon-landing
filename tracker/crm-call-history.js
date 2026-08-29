@@ -54,9 +54,10 @@ function renderCallHistorySection(calls){
     const outcome=call.outcome||call.call_outcome||'unknown';
     const operator=call.operator_name||'—';
     const notes=call.notes||'';
+    const callback=call.next_follow_up_at?`${formatDate(call.next_follow_up_at)} ${formatTime(call.next_follow_up_at)}`:'';
 
     const outcomeClass=`call-outcome-${outcome}`;
-    const outcomeLabel={'reached':'Connected','no_answer':'No answer','call_later':'Call later'}[outcome]||outcome;
+    const outcomeLabel={'reached':'Spoke to them','no_answer':'No answer','call_later':'Call back later','busy':'Busy'}[outcome]||outcome;
 
     return `
       <div class="crm-call-history-item">
@@ -64,7 +65,7 @@ function renderCallHistorySection(calls){
           <div class="crm-call-time">${esc(date)} ${esc(time)}</div>
           <span class="call-outcome-badge ${esc(outcomeClass)}">${esc(outcomeLabel)}</span>
         </div>
-        <div class="crm-call-details"><small>Operator: ${esc(operator)}</small></div>
+        <div class="crm-call-details"><small>Operator: ${esc(operator)}</small>${callback?`<small> · Callback: ${esc(callback)}</small>`:''}</div>
         ${notes?`<div class="crm-call-notes">${esc(notes)}</div>`:''}
       </div>
     `;

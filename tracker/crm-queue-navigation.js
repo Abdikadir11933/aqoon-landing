@@ -137,6 +137,33 @@ const CrmQueues = {
     });
   },
 
+  // Single call workflow reused across all three contactable phases: a Call
+  // action plus one button that opens the AqoonCallOutcomes dialog, which
+  // holds the actual outcome choices (Spoke to them / No answer / Busy /
+  // Call back later) and a note field. Replaces what used to be three
+  // near-identical 4-button grids, one of which (Contacted/No answer) fired
+  // immediately with no note and no dialog, while Call later alone opened it.
+  contactActionsHtml(leadId, lead, isIncomplete) {
+    const name = lead.name || (isIncomplete ? 'this person' : 'this family');
+    const callButton = isIncomplete
+      ? `<button class="btn primary" data-action="call-incomplete" data-lead-id="${leadId}">Call</button>`
+      : `<a class="btn primary" href="tel:${lead.phone || ''}" data-call-lead="${leadId}" data-call-name="${name}">Call</a>`;
+    const logAction = isIncomplete ? 'log-outcome-incomplete' : 'log-outcome';
+    const note = isIncomplete
+      ? 'The first call creates a minimal contact case, then records what happened — outcome, note and any follow-up are saved to Call History.'
+      : 'Call opens the phone and asks for the outcome when you return, or log it directly — spoke to them, no answer, busy, or call back later.';
+    return `
+      <div class="panel-section contact-actions">
+        <h4 class="panel-section-title">Contact ${isIncomplete ? 'this person' : 'this family'}</h4>
+        <div class="call-workflow-row">
+          ${callButton}
+          <button class="btn secondary" data-action="${logAction}" data-lead-id="${leadId}">Log call outcome</button>
+        </div>
+        <p class="contact-action-note">${note}</p>
+      </div>
+    `;
+  },
+
   openFamilyPanel(leadId, phaseId) {
     const leads = window.AqoonApp?.leads || [];
     const partials = window.AqoonApp?.partials || [];
@@ -176,19 +203,8 @@ const CrmQueues = {
 
     // Phase-specific actions
     if (phaseId === 'incomplete') {
+      content += this.contactActionsHtml(leadId, lead, true);
       content += `
-        <div class="panel-section contact-actions">
-          <h4 class="panel-section-title">Contact this person</h4>
-          <div class="assign-buttons">
-            <button class="btn primary" data-action="call-incomplete" data-lead-id="${leadId}">Call</button>
-            <button class="btn secondary" data-action="record-incomplete-reached" data-lead-id="${leadId}">Contacted</button>
-          </div>
-          <div class="assign-buttons contact-follow-up-actions">
-            <button class="btn secondary" data-action="record-incomplete-no-answer" data-lead-id="${leadId}">No answer</button>
-            <button class="btn secondary" data-action="record-incomplete-call-later" data-lead-id="${leadId}">Call later</button>
-          </div>
-          <p class="contact-action-note">The first call creates a minimal contact case. Unknown details stay marked “Not asked yet” until the interview; the outcome and follow-up are then saved in Call History.</p>
-        </div>
         <div class="panel-section assign-operator">
           <label class="assign-label">Assign this intake to yourself?</label>
           <div class="assign-buttons">
@@ -200,19 +216,8 @@ const CrmQueues = {
         </div>
       `;
     } else if (phaseId === 'first_contact') {
+      content += this.contactActionsHtml(leadId, lead, false);
       content += `
-        <div class="panel-section contact-actions">
-          <h4 class="panel-section-title">Contact this family</h4>
-          <div class="assign-buttons">
-            <a class="btn primary" href="tel:${lead.phone || ''}" data-call-lead="${leadId}" data-call-name="${lead.name || 'Family'}">Call</a>
-            <button class="btn secondary" data-action="record-reached" data-lead-id="${leadId}">Contacted</button>
-          </div>
-          <div class="assign-buttons contact-follow-up-actions">
-            <button class="btn secondary" data-action="record-no-answer" data-lead-id="${leadId}">No answer</button>
-            <button class="btn secondary" data-action="record-call-later" data-lead-id="${leadId}">Call later</button>
-          </div>
-          <p class="contact-action-note">Call opens the phone and then asks for the outcome. “No answer” sets a 24-hour follow-up; “Call later” asks for the exact time.</p>
-        </div>
         <div class="panel-section assign-operator">
           <label class="assign-label">Assign interview to yourself?</label>
           <div class="assign-buttons">
@@ -222,18 +227,8 @@ const CrmQueues = {
         </div>
       `;
     } else if (phaseId === 'in_progress') {
+      content += this.contactActionsHtml(leadId, lead, false);
       content += `
-        <div class="panel-section contact-actions">
-          <h4 class="panel-section-title">Contact this family</h4>
-          <div class="assign-buttons">
-            <a class="btn primary" href="tel:${lead.phone || ''}" data-call-lead="${leadId}" data-call-name="${lead.name || 'Family'}">Call</a>
-            <button class="btn secondary" data-action="record-reached" data-lead-id="${leadId}">Contacted</button>
-          </div>
-          <div class="assign-buttons contact-follow-up-actions">
-            <button class="btn secondary" data-action="record-no-answer" data-lead-id="${leadId}">No answer</button>
-            <button class="btn secondary" data-action="record-call-later" data-lead-id="${leadId}">Call later</button>
-          </div>
-        </div>
         <div class="panel-section assign-operator">
           <label class="assign-label">${lead.interview_status === 'completed' ? 'Interview complete' : 'Interview still required'}</label>
           <div class="assign-buttons">
@@ -300,19 +295,16 @@ const CrmQueues = {
       if (lead) window.AqoonIncompleteIntake?.open(lead);
     } else if (action === 'delete-intake' && phaseId === 'incomplete') {
       if (lead) window.AqoonIncompleteIntake?.remove(lead, () => this.closeFamilyPanel());
-    } else if (phaseId === 'incomplete' && action.startsWith('record-incomplete-')) {
-      const outcome = action.replace('record-incomplete-', '');
+    } else if (action === 'log-outcome-incomplete' && phaseId === 'incomplete') {
       const operatorId = sessionStorage.getItem('aqoon_operator_id');
       window.AqoonIncompleteIntake?.createContactCase(lead, operatorId)
         .then(newLeadId => {
-          if (outcome === 'call_later') {
-            window.AqoonCallOutcomes?.openForLead(newLeadId, lead?.name || 'Client', 'call_later');
-          } else {
-            return window.AqoonCallOutcomes?.recordForLead(newLeadId, outcome === 'reached' ? 'reached' : 'no_answer');
-          }
+          this.closeFamilyPanel();
+          window.AqoonCallOutcomes?.openForLead(newLeadId, lead?.name || 'Client');
         })
-        .then(() => this.closeFamilyPanel())
         .catch(err => alert(err.message || 'Could not create the contact case.'));
+    } else if (action === 'log-outcome') {
+      window.AqoonCallOutcomes?.openForLead(leadId, lead?.name || 'Family');
     } else if (action === 'call-incomplete' && phaseId === 'incomplete') {
       const operatorId = sessionStorage.getItem('aqoon_operator_id');
       window.AqoonIncompleteIntake?.createContactCase(lead, operatorId)
@@ -330,13 +322,6 @@ const CrmQueues = {
       window.AqoonApp?.updateLead(leadId, {status: 'new', journey_stage: 'reach'})
         .then(() => this.closeFamilyPanel())
         .catch(err => alert(err.message || 'Could not return this case to first contact.'));
-    } else if (action === 'record-reached' || action === 'record-no-answer') {
-      const outcome = action === 'record-reached' ? 'reached' : 'no_answer';
-      window.AqoonCallOutcomes?.recordForLead(leadId, outcome)
-        .then(() => this.closeFamilyPanel())
-        .catch(err => alert(err.message || 'Could not record the call outcome.'));
-    } else if (action === 'record-call-later') {
-      window.AqoonCallOutcomes?.openForLead(leadId, lead?.name || 'Family', 'call_later');
     } else if (action === 'remove-lead') {
       window.AqoonCrmManage?.confirmDelete(leadId, lead?.name || 'this family', () => this.closeFamilyPanel());
     }
