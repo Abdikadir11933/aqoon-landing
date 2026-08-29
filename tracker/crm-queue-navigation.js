@@ -189,6 +189,18 @@ const CrmQueues = {
       `;
     } else if (phaseId === 'first_contact') {
       content += `
+        <div class="panel-section contact-actions">
+          <h4 class="panel-section-title">Contact this family</h4>
+          <div class="assign-buttons">
+            <a class="btn primary" href="tel:${lead.phone || ''}" data-call-lead="${leadId}" data-call-name="${lead.name || 'Family'}">Call</a>
+            <button class="btn secondary" data-action="record-reached" data-lead-id="${leadId}">Contacted</button>
+          </div>
+          <div class="assign-buttons contact-follow-up-actions">
+            <button class="btn secondary" data-action="record-no-answer" data-lead-id="${leadId}">No answer</button>
+            <button class="btn secondary" data-action="record-call-later" data-lead-id="${leadId}">Call later</button>
+          </div>
+          <p class="contact-action-note">Call opens the phone and then asks for the outcome. “No answer” sets a 24-hour follow-up; “Call later” asks for the exact time.</p>
+        </div>
         <div class="panel-section assign-operator">
           <label class="assign-label">Assign interview to yourself?</label>
           <div class="assign-buttons">
@@ -199,6 +211,17 @@ const CrmQueues = {
       `;
     } else if (phaseId === 'in_progress') {
       content += `
+        <div class="panel-section contact-actions">
+          <h4 class="panel-section-title">Contact this family</h4>
+          <div class="assign-buttons">
+            <a class="btn primary" href="tel:${lead.phone || ''}" data-call-lead="${leadId}" data-call-name="${lead.name || 'Family'}">Call</a>
+            <button class="btn secondary" data-action="record-reached" data-lead-id="${leadId}">Contacted</button>
+          </div>
+          <div class="assign-buttons contact-follow-up-actions">
+            <button class="btn secondary" data-action="record-no-answer" data-lead-id="${leadId}">No answer</button>
+            <button class="btn secondary" data-action="record-call-later" data-lead-id="${leadId}">Call later</button>
+          </div>
+        </div>
         <div class="panel-section assign-operator">
           <label class="assign-label">Case still open</label>
           <div class="assign-buttons">
@@ -269,6 +292,13 @@ const CrmQueues = {
       window.openInterview(leadId);
     } else if (action === 'mark-resolved') {
       window.AqoonApp?.updateLead(leadId, {status: 'resolved'}).then(() => this.closeFamilyPanel());
+    } else if (action === 'record-reached' || action === 'record-no-answer') {
+      const outcome = action === 'record-reached' ? 'reached' : 'no_answer';
+      window.AqoonCallOutcomes?.recordForLead(leadId, outcome)
+        .then(() => this.closeFamilyPanel())
+        .catch(err => alert(err.message || 'Could not record the call outcome.'));
+    } else if (action === 'record-call-later') {
+      window.AqoonCallOutcomes?.openForLead(leadId, lead?.name || 'Family', 'call_later');
     } else if (action === 'remove-lead') {
       window.AqoonCrmManage?.confirmDelete(leadId, lead?.name || 'this family', () => this.closeFamilyPanel());
     }
