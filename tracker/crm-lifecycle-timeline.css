@@ -1,0 +1,25 @@
+.crm-timeline-dot{position:relative;padding-left:32px;padding-bottom:16px}
+
+.crm-timeline-dot:last-child{padding-bottom:0}
+
+.crm-timeline-dot:not(:last-child)::before{content:'';position:absolute;left:11px;top:24px;bottom:-16px;width:2px;background:var(--l,#e9e5dc)}
+
+.crm-timeline-marker{position:absolute;left:0;top:0;width:24px;height:24px;border-radius:50%;background:var(--dot-color,#999);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;border:2px solid var(--p,#f8f5ee)}
+
+.crm-timeline-content{flex:1}
+
+.crm-timeline-label{font-size:12px;font-weight:600;color:var(--n,#0a1a30)}
+
+.crm-timeline-date{font-size:11px;color:var(--t,#13b9aa);margin-top:2px}
+
+.crm-timeline-desc{font-size:11px;color:var(--n,#0a1a30);margin-top:4px;padding:6px;background:rgba(0,0,0,0.03);border-radius:3px}
+
+@media(max-width:640px){
+  .crm-timeline-dot{padding-left:28px}
+  .crm-timeline-marker{width:20px;height:20px;font-size:10px}
+  .crm-timeline-dot:not(:last-child)::before{left:9px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .crm-timeline-marker{animation:none}
+}
