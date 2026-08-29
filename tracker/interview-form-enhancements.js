@@ -1,6 +1,7 @@
 (()=>{'use strict';
 const QUESTIONS='#questions';
 const ADMIN='https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-leads-admin';
+const PILOT_DEPTH_MODULE_ENABLED=false;
 let evidenceLoadedAt=0;
 
 function wireChoiceRow(row){
@@ -121,10 +122,10 @@ async function loadEvidence(force=false){
   }catch(e){body.innerHTML='<p class="sub">Could not load interview evidence: '+String(e.message||e)+'</p>';}
 }
 function enhance(){
-  const root=document.querySelector(QUESTIONS);if(!root)return;enhanceBarrier(root);addJobSearchProfile(root);addConditionNote(root,'work_tryout','Työkokeilu notes / conditions');addConditionNote(root,'apprenticeship','Oppisopimus notes / conditions');addCoreEvidence(root);addHobbyEvidence(root);addDaycareEvidence(root);root.querySelectorAll('.choice-row').forEach(wireChoiceRow);ensureEvidenceCard();
+  const root=document.querySelector(QUESTIONS);if(!root)return;enhanceBarrier(root);addJobSearchProfile(root);addConditionNote(root,'work_tryout','Työkokeilu notes / conditions');addConditionNote(root,'apprenticeship','Oppisopimus notes / conditions');if(PILOT_DEPTH_MODULE_ENABLED){addCoreEvidence(root);addHobbyEvidence(root);addDaycareEvidence(root);}root.querySelectorAll('.choice-row').forEach(wireChoiceRow);if(PILOT_DEPTH_MODULE_ENABLED)ensureEvidenceCard();
 }
 const observer=new MutationObserver(()=>enhance());
-const start=()=>{const root=document.querySelector(QUESTIONS);if(root)observer.observe(root,{childList:true,subtree:true});enhance();ensureEvidenceCard();};
+const start=()=>{const root=document.querySelector(QUESTIONS);if(root)observer.observe(root,{childList:true,subtree:true});enhance();if(PILOT_DEPTH_MODULE_ENABLED)ensureEvidenceCard();};
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
-document.addEventListener('click',e=>{if(e.target.closest('[data-interview]'))setTimeout(enhance,80);if(e.target.closest('[data-tab="analytics"]'))setTimeout(()=>{ensureEvidenceCard();loadEvidence(false)},250);if(e.target.closest('#refresh'))setTimeout(()=>loadEvidence(true),350);},false);
+document.addEventListener('click',e=>{if(e.target.closest('[data-interview]'))setTimeout(enhance,80);if(!PILOT_DEPTH_MODULE_ENABLED)return;if(e.target.closest('[data-tab="analytics"]'))setTimeout(()=>{ensureEvidenceCard();loadEvidence(false)},250);if(e.target.closest('#refresh'))setTimeout(()=>loadEvidence(true),350);},false);
 })();
