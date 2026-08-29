@@ -152,43 +152,17 @@ async function fetchOperators(){
   return operators;
 }
 
-function leadBadgeHtml(attrib){
-  const assignedName=nameFor(attrib.assigned_operator_id),lastName=nameFor(attrib.last_actor_id);
-  const mine=attrib.assigned_operator_id&&attrib.assigned_operator_id===meId();
-  let html='<span class="op-tag'+(attrib.assigned_operator_id?'':' op-tag-empty')+'">'+(assignedName?esc(assignedName):'Unassigned')+'</span>';
-  if(lastName)html+='<span class="op-touch">Last touched '+esc(lastName)+'</span>';
-  if(!mine&&meId())html+='<button type="button" class="op-claim" data-claim-lead="1">Assign to me</button>';
-  return html;
-}
-function refreshLeadBadges(){
-  document.querySelectorAll('#leadList .lead').forEach(card=>{
-    const id=card.querySelector('[data-open]')?.dataset.open;
-    if(!id)return;
-    const attrib=leadAttrib[id];
-    if(!attrib)return;
-    const pills=card.querySelector('.pills');
-    if(pills){
-      let tag=pills.querySelector('.pill-operator');
-      if(!tag){tag=document.createElement('span');tag.className='pill pill-operator';pills.appendChild(tag);}
-      const assignedName=nameFor(attrib.assigned_operator_id);
-      tag.textContent=assignedName?('👤 '+assignedName):'👤 Unassigned';
-    }
-    const actions=card.querySelector('.actions');
-    if(actions){
-      let badge=card.querySelector('.operator-badge-wrap');
-      if(!badge){badge=document.createElement('div');badge.className='operator-badge-wrap';actions.parentElement.insertBefore(badge,actions);}
-      badge.innerHTML=leadBadgeHtml(attrib);
-      const claim=badge.querySelector('[data-claim-lead]');
-      if(claim)claim.onclick=e=>{e.stopPropagation();assignLead(id)};
-    }
-  });
-}
-async function assignLead(id){
-  try{
-    await fetch(LEADS_END,{method:'POST',headers:{'Content-Type':'application/json','x-tracker-password':pw()},body:JSON.stringify({action:'update',id,assigned_operator_id:meId(),operator_id:meId()})});
-    document.getElementById('refresh')?.click();
-  }catch(e){}
-}
+// The queue-based CRM redesign (crm-queue-navigation.js) owns the family
+// list/panel DOM now - there is no more #leadList, so badge injection used
+// to be dead code here. Instead of duplicating that DOM ownership, expose
+// the operator name-lookup this file already maintains (opById/leadAttrib)
+// and let crm-queue-navigation.js read it directly when it renders.
+window.AqoonOperators={
+  nameFor,
+  meId,
+  attribFor:id=>leadAttrib[id]||null,
+  list:()=>operators.slice()
+};
 
 function refreshOppBadges(){
   document.querySelectorAll('#salesPipeline .opportunity').forEach(card=>{
@@ -217,8 +191,17 @@ async function claimOpportunity(id){
 }
 
 function scheduleBadgeRefresh(){
+  // Only the sales-pipeline badges need an explicit refresh here: this
+  // function runs from patchFetch's response interceptor, which finishes
+  // populating opById/leadAttrib *before* the original caller (app.js,
+  // incomplete-intake.js, etc.) gets the resolved response - so by the time
+  // any of them run their own renderAll()+dispatchEvent('dataUpdated'),
+  // operator names are already available and CrmQueues picks them up on
+  // that same, single render pass. Dispatching a second 'dataUpdated' here
+  // would just trigger a redundant rebuild of the family list ~80ms later,
+  // detaching whatever the operator is mid-click on.
   clearTimeout(badgeTimer);
-  badgeTimer=setTimeout(()=>{refreshLeadBadges();refreshOppBadges();},80);
+  badgeTimer=setTimeout(refreshOppBadges,80);
 }
 
 function patchFetch(){

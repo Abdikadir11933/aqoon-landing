@@ -120,7 +120,7 @@ const CrmQueues = {
         <div class="family-item" data-lead-id="${family.id}" data-phase="${phaseId}">
           <p class="family-item-name">${family.name || 'Unnamed'}</p>
           <div class="family-item-meta">
-            <span class="family-item-operator">${family.assigned_operator_id ? '✓ Assigned' : 'Unassigned'}</span>
+            <span class="family-item-operator">${this.operatorLabel(family.assigned_operator_id)}</span>
             <span class="family-item-time">${this.formatDate(family.created_at)}</span>
           </div>
         </div>
@@ -164,10 +164,15 @@ const CrmQueues = {
         </div>
         <div class="panel-info">
           <div class="panel-info-label">Current operator</div>
-          <div class="panel-info-value">${lead.assigned_operator_id ? '✓ Assigned' : 'Unassigned'}</div>
+          <div class="panel-info-value">${this.operatorLabel(lead.assigned_operator_id)}</div>
         </div>
       </div>
     `;
+    const attrib = window.AqoonOperators?.attribFor(leadId);
+    const lastTouchedName = attrib?.last_actor_id ? window.AqoonOperators?.nameFor(attrib.last_actor_id) : '';
+    if (lastTouchedName) {
+      content += `<p style="font-size:11px;color:var(--m);margin:-16px 0 16px">Last touched by ${lastTouchedName}</p>`;
+    }
 
     // Phase-specific actions
     if (phaseId === 'incomplete') {
@@ -212,6 +217,9 @@ const CrmQueues = {
         <div class="panel-section">
           <h4 class="panel-section-title">Call History</h4>
           <div id="panelCallHistory"></div>
+        </div>
+        <div class="panel-section">
+          <button class="btn secondary" type="button" data-action="remove-lead" data-lead-id="${leadId}">Remove from CRM</button>
         </div>
       `;
     }
@@ -261,6 +269,8 @@ const CrmQueues = {
       window.openInterview(leadId);
     } else if (action === 'mark-resolved') {
       window.AqoonApp?.updateLead(leadId, {status: 'resolved'}).then(() => this.closeFamilyPanel());
+    } else if (action === 'remove-lead') {
+      window.AqoonCrmManage?.confirmDelete(leadId, lead?.name || 'this family', () => this.closeFamilyPanel());
     }
   },
 
@@ -283,6 +293,12 @@ const CrmQueues = {
     const panel = document.getElementById('familyPanel');
     panel.classList.add('hidden');
     this.selectedFamily = null;
+  },
+
+  operatorLabel(operatorId) {
+    if (!operatorId) return 'Unassigned';
+    const name = window.AqoonOperators?.nameFor(operatorId);
+    return name ? ('✓ ' + name) : '✓ Assigned';
   },
 
   formatDate(dateStr) {
