@@ -27,17 +27,16 @@ function watch(){
   observer=new MutationObserver(mutations=>mutations.forEach(m=>m.addedNodes.forEach(node=>{if(node.nodeType===1)applyTo(node)})));
   observer.observe(host,{childList:true,subtree:true});
 }
-document.addEventListener('click',event=>{
-  const b=event.target.closest('[data-interview]');
-  if(!b)return;
+const originalOpenForRestore=window.openInterview;
+window.openInterview=function(id){
+  if(originalOpenForRestore)originalOpenForRestore.call(this,id);
   pending=null;stopWatching();
-  const id=b.dataset.interview;
   if(!id)return;
   api({action:'list'}).then(d=>{
     const lead=(d.leads||[]).find(x=>x.id===id);
     const answers=lead?.latest_interview?.answers;
     if(answers&&typeof answers==='object'&&Object.keys(answers).length){pending=answers;watch()}
   }).catch(()=>{});
-},true);
+};
 document.addEventListener('click',event=>{if(event.target.closest('#closeDrawer')){pending=null;stopWatching()}});
 })();

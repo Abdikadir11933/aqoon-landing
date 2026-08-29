@@ -2,7 +2,7 @@
 
 .crm-header {
   padding: 20px;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--l);
 }
 
 .crm-header h2 {
@@ -10,13 +10,13 @@
   font-family: Fraunces, serif;
   font-size: 24px;
   font-weight: 900;
-  color: var(--navy);
+  color: var(--n);
 }
 
 .crm-subtitle {
   margin: 0;
   font-size: 14px;
-  color: var(--muted);
+  color: var(--m);
 }
 
 /* Queue Grid Layout */
@@ -36,8 +36,8 @@
 
 /* Queue Cards */
 .queue-card {
-  background: var(--paper);
-  border: 1px solid var(--line);
+  background: var(--p);
+  border: 1px solid var(--l);
   border-radius: 20px;
   overflow: hidden;
   transition: box-shadow 0.2s ease;
@@ -48,8 +48,8 @@
 }
 
 .queue-header {
-  background: var(--navy);
-  color: var(--on-navy-strong);
+  background: var(--n);
+  color: #fff;
   padding: 16px;
   display: flex;
   justify-content: space-between;
@@ -70,7 +70,7 @@
 }
 
 .queue-count {
-  background: var(--teal);
+  background: var(--t);
   color: white;
   font-family: Outfit, sans-serif;
   font-size: 18px;
@@ -112,8 +112,8 @@
 .family-item {
   padding: 12px;
   margin-bottom: 8px;
-  background: var(--cream);
-  border-left: 3px solid var(--teal);
+  background: var(--c);
+  border-left: 3px solid var(--t);
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -128,13 +128,13 @@
   font-family: Outfit, sans-serif;
   font-size: 15px;
   font-weight: 600;
-  color: var(--navy);
+  color: var(--n);
   margin: 0 0 4px 0;
 }
 
 .family-item-meta {
   font-size: 12px;
-  color: var(--muted);
+  color: var(--m);
   display: flex;
   justify-content: space-between;
   margin-top: 4px;
@@ -142,20 +142,20 @@
 
 .family-item-operator {
   font-size: 12px;
-  color: var(--teal);
+  color: var(--t);
   font-weight: 500;
 }
 
 .family-item-time {
   font-size: 12px;
-  color: var(--muted);
+  color: var(--m);
 }
 
 /* Empty State */
 .queue-empty {
   padding: 20px 12px;
   text-align: center;
-  color: var(--muted);
+  color: var(--m);
   font-size: 14px;
 }
 
@@ -167,7 +167,7 @@
   width: 100%;
   max-width: 500px;
   height: 100vh;
-  background: var(--paper);
+  background: var(--p);
   box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   display: flex;
@@ -197,7 +197,7 @@
 
 .panel-header {
   padding: 20px;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--l);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -208,7 +208,7 @@
   font-family: Fraunces, serif;
   font-size: 20px;
   font-weight: 900;
-  color: var(--navy);
+  color: var(--n);
 }
 
 .panel-content {
@@ -226,14 +226,14 @@
   font-family: Outfit, sans-serif;
   font-size: 14px;
   font-weight: 600;
-  color: var(--muted);
+  color: var(--m);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin: 0 0 12px 0;
 }
 
 .panel-info {
-  background: var(--cream);
+  background: var(--c);
   padding: 12px;
   border-radius: 12px;
   margin-bottom: 8px;
@@ -241,13 +241,13 @@
 }
 
 .panel-info-label {
-  color: var(--muted);
+  color: var(--m);
   font-size: 12px;
   margin-bottom: 2px;
 }
 
 .panel-info-value {
-  color: var(--navy);
+  color: var(--n);
   font-weight: 500;
   font-variant-numeric: tabular-nums;
 }
@@ -255,7 +255,7 @@
 /* Panel Actions */
 .panel-actions {
   padding: 20px;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--l);
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
@@ -269,15 +269,15 @@
 /* Operator Assignment */
 .assign-operator {
   padding: 12px;
-  background: var(--cream);
-  border-left: 2px solid var(--teal);
+  background: var(--c);
+  border-left: 2px solid var(--t);
   border-radius: 8px;
   margin-bottom: 16px;
 }
 
 .assign-label {
   font-size: 12px;
-  color: var(--muted);
+  color: var(--m);
   margin-bottom: 8px;
   display: block;
 }

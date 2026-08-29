@@ -127,5 +127,14 @@ function enhance(){
 const observer=new MutationObserver(()=>enhance());
 const start=()=>{const root=document.querySelector(QUESTIONS);if(root)observer.observe(root,{childList:true,subtree:true});enhance();if(PILOT_DEPTH_MODULE_ENABLED)ensureEvidenceCard();};
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
-document.addEventListener('click',e=>{if(e.target.closest('[data-interview]'))setTimeout(enhance,80);if(!PILOT_DEPTH_MODULE_ENABLED)return;if(e.target.closest('[data-tab="analytics"]'))setTimeout(()=>{ensureEvidenceCard();loadEvidence(false)},250);if(e.target.closest('#refresh'))setTimeout(()=>loadEvidence(true),350);},false);
+// enhance() also runs via the MutationObserver above whenever #questions
+// gains children (e.g. once interview-match.js populates it), so this was
+// a redundant, now-broken second trigger - fixed for clarity, not because
+// it was the only path.
+const originalOpenForEnhancements=window.openInterview;
+window.openInterview=function(id){
+  if(originalOpenForEnhancements)originalOpenForEnhancements.call(this,id);
+  setTimeout(enhance,80);
+};
+document.addEventListener('click',e=>{if(!PILOT_DEPTH_MODULE_ENABLED)return;if(e.target.closest('[data-tab="analytics"]'))setTimeout(()=>{ensureEvidenceCard();loadEvidence(false)},250);if(e.target.closest('#refresh'))setTimeout(()=>loadEvidence(true),350);},false);
 })();

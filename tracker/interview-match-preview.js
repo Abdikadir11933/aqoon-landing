@@ -13,7 +13,14 @@ function esc(value){return String(value||'').replace(/[&<>"']/g,c=>({'&':'&amp;'
 function render(data){const el=host();if(!el)return;addMissing(data.candidates||[]);const cards=(data.candidates||[]).map(c=>{const title=c.route_key.replace(/^route\./,'').replaceAll('.',' · '),status=c.match_status==='does_not_fit'?'Does not fit from known facts':'Possible — must confirm',miss=c.missing_fields?.length?'<p><strong>Ask next:</strong> '+c.missing_fields.map(k=>esc(label(k,c.criteria||[]))).join(' · ')+'</p>':'<p><strong>Next:</strong> review the authority/provider confirmation.</p>',conf=c.conflicting_criteria?.length?'<p class="route-conflict">'+c.conflicting_criteria.map(esc).join(' ')+'</p>':'',steps=(c.steps||[]).slice(0,2).map(s=>'<li>'+esc(s)+'</li>').join(''),sources=(c.sources||[]).map(s=>'<a href="'+esc(s.url)+'" target="_blank" rel="noreferrer">'+esc(s.title||'Official source')+'</a>').join(' · '),disclosure=c.partner_disclosure_required?'<p class="route-disclosure">Partner/provider relationship must be disclosed before a referral.</p>':'';return '<article class="route-card"><div class="route-kicker">'+status+'</div><h3>'+esc(title)+'</h3>'+conf+miss+'<ol>'+steps+'</ol>'+disclosure+'<small>'+sources+'</small></article>'}).join('');el.classList.remove('hidden');el.innerHTML='<div class="route-preview-head"><div><span>Verified route preview</span><strong>Read-only — not an eligibility decision</strong></div><button type="button" class="btn secondary" id="refreshRoutePreview">Refresh</button></div>'+(cards||'<p class="muted">No verified route is mapped to this need yet.</p>');$('refreshRoutePreview')?.addEventListener('click',load)}
 async function load(){if(!leadId)return;const el=host();if(!el)return;el.classList.remove('hidden');el.innerHTML='<p class="muted">Checking current verified routes…</p>';try{render(await api({action:'match_preview',lead_id:leadId,answers:answers()}))}catch(error){el.innerHTML='<p class="route-conflict">'+esc(error.message)+'</p>'}}
 function schedule(){clearTimeout(timer);timer=setTimeout(load,350)}
-document.addEventListener('click',event=>{const button=event.target.closest('[data-interview]');if(!button)return;leadId=button.dataset.interview||'';setTimeout(load,450)},true);
+// Same fix as interview-match.js: this only ever triggered off clicking a
+// [data-interview] element, which the queue redesign never creates.
+const originalOpenForPreview=window.openInterview;
+window.openInterview=function(id){
+  if(originalOpenForPreview)originalOpenForPreview.call(this,id);
+  leadId=id||'';
+  setTimeout(load,450);
+};
 document.addEventListener('input',event=>{if(leadId&&event.target.closest('#questions'))schedule()});
 document.addEventListener('click',event=>{if(leadId&&event.target.closest('#questions .choice'))setTimeout(schedule,0)});
 })();

@@ -94,6 +94,11 @@ async function restore(revisionId){
   }catch(error){fail(error.message)}
   finally{busy=false}
 }
-document.addEventListener('click',event=>{const b=event.target.closest('[data-interview]');if(!b)return;leadId=b.dataset.interview||'';setTimeout(load,450)},true);
+const originalOpenForLifecycle=window.openInterview;
+window.openInterview=function(id){
+  if(originalOpenForLifecycle)originalOpenForLifecycle.call(this,id);
+  leadId=id||'';
+  setTimeout(load,450);
+};
 window.AqoonCaseLifecycle={logInterviewCompleted:id=>id?api(END_LIFECYCLE,{action:'log_event',lead_id:id,event_type:'interview_completed'}).catch(()=>{}):Promise.resolve()};
 })();
