@@ -87,6 +87,12 @@ function openForLead(leadId,name,preferredOutcome){
   open();
   if(preferredOutcome==='call_later')choose('call_later');
 }
+function callLead(leadId,name,phone){
+  if(!leadId||!phone)return;
+  pending={id:String(leadId),name:name||'Client call'};
+  location.href='tel:'+String(phone);
+  scheduleOpen();
+}
 function scheduleOpen(){
   clearTimeout(openTimer);
   openTimer=setTimeout(()=>{if(document.visibilityState==='visible')open()},700);
@@ -99,5 +105,5 @@ document.addEventListener('click',event=>{
 },true);
 document.addEventListener('visibilitychange',()=>{if(pending&&document.visibilityState==='visible')scheduleOpen()});
 global.addEventListener('focus',()=>{if(pending)scheduleOpen()});
-global.AqoonCallOutcomes={recordForLead,openForLead};
+global.AqoonCallOutcomes={recordForLead,openForLead,callLead};
 })(typeof window!=='undefined'?window:(typeof globalThis!=='undefined'?globalThis:null));
