@@ -1,0 +1,11 @@
+-- family_contact_starts has 0 rows and zero references in any Edge Function
+-- or tracker code (confirmed by repo-wide search). It duplicates the schema
+-- of family_intake_contacts, which is the table every live intake/incomplete-
+-- intake code path actually reads and writes. Its only prior migration touch
+-- was dropping a duplicate index (20260828_operator_fk_indexes_and_dedupe.sql),
+-- not evidence of use. Flagged as likely-orphaned in three prior audits
+-- (docs/qa/current-state-audit-2026-08-28.md,
+-- docs/qa/full-repository-audit-2026-08-28.md,
+-- docs/qa/tracker-crm-interview-analytics-sales-audit-2026-08-29.md);
+-- this confirms and retires it.
+drop table if exists public.family_contact_starts;
