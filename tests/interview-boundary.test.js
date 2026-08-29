@@ -21,3 +21,13 @@ test('interview UI describes topics, not pre-decided routes', () => {
   assert.match(interview, /Interview topics:/);
   assert.match(interview, /Save first interview & prepare research brief/);
 });
+
+test('a call cannot move an unfinished interview into follow-up or resolution', () => {
+  const admin = read('supabase/functions/family-leads-admin/index.ts');
+  const queue = read('tracker/crm-queue-navigation.js');
+  assert.match(admin, /select\("id,status,journey_stage,interview_status"\)/);
+  assert.match(admin, /current\.interview_status==="completed"/);
+  assert.match(admin, /completed_interview_required/);
+  assert.match(queue, /return-to-first-contact/);
+  assert.match(queue, /Interview still required/);
+});
