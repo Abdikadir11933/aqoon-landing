@@ -25,4 +25,4 @@ Collect only what is needed to navigate: municipality; whether job search is act
 
 ## Pass 1 acceptance result
 
-The initial routing split is safe enough for operator navigation. It is **not** a complete employment, unemployment-security or integration-policy knowledge base; those items remain queued for Pass 2 and later research.
+The initial routing split and assessment/plan-content description are safe enough for operator navigation. It is **not** a complete employment, unemployment-security or integration-policy knowledge base; those items remain queued for Pass 2 and later research.
