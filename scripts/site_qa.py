@@ -63,8 +63,11 @@ caawi = (ROOT / "caawi/index.html").read_text(encoding="utf-8")
 caawi_js = (ROOT / "caawi/app.js").read_text(encoding="utf-8")
 llms = (ROOT / "llms.txt").read_text(encoding="utf-8")
 
-# Tracker privacy + asset integrity.
-for asset in ("/tracker/app.css", "/tracker/app.js"):
+# Tracker privacy + asset integrity. The tracker's per-feature CSS/JS files
+# are bundled (see scripts/build_tracker_bundle.js) into two files the page
+# actually loads; tests/tracker-bundle.test.js is what guards the bundle
+# against drifting from those source files.
+for asset in ("/tracker/bundle.css", "/tracker/bundle.js"):
     if asset not in tracker:
         fail(f"tracker/index.html does not reference {asset}")
 if "noindex" not in tracker.lower() or "nofollow" not in tracker.lower():

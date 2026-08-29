@@ -96,15 +96,23 @@ for top in ("assets", "caawi", "tracker"):
             fail(f"Browser code contains service-role credential marker: {p.relative_to(ROOT)}")
 
 tracker = (ROOT / "tracker/index.html").read_text(encoding="utf-8")
-for asset in (
-    "/tracker/multineed-adapter.js",
-    "/tracker/scenario-learning.js",
-    "/tracker/app.js",
-    "/tracker/visual-v3.js",
-    "/tracker/crm-reactive.js",
+if "/tracker/bundle.js" not in tracker:
+    fail("tracker/index.html must load the bundled tracker script (/tracker/bundle.js)")
+# These files must be genuinely present as static code, not dynamically
+# injected at runtime - see the adapter check below for the bug this once
+# was. Bundling (scripts/build_tracker_bundle.js) folds them into
+# tracker/bundle.js as one static <script>, so verify their source markers
+# actually landed in the bundle rather than checking index.html directly.
+bundle_js = (ROOT / "tracker/bundle.js").read_text(encoding="utf-8")
+for name in (
+    "multineed-adapter.js",
+    "scenario-learning.js",
+    "app.js",
+    "visual-v3.js",
+    "crm-reactive.js",
 ):
-    if asset not in tracker:
-        fail(f"tracker/index.html missing required script: {asset}")
+    if f"---- {name} ----" not in bundle_js:
+        fail(f"tracker/bundle.js missing required source file: {name}")
 adapter = (ROOT / "tracker/multineed-adapter.js").read_text(encoding="utf-8")
 if "scenario-learning.js" in adapter:
     fail("scenario-learning.js should load directly from tracker/index.html, not be dynamically injected by the adapter")
