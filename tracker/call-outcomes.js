@@ -24,7 +24,7 @@ if(typeof module!=='undefined'&&module.exports)module.exports=core;
 if(!global||typeof document==='undefined')return;
 
 const $=id=>document.getElementById(id);
-let pending=null,openTimer=null,saving=false,pendingOutcome=null;
+let pending=null,saving=false,pendingOutcome=null;
 function password(){return sessionStorage.getItem('aqoon_tracker_password')||''}
 async function api(body){
   const response=await fetch(END,{method:'POST',headers:{'Content-Type':'application/json','x-tracker-password':password()},body:JSON.stringify(body),cache:'no-store'});
@@ -44,7 +44,7 @@ function ensureDialog(){
 }
 function open(){
   if(!pending||saving)return;
-  ensureDialog();clearTimeout(openTimer);openTimer=null;
+  ensureDialog();
   $('callOutcomeName').textContent=pending.name||'Family call';
   $('callOutcomeError').textContent='';
   $('callOutcomeNote').value='';
@@ -95,21 +95,17 @@ function openForLead(leadId,name,preferredOutcome){
 }
 function callLead(leadId,name,phone){
   if(!leadId||!phone)return;
-  pending={id:String(leadId),name:name||'Client call'};
   location.href='tel:'+String(phone);
-  scheduleOpen();
 }
-function scheduleOpen(){
-  clearTimeout(openTimer);
-  openTimer=setTimeout(()=>{if(document.visibilityState==='visible')open()},700);
-}
+// Outcome logging is always explicit (a "Log call outcome"/"Log" button the
+// operator taps once they're ready) rather than auto-popping this dialog
+// after a tel: link is tapped - the visibility/focus-based auto-open this
+// used to do felt laggy and unpredictable on the phone-app round trip, and
+// every call site now has its own explicit log affordance instead.
 document.addEventListener('click',event=>{
-  const link=event.target.closest('a[data-call-lead][href^="tel:"]');
-  if(!link)return;
-  pending={id:link.dataset.callLead,name:link.dataset.callName||link.closest('.next-row')?.querySelector('strong')?.textContent?.trim()||'Family call'};
-  scheduleOpen();
+  const trigger=event.target.closest('[data-log-lead]');
+  if(!trigger)return;
+  openForLead(trigger.dataset.logLead,trigger.dataset.logName||'Family call');
 },true);
-document.addEventListener('visibilitychange',()=>{if(pending&&document.visibilityState==='visible')scheduleOpen()});
-global.addEventListener('focus',()=>{if(pending)scheduleOpen()});
 global.AqoonCallOutcomes={recordForLead,openForLead,callLead};
 })(typeof window!=='undefined'?window:(typeof globalThis!=='undefined'?globalThis:null));

@@ -5,7 +5,7 @@ button,a,input,select,textarea{-webkit-tap-highlight-color:transparent}
 .icon-btn,.filter-menu{min-width:44px}
 .crm-search input,input,select,textarea{font-size:16px}
 .lead-summary{min-height:72px}
-.next-row a{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+.next-row a,.next-log-btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
 .analytics-kpis span,.analytics-secondary,.card-title>span,.sub,.pipeline-labels,.clock-axis,.mini-command>span,.mini-command p,.next-row small,.pill,.triage-label,.quick-chip,.drop-note{font-size:max(10px,0.68rem)}
 .crm-state-strip span{font-size:max(10px,.68rem)}
 .breakdown-tabs button,.period-switch button,.tab{font-size:max(12px,.78rem)}
@@ -15,7 +15,7 @@ summary{min-height:44px;display:flex;align-items:center;cursor:pointer}
   .lead-summary:hover,.command-card[data-go]:hover,.mini-command[data-go]:hover{border-color:rgba(19,185,170,.45)}
 }
 @media(max-width:760px){
-  .tab,.icon-btn,.filter-menu,.period-switch button,.breakdown-tabs button,.btn,.stage-btn,.quick-chip,.next-row a{min-height:48px}
+  .tab,.icon-btn,.filter-menu,.period-switch button,.breakdown-tabs button,.btn,.stage-btn,.quick-chip,.next-row a,.next-log-btn{min-height:48px}
   .icon-btn,.filter-menu{min-width:48px}
   .crm-search{min-height:48px}
   .crm-search input{min-height:46px}

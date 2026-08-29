@@ -13,6 +13,12 @@ test('the first incomplete-intake call creates a minimal contact case without in
   assert.match(edgeFunction, /source:"operator-contact-before-intake"/);
 });
 
+test('incomplete-intake requests carry the operator auth token, not just the shared password', () => {
+  const intake = fs.readFileSync('tracker/incomplete-intake.js', 'utf8');
+  assert.match(intake, /aqoon_auth_token/);
+  assert.match(intake, /headers\.Authorization\s*=\s*'Bearer '\s*\+\s*token/);
+});
+
 test('the incomplete panel offers call outcomes through the shared history workflow', () => {
   assert.match(queue, /data-action="call-incomplete"/);
   assert.match(queue, /logAction = isIncomplete \? 'log-outcome-incomplete' : 'log-outcome'/);

@@ -201,9 +201,10 @@ const CrmQueues = {
       content += `<p style="font-size:11px;color:var(--m);margin:-16px 0 16px">Last touched by ${lastTouchedName}</p>`;
     }
 
-    // Phase-specific actions
+    // Phase-specific actions. Assign-to-me comes first (decide ownership),
+    // then the contact/call workflow, so an operator claims a case before
+    // acting on it rather than acting on something nobody owns yet.
     if (phaseId === 'incomplete') {
-      content += this.contactActionsHtml(leadId, lead, true);
       content += `
         <div class="panel-section assign-operator">
           <label class="assign-label">Assign this intake to yourself?</label>
@@ -215,8 +216,8 @@ const CrmQueues = {
           <p style="font-size:11px;color:var(--muted);margin-top:8px">Assignment carries over automatically once the intake is finished and the family moves to the interview queue.</p>
         </div>
       `;
+      content += this.contactActionsHtml(leadId, lead, true);
     } else if (phaseId === 'first_contact') {
-      content += this.contactActionsHtml(leadId, lead, false);
       content += `
         <div class="panel-section assign-operator">
           <label class="assign-label">Assign interview to yourself?</label>
@@ -226,8 +227,8 @@ const CrmQueues = {
           </div>
         </div>
       `;
-    } else if (phaseId === 'in_progress') {
       content += this.contactActionsHtml(leadId, lead, false);
+    } else if (phaseId === 'in_progress') {
       content += `
         <div class="panel-section assign-operator">
           <label class="assign-label">${lead.interview_status === 'completed' ? 'Interview complete' : 'Interview still required'}</label>
@@ -239,6 +240,7 @@ const CrmQueues = {
           ${lead.interview_status === 'completed' ? '' : '<p class="contact-action-note">This legacy case reached the follow-up queue without a completed interview. Return it to First contact before continuing.</p>'}
         </div>
       `;
+      content += this.contactActionsHtml(leadId, lead, false);
     }
 
     // Call history only applies to real family_leads rows (not incomplete-
