@@ -4,11 +4,13 @@ record_type: route
 need: public employment services
 scope: Finland
 authority_ids: [authority.employment-area]
-required_inputs: [municipality, jobseeker_status, employment_status, goal]
-source_ids: [src.jobmarket.te24]
-volatility: medium
+required_inputs: [municipality, jobseeker_status, jobsearch_start_date, employment_status, goal, authentication_or_nationality_barrier]
+source_ids: [src.jobmarket.te24, src.jobmarket.jobseeker-registration, src.jobmarket.employment-plan]
+volatility: high
 last_verified_at: 2026-08-28
 decision_maker: user's municipal employment area / relevant provider
+aqoon_role: [explain, navigate, help_prepare, remind]
+aqoon_must_not: [register_user, decide_unemployment_security, create_authority_plan, determine_statutory_obligations]
 ---
 
 # Current employment-services route
@@ -18,6 +20,12 @@ All TE offices ended operations on 31.12.2024 and public employment services tra
 Primary source for the 2025 transfer: https://tyomarkkinatori.fi/en/news/uudenmaan-te-toimisto-lakkautetaan-ja-tyonhakijoiden-palvelut-siirtyvat-tyollisyysalueille-1.1.2025
 
 Terminology: use `työllisyyspalvelut` / employment area as the current default. Use `TE-toimisto` only as a legacy explanation when a user knows the old term.
+
+## Active jobseeker entry
+
+Someone who is becoming unemployed or laid off can register through Työmarkkinatori's Asiointi service before the change, and should do so no later than their first unemployment day if they intend to seek unemployment security. The person needs to use their own authentication; where the official service says online authentication or nationality conditions prevent that, the local employment-services office is the official alternative. Registration does **not** establish a right to a benefit: the employment authority's statement and the paying institution's own decision remain separate.
+
+After registration, the authority agrees how the customer's case will proceed. The person can see agreed tasks, messages, requests for clarification and employment-plan items in their own Asiointi account. AQOON can help the person understand an official instruction, prepare for the first discussion and set reminders. It must never register on their behalf, guess a deadline that is not visible in the authority's instruction, or represent a benefit decision as confirmed.
 
 ## Työnhakuprofiili from 1.9.2026
 
