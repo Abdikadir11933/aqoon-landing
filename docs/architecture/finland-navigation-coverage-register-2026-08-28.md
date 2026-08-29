@@ -22,11 +22,11 @@ Status meanings:
 | Health, social work, disability and older people | Research queue | Suomi.fi/wellbeing-county entry points only | county-specific service trees, assessments, carers, rehabilitation, family social work and emergency boundaries |
 | Housing, debt, consumer and family law | Research queue | national discovery sources only | authority/service maps and safe referral boundaries |
 | Entrepreneurship | Research queue | Vero/PRH/Job Market Finland entry sources | jobseeker/entrepreneur transitions, social-security interactions, start-up grants and regional services |
-| Live programmes, hankkeet, grants and partner offerings | Live discovery only | no universal current programme claim | recurring discovery, source checks, expiry monitoring, reviewer publication and partner disclosure |
+| Live programmes, hankkeet, grants and partner offerings | Live discovery only — Pass 9 source-mapped | source-mapped: youth employment voucher (TEM), Suomi liikkeelle movement programme (OKM), STEA 2026 grant proposal, youth drug-harm-prevention projects, EU ESR+/EAKR structural funds; no universal current programme claim | city-specific programmes; EU Horizon/Erasmus+/Business Finland/Sitra/church/foundation partner inventory; exact application windows and capacity; recurring discovery, expiry monitoring, reviewer publication and partner disclosure |
 
-## Official source additions reviewed in the first three passes
+## Official source additions reviewed in Passes 1–3 and Pass 9
 
-These are authoritative entry sources; Pass 3 now has route-level extraction for the Kela income/housing/basic-social-assistance subset:
+These are authoritative entry sources; Pass 3 now has route-level extraction for the Kela income/housing/basic-social-assistance subset, and Pass 9 adds source-mapped (not route-verified) live national programme entries:
 
 - [Kela: general social security benefit during unemployment](https://www.kela.fi/unemployment-general-social-security-benefit)
 - [Finlex: Yleistukilaki 48/2026](https://www.finlex.fi/fi/lainsaadanto/2026/48)
@@ -48,6 +48,12 @@ These are authoritative entry sources; Pass 3 now has route-level extraction for
 - [OPH: recognition of qualifications](https://www.oph.fi/en/services/recognition-qualifications/applying-finnish-national-agency-education-decision-recognition-qualification)
 - [Suomi.fi: family support](https://www.suomi.fi/citizen/living-together-and-having-a-family/families-with-children/guide/difficulties-in-a-family-with-children/get-help-and-support-for-parenthood)
 - [Suomi.fi: disability allowances and rights](https://www.suomi.fi/citizen/social-security/services-for-people-with-disabilities/guide/support-for-people-with-disabilities/allowances-and-rights-for-people-with-disabilities)
+- [TEM: nuorten työllistymisseteli](https://tem.fi/nuorten-tyollistymisseteli)
+- [OKM: Suomi liikkeelle -ohjelman rahoitus 2026](https://okm.fi/-/ministerityoryhma-linjasi-suomi-liikkeelle-ohjelman-rahoituksen-vuodelle-2026)
+- [STEA: vuoden 2026 avustusehdotus](https://www.stea.fi/vuoden-2026-avustusehdotus-valmistui/)
+- [STEA/STM/THL: miljoona euroa nuorten huumekuolemia ehkäiseviin hankkeisiin](https://www.stea.fi/tietoa-steasta/ajankohtaiset-koontisivu/blogit/miljoona-euroa-nuorten-huumekuolemia-ehkaiseviin-hankkeisiin/)
+- [STM: sosiaali- ja terveysalan järjestöjen toimintaan 274 miljoonaa euroa vuonna 2026](https://stm.fi/-/sosiaali-ja-terveysalan-jarjestojen-toimintaan-274-miljoonaa-euroa-vuonna-2026)
+- [STM: EU:n alue- ja rakennepolitiikan rahoitus](https://stm.fi/rahoitus-ja-avustukset#rahoitus3)
 
 ## Next extraction order
 
@@ -55,7 +61,8 @@ These are authoritative entry sources; Pass 3 now has route-level extraction for
 2. Pass 5: school-age lifecycle — school placement, preparatory education/S2, learning support, welfare, morning/afternoon activity and free hobbies.
 3. Pass 6: adult education, language, qualification recognition and current application routes.
 4. Pass 7: wellbeing-services-county social work, disability, family support, carers and older people, including the supplementary/preventive social-assistance boundary left by Pass 3.
-5. Passes 8–9: housing/debt/family-law/entrepreneurship routes and then live programmes/hankkeet, with live opportunities continuously reviewed rather than treated as permanent facts.
+5. Pass 8: housing/debt/family-law/entrepreneurship routes — still outstanding; not superseded by Pass 9.
+6. Pass 9 (done out of order, national scope only): live programmes/hankkeet source-mapped for TEM youth employment support, OKM Suomi liikkeelle, STEA 2026 grants, youth drug-harm-prevention projects and EU ESR+/EAKR structural funds. Live opportunities must be continuously reviewed rather than treated as permanent facts; city-specific programmes and a full partner/funder inventory (EU Horizon, Erasmus+, Business Finland, Sitra, church/foundation aid) remain open follow-up work.
 
 ## Rule for future work
 
