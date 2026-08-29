@@ -15,8 +15,18 @@
 .sales-head{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;margin:3px 0 14px}
 .sales-head h2{margin:4px 0 2px;font-size:27px}.sales-head p{margin:0;color:var(--m);font-size:11px}
 .sales-health{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
-.sales-health>div{background:#fff;border:1px solid var(--l);border-radius:14px;padding:11px}
+.sales-health>button{background:#fff;border:1px solid var(--l);border-radius:14px;padding:11px;text-align:left;cursor:pointer;font:inherit;color:inherit}
+.sales-health>button.on{border-color:var(--n);box-shadow:0 0 0 1px var(--n)}
 .sales-health strong{display:block;font:900 20px var(--f)}.sales-health span{font-size:9px;color:var(--m)}
+.demand-card{padding:12px 15px;margin-top:14px}
+.demand-card summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.demand-card summary::-webkit-details-marker{display:none}
+.demand-card summary h3{font-size:10.5px;color:var(--m);text-transform:uppercase;letter-spacing:.05em;margin:0;font-family:var(--b);font-weight:700}
+.demand-card summary:after{content:'Show ▾';color:var(--m);font-size:9px;font-weight:700}
+.demand-card[open] summary:after{content:'Hide ▴'}
+.demand-card summary span{font-size:9px;color:var(--m);font-weight:700;margin-right:auto;margin-left:8px}
+.demand-card .sub{margin:9px 0 0;font-size:9px;color:var(--m)}
+.demand-card .bars{margin-top:8px}
 .pipeline-scroll{overflow-x:auto;margin:0 -16px;padding:0 16px 8px}
 .sales-stage-filter{display:flex;gap:6px;width:max-content}
 .sales-stage-filter button{border:0;border-radius:999px;padding:8px 11px;background:#eee9df;color:#77736e;font-size:9px;font-weight:800;cursor:pointer}
@@ -42,5 +52,5 @@
 @media(min-width:1000px){
   #app{padding-left:224px}.top{position:fixed;left:0;top:0;bottom:0;width:224px;border-right:1px solid var(--l);border-bottom:0;background:#f4f0e7}.top-shell{height:100%;display:flex;flex-direction:column;padding:22px 14px}.top-main{display:block;padding:0}.brand{align-items:flex-start}.brand .mark{width:44px;height:44px;font-size:23px}.brand h1{font-size:18px;margin-top:2px}.brand small{display:block;color:var(--m);font-size:9px;margin-top:3px}.top-actions{position:absolute;bottom:18px;left:14px;right:14px}.icon-btn{width:100%;font-size:9px;display:flex;gap:7px}.nav-shell{padding:32px 0 0}.tabs{display:grid;grid-template-columns:1fr;gap:6px;background:transparent;padding:0}.tab{display:flex;align-items:center;gap:10px;text-align:left;padding:12px;border-radius:11px;font-size:11px}.tab span{display:inline;font-size:15px;width:18px;text-align:center}.tab.active{background:var(--n)}.wrap{max-width:1120px;padding:30px 34px 70px}.today-view{max-width:940px}.sales-pipeline{grid-template-columns:repeat(3,minmax(0,1fr))}.opportunity{min-height:230px}.agenda-list{grid-template-columns:repeat(2,1fr);gap:0 22px}.agenda-item:nth-child(2){border-top:0}
 }
-@media(max-width:520px){.ops-grid{grid-template-columns:1fr}.ops-field.full{grid-column:auto}.sales-health{grid-template-columns:repeat(3,1fr)}.sales-health>div{padding:9px}.sales-health strong{font-size:17px}.agenda-card{padding:13px}.agenda-item{grid-template-columns:46px 1fr}.agenda-kind{display:none}.tab{font-size:10px;padding:9px 2px}}
+@media(max-width:520px){.ops-grid{grid-template-columns:1fr}.ops-field.full{grid-column:auto}.sales-health{grid-template-columns:repeat(3,1fr)}.sales-health>button{padding:9px}.sales-health strong{font-size:17px}.agenda-card{padding:13px}.agenda-item{grid-template-columns:46px 1fr}.agenda-kind{display:none}.tab{font-size:10px;padding:9px 2px}}
 .demand-detail{margin-top:10px;padding-top:10px;border-top:1px solid var(--l)}.demand-detail summary{cursor:pointer;font-weight:700;font-size:11px}.demand-detail .bars{margin-top:10px}
