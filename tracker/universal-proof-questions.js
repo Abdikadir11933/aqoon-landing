@@ -14,6 +14,12 @@ const ALIASES={
   vantaa_hobbies_awareness_all:['harrastusten_vantaa_awareness'],
   jobseeker:['jobseeker_active']
 };
+// vantaa_hobbies_possible_need (below) and interview-form-enhancements.js's
+// hobby_registration_help are NOT aliased on purpose - they ask different
+// things (need-gate vs. how much hands-on help to give) with different
+// answer sets, so copying one into the other would misclassify answers.
+// hobby_registration_help's own note tells the operator to only ask it once
+// this question has confirmed a need. See decision doc 0002 §2.
 
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));}
 function row(key,label,values,{multi=false,note='',group=''}={}){
