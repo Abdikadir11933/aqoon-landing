@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 28.8.2026
+Last compiled: 29.8.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -146,6 +146,19 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Helps with: meeting employers, recruitment and networking, with particular focus on roles that may not require Finnish.
   - Status: 22.9.2026, 12–16, Tampere-talo; free and held in English. Do not imply every attending company has an open vacancy.
   - Official: https://internationalhouse.tampere.fi/en/job-fair/
+
+- **Pulla Perjantai Networking Event** — International House Tampere / Tampere Talent Ambassadors
+  - Fits: international residents and jobseekers who want to understand Finnish companies, hiring processes and workplace culture; the 25.9. event features WordDive.
+  - Helps with: low-threshold employer networking, understanding recruitment and work culture, and making company contacts. It is not a recruitment event.
+  - Status: 25.9.2026, 10–12, Tampere; free. Registration is required and places are limited; participants are selected first-come-first-served and based on interest in the featured company.
+  - Contact: iht.events@tampere.fi if no selection message has arrived two days before the event.
+  - Official/sign-up: https://internationalhouse.tampere.fi/en/event/?date=25.09.2026&event-id=6a8e930ee977800007512a80&time=10.00+-+12.00
+
+- **Information session on Entrepreneurship with Ensimetri** — International House Tampere / Ensimetri
+  - Fits: international residents considering starting a business in Finland.
+  - Helps with: company-establishment steps, business forms, taxation, entrepreneur responsibilities and insurance, plus where to get startup guidance.
+  - Status: 7.10.2026, 13.30–16.00, International House Tampere, Rautatienkatu 10; free and held in English. Registration is open via the official event page.
+  - Official/sign-up: https://internationalhouse.tampere.fi/en/event/?date=07.10.2026&event-id=6a859d67e4bdb40007c88f70&time=13.30+-+16.00
 
 - **SIMHE counselling** — Tampere University of Applied Sciences / International House Tampere
   - Fits: people already living in Finland who have completed upper-secondary education, studied in higher education or completed a higher-education degree.
