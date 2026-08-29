@@ -18,8 +18,13 @@ function render(lead){
   const prompt=lead.latest_interview?.research_prompt||'';
   const nextAction=lead.latest_interview?.next_action||'';
 
+  // A first interview has intake data, but no previous interview context.
+  // Showing a context button here implies that we know more than we do.
+  if(!summary&&!prompt&&!nextAction){host.innerHTML='';host.classList.add('hidden');return}
+  host.classList.remove('hidden');
+
   let html='<div class="interview-context">';
-  html+='<button type="button" class="context-button '+(contextOpen?'on':'')+'">← Interview context</button>';
+  html+='<button type="button" class="context-button '+(contextOpen?'on':'')+'">Previous interview & research</button>';
 
   if(contextOpen){
     if(summary){
