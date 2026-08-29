@@ -32,14 +32,14 @@ test('child route asks the child stage before a focused topic', () => {
   assert.deepEqual(core.pathForNeed('kids', false), ['contact','city','need','age','sub','more']);
 });
 
-test('work route collects the focused topic then one routing question', () => {
+test('work route collects the focused topic with no detailed eligibility question during intake', () => {
   assert.equal(core.nextAfterNeed('work'), 'sub');
-  assert.deepEqual(core.pathForNeed('work', false), ['contact','city','need','sub','qualify','more']);
-  assert.equal(core.nextAfterSubSelected('work'), 'qualify');
+  assert.deepEqual(core.pathForNeed('work', false), ['contact','city','need','sub','more']);
+  assert.equal(core.nextAfterSubSelected('work'), 'more');
 });
 
 test('additional-help route starts from need', () => {
-  assert.deepEqual(core.pathForNeed('school', true), ['need','sub','qualify','more']);
+  assert.deepEqual(core.pathForNeed('school', true), ['need','sub','more']);
 });
 
 test('other-help route never guesses a benefit category', () => {
@@ -178,4 +178,15 @@ test('sending the request requires an explicit consent checkbox, checked before 
   assert.match(html, /id="contactConsent"[^>]*type="checkbox"|type="checkbox"[^>]*id="contactConsent"/);
   assert.match(html, /id="sendRequestBtn"[^>]*disabled/);
   assert.match(js, /contactConsent.*checked/);
+});
+
+test('intake never asks a detailed eligibility/status question - that belongs in the first interview', () => {
+  const html = fs.readFileSync('caawi/index.html', 'utf8');
+  const js = fs.readFileSync('caawi/app.js', 'utf8');
+  assert.doesNotMatch(html, /data-screen="qualify"/);
+  assert.doesNotMatch(js, /QUALIFY\s*=|renderQualify|data-diagnostic/);
+  assert.doesNotMatch(js, /diiwaangashan tahay t.{0,3}ll.{0,3}syyspalvelut/);
+  for (const need of ['kids', 'work', 'school', 'other']) {
+    assert.ok(!core.pathForNeed(need, false).includes('qualify'), `${need} path must not include a qualify step`);
+  }
 });
