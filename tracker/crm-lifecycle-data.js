@@ -27,7 +27,7 @@ async function loadLifecycleData(leadIds){
       d.lifecycle.forEach(lc=>{
         const plan=lc.plans?.[0];
         lifecycleCache[lc.lead_id]={
-          case_plan_status:plan?.status||null,
+          case_plan_status:plan?.plan_status||null,
           case_plan_id:plan?.id||null,
           events:lc.events||[]
         };

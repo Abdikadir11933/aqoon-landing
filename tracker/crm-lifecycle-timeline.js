@@ -128,8 +128,16 @@ function appendTimelineToContext(leadId){
   `;
 }
 
-function $(){
-  return document.getElementById(...arguments);
+function handleTimelineError(timelineSection,error){
+  console.warn('Timeline render failed:',error.message);
+  timelineSection.innerHTML=`
+    <div class="crm-context-label">Activity Timeline</div>
+    <div style="font-size:12px;color:#c74c4c;padding:12px">Failed to load timeline. Please try again.</div>
+  `;
+}
+
+function $timeline(id){
+  return document.getElementById(id);
 }
 
 function patchContextPanel(){
@@ -141,7 +149,17 @@ function patchContextPanel(){
 
   window.CrmContextPanel.open=function(leadId){
     origOpen.call(this,leadId);
-    setTimeout(()=>appendTimelineToContext(leadId),250);
+    setTimeout(()=>{
+      try{
+        appendTimelineToContext(leadId);
+      }catch(e){
+        const contextContent=$timeline('contextPanelContent');
+        if(contextContent){
+          const timelineSection=contextContent.querySelector('[data-lifecycle-timeline]');
+          if(timelineSection)handleTimelineError(timelineSection,e);
+        }
+      }
+    },250);
   };
 }
 

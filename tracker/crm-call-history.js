@@ -5,14 +5,13 @@ const esc=v=>String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;'
 function pw(){return sessionStorage.getItem('aqoon_tracker_password')||''}
 
 let callHistoryCache={};
-let callHistoryCacheExpiry=0;
 
 async function loadCallHistory(leadId){
   if(!leadId)return null;
 
   const now=Date.now();
-  const needsFresh=now-callHistoryCacheExpiry>60000;
-  if(!needsFresh&&callHistoryCache[leadId])return callHistoryCache[leadId];
+  const cached=callHistoryCache[leadId];
+  if(cached&&now-cached.expiry<60000)return cached.data;
 
   try{
     const r=await fetch(END_CALL_LOG,{
@@ -23,8 +22,7 @@ async function loadCallHistory(leadId){
     });
     const d=await r.json().catch(()=>({}));
     if(r.ok&&d.calls){
-      callHistoryCache[leadId]=d.calls;
-      callHistoryCacheExpiry=now;
+      callHistoryCache[leadId]={data:d.calls,expiry:now};
       return d.calls;
     }
   }catch(e){
@@ -110,11 +108,17 @@ function appendCallHistory(leadId){
       <div class="crm-context-label">Call History</div>
       <div>${renderCallHistorySection(calls)}</div>
     `;
-  }).catch(e=>console.warn('Call history render failed:',e.message));
+  }).catch(e=>{
+    console.warn('Call history render failed:',e.message);
+    callSection.innerHTML=`
+      <div class="crm-context-label">Call History</div>
+      <div style="font-size:12px;color:#c74c4c;padding:12px">Failed to load call history. Please try again.</div>
+    `;
+  });
 }
 
-function $(){
-  return document.getElementById(...arguments);
+function $callHistory(id){
+  return document.getElementById(id);
 }
 
 function patchContextPanel(){
