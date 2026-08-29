@@ -31,3 +31,11 @@ test('a call cannot move an unfinished interview into follow-up or resolution', 
   assert.match(queue, /return-to-first-contact/);
   assert.match(queue, /Interview still required/);
 });
+
+test('no matching decision (preview or a saved match run) can be produced before a completed first interview', () => {
+  const admin = read('supabase/functions/family-leads-admin/index.ts');
+  const review = read('supabase/functions/family-route-review-admin/index.ts');
+  assert.match(admin, /action==="match_preview".*lead\.interview_status!=="completed".*first_interview_required/);
+  assert.match(review, /eq\("status",\s*"completed"\)/);
+  assert.match(review, /if \(!interview\) return new Response\(JSON\.stringify\(\{ error: "first_interview_required" \}\)/);
+});
