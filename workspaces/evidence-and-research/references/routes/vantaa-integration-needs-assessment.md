@@ -25,7 +25,7 @@ The person lives in Vantaa, is not an active jobseeker, and wants public integra
 
 1. Confirm Vantaa residency and that the person is not currently using the active-jobseeker path.
 2. Explain that AQOON can help them prepare a short factual picture: language and education, work or study goals, childcare/availability, relevant residence/integration context, and questions they want to ask.
-3. Route to Vantaa's official competence and integration service-needs assessment. The public authority assesses what service, if any, is appropriate; an integration plan is not automatic.
+3. Route to Vantaa's official competence and integration service-needs assessment. The assessment can examine prior education and work experience, literacy, Finnish/Swedish skills, study skills, work capacity and future goals. The public authority assesses what service, if any, is appropriate; an integration plan is not automatic.
 4. Record only the operator's navigation outcome and next official step. Do not copy family documents or sensitive case detail into public research records.
 
 ## Boundaries and escalation
@@ -33,4 +33,4 @@ The person lives in Vantaa, is not an active jobseeker, and wants public integra
 - Do not tell the person to register as a jobseeker only to access basic integration guidance.
 - The assessment is not a guarantee of a plan, course, benefit or service placement.
 - If the person says job search is active or unemployment is imminent, first use the jobseeker-registration route and check the person's own authority instructions.
-- Exact integration-period criteria, plan duration and eligibility exceptions need current authority confirmation for the individual case; this record intentionally does not calculate them.
+- Vantaa's page says its plan is made when needed, on the assessment basis, and refers to a three-year window from the first residence permit. Exact start date, duration, criteria and exceptions need current authority confirmation for the individual case; this record intentionally does not calculate them.
