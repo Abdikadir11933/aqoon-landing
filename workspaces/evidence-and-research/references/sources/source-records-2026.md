@@ -24,6 +24,24 @@ Publisher: City of Vantaa | level: official-primary | URL: https://www.vantaa.fi
 ## src.vantaa.integration-needs-assessment
 Publisher: City of Vantaa | level: official-primary | URL: https://www.vantaa.fi/fi/palveluhakemisto/palvelu/osaamisen-ja-kotoutumisen-palvelutarpeen-arviointi | volatility: high | status: active
 
+## src.jobmarket.work-trial
+Publisher: Job Market Finland / KEHA Centre | level: official-primary | URL: https://tyomarkkinatori.fi/lisatietoa-palveluista/tyokokeilu | volatility: high | status: active
+
+## src.jobmarket.self-motivated-study
+Publisher: Job Market Finland / KEHA Centre | level: official-primary | URL: https://tyomarkkinatori.fi/lisatietoa-palveluista/omaehtoinen-opiskelu-tyottomyysetuudella | volatility: high | status: active
+
+## src.jobmarket.immigrant-self-motivated-study
+Publisher: Job Market Finland / KEHA Centre | level: official-primary | URL: https://tyomarkkinatori.fi/lisatietoa-palveluista/kotoutuja-asiakkaan-omaehtoinen-opiskelu | volatility: high | status: active
+
+## src.jobmarket.labour-market-training
+Publisher: Job Market Finland / KEHA Centre | level: official-primary | URL: https://tyomarkkinatori.fi/lisatietoa-palveluista/tyovoimakoulutus | volatility: high | status: active
+
+## src.jobmarket.wage-subsidy
+Publisher: Job Market Finland / KEHA Centre | level: official-primary | URL: https://tyomarkkinatori.fi/lisatietoa-palveluista/palkkatuki | volatility: high | status: active
+
+## src.kela.yleistuki-benefit
+Publisher: Kela | level: official-primary | URL: https://www.kela.fi/unemployment-general-social-security-benefit | volatility: high | status: active
+
 ## src.oph.s2-2026
 Publisher: OPH | level: official-primary | URL: https://www.oph.fi/fi/uutiset/2026/perustemuutokset-voimaan-182026-muutoksilla-edistetaan-maahanmuuttotaustaisten | volatility: high | status: active
 
