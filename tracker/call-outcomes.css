@@ -1,5 +1,5 @@
 .call-outcome-open{overflow:hidden}
-.call-outcome-modal{position:fixed;inset:0;z-index:90;display:grid;align-items:end;background:rgba(10,26,48,.52);padding:16px}
+.call-outcome-modal{position:fixed;inset:0;z-index:1200;display:grid;align-items:end;background:rgba(10,26,48,.52);padding:16px}
 .call-outcome-sheet{width:min(520px,100%);margin:0 auto;background:#fff;border:1px solid var(--l);border-radius:22px;padding:22px;box-shadow:0 24px 70px rgba(10,26,48,.24)}
 .call-outcome-sheet h2{margin:4px 0 2px;font-size:25px}
 .call-outcome-name{margin:0 0 16px;color:var(--m);font-weight:600}

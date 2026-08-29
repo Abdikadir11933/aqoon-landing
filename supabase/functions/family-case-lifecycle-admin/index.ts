@@ -62,6 +62,35 @@ Deno.serve(async (request) => {
   try { body = await request.json(); } catch { /* invalid JSON handled as empty request */ }
   const action = String(body.action || "");
 
+  // Batch fetch lifecycle data for multiple leads
+  if (action === "batch_list") {
+    const leadIds = Array.isArray(body.lead_ids) ? body.lead_ids.filter((id: any) => typeof id === "string") : [];
+    if (!leadIds.length) return new Response(JSON.stringify({ lifecycle: [] }), { headers: responseHeaders });
+
+    const { data: plans, error: plansError } = await db
+      .from("family_case_plans")
+      .select("family_lead_id, id, plan_status")
+      .in("family_lead_id", leadIds);
+
+    const { data: events, error: eventsError } = await db
+      .from("family_case_events")
+      .select("family_lead_id, id, event_type, created_at")
+      .in("family_lead_id", leadIds);
+
+    if (plansError || eventsError) {
+      const err = plansError || eventsError;
+      return new Response(JSON.stringify({ error: "db_error", detail: err?.message }), { status: 500, headers: responseHeaders });
+    }
+
+    const lifecycle = leadIds.map((leadId) => ({
+      lead_id: leadId,
+      plans: (plans || []).filter((p: any) => p.family_lead_id === leadId),
+      events: (events || []).filter((e: any) => e.family_lead_id === leadId),
+    }));
+
+    return new Response(JSON.stringify({ lifecycle }), { headers: responseHeaders });
+  }
+
   // Aggregate operational health only; this deliberately returns no names,
   // notes or family-level answers and is separate from anonymous web funnel data.
   if (action === "summary") {
@@ -226,6 +255,174 @@ Deno.serve(async (request) => {
     const { data, error } = await db.from("family_case_interactions").insert(payload).select().single();
     if (error) return new Response(JSON.stringify({ error: "db_error", detail: error.message }), { status: 500, headers: responseHeaders });
     return new Response(JSON.stringify({ interaction: data }), { headers: responseHeaders });
+  }
+
+  if (action === "get_call_history") {
+    const { data: calls, error } = await db
+      .from("family_call_log")
+      .select("id, family_lead_id, created_at, outcome, next_follow_up_at, notes, operator_id, operators(display_name)")
+      .eq("family_lead_id", leadId)
+      .order("created_at", { ascending: false })
+      .limit(10);
+    if (error) return new Response(JSON.stringify({ error: "db_error", detail: error.message }), { status: 500, headers: responseHeaders });
+    const formattedCalls = (calls || []).map((call: any) => ({
+      id: call.id,
+      lead_id: call.family_lead_id,
+      created_at: call.created_at,
+      call_outcome: call.outcome,
+      duration_seconds: 0,
+      operator_name: call.operators?.display_name || "Unknown",
+      assigned_operator_id: call.operator_id,
+      notes: call.notes || "",
+    }));
+    return new Response(JSON.stringify({ calls: formattedCalls }), { headers: responseHeaders });
+  }
+
+  if (action === "get_timeline") {
+    const limit = Math.min(Math.max(parseInt(String(body.limit || 50)), 1), 100);
+    const offset = Math.max(parseInt(String(body.offset || 0)), 0);
+
+    const { data: caseEvents, error: eventsError } = await db
+      .from("family_case_events")
+      .select("id, created_at, event_type, note, operator_id, operators(display_name)")
+      .eq("family_lead_id", leadId)
+      .order("created_at", { ascending: false });
+
+    const { data: interviews, error: interviewsError } = await db
+      .from("family_interviews")
+      .select("id, created_at, status, operator_id, operators(display_name)")
+      .eq("lead_id", leadId)
+      .order("created_at", { ascending: false });
+
+    const { data: calls, error: callsError } = await db
+      .from("family_call_log")
+      .select("id, created_at, outcome, operator_id, operators(display_name)")
+      .eq("family_lead_id", leadId)
+      .order("created_at", { ascending: false });
+
+    if (eventsError || interviewsError || callsError) {
+      const err = eventsError || interviewsError || callsError;
+      return new Response(JSON.stringify({ error: "db_error", detail: err?.message }), { status: 500, headers: responseHeaders });
+    }
+
+    const events: any[] = [];
+
+    (caseEvents || []).forEach((event: any) => {
+      events.push({
+        id: event.id,
+        created_at: event.created_at,
+        event_type: event.event_type,
+        description: event.note || "",
+        created_by: event.operator_id,
+        operator_name: event.operators?.display_name || "Unknown",
+        metadata: {},
+      });
+    });
+
+    (interviews || []).forEach((interview: any) => {
+      const eventType = interview.status === "completed" ? "first_interview" : "follow_up_interview";
+      events.push({
+        id: interview.id,
+        created_at: interview.created_at,
+        event_type: eventType,
+        description: `${eventType.replace(/_/g, " ")}`,
+        created_by: interview.operator_id,
+        operator_name: interview.operators?.display_name || "Unknown",
+        metadata: {},
+      });
+    });
+
+    (calls || []).forEach((call: any) => {
+      const eventType = call.outcome === "reached" ? "call_completed" : "call_no_answer";
+      events.push({
+        id: call.id,
+        created_at: call.created_at,
+        event_type: eventType,
+        description: `Call: ${call.outcome}`,
+        created_by: call.operator_id,
+        operator_name: call.operators?.display_name || "Unknown",
+        metadata: {},
+      });
+    });
+
+    events.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+    const paginatedEvents = events.slice(offset, offset + limit);
+
+    return new Response(JSON.stringify({ events: paginatedEvents }), { headers: responseHeaders });
+  }
+
+  if (action === "get_consent") {
+    const { data: lead, error: leadError } = await db
+      .from("family_leads")
+      .select("id, consent_relevant_updates_ok, consent_outcome_followup_ok, consent_recorded_at")
+      .eq("id", leadId)
+      .maybeSingle();
+
+    if (leadError) return new Response(JSON.stringify({ error: "db_error", detail: leadError.message }), { status: 500, headers: responseHeaders });
+    if (!lead) return new Response(JSON.stringify({ error: "not_found" }), { status: 404, headers: responseHeaders });
+
+    const consents = [];
+    if (lead.consent_relevant_updates_ok !== null) {
+      consents.push({
+        id: `${leadId}-relevant-updates`,
+        lead_id: leadId,
+        type: "communication",
+        granted: lead.consent_relevant_updates_ok,
+        granted_at: lead.consent_recorded_at,
+        expires_at: null,
+        granted_by: "family_member",
+        notes: "Consent for relevant opportunity updates",
+      });
+    }
+    if (lead.consent_outcome_followup_ok !== null) {
+      consents.push({
+        id: `${leadId}-outcome-followup`,
+        lead_id: leadId,
+        type: "follow_up",
+        granted: lead.consent_outcome_followup_ok,
+        granted_at: lead.consent_recorded_at,
+        expires_at: null,
+        granted_by: "family_member",
+        notes: "Consent for outcome follow-up",
+      });
+    }
+
+    return new Response(JSON.stringify({ consents }), { headers: responseHeaders });
+  }
+
+  if (action === "get_revisions") {
+    const interviewTypes = String(body.interview_types || "all");
+    const { data: revisions, error } = await db
+      .from("family_interview_revisions")
+      .select("id, lead_id, interview_id, created_at, answers, operator_id, operators(display_name)")
+      .eq("lead_id", leadId)
+      .order("captured_at", { ascending: false })
+      .limit(50);
+
+    if (error) return new Response(JSON.stringify({ error: "db_error", detail: error.message }), { status: 500, headers: responseHeaders });
+
+    const formattedRevisions = (revisions || []).map((rev: any) => {
+      const oldAnswers = rev.answers || {};
+      const changes: any[] = [];
+
+      Object.entries(oldAnswers).forEach(([key, value]) => {
+        changes.push({
+          id: `${rev.id}-${key}`,
+          lead_id: rev.lead_id,
+          interview_id: rev.interview_id,
+          created_at: rev.created_at,
+          field_name: key,
+          old_value: value,
+          new_value: null,
+          changed_by: rev.operator_id,
+          operator_name: rev.operators?.display_name || "Unknown",
+        });
+      });
+
+      return changes;
+    }).flat();
+
+    return new Response(JSON.stringify({ revisions: formattedRevisions }), { headers: responseHeaders });
   }
 
   return new Response(JSON.stringify({ error: "unknown_action" }), { status: 400, headers: responseHeaders });

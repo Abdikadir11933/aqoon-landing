@@ -293,6 +293,24 @@
   font-size: 14px;
 }
 
+.contact-actions {
+  padding: 12px;
+  background: #eef9f7;
+  border: 1px solid #cbe7e4;
+  border-radius: 12px;
+}
+
+.contact-follow-up-actions {
+  margin-top: 8px;
+}
+
+.contact-action-note {
+  margin: 9px 0 0;
+  color: var(--m);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
 /* Responsive */
 @media (max-width: 560px) {
   .crm-queues-grid {

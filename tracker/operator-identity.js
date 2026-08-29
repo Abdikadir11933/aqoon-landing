@@ -50,7 +50,7 @@ function injectStyles(){
   if(document.getElementById('operatorIdentityStyles'))return;
   const style=document.createElement('style');
   style.id='operatorIdentityStyles';
-  style.textContent='.operator-pill{position:fixed;top:8px;right:8px;z-index:40;background:#fff;border:1px solid var(--l,#e9e5dc);border-radius:999px;padding:7px 12px;font-size:11px;font-weight:700;color:var(--n,#0a1a30);box-shadow:0 4px 12px rgba(16,42,70,.08);cursor:pointer;display:flex;align-items:center;gap:6px}.operator-pill.hidden{display:none}.operator-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--t,#13b9aa);flex:0 0 auto}.operator-badge-wrap{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:8px 0}.op-tag{background:var(--c,#f0ece3);color:var(--n,#0a1a30);border-radius:999px;padding:5px 10px;font-size:10px;font-weight:700}.op-tag-empty{background:#fee9e5;color:#9f4038}.op-touch{font-size:9px;color:var(--m,#7a8290)}.op-claim{border:0;background:var(--t,#13b9aa);color:#052c27;border-radius:999px;padding:5px 10px;font-size:10px;font-weight:700;cursor:pointer}.pill-operator{color:#5a7d78;font-weight:700}.operator-auth{display:grid;gap:8px;margin-top:2px}.operator-auth input{width:100%;border:1px solid var(--l,#e9e5dc);border-radius:12px;padding:11px 12px;font-size:14px}.operator-auth-btn{border:0;background:var(--n,#0a1a30);color:#fff;border-radius:12px;padding:12px;font-weight:700;font-size:14px;cursor:pointer;margin-top:2px}.operator-error{color:#9f4038;font-size:11px;min-height:14px}.operator-switch{text-align:center;margin-top:12px;font-size:11px;color:var(--m,#7a8290)}.operator-switch a{color:var(--t,#0c8c80);font-weight:700;cursor:pointer;text-decoration:underline}.operator-hr{border:0;border-top:1px solid var(--l,#e9e5dc);margin:14px 0}.operator-options{display:grid;gap:8px;margin:4px 0 6px}.operator-choice{border:1px solid var(--l,#e9e5dc);background:var(--p,#f8f5ee);border-radius:13px;padding:13px;font-weight:700;font-size:14px;color:var(--n,#0a1a30);cursor:pointer}.operator-choice:hover{border-color:var(--t,#13b9aa)}.operator-choice.on{border-color:var(--t,#13b9aa);background:var(--t,#13b9aa);color:#052c27}';
+  style.textContent='.operator-pill{position:static;z-index:40;background:#fff;border:1px solid var(--l,#e9e5dc);border-radius:999px;padding:7px 12px;font-size:11px;font-weight:700;color:var(--n,#0a1a30);box-shadow:0 4px 12px rgba(16,42,70,.08);cursor:pointer;display:flex;align-items:center;gap:6px;white-space:nowrap}.operator-pill.hidden{display:none}.operator-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--t,#13b9aa);flex:0 0 auto}.operator-badge-wrap{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:8px 0}.op-tag{background:var(--c,#f0ece3);color:var(--n,#0a1a30);border-radius:999px;padding:5px 10px;font-size:10px;font-weight:700}.op-tag-empty{background:#fee9e5;color:#9f4038}.op-touch{font-size:9px;color:var(--m,#7a8290)}.op-claim{border:0;background:var(--t,#13b9aa);color:#052c27;border-radius:999px;padding:5px 10px;font-size:10px;font-weight:700;cursor:pointer}.pill-operator{color:#5a7d78;font-weight:700}.operator-auth{display:grid;gap:8px;margin-top:2px}.operator-auth input{width:100%;border:1px solid var(--l,#e9e5dc);border-radius:12px;padding:11px 12px;font-size:14px}.operator-auth-btn{border:0;background:var(--n,#0a1a30);color:#fff;border-radius:12px;padding:12px;font-weight:700;font-size:14px;cursor:pointer;margin-top:2px}.operator-error{color:#9f4038;font-size:11px;min-height:14px}.operator-switch{text-align:center;margin-top:12px;font-size:11px;color:var(--m,#7a8290)}.operator-switch a{color:var(--t,#0c8c80);font-weight:700;cursor:pointer;text-decoration:underline}.operator-hr{border:0;border-top:1px solid var(--l,#e9e5dc);margin:14px 0}.operator-options{display:grid;gap:8px;margin:4px 0 6px}.operator-choice{border:1px solid var(--l,#e9e5dc);background:var(--p,#f8f5ee);border-radius:13px;padding:13px;font-weight:700;font-size:14px;color:var(--n,#0a1a30);cursor:pointer}.operator-choice:hover{border-color:var(--t,#13b9aa)}.operator-choice.on{border-color:var(--t,#13b9aa);background:var(--t,#13b9aa);color:#052c27}@media(max-width:520px){.operator-pill{width:34px;height:34px;padding:0;justify-content:center;font-size:0}.operator-pill b{display:none}.operator-pill .dot{width:10px;height:10px}}';
   document.head.appendChild(style);
 }
 
@@ -60,7 +60,7 @@ function ensurePill(){
   pill.type='button';pill.id='operatorPill';pill.className='operator-pill hidden';
   pill.title='Sign out';
   pill.onclick=()=>{if(confirm('Sign out of AQOON?'))signOut()};
-  document.body.appendChild(pill);
+  document.querySelector('.top-actions')?.prepend(pill) || document.body.appendChild(pill);
 }
 function renderPill(){
   const pill=document.getElementById('operatorPill');if(!pill)return;
@@ -68,7 +68,8 @@ function renderPill(){
   const visible=appEl&&!appEl.classList.contains('hidden');
   pill.classList.toggle('hidden',!visible);
   const name=meName();
-  pill.innerHTML=name?('<span class="dot"></span>Acting as <b>'+esc(name)+'</b> · sign out'):'';
+  pill.setAttribute('aria-label',name?'Signed in as '+name+'. Sign out':'Sign out');
+  pill.innerHTML=name?('<span class="dot"></span>Signed in: <b>'+esc(name)+'</b> · Sign out'):'';
 }
 
 // Replaces the original shared-password #login form with real sign-in/sign-up,
@@ -152,43 +153,17 @@ async function fetchOperators(){
   return operators;
 }
 
-function leadBadgeHtml(attrib){
-  const assignedName=nameFor(attrib.assigned_operator_id),lastName=nameFor(attrib.last_actor_id);
-  const mine=attrib.assigned_operator_id&&attrib.assigned_operator_id===meId();
-  let html='<span class="op-tag'+(attrib.assigned_operator_id?'':' op-tag-empty')+'">'+(assignedName?esc(assignedName):'Unassigned')+'</span>';
-  if(lastName)html+='<span class="op-touch">Last touched '+esc(lastName)+'</span>';
-  if(!mine&&meId())html+='<button type="button" class="op-claim" data-claim-lead="1">Assign to me</button>';
-  return html;
-}
-function refreshLeadBadges(){
-  document.querySelectorAll('#leadList .lead').forEach(card=>{
-    const id=card.querySelector('[data-open]')?.dataset.open;
-    if(!id)return;
-    const attrib=leadAttrib[id];
-    if(!attrib)return;
-    const pills=card.querySelector('.pills');
-    if(pills){
-      let tag=pills.querySelector('.pill-operator');
-      if(!tag){tag=document.createElement('span');tag.className='pill pill-operator';pills.appendChild(tag);}
-      const assignedName=nameFor(attrib.assigned_operator_id);
-      tag.textContent=assignedName?('👤 '+assignedName):'👤 Unassigned';
-    }
-    const actions=card.querySelector('.actions');
-    if(actions){
-      let badge=card.querySelector('.operator-badge-wrap');
-      if(!badge){badge=document.createElement('div');badge.className='operator-badge-wrap';actions.parentElement.insertBefore(badge,actions);}
-      badge.innerHTML=leadBadgeHtml(attrib);
-      const claim=badge.querySelector('[data-claim-lead]');
-      if(claim)claim.onclick=e=>{e.stopPropagation();assignLead(id)};
-    }
-  });
-}
-async function assignLead(id){
-  try{
-    await fetch(LEADS_END,{method:'POST',headers:{'Content-Type':'application/json','x-tracker-password':pw()},body:JSON.stringify({action:'update',id,assigned_operator_id:meId(),operator_id:meId()})});
-    document.getElementById('refresh')?.click();
-  }catch(e){}
-}
+// The queue-based CRM redesign (crm-queue-navigation.js) owns the family
+// list/panel DOM now - there is no more #leadList, so badge injection used
+// to be dead code here. Instead of duplicating that DOM ownership, expose
+// the operator name-lookup this file already maintains (opById/leadAttrib)
+// and let crm-queue-navigation.js read it directly when it renders.
+window.AqoonOperators={
+  nameFor,
+  meId,
+  attribFor:id=>leadAttrib[id]||null,
+  list:()=>operators.slice()
+};
 
 function refreshOppBadges(){
   document.querySelectorAll('#salesPipeline .opportunity').forEach(card=>{
@@ -217,8 +192,17 @@ async function claimOpportunity(id){
 }
 
 function scheduleBadgeRefresh(){
+  // Only the sales-pipeline badges need an explicit refresh here: this
+  // function runs from patchFetch's response interceptor, which finishes
+  // populating opById/leadAttrib *before* the original caller (app.js,
+  // incomplete-intake.js, etc.) gets the resolved response - so by the time
+  // any of them run their own renderAll()+dispatchEvent('dataUpdated'),
+  // operator names are already available and CrmQueues picks them up on
+  // that same, single render pass. Dispatching a second 'dataUpdated' here
+  // would just trigger a redundant rebuild of the family list ~80ms later,
+  // detaching whatever the operator is mid-click on.
   clearTimeout(badgeTimer);
-  badgeTimer=setTimeout(()=>{refreshLeadBadges();refreshOppBadges();},80);
+  badgeTimer=setTimeout(refreshOppBadges,80);
 }
 
 function patchFetch(){
