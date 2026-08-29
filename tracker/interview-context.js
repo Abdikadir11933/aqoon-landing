@@ -63,6 +63,12 @@ function attach(lead){
   render(lead);
 }
 
+// Export for other modules first, so files loaded after this one (e.g.
+// interview-follow-up-recap.js) can wrap AqoonInterviewContext.attach and
+// have that wrapper actually be the thing invoked below - calling the local
+// `attach` reference directly would silently bypass any such wrapping.
+window.AqoonInterviewContext={render,attach,toggle};
+
 // Hook into interview drawer open
 const originalOpen=window.openInterview;
 window.openInterview=function(id){
@@ -70,10 +76,7 @@ window.openInterview=function(id){
   // After drawer opens, attach context if we have activeLead
   setTimeout(()=>{
     const activeLead=window.AqoonInterview?.activeLead;
-    if(activeLead)attach(activeLead);
+    if(activeLead)window.AqoonInterviewContext.attach(activeLead);
   },50);
 };
-
-// Export for other modules
-window.AqoonInterviewContext={render,attach,toggle};
 })();

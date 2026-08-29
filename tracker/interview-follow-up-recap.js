@@ -86,11 +86,27 @@ function render(lead,firstAnswers,currentAnswers){
   host.querySelector('.recap-button')?.addEventListener('click',toggle);
 }
 
+function scrapeCurrentAnswers(){
+  const out={};
+  document.querySelectorAll('#questions [data-key]').forEach(el=>{
+    const k=el.dataset.key;if(!k)return;
+    if(el.matches('input,textarea,select')){if(el.value!=='')out[k]=el.value;return;}
+    if(el.classList.contains('choice-row')){
+      const vals=[...el.querySelectorAll('.choice.on')].map(b=>b.dataset.value);
+      if(vals.length)out[k]=el.classList.contains('match-multi')?vals:vals[0];
+    }
+  });
+  return out;
+}
+
 function toggle(){
   recapOpen=!recapOpen;
   const lead=window.AqoonInterview?.activeLead;
   const first=window.AqoonInterview?.firstAnswers;
-  const current=window.AqoonInterview?.currentAnswers;
+  // Re-scraped fresh on every toggle, not the stale snapshot from when the
+  // drawer opened - the operator has usually answered more by the time they
+  // click "what changed".
+  const current=scrapeCurrentAnswers();
   if(lead&&first)render(lead,first,current);
 }
 
@@ -111,12 +127,14 @@ const originalContextAttach=window.AqoonInterviewContext?.attach;
 if(originalContextAttach){
   window.AqoonInterviewContext.attach=function(lead){
     originalContextAttach.call(this,lead);
-    // If latest_interview exists, fetch first interview answers for comparison
+    // If latest_interview exists, this drawer open is a follow-up (not a
+    // first interview) - show the recap panel comparing first vs. current.
     if(lead.latest_interview){
       setTimeout(()=>{
-        // Try to get first answers from interview revisions or stored data
-        window.AqoonInterview.firstAnswers=lead.latest_interview.answers||{};
-        window.AqoonInterview.currentAnswers={};
+        const firstAnswers=lead.latest_interview.answers||{};
+        window.AqoonInterview.firstAnswers=firstAnswers;
+        window.AqoonInterview.currentAnswers=scrapeCurrentAnswers();
+        attach(lead,firstAnswers,window.AqoonInterview.currentAnswers);
       },100);
     }
   };
