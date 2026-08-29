@@ -3,8 +3,8 @@
 const CrmQueues = {
   phases: [
     { id: 'incomplete', label: 'Incomplete intake', color: 'navy' },
-    { id: 'first_contact', label: 'Ready for interview', color: 'teal' },
-    { id: 'in_progress', label: 'Awaiting outcome', color: 'cream' },
+    { id: 'first_contact', label: 'First contact', color: 'teal' },
+    { id: 'in_progress', label: 'Interview follow-up', color: 'cream' },
     { id: 'resolved', label: 'Resolved', color: 'cream' }
   ],
 
@@ -235,12 +235,13 @@ const CrmQueues = {
           </div>
         </div>
         <div class="panel-section assign-operator">
-          <label class="assign-label">Case still open</label>
+          <label class="assign-label">${lead.interview_status === 'completed' ? 'Interview complete' : 'Interview still required'}</label>
           <div class="assign-buttons">
             <button class="btn secondary" data-action="assign-to-me" data-lead-id="${leadId}">Assign to me</button>
-            <button class="btn secondary" data-action="start-interview" data-lead-id="${leadId}">Review interview</button>
-            <button class="btn primary" data-action="mark-resolved" data-lead-id="${leadId}">Mark resolved</button>
+            <button class="btn secondary" data-action="start-interview" data-lead-id="${leadId}">${lead.interview_status === 'completed' ? 'Review interview' : 'Start first interview'}</button>
+            ${lead.interview_status === 'completed' ? '<button class="btn primary" data-action="mark-resolved" data-lead-id="' + leadId + '">Mark resolved</button>' : '<button class="btn secondary" data-action="return-to-first-contact" data-lead-id="' + leadId + '">Return to first contact</button>'}
           </div>
+          ${lead.interview_status === 'completed' ? '' : '<p class="contact-action-note">This legacy case reached the follow-up queue without a completed interview. Return it to First contact before continuing.</p>'}
         </div>
       `;
     }
@@ -325,6 +326,10 @@ const CrmQueues = {
       window.openInterview(leadId);
     } else if (action === 'mark-resolved') {
       window.AqoonApp?.updateLead(leadId, {status: 'resolved'}).then(() => this.closeFamilyPanel());
+    } else if (action === 'return-to-first-contact') {
+      window.AqoonApp?.updateLead(leadId, {status: 'new', journey_stage: 'reach'})
+        .then(() => this.closeFamilyPanel())
+        .catch(err => alert(err.message || 'Could not return this case to first contact.'));
     } else if (action === 'record-reached' || action === 'record-no-answer') {
       const outcome = action === 'record-reached' ? 'reached' : 'no_answer';
       window.AqoonCallOutcomes?.recordForLead(leadId, outcome)
