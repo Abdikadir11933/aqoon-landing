@@ -82,23 +82,28 @@ const CrmQueues = {
   },
 
   getFamiliesByPhase(phaseId) {
-    // Get families from window.AqoonApp.leads (populated by app.js)
+    // Get families from window.AqoonApp (populated by app.js)
     const leads = window.AqoonApp?.leads || [];
+    const partials = window.AqoonApp?.partials || [];
 
-    // Map internal stages to our phases
-    const phaseMap = {
-      'incomplete': (lead) => !lead.latest_interview_id && lead.intake_started,
-      'first_contact': (lead) => lead.latest_interview_id && lead.current_phase === 'phase_2',
-      'in_progress': (lead) => lead.current_phase === 'phase_3' || lead.current_phase === 'phase_4',
-      'resolved': (lead) => lead.current_phase === 'phase_5' || lead.current_phase === 'phase_6'
-    };
+    let families = [];
 
-    const filter = phaseMap[phaseId];
-    if (!filter) return [];
+    if (phaseId === 'incomplete') {
+      // Incomplete intake forms (from partials array)
+      families = partials;
+    } else if (phaseId === 'first_contact') {
+      // Families with status 'new' (ready for first contact)
+      families = leads.filter(x => x.status === 'new');
+    } else if (phaseId === 'in_progress') {
+      // Families with status 'contacted' (awaiting outcome/next steps)
+      families = leads.filter(x => x.status === 'contacted');
+    } else if (phaseId === 'resolved') {
+      // Families with status 'resolved'
+      families = leads.filter(x => x.status === 'resolved');
+    }
 
-    return leads
-      .filter(filter)
-      .sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+    // Sort by creation date (oldest first per user requirement)
+    return families.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
   },
 
   renderFamiliesInPhase(phaseId, families) {
