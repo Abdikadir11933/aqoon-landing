@@ -22,6 +22,28 @@ const opId = (b:any) => typeof b.operator_id === "string" && b.operator_id.trim(
 const resolveOperatorId = (jwtOperatorId:string|null, b:any) => jwtOperatorId||opId(b);
 const json = (body:unknown, status:number, h:Record<string,string>) => new Response(JSON.stringify(body),{status,headers:h});
 
+// PII-free aggregate of unmatched family demand, for buyer-facing conversations.
+// Per docs/architecture/business-operating-model.md: buyers are never sold raw
+// family contact data, only agreed outcomes and anonymized aggregate counts.
+// This receives only main_need/city/journey_stage/status - never name, phone,
+// or any other identifying field - by construction of the caller's select().
+const MATCHED_STAGES = new Set(["start","retention","referral","resolved"]);
+function demandAggregate(rows:{main_need:string|null,city:string|null,journey_stage:string|null}[]){
+  const unmatched = rows.filter(r => !MATCHED_STAGES.has(r.journey_stage || "reach"));
+  const byNeed:Record<string,number> = {}, byCity:Record<string,number> = {};
+  const byNeedCityMap = new Map<string,{need:string,city:string,count:number}>();
+  for(const r of unmatched){
+    const need = r.main_need || "Unspecified", city = r.city || "Unspecified";
+    byNeed[need] = (byNeed[need]||0) + 1;
+    byCity[city] = (byCity[city]||0) + 1;
+    const key = need + "|" + city;
+    const existing = byNeedCityMap.get(key);
+    if(existing) existing.count++; else byNeedCityMap.set(key, {need, city, count:1});
+  }
+  const byNeedCity = [...byNeedCityMap.values()].sort((a,b)=>b.count-a.count).slice(0,40);
+  return { total_active: rows.length, total_unmatched: unmatched.length, by_need: byNeed, by_city: byCity, by_need_city: byNeedCity };
+}
+
 Deno.serve(async req => {
   const h=headers();
   if(req.method==="OPTIONS") return new Response(null,{status:204,headers:h});
@@ -54,16 +76,17 @@ Deno.serve(async req => {
   }
 
   if(action==="list"){
-    const [or,ar,er,fr,opr]=await Promise.all([
+    const [or,ar,er,fr,opr,dr]=await Promise.all([
       db.from("sales_opportunities").select("*").order("updated_at",{ascending:false}).limit(500),
       db.from("sales_activities").select("*").order("created_at",{ascending:false}).limit(2000),
       db.from("ops_events").select("*").gte("starts_at",new Date(Date.now()-14*86400000).toISOString()).order("starts_at",{ascending:true}).limit(1000),
       db.from("family_leads").select("id,name,phone,city,main_need,next_follow_up_at,latest_interview:family_interviews(next_action)").not("next_follow_up_at","is",null).order("next_follow_up_at",{ascending:true}).limit(500),
-      db.from("operators").select("id,display_name,active").eq("active",true).order("display_name",{ascending:true})
+      db.from("operators").select("id,display_name,active").eq("active",true).order("display_name",{ascending:true}),
+      db.from("family_leads").select("main_need,city,journey_stage,status").neq("status","resolved")
     ]);
-    const error=or.error||ar.error||er.error||fr.error||opr.error;
+    const error=or.error||ar.error||er.error||fr.error||opr.error||dr.error;
     if(error) return json({error:"db_error",detail:error.message},500,h);
-    return json({opportunities:or.data||[],activities:ar.data||[],events:er.data||[],family_followups:fr.data||[],operators:opr.data||[]},200,h);
+    return json({opportunities:or.data||[],activities:ar.data||[],events:er.data||[],family_followups:fr.data||[],operators:opr.data||[],demand:demandAggregate(dr.data||[])},200,h);
   }
 
   if(action==="save_opportunity"){

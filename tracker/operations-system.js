@@ -3,7 +3,18 @@ const END="https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/ops-admin";
 const $=s=>document.querySelector(s), esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const stages=["lead","contacted","discovery","proposal_sent","decision_review","won","delivery","expansion","closed_lost"];
 const labels={lead:"Lead",contacted:"Contacted",discovery:"Discovery",proposal_sent:"Proposal sent",decision_review:"Decision review",won:"Won",delivery:"Delivery",expansion:"Expansion",closed_lost:"Closed lost"};
-let data={opportunities:[],activities:[],events:[],family_followups:[]},filter="all",mode="",record=null,loading=false;
+let data={opportunities:[],activities:[],events:[],family_followups:[],demand:null},filter="all",mode="",record=null,loading=false;
+function bars(o,max){const a=Object.entries(o||{}).sort((x,y)=>y[1]-x[1]).slice(0,8),m=max||a[0]?.[1]||1;return a.map(([k,v])=>`<div class="brow"><span>${esc(k)}</span><div class="track"><div class="bar" style="width:${Math.round(v/m*100)}%"></div></div><strong>${v}</strong></div>`).join("")||'<span class="muted">No unmatched demand right now.</span>'}
+function renderDemand(){
+  const d=data.demand;
+  const card=$("#demandCard");
+  if(!card)return;
+  if(!d||!d.total_unmatched){$("#demandTotal").textContent="";$("#demandByNeed").innerHTML='<span class="muted">No unmatched demand right now — everything active has moved past first match.</span>';$("#demandByNeedCity").innerHTML="";return}
+  $("#demandTotal").textContent=`${d.total_unmatched} of ${d.total_active} active families`;
+  $("#demandByNeed").innerHTML=bars(d.by_need);
+  const byNeedCity=Object.fromEntries((d.by_need_city||[]).map(x=>[`${x.need} · ${x.city}`,x.count]));
+  $("#demandByNeedCity").innerHTML=bars(byNeedCity);
+}
 function password(){return sessionStorage.getItem("aqoon_tracker_password")||""}
 async function api(body){const r=await fetch(END,{method:"POST",headers:{"Content-Type":"application/json","x-tracker-password":password()},body:JSON.stringify(body),cache:"no-store"});const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.detail||d.error||"Operations request failed");return d}
 function fail(e){const box=$("#err");if(box){box.textContent=e.message||String(e);box.classList.remove("hidden")}else alert(e.message||e)}
@@ -29,7 +40,7 @@ function eventRows(){
   return [...normal,...family,...sales].sort((a,b)=>new Date(a.starts_at)-new Date(b.starts_at)).slice(0,8)
 }
 function renderAgenda(){const rows=eventRows();$("#agendaList").innerHTML=rows.map(x=>{const d=new Date(x.starts_at),day=new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Helsinki",weekday:"short"}).format(d),date=new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Helsinki",day:"numeric",month:"short"}).format(d);return `<div class="agenda-item" data-event="${x.source_kind==="event"?esc(x.id):""}"><div class="agenda-when"><strong>${esc(day)}</strong>${esc(date)}</div><div><h4>${esc(x.title)}</h4><p>${esc(x.notes||dt(x.starts_at))}</p></div><span class="agenda-kind ${esc(x.event_type)}">${esc(x.event_type)}</span></div>`}).join("")||'<div class="empty">No upcoming calls or meetings. Add the next commitment now.</div>';document.querySelectorAll("[data-event]:not([data-event=''])").forEach(x=>x.onclick=()=>openEvent(data.events.find(e=>e.id===x.dataset.event)))}
-async function load(force=false){if(loading||!password())return;if(!force&&data.opportunities.length)return;loading=true;try{data=await api({action:"list"});renderSales();renderAgenda()}catch(e){fail(e)}finally{loading=false}}
+async function load(force=false){if(loading||!password())return;if(!force&&data.opportunities.length)return;loading=true;try{data=await api({action:"list"});renderSales();renderAgenda();renderDemand()}catch(e){fail(e)}finally{loading=false}}
 function field(name,label,value="",type="text",full=false,options=[]){if(type==="select")return `<div class="ops-field ${full?"full":""}"><label>${label}</label><select name="${name}">${options.map(x=>`<option value="${x}" ${x===value?"selected":""}>${esc(labels[x]||x.replaceAll("_"," "))}</option>`).join("")}</select></div>`;if(type==="textarea")return `<div class="ops-field ${full?"full":""}"><label>${label}</label><textarea name="${name}">${esc(value)}</textarea></div>`;return `<div class="ops-field ${full?"full":""}"><label>${label}</label><input name="${name}" type="${type}" value="${esc(value)}"></div>`}
 function showDialog(){$("#opsDialog").classList.remove("hidden");document.body.style.overflow="hidden";if(mode==="opportunity"&&!record)setTimeout(()=>editorTabs("plan"),0)}
 function closeDialog(){$("#opsDialog").classList.add("hidden");document.body.style.overflow="";record=null}
