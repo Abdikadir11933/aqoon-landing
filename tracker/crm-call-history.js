@@ -1,6 +1,6 @@
 (()=>{'use strict';
 const END_CALL_LOG='https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-case-lifecycle-admin';
-const esc=v=>String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
 function pw(){return sessionStorage.getItem('aqoon_tracker_password')||''}
 
@@ -43,28 +43,20 @@ function formatTime(dateStr){
   return d.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',hour12:true});
 }
 
-function formatDuration(seconds){
-  if(!seconds||seconds<0)return'—';
-  const mins=Math.floor(seconds/60);
-  const secs=seconds%60;
-  return `${mins}m ${secs}s`;
-}
-
 function renderCallHistorySection(calls){
   if(!calls||!calls.length){
-    return '<div class="crm-call-history-empty">No calls recorded</div>';
+    return '<div class="crm-call-history-empty">No calls recorded yet</div>';
   }
 
-  const html=calls.slice(-10).reverse().map(call=>{
+  return calls.slice(-10).reverse().map(call=>{
     const date=formatDate(call.created_at);
     const time=formatTime(call.created_at);
-    const duration=formatDuration(call.duration_seconds);
-    const outcome=call.call_outcome||'unknown';
-    const operator=call.operator_name||call.assigned_operator_id||'—';
+    const outcome=call.outcome||call.call_outcome||'unknown';
+    const operator=call.operator_name||'—';
     const notes=call.notes||'';
 
     const outcomeClass=`call-outcome-${outcome}`;
-    const outcomeLabel={'reached':'Connected','no_answer':'No Answer','call_later':'Scheduled','attempted':'Attempted'}[outcome]||outcome;
+    const outcomeLabel={'reached':'Connected','no_answer':'No answer','call_later':'Call later'}[outcome]||outcome;
 
     return `
       <div class="crm-call-history-item">
@@ -72,76 +64,24 @@ function renderCallHistorySection(calls){
           <div class="crm-call-time">${esc(date)} ${esc(time)}</div>
           <span class="call-outcome-badge ${esc(outcomeClass)}">${esc(outcomeLabel)}</span>
         </div>
-        <div class="crm-call-details">
-          <small>Duration: ${esc(duration)} • Operator: ${esc(operator)}</small>
-        </div>
+        <div class="crm-call-details"><small>Operator: ${esc(operator)}</small></div>
         ${notes?`<div class="crm-call-notes">${esc(notes)}</div>`:''}
       </div>
     `;
   }).join('');
-
-  return html;
 }
 
-function injectCallHistoryStyles(){
-  if(document.getElementById('crmCallHistoryStyles'))return;
-  const style=document.createElement('style');
-  style.id='crmCallHistoryStyles';
-  style.textContent=`.crm-call-history-item{padding:12px 0;border-bottom:1px solid var(--l,#e9e5dc)}.crm-call-history-item:last-child{border-bottom:none}.crm-call-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}.crm-call-time{font-size:12px;font-weight:600;color:var(--t,#13b9aa)}.call-outcome-badge{display:inline-block;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:600;text-transform:uppercase}.call-outcome-reached{background:#d4f5f0;color:#0a6659}.call-outcome-no_answer{background:#fde9e7;color:#a6370f}.call-outcome-call_later{background:#f0e9f8;color:#5a3a8a}.call-outcome-attempted{background:#e8ecf5;color:#1f3a6b}.call-outcome-unknown{background:var(--l,#e9e5dc);color:var(--n,#0a1a30)}.crm-call-details{font-size:11px;color:var(--n,#0a1a30)}.crm-call-notes{font-size:12px;color:var(--n,#0a1a30);margin-top:6px;padding:8px;background:rgba(0,0,0,0.03);border-radius:4px;line-height:1.4}.crm-call-history-empty{font-size:12px;color:var(--t,#13b9aa);padding:12px 0;text-align:center}`;
-  document.head.appendChild(style);
+// Called by crm-queue-navigation.js's family panel (not the old, deleted
+// context-panel chain this file used to depend on - that chain was never
+// actually invoked by anything real, so this viewer never rendered before).
+// Styling comes from the already-linked crm-call-history.css, not injected
+// here, since duplicating it inline would just fight the cascade.
+async function renderInto(container,leadId){
+  if(!container||!leadId)return;
+  container.innerHTML='<div class="crm-call-history-empty">Loading call history…</div>';
+  const calls=await loadCallHistory(leadId);
+  container.innerHTML=renderCallHistorySection(calls);
 }
 
-function appendCallHistory(leadId){
-  const contextContent=$('contextPanelContent');
-  if(!contextContent)return;
-
-  loadCallHistory(leadId).then(calls=>{
-    let callSection=contextContent.querySelector('[data-call-history]');
-    if(!callSection){
-      callSection=document.createElement('div');
-      callSection.dataset.callHistory='1';
-      callSection.className='crm-context-section';
-      contextContent.appendChild(callSection);
-    }
-
-    callSection.innerHTML=`
-      <div class="crm-context-label">Call History</div>
-      <div>${renderCallHistorySection(calls)}</div>
-    `;
-  }).catch(e=>{
-    console.warn('Call history render failed:',e.message);
-    callSection.innerHTML=`
-      <div class="crm-context-label">Call History</div>
-      <div style="font-size:12px;color:#c74c4c;padding:12px">Failed to load call history. Please try again.</div>
-    `;
-  });
-}
-
-function $callHistory(id){
-  return document.getElementById(id);
-}
-
-function patchContextPanel(){
-  if(window.__callHistoryPatched)return;
-  window.__callHistoryPatched=1;
-
-  const origOpen=window.CrmContextPanel?.open;
-  if(typeof origOpen!=='function')return;
-
-  window.CrmContextPanel.open=function(leadId){
-    origOpen.call(this,leadId);
-    setTimeout(()=>appendCallHistory(leadId),200);
-  };
-}
-
-function start(){
-  injectCallHistoryStyles();
-  setTimeout(()=>{
-    patchContextPanel();
-  },100);
-}
-
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
-
-window.CrmCallHistory={load:(id)=>loadCallHistory(id),render:(calls)=>renderCallHistorySection(calls)};
+window.AqoonCallHistory={renderInto,load:loadCallHistory,render:renderCallHistorySection};
 })();

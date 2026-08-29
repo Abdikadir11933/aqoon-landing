@@ -104,6 +104,18 @@ Deno.serve(async (request) => {
   const leadId = cleanText(body.lead_id, 80);
   if (!leadId) return new Response(JSON.stringify({ error: "missing_lead_id" }), { status: 400, headers: responseHeaders });
 
+  // Was documented (an earlier session's own API spec) but never actually
+  // implemented - the tracker's call-history viewer called this action for
+  // months against an endpoint that returned unknown_action. family_call_log
+  // itself has been correctly written to by family-leads-admin's
+  // record_call_outcome action all along; only this read side was missing.
+  if (action === "get_call_history") {
+    const { data, error } = await db.from("family_call_log").select("id,outcome,next_follow_up_at,notes,created_at,operator_id,operators(display_name)").eq("family_lead_id", leadId).order("created_at", { ascending: false }).limit(50);
+    if (error) return new Response(JSON.stringify({ error: "db_error", detail: error.message }), { status: 500, headers: responseHeaders });
+    const calls = (data || []).map((row: any) => ({ id: row.id, outcome: row.outcome, next_follow_up_at: row.next_follow_up_at, notes: row.notes, created_at: row.created_at, operator_name: row.operators?.display_name || null }));
+    return new Response(JSON.stringify({ calls }), { headers: responseHeaders });
+  }
+
   if (action === "list") {
     const [plans, events, opportunities, matchRuns, interactions] = await Promise.all([
       db.from("family_case_plans").select("*").eq("family_lead_id", leadId).order("updated_at", { ascending: false }),

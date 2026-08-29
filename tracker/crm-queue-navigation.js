@@ -205,7 +205,22 @@ const CrmQueues = {
       `;
     }
 
+    // Call history only applies to real family_leads rows (not incomplete-
+    // intake partials, which live in a different table with no call log).
+    if (phaseId !== 'incomplete') {
+      content += `
+        <div class="panel-section">
+          <h4 class="panel-section-title">Call History</h4>
+          <div id="panelCallHistory"></div>
+        </div>
+      `;
+    }
+
     panelContent.innerHTML = content;
+
+    if (phaseId !== 'incomplete') {
+      window.AqoonCallHistory?.renderInto(document.getElementById('panelCallHistory'), leadId);
+    }
 
     // Bind action buttons
     panelContent.querySelectorAll('[data-action]').forEach(btn => {
