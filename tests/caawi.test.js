@@ -31,19 +31,19 @@ test('child route asks age next and then asks about more help', () => {
   assert.deepEqual(core.pathForNeed('kids', false), ['contact','city','need','age','explain','sub','more']);
 });
 
-test('work route shows diagnostic gate then explain', () => {
-  assert.equal(core.nextAfterNeed('work'), 'work_diagnostic');
-  assert.deepEqual(core.pathForNeed('work', false), ['contact','city','need','work_diagnostic','explain','sub','more']);
+test('work route goes directly to explain', () => {
+  assert.equal(core.nextAfterNeed('work'), 'explain');
+  assert.deepEqual(core.pathForNeed('work', false), ['contact','city','need','explain','sub','more']);
   assert.equal(core.nextAfterSubSelected(), 'more');
 });
 
-test('additional-help route starts from need with school diagnostic', () => {
-  assert.deepEqual(core.pathForNeed('school', true), ['need','school_diagnostic','explain','sub','more']);
+test('additional-help route starts from need', () => {
+  assert.deepEqual(core.pathForNeed('school', true), ['need','explain','sub','more']);
 });
 
-test('programs route shows diagnostic gate then explain', () => {
-  assert.equal(core.nextAfterNeed('programs'), 'programs_diagnostic');
-  assert.deepEqual(core.pathForNeed('programs', false), ['contact','city','need','programs_diagnostic','explain','sub','more']);
+test('programs route goes directly to explain', () => {
+  assert.equal(core.nextAfterNeed('programs'), 'explain');
+  assert.deepEqual(core.pathForNeed('programs', false), ['contact','city','need','explain','sub','more']);
   assert.equal(core.nextAfterSubSelected(), 'more');
 });
 
