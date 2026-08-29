@@ -39,6 +39,9 @@
 .stage-pill{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;border-radius:999px;background:#e3f4f0;color:#087267;padding:6px 8px;white-space:nowrap}
 .stage-pill.waiting{background:#fff0d7;color:#8d6013}.stage-pill.at_risk,.stage-pill.blocked{background:#fee6e3;color:#a43e37}
 .opp-summary{font-size:10px;color:#596574;line-height:1.45;margin:10px 0}
+.opp-demand-pill{display:inline-block;background:#eef9f7;color:#0a6659;border-radius:999px;padding:4px 10px;font-size:9px;font-weight:800;margin-bottom:6px}
+.opp-demand-line{font-size:11px;font-weight:700;color:var(--td);background:#eef9f7;border-radius:10px;padding:8px 11px;margin:9px 0 0}
+.opp-demand-line.muted{color:var(--m);background:var(--c);font-weight:600}
 .next-action-box{background:#f7f4ed;border-radius:11px;padding:10px;display:grid;grid-template-columns:1fr auto;gap:10px}
 .next-action-box span{display:block;font-size:8px;font-weight:800;color:#9a968f;letter-spacing:.08em}.next-action-box strong{display:block;font-size:10px;margin-top:3px}.next-action-box time{font-size:9px;color:var(--m);white-space:nowrap;align-self:center}
 .opp-progress{display:flex;gap:4px;margin-top:11px}.opp-progress i{height:4px;border-radius:99px;background:#e8e4dc;flex:1}.opp-progress i.done{background:var(--t)}

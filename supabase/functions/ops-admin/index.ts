@@ -44,6 +44,16 @@ function demandAggregate(rows:{main_need:string|null,city:string|null,journey_st
   return { total_active: rows.length, total_unmatched: unmatched.length, by_need: byNeed, by_city: byCity, by_need_city: byNeedCity };
 }
 
+// Per-opportunity demand: how many active families match the need/city this
+// deal is actually about, and how many of those are past their first
+// interview. Counts only - the same rows never carry name/phone here either.
+function opportunityDemand(rows:{main_need:string|null,city:string|null,interview_status:string|null}[], need:string|null, city:string|null){
+  if(!need) return null;
+  const n = need.toLowerCase().trim(), c = city ? city.toLowerCase().trim() : null;
+  const matching = rows.filter(r => (r.main_need||"").toLowerCase().trim()===n && (!c || (r.city||"").toLowerCase().trim()===c));
+  return { total: matching.length, past_interview: matching.filter(r => r.interview_status==="completed").length };
+}
+
 Deno.serve(async req => {
   const h=headers();
   if(req.method==="OPTIONS") return new Response(null,{status:204,headers:h});
@@ -82,11 +92,13 @@ Deno.serve(async req => {
       db.from("ops_events").select("*").gte("starts_at",new Date(Date.now()-14*86400000).toISOString()).order("starts_at",{ascending:true}).limit(1000),
       db.from("family_leads").select("id,name,phone,city,main_need,next_follow_up_at,latest_interview:family_interviews(next_action)").not("next_follow_up_at","is",null).order("next_follow_up_at",{ascending:true}).limit(500),
       db.from("operators").select("id,display_name,active").eq("active",true).order("display_name",{ascending:true}),
-      db.from("family_leads").select("main_need,city,journey_stage,status").neq("status","resolved")
+      db.from("family_leads").select("main_need,city,journey_stage,status,interview_status").neq("status","resolved")
     ]);
     const error=or.error||ar.error||er.error||fr.error||opr.error||dr.error;
     if(error) return json({error:"db_error",detail:error.message},500,h);
-    return json({opportunities:or.data||[],activities:ar.data||[],events:er.data||[],family_followups:fr.data||[],operators:opr.data||[],demand:demandAggregate(dr.data||[])},200,h);
+    const familyRows=dr.data||[];
+    const opportunities=(or.data||[]).map((o:any)=>({...o, matched_demand:opportunityDemand(familyRows,o.demand_need,o.demand_city)}));
+    return json({opportunities,activities:ar.data||[],events:er.data||[],family_followups:fr.data||[],operators:opr.data||[],demand:demandAggregate(familyRows)},200,h);
   }
 
   if(action==="save_opportunity"){
@@ -99,7 +111,7 @@ Deno.serve(async req => {
       summary:text(b.summary), goal:text(b.goal), success_definition:text(b.success_definition),
       completed_steps:arr(b.completed_steps), next_steps:arr(b.next_steps), next_action:text(b.next_action,1500),
       next_action_at:date(b.next_action_at), probability:b.probability!==null&&b.probability!==""&&Number.isFinite(Number(b.probability))?Math.max(0,Math.min(100,Number(b.probability))):null,
-      source:text(b.source,200), updated_at:new Date().toISOString()
+      source:text(b.source,200), demand_need:text(b.demand_need,120), demand_city:text(b.demand_city,100), updated_at:new Date().toISOString()
     };
     if(Object.prototype.hasOwnProperty.call(b,"owner_operator_id")) payload.owner_operator_id=b.owner_operator_id?String(b.owner_operator_id):null;
     else if(!b.id&&operatorId) payload.owner_operator_id=operatorId;
