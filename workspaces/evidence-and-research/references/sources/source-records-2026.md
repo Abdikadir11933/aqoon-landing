@@ -42,6 +42,21 @@ Publisher: Job Market Finland / KEHA Centre | level: official-primary | URL: htt
 ## src.kela.yleistuki-benefit
 Publisher: Kela | level: official-primary | URL: https://www.kela.fi/unemployment-general-social-security-benefit | volatility: high | status: active
 
+## src.jobmarket.employment-reforms-2026
+Publisher: Job Market Finland / KEHA Centre | level: official-primary | URL: https://tyomarkkinatori.fi/uutiset/tyonhakija_huomioithan_nama_muutokset_1.1.2026_alkaen | volatility: high | status: active
+
+## src.jobmarket.unemployment-consequences
+Publisher: Job Market Finland / KEHA Centre | level: official-primary | URL: https://tyomarkkinatori.fi/henkiloasiakkaat/tietoa-tyoelamasta/tyottomyysturva/karenssi | volatility: high | status: active
+
+## src.integration.plan-timing
+Publisher: Ministry of Economic Affairs and Employment / Integration service | level: official-primary | URL: https://kotoutuminen.fi/en/when-is-the-integration-plan-drawn-up- | volatility: medium | status: active
+
+## src.integration.plan-target-group
+Publisher: Ministry of Economic Affairs and Employment / Integration service | level: official-primary | URL: https://kotoutuminen.fi/en/who-is-an-integration-plan-drawn-up-for- | volatility: medium | status: active
+
+## src.tem.multisectoral-employment
+Publisher: Ministry of Economic Affairs and Employment | level: official-primary | URL: https://tem.fi/en/multi-sectoral-promotion-of-employment | volatility: medium | status: active
+
 ## src.oph.s2-2026
 Publisher: OPH | level: official-primary | URL: https://www.oph.fi/fi/uutiset/2026/perustemuutokset-voimaan-182026-muutoksilla-edistetaan-maahanmuuttotaustaisten | volatility: high | status: active
 
