@@ -72,11 +72,12 @@
 @media(max-width:520px){
   .today-pulse{gap:5px}.today-pulse button{padding:9px 6px}.today-pulse strong{font-size:18px}.today-pulse span{font-size:7px}
   .clock-card{padding-bottom:7px}.clock-card .sla-clock{height:82px;padding-top:22px}.pipeline-card{padding-bottom:10px}
-  .today-mini-grid{grid-template-columns:1fr 1fr}.mini-command{min-height:106px}.leak-bars,.spark-bars{height:27px;margin-top:8px}
+  .today-mini-grid{grid-template-columns:1fr}.mini-command{min-height:0}.leak-bars,.spark-bars{height:36px;margin-top:8px}
   .queue-note span{display:none}.family-queues{grid-auto-columns:112px}
   .crm-view .lead-summary{min-height:58px}.partial-actions .btn,.partial-delete{padding:7px 9px}.partial-actions .partial-call{width:34px;color:transparent;position:relative}.partial-actions .partial-call:after{content:'☎';position:absolute;inset:0;display:grid;place-items:center;color:var(--n);font-size:12px}
   .sales-head{align-items:center}.sales-head h2{font-size:23px}.sales-head p{display:none}.sales-head .btn{min-height:36px;padding:8px 11px;font-size:9px}
   .sales-health>div{padding:8px 7px}.sales-health strong{font-size:16px}.sales-health span{font-size:7px}
+  .drawer-card{padding:14px}.drawer-top{top:-14px;padding:12px 0 10px}.drawer-top h2{font-size:24px;line-height:1.05}.interview-actions{bottom:-14px;padding:16px 0 10px;background:var(--p)}.interview-actions #saveInterview{min-height:54px;padding:11px 14px!important;font-size:14px;line-height:1.15}
   .opp-summary{display:none}.opp-now{grid-template-columns:auto minmax(0,1fr)}.opp-now time{grid-column:2}.opp-progress{margin-top:7px}
   .ops-grid{gap:7px}.editor-intro{display:block}.editor-intro span{display:block;max-width:none;text-align:left;margin-top:3px}
 }
