@@ -19,3 +19,6 @@ input{font-size:16px}
 }
 @media(min-width:900px){.shell{width:min(100% - 48px,430px)}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+/* Keep every intake step near the top of the phone screen. */
+.shell{margin:0 auto}
