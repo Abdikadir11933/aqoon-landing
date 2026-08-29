@@ -1,0 +1,30 @@
+.crm-call-history-item{padding:12px 0;border-bottom:1px solid var(--l,#e9e5dc)}
+
+.crm-call-history-item:last-child{border-bottom:none}
+
+.crm-call-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+
+.crm-call-time{font-size:12px;font-weight:600;color:var(--t,#13b9aa)}
+
+.call-outcome-badge{display:inline-block;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:600;text-transform:uppercase}
+
+.call-outcome-reached{background:#d4f5f0;color:#0a6659}
+
+.call-outcome-no_answer{background:#fde9e7;color:#a6370f}
+
+.call-outcome-call_later{background:#f0e9f8;color:#5a3a8a}
+
+.call-outcome-attempted{background:#e8ecf5;color:#1f3a6b}
+
+.call-outcome-unknown{background:var(--l,#e9e5dc);color:var(--n,#0a1a30)}
+
+.crm-call-details{font-size:11px;color:var(--n,#0a1a30)}
+
+.crm-call-notes{font-size:12px;color:var(--n,#0a1a30);margin-top:6px;padding:8px;background:rgba(0,0,0,0.03);border-radius:4px;line-height:1.4}
+
+.crm-call-history-empty{font-size:12px;color:var(--t,#13b9aa);padding:12px 0;text-align:center}
+
+@media(max-width:640px){
+  .crm-call-header{flex-direction:column;align-items:flex-start}
+  .call-outcome-badge{margin-top:4px}
+}
