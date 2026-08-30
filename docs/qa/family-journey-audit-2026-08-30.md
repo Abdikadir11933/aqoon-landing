@@ -145,6 +145,37 @@ viewport, keyboard and touch-focus behavior. It narrows the probable cause to
 the mobile fixed/sticky drawer layout or a touch-specific browser behavior,
 not a deliberate `scrollIntoView()` inside the normal choice handler.
 
+## Additional defects reported during the next live pass
+
+These are mandatory reproduction cases for the next implementation pass:
+
+12. **A completed Finnish intake can still appear as incomplete.** A newly
+    submitted Finnish intake appeared in the unfinished queue; filling it
+    again as an operator produced another entry. Trace the submit response,
+    partial-intake write, deduplication key, language-specific mapping, final
+    `family_leads` write and queue refresh.
+13. **The interview route is not driven by the selected intake scenario.**
+    Daycare, hobby and education intakes open large generic forms instead of
+    a short scenario-first flow that asks only deciding questions.
+14. **Live choice labels and values contain defects.** Examples include
+    “Not Starteded” and “kNew it”. Audit every displayed label and every
+    `data-key`/stored value/criteria bridge; unclear choices make matching
+    unreliable, not merely unattractive.
+15. **Cross-need questions are collected but not concluded.** The “Always ask”
+    block captures awareness, barriers, children, future work and permissions,
+    but the follow-up summary does not show what those answers mean.
+16. **No actionable plan is available after interview completion.** The case
+    plan only says “No active case plan yet” and offers a free-text “Start plan”
+    field. There is no researched recommendation, selectable plan, evidence, or
+    explicit “none fit / another plan / defer” outcome.
+17. **Resolution has no plan workflow.** “Open resolution” asks for a note
+    despite no plan existing and does not capture route, evidence, owner, next
+    date or closure reason.
+18. **A severe interaction stall was reported.** The browser identified a
+    primary button whose handlers blocked UI updates for about 59.9 seconds.
+    Reproduce with synthetic data and capture the exact request/long-task path
+    before dismissing this as a browser artifact.
+
 ## Required target contract before the next implementation pass
 
 The product should use one visible operator journey while retaining the
