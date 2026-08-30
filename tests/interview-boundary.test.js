@@ -86,3 +86,12 @@ test('education interviews distinguish entry reason and study barriers', () => {
   assert.match(interview, /Changing study path/);
   assert.match(interview, /study barriers: '\+\(Array\.isArray\(a\.education_barriers\)/);
 });
+
+test('child interviews distinguish care, school and activity scenarios', () => {
+  const interview = read('tracker/interview-match.js');
+  assert.match(interview, /care_reason/);
+  assert.match(interview, /care_start_urgency/);
+  assert.match(interview, /school_situation/);
+  assert.match(interview, /school_decision_needed/);
+  assert.match(interview, /activity_goal/);
+});
