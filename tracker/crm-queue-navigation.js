@@ -116,15 +116,19 @@ const CrmQueues = {
     }
 
     list.innerHTML = families
-      .map(family => `
+      .map(family => {
+        const need = [family.city, family.main_need, family.sub_need].filter(Boolean).join(' · ');
+        return `
         <div class="family-item" data-lead-id="${family.id}" data-phase="${phaseId}">
           <p class="family-item-name">${family.name || 'Unnamed'}</p>
+          ${need ? `<p style="font-size:11px;color:var(--muted);margin:2px 0 0">${this.escapeHtml(need)}</p>` : ''}
           <div class="family-item-meta">
             <span class="family-item-operator">${this.operatorLabel(family.assigned_operator_id)}</span>
             <span class="family-item-time">${this.formatDate(family.created_at)}</span>
           </div>
         </div>
-      `)
+      `;
+      })
       .join('');
 
     // Bind click handlers
@@ -178,9 +182,14 @@ const CrmQueues = {
     panelName.textContent = lead.name || 'Unnamed';
 
     // Build panel content based on phase
+    const needLine = [lead.city, lead.main_need, lead.sub_need].filter(Boolean).join(' · ');
     let content = `
       <div class="panel-section">
         <h4 class="panel-section-title">Family Info</h4>
+        ${needLine ? `<div class="panel-info">
+          <div class="panel-info-label">Need</div>
+          <div class="panel-info-value">${this.escapeHtml(needLine)}</div>
+        </div>` : ''}
         <div class="panel-info">
           <div class="panel-info-label">Phone</div>
           <div class="panel-info-value">${lead.phone || '—'}</div>
@@ -250,6 +259,17 @@ const CrmQueues = {
         </div>
       `;
       content += this.contactActionsHtml(leadId, lead, false);
+    } else if (phaseId === 'resolved') {
+      // Resolving used to be a one-way door - no action here offered a way
+      // back if a case was resolved by mistake or needs to reopen.
+      content += `
+        <div class="panel-section assign-operator">
+          <label class="assign-label">Resolved</label>
+          <div class="assign-buttons">
+            <button class="btn secondary" data-action="reopen-case" data-lead-id="${leadId}">Reopen (return to follow-up)</button>
+          </div>
+        </div>
+      `;
     }
 
     // Call history only applies to real family_leads rows (not incomplete-
@@ -325,11 +345,19 @@ const CrmQueues = {
       // with the outcome it records, so the queue never shows a case that's
       // "moved on" with no call history to show for it.
       window.AqoonCallOutcomes?.callLead(lead?.id, lead?.name || 'Client', lead?.phone || '');
-    } else if (action === 'start-interview' || action === 'edit-intake') {
+    } else if (action === 'start-interview') {
       this.closeFamilyPanel();
       window.openInterview(leadId);
     } else if (action === 'mark-resolved') {
+      // Unlike delete-intake/remove-lead, this used to fire with no
+      // confirmation and no symmetric "reopen" action once resolved - a
+      // mis-click had no cheap way back.
+      if (!confirm('Mark ' + (lead?.name || 'this family') + ' resolved? This moves them out of the active queues.')) return;
       window.AqoonApp?.updateLead(leadId, {status: 'resolved'}).then(() => this.closeFamilyPanel());
+    } else if (action === 'reopen-case') {
+      window.AqoonApp?.updateLead(leadId, {status: 'contacted', journey_stage: 'guide'})
+        .then(() => this.closeFamilyPanel())
+        .catch(err => alert(err.message || 'Could not reopen this case.'));
     } else if (action === 'return-to-first-contact') {
       window.AqoonApp?.updateLead(leadId, {status: 'new', journey_stage: 'reach'})
         .then(() => this.closeFamilyPanel())

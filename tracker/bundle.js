@@ -567,7 +567,15 @@ const INPUTS={child_age_or_birth_date:['Child date of birth','date'],permanent_v
 function addMissing(candidates){const questions=$('questions');if(!questions)return;const keys=[...new Set(candidates.flatMap(c=>c.missing_fields||[]))];keys.forEach(key=>{if(!INPUTS[key]||questions.querySelector('[data-key="'+key+'"]'))return;const[label,type]=INPUTS[key],box=document.createElement('div');box.className='question match-extra';if(type==='select'){const options=key==='youngest_child_age'?['Under 3','3 or older','Not sure']:['Yes','No','Not sure'];box.innerHTML='<label>'+label+' <small style="color:#0A8F89">needed for matching</small></label><div class="choice-row" data-key="'+key+'">'+options.map(v=>'<button type="button" class="choice" data-value="'+v+'">'+v+'</button>').join('')+'</div>';box.querySelectorAll('.choice').forEach(button=>button.onclick=()=>{box.querySelectorAll('.choice').forEach(x=>x.classList.remove('on'));button.classList.add('on')})}else box.innerHTML='<label>'+label+' <small style="color:#0A8F89">needed for matching</small></label><input data-key="'+key+'" type="'+type+'">';questions.appendChild(box)})}
 function esc(value){return String(value||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function render(data){const el=host();if(!el)return;addMissing(data.candidates||[]);const cards=(data.candidates||[]).map(c=>{const title=c.route_key.replace(/^route\./,'').replaceAll('.',' · '),status=c.match_status==='does_not_fit'?'Does not fit from known facts':'Possible — must confirm',miss=c.missing_fields?.length?'<p><strong>Ask next:</strong> '+c.missing_fields.map(k=>esc(label(k,c.criteria||[]))).join(' · ')+'</p>':'<p><strong>Next:</strong> review the authority/provider confirmation.</p>',conf=c.conflicting_criteria?.length?'<p class="route-conflict">'+c.conflicting_criteria.map(esc).join(' ')+'</p>':'',steps=(c.steps||[]).slice(0,2).map(s=>'<li>'+esc(s)+'</li>').join(''),sources=(c.sources||[]).map(s=>'<a href="'+esc(s.url)+'" target="_blank" rel="noreferrer">'+esc(s.title||'Official source')+'</a>').join(' · '),disclosure=c.partner_disclosure_required?'<p class="route-disclosure">Partner/provider relationship must be disclosed before a referral.</p>':'';return '<article class="route-card"><div class="route-kicker">'+status+'</div><h3>'+esc(title)+'</h3>'+conf+miss+'<ol>'+steps+'</ol>'+disclosure+'<small>'+sources+'</small></article>'}).join('');el.classList.remove('hidden');el.innerHTML='<div class="route-preview-head"><div><span>Verified route preview</span><strong>Read-only — not an eligibility decision</strong></div><button type="button" class="btn secondary" id="refreshRoutePreview">Refresh</button></div>'+(cards||'<p class="muted">No verified route is mapped to this need yet.</p>');$('refreshRoutePreview')?.addEventListener('click',load)}
-async function load(){if(!leadId)return;const el=host();if(!el)return;el.classList.remove('hidden');el.innerHTML='<p class="muted">Checking current verified routes…</p>';try{render(await api({action:'match_preview',lead_id:leadId,answers:answers()}))}catch(error){el.innerHTML='<p class="route-conflict">'+esc(error.message)+'</p>'}}
+function interviewCompleted(){return (window.AqoonApp?.leads||[]).find(l=>l.id===leadId)?.interview_status==='completed'}
+async function load(){
+  if(!leadId)return;const el=host();if(!el)return;
+  // match_preview is server-gated on a completed interview (by design - a
+  // route match must never be produced from raw intake); on every other
+  // open this used to fetch anyway and show the raw "first_interview_required"
+  // error string to the operator. Skip the fetch and say why instead.
+  if(!interviewCompleted()){el.classList.remove('hidden');el.innerHTML='<p class="muted">Verified route preview appears here once this first interview is saved.</p>';return}
+  el.classList.remove('hidden');el.innerHTML='<p class="muted">Checking current verified routes…</p>';try{render(await api({action:'match_preview',lead_id:leadId,answers:answers()}))}catch(error){el.innerHTML='<p class="route-conflict">'+esc(error.message)+'</p>'}}
 function schedule(){clearTimeout(timer);timer=setTimeout(load,350)}
 // Same fix as interview-match.js: this only ever triggered off clicking a
 // [data-interview] element, which the queue redesign never creates.
@@ -575,6 +583,7 @@ const originalOpenForPreview=window.openInterview;
 window.openInterview=function(id){
   if(originalOpenForPreview)originalOpenForPreview.call(this,id);
   leadId=id||'';
+  $('routePreview')?.remove();
   setTimeout(load,450);
 };
 document.addEventListener('input',event=>{if(leadId&&event.target.closest('#questions'))schedule()});
@@ -1192,7 +1201,7 @@ const $=id=>document.getElementById(id);
 const esc=v=>String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
 
 const style=document.createElement('style');
-style.textContent=`.next-steps-panel{background:#fef8f3;border:1px solid #e4dfd3;border-radius:14px;padding:14px;margin:12px 0;margin-top:16px}.next-steps-title{font-size:11px;text-transform:uppercase;letter-spacing:.03em;font-weight:700;color:#333;margin-bottom:10px}.next-steps-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.next-step-card{background:#fff;border:1px solid #e4dfd3;border-radius:9px;padding:10px;font-size:12px;line-height:1.4;cursor:pointer;transition:all 120ms}.next-step-card:hover{background:#f9f8f6;border-color:#3a9b8a}.next-step-card.urgent{border-left:3px solid #d97560;background:#fef6f3}.next-step-icon{font-size:16px;margin-bottom:4px}.next-step-text{font-weight:600;color:#333;margin-bottom:2px}.next-step-hint{font-size:10px;color:#889;display:block;margin-top:4px}`;
+style.textContent=`.next-steps-panel{background:#fef8f3;border:1px solid #e4dfd3;border-radius:14px;padding:14px;margin:12px 0;margin-top:16px}.next-steps-title{font-size:11px;text-transform:uppercase;letter-spacing:.03em;font-weight:700;color:#333;margin-bottom:10px}.next-steps-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.next-step-card{background:#fff;border:1px solid #e4dfd3;border-radius:9px;padding:10px;font-size:12px;line-height:1.4;cursor:pointer;transition:all 120ms}.next-step-card:hover{background:#f9f8f6;border-color:#3a9b8a}.next-step-card.urgent{border-left:3px solid #d97560;background:#fef6f3}.next-step-icon{font-size:16px;margin-bottom:4px}.next-step-text{font-weight:600;color:#333;margin-bottom:2px}.next-step-hint{font-size:10px;color:#889;display:block;margin-top:4px}.next-step-highlight{outline:2px solid #3a9b8a;outline-offset:3px;border-radius:14px}`;
 document.head.appendChild(style);
 
 let nextStepsOpen=false;
@@ -1302,11 +1311,17 @@ function renderNextSteps(lead,currentAnswers,lifecycle){
 
 function handleAction(action,lead){
   switch(action){
-    case 'recordOutcome':
-      const outcomeBtn=document.querySelector('[data-action="record-outcome"]');
-      if(outcomeBtn)outcomeBtn.click();
-      else alert('Open case plan to record outcome.');
+    case 'recordOutcome': {
+      // There's no single "record outcome" button - case-lifecycle.js
+      // renders different action buttons (Submitted/Responded/Resolve/
+      // Close) depending on the case plan's current status. Point the
+      // operator at that panel instead of clicking a selector that never
+      // matched anything.
+      const panel=document.getElementById('caseLifecycle');
+      if(panel){panel.scrollIntoView({behavior:'smooth',block:'center'});panel.classList.add('next-step-highlight');setTimeout(()=>panel.classList.remove('next-step-highlight'),1500)}
+      else alert('Open the case plan below to record what happened.');
       break;
+    }
     case 'logNeeds':
       alert('Create opportunities for detected cross-service needs in the sales tab.');
       break;
@@ -1536,7 +1551,21 @@ function close(){$('incompleteDrawer')?.classList.add('hidden');document.body.st
 // wasted CrmQueues render against still-stale in-memory data a moment
 // before the real one, doubling the visible lag on every assign/remove/
 // finish/create action.
-async function save(){if(!active)return;const city=$('incCity').value.trim(),main=$('incMain').value,sub=$('incSub').value,age=main==='Carruur iyo skuul'?$('incAge').value:'';if(!city||!main||!sub){$('incErr').textContent='Add the city, main need and specific need first.';return}const btn=$('incSave');btn.disabled=true;btn.textContent='Saving…';$('incErr').textContent='';try{const result=await api({action:'complete',id:active.id,city,main_need:main,sub_need:sub,age_group:age||null});close();if(result.lead_id&&typeof window.openInterview==='function')window.openInterview(result.lead_id);const refresh=$('refresh');if(refresh)refresh.click()}catch(e){$('incErr').textContent=e.message||'Could not save.'}finally{btn.disabled=false;btn.textContent='Save & start first interview'}}
+async function save(){if(!active)return;const city=$('incCity').value.trim(),main=$('incMain').value,sub=$('incSub').value,age=main==='Carruur iyo skuul'?$('incAge').value:'';if(!city||!main||!sub){$('incErr').textContent='Add the city, main need and specific need first.';return}const btn=$('incSave');btn.disabled=true;btn.textContent='Saving…';$('incErr').textContent='';try{
+  const result=await api({action:'complete',id:active.id,city,main_need:main,sub_need:sub,age_group:age||null});
+  close();
+  // openInterview reads the lead straight out of window.AqoonApp.leads; a
+  // freshly-created lead isn't in that array yet at this exact moment (it
+  // only exists once refresh's own load() resolves), so calling it here
+  // used to silently no-op - the drawer never opened, with no error shown.
+  // Wait for the same 'dataUpdated' event that load() dispatches once the
+  // new lead is actually in memory, then open it.
+  if(result.lead_id&&typeof window.openInterview==='function'){
+    const openWhenReady=()=>{window.removeEventListener('dataUpdated',openWhenReady);window.openInterview(result.lead_id)};
+    window.addEventListener('dataUpdated',openWhenReady);
+  }
+  const refresh=$('refresh');if(refresh)refresh.click()
+}catch(e){$('incErr').textContent=e.message||'Could not save.'}finally{btn.disabled=false;btn.textContent='Save & start first interview'}}
 async function remove(contact,onDone){if(!confirm('Delete the unfinished intake for '+(contact.name||'this contact')+'? This removes the saved contact details and cannot be undone. Anonymous funnel counts stay intact.'))return;try{await api({action:'delete',id:contact.id});const refresh=$('refresh');if(refresh)refresh.click();if(onDone)onDone()}catch(e){alert(e.message||'Could not delete this unfinished intake.')}}
 async function assign(contact,operatorId,onDone){try{await api({action:'assign',id:contact.id,operator_id:operatorId});const refresh=$('refresh');if(refresh)refresh.click();if(onDone)onDone()}catch(e){alert(e.message||'Could not assign this intake.')}}
 // Called directly by the queue UI (crm-queue-navigation.js) with the partial
@@ -1980,15 +2009,19 @@ const CrmQueues = {
     }
 
     list.innerHTML = families
-      .map(family => `
+      .map(family => {
+        const need = [family.city, family.main_need, family.sub_need].filter(Boolean).join(' · ');
+        return `
         <div class="family-item" data-lead-id="${family.id}" data-phase="${phaseId}">
           <p class="family-item-name">${family.name || 'Unnamed'}</p>
+          ${need ? `<p style="font-size:11px;color:var(--muted);margin:2px 0 0">${this.escapeHtml(need)}</p>` : ''}
           <div class="family-item-meta">
             <span class="family-item-operator">${this.operatorLabel(family.assigned_operator_id)}</span>
             <span class="family-item-time">${this.formatDate(family.created_at)}</span>
           </div>
         </div>
-      `)
+      `;
+      })
       .join('');
 
     // Bind click handlers
@@ -2042,9 +2075,14 @@ const CrmQueues = {
     panelName.textContent = lead.name || 'Unnamed';
 
     // Build panel content based on phase
+    const needLine = [lead.city, lead.main_need, lead.sub_need].filter(Boolean).join(' · ');
     let content = `
       <div class="panel-section">
         <h4 class="panel-section-title">Family Info</h4>
+        ${needLine ? `<div class="panel-info">
+          <div class="panel-info-label">Need</div>
+          <div class="panel-info-value">${this.escapeHtml(needLine)}</div>
+        </div>` : ''}
         <div class="panel-info">
           <div class="panel-info-label">Phone</div>
           <div class="panel-info-value">${lead.phone || '—'}</div>
@@ -2114,6 +2152,17 @@ const CrmQueues = {
         </div>
       `;
       content += this.contactActionsHtml(leadId, lead, false);
+    } else if (phaseId === 'resolved') {
+      // Resolving used to be a one-way door - no action here offered a way
+      // back if a case was resolved by mistake or needs to reopen.
+      content += `
+        <div class="panel-section assign-operator">
+          <label class="assign-label">Resolved</label>
+          <div class="assign-buttons">
+            <button class="btn secondary" data-action="reopen-case" data-lead-id="${leadId}">Reopen (return to follow-up)</button>
+          </div>
+        </div>
+      `;
     }
 
     // Call history only applies to real family_leads rows (not incomplete-
@@ -2189,11 +2238,19 @@ const CrmQueues = {
       // with the outcome it records, so the queue never shows a case that's
       // "moved on" with no call history to show for it.
       window.AqoonCallOutcomes?.callLead(lead?.id, lead?.name || 'Client', lead?.phone || '');
-    } else if (action === 'start-interview' || action === 'edit-intake') {
+    } else if (action === 'start-interview') {
       this.closeFamilyPanel();
       window.openInterview(leadId);
     } else if (action === 'mark-resolved') {
+      // Unlike delete-intake/remove-lead, this used to fire with no
+      // confirmation and no symmetric "reopen" action once resolved - a
+      // mis-click had no cheap way back.
+      if (!confirm('Mark ' + (lead?.name || 'this family') + ' resolved? This moves them out of the active queues.')) return;
       window.AqoonApp?.updateLead(leadId, {status: 'resolved'}).then(() => this.closeFamilyPanel());
+    } else if (action === 'reopen-case') {
+      window.AqoonApp?.updateLead(leadId, {status: 'contacted', journey_stage: 'guide'})
+        .then(() => this.closeFamilyPanel())
+        .catch(err => alert(err.message || 'Could not reopen this case.'));
     } else if (action === 'return-to-first-contact') {
       window.AqoonApp?.updateLead(leadId, {status: 'new', journey_stage: 'reach'})
         .then(() => this.closeFamilyPanel())

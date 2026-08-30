@@ -29,7 +29,21 @@ function close(){$('incompleteDrawer')?.classList.add('hidden');document.body.st
 // wasted CrmQueues render against still-stale in-memory data a moment
 // before the real one, doubling the visible lag on every assign/remove/
 // finish/create action.
-async function save(){if(!active)return;const city=$('incCity').value.trim(),main=$('incMain').value,sub=$('incSub').value,age=main==='Carruur iyo skuul'?$('incAge').value:'';if(!city||!main||!sub){$('incErr').textContent='Add the city, main need and specific need first.';return}const btn=$('incSave');btn.disabled=true;btn.textContent='Saving…';$('incErr').textContent='';try{const result=await api({action:'complete',id:active.id,city,main_need:main,sub_need:sub,age_group:age||null});close();if(result.lead_id&&typeof window.openInterview==='function')window.openInterview(result.lead_id);const refresh=$('refresh');if(refresh)refresh.click()}catch(e){$('incErr').textContent=e.message||'Could not save.'}finally{btn.disabled=false;btn.textContent='Save & start first interview'}}
+async function save(){if(!active)return;const city=$('incCity').value.trim(),main=$('incMain').value,sub=$('incSub').value,age=main==='Carruur iyo skuul'?$('incAge').value:'';if(!city||!main||!sub){$('incErr').textContent='Add the city, main need and specific need first.';return}const btn=$('incSave');btn.disabled=true;btn.textContent='Saving…';$('incErr').textContent='';try{
+  const result=await api({action:'complete',id:active.id,city,main_need:main,sub_need:sub,age_group:age||null});
+  close();
+  // openInterview reads the lead straight out of window.AqoonApp.leads; a
+  // freshly-created lead isn't in that array yet at this exact moment (it
+  // only exists once refresh's own load() resolves), so calling it here
+  // used to silently no-op - the drawer never opened, with no error shown.
+  // Wait for the same 'dataUpdated' event that load() dispatches once the
+  // new lead is actually in memory, then open it.
+  if(result.lead_id&&typeof window.openInterview==='function'){
+    const openWhenReady=()=>{window.removeEventListener('dataUpdated',openWhenReady);window.openInterview(result.lead_id)};
+    window.addEventListener('dataUpdated',openWhenReady);
+  }
+  const refresh=$('refresh');if(refresh)refresh.click()
+}catch(e){$('incErr').textContent=e.message||'Could not save.'}finally{btn.disabled=false;btn.textContent='Save & start first interview'}}
 async function remove(contact,onDone){if(!confirm('Delete the unfinished intake for '+(contact.name||'this contact')+'? This removes the saved contact details and cannot be undone. Anonymous funnel counts stay intact.'))return;try{await api({action:'delete',id:contact.id});const refresh=$('refresh');if(refresh)refresh.click();if(onDone)onDone()}catch(e){alert(e.message||'Could not delete this unfinished intake.')}}
 async function assign(contact,operatorId,onDone){try{await api({action:'assign',id:contact.id,operator_id:operatorId});const refresh=$('refresh');if(refresh)refresh.click();if(onDone)onDone()}catch(e){alert(e.message||'Could not assign this intake.')}}
 // Called directly by the queue UI (crm-queue-navigation.js) with the partial

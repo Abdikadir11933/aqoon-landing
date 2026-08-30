@@ -11,7 +11,15 @@ const INPUTS={child_age_or_birth_date:['Child date of birth','date'],permanent_v
 function addMissing(candidates){const questions=$('questions');if(!questions)return;const keys=[...new Set(candidates.flatMap(c=>c.missing_fields||[]))];keys.forEach(key=>{if(!INPUTS[key]||questions.querySelector('[data-key="'+key+'"]'))return;const[label,type]=INPUTS[key],box=document.createElement('div');box.className='question match-extra';if(type==='select'){const options=key==='youngest_child_age'?['Under 3','3 or older','Not sure']:['Yes','No','Not sure'];box.innerHTML='<label>'+label+' <small style="color:#0A8F89">needed for matching</small></label><div class="choice-row" data-key="'+key+'">'+options.map(v=>'<button type="button" class="choice" data-value="'+v+'">'+v+'</button>').join('')+'</div>';box.querySelectorAll('.choice').forEach(button=>button.onclick=()=>{box.querySelectorAll('.choice').forEach(x=>x.classList.remove('on'));button.classList.add('on')})}else box.innerHTML='<label>'+label+' <small style="color:#0A8F89">needed for matching</small></label><input data-key="'+key+'" type="'+type+'">';questions.appendChild(box)})}
 function esc(value){return String(value||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function render(data){const el=host();if(!el)return;addMissing(data.candidates||[]);const cards=(data.candidates||[]).map(c=>{const title=c.route_key.replace(/^route\./,'').replaceAll('.',' · '),status=c.match_status==='does_not_fit'?'Does not fit from known facts':'Possible — must confirm',miss=c.missing_fields?.length?'<p><strong>Ask next:</strong> '+c.missing_fields.map(k=>esc(label(k,c.criteria||[]))).join(' · ')+'</p>':'<p><strong>Next:</strong> review the authority/provider confirmation.</p>',conf=c.conflicting_criteria?.length?'<p class="route-conflict">'+c.conflicting_criteria.map(esc).join(' ')+'</p>':'',steps=(c.steps||[]).slice(0,2).map(s=>'<li>'+esc(s)+'</li>').join(''),sources=(c.sources||[]).map(s=>'<a href="'+esc(s.url)+'" target="_blank" rel="noreferrer">'+esc(s.title||'Official source')+'</a>').join(' · '),disclosure=c.partner_disclosure_required?'<p class="route-disclosure">Partner/provider relationship must be disclosed before a referral.</p>':'';return '<article class="route-card"><div class="route-kicker">'+status+'</div><h3>'+esc(title)+'</h3>'+conf+miss+'<ol>'+steps+'</ol>'+disclosure+'<small>'+sources+'</small></article>'}).join('');el.classList.remove('hidden');el.innerHTML='<div class="route-preview-head"><div><span>Verified route preview</span><strong>Read-only — not an eligibility decision</strong></div><button type="button" class="btn secondary" id="refreshRoutePreview">Refresh</button></div>'+(cards||'<p class="muted">No verified route is mapped to this need yet.</p>');$('refreshRoutePreview')?.addEventListener('click',load)}
-async function load(){if(!leadId)return;const el=host();if(!el)return;el.classList.remove('hidden');el.innerHTML='<p class="muted">Checking current verified routes…</p>';try{render(await api({action:'match_preview',lead_id:leadId,answers:answers()}))}catch(error){el.innerHTML='<p class="route-conflict">'+esc(error.message)+'</p>'}}
+function interviewCompleted(){return (window.AqoonApp?.leads||[]).find(l=>l.id===leadId)?.interview_status==='completed'}
+async function load(){
+  if(!leadId)return;const el=host();if(!el)return;
+  // match_preview is server-gated on a completed interview (by design - a
+  // route match must never be produced from raw intake); on every other
+  // open this used to fetch anyway and show the raw "first_interview_required"
+  // error string to the operator. Skip the fetch and say why instead.
+  if(!interviewCompleted()){el.classList.remove('hidden');el.innerHTML='<p class="muted">Verified route preview appears here once this first interview is saved.</p>';return}
+  el.classList.remove('hidden');el.innerHTML='<p class="muted">Checking current verified routes…</p>';try{render(await api({action:'match_preview',lead_id:leadId,answers:answers()}))}catch(error){el.innerHTML='<p class="route-conflict">'+esc(error.message)+'</p>'}}
 function schedule(){clearTimeout(timer);timer=setTimeout(load,350)}
 // Same fix as interview-match.js: this only ever triggered off clicking a
 // [data-interview] element, which the queue redesign never creates.
@@ -19,6 +27,7 @@ const originalOpenForPreview=window.openInterview;
 window.openInterview=function(id){
   if(originalOpenForPreview)originalOpenForPreview.call(this,id);
   leadId=id||'';
+  $('routePreview')?.remove();
   setTimeout(load,450);
 };
 document.addEventListener('input',event=>{if(leadId&&event.target.closest('#questions'))schedule()});
