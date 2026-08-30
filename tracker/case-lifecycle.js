@@ -69,8 +69,10 @@ async function runAction(action,planId){
       await api(END_LIFECYCLE,{action:'log_event',lead_id:leadId,case_plan_id:plan.id,event_type:'official_response_received'});
       await submitPlanUpdate(plan,{plan_status:'persistence_check'});
     }else if(action==='resolve'){
-      if(!confirm('Mark this case plan resolved?'))return;
-      await api(END_LIFECYCLE,{action:'log_event',lead_id:leadId,case_plan_id:plan.id,event_type:'case_resolved'});
+      const note=(prompt('What was the outcome? Include the agreed plan, who confirmed it, and any evidence or follow-up needed.')||'').trim();
+      if(!note)return;
+      if(!confirm('Mark this case plan resolved and save the outcome note?'))return;
+      await api(END_LIFECYCLE,{action:'log_event',lead_id:leadId,case_plan_id:plan.id,event_type:'case_resolved',note});
       await submitPlanUpdate(plan,{plan_status:'resolved'});
     }else if(action==='close'){
       const reason=(prompt('Why is this case plan closing without a resolution? (e.g. family unreachable, withdrew, no longer eligible)')||'').trim();

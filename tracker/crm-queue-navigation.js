@@ -184,8 +184,8 @@ const CrmQueues = {
     // Build panel content based on phase
     const needLine = [lead.city, lead.main_need, lead.sub_need].filter(Boolean).join(' · ');
     let content = `
-      <div class="panel-section">
-        <h4 class="panel-section-title">Family Info</h4>
+      <details class="panel-section family-info-collapsed">
+        <summary class="panel-section-title">Family Info</summary>
         ${needLine ? `<div class="panel-info">
           <div class="panel-info-label">Need</div>
           <div class="panel-info-value">${this.escapeHtml(needLine)}</div>
@@ -202,7 +202,7 @@ const CrmQueues = {
           <div class="panel-info-label">Current operator</div>
           <div class="panel-info-value">${this.operatorLabel(lead.assigned_operator_id)}</div>
         </div>
-      </div>
+      </details>
     `;
     const attrib = window.AqoonOperators?.attribFor(leadId);
     const lastTouchedName = attrib?.last_actor_id ? window.AqoonOperators?.nameFor(attrib.last_actor_id) : '';
@@ -245,6 +245,22 @@ const CrmQueues = {
           </div>
         </div>
       `;
+      if (lead.interview_status === 'completed' && lead.latest_interview) {
+        const interview = lead.latest_interview;
+        const recap = interview.summary || 'Interview saved — review the recorded answers.';
+        const brief = interview.research_prompt || '';
+        const routeLine = interview.interview_type ? interview.interview_type.split('+').join(' · ') : '';
+        content += `
+          <div class="panel-section interview-recap">
+            <h4 class="panel-section-title">First interview recap</h4>
+            ${routeLine ? `<p class="contact-action-note"><strong>Topics:</strong> ${this.escapeHtml(routeLine)}</p>` : ''}
+            <p class="interview-recap-summary">${this.escapeHtml(recap)}</p>
+            ${interview.next_action ? `<p class="contact-action-note"><strong>Next action:</strong> ${this.escapeHtml(interview.next_action)}</p>` : ''}
+            ${brief ? `<details class="interview-recap-brief"><summary>Research brief & evidence links</summary><pre>${this.escapeHtml(brief.slice(0, 1600))}${brief.length > 1600 ? '\\n…' : ''}</pre></details>` : ''}
+            <button class="btn secondary" data-action="start-interview" data-lead-id="${leadId}">View full interview</button>
+          </div>
+        `;
+      }
       content += this.contactActionsHtml(leadId, lead, false);
     } else if (phaseId === 'in_progress') {
       content += `
@@ -253,7 +269,7 @@ const CrmQueues = {
           <div class="assign-buttons">
             <button class="btn secondary" data-action="assign-to-me" data-lead-id="${leadId}">Assign to me</button>
             <button class="btn secondary" data-action="start-interview" data-lead-id="${leadId}">${lead.interview_status === 'completed' ? 'Review interview' : 'Start first interview'}</button>
-            ${lead.interview_status === 'completed' ? '<button class="btn primary" data-action="mark-resolved" data-lead-id="' + leadId + '">Mark resolved</button>' : '<button class="btn secondary" data-action="return-to-first-contact" data-lead-id="' + leadId + '">Return to first contact</button>'}
+            ${lead.interview_status === 'completed' ? '<button class="btn primary" data-action="mark-resolved" data-lead-id="' + leadId + '">Open resolution</button>' : '<button class="btn secondary" data-action="return-to-first-contact" data-lead-id="' + leadId + '">Return to first contact</button>'}
           </div>
           ${lead.interview_status === 'completed' ? '' : '<p class="contact-action-note">This legacy case reached the follow-up queue without a completed interview. Return it to First contact before continuing.</p>'}
         </div>
@@ -288,6 +304,10 @@ const CrmQueues = {
 
     panelContent.innerHTML = content;
 
+    if (phaseId === 'in_progress' && lead.interview_status === 'completed') {
+      this.renderDecisionBrief(panelContent, lead);
+    }
+
     if (phaseId !== 'incomplete') {
       window.AqoonCallHistory?.renderInto(document.getElementById('panelCallHistory'), leadId);
     }
@@ -303,6 +323,38 @@ const CrmQueues = {
 
     // Show panel
     panel.classList.remove('hidden');
+  },
+
+  renderDecisionBrief(panelContent, lead) {
+    const interview = lead.latest_interview || {};
+    const answers = interview.answers && typeof interview.answers === 'object' ? interview.answers : {};
+    const route = interview.interview_type ? interview.interview_type.split('+').join(' · ') : 'Interview complete';
+    const context = ['case_subject','current_situation','immediate_goal','child_stage','household_schedule','primary_situation','work_intent','study_path','availability','start_when','travel_limit']
+      .filter(k => answers[k]).map(k => this.escapeHtml(String(answers[k]))).join(' · ');
+    const brief = document.createElement('section');
+    brief.className = 'panel-section decision-brief';
+    brief.innerHTML = `<h4 class="panel-section-title">Decision brief</h4>
+      <p class="decision-brief-route"><strong>${this.escapeHtml(route)}</strong></p>
+      <p class="decision-brief-summary">${this.escapeHtml(interview.summary || 'Interview saved. Research recommendation is still being prepared.')}</p>
+      ${context ? `<p class="decision-brief-context"><strong>Situation:</strong> ${context}</p>` : ''}
+      ${interview.next_action ? `<p class="decision-brief-next"><strong>Next action:</strong> ${this.escapeHtml(interview.next_action)}</p>` : '<p class="decision-brief-next muted">Next action not recorded yet.</p>'}
+      <details class="decision-brief-evidence"><summary>Evidence and research brief</summary><div class="decision-brief-evidence-body"><p class="muted">Loading current case evidence…</p></div></details>`;
+    panelContent.prepend(brief);
+    const password = sessionStorage.getItem('aqoon_tracker_password') || '';
+    fetch('https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-case-lifecycle-admin', {
+      method:'POST', headers:{'Content-Type':'application/json','x-tracker-password':password},
+      body:JSON.stringify({action:'list',lead_id:lead.id}), cache:'no-store'
+    }).then(r=>r.json()).then(data=>{
+      const box=brief.querySelector('.decision-brief-evidence-body');
+      if(!box)return;
+      const plan=(data.plans||[]).find(p=>!['resolved','closed_unresolved'].includes(p.plan_status)) || (data.plans||[])[0];
+      const run=(data.match_runs||[])[0];
+      const links=(interview.research_prompt||'').match(/https?:\/\/[^\s)]+/g)||[];
+      box.innerHTML=(plan?`<p><strong>Plan:</strong> ${this.escapeHtml(plan.title||'Case plan')} · ${this.escapeHtml(plan.plan_status||'research')}${plan.next_action?' · '+this.escapeHtml(plan.next_action):''}</p>`:'<p class="muted">No case plan has been created yet.</p>')+
+        (run?.recommended_next_action?`<p><strong>Matched next action:</strong> ${this.escapeHtml(run.recommended_next_action)}</p>`:'')+
+        (links.length?'<p><strong>Sources:</strong> '+links.slice(0,3).map(u=>`<a href="${this.escapeHtml(u)}" target="_blank" rel="noreferrer">Official source</a>`).join(' · ')+'</p>':'')+
+        (interview.research_prompt?`<details><summary>Raw research brief</summary><pre>${this.escapeHtml(interview.research_prompt.slice(0,1600))}${interview.research_prompt.length>1600?'\n…':''}</pre></details>`:'');
+    }).catch(()=>{});
   },
 
   handleAction(action, leadId) {
@@ -349,11 +401,12 @@ const CrmQueues = {
       this.closeFamilyPanel();
       window.openInterview(leadId);
     } else if (action === 'mark-resolved') {
-      // Unlike delete-intake/remove-lead, this used to fire with no
-      // confirmation and no symmetric "reopen" action once resolved - a
-      // mis-click had no cheap way back.
-      if (!confirm('Mark ' + (lead?.name || 'this family') + ' resolved? This moves them out of the active queues.')) return;
-      window.AqoonApp?.updateLead(leadId, {status: 'resolved'}).then(() => this.closeFamilyPanel());
+      const note=(prompt('What was the outcome? Include the agreed plan, who confirmed it, and any evidence or follow-up needed.')||'').trim();
+      if (!note) return;
+      if (!confirm('Mark ' + (lead?.name || 'this family') + ' resolved and save the outcome note?')) return;
+      window.AqoonApp?.updateLead(leadId, {status: 'resolved', notes: note})
+        .then(() => this.closeFamilyPanel())
+        .catch(err => alert(err.message || 'Could not resolve this case.'));
     } else if (action === 'reopen-case') {
       window.AqoonApp?.updateLead(leadId, {status: 'contacted', journey_stage: 'guide'})
         .then(() => this.closeFamilyPanel())

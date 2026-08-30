@@ -34,13 +34,19 @@ function suggest(){const notes=$("#iNotes")?.value.trim(),out=$("#noteSuggestion
   out.innerHTML=found.length?`<small>Suggestions only — approve each one. Original notes stay unchanged.</small>`+found.map((x,i)=>`<div class="suggestion" data-suggestion="${i}"><p><strong>${esc(x.label)}</strong><br>${esc(x.value)} <span class="muted">from “${esc(x.sentence)}”</span></p><button type="button">Apply</button></div>`).join(""):`<div class="empty">No safe structured suggestions found. Keep the notes and tap the answer choices directly.</div>`;out.classList.remove("hidden");out.querySelectorAll("[data-suggestion]").forEach(el=>el.querySelector("button").onclick=()=>{const x=found[Number(el.dataset.suggestion)],b=[...x.row.querySelectorAll(".choice")].find(v=>v.dataset.value===x.value);b?.click();el.classList.add("applied");el.querySelector("button").textContent="Applied ✓"})
 }
 function start(){
+  const notesLabel=document.querySelector('label[for="iNotes"]');
+  if(notesLabel)notesLabel.textContent='Additional information / specify';
+  const notesHint=document.querySelector('#iNotes')?.previousElementSibling;
+  if(notesHint)notesHint.textContent='Write or dictate anything important in the family’s own words. AQOON keeps this context with the quick answers and uses both when preparing the research brief.';
+  document.querySelector('#structureNotes')?.remove();
+  document.querySelector('#noteSuggestions')?.remove();
   const originalOpenForNotes=window.openInterview;
   window.openInterview=function(id){
     if(originalOpenForNotes)originalOpenForNotes.call(this,id);
     leadId=id||"";
     setTimeout(restore,120);
   };
-  document.addEventListener("click",e=>{if(e.target.closest("#structureNotes"))suggest();if(e.target.closest("#saveInterview"))setTimeout(()=>{if(!$("#promptWrap")?.classList.contains("hidden")){localStorage.removeItem(key());status("Saved to the family record")}},900)});
+  document.addEventListener("click",e=>{if(e.target.closest("#saveInterview"))setTimeout(()=>{if(!$("#promptWrap")?.classList.contains("hidden")){localStorage.removeItem(key());status("Saved to the family record")}},900)});
   $("#iNotes")?.addEventListener("input",saveDraft);
 }
 document.readyState==="loading"?document.addEventListener("DOMContentLoaded",start):start();
