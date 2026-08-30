@@ -81,7 +81,7 @@ for asset in ("/caawi/app.css", "/caawi/app.js"):
         fail(f"caawi/index.html does not reference {asset}")
 if re.search(r"<style(?:\s|>)", caawi, re.I):
     fail("caawi styles should stay in caawi/app.css, not inline")
-if re.search(r"<script(?![^>]*\bsrc=)[^>]*>", caawi, re.I):
+if re.search(r'<script(?![^>]*\bsrc=)(?![^>]*type="application/ld\+json")[^>]*>', caawi, re.I):
     fail("caawi application JavaScript should stay in caawi/app.js, not inline")
 for endpoint in ("family-intake-contact", "family-intake-submit", "family-funnel-track"):
     if endpoint not in caawi_js:
