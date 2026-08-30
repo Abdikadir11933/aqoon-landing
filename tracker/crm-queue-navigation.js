@@ -401,10 +401,16 @@ const CrmQueues = {
       this.closeFamilyPanel();
       window.openInterview(leadId);
     } else if (action === 'mark-resolved') {
+      // Goes through case-lifecycle.js's resolveActivePlan() - the same
+      // log_event + save_plan calls the case-plan panel's own Resolve
+      // button uses - instead of writing family_leads.status directly, so
+      // every resolution leaves a family_case_events trace and a plan
+      // record, whichever screen it was resolved from (ADR 0003 §5 defect
+      // #2).
       const note=(prompt('What was the outcome? Include the agreed plan, who confirmed it, and any evidence or follow-up needed.')||'').trim();
       if (!note) return;
       if (!confirm('Mark ' + (lead?.name || 'this family') + ' resolved and save the outcome note?')) return;
-      window.AqoonApp?.updateLead(leadId, {status: 'resolved', notes: note})
+      (window.AqoonCaseLifecycle?.resolveActivePlan(leadId, note) || Promise.reject(new Error('Case lifecycle module not loaded.')))
         .then(() => this.closeFamilyPanel())
         .catch(err => alert(err.message || 'Could not resolve this case.'));
     } else if (action === 'reopen-case') {

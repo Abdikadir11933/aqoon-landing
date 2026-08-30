@@ -1017,7 +1017,30 @@ window.openInterview=function(id){
   leadId=id||'';
   setTimeout(load,450);
 };
-window.AqoonCaseLifecycle={logInterviewCompleted:id=>id?api(END_LIFECYCLE,{action:'log_event',lead_id:id,event_type:'interview_completed'}).catch(()=>{}):Promise.resolve()};
+// crm-queue-navigation.js's "Open resolution" button used to call
+// AqoonApp.updateLead(leadId,{status:'resolved',notes}) directly - a bare
+// family_leads write with no family_case_plans/family_case_events trace at
+// all (ADR 0003 - docs/decisions/0003-canonical-family-journey-lifecycle.md
+// - §5 defect #2: "Resolution bypasses the plan lifecycle"). That queue
+// screen has no plan list of its own to drive the normal resolve button
+// through, so give it this instead: resolve the family's active plan the
+// same way the case-plan panel's own Resolve button does (same log_event +
+// save_plan calls, so family_leads.status is set by the existing atomic
+// fix, not a second bespoke write). If the family never had a plan at all,
+// create a minimal one first rather than resolving nothing - the note still
+// ends up on a real case_resolved event instead of vanishing into a bare
+// notes field no other screen reads.
+async function resolveActivePlan(leadId,note){
+  const data=await api(END_LIFECYCLE,{action:'list',lead_id:leadId});
+  let plan=(data.plans||[]).find(p=>p.plan_status!=='resolved'&&p.plan_status!=='closed_unresolved');
+  if(!plan){
+    const created=await api(END_LIFECYCLE,{action:'save_plan',lead_id:leadId,title:'Resolved from Families queue (no case plan was started first)'});
+    plan=created.plan;
+  }
+  await api(END_LIFECYCLE,{action:'log_event',lead_id:leadId,case_plan_id:plan.id,event_type:'case_resolved',note});
+  return api(END_LIFECYCLE,{action:'save_plan',lead_id:leadId,id:plan.id,title:plan.title,official_decision_maker:plan.official_decision_maker,selected_option:plan.selected_option,plan_status:'resolved',next_action:plan.next_action,next_follow_up_at:plan.next_follow_up_at});
+}
+window.AqoonCaseLifecycle={logInterviewCompleted:id=>id?api(END_LIFECYCLE,{action:'log_event',lead_id:id,event_type:'interview_completed'}).catch(()=>{}):Promise.resolve(),resolveActivePlan};
 })();
 
 // ---- scenario-learning.js ----
@@ -2404,10 +2427,16 @@ const CrmQueues = {
       this.closeFamilyPanel();
       window.openInterview(leadId);
     } else if (action === 'mark-resolved') {
+      // Goes through case-lifecycle.js's resolveActivePlan() - the same
+      // log_event + save_plan calls the case-plan panel's own Resolve
+      // button uses - instead of writing family_leads.status directly, so
+      // every resolution leaves a family_case_events trace and a plan
+      // record, whichever screen it was resolved from (ADR 0003 §5 defect
+      // #2).
       const note=(prompt('What was the outcome? Include the agreed plan, who confirmed it, and any evidence or follow-up needed.')||'').trim();
       if (!note) return;
       if (!confirm('Mark ' + (lead?.name || 'this family') + ' resolved and save the outcome note?')) return;
-      window.AqoonApp?.updateLead(leadId, {status: 'resolved', notes: note})
+      (window.AqoonCaseLifecycle?.resolveActivePlan(leadId, note) || Promise.reject(new Error('Case lifecycle module not loaded.')))
         .then(() => this.closeFamilyPanel())
         .catch(err => alert(err.message || 'Could not resolve this case.'));
     } else if (action === 'reopen-case') {
