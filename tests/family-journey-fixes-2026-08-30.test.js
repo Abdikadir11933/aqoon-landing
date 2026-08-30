@@ -61,8 +61,8 @@ test('the public intake request id survives a closed tab, bounded by a TTL so an
   assert.match(app, /function getRequestId\(\)/);
   assert.match(app, /function setRequestId\(rid\)/);
   assert.match(app, /INTAKE_REQUEST_TTL_MS/);
-  assert.match(app, /localStorage\.setItem\('aqoon_intake_request'/);
-  assert.match(app, /localStorage\.removeItem\('aqoon_intake_request'\)/);
+  assert.match(app, /set\('aqoon_intake_request',rid\+'\|'\+Date\.now\(\),local\)/);
+  assert.match(app, /local\.removeItem\('aqoon_intake_request'\)/);
 });
 
 test('resolving a case plan atomically resolves the CRM lead in the same request', () => {
