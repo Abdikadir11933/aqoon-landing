@@ -77,3 +77,12 @@ test('saved interview summary is plain-language context, not a technical route c
   assert.match(interview, /summary:summary\(a\)/);
   assert.doesNotMatch(interview, /summary:'Routes: '\+C\.routes/);
 });
+
+test('education interviews distinguish entry reason and study barriers', () => {
+  const interview = read('tracker/interview-match.js');
+  assert.match(interview, /education_entry_reason/);
+  assert.match(interview, /education_barriers/);
+  assert.match(interview, /Starting first Finnish study/);
+  assert.match(interview, /Changing study path/);
+  assert.match(interview, /study barriers: '\+\(Array\.isArray\(a\.education_barriers\)/);
+});
