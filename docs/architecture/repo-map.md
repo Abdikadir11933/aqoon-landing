@@ -64,6 +64,6 @@ Prefer adding a deterministic check when a rule can be tested automatically; pro
 
 Supabase is the source of truth for family operational data. Personal interviews remain private. Reusable scenario knowledge is generalized and PII-free. Browser code must not contain service-role credentials or expose family data through unauthenticated reads.
 
-The canonical business model is `docs/architecture/business-operating-model.md`. The current two-operator evolution brief is `docs/briefs/aqoon-two-operator-os-v2-fast-start.md`. Neither file overrides runtime truth: tracker behaviour is what the deployed code, Edge Functions and production schema actually implement.
+The canonical business model is `docs/architecture/business-operating-model.md`. The current two-operator evolution brief is `docs/briefs/aqoon-two-operator-os-v2-fast-start.md`. The concrete field-by-field inventory of the public intake and first interview, and how each currently-seeded verified route resolves its required facts against them, is `docs/architecture/interview-and-intake-field-reference.md`. Neither file overrides runtime truth: tracker behaviour is what the deployed code, Edge Functions and production schema actually implement.
 
 Vercel hosts the public/static application. A Git commit is not equivalent to a production release; the intended commit must be deployed and READY before it is described as live.
