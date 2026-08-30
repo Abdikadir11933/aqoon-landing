@@ -63,6 +63,9 @@
 .ops-timeline{margin:0;border:0;padding:4px 0}.timeline-row{padding:8px 1px;margin:0;border-bottom:1px solid var(--l)}
 .activity-composer{margin-top:12px;padding:11px;border-radius:14px;background:#fff;border:1px solid var(--l)}
 .compact-empty{padding:16px 6px;font-size:9px}
+.interview-recap-summary{font-size:12px;line-height:1.45;margin:6px 0;color:var(--n)}
+.interview-recap-brief{margin:8px 0}.interview-recap-brief summary{font-size:10px;font-weight:700;cursor:pointer;color:var(--td)}
+.interview-recap-brief pre{white-space:pre-wrap;max-height:220px;overflow:auto;background:#f7f4ed;border-radius:9px;padding:9px;font:10px/1.4 var(--b);color:var(--m)}
 
 @media(min-width:700px){
   .today-flow-grid{grid-template-columns:1fr 1.25fr}.today-flow-grid .command-card{height:100%}
