@@ -1,7 +1,6 @@
 (()=>{'use strict';
-const ADMIN='https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-leads-admin';
 const SCEN='https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-scenario-admin';
-let activeLeadId=null,capturedAnswers={},tries=0,current=null;
+let current=null;
 const $=id=>document.getElementById(id);
 const esc=v=>String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
 function pw(){return sessionStorage.getItem('aqoon_tracker_password')||''}
@@ -15,7 +14,7 @@ function render(m,originalPrompt,interviewId){const box=ensureUI();if(!box)retur
 const stale=m.match_status==='possible_match';box.innerHTML=stale?'<strong>↻ Similar scenario found, but it needs rechecking.</strong><p style="margin:5px 0 0">Use the old knowledge as a starting point, then verify what changed.</p>':'<strong>＋ New reusable scenario.</strong><p style="margin:5px 0 0">Deep research will create the first verified answer, so the next matching family can reuse it.</p>';if(prompt&&!prompt.textContent.includes('AQOON KNOWLEDGE-CAPTURE REQUIREMENT'))prompt.textContent=(originalPrompt||prompt.textContent)+researchContract();if(copy)copy.textContent='Copy complete research brief';if(cap)cap.classList.remove('hidden')}
 function parseBlock(t){const m=t.match(/AQOON_SCENARIO_JSON\s*```(?:json)?\s*([\s\S]*?)```/i);if(m)return JSON.parse(m[1]);const s=t.trim();if(s.startsWith('{')&&s.endsWith('}'))return JSON.parse(s);throw Error('The research answer is missing the AQOON_SCENARIO_JSON block. Copy the full completed research answer.')}
 async function saveResearch(){if(!current?.scenario?.id||!current.interviewId)return;const btn=$('saveScenarioResearch'),msg=$('scenarioSaveMsg'),report=String($('scenarioResearchPaste')?.value||'').trim();if(!report){msg.textContent='Paste the completed research first.';return}btn.disabled=true;msg.textContent='Saving and verifying structure…';try{const structured=parseBlock(report);const d=await call(SCEN,{action:'save_research',scenario_id:current.scenario.id,interview_id:current.interviewId,report,structured});msg.textContent='Saved ✓ This scenario is now reusable.';render({match_status:'matched',scenario:d.scenario},'',current.interviewId)}catch(e){msg.textContent=e.message}finally{btn.disabled=false}}
-async function sync(){const wrap=$('promptWrap'),prompt=$('promptBox');if(!activeLeadId||!wrap||wrap.classList.contains('hidden')||!prompt?.textContent){if(tries++<8)setTimeout(sync,350);return}tries=0;const original=prompt.textContent;try{const d=await call(ADMIN,{action:'list'}),lead=(d.leads||[]).find(x=>x.id===activeLeadId),interview=lead?.latest_interview||(d.interviews||[]).find(x=>x.lead_id===activeLeadId);if(!lead||!interview)return;const m=await call(SCEN,{action:'match_scenario',lead_id:activeLeadId,interview_id:interview.id,route:interview.interview_type,answers:capturedAnswers,research_prompt:original});render(m,original,interview.id)}catch(e){const box=ensureUI();if(box){box.innerHTML='<strong>Interview saved.</strong><p style="margin:5px 0 0">Scenario matching could not finish: '+esc(e.message)+'. The existing tracker flow is unchanged.</p>'}}}
+async function syncSaved(detail){const lead=detail?.lead,interview=detail?.interview,answers=detail?.answers||{},original=detail?.researchPrompt||$('promptBox')?.textContent||'';if(!lead?.id||!interview?.id||!original)return;try{const m=await call(SCEN,{action:'match_scenario',lead_id:lead.id,interview_id:interview.id,route:interview.interview_type,answers,research_prompt:original});render(m,original,interview.id)}catch(e){const box=ensureUI();if(box){box.innerHTML='<strong>Interview saved.</strong><p style="margin:5px 0 0">Scenario matching could not finish: '+esc(e.message)+'. The existing tracker flow is unchanged.</p>'}}}
 const originalOpenForScenario=window.openInterview;
 window.openInterview=function(id){
   if(originalOpenForScenario)originalOpenForScenario.call(this,id);
@@ -23,5 +22,5 @@ window.openInterview=function(id){
   const old=$('scenarioResult');if(old)old.remove();
   const cap=$('scenarioCapture');if(cap)cap.remove();
 };
-document.addEventListener('click',e=>{if(e.target.closest('#saveInterview')){capturedAnswers=collect();tries=0;setTimeout(sync,450)}},true);
+window.addEventListener('aqoon:interview-saved',event=>syncSaved(event.detail));
 })();

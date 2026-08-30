@@ -1,8 +1,8 @@
 (()=>{'use strict';
 const END='https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-leads-admin';
-let password='',leads=[],partials=[],analytics={},programs=[],activeLead=null,answers={},activeQuestions=[],loading=null;
+let password='',leads=[],partials=[],interviews=[],analytics={},programs=[],activeLead=null,answers={},activeQuestions=[],loading=null;
 window.AqoonInterview={activeLead:null,currentAnswers:{},announceSaved:detail=>window.dispatchEvent(new CustomEvent('aqoon:interview-saved',{detail}))};
-window.AqoonApp={get leads(){return leads},get partials(){return partials},get programs(){return programs},updateLead:(id,patch)=>updateLead(id,patch)};
+window.AqoonApp={get leads(){return leads},get partials(){return partials},get interviews(){return interviews},get programs(){return programs},updateLead:(id,patch)=>updateLead(id,patch)};
 const $=id=>document.getElementById(id);
 const esc=v=>String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
 function api(body){return fetch(END,{method:'POST',headers:{'Content-Type':'application/json','x-tracker-password':password},body:JSON.stringify(body)}).then(async r=>{let d={};try{d=await r.json()}catch{}if(r.status===401){lock();throw Error('Password expired or incorrect')}if(!r.ok)throw Error(d.detail||d.error||'Request failed');return d})}
@@ -12,7 +12,7 @@ function fmtDay(v){try{return new Intl.DateTimeFormat('fi-FI',{day:'numeric',mon
 function err(m){$('err').textContent=m||'';$('err').classList.toggle('hidden',!m)}
 function lock(){sessionStorage.removeItem('aqoon_tracker_password');password='';$('app').classList.add('hidden');$('lock').classList.remove('hidden')}
 function tab(n){document.querySelectorAll('.view').forEach(x=>x.classList.add('hidden'));$(n).classList.remove('hidden');document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.tab===n));window.scrollTo(0,0)}
-function load(){if(loading)return loading;err('');loading=Promise.all([api({action:'list'}),api({action:'analytics',days:Number($('days').value)}),api({action:'programs'})]).then(([l,a,p])=>{leads=l.leads||[];partials=l.incomplete_contacts||[];analytics=a;programs=p.programs||[];renderAll();window.dispatchEvent(new Event('dataUpdated'))}).catch(e=>err(e.message)).finally(()=>loading=null);return loading}
+function load(){if(loading)return loading;err('');loading=Promise.all([api({action:'list'}),api({action:'analytics',days:Number($('days').value)}),api({action:'programs'})]).then(([l,a,p])=>{leads=l.leads||[];partials=l.incomplete_contacts||[];interviews=l.interviews||[];analytics=a;programs=p.programs||[];renderAll();window.dispatchEvent(new Event('dataUpdated'))}).catch(e=>err(e.message)).finally(()=>loading=null);return loading}
 function renderAll(){renderPulse();renderDashboard();renderAnalytics();correctValidationNote()}
 function renderPulse(){$('pulseIncomplete').textContent=partials.length;$('pulseFirst').textContent=leads.filter(x=>x.status==='new'&&!due(x)).length;$('pulseFollowup').textContent=leads.filter(due).length;$('pulseActive').textContent=leads.filter(x=>x.status!=='new'&&x.status!=='resolved'&&!due(x)).length}
 function correctValidationNote(){const f=analytics.flow||{},val=f.validation_error||0;if(val)$('validationNote').innerHTML='<strong>'+val+' session'+(val===1?'':'s')+' hit contact validation.</strong> Some families corrected the field and continued, so this is diagnostic friction—not an automatic loss.'}

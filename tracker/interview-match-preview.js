@@ -57,6 +57,17 @@ window.openInterview=function(id){
   $('routePreview')?.remove();
   setTimeout(load,450);
 };
+// AqoonApp still holds the pre-save interview_status until its background
+// refresh completes. The server has already accepted the interview, so use
+// that confirmed save to run the authoritative match_preview immediately.
+window.addEventListener('aqoon:interview-saved',async event=>{
+  const detail=event.detail||{};
+  if(!detail.lead?.id)return;
+  leadId=detail.lead.id;
+  try{render(await api({action:'match_preview',lead_id:leadId,answers:detail.answers||{}}))}
+  catch(error){const el=host();if(el)el.innerHTML='<p class="route-conflict">'+esc(error.message)+'</p>'}
+});
+window.AqoonRoutePreview={getCandidates:()=>lastCandidates.map(candidate=>({...candidate}))};
 // The preview is read-only. Re-rendering it on every keystroke/choice causes
 // mobile scroll jumps and spends a request while the operator is still
 // answering. Use the explicit Refresh button (or post-save open) instead.
