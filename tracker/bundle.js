@@ -1535,10 +1535,9 @@ function close(){$('incompleteDrawer')?.classList.add('hidden');document.body.st
 async function save(){if(!active)return;const city=$('incCity').value.trim(),main=$('incMain').value,sub=$('incSub').value,age=main==='Carruur iyo skuul'?$('incAge').value:'';if(!city||!main||!sub){$('incErr').textContent='Add the city, main need and specific need first.';return}const btn=$('incSave');btn.disabled=true;btn.textContent='Saving…';$('incErr').textContent='';try{const result=await api({action:'complete',id:active.id,city,main_need:main,sub_need:sub,age_group:age||null});close();if(result.lead_id&&typeof window.openInterview==='function')window.openInterview(result.lead_id);const refresh=$('refresh');if(refresh)refresh.click()}catch(e){$('incErr').textContent=e.message||'Could not save.'}finally{btn.disabled=false;btn.textContent='Save & start first interview'}}
 async function remove(contact,onDone){if(!confirm('Delete the unfinished intake for '+(contact.name||'this contact')+'? This removes the saved contact details and cannot be undone. Anonymous funnel counts stay intact.'))return;try{await api({action:'delete',id:contact.id});const refresh=$('refresh');if(refresh)refresh.click();if(onDone)onDone()}catch(e){alert(e.message||'Could not delete this unfinished intake.')}}
 async function assign(contact,operatorId,onDone){try{await api({action:'assign',id:contact.id,operator_id:operatorId});const refresh=$('refresh');if(refresh)refresh.click();if(onDone)onDone()}catch(e){alert(e.message||'Could not assign this intake.')}}
-async function createContactCase(contact,operatorId){if(!contact?.id)throw Error('Missing intake contact.');const result=await api({action:'create_contact_case',id:contact.id,operator_id:operatorId||null});if(!result.lead_id)throw Error('Could not create a contact case.');const refresh=$('refresh');if(refresh)refresh.click();return result.lead_id}
 // Called directly by the queue UI (crm-queue-navigation.js) with the partial
 // record it already has in memory — no separate fetch/sync needed here.
-window.AqoonIncompleteIntake={open,remove,assign,createContactCase};
+window.AqoonIncompleteIntake={open,remove,assign};
 })();
 
 // ---- human-labels.js ----
@@ -1721,15 +1720,21 @@ document.readyState==="loading"?document.addEventListener("DOMContentLoaded",sta
 
 // ---- call-outcomes.js ----
 ((global)=>{'use strict';
-const END='https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-leads-admin';
+// Two possible targets: a real family_leads row (record_call_outcome), or a
+// still-incomplete family_intake_contacts row (log_call) - logging a call
+// against an incomplete intake must never create a lead by itself, only
+// finishing the intake form does that, so it goes to a different endpoint
+// and action entirely rather than reusing the leads one.
+const ENDPOINTS={lead:'https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-leads-admin',intake:'https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-incomplete-admin'};
+const ACTIONS={lead:'record_call_outcome',intake:'log_call'};
 const DAY_MS=24*60*60*1000;
 const SCHEDULED_OUTCOMES=['call_later','busy'];
 
 function noAnswerFollowUp(now=Date.now()){return new Date(Number(now)+DAY_MS).toISOString()}
-function buildOutcomePayload(leadId,outcome,followUpAt,now=Date.now(),notes){
+function buildOutcomePayload(leadId,outcome,followUpAt,now=Date.now(),notes,kind='lead'){
   if(!leadId)throw Error('Missing family lead');
   if(!['reached','no_answer','call_later','busy'].includes(outcome))throw Error('Choose a call outcome');
-  const payload={action:'record_call_outcome',id:String(leadId),call_outcome:outcome};
+  const payload={action:ACTIONS[kind]||ACTIONS.lead,id:String(leadId),call_outcome:outcome};
   if(outcome==='no_answer')payload.next_follow_up_at=noAnswerFollowUp(now);
   if(SCHEDULED_OUTCOMES.includes(outcome)){
     const follow=new Date(followUpAt||'');
@@ -1748,8 +1753,15 @@ if(!global||typeof document==='undefined')return;
 const $=id=>document.getElementById(id);
 let pending=null,saving=false,pendingOutcome=null;
 function password(){return sessionStorage.getItem('aqoon_tracker_password')||''}
-async function api(body){
-  const response=await fetch(END,{method:'POST',headers:{'Content-Type':'application/json','x-tracker-password':password()},body:JSON.stringify(body),cache:'no-store'});
+function authToken(){return sessionStorage.getItem('aqoon_auth_token')||''}
+async function api(body,kind='lead'){
+  const headers={'Content-Type':'application/json','x-tracker-password':password()},token=authToken();
+  // family-leads-admin gets the operator's JWT from a global fetch patch in
+  // operator-identity.js; family-incomplete-admin isn't covered by that
+  // patch (same gap incomplete-intake.js already works around), so it's
+  // attached directly here for the intake target.
+  if(kind==='intake'&&token)headers.Authorization='Bearer '+token;
+  const response=await fetch(ENDPOINTS[kind]||ENDPOINTS.lead,{method:'POST',headers,body:JSON.stringify(body),cache:'no-store'});
   let data={};try{data=await response.json()}catch{}
   if(!response.ok)throw Error(data.detail||data.error||'Could not save call outcome');
   return data;
@@ -1795,13 +1807,19 @@ function choose(outcome){
 }
 async function save(outcome,followUpAt){
   if(!pending||saving)return;
+  const kind=pending.kind||'lead',onReached=kind==='intake'&&outcome==='reached'?pending.onReached:null;
   let payload;
-  try{payload=buildOutcomePayload(pending.id,outcome,followUpAt,Date.now(),$('callOutcomeNote')?.value)}catch(error){$('callOutcomeError').textContent=error.message;return}
+  try{payload=buildOutcomePayload(pending.id,outcome,followUpAt,Date.now(),$('callOutcomeNote')?.value,kind)}catch(error){$('callOutcomeError').textContent=error.message;return}
   saving=true;
   const buttons=$('callOutcomeDialog').querySelectorAll('button');buttons.forEach(button=>button.disabled=true);
   $('callOutcomeError').textContent='Saving…';
   try{
-    await api(payload);close();
+    await api(payload,kind);close();
+    // For an incomplete intake, "spoke to them" is the moment to fill in
+    // the intake form while the family is still on the line - that save
+    // (not this one) is what actually creates the case and moves it to
+    // First Contact, so hand off to it instead of just refreshing.
+    if(onReached){onReached();return}
     const refresh=$('refresh');if(refresh)refresh.click();
   }catch(error){$('callOutcomeError').textContent=error.message||'Could not save call outcome'}
   finally{saving=false;buttons.forEach(button=>button.disabled=false)}
@@ -1813,9 +1831,14 @@ async function recordForLead(leadId,outcome,followUpAt,notes){
 }
 function openForLead(leadId,name,preferredOutcome){
   if(!leadId)return;
-  pending={id:String(leadId),name:name||'Family call'};
+  pending={id:String(leadId),name:name||'Family call',kind:'lead'};
   open();
   if(SCHEDULED_OUTCOMES.includes(preferredOutcome))choose(preferredOutcome);
+}
+function openForIntake(contactId,name,onReached){
+  if(!contactId)return;
+  pending={id:String(contactId),name:name||'Family call',kind:'intake',onReached};
+  open();
 }
 function callLead(leadId,name,phone){
   if(!leadId||!phone)return;
@@ -1831,7 +1854,7 @@ document.addEventListener('click',event=>{
   if(!trigger)return;
   openForLead(trigger.dataset.logLead,trigger.dataset.logName||'Family call');
 },true);
-global.AqoonCallOutcomes={recordForLead,openForLead,callLead};
+global.AqoonCallOutcomes={recordForLead,openForLead,openForIntake,callLead};
 })(typeof window!=='undefined'?window:(typeof globalThis!=='undefined'?globalThis:null));
 
 // ---- crm-queue-navigation.js ----
@@ -1987,7 +2010,7 @@ const CrmQueues = {
       : `<a class="btn primary" href="tel:${lead.phone || ''}" data-call-lead="${leadId}" data-call-name="${name}">Call</a>`;
     const logAction = isIncomplete ? 'log-outcome-incomplete' : 'log-outcome';
     const note = isIncomplete
-      ? 'The first call creates a minimal contact case, then records what happened — outcome, note and any follow-up are saved to Call History.'
+      ? 'Logging what happened never moves this on its own. Only Finish intake — filling in city, need and specifics — moves them to First contact.'
       : 'Call opens the phone and asks for the outcome when you return, or log it directly — spoke to them, no answer, busy, or call back later.';
     return `
       <div class="panel-section contact-actions">
@@ -2053,6 +2076,15 @@ const CrmQueues = {
           <p style="font-size:11px;color:var(--muted);margin-top:8px">Assignment carries over automatically once the intake is finished and the family moves to the interview queue.</p>
         </div>
       `;
+      if (lead.last_call_outcome) {
+        content += `
+          <div class="panel-section">
+            <h4 class="panel-section-title">Last call</h4>
+            <p style="font-size:13px;color:var(--ink);margin:0">${this.callOutcomeLabel(lead.last_call_outcome)} · ${this.formatDate(lead.last_call_at)}</p>
+            ${lead.last_call_notes ? `<p style="font-size:12px;color:var(--muted);margin:4px 0 0">${this.escapeHtml(lead.last_call_notes)}</p>` : ''}
+          </div>
+        `;
+      }
       content += this.contactActionsHtml(leadId, lead, true);
     } else if (phaseId === 'first_contact') {
       content += `
@@ -2135,13 +2167,15 @@ const CrmQueues = {
     } else if (action === 'delete-intake' && phaseId === 'incomplete') {
       if (lead) window.AqoonIncompleteIntake?.remove(lead, () => this.closeFamilyPanel());
     } else if (action === 'log-outcome-incomplete' && phaseId === 'incomplete') {
-      const operatorId = sessionStorage.getItem('aqoon_operator_id');
-      window.AqoonIncompleteIntake?.createContactCase(lead, operatorId)
-        .then(newLeadId => {
-          this.closeFamilyPanel();
-          window.AqoonCallOutcomes?.openForLead(newLeadId, lead?.name || 'Client');
-        })
-        .catch(err => alert(err.message || 'Could not create the contact case.'));
+      // Logging an outcome here only ever records the attempt against the
+      // still-incomplete intake (log_call) - it never creates a family_leads
+      // row or moves the queue by itself. Only "spoke to them" hands off to
+      // Finish intake, since that's the one action that's actually allowed
+      // to create the case and move it to First contact.
+      window.AqoonCallOutcomes?.openForIntake(leadId, lead?.name || 'Client', () => {
+        this.closeFamilyPanel();
+        if (lead) window.AqoonIncompleteIntake?.open(lead);
+      });
     } else if (action === 'log-outcome') {
       window.AqoonCallOutcomes?.openForLead(leadId, lead?.name || 'Family');
     } else if (action === 'call-incomplete' && phaseId === 'incomplete') {
@@ -2196,6 +2230,14 @@ const CrmQueues = {
     if (!dateStr) return '—';
     const d = new Date(dateStr);
     return d.toLocaleDateString('fi-FI', { month: 'short', day: 'numeric' });
+  },
+
+  callOutcomeLabel(outcome) {
+    return { reached: 'Spoke to them', no_answer: 'No answer', busy: 'Busy', call_later: 'Call back later' }[outcome] || outcome;
+  },
+
+  escapeHtml(value) {
+    return String(value == null ? '' : value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   },
 
   bindEvents() {
