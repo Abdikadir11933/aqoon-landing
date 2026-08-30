@@ -34,3 +34,9 @@ test('resolved cards load lifecycle outcome summaries and reopen records an even
   assert.match(nav, /action: 'reopen'/);
   assert.match(nav, /No verified decision has been recorded yet/);
 });
+test('completed follow-up queue opens the workspace instead of premature resolution', () => {
+  const queue = read('tracker/crm-queue-navigation.js');
+  assert.match(queue, /Open follow-up workspace/);
+  assert.doesNotMatch(queue, /data-action="mark-resolved"/);
+  assert.match(queue, /className='panel-section follow-up-plan'/);
+});
