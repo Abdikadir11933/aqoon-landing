@@ -118,7 +118,7 @@ Deno.serve(async(req)=>{
     }else if(currentScenario(scenario)){
       matchStatus="matched";
       const upd=await db.from("family_scenarios").update({times_reused:(scenario.times_reused||0)+1,last_reused_at:now,updated_at:now}).eq("id",scenario.id).select("*").single();
-      if(!upd.error)scenario=upd.data;
+      if(upd.error)return new Response(JSON.stringify({error:"db_error",detail:upd.error.message}),{status:500,headers:h});scenario=upd.data;
     }else if(scenario.status==="retired"){
       matchStatus="no_match";
     }else{
@@ -129,7 +129,7 @@ Deno.serve(async(req)=>{
     if(matchStatus!=="matched"){
       const existing=await db.from("family_scenario_research").select("id").eq("scenario_id",scenario.id).eq("interview_id",interviewId).in("research_status",["pending","in_progress"]).limit(1);
       if(!existing.error&&!(existing.data||[]).length){
-        await db.from("family_scenario_research").insert({scenario_id:scenario.id,interview_id:interviewId,research_status:"pending",research_question:safeResearchQuestion(dimensions)});
+        const queued=await db.from("family_scenario_research").insert({scenario_id:scenario.id,interview_id:interviewId,research_status:"pending",research_question:safeResearchQuestion(dimensions)});if(queued.error)return new Response(JSON.stringify({error:"db_error",detail:queued.error.message}),{status:500,headers:h});
       }
     }
     return new Response(JSON.stringify({match_status:matchStatus,scenario:publicScenario(scenario),fingerprint:scenarioKey}),{headers:h});
@@ -160,13 +160,13 @@ Deno.serve(async(req)=>{
     const summary=text(structured.research_summary,4000);
     if(summary)findings.research_summary=summary;
     const researchPayload={checked_at:now,research_status:"completed",findings,official_sources:sources,changed_canonical_knowledge:true,notes:text(structured.notes,4000)};
-    if(pending.data?.id)await db.from("family_scenario_research").update(researchPayload).eq("id",pending.data.id);
-    else await db.from("family_scenario_research").insert({...researchPayload,scenario_id:scenarioId,interview_id:interviewId,research_question:safeResearchQuestion(sc.data.dimensions||{})});
+    if(pending.data?.id){const saved=await db.from("family_scenario_research").update(researchPayload).eq("id",pending.data.id);if(saved.error)return new Response(JSON.stringify({error:"db_error",detail:saved.error.message}),{status:500,headers:h});}
+    else {const saved=await db.from("family_scenario_research").insert({...researchPayload,scenario_id:scenarioId,interview_id:interviewId,research_question:safeResearchQuestion(sc.data.dimensions||{})});if(saved.error)return new Response(JSON.stringify({error:"db_error",detail:saved.error.message}),{status:500,headers:h});}
     const patch:any={title:text(structured.title,240)||sc.data.title,verified_answer:verified,official_sources:sources,operator_guidance:(structured.operator_guidance&&typeof structured.operator_guidance==="object")?structured.operator_guidance:{},status:"verified",last_verified_at:now,recheck_after:recheck,updated_at:now};
     if(!sc.data.first_verified_at)patch.first_verified_at=now;
     const upd=await db.from("family_scenarios").update(patch).eq("id",scenarioId).select("*").single();
     if(upd.error)return new Response(JSON.stringify({error:"db_error",detail:upd.error.message}),{status:500,headers:h});
-    await db.from("family_interviews").update({scenario_match_status:"matched",updated_at:now}).eq("id",interviewId);
+    const interviewUpdate=await db.from("family_interviews").update({scenario_match_status:"matched",updated_at:now}).eq("id",interviewId);if(interviewUpdate.error)return new Response(JSON.stringify({error:"db_error",detail:interviewUpdate.error.message}),{status:500,headers:h});
     return new Response(JSON.stringify({saved:true,scenario:publicScenario(upd.data)}),{headers:h});
   }
 
