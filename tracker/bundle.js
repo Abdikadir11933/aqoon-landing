@@ -985,7 +985,7 @@ function planCard(plan){
   if(!terminal){
     if(plan.plan_status!=='awaiting_outcome'&&plan.plan_status!=='persistence_check')buttons.push('<button type="button" data-lc-action="submitted" data-lc-id="'+esc(plan.id)+'">Submitted — waiting on decision</button>');
     if(plan.plan_status==='awaiting_outcome')buttons.push('<button type="button" data-lc-action="responded" data-lc-id="'+esc(plan.id)+'">Authority/provider responded</button>');
-    buttons.push('<button type="button" class="primary" data-lc-action="resolve" data-lc-id="'+esc(plan.id)+'">Resolve</button>');
+    if(plan.plan_status==='persistence_check')buttons.push('<button type="button" class="primary" data-lc-action="resolve" data-lc-id="'+esc(plan.id)+'">Resolve after follow-up</button>');
     buttons.push('<button type="button" class="danger" data-lc-action="close" data-lc-id="'+esc(plan.id)+'">Close — no resolution</button>');
   }
   const reason=plan.plan_status==='closed_unresolved'?reasonFor(plan):'';
@@ -1097,10 +1097,8 @@ window.openInterview=function(id){
 async function resolveActivePlan(leadId,note){
   const data=await api(END_LIFECYCLE,{action:'list',lead_id:leadId});
   let plan=(data.plans||[]).find(p=>p.plan_status!=='resolved'&&p.plan_status!=='closed_unresolved');
-  if(!plan){
-    const created=await api(END_LIFECYCLE,{action:'save_plan',lead_id:leadId,title:'Resolved from Families queue (no case plan was started first)'});
-    plan=created.plan;
-  }
+  if(!plan){return Promise.reject(new Error('No active case plan is available. Start a plan before resolving this case.'))}
+  if(!['awaiting_outcome','persistence_check'].includes(plan.plan_status))return Promise.reject(new Error('Record the follow-up outcome before resolving this case.'));
   await api(END_LIFECYCLE,{action:'log_event',lead_id:leadId,case_plan_id:plan.id,event_type:'case_resolved',note});
   return api(END_LIFECYCLE,{action:'save_plan',lead_id:leadId,id:plan.id,title:plan.title,official_decision_maker:plan.official_decision_maker,selected_option:plan.selected_option,plan_status:'resolved',next_action:plan.next_action,next_follow_up_at:plan.next_follow_up_at});
 }
@@ -2460,7 +2458,10 @@ const CrmQueues = {
         '<button type="button" class="btn secondary" data-action="start-interview" data-lead-id="'+this.escapeHtml(lead.id)+'">Open follow-up workspace</button>';
       panelContent.insertBefore(follow,panelContent.querySelector('.contact-actions'));
       follow.querySelector('[data-action="start-interview"]')?.addEventListener('click',()=>{this.closeFamilyPanel();window.openInterview(lead.id)});
-    }).catch(()=>{});
+    }).catch(error=>{
+      const box=brief.querySelector('.decision-brief-evidence-body');
+      if(box)box.innerHTML='<p class="case-lifecycle-error">Case plan data is temporarily unavailable: '+this.escapeHtml(error.message||'request failed')+'</p>';
+    });
   },
 
   renderResolvedSummary(panelContent, lead) {

@@ -180,6 +180,14 @@ Deno.serve(async (request) => {
       if (interviewError) return new Response(JSON.stringify({ error: "db_error", detail: interviewError.message }), { status: 500, headers: responseHeaders });
       if (!interview) return new Response(JSON.stringify({ error: "first_interview_required" }), { status: 409, headers: responseHeaders });
     }
+    if (id && (planStatus === "resolved" || planStatus === "closed_unresolved")) {
+      const { data: currentPlan, error: currentPlanError } = await db.from("family_case_plans").select("id,plan_status").eq("id", id).eq("family_lead_id", leadId).maybeSingle();
+      if (currentPlanError) return new Response(JSON.stringify({ error: "db_error", detail: currentPlanError.message }), { status: 500, headers: responseHeaders });
+      if (!currentPlan) return new Response(JSON.stringify({ error: "plan_not_found" }), { status: 404, headers: responseHeaders });
+      if (planStatus === "resolved" && !["persistence_check", "awaiting_outcome"].includes(currentPlan.plan_status)) {
+        return new Response(JSON.stringify({ error: "follow_up_outcome_required" }), { status: 409, headers: responseHeaders });
+      }
+    }
     const query = id ? db.from("family_case_plans").update(plan).eq("id", id).eq("family_lead_id", leadId) : db.from("family_case_plans").insert(plan);
     const { data, error } = await query.select().single();
     if (error) return new Response(JSON.stringify({ error: "db_error", detail: error.message }), { status: 500, headers: responseHeaders });
@@ -196,7 +204,7 @@ Deno.serve(async (request) => {
       // "Interview follow-up" queue with no active plan and no way to tell
       // the case is actually done (docs/decisions/0003 - ADR §5, defect #3).
       const { error: leadError } = await db.from("family_leads").update({ status: "resolved", journey_stage: "resolved", resolved_at: new Date().toISOString(), updated_at: new Date().toISOString() }).eq("id", leadId);
-      if (leadError) console.error("lead_status_update_failed", leadError.message);
+      if (leadError) return new Response(JSON.stringify({ error: "lead_status_update_failed", detail: leadError.message }), { status: 500, headers: responseHeaders });
     }
     return new Response(JSON.stringify({ plan: data }), { headers: responseHeaders });
   }
@@ -262,27 +270,6 @@ Deno.serve(async (request) => {
     const { data, error } = await db.from("family_case_interactions").insert(payload).select().single();
     if (error) return new Response(JSON.stringify({ error: "db_error", detail: error.message }), { status: 500, headers: responseHeaders });
     return new Response(JSON.stringify({ interaction: data }), { headers: responseHeaders });
-  }
-
-  if (action === "get_call_history") {
-    const { data: calls, error } = await db
-      .from("family_call_log")
-      .select("id, family_lead_id, created_at, outcome, next_follow_up_at, notes, operator_id, operators(display_name)")
-      .eq("family_lead_id", leadId)
-      .order("created_at", { ascending: false })
-      .limit(10);
-    if (error) return new Response(JSON.stringify({ error: "db_error", detail: error.message }), { status: 500, headers: responseHeaders });
-    const formattedCalls = (calls || []).map((call: any) => ({
-      id: call.id,
-      lead_id: call.family_lead_id,
-      created_at: call.created_at,
-      call_outcome: call.outcome,
-      duration_seconds: 0,
-      operator_name: call.operators?.display_name || "Unknown",
-      assigned_operator_id: call.operator_id,
-      notes: call.notes || "",
-    }));
-    return new Response(JSON.stringify({ calls: formattedCalls }), { headers: responseHeaders });
   }
 
   if (action === "get_timeline") {

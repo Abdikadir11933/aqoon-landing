@@ -368,7 +368,10 @@ const CrmQueues = {
         '<button type="button" class="btn secondary" data-action="start-interview" data-lead-id="'+this.escapeHtml(lead.id)+'">Open follow-up workspace</button>';
       panelContent.insertBefore(follow,panelContent.querySelector('.contact-actions'));
       follow.querySelector('[data-action="start-interview"]')?.addEventListener('click',()=>{this.closeFamilyPanel();window.openInterview(lead.id)});
-    }).catch(()=>{});
+    }).catch(error=>{
+      const box=brief.querySelector('.decision-brief-evidence-body');
+      if(box)box.innerHTML='<p class="case-lifecycle-error">Case plan data is temporarily unavailable: '+this.escapeHtml(error.message||'request failed')+'</p>';
+    });
   },
 
   renderResolvedSummary(panelContent, lead) {
