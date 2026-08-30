@@ -269,7 +269,7 @@ const CrmQueues = {
           <div class="assign-buttons">
             <button class="btn secondary" data-action="assign-to-me" data-lead-id="${leadId}">Assign to me</button>
             <button class="btn secondary" data-action="start-interview" data-lead-id="${leadId}">${lead.interview_status === 'completed' ? 'Review interview' : 'Start first interview'}</button>
-            ${lead.interview_status === 'completed' ? '<button class="btn primary" data-action="mark-resolved" data-lead-id="' + leadId + '">Mark resolved</button>' : '<button class="btn secondary" data-action="return-to-first-contact" data-lead-id="' + leadId + '">Return to first contact</button>'}
+            ${lead.interview_status === 'completed' ? '<button class="btn primary" data-action="mark-resolved" data-lead-id="' + leadId + '">Open resolution</button>' : '<button class="btn secondary" data-action="return-to-first-contact" data-lead-id="' + leadId + '">Return to first contact</button>'}
           </div>
           ${lead.interview_status === 'completed' ? '' : '<p class="contact-action-note">This legacy case reached the follow-up queue without a completed interview. Return it to First contact before continuing.</p>'}
         </div>
@@ -365,11 +365,13 @@ const CrmQueues = {
       this.closeFamilyPanel();
       window.openInterview(leadId);
     } else if (action === 'mark-resolved') {
-      // Unlike delete-intake/remove-lead, this used to fire with no
-      // confirmation and no symmetric "reopen" action once resolved - a
-      // mis-click had no cheap way back.
-      if (!confirm('Mark ' + (lead?.name || 'this family') + ' resolved? This moves them out of the active queues.')) return;
-      window.AqoonApp?.updateLead(leadId, {status: 'resolved'}).then(() => this.closeFamilyPanel());
+      // Resolution must go through the case plan so the operator can record
+      // what happened, the outcome, and any follow-up evidence. Opening the
+      // completed interview keeps the recap and lifecycle controls together;
+      // it no longer silently mutates the CRM stage from a queue click.
+      this.closeFamilyPanel();
+      window.openInterview(leadId);
+      setTimeout(() => document.getElementById('caseLifecycle')?.scrollIntoView({behavior:'smooth', block:'center'}), 650);
     } else if (action === 'reopen-case') {
       window.AqoonApp?.updateLead(leadId, {status: 'contacted', journey_stage: 'guide'})
         .then(() => this.closeFamilyPanel())
