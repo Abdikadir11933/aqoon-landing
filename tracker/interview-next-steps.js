@@ -126,14 +126,24 @@ function handleAction(action,lead){
       break;
     }
     case 'logNeeds':
-      alert('Create opportunities for detected cross-service needs in the sales tab.');
+      // sales_opportunities is an organization-level deal record with no
+      // family_lead_id column - there is no "create an opportunity for
+      // this family" feature to link to yet, so this stays a manual
+      // reminder rather than implying a click-through that doesn't exist.
+      alert('Cross-service needs detected for this family. Note them in the case plan below - there is no automatic link to a sales opportunity yet.');
       break;
-    case 'checkResponse':
-      alert('Check with family or official service about pending response status.');
+    case 'checkResponse': {
+      const panel=document.getElementById('caseLifecycle');
+      if(panel){panel.scrollIntoView({behavior:'smooth',block:'center'});panel.classList.add('next-step-highlight');setTimeout(()=>panel.classList.remove('next-step-highlight'),1500)}
+      else alert('Check with the family or official service about the pending response, then record it in the case plan below.');
       break;
-    case 'prepareFollowUp':
-      alert('Review prior interview notes and prepare talking points for follow-up.');
+    }
+    case 'prepareFollowUp': {
+      const panel=document.getElementById('interview-context-panel');
+      if(panel){panel.scrollIntoView({behavior:'smooth',block:'center'});panel.classList.add('next-step-highlight');setTimeout(()=>panel.classList.remove('next-step-highlight'),1500)}
+      else alert('Review prior interview notes and prepare talking points for follow-up.');
       break;
+    }
   }
 }
 

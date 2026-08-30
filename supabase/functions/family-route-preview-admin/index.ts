@@ -1,3 +1,9 @@
+// Deployed but not called from the tracker UI - family-leads-admin's
+// match_preview action (wired to interview-match-preview.js) is the live
+// route-preview path. Left in place rather than removed/repurposed since
+// it is unclear whether anything outside this repo depends on it; do not
+// wire a second caller to this function without confirming it should
+// replace, not duplicate, match_preview.
 import { createClient } from "npm:@supabase/supabase-js@2";
 
 const ORIGIN = "https://aqoon.live";
