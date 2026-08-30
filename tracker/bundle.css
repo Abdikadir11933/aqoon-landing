@@ -670,6 +670,11 @@ summary{min-height:44px;display:flex;align-items:center;cursor:pointer}
   font-size: 14px;
 }
 
+.assign-buttons .btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .contact-actions {
   padding: 12px;
   background: #eef9f7;

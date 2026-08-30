@@ -75,3 +75,20 @@ test('resolving a case plan atomically resolves the CRM lead in the same request
   assert.match(lifecycle, /planStatus === "resolved" \|\| planStatus === "closed_unresolved"/);
   assert.match(lifecycle, /status: "resolved", journey_stage: "resolved", resolved_at: new Date\(\)\.toISOString\(\)/);
 });
+
+test('a password-only tracker session sees "Assign to me" disabled with an explanation, not a dead-end alert after clicking', () => {
+  const nav = read('tracker/crm-queue-navigation.js');
+  // A password-only session (no signed-in operator id) can click "Assign to
+  // me" and get an alert telling it the assignment can never succeed. That
+  // dead end should be visible before the click, not after it - a disabled
+  // button with an explanatory title, gated on the same operator id every
+  // assignment path already requires.
+  assert.match(nav, /assignToMeButtonHtml\(leadId, className\) \{/);
+  assert.match(nav, /if \(sessionStorage\.getItem\('aqoon_operator_id'\)\) \{/);
+  assert.match(nav, /disabled title="Sign in with your operator account/);
+  // All three assign-to-me render sites (incomplete intake, first contact,
+  // in-progress) must route through the shared helper instead of an
+  // always-active button, or the fix only covers some queues.
+  const helperCalls = nav.match(/this\.assignToMeButtonHtml\(leadId, '(primary|secondary)'\)/g) || [];
+  assert.equal(helperCalls.length, 3);
+});

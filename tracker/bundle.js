@@ -2242,6 +2242,17 @@ const CrmQueues = {
   // Call back later) and a note field. Replaces what used to be three
   // near-identical 4-button grids, one of which (Contacted/No answer) fired
   // immediately with no note and no dialog, while Call later alone opened it.
+  assignToMeButtonHtml(leadId, className) {
+    // Password-only sessions have no operator id, so assignment always
+    // fails with an alert after the click. Telling the operator that up
+    // front - a disabled button instead of a dead-end alert - is clearer
+    // than letting them click something that can never succeed.
+    if (sessionStorage.getItem('aqoon_operator_id')) {
+      return `<button class="btn ${className}" data-action="assign-to-me" data-lead-id="${leadId}">Assign to me</button>`;
+    }
+    return `<button class="btn ${className}" type="button" disabled title="Sign in with your operator account (not just the shared password) to assign leads to yourself.">Assign to me</button>`;
+  },
+
   contactActionsHtml(leadId, lead, isIncomplete) {
     const name = lead.name || (isIncomplete ? 'this person' : 'this family');
     const callButton = isIncomplete
@@ -2313,7 +2324,7 @@ const CrmQueues = {
         <div class="panel-section assign-operator">
           <label class="assign-label">Assign this intake to yourself?</label>
           <div class="assign-buttons">
-            <button class="btn primary" data-action="assign-to-me" data-lead-id="${leadId}">Assign to me</button>
+            ${this.assignToMeButtonHtml(leadId, 'primary')}
             <button class="btn secondary" data-action="edit-intake" data-lead-id="${leadId}">Finish intake</button>
             <button class="btn secondary" data-action="delete-intake" data-lead-id="${leadId}">Delete</button>
           </div>
@@ -2335,7 +2346,7 @@ const CrmQueues = {
         <div class="panel-section assign-operator">
           <label class="assign-label">Assign interview to yourself?</label>
           <div class="assign-buttons">
-            <button class="btn primary" data-action="assign-to-me" data-lead-id="${leadId}">Assign to me</button>
+            ${this.assignToMeButtonHtml(leadId, 'primary')}
             <button class="btn secondary" data-action="start-interview" data-lead-id="${leadId}">Start interview</button>
           </div>
         </div>
@@ -2362,7 +2373,7 @@ const CrmQueues = {
         <div class="panel-section assign-operator">
           <label class="assign-label">${lead.interview_status === 'completed' ? 'Interview complete' : 'Interview still required'}</label>
           <div class="assign-buttons">
-            <button class="btn secondary" data-action="assign-to-me" data-lead-id="${leadId}">Assign to me</button>
+            ${this.assignToMeButtonHtml(leadId, 'secondary')}
             <button class="btn secondary" data-action="start-interview" data-lead-id="${leadId}">${lead.interview_status === 'completed' ? 'Review interview' : 'Start first interview'}</button>
             ${lead.interview_status === 'completed' ? '<button class="btn primary" data-action="start-interview" data-lead-id="' + leadId + '">Open research & case plan</button>' : '<button class="btn secondary" data-action="return-to-first-contact" data-lead-id="' + leadId + '">Return to first contact</button>'}
           </div>
