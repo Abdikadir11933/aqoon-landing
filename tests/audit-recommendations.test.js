@@ -63,6 +63,20 @@ test('cross-service needs reach the follow-up summary instead of a generic alert
   assert.match(steps, /'Confirmed needs: '\+\(needs&&needs\.length\?needs\.join\(', '\):/);
 });
 
+test('opening an interview never throws from an undeclared variable', () => {
+  // scenario-learning.js's window.openInterview wrapper assigned
+  // activeLeadId without ever declaring it (no let/const/var) or reading
+  // it anywhere in the file. Inside this IIFE's 'use strict', that is a
+  // ReferenceError thrown on every single call - live-reproduced by
+  // opening the synthetic interview drawer in production. Many other
+  // tracker modules also wrap window.openInterview in a decorator chain
+  // (case-lifecycle.js, interview-context.js, interview-match.js, ...);
+  // any of them calling this one synchronously with no try/catch had
+  // their own remaining logic silently skipped by the propagating throw.
+  const scenario = read('tracker/scenario-learning.js');
+  assert.doesNotMatch(scenario, /[^.\w]activeLeadId\s*=\s*id/);
+});
+
 test('the analytics consent dialog can actually be dismissed', () => {
   // analyticsChoice used to carry its layout as an inline style attribute
   // (style="...display:grid..."), which beats any external stylesheet rule

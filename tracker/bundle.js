@@ -1153,7 +1153,14 @@ async function syncSaved(detail){const lead=detail?.lead,interview=detail?.inter
 const originalOpenForScenario=window.openInterview;
 window.openInterview=function(id){
   if(originalOpenForScenario)originalOpenForScenario.call(this,id);
-  activeLeadId=id||null;current=null;
+  // activeLeadId was assigned here without ever being declared or read
+  // anywhere in this file - under 'use strict' that's not an implicit
+  // global, it's a ReferenceError thrown on every single openInterview()
+  // call, right after the real work above had already run. Any wrapper
+  // further along window.openInterview's decorator chain that called this
+  // one synchronously (without its own try/catch) had its own remaining
+  // logic silently skipped whenever the thrown error propagated past it.
+  current=null;
   const old=$('scenarioResult');if(old)old.remove();
   const cap=$('scenarioCapture');if(cap)cap.remove();
 };
