@@ -46,3 +46,11 @@ test('route preview respects route scope and never uses a route with a stale sou
   assert.match(admin, /s\.verification_state==="verified"/);
   assert.match(admin, /new Date\(s\.recheck_after\)\.getTime\(\)>now/);
 });
+
+test('follow-up starts with one canonical decision brief', () => {
+  const queue = read('tracker/crm-queue-navigation.js');
+  assert.match(queue, /renderDecisionBrief\(panelContent, lead\)/);
+  assert.match(queue, /className = 'panel-section decision-brief'/);
+  assert.match(queue, /family-case-lifecycle-admin/);
+  assert.doesNotMatch(queue, /interview-recap-primary/);
+});
