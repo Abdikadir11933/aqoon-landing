@@ -245,6 +245,22 @@ const CrmQueues = {
           </div>
         </div>
       `;
+      if (lead.interview_status === 'completed' && lead.latest_interview) {
+        const interview = lead.latest_interview;
+        const recap = interview.summary || 'Interview saved — review the recorded answers.';
+        const brief = interview.research_prompt || '';
+        const routeLine = interview.interview_type ? interview.interview_type.split('+').join(' · ') : '';
+        content += `
+          <div class="panel-section interview-recap">
+            <h4 class="panel-section-title">First interview recap</h4>
+            ${routeLine ? `<p class="contact-action-note"><strong>Topics:</strong> ${this.escapeHtml(routeLine)}</p>` : ''}
+            <p class="interview-recap-summary">${this.escapeHtml(recap)}</p>
+            ${interview.next_action ? `<p class="contact-action-note"><strong>Next action:</strong> ${this.escapeHtml(interview.next_action)}</p>` : ''}
+            ${brief ? `<details class="interview-recap-brief"><summary>Research brief & evidence links</summary><pre>${this.escapeHtml(brief.slice(0, 1600))}${brief.length > 1600 ? '\\n…' : ''}</pre></details>` : ''}
+            <button class="btn secondary" data-action="start-interview" data-lead-id="${leadId}">View full interview</button>
+          </div>
+        `;
+      }
       content += this.contactActionsHtml(leadId, lead, false);
     } else if (phaseId === 'in_progress') {
       content += `
