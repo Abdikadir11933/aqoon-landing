@@ -197,11 +197,27 @@ low ambiguity):
    `case-lifecycle.js`'s own `plan_status!=='resolved'/'closed_unresolved'`
    check, and `save()` calls `window.AqoonNextSteps?.attach()` directly on
    success instead of relying on the dead `window.saveInterview` wrapper.
-4. **Route preview is loaded/shown in the wrong phase** (#5, #7). The
-   module (`interview-match-preview.js`) must be removed from
-   `scripts/build_tracker_bundle.js`'s bundle list to match
-   `tracker/CONTEXT.md`'s documented intent, and its evidence/route cards
-   re-homed into the follow-up workspace (§4.5) instead.
+4. **Route preview is loaded/shown in the wrong phase** (#5, #7) —
+   **correction after closer reading**: `interview-match-preview.js` is
+   *not* dead or misplaced code to simply delete. It's the only live
+   implementation of route review (the Confirm match / Possible — must
+   confirm / Does not fit buttons that write to
+   `family-route-review-admin`'s `save_review` action, a real, working,
+   already-shipped feature per the handover). It is already correctly
+   gated — `load()` explicitly checks `interviewCompleted()` and shows only
+   a "appears here once this first interview is saved" placeholder
+   otherwise, so it never produces a route/eligibility preview from raw
+   intake, which the non-negotiable rules require. The actual defect is
+   narrower than "loaded when it shouldn't be": it renders inside the same
+   `#drawer` surface as the editable qualification interview (via
+   `host()` inserting before `.interview-capture`), which is also the
+   surface "Review interview" reopens — so a correctly-gated, working
+   feature ends up on the wrong screen. Fixing this means re-homing its
+   render target into the follow-up workspace (§4.5) once that exists, not
+   removing it from the bundle first — deleting it now would regress a
+   working feature with nothing to replace it. `tracker/CONTEXT.md`'s "not
+   loaded" line is the one that's stale and should be corrected to describe
+   current reality once the re-home lands, not the other way around.
 5. **Evidence panel is a prompt-text scrape, not persisted evidence** (#6).
    Needs the case-plan schema to carry `selected_option`/evidence links
    (column already exists: `family_case_plans.selected_option jsonb`) —
@@ -234,6 +250,27 @@ low ambiguity):
    structured resolution capture** (#17). Both are §4.6/§4.7 scope — design
    is written, implementation is the multi-file follow-up/resolution rebuild
    and should not be rushed ahead of the smaller fixes above.
+10. **Only the `work` topic has real conditional branching — root-caused,
+    not yet fixed** (the interview-doesn't-follow-scenario defect, #13 in
+    the handover's numbered list — distinct from the `match_preview`
+    key-presence-only gap in the DB/API map above, which reuses the same
+    number in the source doc). `interview-match.js`'s `applyWorkContext()`
+    only toggles elements tagged `data-branch="student"` /
+    `"student-studying"` / `"working"` / `"jobseeker"` — and `addFields()`
+    (line 21) only ever assigns those four `data-branch` values to `work`
+    topic fields; every field in `daycare`, `hobby`, `education`,
+    `school_child`, `program`, `service_support` gets `data-branch=""` and
+    is therefore never hidden. Each of those topics already has a leading
+    "scenario" question at the top of its field list (`care_reason`,
+    `activity_goal`, `education_entry_reason`, `school_situation`,
+    `program_reason`, `authority_issue`) — but it's cosmetic ordering only;
+    answering it doesn't filter anything below it, so the full ~10-16
+    question list still renders regardless of the answer. Fixing this for
+    real means defining, per topic, which leading answer hides which
+    downstream fields (mirroring `applyWorkContext()`'s pattern) — a
+    genuine design decision per topic, not a mechanical port, and one that
+    needs to be checked live (does the right question set actually appear
+    for each scenario?) rather than shipped from static reading alone.
 
 **Reported, unverified — must be reproduced with synthetic data before any
 fix is attempted** (do not guess a cause):
@@ -271,9 +308,10 @@ behavior, not a bug.
    not require any new UI.
 4. Fix the two one-line property/wiring bugs in the Next Steps module
    (§5 item 3).
-5. Remove `interview-match-preview.js` from the tracker bundle (§5 item 4)
-   and rebuild — a pure subtraction, safe on its own before the follow-up
-   workspace has anywhere to put the evidence yet.
+5. ~~Remove `interview-match-preview.js` from the tracker bundle~~ —
+   **retracted**: it's a working feature (§5 item 4, corrected), not dead
+   code. Its render target moves to the follow-up workspace together with
+   step 7, not as a standalone removal.
 6. Trace and fix the duplicate-unfinished-intake defect (§5 item 7) with a
    synthetic Finnish-language intake, before building the new follow-up UI
    on top of a queue that can double-count.
