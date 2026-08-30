@@ -153,16 +153,14 @@ function attach(lead,currentAnswers){
   });
 }
 
-const originalSaveInterview=window.saveInterview;
-if(typeof originalSaveInterview==='function'){
-  window.saveInterview=async function(){
-    const result=await originalSaveInterview.apply(this,arguments);
-    const lead=window.AqoonInterview?.activeLead;
-    const current=window.AqoonInterview?.currentAnswers;
-    if(lead&&current)attach(lead,current);
-    return result;
-  };
-}
+// Both the legacy fallback and the active route-specific save path emit this
+// only after family-leads-admin has returned success. Listening to the saved
+// event avoids depending on which function reference happened to be assigned
+// to #saveInterview.onclick when the drawer's wrapper chain finished opening.
+window.addEventListener('aqoon:interview-saved',event=>{
+  const {lead,answers}=event.detail||{};
+  if(lead&&answers)attach(lead,answers);
+});
 
 window.AqoonNextSteps={attach};
 })();
