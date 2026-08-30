@@ -210,6 +210,27 @@ const CrmQueues = {
       content += `<p style="font-size:11px;color:var(--m);margin:-16px 0 16px">Last touched by ${lastTouchedName}</p>`;
     }
 
+    // Follow-up is a decision workspace: put the saved brief before buttons
+    // and contact history so the operator sees what the system understood
+    // without reopening the interview.
+    if (phaseId === 'in_progress' && lead.interview_status === 'completed' && lead.latest_interview) {
+      const interview = lead.latest_interview;
+      const recap = interview.summary || 'Interview saved — review the recorded answers.';
+      const brief = interview.research_prompt || '';
+      const answers = interview.answers && typeof interview.answers === 'object' ? interview.answers : {};
+      const context = ['primary_situation','work_intent','study_path','availability','start_when','travel_limit']
+        .filter(k => answers[k]).map(k => this.escapeHtml(String(answers[k]))).join(' · ');
+      const routeLine = interview.interview_type ? interview.interview_type.split('+').join(' · ') : '';
+      content += `<div class="panel-section interview-recap interview-recap-primary">
+        <h4 class="panel-section-title">Interview summary & suggested plan</h4>
+        ${routeLine ? `<p class="contact-action-note"><strong>Topics:</strong> ${this.escapeHtml(routeLine)}</p>` : ''}
+        <p class="interview-recap-summary">${this.escapeHtml(recap)}</p>
+        ${context ? `<p class="interview-recap-context"><strong>Recorded context:</strong> ${context}</p>` : ''}
+        ${interview.next_action ? `<p class="contact-action-note"><strong>Next action:</strong> ${this.escapeHtml(interview.next_action)}</p>` : ''}
+        ${brief ? `<details class="interview-recap-brief"><summary>Evidence & research brief</summary><pre>${this.escapeHtml(brief.slice(0, 1600))}${brief.length > 1600 ? '\\n…' : ''}</pre></details>` : ''}
+      </div>`;
+    }
+
     // Phase-specific actions. Assign-to-me comes first (decide ownership),
     // then the contact/call workflow, so an operator claims a case before
     // acting on it rather than acting on something nobody owns yet.
@@ -274,22 +295,6 @@ const CrmQueues = {
           ${lead.interview_status === 'completed' ? '' : '<p class="contact-action-note">This legacy case reached the follow-up queue without a completed interview. Return it to First contact before continuing.</p>'}
         </div>
       `;
-      if (lead.interview_status === 'completed' && lead.latest_interview) {
-        const interview = lead.latest_interview;
-        const recap = interview.summary || 'Interview saved — review the recorded answers.';
-        const brief = interview.research_prompt || '';
-        const routeLine = interview.interview_type ? interview.interview_type.split('+').join(' · ') : '';
-        content += `
-          <div class="panel-section interview-recap">
-            <h4 class="panel-section-title">Interview summary & suggested plan</h4>
-            ${routeLine ? `<p class="contact-action-note"><strong>Topics:</strong> ${this.escapeHtml(routeLine)}</p>` : ''}
-            <p class="interview-recap-summary">${this.escapeHtml(recap)}</p>
-            ${interview.next_action ? `<p class="contact-action-note"><strong>Next action:</strong> ${this.escapeHtml(interview.next_action)}</p>` : ''}
-            ${brief ? `<details class="interview-recap-brief"><summary>Evidence & research brief</summary><pre>${this.escapeHtml(brief.slice(0, 1600))}${brief.length > 1600 ? '\\n…' : ''}</pre></details>` : ''}
-            <button class="btn secondary" data-action="start-interview" data-lead-id="${leadId}">Review interview answers</button>
-          </div>
-        `;
-      }
       content += this.contactActionsHtml(leadId, lead, false);
     } else if (phaseId === 'resolved') {
       // Resolving used to be a one-way door - no action here offered a way
