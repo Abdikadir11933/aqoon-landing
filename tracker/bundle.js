@@ -540,7 +540,7 @@ function prompt(a){const L=labels(),ans=Object.entries(a).map(([k,v])=>'- '+(L[k
 // was pure network wait for data already in memory, and a likely
 // contributor to interviews feeling slow to open.
 function enhance(id){try{const lead=(window.AqoonApp?.leads||[]).find(x=>x.id===id);if(!lead)return;C={lead,routes:routes(lead),programs:window.AqoonApp?.programs||[]};if(C.routes.includes('entrepreneurship'))['wanted_job','cv','cards','barrier','training'].forEach(k=>document.querySelector('#questions [data-key="'+k+'"]')?.closest('.question')?.remove());addFields(C.routes);bindExtras();$('dMeta').textContent=[lead.city,lead.main_need,lead.sub_need,'Interview topics: '+C.routes.join(' + ')].filter(Boolean).join(' · ');$('saveInterview').textContent='Save first interview & prepare research brief';$('saveInterview').onclick=save}catch(e){$('err').textContent=e.message;$('err').classList.remove('hidden')}}
-async function save(){const a=collect(),miss=missing(a);if(miss.length){$('err').textContent='Complete matching fields first: '+miss.slice(0,4).map(x=>x.querySelector('label').textContent).join(' · ');$('err').classList.remove('hidden');miss[0].scrollIntoView({behavior:'smooth',block:'center'});return}const b=$('saveInterview');b.disabled=true;try{const pr=prompt(a),follow=$('iFollow').value?new Date($('iFollow').value).toISOString():null;const ru=$('iRelevantUpdatesOk')?.value,of=$('iOutcomeFollowupOk')?.value,savedAnswers={...a};if(ru)savedAnswers.relevant_updates_ok=ru;if(of)savedAnswers.outcome_followup_ok=of;await api({action:'save_interview',lead_id:C.lead.id,interview_type:C.routes.join('+'),answers:savedAnswers,summary:summary(a),research_prompt:pr,next_follow_up_at:follow,urgency:$('iUrgency').value,status:'completed'});$('promptBox').textContent=pr;$('promptWrap').classList.remove('hidden');$('err').textContent='';$('err').classList.add('hidden');setTimeout(()=>$('refresh')?.click(),300)}catch(e){$('err').textContent=e.message;$('err').classList.remove('hidden')}finally{b.disabled=false}}
+async function save(){const a=collect(),miss=missing(a);if(miss.length){$('err').textContent='Complete matching fields first: '+miss.slice(0,4).map(x=>x.querySelector('label').textContent).join(' · ');$('err').classList.remove('hidden');miss[0].scrollIntoView({behavior:'smooth',block:'center'});return}const b=$('saveInterview');b.disabled=true;try{const pr=prompt(a),follow=$('iFollow').value?new Date($('iFollow').value).toISOString():null;const ru=$('iRelevantUpdatesOk')?.value,of=$('iOutcomeFollowupOk')?.value,savedAnswers={...a};if(ru)savedAnswers.relevant_updates_ok=ru;if(of)savedAnswers.outcome_followup_ok=of;await api({action:'save_interview',lead_id:C.lead.id,interview_type:C.routes.join('+'),answers:savedAnswers,summary:summary(a),research_prompt:pr,next_follow_up_at:follow,urgency:$('iUrgency').value,status:'completed'});$('promptBox').textContent=pr;$('promptWrap').classList.remove('hidden');$('err').textContent='';$('err').classList.add('hidden');window.AqoonNextSteps?.attach(C.lead,a);setTimeout(()=>$('refresh')?.click(),300)}catch(e){$('err').textContent=e.message;$('err').classList.remove('hidden')}finally{b.disabled=false}}
 // This used to trigger only off clicking a [data-interview] element - the
 // old lead-card UI's interview button. The queue redesign calls
 // window.openInterview(id) directly with no such element ever existing in
@@ -1266,13 +1266,13 @@ function buildNextSteps(lead,currentAnswers,lifecycle){
   if(!lifecycle)return steps;
 
   const {plans,events}=lifecycle;
-  const activePlan=plans?.find(p=>p.status!=='completed');
+  const activePlan=plans?.find(p=>p.plan_status!=='resolved'&&p.plan_status!=='closed_unresolved');
   const lastEvent=events?.[0];
   const hasPendingNeeds=currentAnswers?.cross_service_needs_all && Array.isArray(currentAnswers.cross_service_needs_all) && currentAnswers.cross_service_needs_all.length>0;
   const awaitingEvent=events?.find(e=>e.event_type==='awaiting_response');
   const daysSinceAwaiting=awaitingEvent ? Math.floor((Date.now()-new Date(awaitingEvent.occurred_at).getTime())/(24*60*60*1000)) : 0;
 
-  if(activePlan?.status==='awaiting_outcome'){
+  if(activePlan?.plan_status==='awaiting_outcome'){
     steps.push({
       icon:'📋',
       title:'Record outcome',

@@ -31,13 +31,13 @@ function buildNextSteps(lead,currentAnswers,lifecycle){
   if(!lifecycle)return steps;
 
   const {plans,events}=lifecycle;
-  const activePlan=plans?.find(p=>p.status!=='completed');
+  const activePlan=plans?.find(p=>p.plan_status!=='resolved'&&p.plan_status!=='closed_unresolved');
   const lastEvent=events?.[0];
   const hasPendingNeeds=currentAnswers?.cross_service_needs_all && Array.isArray(currentAnswers.cross_service_needs_all) && currentAnswers.cross_service_needs_all.length>0;
   const awaitingEvent=events?.find(e=>e.event_type==='awaiting_response');
   const daysSinceAwaiting=awaitingEvent ? Math.floor((Date.now()-new Date(awaitingEvent.occurred_at).getTime())/(24*60*60*1000)) : 0;
 
-  if(activePlan?.status==='awaiting_outcome'){
+  if(activePlan?.plan_status==='awaiting_outcome'){
     steps.push({
       icon:'📋',
       title:'Record outcome',
