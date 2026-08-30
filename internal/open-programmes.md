@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 29.8.2026
+Last compiled: 30.8.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -127,6 +127,18 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: Mondays 31.8.–21.12.2026, 17.30–19.00, Kajuutta, Espoonlahdenkatu 8; free, no advance registration.
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagp5x5bnxy
 
+- **Entresse Library Finnish Language Café** — Finnish Red Cross / Espoo libraries
+  - Fits: anyone who wants to practise spoken Finnish; no advance registration.
+  - Helps with: free, low-threshold Finnish conversation practice with native speakers and volunteers.
+  - Status: Tuesdays 18.8.–8.12.2026, 18.00–19.30, Entresse Library, Siltakatu 11; free. Next session after this review: 1.9.2026.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagpmwgiskm
+
+- **Entresse Library Finnish Language Café on Fridays** — Finnish Red Cross / Espoo libraries
+  - Fits: anyone who wants to practise spoken Finnish; no advance registration.
+  - Helps with: free Finnish conversation practice in a daytime slot.
+  - Status: Fridays 4.9.–18.12.2026, 12.00–13.30, Entresse Library, Siltakatu 11; free. No session 16.10.2026.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagpmwdkh5u
+
 ### Tampere
 
 - **Arjen avaimet 2026–2027** — Tampereen seudun työväenopisto / Tampereen kaupunki
@@ -186,6 +198,12 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Event: 28.–29.10.2026 at Clarion Hotel Helsinki Airport; registration window is listed as 31.8.–14.9.2026.
   - Use: AQOON partner/networking opportunity, not a family-facing programme card.
   - Official: https://www.vantaa.fi/fi/hankkeet/hanke/integration-2026-hanke
+
+- **Asiakaslähtöinen yhteiskuntaorientaatiopilotti** — International House Tampere / City of Tampere
+  - Audience: Tampere residents including Ukrainians, people under temporary protection and other third-country nationals who arrived in Finland for humanitarian reasons.
+  - Status: active EU-funded development pilot announced 27.8.2026; the published page describes the target group and co-development approach but does not yet provide an individual public enrolment route.
+  - Use: strategic AQOON partnership/contact opportunity around multilingual, client-led orientation; do not list as an open family programme until a direct participation route is published.
+  - Official: https://internationalhouse.tampere.fi/uutinen/uutta-suuntaa-yhteiskuntaorientaatioihin-asiakaslahtoisen-pilotin-avulla/
 
 ## Partnership / outreach priorities
 
