@@ -64,3 +64,11 @@ test('work interviews branch around the person situation before asking eligibili
   assert.match(interview, /student-studying/);
   assert.match(interview, /situation==='Working'/);
 });
+
+test('saved interview summary is plain-language context, not a technical route count', () => {
+  const interview = read('tracker/interview-match.js');
+  assert.match(interview, /function summary\(a\)/);
+  assert.match(interview, /Situation: '\+a\.primary_situation/);
+  assert.match(interview, /summary:summary\(a\)/);
+  assert.doesNotMatch(interview, /summary:'Routes: '\+C\.routes/);
+});
