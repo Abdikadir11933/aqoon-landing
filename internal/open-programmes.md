@@ -72,6 +72,12 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Current known deadline: 7.9.2026; individual programmes can close earlier.
   - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/koulutukset-ja-palvelut-maahanmuuttajille/tyovoimakoulutukset-maahanmuuttajille/
 
+- **Sosiaali- ja terveysalan koulutus** — Stadin AO / Helsinki employment services
+  - Fits: primarily unemployed jobseekers or jobseekers at risk of unemployment who are suitable for the training.
+  - Helps with: employment-oriented social and health care training; do not infer a specific qualification from the listing without checking the application details.
+  - Status: application open until 24.9.2026; training 1.12.2026–31.3.2027. Selection is made jointly by Stadin AO and Helsinki employment services.
+  - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/tyovoimakoulutukset/
+
 - **Kielituettu ryhmävalmennus** — Stadin AO / Helsinki employment services
   - Fits: unemployed Helsinki residents whose work/study direction is unclear.
   - Helps with: Finnish, digital skills, work-life skills, personal next-step plan.
@@ -130,14 +136,14 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Entresse Library Finnish Language Café** — Finnish Red Cross / Espoo libraries
   - Fits: anyone who wants to practise spoken Finnish; no advance registration.
   - Helps with: free, low-threshold Finnish conversation practice with native speakers and volunteers.
-  - Status: Tuesdays 18.8.–8.12.2026, 18.00–19.30, Entresse Library, Siltakatu 11; free. Next session after this review: 1.9.2026.
+  - Status: Tuesdays 18.8.–8.12.2026, 18.00–19.30, Entresse Library, Siltakatu 11; free. No session 13.10.2026. Next session after this review: 1.9.2026.
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagpmwgiskm
 
 - **Entresse Library Finnish Language Café on Fridays** — Finnish Red Cross / Espoo libraries
   - Fits: anyone who wants to practise spoken Finnish; no advance registration.
   - Helps with: free Finnish conversation practice in a daytime slot.
   - Status: Fridays 4.9.–18.12.2026, 12.00–13.30, Entresse Library, Siltakatu 11; free. No session 16.10.2026.
-  - Official: https://www.espoo.fi/en/events/espooevents%3Aagpmwdkh5u
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagpmwdj7im
 
 ### Tampere
 
