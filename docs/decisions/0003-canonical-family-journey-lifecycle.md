@@ -167,17 +167,40 @@ browser guesswork — see commits `8cbdcf7`, `b82a674`):
   and long, distinctive phrase renames (the only kind safe for a document-
   wide substring pass).
 
+**Also fixed via PR #23** (`origin/master#eddb1bb`, merged 2026-08-30 — not
+from the original numbered defect list, found in a separate live UX audit
+pass, listed here so this stays the one place tracking journey-fix state):
+
+- **Funnel drop-note direction.** The analytics funnel's "-X lost · Y%" note
+  was computed as the outgoing loss to the *next* stage but rendered on the
+  *current* stage — reading backwards (a stage showing a drop it didn't
+  cause). Now attaches to the stage that actually lost the sessions.
+- **Live interview completeness badge.** "6 / 9 matching fields answered"
+  on the first interview now updates live as the operator answers, instead
+  of only surfacing gaps after clicking Save and getting bounced to the
+  first missing field. Reuses the existing `missing()`/`collect()` gate
+  logic directly, so the badge can't drift from what Save actually enforces.
+
 **Confirmed, not yet fixed — implementation-ready** (root cause understood,
 low ambiguity):
 
-1. **Resolution bypasses the plan lifecycle** (#2). "Open resolution" (the
-   free-text `prompt()` in `crm-queue-navigation.js`'s `mark-resolved`
-   action) still writes `family_leads.status='resolved'` directly with no
-   route/evidence/owner/date/reason capture — this is the §4.7 structured
-   resolution form, a real UI build, not a one-line fix. **Deferred until
-   live browser verification is available** (see the live-testing brief
-   below); shipping a new operator-facing form blind, in a sandbox that
-   cannot exercise it, is not a safe trade.
+1. ~~Resolution bypasses the plan lifecycle~~ (#2) — done, via
+   `origin/master#eddb1bb` (PR #23, merged 2026-08-30). "Open resolution"
+   (`crm-queue-navigation.js`'s `mark-resolved` action) no longer writes
+   `family_leads.status='resolved'` directly; it now calls
+   `case-lifecycle.js`'s new `resolveActivePlan()`, which finds (or creates,
+   if none exists) the family's active plan, logs a `case_resolved` event
+   with the operator's note, then calls `save_plan` with
+   `plan_status:'resolved'` — the exact same call path the case-plan
+   panel's own Resolve button uses, so `family_leads.status` is set by the
+   atomic fix in item 2 below, not a second bespoke write. Every
+   resolution now leaves a `family_case_events` trace regardless of which
+   screen it was resolved from. This still isn't the full §4.7 structured
+   resolution form (no route-selection UI, no explicit "none fit" outcome
+   picker) — it's the free-text note going through the correct lifecycle
+   path instead of bypassing it, which was the specific defect. The richer
+   form remains open, tracked in item 9 below. Verified live against the
+   real deployed Edge Function and DOM per the PR's own test plan.
 2. ~~Case-plan resolution doesn't resolve the CRM lead~~ (#3) — done this
    session. `family-case-lifecycle-admin`'s `save_plan` action now updates
    `family_leads.status='resolved'`/`journey_stage='resolved'`/
@@ -218,12 +241,34 @@ low ambiguity):
    working feature with nothing to replace it. `tracker/CONTEXT.md`'s "not
    loaded" line is the one that's stale and should be corrected to describe
    current reality once the re-home lands, not the other way around.
-5. **Evidence panel is a prompt-text scrape, not persisted evidence** (#6).
-   Needs the case-plan schema to carry `selected_option`/evidence links
-   (column already exists: `family_case_plans.selected_option jsonb`) —
-   this is a UI + save-path gap, not a missing column.
-6. **Follow-up decision brief is too thin** (#8) and **"Review interview"
-   opens the full editable drawer** (#9). Both addressed by §4.4/§4.5.
+5. **Evidence panel is a prompt-text scrape, not persisted evidence** (#6)
+   — **partially fixed**, via PR #23's research-brief paste-back
+   (`origin/master#eddb1bb`). `case-lifecycle.js` now has a "Paste research
+   result" box that parses the `AQOON_SCENARIO_JSON` block the research
+   prompt already asks the operator's deep-research answer to end with
+   (summary/next_steps/official_sources/recheck_after), and saves it onto
+   the existing `family_case_plans.selected_option` jsonb column via
+   `save_plan` — falling back to the raw pasted text if the block is
+   missing/malformed, so nothing is silently discarded. The plan card now
+   renders that as a real "Verified research result" block with sources
+   and recheck date, not just an extracted-URL scrape of the prompt. What's
+   still missing: this is a manual paste-back step the operator runs after
+   pasting a research answer in themselves, not an automatically persisted
+   evidence trail, and there's still no selectable-route/"none fit" picker
+   — that remains item 9 below.
+6. **Follow-up decision brief is too thin** (#8) — still open, §4.5 scope.
+   **"Review interview" opens the full editable drawer** (#9) —
+   **partially addressed**: PR #23's collapsed-interview-view fix
+   (`origin/master#eddb1bb`) folds the question list into one collapsed
+   `<details>` once `lead.interview_status==='completed'`, and moves the
+   case-plan panel above it (`case-lifecycle.js`'s `host()` now inserts
+   after `.interview-capture` instead of after `.interview-actions` when
+   the interview is already done), so reopening a completed interview
+   leads with the case plan instead of several screens of already-read
+   answers. It is still the same editable drawer under the hood (a true
+   read-only review mode, per §4.4, is not built) — but the practical
+   "buried case plan" complaint in #9 is meaningfully improved. Verified
+   live in the real DOM per the PR's test plan.
 7. ~~Duplicate unfinished-intake entries~~ (#12) — done this session. Root
    cause: `family-intake-contact` (partial save), `family-intake-submit`
    (final save) and `family-incomplete-admin`'s `complete` action all
