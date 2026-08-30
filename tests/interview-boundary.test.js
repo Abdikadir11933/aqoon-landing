@@ -54,3 +54,13 @@ test('follow-up starts with one canonical decision brief', () => {
   assert.match(queue, /family-case-lifecycle-admin/);
   assert.doesNotMatch(queue, /interview-recap-primary/);
 });
+
+test('work interviews branch around the person situation before asking eligibility questions', () => {
+  const interview = read('tracker/interview-match.js');
+  assert.match(interview, /primary_situation/);
+  assert.match(interview, /student_schedule/);
+  assert.match(interview, /student_benefit_context/);
+  assert.match(interview, /current_work_hours/);
+  assert.match(interview, /student-studying/);
+  assert.match(interview, /situation==='Working'/);
+});
