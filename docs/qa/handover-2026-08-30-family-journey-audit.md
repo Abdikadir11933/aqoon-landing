@@ -195,6 +195,27 @@ it does not generally evaluate value-level rules. Therefore a student with
 part-time work can still receive unemployment/jobseeker routes as “Possible —
 must confirm” even when that is a misleading first recommendation.
 
+## New mandatory reproduction cases from the latest live pass
+
+- A newly submitted Finnish intake appeared in the unfinished queue; filling
+  it again as an operator produced another entry. Trace final submit, partial
+  writes, deduplication, language mapping, final lead write and queue refresh.
+- Daycare, hobby and education intakes open large generic forms instead of a
+  short scenario-first qualification flow. Verify the selected category really
+  controls question routing.
+- Live labels include malformed choices such as “Not Starteded” and “kNew it”.
+  Audit every label, option value, answer key and criteria bridge.
+- “Always ask” answers are collected but their conclusions do not reach the
+  follow-up summary or useful aggregate analytics.
+- After saving, the case plan says “No active case plan yet”; there is no
+  researched recommendation, selectable plan, evidence panel or explicit
+  “none fit / another plan / defer” outcome.
+- “Open resolution” asks for a plan/note despite no plan existing and gives no
+  structured route, evidence, owner, next date or closure reason.
+- A live performance marker reported a primary button whose handlers blocked UI
+  updates for about 59.9 seconds. Reproduce with synthetic data and trace the
+  exact network/long-task path; treat this as a severe interaction defect.
+
 ## Remaining work — execute in this order
 
 1. Finish the audit matrix for every intake category: work, education, daycare,
