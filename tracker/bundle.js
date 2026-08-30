@@ -526,7 +526,7 @@ general:[['issue_context','In your own words, what situation should we understan
 function addFields(rs){const host=$('questions'),existing=new Set([...host.querySelectorAll('[data-key]')].map(x=>x.dataset.key)),adult=rs.some(r=>['work','education','entrepreneurship','program','service_support','general'].includes(r)),universalContext=[['case_subject','Who is this case mainly about?','select',['Adult','Child','Household / family','Not sure'],1],['current_situation','What is happening in their life right now?','select',['Studying / education','Working','Seeking work','Child in daycare / esiopetus','Child in school','Parent / caregiver','Authority or benefit matter','Mixed / not sure'],1],['immediate_goal','What is the most important next step?','select',['Work','Study or course','Childcare','School support','Hobby or activity','Understand a letter or benefit','Other / not sure'],1]],workContext=[['primary_situation','What is the person’s main situation right now?','select',['Studying','Working','Unemployed / seeking work','Other / mixed','Not sure'],1],['work_intent','What kind of work are they looking for?','select',['Part-time','Full-time','Both','Occasional / flexible','Not sure'],1],['study_path','What are they studying?','select',['Peruskoulu / basic education','Aikuisten perusopetus','Lukio or vocational','Higher education','Course / other','Not sure'],1]],childContext=rs.some(r=>['daycare','school_child','hobby'].includes(r))?[['child_stage','What stage is the child in now?','select',['Not started daycare/esiopetus','Daycare / esiopetus','Basic school','Changing school or route','Not sure'],1],['household_schedule','What must the child’s arrangement fit around?','select',['Parent work','Parent study','Work and study','Parent at home','Schedule changes','Not sure'],1]]:[],sets=[universalContext,...(adult?[F.core]:[]),...(rs.includes('work')?[workContext]:[]),childContext,...rs.map(r=>F[r]||F.general)];sets.flat().forEach(f=>{if(existing.has(f[0]))return;const d=document.createElement('div');d.className='question match-extra';d.dataset.matchRequired=f[4]?'1':'0';d.dataset.branch=f[0]==='study_path'?'student':['student_schedule','study_completion','student_benefit_context'].includes(f[0])?'student-studying':['current_work_hours','change_reason'].includes(f[0])?'working':['jobseeker_active','unemployment_duration','employment_plan','integration_plan','palkkatuki','work_tryout'].includes(f[0])?'jobseeker':'';d.innerHTML='<label>'+f[1]+(f[4]?' <small style="color:#0A8F89">needed for matching</small>':'')+'</label>'+control(f);host.appendChild(d);existing.add(f[0])});applyWorkContext()}
 function control(f){const[k,q,t,o]=f;if(t==='select'||t==='multi')return'<div class="choice-row '+(t==='multi'?'match-multi':'')+'" data-key="'+k+'">'+o.map(v=>'<button type="button" class="choice" data-value="'+v.replace(/"/g,'&quot;')+'">'+v+'</button>').join('')+'</div>';return'<input data-key="'+k+'" type="'+(t||'text')+'">'}
 function applyWorkContext(){const situation=document.querySelector('#questions [data-key="primary_situation"] .choice.on')?.dataset.value||'',intent=document.querySelector('#questions [data-key="work_intent"] .choice.on')?.dataset.value||'',student=situation==='Studying';document.querySelectorAll('#questions .match-extra[data-branch="student"]').forEach(x=>x.classList.toggle('hidden',!student));document.querySelectorAll('#questions .match-extra[data-branch="student-studying"]').forEach(x=>x.classList.toggle('hidden',!(student&&(intent==='Part-time'||intent==='Both'))));document.querySelectorAll('#questions .match-extra[data-branch="working"]').forEach(x=>x.classList.toggle('hidden',situation!=='Working'));document.querySelectorAll('#questions .match-extra[data-branch="jobseeker"]').forEach(x=>x.classList.toggle('hidden',student||situation==='Working'))}
-function bindExtras(){document.querySelectorAll('#questions .match-extra .choice-row').forEach(r=>r.querySelectorAll('.choice').forEach(b=>b.onclick=()=>{if(r.classList.contains('match-multi'))b.classList.toggle('on');else{r.querySelectorAll('.choice').forEach(x=>x.classList.remove('on'));b.classList.add('on')}applyWorkContext()}))}
+function bindExtras(){document.querySelectorAll('#questions .match-extra .choice-row').forEach(r=>{r.querySelectorAll('.choice').forEach(b=>b.onclick=()=>{if(r.classList.contains('match-multi'))b.classList.toggle('on');else{r.querySelectorAll('.choice').forEach(x=>x.classList.remove('on'));b.classList.add('on')}applyWorkContext()});r.dataset.wired='1'})}
 function collect(){const a={};document.querySelectorAll('#questions input[data-key],#questions textarea[data-key]').forEach(x=>{if(x.value.trim())a[x.dataset.key]=x.value.trim()});document.querySelectorAll('#questions .choice-row[data-key]').forEach(r=>{const on=[...r.querySelectorAll('.choice.on')].map(x=>x.dataset.value);if(on.length)a[r.dataset.key]=r.classList.contains('match-multi')?on:on[0]});return a}
 function summary(a){const parts=[];if(a.case_subject)parts.push('case: '+a.case_subject.toLowerCase());if(a.current_situation)parts.push('current situation: '+a.current_situation.toLowerCase());if(a.immediate_goal)parts.push('next goal: '+a.immediate_goal.toLowerCase());if(a.child_stage)parts.push('child stage: '+a.child_stage.toLowerCase());if(a.household_schedule)parts.push('household schedule: '+a.household_schedule.toLowerCase());if(a.care_reason)parts.push('care purpose: '+a.care_reason.toLowerCase());if(a.care_start_urgency)parts.push('care timing: '+a.care_start_urgency.toLowerCase());if(a.school_situation)parts.push('school situation: '+a.school_situation.toLowerCase());if(a.school_decision_needed)parts.push('school help needed: '+a.school_decision_needed.toLowerCase());if(a.activity_goal)parts.push('activity goal: '+a.activity_goal.toLowerCase());if(a.education_entry_reason)parts.push('education reason: '+a.education_entry_reason.toLowerCase());if(a.education_barriers)parts.push('study barriers: '+(Array.isArray(a.education_barriers)?a.education_barriers.join(', '):a.education_barriers).toLowerCase());if(a.program_reason)parts.push('programme reason: '+a.program_reason.toLowerCase());if(a.program_constraints)parts.push('programme constraints: '+(Array.isArray(a.program_constraints)?a.program_constraints.join(', '):a.program_constraints).toLowerCase());if(a.authority_issue)parts.push('authority issue: '+a.authority_issue.toLowerCase());if(a.authority_goal)parts.push('authority help: '+a.authority_goal.toLowerCase());if(a.issue_context)parts.push('case context: '+a.issue_context);if(a.desired_help)parts.push('desired help: '+a.desired_help.toLowerCase());if(a.primary_situation)parts.push('adult situation: '+a.primary_situation.toLowerCase());if(a.work_intent)parts.push('work goal: '+a.work_intent.toLowerCase());if(a.study_path)parts.push('study path: '+a.study_path);if(a.student_schedule)parts.push('study/work timing: '+a.student_schedule.toLowerCase());if(a.current_work_hours)parts.push('current work: '+a.current_work_hours.toLowerCase());if(a.availability)parts.push('availability: '+(Array.isArray(a.availability)?a.availability.join(', '):a.availability).toLowerCase());if(a.start_when)parts.push('start: '+a.start_when.toLowerCase());if(a.student_benefit_context)parts.push('support context to check: '+(Array.isArray(a.student_benefit_context)?a.student_benefit_context.join(', '):a.student_benefit_context).toLowerCase());return parts.length?parts.join('; ')+'.':'Interview saved; review the recorded answers and remaining unknowns.'}
 function labels(){const m={};document.querySelectorAll('#questions .question').forEach(q=>{const k=q.querySelector('[data-key]')?.dataset.key;if(k)m[k]=q.querySelector('label')?.textContent.replace('needed for matching','').trim()||k});return m}
@@ -1623,7 +1623,9 @@ window.AqoonIncompleteIntake={open,remove,assign};
 
 // ---- human-labels.js ----
 (()=>{'use strict';
-const TEXT=new Map([
+// Exact-match only: codes come from data-stage/pill textContent, which are
+// always the whole code string, never a larger sentence. Safe to keep short.
+const CODES=new Map([
   ['reach','First contact'],
   ['guide','Guiding'],
   ['start','Started'],
@@ -1634,7 +1636,15 @@ const TEXT=new Map([
   ['completed','Completed'],
   ['new','New'],
   ['contacted','Contacted'],
-  ['resolved','Resolved'],
+  ['resolved','Resolved']
+]);
+// Substring-safe only: these are long, distinctive phrases used for a
+// document-wide taxonomy rename. Never add a short/generic entry here — a
+// short key (e.g. 'start', 'new') matches inside unrelated words anywhere in
+// the document ("started" -> "Starteded", "knew" -> "kNew") because
+// replaceText() below does a blind substring find/replace across every text
+// node, not just the taxonomy labels it's meant for.
+const PHRASES=new Map([
   ['Dugsiga iyo taageerada ilmaha','Skuulka iyo taageerada ilmaha'],
   ['Ciyaaro iyo hiwaayado','Ciyaaro iyo harrastukset'],
   ['Hel ciyaar ama hobby ku habboon ilmaha','Hel ciyaar ama harrastus ku habboon ilmaha']
@@ -1644,15 +1654,15 @@ function cleanElement(el){
   if(!(el instanceof HTMLElement))return;
   if(el.matches('.stage-btn')){
     const raw=el.dataset.stage;
-    if(TEXT.has(raw))el.textContent=TEXT.get(raw);
+    if(CODES.has(raw))el.textContent=CODES.get(raw);
   }
   if(el.matches('.pill.stage')){
     const raw=el.textContent.trim();
-    if(TEXT.has(raw))el.textContent=TEXT.get(raw);
+    if(CODES.has(raw))el.textContent=CODES.get(raw);
   }
   if(el.matches('.pill.new,.pill.contacted,.pill.resolved')){
     const raw=el.textContent.trim();
-    if(TEXT.has(raw))el.textContent=TEXT.get(raw);
+    if(CODES.has(raw))el.textContent=CODES.get(raw);
   }
 }
 
@@ -1663,7 +1673,7 @@ function replaceText(root=document){
   while((n=walker.nextNode()))nodes.push(n);
   nodes.forEach(node=>{
     let out=node.nodeValue;
-    TEXT.forEach((next,old)=>{if(out.includes(old))out=out.split(old).join(next)});
+    PHRASES.forEach((next,old)=>{if(out.includes(old))out=out.split(old).join(next)});
     node.nodeValue=out;
   });
 }
