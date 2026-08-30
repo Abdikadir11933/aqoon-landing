@@ -329,7 +329,7 @@ const CrmQueues = {
     const interview = lead.latest_interview || {};
     const answers = interview.answers && typeof interview.answers === 'object' ? interview.answers : {};
     const route = interview.interview_type ? interview.interview_type.split('+').join(' · ') : 'Interview complete';
-    const context = ['primary_situation','work_intent','study_path','availability','start_when','travel_limit']
+    const context = ['case_subject','current_situation','immediate_goal','child_stage','household_schedule','primary_situation','work_intent','study_path','availability','start_when','travel_limit']
       .filter(k => answers[k]).map(k => this.escapeHtml(String(answers[k]))).join(' · ');
     const brief = document.createElement('section');
     brief.className = 'panel-section decision-brief';
