@@ -16,5 +16,5 @@ test('the funnel drop-note attaches the loss to the stage that lost the sessions
   // INCOMING transition (previous stage -> this stage) and the first stage
   // (nothing precedes it) must show no note at all.
   assert.doesNotMatch(visual, /if\(i>=rows\.length-1\)return;const from=vals\[i\],to=vals\[i\+1\]/);
-  assert.match(visual, /if\(i===0\)return;const from=vals\[i-1\],to=vals\[i\]/);
+  assert.match(visual, /if\(i===0\)return;const from=managed\?Number\(r\.dataset\.funnelBase\)/);
 });

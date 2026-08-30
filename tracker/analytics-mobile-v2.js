@@ -7,6 +7,7 @@ function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&l
 function val(i,key){let v=i?.answers?.[key];if(v===undefined&&ALIASES[key])for(const k of ALIASES[key]){if(i?.answers?.[k]!==undefined){v=i.answers[k];break}}return v}
 function dist(ints,key){const c={};let n=0;ints.forEach(i=>{const v=val(i,key);if(v===undefined||v===null||v==='')return;n++;(Array.isArray(v)?v:[v]).forEach(x=>c[x]=(c[x]||0)+1)});return{n,c}}
 function rate(d,fn){if(!d.n)return null;let hit=0;Object.entries(d.c).forEach(([k,n])=>{if(fn(String(k)))hit+=n});return{pct:Math.round(hit/d.n*100),hit,n:d.n}}
+function ratePerInterview(ints,key,fn){const answered=ints.map(i=>val(i,key)).filter(v=>v!==undefined&&v!==null&&v!==''),hit=answered.filter(v=>(Array.isArray(v)?v:[v]).some(x=>fn(String(x)))).length;if(!answered.length)return null;return{pct:Math.round(hit/answered.length*100),hit,n:answered.length}}
 function signal(label,r){if(!r)return'';return'<div class="aq-signal"><label>'+esc(label)+'</label><div class="aq-signal-main"><strong>'+r.pct+'%</strong><small>'+r.hit+' / '+r.n+'</small></div><div class="aq-meter"><i style="width:'+r.pct+'%"></i></div></div>'}
 function ranks(label,d){const es=Object.entries(d.c).sort((a,b)=>b[1]-a[1]).slice(0,4);if(!es.length)return'';const max=es[0][1]||1;return'<div class="aq-signal wide"><label>'+esc(label)+'</label>'+es.map(([k,v])=>'<div class="aq-rank"><span title="'+esc(k)+'">'+esc(k)+'</span><div class="aq-meter"><i style="width:'+Math.round(v/max*100)+'%"></i></div><b>'+v+'</b></div>').join('')+'</div>'}
 function kpi(label,r){return'<div class="aq-research-kpi"><span>'+esc(label)+'</span><strong>'+(r?r.pct+'%':'—')+'</strong></div>'}
@@ -18,7 +19,7 @@ function bind(){document.querySelectorAll('[data-aq-tab]').forEach(b=>b.onclick=
 async function load(force=false){const card=ensureCard(),body=$('#aqResearchBody');if(!card||!body||loading)return;if(!force&&loadedAt&&Date.now()-loadedAt<30000)return;const pw=sessionStorage.getItem('aqoon_tracker_password')||'';if(!pw)return;loading=true;try{const r=await fetch(ADMIN,{method:'POST',headers:{'Content-Type':'application/json','x-tracker-password':pw},body:JSON.stringify({action:'list'}),cache:'no-store'}),d=await r.json();if(!r.ok)throw Error(d.detail||d.error||'Request failed');const latest=new Map();(d.interviews||[]).filter(i=>i.status==='completed').forEach(i=>{const old=latest.get(i.lead_id);if(!old||String(i.updated_at)>String(old.updated_at))latest.set(i.lead_id,i)});const ints=[...latest.values()],core=ints.filter(i=>i.answers&&Object.keys(i.answers).length);$('#aqResearchN').textContent=core.length;
 const aware=rate(dist(core,'entry_service_awareness'),k=>k==='No'||k.includes('did not understand'));
 const navigate=rate(dist(core,'entry_service_self_navigation'),k=>k==='No'||k.includes('Partly'));
-const extra=rate(dist(core,'cross_service_needs_all'),k=>k!=='Nothing else now');
+const extra=ratePerInterview(core,'cross_service_needs_all',k=>k!=='Nothing else now');
 const job=rate(dist(core,'jobseeker'),k=>k==='No'||k==='Not sure');
 const plan=rate(dist(core,'employment_plan_status'),k=>k==='No'||k==='Not sure');
 const privateDaycare=rate(dist(core,'private_daycare_awareness_all'),k=>k==='No'||k.includes('assumed'));

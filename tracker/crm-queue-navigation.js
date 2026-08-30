@@ -307,6 +307,9 @@ const CrmQueues = {
     if (phaseId === 'in_progress' && lead.interview_status === 'completed') {
       this.renderDecisionBrief(panelContent, lead);
     }
+    if (phaseId === 'resolved') {
+      this.renderResolvedSummary(panelContent, lead);
+    }
 
     if (phaseId !== 'incomplete') {
       window.AqoonCallHistory?.renderInto(document.getElementById('panelCallHistory'), leadId);
@@ -349,12 +352,40 @@ const CrmQueues = {
       if(!box)return;
       const plan=(data.plans||[]).find(p=>!['resolved','closed_unresolved'].includes(p.plan_status)) || (data.plans||[])[0];
       const run=(data.match_runs||[])[0];
+      const option=plan?.selected_option&&typeof plan.selected_option==='object'&&Object.keys(plan.selected_option).length?plan.selected_option:null;
       const links=(interview.research_prompt||'').match(/https?:\/\/[^\s)]+/g)||[];
       box.innerHTML=(plan?`<p><strong>Plan:</strong> ${this.escapeHtml(plan.title||'Case plan')} · ${this.escapeHtml(plan.plan_status||'research')}${plan.next_action?' · '+this.escapeHtml(plan.next_action):''}</p>`:'<p class="muted">No case plan has been created yet.</p>')+
         (run?.recommended_next_action?`<p><strong>Matched next action:</strong> ${this.escapeHtml(run.recommended_next_action)}</p>`:'')+
+        (option?.title?`<p><strong>Verified evidence:</strong> ${this.escapeHtml(option.title)}</p>`:'<p class="muted">No verified decision has been recorded yet.</p>')+
         (links.length?'<p><strong>Sources:</strong> '+links.slice(0,3).map(u=>`<a href="${this.escapeHtml(u)}" target="_blank" rel="noreferrer">Official source</a>`).join(' · ')+'</p>':'')+
         (interview.research_prompt?`<details><summary>Raw research brief</summary><pre>${this.escapeHtml(interview.research_prompt.slice(0,1600))}${interview.research_prompt.length>1600?'\n…':''}</pre></details>`:'');
     }).catch(()=>{});
+  },
+
+  renderResolvedSummary(panelContent, lead) {
+    const summary = document.createElement('section');
+    summary.className = 'panel-section resolved-outcome';
+    summary.innerHTML = '<h4 class="panel-section-title">Resolution summary</h4><p class="muted">Loading the latest case outcome…</p>';
+    panelContent.querySelector('.assign-operator')?.insertAdjacentElement('afterend', summary);
+    const password = sessionStorage.getItem('aqoon_tracker_password') || '';
+    fetch('https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-case-lifecycle-admin', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', 'x-tracker-password': password},
+      body: JSON.stringify({action: 'list', lead_id: lead.id}),
+      cache: 'no-store'
+    }).then(r => r.json()).then(data => {
+      const terminal = (data.events || []).filter(e => ['case_resolved', 'case_closed_unresolved'].includes(e.event_type)).sort((a, b) => String(b.occurred_at || b.created_at || '').localeCompare(String(a.occurred_at || a.created_at || '')))[0];
+      const plan = (data.plans || []).sort((a, b) => String(b.updated_at || b.created_at || '').localeCompare(String(a.updated_at || a.created_at || '')))[0];
+      const option = plan?.selected_option && typeof plan.selected_option === 'object' && Object.keys(plan.selected_option).length ? plan.selected_option : null;
+      const title = plan?.title || 'Case resolved';
+      const note = terminal?.note || lead.notes || '';
+      summary.innerHTML = '<h4 class="panel-section-title">Resolution summary</h4>' +
+        '<p><strong>Plan:</strong> ' + this.escapeHtml(title) + (plan?.plan_status ? ' · ' + this.escapeHtml(plan.plan_status) : '') + '</p>' +
+        (note ? '<p><strong>Outcome:</strong> ' + this.escapeHtml(note) + '</p>' : '<p class="muted">No outcome note was recorded.</p>') +
+        (option?.title ? '<p><strong>Evidence:</strong> ' + this.escapeHtml(option.title) + '</p>' : '');
+    }).catch(() => {
+      summary.innerHTML = '<h4 class="panel-section-title">Resolution summary</h4><p class="muted">Outcome details are temporarily unavailable.</p>';
+    });
   },
 
   handleAction(action, leadId) {
@@ -414,7 +445,17 @@ const CrmQueues = {
         .then(() => this.closeFamilyPanel())
         .catch(err => alert(err.message || 'Could not resolve this case.'));
     } else if (action === 'reopen-case') {
-      window.AqoonApp?.updateLead(leadId, {status: 'contacted', journey_stage: 'guide'})
+      const password = sessionStorage.getItem('aqoon_tracker_password') || '';
+      fetch('https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-case-lifecycle-admin', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', 'x-tracker-password': password},
+        body: JSON.stringify({action: 'log_event', lead_id: leadId, event_type: 'follow_up_attempted', event_data: {source: 'resolved_queue', action: 'reopen'}, note: 'Case reopened from the Resolved queue; follow-up work resumed.'}),
+        cache: 'no-store'
+      }).then(r => r.ok ? r.json() : r.json().then(d => Promise.reject(new Error(d.detail || d.error || 'Could not record the reopen event.'))))
+        .then(() => {
+          if (!window.AqoonApp?.updateLead) throw new Error('CRM update is unavailable; the case was not reopened.');
+          return window.AqoonApp.updateLead(leadId, {status: 'contacted', journey_stage: 'guide'});
+        })
         .then(() => this.closeFamilyPanel())
         .catch(err => alert(err.message || 'Could not reopen this case.'));
     } else if (action === 'return-to-first-contact') {
