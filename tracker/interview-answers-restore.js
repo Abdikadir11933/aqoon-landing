@@ -16,12 +16,14 @@ function applyTo(root){
     if(key&&Object.prototype.hasOwnProperty.call(pending,key))fill(el,pending[key]);
   });
 }
+function notifyRestored(){document.dispatchEvent(new CustomEvent('aqoon:interview-answers-restored'))}
 function stopWatching(){observer?.disconnect();observer=null}
 function watch(){
   stopWatching();
   const host=$('questions');if(!host)return;
   applyTo(host);
-  observer=new MutationObserver(mutations=>mutations.forEach(m=>m.addedNodes.forEach(node=>{if(node.nodeType===1)applyTo(node)})));
+  notifyRestored();
+  observer=new MutationObserver(mutations=>{mutations.forEach(m=>m.addedNodes.forEach(node=>{if(node.nodeType===1)applyTo(node)}));notifyRestored()});
   observer.observe(host,{childList:true,subtree:true});
 }
 const originalOpenForRestore=window.openInterview;

@@ -43,10 +43,11 @@ test('the Next Steps panel reads the real plan_status column and refreshes after
   assert.doesNotMatch(nextSteps, /p\.status!==/);
   assert.match(nextSteps, /p\.plan_status!=='resolved'&&p\.plan_status!=='closed_unresolved'/);
   assert.match(nextSteps, /activePlan\?\.plan_status==='awaiting_outcome'/);
-  // window.saveInterview points at app.js's inert fallback save function,
-  // never called by the real save button - the panel must refresh via a
-  // direct call from interview-match.js's actual save() instead.
-  assert.match(interview, /window\.AqoonNextSteps\?\.attach\(C\.lead,a\)/);
+  // A successful route-specific save must announce the saved record. The
+  // Next Steps module listens to that success signal instead of wrapping the
+  // inert global fallback or guessing which onclick reference is active.
+  assert.match(interview, /AqoonInterview\?\.announceSaved\?\./);
+  assert.match(nextSteps, /addEventListener\('aqoon:interview-saved'/);
 });
 
 test('the public intake request id survives a closed tab, bounded by a TTL so an old case is never silently reused', () => {

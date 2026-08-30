@@ -20,8 +20,8 @@ function fmt(v){if(!v)return'—';try{return new Intl.DateTimeFormat('fi-FI',{da
 // new interview keeps the plan below the fields, since no plan can exist
 // yet (family-case-lifecycle-admin requires a completed interview first).
 function host(){
-  let el=$('caseLifecycle');if(el)return el;
-  el=document.createElement('section');el.id='caseLifecycle';el.className='case-lifecycle';
+  let el=$('caseLifecycle');
+  if(!el){el=document.createElement('section');el.id='caseLifecycle';el.className='case-lifecycle'}
   const lead=(window.AqoonApp?.leads||[]).find(l=>l.id===leadId);
   const capture=document.querySelector('#drawer .interview-capture');
   if(lead?.interview_status==='completed'&&capture){capture.after(el);return el}
@@ -182,5 +182,9 @@ async function resolveActivePlan(leadId,note){
   await api(END_LIFECYCLE,{action:'log_event',lead_id:leadId,case_plan_id:plan.id,event_type:'case_resolved',note});
   return api(END_LIFECYCLE,{action:'save_plan',lead_id:leadId,id:plan.id,title:plan.title,official_decision_maker:plan.official_decision_maker,selected_option:plan.selected_option,plan_status:'resolved',next_action:plan.next_action,next_follow_up_at:plan.next_follow_up_at});
 }
-window.AqoonCaseLifecycle={logInterviewCompleted:id=>id?api(END_LIFECYCLE,{action:'log_event',lead_id:id,event_type:'interview_completed'}).catch(()=>{}):Promise.resolve(),resolveActivePlan};
+window.AqoonCaseLifecycle={
+  logInterviewCompleted:id=>id?api(END_LIFECYCLE,{action:'log_event',lead_id:id,event_type:'interview_completed'}).catch(()=>{}):Promise.resolve(),
+  resolveActivePlan,
+  contextForLead:id=>id===leadId?{plans:[...plans],events:[...events]}:{plans:[],events:[]}
+};
 })();

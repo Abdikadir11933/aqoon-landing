@@ -25,5 +25,5 @@ test('the Families queue "Open resolution" button resolves through the plan life
   // A family with no plan at all must still get a real case_resolved event
   // and plan record, not be silently skipped.
   assert.match(lifecycle, /if\(!plan\)\{/);
-  assert.match(lifecycle, /resolveActivePlan\};/);
+  assert.match(lifecycle, /resolveActivePlan,/);
 });
