@@ -95,3 +95,13 @@ test('child interviews distinguish care, school and activity scenarios', () => {
   assert.match(interview, /school_decision_needed/);
   assert.match(interview, /activity_goal/);
 });
+
+test('programme, authority and other interviews identify the problem before route research', () => {
+  const interview = read('tracker/interview-match.js');
+  assert.match(interview, /program_reason/);
+  assert.match(interview, /program_constraints/);
+  assert.match(interview, /authority_issue/);
+  assert.match(interview, /authority_goal/);
+  assert.match(interview, /issue_context/);
+  assert.match(interview, /desired_help/);
+});
