@@ -26,7 +26,7 @@ test('a call cannot move an unfinished interview into follow-up or resolution', 
   const admin = read('supabase/functions/family-leads-admin/index.ts');
   const queue = read('tracker/crm-queue-navigation.js');
   assert.match(admin, /select\("id,status,journey_stage,interview_status"\)/);
-  assert.match(admin, /current\.interview_status==="completed"/);
+  assert.match(admin, /current\.interview_status\s*===\s*"completed"/);
   assert.match(admin, /completed_interview_required/);
   assert.match(queue, /return-to-first-contact/);
   assert.match(queue, /Interview still required/);
@@ -35,16 +35,16 @@ test('a call cannot move an unfinished interview into follow-up or resolution', 
 test('no matching decision (preview or a saved match run) can be produced before a completed first interview', () => {
   const admin = read('supabase/functions/family-leads-admin/index.ts');
   const review = read('supabase/functions/family-route-review-admin/index.ts');
-  assert.match(admin, /action==="match_preview".*lead\.interview_status!=="completed".*first_interview_required/);
+  assert.match(admin, /action\s*===\s*"match_preview"[\s\S]*lead\.interview_status\s*!==\s*"completed"[\s\S]*first_interview_required/);
   assert.match(review, /eq\("status",\s*"completed"\)/);
   assert.match(review, /if \(!interview\) return new Response\(JSON\.stringify\(\{ error: "first_interview_required" \}\)/);
 });
 
 test('route preview respects route scope and never uses a route with a stale source', () => {
   const admin = read('supabase/functions/family-leads-admin/index.ts');
-  assert.match(admin, /scopeCity=String\(r\.scope\?\.city\|\|""\)\.toLowerCase\(\)/);
-  assert.match(admin, /s\.verification_state==="verified"/);
-  assert.match(admin, /new Date\(s\.recheck_after\)\.getTime\(\)>now/);
+  assert.match(admin, /scopeCity\s*=\s*String\(r\.scope\?\.city\s*\|\|\s*""\)\.toLowerCase\(\)/);
+  assert.match(admin, /s\.verification_state\s*===\s*"verified"/);
+  assert.match(admin, /new Date\(s\.recheck_after\)\.getTime\(\)\s*>\s*now/);
 });
 
 test('follow-up starts with one canonical decision brief', () => {
