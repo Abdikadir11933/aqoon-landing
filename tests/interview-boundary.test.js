@@ -39,3 +39,10 @@ test('no matching decision (preview or a saved match run) can be produced before
   assert.match(review, /eq\("status",\s*"completed"\)/);
   assert.match(review, /if \(!interview\) return new Response\(JSON\.stringify\(\{ error: "first_interview_required" \}\)/);
 });
+
+test('route preview respects route scope and never uses a route with a stale source', () => {
+  const admin = read('supabase/functions/family-leads-admin/index.ts');
+  assert.match(admin, /scopeCity=String\(r\.scope\?\.city\|\|""\)\.toLowerCase\(\)/);
+  assert.match(admin, /s\.verification_state==="verified"/);
+  assert.match(admin, /new Date\(s\.recheck_after\)\.getTime\(\)>now/);
+});

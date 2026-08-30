@@ -15,7 +15,10 @@ for bad in ['waxa aad xaq u leedahay','TE-toimisto','TE-palvelut']:
 
 if '/so/disclaimer' not in caawi: errors.append('caawi missing independence disclaimer link')
 if '/so/tietosuoja' not in caawi: errors.append('caawi missing privacy link')
-if "if(analyticsConsent!=='yes')return;" not in app: errors.append('caawi funnel analytics is not consent-gated')
+# The implementation deliberately uses the compact `consent` variable.  Keep
+# this guard aligned with the runtime condition rather than requiring a stale
+# variable name and turning a consent-gated implementation into a false fail.
+if "if(consent!=='yes')return;" not in app: errors.append('caawi funnel analytics is not consent-gated')
 if "aqoon_analytics_consent" not in app: errors.append('analytics consent preference missing')
 if 'aqoon-independence-note' not in home: errors.append('Finnish homepage missing independence notice')
 if '/disclaimer' not in home: errors.append('Finnish homepage missing disclaimer link')
