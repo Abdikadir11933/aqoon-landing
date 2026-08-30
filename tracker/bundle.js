@@ -2435,7 +2435,7 @@ const CrmQueues = {
     panelContent.prepend(brief);
     const password = sessionStorage.getItem('aqoon_tracker_password') || '';
     fetch('https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-case-lifecycle-admin', {
-      method:'POST', headers:{'Content-Type':'application/json','x-tracker-password':password},
+      method:'POST', headers:Object.assign({'Content-Type':'application/json','x-tracker-password':password},sessionStorage.getItem('aqoon_auth_token')?{Authorization:'Bearer '+sessionStorage.getItem('aqoon_auth_token')}:{}),
       body:JSON.stringify({action:'list',lead_id:lead.id}), cache:'no-store'
     }).then(r=>r.json()).then(data=>{
       const box=brief.querySelector('.decision-brief-evidence-body');
@@ -2472,7 +2472,7 @@ const CrmQueues = {
     const password = sessionStorage.getItem('aqoon_tracker_password') || '';
     fetch('https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-case-lifecycle-admin', {
       method: 'POST',
-      headers: {'Content-Type': 'application/json', 'x-tracker-password': password},
+      headers: Object.assign({'Content-Type': 'application/json', 'x-tracker-password': password},sessionStorage.getItem('aqoon_auth_token')?{Authorization:'Bearer '+sessionStorage.getItem('aqoon_auth_token')}:{}),
       body: JSON.stringify({action: 'list', lead_id: lead.id}),
       cache: 'no-store'
     }).then(r => r.json()).then(data => {
@@ -2550,7 +2550,7 @@ const CrmQueues = {
       const password = sessionStorage.getItem('aqoon_tracker_password') || '';
       fetch('https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-case-lifecycle-admin', {
         method: 'POST',
-        headers: {'Content-Type': 'application/json', 'x-tracker-password': password},
+        headers: Object.assign({'Content-Type': 'application/json', 'x-tracker-password': password},sessionStorage.getItem('aqoon_auth_token')?{Authorization:'Bearer '+sessionStorage.getItem('aqoon_auth_token')}:{}),
         body: JSON.stringify({action: 'log_event', lead_id: leadId, event_type: 'follow_up_attempted', event_data: {source: 'resolved_queue', action: 'reopen'}, note: 'Case reopened from the Resolved queue; follow-up work resumed.'}),
         cache: 'no-store'
       }).then(r => r.ok ? r.json() : r.json().then(d => Promise.reject(new Error(d.detail || d.error || 'Could not record the reopen event.'))))
