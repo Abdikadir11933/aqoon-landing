@@ -57,6 +57,7 @@ window.openInterview=function(id){
   $('routePreview')?.remove();
   setTimeout(load,450);
 };
-document.addEventListener('input',event=>{if(leadId&&event.target.closest('#questions'))schedule()});
-document.addEventListener('click',event=>{if(leadId&&event.target.closest('#questions .choice'))setTimeout(schedule,0)});
+// The preview is read-only. Re-rendering it on every keystroke/choice causes
+// mobile scroll jumps and spends a request while the operator is still
+// answering. Use the explicit Refresh button (or post-save open) instead.
 })();
