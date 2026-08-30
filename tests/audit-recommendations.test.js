@@ -63,6 +63,19 @@ test('cross-service needs reach the follow-up summary instead of a generic alert
   assert.match(steps, /'Confirmed needs: '\+\(needs&&needs\.length\?needs\.join\(', '\):/);
 });
 
+test('the "what changed" recap compares multi-select answers by content, not array identity', () => {
+  // buildRecap() compares firstAnswers (from the saved interview) against
+  // currentAnswers (freshly scraped from the DOM via scrapeCurrentAnswers()
+  // on every toggle) - for any multi-select field those are always two
+  // different array objects even when they hold identical choices, so a
+  // plain !== flagged every multi-select field as "changed" regardless of
+  // whether the operator had touched it.
+  const recap = read('tracker/interview-follow-up-recap.js');
+  assert.match(recap, /function valuesEqual\(a,b\)\{/);
+  assert.match(recap, /if\(!valuesEqual\(first,current\)\)\{/);
+  assert.doesNotMatch(recap, /if\(first!==current\)\{/);
+});
+
 test('opening an interview never throws from an undeclared variable', () => {
   // scenario-learning.js's window.openInterview wrapper assigned
   // activeLeadId without ever declaring it (no let/const/var) or reading

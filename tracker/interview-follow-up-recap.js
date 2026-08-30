@@ -13,6 +13,21 @@ function fmt(v){if(!v)return'—';try{return new Intl.DateTimeFormat('fi-FI',{da
 
 function valueDisplay(v){if(!v)return'—';if(Array.isArray(v))return v.join(', ');return String(v);}
 
+// firstAnswers comes from the saved interview (server data); currentAnswers
+// is freshly scraped from the DOM on every toggle (scrapeCurrentAnswers()).
+// For a multi-select field those are always two different array objects
+// even when they hold the same choices, so a plain !== always reported
+// every multi-select field as "changed" - regardless of whether the
+// operator had touched it - since arrays compare by reference, not content.
+function valuesEqual(a,b){
+  if(Array.isArray(a)||Array.isArray(b)){
+    const norm=v=>(Array.isArray(v)?v:v==null?[]:[v]).slice().sort();
+    const A=norm(a),B=norm(b);
+    return A.length===B.length&&A.every((v,i)=>v===B[i]);
+  }
+  return a===b;
+}
+
 function buildRecap(firstAnswers,currentAnswers,events){
   const changedKeys=new Set();
   const allKeys=new Set([...Object.keys(firstAnswers||{}),...Object.keys(currentAnswers||{})]);
@@ -21,7 +36,7 @@ function buildRecap(firstAnswers,currentAnswers,events){
   allKeys.forEach(k=>{
     const first=firstAnswers?.[k];
     const current=currentAnswers?.[k];
-    if(first!==current){
+    if(!valuesEqual(first,current)){
       changedKeys.add(k);
       changed[k]={first,current};
     }
