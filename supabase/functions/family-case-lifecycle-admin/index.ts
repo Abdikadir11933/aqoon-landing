@@ -212,9 +212,11 @@ Deno.serve(async (request) => {
   if (action === "log_event") {
     const eventType = String(body.event_type || "");
     if (!EVENT_TYPES.has(eventType)) return new Response(JSON.stringify({ error: "invalid_event_type" }), { status: 400, headers: responseHeaders });
+    const casePlanId = cleanText(body.case_plan_id, 80);
+    if (eventType !== "interview_completed" && !casePlanId) return new Response(JSON.stringify({ error: "case_plan_required" }), { status: 400, headers: responseHeaders });
     const payload = {
       family_lead_id: leadId,
-      case_plan_id: cleanText(body.case_plan_id, 80),
+      case_plan_id: casePlanId,
       operator_id: operatorId || cleanText(body.operator_id, 80),
       event_type: eventType,
       event_data: objectOrEmpty(body.event_data),
