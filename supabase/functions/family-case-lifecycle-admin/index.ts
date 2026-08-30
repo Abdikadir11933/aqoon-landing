@@ -197,7 +197,7 @@ Deno.serve(async (request) => {
     // state instead of leaving it hidden in the resolved queue.
     if (!id) {
       const { error: leadError } = await db.from("family_leads").update({ status: "contacted", updated_at: new Date().toISOString() }).eq("id", leadId);
-      if (leadError) console.error("lead_status_update_failed", leadError.message);
+      if (leadError) return new Response(JSON.stringify({ error: "lead_status_update_failed", detail: leadError.message }), { status: 500, headers: responseHeaders });
     } else if (planStatus === "resolved" || planStatus === "closed_unresolved") {
       // The reverse direction: a plan reaching a terminal state must move the
       // CRM lead too, in the same call, or the family stays stranded in the
