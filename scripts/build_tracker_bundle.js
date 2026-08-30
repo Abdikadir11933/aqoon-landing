@@ -30,7 +30,7 @@ const CSS_FILES = [
 
 const JS_FILES = [
   'operator-identity.js', 'crm-call-history.js', 'multineed-adapter.js', 'app.js',
-  'visual-v3.js', 'crm-reactive.js', 'interview-match.js', 'interview-form-enhancements.js',
+  'visual-v3.js', 'crm-reactive.js', 'interview-match.js', 'interview-match-preview.js', 'interview-form-enhancements.js',
   'interview-smart-notes.js', 'interview-answers-restore.js', 'case-lifecycle.js',
   'scenario-learning.js', 'interview-context.js', 'interview-follow-up-recap.js',
   'interview-next-steps.js', 'universal-proof-questions.js', 'incomplete-intake.js',
