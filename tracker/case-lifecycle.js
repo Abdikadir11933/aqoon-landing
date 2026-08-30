@@ -12,7 +12,22 @@ function password(){return sessionStorage.getItem('aqoon_tracker_password')||''}
 async function api(url,body){const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json','x-tracker-password':password()},body:JSON.stringify(body),cache:'no-store'});let d={};try{d=await r.json()}catch{}if(!r.ok)throw Error(d.detail||d.error||'Request failed');return d}
 function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
 function fmt(v){if(!v)return'—';try{return new Intl.DateTimeFormat('fi-FI',{dateStyle:'short',timeStyle:'short'}).format(new Date(v))}catch{return v}}
-function host(){let el=$('caseLifecycle');if(el)return el;const actions=document.querySelector('#drawer .interview-actions');if(!actions)return null;el=document.createElement('section');el.id='caseLifecycle';el.className='case-lifecycle';actions.after(el);return el}
+// interview-match.js collapses the question list once a lead's interview
+// is already completed (a returning operator has usually already read
+// those answers). When it does, the case plan is the thing worth seeing
+// first - move it right after the notes capture, above the now-collapsed
+// interview, instead of its default spot below the Save button. A brand
+// new interview keeps the plan below the fields, since no plan can exist
+// yet (family-case-lifecycle-admin requires a completed interview first).
+function host(){
+  let el=$('caseLifecycle');if(el)return el;
+  el=document.createElement('section');el.id='caseLifecycle';el.className='case-lifecycle';
+  const lead=(window.AqoonApp?.leads||[]).find(l=>l.id===leadId);
+  const capture=document.querySelector('#drawer .interview-capture');
+  if(lead?.interview_status==='completed'&&capture){capture.after(el);return el}
+  const actions=document.querySelector('#drawer .interview-actions');if(!actions)return null;
+  actions.after(el);return el;
+}
 function activePlan(){return plans.find(p=>p.plan_status!=='resolved'&&p.plan_status!=='closed_unresolved')||null}
 function reasonFor(plan){const ev=events.find(e=>e.case_plan_id===plan.id&&e.event_type==='case_closed_unresolved');return ev?.note||''}
 // The research prompt (interview-match.js's prompt()) asks whoever runs the
