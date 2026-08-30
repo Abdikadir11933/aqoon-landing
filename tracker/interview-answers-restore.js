@@ -1,9 +1,6 @@
 (()=>{'use strict';
-const END='https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-leads-admin';
 const $=id=>document.getElementById(id);
 let pending=null,observer=null;
-function password(){return sessionStorage.getItem('aqoon_tracker_password')||''}
-async function api(body){const r=await fetch(END,{method:'POST',headers:{'Content-Type':'application/json','x-tracker-password':password()},body:JSON.stringify(body),cache:'no-store'});let d={};try{d=await r.json()}catch{}if(!r.ok)throw Error(d.detail||d.error||'Request failed');return d}
 function fill(el,value){
   if(el.matches('input,textarea')){if(el.value==='')el.value=Array.isArray(value)?value.join(', '):value;return}
   if(el.classList.contains('choice-row')){
@@ -32,11 +29,13 @@ window.openInterview=function(id){
   if(originalOpenForRestore)originalOpenForRestore.call(this,id);
   pending=null;stopWatching();
   if(!id)return;
-  api({action:'list'}).then(d=>{
-    const lead=(d.leads||[]).find(x=>x.id===id);
-    const answers=lead?.latest_interview?.answers;
-    if(answers&&typeof answers==='object'&&Object.keys(answers).length){pending=answers;watch()}
-  }).catch(()=>{});
+  // The lead (with its embedded latest_interview) is already in
+  // window.AqoonApp.leads - the queue that opened this drawer was built
+  // from that same array, so there's no need for a second 'list' fetch
+  // just to look up one record already in memory.
+  const lead=(window.AqoonApp?.leads||[]).find(x=>x.id===id);
+  const answers=lead?.latest_interview?.answers;
+  if(answers&&typeof answers==='object'&&Object.keys(answers).length){pending=answers;watch()}
 };
 document.addEventListener('click',event=>{if(event.target.closest('#closeDrawer')){pending=null;stopWatching()}});
 })();

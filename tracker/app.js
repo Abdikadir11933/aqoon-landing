@@ -2,7 +2,7 @@
 const END='https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-leads-admin';
 let password='',leads=[],partials=[],analytics={},programs=[],activeLead=null,answers={},activeQuestions=[],loading=null;
 window.AqoonInterview={activeLead:null,currentAnswers:{}};
-window.AqoonApp={get leads(){return leads},get partials(){return partials},updateLead:(id,patch)=>updateLead(id,patch)};
+window.AqoonApp={get leads(){return leads},get partials(){return partials},get programs(){return programs},updateLead:(id,patch)=>updateLead(id,patch)};
 const $=id=>document.getElementById(id);
 const esc=v=>String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
 function api(body){return fetch(END,{method:'POST',headers:{'Content-Type':'application/json','x-tracker-password':password},body:JSON.stringify(body)}).then(async r=>{let d={};try{d=await r.json()}catch{}if(r.status===401){lock();throw Error('Password expired or incorrect')}if(!r.ok)throw Error(d.detail||d.error||'Request failed');return d})}
