@@ -140,8 +140,8 @@ today, and none should be added.
 
 ## 5. Prioritized defect list — confirmed vs. design choice
 
-**Fixed this session** (both root-caused via static code reading, not
-browser guesswork — see commit `8cbdcf7`):
+**Fixed this session** (all root-caused via static code reading, not
+browser guesswork — see commits `8cbdcf7`, `b82a674`):
 
 - **Branch-handler collision** (numbered defects #1, #4, #11 across the two
   audit docs). Root cause: `interview-form-enhancements.js`'s `enhance()`
@@ -176,13 +176,13 @@ low ambiguity):
 2. **Case-plan resolution doesn't resolve the CRM lead** (#3). Same root
    cause and same fix as above — one atomic transition, not two disconnected
    writes.
-3. **"Next steps suggested" reads `plan.status` instead of
+3. ~~"Next steps suggested" reads `plan.status` instead of
    `plan.plan_status`, and is wired to `window.saveInterview` while the
-   active save handler is `interview-match.js`'s local `save()`** (#4 in the
-   numbered defect list — distinct from the branch-collision #4 above,
-   confusingly reusing the number in the source doc). Two independent
-   one-line fixes: correct the property name; point the button at the
-   currently-active save function or a shared save event.
+   active save handler is `interview-match.js`'s local `save()`~~ — done
+   this session (commit `b82a674`): `activePlan` now matches
+   `case-lifecycle.js`'s own `plan_status!=='resolved'/'closed_unresolved'`
+   check, and `save()` calls `window.AqoonNextSteps?.attach()` directly on
+   success instead of relying on the dead `window.saveInterview` wrapper.
 4. **Route preview is loaded/shown in the wrong phase** (#5, #7). The
    module (`interview-match-preview.js`) must be removed from
    `scripts/build_tracker_bundle.js`'s bundle list to match
@@ -194,10 +194,25 @@ low ambiguity):
    this is a UI + save-path gap, not a missing column.
 6. **Follow-up decision brief is too thin** (#8) and **"Review interview"
    opens the full editable drawer** (#9). Both addressed by §4.4/§4.5.
-7. **Duplicate unfinished-intake entries** (#12). Not yet root-caused in
-   code — needs tracing `family-intake-submit`'s partial-write path against
-   `incomplete-intake.js`'s dedup key before a fix is safe. **Next
-   reproduction step, not yet safe to fix blind.**
+7. ~~Duplicate unfinished-intake entries~~ (#12) — done this session. Root
+   cause: `family-intake-contact` (partial save), `family-intake-submit`
+   (final save) and `family-incomplete-admin`'s `complete` action all
+   dedupe correctly on `intake_request_id`/`request_id`, but
+   `caawi/app.js` generated and stored that id in `sessionStorage`, which
+   clears on tab close. A family that closed the tab and returned later
+   got a fresh id, permanently orphaning the first partial contact as
+   "incomplete" and creating a second `family_leads` row when an operator
+   later completed it. Fixed by moving the id into `localStorage` with a
+   72-hour TTL (`getRequestId()`/`setRequestId()` in `caawi/app.js`) — long
+   enough to cover a realistic "closed the tab, came back later
+   today/tomorrow" gap, short enough that a family returning long after
+   their case was already resolved still starts a fresh lead rather than
+   silently merging a new need into an old closed one. Verified in
+   isolation (fresh/same-tab/within-TTL/expired-TTL/malformed-value cases
+   all behave correctly); **not yet observed end-to-end against production
+   Supabase**, since the sandbox cannot reach `aqoon.live`'s public intake
+   form live — the next live session should submit a labeled synthetic
+   intake, close the tab, and confirm no duplicate appears.
 8. **Cross-need "Always ask" answers don't reach the follow-up summary**
    (#15). UI-only: the data is already saved in `family_interviews.answers`;
    the follow-up workspace (§4.5) needs to read and summarize it.
