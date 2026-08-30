@@ -185,9 +185,27 @@ async function resolveActivePlan(leadId,note){
   await api(END_LIFECYCLE,{action:'log_event',lead_id:leadId,case_plan_id:plan.id,event_type:'case_resolved',note});
   return api(END_LIFECYCLE,{action:'save_plan',lead_id:leadId,id:plan.id,title:plan.title,official_decision_maker:plan.official_decision_maker,selected_option:plan.selected_option,plan_status:'resolved',next_action:plan.next_action,next_follow_up_at:plan.next_follow_up_at});
 }
+// Reopening a resolved case from the Families queue (crm-queue-navigation.js)
+// used to call log_event directly with no case_plan_id. The backend rejects
+// any event_type other than interview_completed without one (see
+// family-case-lifecycle-admin's log_event handler), so every reopen attempt
+// failed with a silent 400 - the click did nothing and the alert() explaining
+// why was easy to miss. Every lead that reaches status=resolved got there
+// through resolveActivePlan, which requires an existing plan, so the plan to
+// attach the event to is always there; find it the same way
+// renderResolvedSummary already does (most recently updated).
+async function reopenCase(leadId,note){
+  const data=await api(END_LIFECYCLE,{action:'list',lead_id:leadId});
+  const plan=(data.plans||[]).sort((a,b)=>String(b.updated_at||b.created_at||'').localeCompare(String(a.updated_at||a.created_at||'')))[0];
+  if(!plan)return Promise.reject(new Error('No case plan is on record for this family, so there is nothing to reopen.'));
+  await api(END_LIFECYCLE,{action:'log_event',lead_id:leadId,case_plan_id:plan.id,event_type:'follow_up_attempted',event_data:{source:'resolved_queue',action:'reopen'},note});
+  if(!window.AqoonApp?.updateLead)throw new Error('CRM update is unavailable; the case was not reopened.');
+  return window.AqoonApp.updateLead(leadId,{status:'contacted',journey_stage:'guide'});
+}
 window.AqoonCaseLifecycle={
   logInterviewCompleted:id=>id?api(END_LIFECYCLE,{action:'log_event',lead_id:id,event_type:'interview_completed'}).catch(()=>{}):Promise.resolve(),
   resolveActivePlan,
+  reopenCase,
   contextForLead:id=>id===leadId?{plans:[...plans],events:[...events]}:{plans:[],events:[]}
 };
 })();

@@ -30,9 +30,22 @@ test('unknown or mixed work situations do not reveal jobseeker-only questions', 
 test('resolved cards load lifecycle outcome summaries and reopen records an event', () => {
   const nav = read('tracker/crm-queue-navigation.js');
   assert.match(nav, /renderResolvedSummary\(panelContent, lead\)/);
-  assert.match(nav, /event_type: 'follow_up_attempted'/);
-  assert.match(nav, /action: 'reopen'/);
+  assert.match(nav, /AqoonCaseLifecycle\?\.reopenCase\(leadId/);
   assert.match(nav, /No verified decision has been recorded yet/);
+  const lifecycle = read('tracker/case-lifecycle.js');
+  assert.match(lifecycle, /async function reopenCase\(leadId,note\)/);
+  assert.match(lifecycle, /event_type:'follow_up_attempted'/);
+  assert.match(lifecycle, /action:'reopen'/);
+});
+
+test('reopening a resolved case attaches the case_plan_id the backend requires', () => {
+  // family-case-lifecycle-admin's log_event rejects any event_type other than
+  // interview_completed without a case_plan_id (see supabase/functions/
+  // family-case-lifecycle-admin/index.ts). reopenCase must look the plan up
+  // and pass its id, or every reopen silently 400s.
+  const lifecycle = read('tracker/case-lifecycle.js');
+  assert.match(lifecycle, /case_plan_id:plan\.id,event_type:'follow_up_attempted'/);
+  assert.doesNotMatch(read('tracker/crm-queue-navigation.js'), /event_type: 'follow_up_attempted'/);
 });
 test('completed follow-up queue opens the workspace instead of premature resolution', () => {
   const queue = read('tracker/crm-queue-navigation.js');

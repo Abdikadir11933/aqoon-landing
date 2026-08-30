@@ -468,17 +468,11 @@ const CrmQueues = {
         .then(() => this.closeFamilyPanel())
         .catch(err => alert(err.message || 'Could not resolve this case.'));
     } else if (action === 'reopen-case') {
-      const password = sessionStorage.getItem('aqoon_tracker_password') || '';
-      fetch('https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-case-lifecycle-admin', {
-        method: 'POST',
-        headers: Object.assign({'Content-Type': 'application/json', 'x-tracker-password': password},sessionStorage.getItem('aqoon_auth_token')?{Authorization:'Bearer '+sessionStorage.getItem('aqoon_auth_token')}:{}),
-        body: JSON.stringify({action: 'log_event', lead_id: leadId, event_type: 'follow_up_attempted', event_data: {source: 'resolved_queue', action: 'reopen'}, note: 'Case reopened from the Resolved queue; follow-up work resumed.'}),
-        cache: 'no-store'
-      }).then(r => r.ok ? r.json() : r.json().then(d => Promise.reject(new Error(d.detail || d.error || 'Could not record the reopen event.'))))
-        .then(() => {
-          if (!window.AqoonApp?.updateLead) throw new Error('CRM update is unavailable; the case was not reopened.');
-          return window.AqoonApp.updateLead(leadId, {status: 'contacted', journey_stage: 'guide'});
-        })
+      // Delegates to case-lifecycle.js's reopenCase(), which looks up the
+      // family's case plan first and attaches its id to the log_event call -
+      // the direct fetch this used to do never did, so the backend's
+      // case_plan_required check silently 400'd on every reopen attempt.
+      (window.AqoonCaseLifecycle?.reopenCase(leadId, 'Case reopened from the Resolved queue; follow-up work resumed.') || Promise.reject(new Error('Case lifecycle module not loaded.')))
         .then(() => this.closeFamilyPanel())
         .catch(err => alert(err.message || 'Could not reopen this case.'));
     } else if (action === 'return-to-first-contact') {
