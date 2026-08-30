@@ -16,7 +16,7 @@ async function loadLifecycle(leadId){
   try{
     const lc=await fetch(END_LIFECYCLE,{
       method:'POST',
-      headers:{'Content-Type':'application/json','x-tracker-password':pw()},
+      headers:Object.assign({'Content-Type':'application/json','x-tracker-password':pw()},sessionStorage.getItem('aqoon_auth_token')?{Authorization:'Bearer '+sessionStorage.getItem('aqoon_auth_token')}:{}),
       body:JSON.stringify({action:'list',lead_id:leadId}),
       cache:'no-store'
     }).then(r=>r.json());
