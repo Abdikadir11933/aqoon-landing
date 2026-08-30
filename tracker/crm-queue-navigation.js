@@ -184,8 +184,8 @@ const CrmQueues = {
     // Build panel content based on phase
     const needLine = [lead.city, lead.main_need, lead.sub_need].filter(Boolean).join(' · ');
     let content = `
-      <div class="panel-section">
-        <h4 class="panel-section-title">Family Info</h4>
+      <details class="panel-section family-info-collapsed">
+        <summary class="panel-section-title">Family Info</summary>
         ${needLine ? `<div class="panel-info">
           <div class="panel-info-label">Need</div>
           <div class="panel-info-value">${this.escapeHtml(needLine)}</div>
@@ -202,7 +202,7 @@ const CrmQueues = {
           <div class="panel-info-label">Current operator</div>
           <div class="panel-info-value">${this.operatorLabel(lead.assigned_operator_id)}</div>
         </div>
-      </div>
+      </details>
     `;
     const attrib = window.AqoonOperators?.attribFor(leadId);
     const lastTouchedName = attrib?.last_actor_id ? window.AqoonOperators?.nameFor(attrib.last_actor_id) : '';
@@ -274,6 +274,22 @@ const CrmQueues = {
           ${lead.interview_status === 'completed' ? '' : '<p class="contact-action-note">This legacy case reached the follow-up queue without a completed interview. Return it to First contact before continuing.</p>'}
         </div>
       `;
+      if (lead.interview_status === 'completed' && lead.latest_interview) {
+        const interview = lead.latest_interview;
+        const recap = interview.summary || 'Interview saved — review the recorded answers.';
+        const brief = interview.research_prompt || '';
+        const routeLine = interview.interview_type ? interview.interview_type.split('+').join(' · ') : '';
+        content += `
+          <div class="panel-section interview-recap">
+            <h4 class="panel-section-title">Interview summary & suggested plan</h4>
+            ${routeLine ? `<p class="contact-action-note"><strong>Topics:</strong> ${this.escapeHtml(routeLine)}</p>` : ''}
+            <p class="interview-recap-summary">${this.escapeHtml(recap)}</p>
+            ${interview.next_action ? `<p class="contact-action-note"><strong>Next action:</strong> ${this.escapeHtml(interview.next_action)}</p>` : ''}
+            ${brief ? `<details class="interview-recap-brief"><summary>Evidence & research brief</summary><pre>${this.escapeHtml(brief.slice(0, 1600))}${brief.length > 1600 ? '\\n…' : ''}</pre></details>` : ''}
+            <button class="btn secondary" data-action="start-interview" data-lead-id="${leadId}">Review interview answers</button>
+          </div>
+        `;
+      }
       content += this.contactActionsHtml(leadId, lead, false);
     } else if (phaseId === 'resolved') {
       // Resolving used to be a one-way door - no action here offered a way
@@ -365,13 +381,12 @@ const CrmQueues = {
       this.closeFamilyPanel();
       window.openInterview(leadId);
     } else if (action === 'mark-resolved') {
-      // Resolution must go through the case plan so the operator can record
-      // what happened, the outcome, and any follow-up evidence. Opening the
-      // completed interview keeps the recap and lifecycle controls together;
-      // it no longer silently mutates the CRM stage from a queue click.
-      this.closeFamilyPanel();
-      window.openInterview(leadId);
-      setTimeout(() => document.getElementById('caseLifecycle')?.scrollIntoView({behavior:'smooth', block:'center'}), 650);
+      const note=(prompt('What was the outcome? Include the agreed plan, who confirmed it, and any evidence or follow-up needed.')||'').trim();
+      if (!note) return;
+      if (!confirm('Mark ' + (lead?.name || 'this family') + ' resolved and save the outcome note?')) return;
+      window.AqoonApp?.updateLead(leadId, {status: 'resolved', notes: note})
+        .then(() => this.closeFamilyPanel())
+        .catch(err => alert(err.message || 'Could not resolve this case.'));
     } else if (action === 'reopen-case') {
       window.AqoonApp?.updateLead(leadId, {status: 'contacted', journey_stage: 'guide'})
         .then(() => this.closeFamilyPanel())
