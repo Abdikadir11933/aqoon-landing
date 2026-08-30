@@ -321,7 +321,7 @@ async function loadCallHistory(leadId){
   try{
     const r=await fetch(END_CALL_LOG,{
       method:'POST',
-      headers:{'Content-Type':'application/json','x-tracker-password':pw()},
+      headers:Object.assign({'Content-Type':'application/json','x-tracker-password':pw()},sessionStorage.getItem('aqoon_auth_token')?{Authorization:'Bearer '+sessionStorage.getItem('aqoon_auth_token')}:{}),
       body:JSON.stringify({action:'get_call_history',lead_id:leadId}),
       cache:'no-store'
     });
@@ -386,7 +386,7 @@ async function renderInto(container,leadId){
   if(!container||!leadId)return;
   container.innerHTML='<div class="crm-call-history-empty">Loading call history…</div>';
   const calls=await loadCallHistory(leadId);
-  container.innerHTML=renderCallHistorySection(calls);
+  container.innerHTML=calls===null?'<div class="crm-call-history-empty">Call history is temporarily unavailable.</div>':renderCallHistorySection(calls);
 }
 
 window.AqoonCallHistory={renderInto,load:loadCallHistory,render:renderCallHistorySection};
