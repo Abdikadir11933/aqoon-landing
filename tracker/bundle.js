@@ -2361,7 +2361,7 @@ const CrmQueues = {
           <div class="assign-buttons">
             <button class="btn secondary" data-action="assign-to-me" data-lead-id="${leadId}">Assign to me</button>
             <button class="btn secondary" data-action="start-interview" data-lead-id="${leadId}">${lead.interview_status === 'completed' ? 'Review interview' : 'Start first interview'}</button>
-            ${lead.interview_status === 'completed' ? '<button class="btn primary" data-action="mark-resolved" data-lead-id="' + leadId + '">Open resolution</button>' : '<button class="btn secondary" data-action="return-to-first-contact" data-lead-id="' + leadId + '">Return to first contact</button>'}
+            ${lead.interview_status === 'completed' ? '<button class="btn primary" data-action="start-interview" data-lead-id="' + leadId + '">Open follow-up workspace</button>' : '<button class="btn secondary" data-action="return-to-first-contact" data-lead-id="' + leadId + '">Return to first contact</button>'}
           </div>
           ${lead.interview_status === 'completed' ? '' : '<p class="contact-action-note">This legacy case reached the follow-up queue without a completed interview. Return it to First contact before continuing.</p>'}
         </div>
@@ -2451,6 +2451,15 @@ const CrmQueues = {
         (option?.title?`<p><strong>Verified evidence:</strong> ${this.escapeHtml(option.title)}</p>`:'<p class="muted">No verified decision has been recorded yet.</p>')+
         (links.length?'<p><strong>Sources:</strong> '+links.slice(0,3).map(u=>`<a href="${this.escapeHtml(u)}" target="_blank" rel="noreferrer">Official source</a>`).join(' · ')+'</p>':'')+
         (interview.research_prompt?`<details><summary>Raw research brief</summary><pre>${this.escapeHtml(interview.research_prompt.slice(0,1600))}${interview.research_prompt.length>1600?'\n…':''}</pre></details>`:'');
+      const existing=panelContent.querySelector('.follow-up-plan');
+      if(existing)existing.remove();
+      const follow=document.createElement('section');
+      follow.className='panel-section follow-up-plan';
+      follow.innerHTML='<h4 class="panel-section-title">Follow-up case plan</h4>'+
+        (plan?'<p><strong>'+this.escapeHtml(plan.title||'Case plan')+'</strong></p><p class="contact-action-note">Status: '+this.escapeHtml(plan.plan_status||'research')+(plan.next_action?' · Next: '+this.escapeHtml(plan.next_action):'')+'</p>':'<p class="muted">No plan has been started yet. Open the follow-up workspace to create one after reviewing the research.</p>')+
+        '<button type="button" class="btn secondary" data-action="start-interview" data-lead-id="'+this.escapeHtml(lead.id)+'">Open follow-up workspace</button>';
+      panelContent.insertBefore(follow,panelContent.querySelector('.contact-actions'));
+      follow.querySelector('[data-action="start-interview"]')?.addEventListener('click',()=>{this.closeFamilyPanel();window.openInterview(lead.id)});
     }).catch(()=>{});
   },
 
