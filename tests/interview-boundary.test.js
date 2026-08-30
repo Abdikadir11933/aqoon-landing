@@ -57,6 +57,11 @@ test('follow-up starts with one canonical decision brief', () => {
 
 test('work interviews branch around the person situation before asking eligibility questions', () => {
   const interview = read('tracker/interview-match.js');
+  assert.match(interview, /case_subject/);
+  assert.match(interview, /current_situation/);
+  assert.match(interview, /immediate_goal/);
+  assert.match(interview, /child_stage/);
+  assert.match(interview, /household_schedule/);
   assert.match(interview, /primary_situation/);
   assert.match(interview, /student_schedule/);
   assert.match(interview, /student_benefit_context/);
@@ -68,7 +73,7 @@ test('work interviews branch around the person situation before asking eligibili
 test('saved interview summary is plain-language context, not a technical route count', () => {
   const interview = read('tracker/interview-match.js');
   assert.match(interview, /function summary\(a\)/);
-  assert.match(interview, /Situation: '\+a\.primary_situation/);
+  assert.match(interview, /adult situation: '\+a\.primary_situation/);
   assert.match(interview, /summary:summary\(a\)/);
   assert.doesNotMatch(interview, /summary:'Routes: '\+C\.routes/);
 });
