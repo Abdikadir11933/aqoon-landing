@@ -388,7 +388,7 @@ Deno.serve(async (request) => {
     const interviewTypes = String(body.interview_types || "all");
     const { data: revisions, error } = await db
       .from("family_interview_revisions")
-      .select("id, lead_id, interview_id, created_at, answers, operator_id, operators(display_name)")
+      .select("id, lead_id, interview_id, captured_at, answers, operator_id, operators(display_name)")
       .eq("lead_id", leadId)
       .order("captured_at", { ascending: false })
       .limit(50);
@@ -404,7 +404,7 @@ Deno.serve(async (request) => {
           id: `${rev.id}-${key}`,
           lead_id: rev.lead_id,
           interview_id: rev.interview_id,
-          created_at: rev.created_at,
+          created_at: rev.captured_at,
           field_name: key,
           old_value: value,
           new_value: null,
