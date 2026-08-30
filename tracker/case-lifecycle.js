@@ -24,7 +24,8 @@ function host(){
   if(!el){el=document.createElement('section');el.id='caseLifecycle';el.className='case-lifecycle'}
   const lead=(window.AqoonApp?.leads||[]).find(l=>l.id===leadId);
   const capture=document.querySelector('#drawer .interview-capture');
-  if(lead?.interview_status==='completed'&&capture){capture.after(el);return el}
+  const prompt=$('promptWrap');
+  if((lead?.interview_status==='completed'||!prompt?.classList.contains('hidden'))&&capture){(prompt||capture).after(el);return el}
   const actions=document.querySelector('#drawer .interview-actions');if(!actions)return null;
   actions.after(el);return el;
 }
@@ -74,7 +75,7 @@ function revisionsHtml(){if(!revisions.length)return'';return '<div class="case-
 function render(){
   const el=host();if(!el)return;
   const plan=activePlan(),otherPlans=plans.filter(p=>p!==plan);
-  el.innerHTML='<h3>Case plan</h3>'+(plan?planCard(plan):'<p class="muted">No active case plan yet.</p><div class="new-plan-row"><input id="newPlanTitle" type="text" placeholder="e.g. Apply for private daycare voucher"><button type="button" id="newPlanBtn">Start plan</button></div>')+(otherPlans.length?'<p class="muted" style="margin-top:9px">'+otherPlans.length+' earlier plan'+(otherPlans.length===1?'':'s')+' on this family.</p>':'')+eventsHtml()+revisionsHtml()+'<p class="case-lifecycle-error hidden" id="caseLifecycleError"></p>';
+  el.innerHTML='<h3>Case plan</h3>'+(plan?planCard(plan):'<p class="muted">After reviewing the research, give the agreed next route a short title to start the plan.</p><div class="new-plan-row"><input id="newPlanTitle" type="text" placeholder="e.g. Apply for private daycare voucher"><button type="button" id="newPlanBtn">Start case plan</button></div>')+(otherPlans.length?'<p class="muted" style="margin-top:9px">'+otherPlans.length+' earlier plan'+(otherPlans.length===1?'':'s')+' on this family.</p>':'')+eventsHtml()+revisionsHtml()+'<p class="case-lifecycle-error hidden" id="caseLifecycleError"></p>';
   $('newPlanBtn')?.addEventListener('click',createPlan);
   $('savePasteBtn')?.addEventListener('click',()=>savePastedResearch($('savePasteBtn').dataset.lcPlanId));
   el.querySelectorAll('[data-lc-action]').forEach(b=>b.onclick=()=>runAction(b.dataset.lcAction,b.dataset.lcId));
@@ -159,6 +160,10 @@ window.openInterview=function(id){
   leadId=id||'';
   setTimeout(load,450);
 };
+window.addEventListener('aqoon:interview-saved',event=>{
+  if(event.detail?.lead?.id!==leadId)return;
+  setTimeout(load,0);
+});
 // crm-queue-navigation.js's "Open resolution" button used to call
 // AqoonApp.updateLead(leadId,{status:'resolved',notes}) directly - a bare
 // family_leads write with no family_case_plans/family_case_events trace at

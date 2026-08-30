@@ -36,7 +36,7 @@ test('resolved cards load lifecycle outcome summaries and reopen records an even
 });
 test('completed follow-up queue opens the workspace instead of premature resolution', () => {
   const queue = read('tracker/crm-queue-navigation.js');
-  assert.match(queue, /Open follow-up workspace/);
+  assert.match(queue, /Open research & case plan/);
   assert.doesNotMatch(queue, /data-action="mark-resolved"/);
   assert.match(queue, /className='panel-section follow-up-plan'/);
 });

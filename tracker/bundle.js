@@ -586,7 +586,7 @@ function enhance(id){try{const lead=(window.AqoonApp?.leads||[]).find(x=>x.id===
 $('questions')?.addEventListener('click',renderCompleteness);
 $('questions')?.addEventListener('input',renderCompleteness);
 document.addEventListener('aqoon:interview-answers-restored',()=>{applyWorkContext();renderCompleteness()});
-async function save(){const a=collect(),miss=missing(a);if(miss.length){$('err').textContent='Complete matching fields first: '+miss.slice(0,4).map(x=>x.querySelector('label').textContent).join(' · ');$('err').classList.remove('hidden');miss[0].scrollIntoView({behavior:'smooth',block:'center'});return}const b=$('saveInterview');b.disabled=true;try{const pr=prompt(a),follow=$('iFollow').value?new Date($('iFollow').value).toISOString():null;const ru=$('iRelevantUpdatesOk')?.value,of=$('iOutcomeFollowupOk')?.value,savedAnswers={...a};if(ru)savedAnswers.relevant_updates_ok=ru;if(of)savedAnswers.outcome_followup_ok=of;const result=await api({action:'save_interview',lead_id:C.lead.id,interview_type:C.routes.join('+'),answers:savedAnswers,summary:summary(a),research_prompt:pr,next_follow_up_at:follow,urgency:$('iUrgency').value,status:'completed'});$('promptBox').textContent=pr;$('promptWrap').classList.remove('hidden');$('err').textContent='';$('err').classList.add('hidden');window.AqoonInterview?.announceSaved?.({lead:C.lead,answers:savedAnswers,interview:result.interview,researchPrompt:pr});setTimeout(()=>$('refresh')?.click(),300)}catch(e){$('err').textContent=e.message;$('err').classList.remove('hidden')}finally{b.disabled=false}}
+async function save(){const a=collect(),miss=missing(a);if(miss.length){$('err').textContent='Complete matching fields first: '+miss.slice(0,4).map(x=>x.querySelector('label').textContent).join(' · ');$('err').classList.remove('hidden');miss[0].scrollIntoView({behavior:'smooth',block:'center'});return}const b=$('saveInterview');b.disabled=true;try{const pr=prompt(a),follow=$('iFollow').value?new Date($('iFollow').value).toISOString():null;const ru=$('iRelevantUpdatesOk')?.value,of=$('iOutcomeFollowupOk')?.value,savedAnswers={...a};if(ru)savedAnswers.relevant_updates_ok=ru;if(of)savedAnswers.outcome_followup_ok=of;const result=await api({action:'save_interview',lead_id:C.lead.id,interview_type:C.routes.join('+'),answers:savedAnswers,summary:summary(a),research_prompt:pr,next_follow_up_at:follow,urgency:$('iUrgency').value,status:'completed'});$('promptBox').textContent=pr;$('promptWrap').classList.remove('hidden');$('err').textContent='';$('err').classList.add('hidden');C.lead.interview_status='completed';C.lead.latest_interview=result.interview;collapseIfComplete(C.lead);renderCompleteness();$('saveInterview').textContent='Save follow-up notes';window.AqoonInterview?.announceSaved?.({lead:C.lead,answers:savedAnswers,interview:result.interview,researchPrompt:pr});setTimeout(()=>$('refresh')?.click(),300)}catch(e){$('err').textContent=e.message;$('err').classList.remove('hidden')}finally{b.disabled=false}}
 // This used to trigger only off clicking a [data-interview] element - the
 // old lead-card UI's interview button. The queue redesign calls
 // window.openInterview(id) directly with no such element ever existing in
@@ -946,7 +946,8 @@ function host(){
   if(!el){el=document.createElement('section');el.id='caseLifecycle';el.className='case-lifecycle'}
   const lead=(window.AqoonApp?.leads||[]).find(l=>l.id===leadId);
   const capture=document.querySelector('#drawer .interview-capture');
-  if(lead?.interview_status==='completed'&&capture){capture.after(el);return el}
+  const prompt=$('promptWrap');
+  if((lead?.interview_status==='completed'||!prompt?.classList.contains('hidden'))&&capture){(prompt||capture).after(el);return el}
   const actions=document.querySelector('#drawer .interview-actions');if(!actions)return null;
   actions.after(el);return el;
 }
@@ -996,7 +997,7 @@ function revisionsHtml(){if(!revisions.length)return'';return '<div class="case-
 function render(){
   const el=host();if(!el)return;
   const plan=activePlan(),otherPlans=plans.filter(p=>p!==plan);
-  el.innerHTML='<h3>Case plan</h3>'+(plan?planCard(plan):'<p class="muted">No active case plan yet.</p><div class="new-plan-row"><input id="newPlanTitle" type="text" placeholder="e.g. Apply for private daycare voucher"><button type="button" id="newPlanBtn">Start plan</button></div>')+(otherPlans.length?'<p class="muted" style="margin-top:9px">'+otherPlans.length+' earlier plan'+(otherPlans.length===1?'':'s')+' on this family.</p>':'')+eventsHtml()+revisionsHtml()+'<p class="case-lifecycle-error hidden" id="caseLifecycleError"></p>';
+  el.innerHTML='<h3>Case plan</h3>'+(plan?planCard(plan):'<p class="muted">After reviewing the research, give the agreed next route a short title to start the plan.</p><div class="new-plan-row"><input id="newPlanTitle" type="text" placeholder="e.g. Apply for private daycare voucher"><button type="button" id="newPlanBtn">Start case plan</button></div>')+(otherPlans.length?'<p class="muted" style="margin-top:9px">'+otherPlans.length+' earlier plan'+(otherPlans.length===1?'':'s')+' on this family.</p>':'')+eventsHtml()+revisionsHtml()+'<p class="case-lifecycle-error hidden" id="caseLifecycleError"></p>';
   $('newPlanBtn')?.addEventListener('click',createPlan);
   $('savePasteBtn')?.addEventListener('click',()=>savePastedResearch($('savePasteBtn').dataset.lcPlanId));
   el.querySelectorAll('[data-lc-action]').forEach(b=>b.onclick=()=>runAction(b.dataset.lcAction,b.dataset.lcId));
@@ -1081,6 +1082,10 @@ window.openInterview=function(id){
   leadId=id||'';
   setTimeout(load,450);
 };
+window.addEventListener('aqoon:interview-saved',event=>{
+  if(event.detail?.lead?.id!==leadId)return;
+  setTimeout(load,0);
+});
 // crm-queue-navigation.js's "Open resolution" button used to call
 // AqoonApp.updateLead(leadId,{status:'resolved',notes}) directly - a bare
 // family_leads write with no family_case_plans/family_case_events trace at
@@ -2359,7 +2364,7 @@ const CrmQueues = {
           <div class="assign-buttons">
             <button class="btn secondary" data-action="assign-to-me" data-lead-id="${leadId}">Assign to me</button>
             <button class="btn secondary" data-action="start-interview" data-lead-id="${leadId}">${lead.interview_status === 'completed' ? 'Review interview' : 'Start first interview'}</button>
-            ${lead.interview_status === 'completed' ? '<button class="btn primary" data-action="start-interview" data-lead-id="' + leadId + '">Open follow-up workspace</button>' : '<button class="btn secondary" data-action="return-to-first-contact" data-lead-id="' + leadId + '">Return to first contact</button>'}
+            ${lead.interview_status === 'completed' ? '<button class="btn primary" data-action="start-interview" data-lead-id="' + leadId + '">Open research & case plan</button>' : '<button class="btn secondary" data-action="return-to-first-contact" data-lead-id="' + leadId + '">Return to first contact</button>'}
           </div>
           ${lead.interview_status === 'completed' ? '' : '<p class="contact-action-note">This legacy case reached the follow-up queue without a completed interview. Return it to First contact before continuing.</p>'}
         </div>
@@ -2454,8 +2459,8 @@ const CrmQueues = {
       const follow=document.createElement('section');
       follow.className='panel-section follow-up-plan';
       follow.innerHTML='<h4 class="panel-section-title">Follow-up case plan</h4>'+
-        (plan?'<p><strong>'+this.escapeHtml(plan.title||'Case plan')+'</strong></p><p class="contact-action-note">Status: '+this.escapeHtml(plan.plan_status||'research')+(plan.next_action?' · Next: '+this.escapeHtml(plan.next_action):'')+'</p>':'<p class="muted">No plan has been started yet. Open the follow-up workspace to create one after reviewing the research.</p>')+
-        '<button type="button" class="btn secondary" data-action="start-interview" data-lead-id="'+this.escapeHtml(lead.id)+'">Open follow-up workspace</button>';
+        (plan?'<p><strong>'+this.escapeHtml(plan.title||'Case plan')+'</strong></p><p class="contact-action-note">Status: '+this.escapeHtml(plan.plan_status||'research')+(plan.next_action?' · Next: '+this.escapeHtml(plan.next_action):'')+'</p>':'<p class="muted">1. Review the research brief. 2. Start the agreed case plan. 3. Record the family’s next call and the authority/provider outcome here.</p>')+
+        '<button type="button" class="btn secondary" data-action="start-interview" data-lead-id="'+this.escapeHtml(lead.id)+'">Open research & case plan</button>';
       panelContent.insertBefore(follow,panelContent.querySelector('.contact-actions'));
       follow.querySelector('[data-action="start-interview"]')?.addEventListener('click',()=>{this.closeFamilyPanel();window.openInterview(lead.id)});
     }).catch(error=>{

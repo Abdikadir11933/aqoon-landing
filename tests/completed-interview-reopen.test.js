@@ -11,7 +11,16 @@ test('an existing case-plan panel is repositioned when the same completed interv
   const lifecycle = read('tracker/case-lifecycle.js');
   assert.doesNotMatch(lifecycle, /let el=\$\('caseLifecycle'\);if\(el\)return el/);
   assert.match(lifecycle, /let el=\$\('caseLifecycle'\);\s*if\(!el\)/);
-  assert.match(lifecycle, /lead\?\.interview_status==='completed'&&capture\)\{capture\.after\(el\)/);
+  assert.match(lifecycle, /lead\?\.interview_status==='completed'\|\|!prompt\?\.classList\.contains\('hidden'\)/);
+  assert.match(lifecycle, /\(prompt\|\|capture\)\.after\(el\)/);
+});
+
+test('saving the first interview immediately switches the drawer to the research and plan workflow', () => {
+  const match = read('tracker/interview-match.js');
+  const lifecycle = read('tracker/case-lifecycle.js');
+  assert.match(match, /C\.lead\.interview_status='completed';C\.lead\.latest_interview=result\.interview;collapseIfComplete\(C\.lead\)/);
+  assert.match(match, /\$\('saveInterview'\)\.textContent='Save follow-up notes'/);
+  assert.match(lifecycle, /addEventListener\('aqoon:interview-saved'/);
 });
 
 test('programmatic answer restore refreshes branch visibility and the collapsed completeness summary', () => {

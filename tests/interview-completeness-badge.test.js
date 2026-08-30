@@ -41,11 +41,10 @@ test('a completed interview collapses into one line so the case plan is not buri
   // the <summary> text instead - a badge prepended inside #questions would
   // be invisible while the details is closed.
   assert.match(interview, /if\(wrap\)\{const summary=wrap\.querySelector\('summary'\)/);
-  // The case plan is the reason to collapse the interview at all - it must
-  // move above the (now collapsed) question list, not stay buried below the
-  // Save button and research brief.
+  // The case plan follows the visible research brief immediately, rather
+  // than remaining below an expanded first-interview form.
   assert.match(lifecycle, /if\(!el\)\{el=document\.createElement\('section'\);el\.id='caseLifecycle'/);
-  assert.match(lifecycle, /if\(lead\?\.interview_status==='completed'&&capture\)\{capture\.after\(el\);return el\}/);
+  assert.match(lifecycle, /\(prompt\|\|capture\)\.after\(el\);return el/);
 });
 
 test('app.css styles .match-completeness with a distinct complete state', () => {
