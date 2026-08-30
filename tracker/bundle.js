@@ -478,7 +478,7 @@ setInterval(()=>{if(password&&!document.hidden)load()},60000);document.addEventL
 (()=>{'use strict';
 const $=id=>document.getElementById(id);
 function nav(){const items={dashboard:['⌂','Today'],crm:['♡','Families'],analytics:['↗','Analytics'],sales:['◎','Sales']};Object.entries(items).forEach(([key,value])=>{const b=document.querySelector('.tab[data-tab="'+key+'"]');if(b)b.innerHTML='<span>'+value[0]+'</span>'+value[1]})}
-function enhanceFunnel(){const rows=[...document.querySelectorAll('#fullFunnel .frow')];if(!rows.length)return;rows.forEach(r=>r.querySelectorAll('.drop-note').forEach(x=>x.remove()));const vals=rows.map(r=>Number(r.querySelector('strong')?.textContent)||0);rows.forEach((r,i)=>{if(i>=rows.length-1)return;const from=vals[i],to=vals[i+1],lost=Math.max(0,from-to),rate=from?Math.round(lost/from*100):0;const d=document.createElement('div');d.className='drop-note '+(!lost?'neutral':'');d.textContent=lost?'-'+lost+' lost · '+rate+'%':'no loss';r.appendChild(d)});enhanceTraffic()}
+function enhanceFunnel(){const rows=[...document.querySelectorAll('#fullFunnel .frow')];if(!rows.length)return;rows.forEach(r=>r.querySelectorAll('.drop-note').forEach(x=>x.remove()));const vals=rows.map(r=>Number(r.querySelector('strong')?.textContent)||0);rows.forEach((r,i)=>{if(i===0)return;const from=vals[i-1],to=vals[i],lost=Math.max(0,from-to),rate=from?Math.round(lost/from*100):0;const d=document.createElement('div');d.className='drop-note '+(!lost?'neutral':'');d.textContent=lost?'-'+lost+' lost · '+rate+'%':'no loss';r.appendChild(d)});enhanceTraffic()}
 function enhanceTraffic(){const cols=[...document.querySelectorAll('#trafficChart .tcol')];if(!cols.length)return;let best=null,bestN=-1;cols.forEach(c=>{const m=(c.getAttribute('title')||'').match(/:\s*(\d+)\s+sessions/i),n=m?Number(m[1]):0;if(n>bestN){bestN=n;best=c}});const peak=$('trafficPeak');if(peak&&best){const label=best.querySelector('small')?.textContent||'';peak.textContent='peak '+label}}
 function controls(){document.querySelectorAll('#periodSwitch [data-days]').forEach(b=>b.onclick=()=>{const d=b.dataset.days,sel=$('days');if(!sel)return;sel.value=d;document.querySelectorAll('#periodSwitch button').forEach(x=>x.classList.toggle('on',x===b));sel.dispatchEvent(new Event('change',{bubbles:true}))});document.querySelectorAll('.breakdown-tabs [data-breakdown]').forEach(b=>b.onclick=()=>{document.querySelectorAll('.breakdown-tabs button').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.breakdown-pane').forEach(p=>p.classList.toggle('hidden',p.dataset.pane!==b.dataset.breakdown))})}
 function watch(){const funnel=$('fullFunnel'),traffic=$('trafficChart');if(funnel)new MutationObserver(ms=>{if(ms.some(m=>[...m.addedNodes].some(n=>n.nodeType===1&&(n.matches?.('.frow')||n.querySelector?.('.frow')))))requestAnimationFrame(enhanceFunnel)}).observe(funnel,{childList:true});if(traffic)new MutationObserver(()=>requestAnimationFrame(enhanceTraffic)).observe(traffic,{childList:true})}
@@ -531,6 +531,33 @@ function collect(){const a={};document.querySelectorAll('#questions input[data-k
 function summary(a){const parts=[];if(a.case_subject)parts.push('case: '+a.case_subject.toLowerCase());if(a.current_situation)parts.push('current situation: '+a.current_situation.toLowerCase());if(a.immediate_goal)parts.push('next goal: '+a.immediate_goal.toLowerCase());if(a.child_stage)parts.push('child stage: '+a.child_stage.toLowerCase());if(a.household_schedule)parts.push('household schedule: '+a.household_schedule.toLowerCase());if(a.care_reason)parts.push('care purpose: '+a.care_reason.toLowerCase());if(a.care_start_urgency)parts.push('care timing: '+a.care_start_urgency.toLowerCase());if(a.school_situation)parts.push('school situation: '+a.school_situation.toLowerCase());if(a.school_decision_needed)parts.push('school help needed: '+a.school_decision_needed.toLowerCase());if(a.activity_goal)parts.push('activity goal: '+a.activity_goal.toLowerCase());if(a.education_entry_reason)parts.push('education reason: '+a.education_entry_reason.toLowerCase());if(a.education_barriers)parts.push('study barriers: '+(Array.isArray(a.education_barriers)?a.education_barriers.join(', '):a.education_barriers).toLowerCase());if(a.program_reason)parts.push('programme reason: '+a.program_reason.toLowerCase());if(a.program_constraints)parts.push('programme constraints: '+(Array.isArray(a.program_constraints)?a.program_constraints.join(', '):a.program_constraints).toLowerCase());if(a.authority_issue)parts.push('authority issue: '+a.authority_issue.toLowerCase());if(a.authority_goal)parts.push('authority help: '+a.authority_goal.toLowerCase());if(a.issue_context)parts.push('case context: '+a.issue_context);if(a.desired_help)parts.push('desired help: '+a.desired_help.toLowerCase());if(a.primary_situation)parts.push('adult situation: '+a.primary_situation.toLowerCase());if(a.work_intent)parts.push('work goal: '+a.work_intent.toLowerCase());if(a.study_path)parts.push('study path: '+a.study_path);if(a.student_schedule)parts.push('study/work timing: '+a.student_schedule.toLowerCase());if(a.current_work_hours)parts.push('current work: '+a.current_work_hours.toLowerCase());if(a.availability)parts.push('availability: '+(Array.isArray(a.availability)?a.availability.join(', '):a.availability).toLowerCase());if(a.start_when)parts.push('start: '+a.start_when.toLowerCase());if(a.student_benefit_context)parts.push('support context to check: '+(Array.isArray(a.student_benefit_context)?a.student_benefit_context.join(', '):a.student_benefit_context).toLowerCase());return parts.length?parts.join('; ')+'.':'Interview saved; review the recorded answers and remaining unknowns.'}
 function labels(){const m={};document.querySelectorAll('#questions .question').forEach(q=>{const k=q.querySelector('[data-key]')?.dataset.key;if(k)m[k]=q.querySelector('label')?.textContent.replace('needed for matching','').trim()||k});return m}
 function missing(a){return[...document.querySelectorAll('#questions .match-extra[data-match-required="1"]:not(.hidden)')].filter(q=>{const k=q.querySelector('[data-key]')?.dataset.key,v=a[k];return !v||(Array.isArray(v)&&!v.length)})}
+// Live completeness badge so an operator can see "6 / 9 answered" while
+// still filling the form, instead of only finding out what's missing after
+// clicking Save and getting bounced back to the first gap. Delegated on
+// #questions (present in the static HTML, never recreated) so it tracks
+// every match-extra field regardless of which script rendered it, and
+// re-reads on every click/input so branch reveals (applyWorkContext) are
+// already reflected in the total by the time it recomputes.
+function renderCompleteness(){const host=$('questions');if(!host)return;const wrap=document.getElementById('interviewQaCollapse'),total=host.querySelectorAll('.match-extra[data-match-required="1"]:not(.hidden)').length;const label=total?((total-missing(collect()).length)+' / '+total+' matching fields answered'):'';if(wrap){const summary=wrap.querySelector('summary');if(summary)summary.textContent='Interview answers'+(label?' — '+label:'')+' — tap to review or correct';$('matchCompleteness')?.remove();return}if(!total){$('matchCompleteness')?.remove();return}let badge=$('matchCompleteness');if(!badge){badge=document.createElement('div');badge.id='matchCompleteness';badge.className='match-completeness';host.prepend(badge)}badge.textContent=label;badge.classList.toggle('complete',label.startsWith(String(total)+' / '+total))}
+// Reopening an already-completed interview used to show the full live
+// question set first, pushing the case plan and next steps below several
+// screens of answers an operator has usually already read once. When the
+// lead's interview is already completed, fold #questions plus the trailing
+// consent/urgency/next-action fields into one collapsed <details> so the
+// answers are one tap away without dominating the drawer by default. A
+// brand-new interview (nothing completed yet) is left fully expanded, since
+// every field still needs to be filled in.
+function collapseIfComplete(lead){
+  const host=$('questions');if(!host)return;
+  const existingWrap=document.getElementById('interviewQaCollapse');
+  if(lead.interview_status!=='completed'){if(existingWrap){const parent=existingWrap.parentNode;while(existingWrap.firstChild){if(existingWrap.firstChild.tagName==='SUMMARY'){existingWrap.removeChild(existingWrap.firstChild);continue}parent.insertBefore(existingWrap.firstChild,existingWrap)}existingWrap.remove()}return}
+  if(existingWrap)return;
+  const details=document.createElement('details');details.id='interviewQaCollapse';details.className='interview-qa-collapse';
+  const summary=document.createElement('summary');summary.textContent='Interview answers — tap to review or correct';details.appendChild(summary);
+  const trailing=['iRelevantUpdatesOk','iOutcomeFollowupOk','iUrgency','iNextAction','iFollow'].map(id=>$(id)?.closest('.question')).filter(Boolean);
+  host.before(details);
+  [host,...trailing].forEach(n=>details.appendChild(n));
+}
 function candidates(){const city=low(C.lead.city);return(C.programs||[]).filter(p=>{const pc=low(p.city),cat=low(p.category);return(!pc||pc==='finland'||pc===city)&&C.routes.some(r=>({work:/work|employment|training|youth/,education:/education|language|integration|training/,entrepreneurship:/business|entrepreneur/,daycare:/daycare|parent|family/,hobby:/hobby/,school_child:/school|education/,program:/integration|language|employment|education|parent|women|youth/,service_support:/service|integration|employment|family/,general:/.*/}[r]||/.*/).test(cat))}).slice(0,5)}
 function routeTask(r){return({work:'Find current real jobs plus only relevant employment programmes/training. Match job requirements, Finnish/English, experience, cards, hours, travel, childcare and start date. Työkokeilu requires jobseeker status + agreement in the employment plan + employment-authority assessment. Palkkatuki is employer support based on the unemployed jobseeker’s service need; never claim eligibility without employment-services assessment.',entrepreneurship:'Find current business guidance/training/starttiraha route. Verify that starttiraha is applied for before starting/expanding full-time business and that the local employment authority assesses entrepreneurship capability/profitability. Never promise it.',education:'Find current Finnish/YKI/vocational/TUVA/labour-market-training routes matching language, prior education, certificates, schedule, childcare, travel and start timing. Admission criteria are provider-specific. For YKI verify current OPH registration/test terms and target level.',daycare:'Use the child’s municipality first. Match päiväkoti/esiopetus/municipal/private/palveluseteli route, start date and schedule. Urgent route must satisfy the municipality’s current sudden/unforeseen rules and proof requirements; never promise a two-week place.',hobby:'Match current city/school hobby groups by grade, school, age, interest, cost, schedule and travel. Check current registration/open-space status.',school_child:'Use current municipality + OPH rules for S2, valmistava and learning support. Match age/grade, time in Finnish school, birthplace rule where relevant, Finnish level, support already tried and current assessment/decision. Do not diagnose or promise a support decision.',program:'Search active municipal/integration/employment/education/NGO/hanke options. Match kotikunta, age, workforce/jobseeker status, integration status, language/literacy, parent/childcare situation, time, cost, travel and referral/intake rules.',service_support:'Identify the responsible authority first and the exact official next step. Explain process, documents and deadlines, but do not determine Kela/Migri/legal entitlement or predict the decision.',general:'First identify the responsible official system/service, then research that route.'})[r]}
 function prompt(a){const L=labels(),ans=Object.entries(a).map(([k,v])=>'- '+(L[k]||k)+': '+(Array.isArray(v)?v.join(', '):v)).join('\n'),req=needs(C.lead).map((n,i)=>'- '+(i?'Additional':'Primary')+': '+n.main_need+' / '+n.sub_need).join('\n'),ps=candidates().map(p=>'- '+p.name+' | '+(p.organisation||'')+' | '+(p.city||'Finland')+' | '+(p.application_status||p.status||'unknown')+' | deadline '+(p.deadline||'unknown')+' | '+(p.source_url||'')).join('\n')||'- none';let x=`AQOON FAMILY CASE — CRITERIA-MATCHED RESEARCH\n\nGOAL\nFind the best CURRENT job/programme/training/service route for this exact person. Treat interview answers as filters, not decoration. Do not give a generic list.\n\nCASE\nID: ${C.lead.id}\nCity: ${C.lead.city||'unknown'}\nJourney stage: ${C.lead.journey_stage||'reach'}\nUrgency: ${$('iUrgency').value}\n\nNEEDS\n${req}\n\nROUTES\n${C.routes.map(r=>'- '+r).join('\n')}\n\nFIRST-INTERVIEW ANSWERS\n${ans}\n${$('iNotes').value.trim()?'\nCaller notes: '+$('iNotes').value.trim():''}\n\nROUTE RULES\n${C.routes.map((r,i)=>(i+1)+'. '+r.toUpperCase()+': '+routeTask(r)).join('\n')}\n\nINTERNAL AQOON CANDIDATES — discovery only, must re-verify\n${ps}\n\nRESEARCH METHOD\n1. Search current primary sources first: responsible municipality/employment area, Työmarkkinatori, Kela, Opintopolku/Studyinfo, OPH, Migri only when right-to-work/residence is relevant, and the actual provider/employer page.\n2. For jobs, search current employer pages/reputable vacancies and verify each posting’s requirements.\n3. Check every serious candidate against relevant criteria: municipality/residence, age/grade, jobseeker/work status, integration plan/service status, language/literacy, education/qualification, experience/cards/licences, schedule, childcare, travel, cost/pay, referral/authority approval, application status, deadline and start date.\n4. If a material criterion is unknown or discretionary, do NOT call it confirmed.\n\nMATCH LABELS\nCONFIRMED MATCH = current source shows the recorded criteria fit and no material criterion is missing.\nPOSSIBLE — MUST CONFIRM = promising but a material criterion is unknown/discretionary/provider-or-authority assessed.\nDOES NOT FIT = a current criterion clearly conflicts.\n\nOUTPUT\nA. Case diagnosis and the criteria that actually decide the route.\nB. Missing facts still needed and why they matter.\nC. ONE best route first.\nD. Current matches table: label | job/programme/service | why fit | criteria verified | still unverified | city | cost/pay | deadline/status | exact next action | current source.\n- Work case: up to 10 serious current jobs + up to 5 useful programmes/trainings if genuinely available; do not pad.\n- Education/programme case: strongest 5–10 current options if they genuinely fit.\n- Daycare/school/support: prioritize correct official route and actionable options over quantity.\nE. Important excluded routes and exact reason.\nF. Numbered application/action plan.\nG. What AQOON should ask/say on the next call + follow-up timing.\nH. Short natural Somali explanation; keep familiar Finnish system terms such as Kela, päiväkoti, YKI and Työmarkkinatori when useful.\nI. CRM update: journey_stage, urgency, follow-up, best route/organisation/source.\nJ. Watchlist: changing deadlines/openings/availability/rules.\n\nSAFETY\nAQOON is independent and does not make authority/provider/employer decisions. Never promise Kela benefit, legal/right-to-work result, palkkatuki, daycare place, school support, admission, job, starttiraha or programme acceptance. Cite current sources for eligibility/deadline/process claims. Do not infer sensitive facts; mark them MUST CONFIRM. Do not repeat phone number or unnecessary PII.`;return x.length>15500?x.slice(0,14800)+'\n\nKeep all safety rules above and verify current official sources.':x}
@@ -539,7 +566,9 @@ function prompt(a){const L=labels(),ans=Object.entries(a).map(([k,v])=>'- '+(L[k
 // (previously two full 'list'/'programs' round-trips on every single open)
 // was pure network wait for data already in memory, and a likely
 // contributor to interviews feeling slow to open.
-function enhance(id){try{const lead=(window.AqoonApp?.leads||[]).find(x=>x.id===id);if(!lead)return;C={lead,routes:routes(lead),programs:window.AqoonApp?.programs||[]};if(C.routes.includes('entrepreneurship'))['wanted_job','cv','cards','barrier','training'].forEach(k=>document.querySelector('#questions [data-key="'+k+'"]')?.closest('.question')?.remove());addFields(C.routes);bindExtras();$('dMeta').textContent=[lead.city,lead.main_need,lead.sub_need,'Interview topics: '+C.routes.join(' + ')].filter(Boolean).join(' · ');$('saveInterview').textContent='Save first interview & prepare research brief';$('saveInterview').onclick=save}catch(e){$('err').textContent=e.message;$('err').classList.remove('hidden')}}
+function enhance(id){try{const lead=(window.AqoonApp?.leads||[]).find(x=>x.id===id);if(!lead)return;C={lead,routes:routes(lead),programs:window.AqoonApp?.programs||[]};if(C.routes.includes('entrepreneurship'))['wanted_job','cv','cards','barrier','training'].forEach(k=>document.querySelector('#questions [data-key="'+k+'"]')?.closest('.question')?.remove());addFields(C.routes);bindExtras();$('dMeta').textContent=[lead.city,lead.main_need,lead.sub_need,'Interview topics: '+C.routes.join(' + ')].filter(Boolean).join(' · ');$('saveInterview').textContent='Save first interview & prepare research brief';$('saveInterview').onclick=save;collapseIfComplete(lead);renderCompleteness()}catch(e){$('err').textContent=e.message;$('err').classList.remove('hidden')}}
+$('questions')?.addEventListener('click',renderCompleteness);
+$('questions')?.addEventListener('input',renderCompleteness);
 async function save(){const a=collect(),miss=missing(a);if(miss.length){$('err').textContent='Complete matching fields first: '+miss.slice(0,4).map(x=>x.querySelector('label').textContent).join(' · ');$('err').classList.remove('hidden');miss[0].scrollIntoView({behavior:'smooth',block:'center'});return}const b=$('saveInterview');b.disabled=true;try{const pr=prompt(a),follow=$('iFollow').value?new Date($('iFollow').value).toISOString():null;const ru=$('iRelevantUpdatesOk')?.value,of=$('iOutcomeFollowupOk')?.value,savedAnswers={...a};if(ru)savedAnswers.relevant_updates_ok=ru;if(of)savedAnswers.outcome_followup_ok=of;await api({action:'save_interview',lead_id:C.lead.id,interview_type:C.routes.join('+'),answers:savedAnswers,summary:summary(a),research_prompt:pr,next_follow_up_at:follow,urgency:$('iUrgency').value,status:'completed'});$('promptBox').textContent=pr;$('promptWrap').classList.remove('hidden');$('err').textContent='';$('err').classList.add('hidden');window.AqoonNextSteps?.attach(C.lead,a);setTimeout(()=>$('refresh')?.click(),300)}catch(e){$('err').textContent=e.message;$('err').classList.remove('hidden')}finally{b.disabled=false}}
 // This used to trigger only off clicking a [data-interview] element - the
 // old lead-card UI's interview button. The queue redesign calls
@@ -867,7 +896,7 @@ const END_HISTORY='https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-
 const $=id=>document.getElementById(id);
 let leadId='',plans=[],events=[],revisions=[],busy=false;
 const style=document.createElement('style');
-style.textContent='.case-lifecycle{background:#fff;border:1px solid var(--l);border-radius:14px;padding:13px;margin-top:12px}.case-lifecycle h3{font-size:12px;margin:0 0 9px}.case-lifecycle .muted{font-size:11px}.plan-card{background:var(--p);border:1px solid var(--l);border-radius:11px;padding:10px;margin-bottom:9px}.plan-card strong{display:block;font-size:12px}.plan-card small{display:block;color:var(--m);font-size:10px;margin-top:3px}.plan-status{display:inline-block;font-size:9px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--td);background:#eef9f7;border-radius:999px;padding:3px 8px;margin-top:6px}.plan-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}.plan-actions button{border:0;border-radius:9px;background:var(--c);color:var(--n);padding:8px 10px;font-size:10px;font-weight:700}.plan-actions button.primary{background:var(--n);color:#fff}.plan-actions button.danger{background:#fde9e6;color:#92372f}.new-plan-row{display:flex;gap:6px;margin-top:6px}.new-plan-row input{flex:1}.new-plan-row button{border:0;border-radius:9px;background:var(--n);color:#fff;padding:0 13px;font-size:11px;font-weight:700}.case-events{margin-top:9px;font-size:10px;color:var(--m)}.case-events div{padding:4px 0;border-top:1px solid var(--l)}.case-revisions{margin-top:9px}.revision-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 0;border-top:1px solid var(--l);font-size:10px}.revision-row button{border:0;border-radius:8px;background:var(--c);color:var(--n);padding:5px 9px;font-size:9px;font-weight:700}.case-lifecycle-error{color:#92372f;font-size:10px;margin-top:6px}';
+style.textContent='.case-lifecycle{background:#fff;border:1px solid var(--l);border-radius:14px;padding:13px;margin-top:12px}.case-lifecycle h3{font-size:12px;margin:0 0 9px}.case-lifecycle .muted{font-size:11px}.plan-card{background:var(--p);border:1px solid var(--l);border-radius:11px;padding:10px;margin-bottom:9px}.plan-card strong{display:block;font-size:12px}.plan-card small{display:block;color:var(--m);font-size:10px;margin-top:3px}.plan-status{display:inline-block;font-size:9px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--td);background:#eef9f7;border-radius:999px;padding:3px 8px;margin-top:6px}.plan-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}.plan-actions button{border:0;border-radius:9px;background:var(--c);color:var(--n);padding:8px 10px;font-size:10px;font-weight:700}.plan-actions button.primary{background:var(--n);color:#fff}.plan-actions button.danger{background:#fde9e6;color:#92372f}.new-plan-row{display:flex;gap:6px;margin-top:6px}.new-plan-row input{flex:1}.new-plan-row button{border:0;border-radius:9px;background:var(--n);color:#fff;padding:0 13px;font-size:11px;font-weight:700}.case-events{margin-top:9px;font-size:10px;color:var(--m)}.case-events div{padding:4px 0;border-top:1px solid var(--l)}.case-revisions{margin-top:9px}.revision-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 0;border-top:1px solid var(--l);font-size:10px}.revision-row button{border:0;border-radius:8px;background:var(--c);color:var(--n);padding:5px 9px;font-size:9px;font-weight:700}.case-lifecycle-error{color:#92372f;font-size:10px;margin-top:6px}.verified-answer{background:#eef9f7;border:1px solid #cbe7e4;border-radius:11px;padding:10px;margin-top:9px;font-size:11px}.verified-answer strong{display:block;font-size:12px;margin-bottom:4px}.verified-answer ul{margin:6px 0 0;padding-left:16px}.verified-answer li{margin-bottom:2px}.verified-answer small{display:block;color:var(--td);margin-top:6px}.plan-paste{margin-top:9px}.plan-paste summary{cursor:pointer;font-size:11px;font-weight:700;color:var(--td)}.plan-paste textarea{width:100%;min-height:90px;margin-top:7px;font-size:11px;font-family:monospace}.plan-paste button{margin-top:6px;border:0;border-radius:9px;background:var(--n);color:#fff;padding:8px 12px;font-size:10px;font-weight:700}.plan-paste .hint{color:var(--m);font-size:9px;margin:5px 0 0}';
 document.head.appendChild(style);
 const PLAN_LABELS={research:'Researching options',options_ready:'Options ready to present',action_in_progress:'Action in progress',awaiting_outcome:'Waiting on authority/provider decision',persistence_check:'Response received — confirming outcome',resolved:'Resolved',closed_unresolved:'Closed — no resolution'};
 const EVENT_LABELS={interview_completed:'First interview completed',research_completed:'Research completed',options_presented:'Options presented to family',plan_selected:'Plan selected',official_action_started:'Application/registration submitted',official_response_received:'Authority/provider responded',persistence_confirmed:'Outcome confirmed still active',case_resolved:'Case resolved',case_closed_unresolved:'Case closed without resolution',follow_up_attempted:'Follow-up attempted'};
@@ -875,9 +904,51 @@ function password(){return sessionStorage.getItem('aqoon_tracker_password')||''}
 async function api(url,body){const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json','x-tracker-password':password()},body:JSON.stringify(body),cache:'no-store'});let d={};try{d=await r.json()}catch{}if(!r.ok)throw Error(d.detail||d.error||'Request failed');return d}
 function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
 function fmt(v){if(!v)return'—';try{return new Intl.DateTimeFormat('fi-FI',{dateStyle:'short',timeStyle:'short'}).format(new Date(v))}catch{return v}}
-function host(){let el=$('caseLifecycle');if(el)return el;const actions=document.querySelector('#drawer .interview-actions');if(!actions)return null;el=document.createElement('section');el.id='caseLifecycle';el.className='case-lifecycle';actions.after(el);return el}
+// interview-match.js collapses the question list once a lead's interview
+// is already completed (a returning operator has usually already read
+// those answers). When it does, the case plan is the thing worth seeing
+// first - move it right after the notes capture, above the now-collapsed
+// interview, instead of its default spot below the Save button. A brand
+// new interview keeps the plan below the fields, since no plan can exist
+// yet (family-case-lifecycle-admin requires a completed interview first).
+function host(){
+  let el=$('caseLifecycle');if(el)return el;
+  el=document.createElement('section');el.id='caseLifecycle';el.className='case-lifecycle';
+  const lead=(window.AqoonApp?.leads||[]).find(l=>l.id===leadId);
+  const capture=document.querySelector('#drawer .interview-capture');
+  if(lead?.interview_status==='completed'&&capture){capture.after(el);return el}
+  const actions=document.querySelector('#drawer .interview-actions');if(!actions)return null;
+  actions.after(el);return el;
+}
 function activePlan(){return plans.find(p=>p.plan_status!=='resolved'&&p.plan_status!=='closed_unresolved')||null}
 function reasonFor(plan){const ev=events.find(e=>e.case_plan_id===plan.id&&e.event_type==='case_closed_unresolved');return ev?.note||''}
+// The research prompt (interview-match.js's prompt()) asks whoever runs the
+// deep research to end their answer with a fenced AQOON_SCENARIO_JSON block
+// (summary/next_steps/official_sources/recheck_after). Before this, that
+// answer had nowhere to land except a free-text plan title - the operator
+// had to manually retype the verified conclusion. Pull the block out if it
+// parses; if it doesn't (wrong format, truncated paste), still keep the raw
+// text rather than silently discarding what the operator pasted.
+function parseScenarioJson(text){
+  const marker=text.indexOf('AQOON_SCENARIO_JSON');
+  if(marker<0)return null;
+  const fenceStart=text.indexOf('```',marker);
+  if(fenceStart<0)return null;
+  const jsonStart=text.indexOf('\n',fenceStart)+1;
+  const fenceEnd=text.indexOf('```',jsonStart);
+  if(fenceEnd<0)return null;
+  try{return JSON.parse(text.slice(jsonStart,fenceEnd).trim())}catch{return null}
+}
+function verifiedAnswerHtml(plan){
+  const opt=plan.selected_option;
+  if(!opt||!Object.keys(opt).length)return'';
+  if(opt.raw)return'<div class="verified-answer"><strong>Pasted research (unparsed)</strong><p style="margin:0;white-space:pre-wrap">'+esc(opt.raw.slice(0,600))+(opt.raw.length>600?'…':'')+'</p></div>';
+  const va=opt.verified_answer||{},steps=Array.isArray(va.next_steps)?va.next_steps:[],sources=Array.isArray(opt.official_sources)?opt.official_sources:[];
+  return '<div class="verified-answer"><strong>'+esc(opt.title||'Verified research result')+'</strong>'+(va.summary?'<p style="margin:0">'+esc(va.summary)+'</p>':'')+(steps.length?'<ul>'+steps.map(s=>'<li>'+esc(s)+'</li>').join('')+'</ul>':'')+(sources.length?'<small>Sources: '+sources.map(s=>esc(s.title||s.url||'')).join(', ')+'</small>':'')+(opt.recheck_after?'<small>Recheck after '+esc(opt.recheck_after)+'</small>':'')+'</div>';
+}
+function pasteRowHtml(plan){
+  return '<details class="plan-paste"><summary>'+(plan.selected_option&&Object.keys(plan.selected_option).length?'Replace pasted research':'Paste research result')+'</summary><textarea id="pasteResearch" placeholder="Paste the completed research answer here, including the AQOON_SCENARIO_JSON block at the end"></textarea><button type="button" id="savePasteBtn" data-lc-plan-id="'+esc(plan.id)+'">Save research result to this plan</button><p class="hint">Looks for the AQOON_SCENARIO_JSON block at the end of the answer. If it is missing or malformed, the raw text is still saved so nothing is lost.</p></details>';
+}
 function planCard(plan){
   const status=PLAN_LABELS[plan.plan_status]||plan.plan_status,terminal=plan.plan_status==='resolved'||plan.plan_status==='closed_unresolved';
   const buttons=[];
@@ -888,7 +959,7 @@ function planCard(plan){
     buttons.push('<button type="button" class="danger" data-lc-action="close" data-lc-id="'+esc(plan.id)+'">Close — no resolution</button>');
   }
   const reason=plan.plan_status==='closed_unresolved'?reasonFor(plan):'';
-  return '<article class="plan-card"><strong>'+esc(plan.title||'Case plan')+'</strong>'+(plan.next_action?'<small>'+esc(plan.next_action)+'</small>':'')+(plan.next_follow_up_at?'<small>Next: '+esc(fmt(plan.next_follow_up_at))+'</small>':'')+'<span class="plan-status">'+esc(status)+'</span>'+(reason?'<small><strong>Closed:</strong> '+esc(reason)+'</small>':'')+(buttons.length?'<div class="plan-actions">'+buttons.join('')+'</div>':'')+'</article>';
+  return '<article class="plan-card"><strong>'+esc(plan.title||'Case plan')+'</strong>'+(plan.next_action?'<small>'+esc(plan.next_action)+'</small>':'')+(plan.next_follow_up_at?'<small>Next: '+esc(fmt(plan.next_follow_up_at))+'</small>':'')+'<span class="plan-status">'+esc(status)+'</span>'+(reason?'<small><strong>Closed:</strong> '+esc(reason)+'</small>':'')+(buttons.length?'<div class="plan-actions">'+buttons.join('')+'</div>':'')+verifiedAnswerHtml(plan)+pasteRowHtml(plan)+'</article>';
 }
 function eventsHtml(){const recent=events.slice(0,6);if(!recent.length)return'';return '<div class="case-events">'+recent.map(e=>'<div>'+esc(fmt(e.occurred_at))+' · '+esc(EVENT_LABELS[e.event_type]||e.event_type)+'</div>').join('')+'</div>'}
 function revisionsHtml(){if(!revisions.length)return'';return '<div class="case-revisions"><small class="muted">Interview edit history</small>'+revisions.map(r=>'<div class="revision-row"><span>Rev '+esc(r.revision_number)+' · '+esc(fmt(r.captured_at))+'</span><button type="button" data-lc-restore="'+esc(r.id)+'">Restore</button></div>').join('')+'</div>'}
@@ -897,6 +968,7 @@ function render(){
   const plan=activePlan(),otherPlans=plans.filter(p=>p!==plan);
   el.innerHTML='<h3>Case plan</h3>'+(plan?planCard(plan):'<p class="muted">No active case plan yet.</p><div class="new-plan-row"><input id="newPlanTitle" type="text" placeholder="e.g. Apply for private daycare voucher"><button type="button" id="newPlanBtn">Start plan</button></div>')+(otherPlans.length?'<p class="muted" style="margin-top:9px">'+otherPlans.length+' earlier plan'+(otherPlans.length===1?'':'s')+' on this family.</p>':'')+eventsHtml()+revisionsHtml()+'<p class="case-lifecycle-error hidden" id="caseLifecycleError"></p>';
   $('newPlanBtn')?.addEventListener('click',createPlan);
+  $('savePasteBtn')?.addEventListener('click',()=>savePastedResearch($('savePasteBtn').dataset.lcPlanId));
   el.querySelectorAll('[data-lc-action]').forEach(b=>b.onclick=()=>runAction(b.dataset.lcAction,b.dataset.lcId));
   el.querySelectorAll('[data-lc-restore]').forEach(b=>b.onclick=()=>restore(b.dataset.lcRestore));
 }
@@ -915,6 +987,20 @@ async function createPlan(){
   if(busy)return;busy=true;
   try{await api(END_LIFECYCLE,{action:'save_plan',lead_id:leadId,title});await load()}
   catch(error){fail(error.message==='first_interview_required'?'Save the first interview above before starting a case plan.':error.message)}
+  finally{busy=false}
+}
+async function savePastedResearch(planId){
+  const plan=plans.find(p=>p.id===planId);if(!plan)return;
+  const text=($('pasteResearch')?.value||'').trim();
+  if(!text)return fail('Paste the research result first.');
+  if(busy)return;busy=true;
+  try{
+    const parsed=parseScenarioJson(text),selected_option=parsed||{raw:text};
+    const plan_status=plan.plan_status==='research'?'options_ready':plan.plan_status;
+    const next_action=!plan.next_action&&parsed?.operator_guidance?.ask_next?.[0]?parsed.operator_guidance.ask_next[0]:plan.next_action;
+    await api(END_LIFECYCLE,{action:'save_plan',lead_id:leadId,id:plan.id,title:plan.title,official_decision_maker:plan.official_decision_maker,selected_option,plan_status,next_action,next_follow_up_at:plan.next_follow_up_at});
+    await load();
+  }catch(error){fail(error.message)}
   finally{busy=false}
 }
 async function submitPlanUpdate(plan,overrides){
@@ -965,7 +1051,30 @@ window.openInterview=function(id){
   leadId=id||'';
   setTimeout(load,450);
 };
-window.AqoonCaseLifecycle={logInterviewCompleted:id=>id?api(END_LIFECYCLE,{action:'log_event',lead_id:id,event_type:'interview_completed'}).catch(()=>{}):Promise.resolve()};
+// crm-queue-navigation.js's "Open resolution" button used to call
+// AqoonApp.updateLead(leadId,{status:'resolved',notes}) directly - a bare
+// family_leads write with no family_case_plans/family_case_events trace at
+// all (ADR 0003 - docs/decisions/0003-canonical-family-journey-lifecycle.md
+// - §5 defect #2: "Resolution bypasses the plan lifecycle"). That queue
+// screen has no plan list of its own to drive the normal resolve button
+// through, so give it this instead: resolve the family's active plan the
+// same way the case-plan panel's own Resolve button does (same log_event +
+// save_plan calls, so family_leads.status is set by the existing atomic
+// fix, not a second bespoke write). If the family never had a plan at all,
+// create a minimal one first rather than resolving nothing - the note still
+// ends up on a real case_resolved event instead of vanishing into a bare
+// notes field no other screen reads.
+async function resolveActivePlan(leadId,note){
+  const data=await api(END_LIFECYCLE,{action:'list',lead_id:leadId});
+  let plan=(data.plans||[]).find(p=>p.plan_status!=='resolved'&&p.plan_status!=='closed_unresolved');
+  if(!plan){
+    const created=await api(END_LIFECYCLE,{action:'save_plan',lead_id:leadId,title:'Resolved from Families queue (no case plan was started first)'});
+    plan=created.plan;
+  }
+  await api(END_LIFECYCLE,{action:'log_event',lead_id:leadId,case_plan_id:plan.id,event_type:'case_resolved',note});
+  return api(END_LIFECYCLE,{action:'save_plan',lead_id:leadId,id:plan.id,title:plan.title,official_decision_maker:plan.official_decision_maker,selected_option:plan.selected_option,plan_status:'resolved',next_action:plan.next_action,next_follow_up_at:plan.next_follow_up_at});
+}
+window.AqoonCaseLifecycle={logInterviewCompleted:id=>id?api(END_LIFECYCLE,{action:'log_event',lead_id:id,event_type:'interview_completed'}).catch(()=>{}):Promise.resolve(),resolveActivePlan};
 })();
 
 // ---- scenario-learning.js ----
@@ -2352,10 +2461,16 @@ const CrmQueues = {
       this.closeFamilyPanel();
       window.openInterview(leadId);
     } else if (action === 'mark-resolved') {
+      // Goes through case-lifecycle.js's resolveActivePlan() - the same
+      // log_event + save_plan calls the case-plan panel's own Resolve
+      // button uses - instead of writing family_leads.status directly, so
+      // every resolution leaves a family_case_events trace and a plan
+      // record, whichever screen it was resolved from (ADR 0003 §5 defect
+      // #2).
       const note=(prompt('What was the outcome? Include the agreed plan, who confirmed it, and any evidence or follow-up needed.')||'').trim();
       if (!note) return;
       if (!confirm('Mark ' + (lead?.name || 'this family') + ' resolved and save the outcome note?')) return;
-      window.AqoonApp?.updateLead(leadId, {status: 'resolved', notes: note})
+      (window.AqoonCaseLifecycle?.resolveActivePlan(leadId, note) || Promise.reject(new Error('Case lifecycle module not loaded.')))
         .then(() => this.closeFamilyPanel())
         .catch(err => alert(err.message || 'Could not resolve this case.'));
     } else if (action === 'reopen-case') {
