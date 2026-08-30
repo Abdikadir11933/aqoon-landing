@@ -33,7 +33,13 @@ function buildNextSteps(lead,currentAnswers,lifecycle){
   const {plans,events}=lifecycle;
   const activePlan=plans?.find(p=>p.plan_status!=='resolved'&&p.plan_status!=='closed_unresolved');
   const lastEvent=events?.[0];
-  const hasPendingNeeds=currentAnswers?.cross_service_needs_all && Array.isArray(currentAnswers.cross_service_needs_all) && currentAnswers.cross_service_needs_all.length>0;
+  // "Nothing else now" is the explicit negative option in the universal
+  // cross_service_needs_all checklist (universal-proof-questions.js) - an
+  // interview where the family confirmed only that produced an array of
+  // length 1, which used to read as "needs detected" and pushed an
+  // always-wrong "Log new needs" card with no way to tell what was found.
+  const pendingNeeds=(Array.isArray(currentAnswers?.cross_service_needs_all)?currentAnswers.cross_service_needs_all:[]).filter(n=>n!=='Nothing else now');
+  const hasPendingNeeds=pendingNeeds.length>0;
   const awaitingEvent=events?.find(e=>e.event_type==='awaiting_response');
   const daysSinceAwaiting=awaitingEvent ? Math.floor((Date.now()-new Date(awaitingEvent.occurred_at).getTime())/(24*60*60*1000)) : 0;
 
@@ -51,9 +57,10 @@ function buildNextSteps(lead,currentAnswers,lifecycle){
     steps.push({
       icon:'➕',
       title:'Log new needs',
-      hint:'Cross-service needs detected. Create opportunities.',
+      hint:'Confirmed: '+pendingNeeds.join(', '),
       urgent:false,
-      action:'logNeeds'
+      action:'logNeeds',
+      needs:pendingNeeds
     });
   }
 
@@ -94,8 +101,8 @@ function renderNextSteps(lead,currentAnswers,lifecycle){
   let html='<div class="next-steps-panel">';
   html+='<div class="next-steps-title">Next steps suggested</div>';
   html+='<div class="next-steps-grid">';
-  steps.forEach(s=>{
-    html+='<div class="next-step-card '+(s.urgent?'urgent':'')+'" data-action="'+esc(s.action)+'">';
+  steps.forEach((s,i)=>{
+    html+='<div class="next-step-card '+(s.urgent?'urgent':'')+'" data-action="'+esc(s.action)+'" data-step-index="'+i+'">';
     html+='<div class="next-step-icon">'+s.icon+'</div>';
     html+='<div class="next-step-text">'+esc(s.title)+'</div>';
     html+='<span class="next-step-hint">'+esc(s.hint)+'</span>';
@@ -108,11 +115,12 @@ function renderNextSteps(lead,currentAnswers,lifecycle){
   host.insertAdjacentHTML('beforeend',html);
 
   host.querySelectorAll('.next-step-card').forEach(card=>{
-    card.addEventListener('click',()=>handleAction(card.dataset.action,lead));
+    const step=steps[+card.dataset.stepIndex];
+    card.addEventListener('click',()=>handleAction(step.action,lead,step.needs));
   });
 }
 
-function handleAction(action,lead){
+function handleAction(action,lead,needs){
   switch(action){
     case 'recordOutcome': {
       // There's no single "record outcome" button - case-lifecycle.js
@@ -130,7 +138,7 @@ function handleAction(action,lead){
       // family_lead_id column - there is no "create an opportunity for
       // this family" feature to link to yet, so this stays a manual
       // reminder rather than implying a click-through that doesn't exist.
-      alert('Cross-service needs detected for this family. Note them in the case plan below - there is no automatic link to a sales opportunity yet.');
+      alert('Confirmed needs: '+(needs&&needs.length?needs.join(', '):'see the interview answers')+'. Note them in the case plan below - there is no automatic link to a sales opportunity yet.');
       break;
     case 'checkResponse': {
       const panel=document.getElementById('caseLifecycle');

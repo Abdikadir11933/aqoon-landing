@@ -47,6 +47,22 @@ test('reopening a resolved case attaches the case_plan_id the backend requires',
   assert.match(lifecycle, /case_plan_id:plan\.id,event_type:'follow_up_attempted'/);
   assert.doesNotMatch(read('tracker/crm-queue-navigation.js'), /event_type: 'follow_up_attempted'/);
 });
+test('cross-service needs reach the follow-up summary instead of a generic alert', () => {
+  // hasPendingNeeds used to treat any non-empty cross_service_needs_all
+  // array as "needs detected", including an array containing only the
+  // explicit negative option ('Nothing else now') - a false positive that
+  // pushed a "Log new needs" card for families who confirmed they had none.
+  // The card's hint and the click alert also never said which needs were
+  // actually found (ADR 0003 defect #15: interview data existed but never
+  // reached the follow-up summary).
+  const steps = read('tracker/interview-next-steps.js');
+  assert.match(steps, /filter\(n=>n!=='Nothing else now'\)/);
+  assert.match(steps, /hint:'Confirmed: '\+pendingNeeds\.join\(', '\)/);
+  assert.match(steps, /needs:pendingNeeds/);
+  assert.match(steps, /function handleAction\(action,lead,needs\)/);
+  assert.match(steps, /'Confirmed needs: '\+\(needs&&needs\.length\?needs\.join\(', '\):/);
+});
+
 test('the analytics consent dialog can actually be dismissed', () => {
   // analyticsChoice used to carry its layout as an inline style attribute
   // (style="...display:grid..."), which beats any external stylesheet rule
