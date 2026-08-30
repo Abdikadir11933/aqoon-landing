@@ -44,6 +44,7 @@ test('a completed interview collapses into one line so the case plan is not buri
   // The case plan is the reason to collapse the interview at all - it must
   // move above the (now collapsed) question list, not stay buried below the
   // Save button and research brief.
+  assert.match(lifecycle, /if\(!el\)\{el=document\.createElement\('section'\);el\.id='caseLifecycle'/);
   assert.match(lifecycle, /if\(lead\?\.interview_status==='completed'&&capture\)\{capture\.after\(el\);return el\}/);
 });
 

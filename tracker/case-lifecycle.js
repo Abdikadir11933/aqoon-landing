@@ -20,8 +20,8 @@ function fmt(v){if(!v)return'—';try{return new Intl.DateTimeFormat('fi-FI',{da
 // new interview keeps the plan below the fields, since no plan can exist
 // yet (family-case-lifecycle-admin requires a completed interview first).
 function host(){
-  let el=$('caseLifecycle');if(el)return el;
-  el=document.createElement('section');el.id='caseLifecycle';el.className='case-lifecycle';
+  let el=$('caseLifecycle');
+  if(!el){el=document.createElement('section');el.id='caseLifecycle';el.className='case-lifecycle'}
   const lead=(window.AqoonApp?.leads||[]).find(l=>l.id===leadId);
   const capture=document.querySelector('#drawer .interview-capture');
   if(lead?.interview_status==='completed'&&capture){capture.after(el);return el}
