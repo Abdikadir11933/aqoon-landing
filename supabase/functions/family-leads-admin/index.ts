@@ -1,41 +1,964 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
-const PASSWORD_HASH="67541863bd267f78446b60b489625bdd452dca1bd003fa1e620dd98de2fb6c6d";
-const ORIGIN="https://aqoon.live";
-const CURRENT_FORM_VERSION="phone-first-v2-multineed";
-const H=()=>({"Access-Control-Allow-Origin":ORIGIN,"Access-Control-Allow-Headers":"content-type, x-tracker-password, authorization","Access-Control-Allow-Methods":"POST, OPTIONS","Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store"});
-async function sha(v:string){const d=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(v));return Array.from(new Uint8Array(d)).map(b=>b.toString(16).padStart(2,"0")).join("");}
-function inc(o:Record<string,number>,k:string){o[k]=(o[k]||0)+1;}function txt(v:unknown,max=4000){return typeof v==="string"?v.trim().slice(0,max):null;}function has(j:any,e:string){return j.events.includes(e);}
-function opId(b:any){return typeof b.operator_id==="string"&&b.operator_id.trim()?b.operator_id.trim():null;}
-function resolveOperatorId(jwtOperatorId:string|null,b:any){return jwtOperatorId||opId(b);}
-function makeJourneys(rows:any[]){const journeys:Record<string,any>={};for(const r of rows){if(!r.session_id)continue;const j=journeys[r.session_id]||(journeys[r.session_id]={session_id:r.session_id,visitor_id:r.visitor_id||null,first_seen:r.created_at,last_seen:r.created_at,source:r.utm_source||r.referrer_host||"direct",device:r.device_type||"unknown",form_version:r.form_version||"legacy",city:null,need:null,sub:null,age:null,events:[]});j.last_seen=r.created_at;if(r.visitor_id)j.visitor_id=r.visitor_id;if(j.source==="direct"&&(r.utm_source||r.referrer_host))j.source=r.utm_source||r.referrer_host;if(r.device_type)j.device=r.device_type;if(r.form_version)j.form_version=r.form_version;if(r.city)j.city=r.city;if(r.main_need)j.need=r.main_need;if(r.sub_need)j.sub=r.sub_need;if(r.age_group)j.age=r.age_group;j.events.push(r.event_name);}return Object.values(journeys).map((j:any)=>({...j,events:[...new Set(j.events)]}));}
-function sourceCounts(js:any[]){const o:Record<string,number>={};js.forEach(j=>inc(o,j.source||"direct"));return o;}function fieldCounts(js:any[],key:string){const o:Record<string,number>={};js.forEach(j=>{if(j[key])inc(o,j[key]);});return o;}
-function needDomains(text:string):string[]{const d:string[]=[];if(/daycare|p.v.k|xannaano|esiopetus|varhaiskasvatus/.test(text))d.push("daycare","family_finances");if(/school|skuul|dugsi|s2|valmistava/.test(text))d.push("school");if(/hobby|ciyaar|harrastus/.test(text))d.push("hobby");if(/work|shaq|employment|job/.test(text))d.push("work","income_and_unemployment");return d;}
-const arrJoin=(v:any)=>Array.isArray(v)?v.join(", "):(v||"");
+const PASSWORD_HASH =
+  "67541863bd267f78446b60b489625bdd452dca1bd003fa1e620dd98de2fb6c6d";
+const ORIGIN = "https://aqoon.live";
+const CURRENT_FORM_VERSION = "phone-first-v2-multineed";
+const H = () => ({
+  "Access-Control-Allow-Origin": ORIGIN,
+  "Access-Control-Allow-Headers":
+    "content-type, x-tracker-password, authorization",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Content-Type": "application/json; charset=utf-8",
+  "Cache-Control": "no-store",
+});
+async function sha(v: string) {
+  const d = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(v));
+  return Array.from(new Uint8Array(d))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+}
+function inc(o: Record<string, number>, k: string) {
+  o[k] = (o[k] || 0) + 1;
+}
+function txt(v: unknown, max = 4000) {
+  return typeof v === "string" ? v.trim().slice(0, max) : null;
+}
+function has(j: any, e: string) {
+  return j.events.includes(e);
+}
+function opId(b: any) {
+  return typeof b.operator_id === "string" && b.operator_id.trim()
+    ? b.operator_id.trim()
+    : null;
+}
+function resolveOperatorId(jwtOperatorId: string | null, b: any) {
+  return jwtOperatorId || opId(b);
+}
+function makeJourneys(rows: any[]) {
+  const journeys: Record<string, any> = {};
+  for (const r of rows) {
+    if (!r.session_id) continue;
+    const j =
+      journeys[r.session_id] ||
+      (journeys[r.session_id] = {
+        session_id: r.session_id,
+        visitor_id: r.visitor_id || null,
+        first_seen: r.created_at,
+        last_seen: r.created_at,
+        source: r.utm_source || r.referrer_host || "direct",
+        device: r.device_type || "unknown",
+        form_version: r.form_version || "legacy",
+        city: null,
+        need: null,
+        sub: null,
+        age: null,
+        events: [],
+      });
+    j.last_seen = r.created_at;
+    if (r.visitor_id) j.visitor_id = r.visitor_id;
+    if (j.source === "direct" && (r.utm_source || r.referrer_host))
+      j.source = r.utm_source || r.referrer_host;
+    if (r.device_type) j.device = r.device_type;
+    if (r.form_version) j.form_version = r.form_version;
+    if (r.city) j.city = r.city;
+    if (r.main_need) j.need = r.main_need;
+    if (r.sub_need) j.sub = r.sub_need;
+    if (r.age_group) j.age = r.age_group;
+    j.events.push(r.event_name);
+  }
+  return Object.values(journeys).map((j: any) => ({
+    ...j,
+    events: [...new Set(j.events)],
+  }));
+}
+function sourceCounts(js: any[]) {
+  const o: Record<string, number> = {};
+  js.forEach((j) => inc(o, j.source || "direct"));
+  return o;
+}
+function fieldCounts(js: any[], key: string) {
+  const o: Record<string, number> = {};
+  js.forEach((j) => {
+    if (j[key]) inc(o, j[key]);
+  });
+  return o;
+}
+function needDomains(text: string): string[] {
+  const d: string[] = [];
+  if (/daycare|p.v.k|xannaano|esiopetus|varhaiskasvatus/.test(text))
+    d.push("daycare", "family_finances");
+  if (/school|skuul|dugsi|s2|valmistava/.test(text)) d.push("school");
+  if (/hobby|ciyaar|harrastus/.test(text)) d.push("hobby");
+  if (/work|shaq|employment|job/.test(text))
+    d.push("work", "income_and_unemployment");
+  return d;
+}
+const arrJoin = (v: any) => (Array.isArray(v) ? v.join(", ") : v || "");
 // knowledge_criteria.field_key vocabulary was authored independently of the
 // first-interview question keys in interview-match.js (F object). Rather
 // than duplicate near-identical questions under two names, this bridges a
 // route's required_input key to whatever interview field already captures
 // the same fact; a field with no existing equivalent gets a genuinely new
 // dynamic question instead (interview-match-preview.js's INPUTS map).
-const CRITERIA_BRIDGE:Record<string,string[]>={preferred_area:["preferred_area","preferred_provider_or_area"],preferred_provider_or_area:["preferred_provider_or_area","preferred_area"],child_age:["child_age","child_age_or_birth_date"],school_age_or_grade:["school_age_or_grade","grade"],child_age_or_grade:["child_age_or_grade","grade"],school_or_area:["school_or_area","school_name"],current_school_or_enrolment:["current_school_or_enrolment","school_route"],language_learning_concern:["language_learning_concern","s2","child_finnish"],support_need_description:["support_need_description","school_goal"],jobseeker_registration_status:["jobseeker_registration_status","jobseeker_active"],work_status:["work_status","main_status","jobseeker_active"],main_status:["main_status","work_status","jobseeker_active"],right_to_work_known_when_relevant:["right_to_work_known_when_relevant","right_to_work_known"],availability:["availability","days","hobby_time"],care_need_schedule:["care_need_schedule","care_schedule"]};
-function stageFor(j:any){if(has(j,"submit_success"))return"completed";if(has(j,"send_request"))return"send request";if(has(j,"more_help_view"))return"reviewing extra help";if(has(j,"contact_saved"))return"contact saved";if(has(j,"validation_error"))return"validation error";if(has(j,"submit_attempt"))return"pressed continue";if(has(j,"contact_started"))return"started typing";if(has(j,"contact_view"))return"contact screen";if(has(j,"start"))return"started";return"viewed";}
-Deno.serve(async(req)=>{const h=H();if(req.method==="OPTIONS")return new Response(null,{status:204,headers:h});if(req.method!=="POST")return new Response(JSON.stringify({error:"method_not_allowed"}),{status:405,headers:h});
-const url=Deno.env.get("SUPABASE_URL"),key=Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");if(!url||!key)return new Response(JSON.stringify({error:"server_config"}),{status:500,headers:h});
-const db=createClient(url,key,{auth:{persistSession:false,autoRefreshToken:false}});
-const p=req.headers.get("x-tracker-password")||"";const passwordOk=!!p&&(await sha(p))===PASSWORD_HASH;let jwtOperatorId:string|null=null;
-if(!passwordOk){const authHeader=req.headers.get("authorization")||"";const m=authHeader.match(/^Bearer\s+(.+)$/i);if(m){const{data,error}=await db.auth.getUser(m[1]);if(!error&&data?.user){const{data:op}=await db.from("operators").select("id").eq("auth_user_id",data.user.id).maybeSingle();if(op)jwtOperatorId=op.id;}}}
-if(!passwordOk&&!jwtOperatorId)return new Response(JSON.stringify({error:"unauthorized"}),{status:401,headers:h});
-let b:any={};try{b=await req.json()}catch{}const action=b.action||"list";
-if(action==="ping")return new Response(JSON.stringify({ok:true}),{headers:h});
-if(action==="operators"){const{data,error}=await db.from("operators").select("id,display_name,active").eq("active",true).order("display_name",{ascending:true});if(error)return new Response(JSON.stringify({error:"db_error",detail:error.message}),{status:500,headers:h});return new Response(JSON.stringify({operators:data||[]}),{headers:h});}
-if(action==="whoami"){const auth=req.headers.get("authorization")||"";const m=auth.match(/^Bearer\s+(.+)$/i);if(!m)return new Response(JSON.stringify({operator:null}),{headers:h});const{data,error}=await db.auth.getUser(m[1]);if(error||!data?.user)return new Response(JSON.stringify({operator:null,invalid_token:true}),{headers:h});const{data:op}=await db.from("operators").select("id,display_name").eq("auth_user_id",data.user.id).maybeSingle();return new Response(JSON.stringify({operator:op||null,email:data.user.email}),{headers:h});}
-if(action==="claim_operator"){const auth=req.headers.get("authorization")||"";const m=auth.match(/^Bearer\s+(.+)$/i);if(!m)return new Response(JSON.stringify({error:"missing_token"}),{status:401,headers:h});const{data:userData,error:userErr}=await db.auth.getUser(m[1]);if(userErr||!userData?.user)return new Response(JSON.stringify({error:"invalid_token"}),{status:401,headers:h});const user=userData.user;const{data:already}=await db.from("operators").select("id,display_name").eq("auth_user_id",user.id).maybeSingle();if(already)return new Response(JSON.stringify({operator:already}),{headers:h});const operatorId=String(b.operator_id||"");if(!operatorId)return new Response(JSON.stringify({error:"missing_operator_id"}),{status:400,headers:h});const{data:target,error:targetErr}=await db.from("operators").select("id,display_name,auth_user_id").eq("id",operatorId).single();if(targetErr)return new Response(JSON.stringify({error:"operator_not_found"}),{status:404,headers:h});if(target.auth_user_id&&target.auth_user_id!==user.id)return new Response(JSON.stringify({error:"operator_already_claimed"}),{status:409,headers:h});const{data:updated,error:updErr}=await db.from("operators").update({auth_user_id:user.id,email:user.email}).eq("id",operatorId).select("id,display_name").single();if(updErr)return new Response(JSON.stringify({error:"db_error",detail:updErr.message}),{status:500,headers:h});return new Response(JSON.stringify({operator:updated}),{headers:h});}
-if(action==="call_log"){const leadId=String(b.lead_id||"");if(!leadId)return new Response(JSON.stringify({error:"missing_lead_id"}),{status:400,headers:h});const{data,error}=await db.from("family_call_log").select("id,operator_id,outcome,next_follow_up_at,notes,created_at").eq("family_lead_id",leadId).order("created_at",{ascending:false}).limit(100);if(error)return new Response(JSON.stringify({error:"db_error",detail:error.message}),{status:500,headers:h});return new Response(JSON.stringify({call_log:data||[]}),{headers:h});}
-if(action==="list"){const[lr,cr,ir,opr]=await Promise.all([db.from("family_leads").select("id,created_at,updated_at,name,phone,city,main_need,sub_need,age_group,additional_needs,tier,status,contacted_at,resolved_at,notes,source,lang,analytics_session_id,analytics_visitor_id,referrer_host,utm_source,utm_medium,utm_campaign,intake_request_id,next_follow_up_at,urgency,interview_status,last_interview_at,journey_stage,form_version,last_call_outcome,last_call_at,assigned_operator_id,last_actor_id,consent_relevant_updates_ok,consent_outcome_followup_ok,consent_recorded_at").order("created_at",{ascending:false}).limit(1000),db.from("family_intake_contacts").select("id,created_at,updated_at,request_id,name,phone,city,main_need,sub_need,age_group,additional_needs,completed,referrer_host,utm_source,utm_medium,utm_campaign,form_version,assigned_operator_id,last_call_outcome,last_call_at,last_call_next_follow_up_at,last_call_notes").eq("completed",false).order("created_at",{ascending:false}).limit(500),db.from("family_interviews").select("id,lead_id,interview_type,answers,summary,research_prompt,next_follow_up_at,urgency,status,next_action,created_at,updated_at,operator_id,interview_schema_version").order("updated_at",{ascending:false}).limit(2000),db.from("operators").select("id,display_name,active").eq("active",true).order("display_name",{ascending:true})]);if(lr.error||cr.error||ir.error||opr.error)return new Response(JSON.stringify({error:"db_error",detail:lr.error?.message||cr.error?.message||ir.error?.message||opr.error?.message}),{status:500,headers:h});const ints=ir.data||[],latest:Record<string,any>={};for(const i of ints)if(!latest[i.lead_id])latest[i.lead_id]=i;const leads=(lr.data||[]).map((l:any)=>({...l,latest_interview:latest[l.id]||null}));return new Response(JSON.stringify({leads,incomplete_contacts:cr.data||[],interviews:ints,operators:opr.data||[]}),{headers:h});}
-if(action==="programs"||action==="programmes"){const{data,error}=await db.from("partner_programs").select("name,organisation,city,category,audience,pain_match,status,application_status,deadline,source_url,notes,last_verified_at,partner_priority,outreach_status").eq("status","active").order("partner_priority",{ascending:true}).limit(300);if(error)return new Response(JSON.stringify({error:"db_error",detail:error.message}),{status:500,headers:h});return new Response(JSON.stringify({programs:data||[],programmes:data||[]}),{headers:h});}
-if(action==="match_preview"){const leadId=String(b.lead_id||"");if(!leadId)return new Response(JSON.stringify({error:"missing_lead_id"}),{status:400,headers:h});const{data:lead,error:leadError}=await db.from("family_leads").select("id,city,main_need,sub_need,additional_needs,age_group,interview_status").eq("id",leadId).single();if(leadError||!lead)return new Response(JSON.stringify({error:"lead_not_found"}),{status:404,headers:h});if(lead.interview_status!=="completed")return new Response(JSON.stringify({error:"first_interview_required"}),{status:409,headers:h});const text=JSON.stringify([lead.main_need,lead.sub_need,lead.additional_needs||[]]).toLowerCase(),domains=needDomains(text),now=Date.now(),answers=b.answers&&typeof b.answers==="object"?b.answers:{},city=String(lead.city||"").toLowerCase();if(!domains.length)return new Response(JSON.stringify({preview_mode:"read_only",candidates:[]}),{headers:h});const{data:rows,error:routeError}=await db.from("knowledge_routes").select("id,route_key,need_domain,scope,required_inputs,blocking_inputs,steps,source_ids,partner_disclosure_required,verification_state,volatility,recheck_after,knowledge_criteria(label,criterion_type,field_key)").in("need_domain",domains).eq("verification_state","verified").limit(30);if(routeError)return new Response(JSON.stringify({error:"db_error",detail:routeError.message}),{status:500,headers:h});const routeCurrent=(rows||[]).filter((r:any)=>!r.recheck_after||new Date(r.recheck_after).getTime()>now),ids=[...new Set(routeCurrent.flatMap((r:any)=>r.source_ids||[]))],{data:sources,error:sourceError}=ids.length?await db.from("knowledge_sources").select("id,canonical_url,title,recheck_after,verification_state").in("id",ids):{data:[],error:null};if(sourceError)return new Response(JSON.stringify({error:"db_error",detail:sourceError.message}),{status:500,headers:h});const sourceMap=new Map((sources||[]).map((s:any)=>[s.id,s]));const active=routeCurrent.filter((r:any)=>(r.source_ids||[]).length>0&&(r.source_ids||[]).every((id:string)=>{const s=sourceMap.get(id);return s&&s.verification_state==="verified"&&(!s.recheck_after||new Date(s.recheck_after).getTime()>now)}));const ext:Record<string,any>={...answers,city,municipality:city,interest:answers.interest||lead.sub_need||"",child_age_or_birth_date:answers.child_age_or_birth_date||lead.age_group||""};const val=(key:string)=>{if(key==="permanent_vantaa_residence_context")return city==="vantaa"&&answers.home_municipality==="Yes"?"yes":"";const keys=CRITERIA_BRIDGE[key]||[key];for(const k of keys){if(ext[k])return arrJoin(ext[k]);}return""};const candidates=active.map((r:any)=>{const missing=(r.required_inputs||[]).filter((k:string)=>!val(k));const conflict:string[]=[];const scopeCity=String(r.scope?.city||"").toLowerCase();if(scopeCity&&city&&city!==scopeCity)conflict.push("Family city is not "+String(r.scope.city)+".");if(r.route_key.includes("private-varhaiskasvatus")&&answers.home_municipality==="No")conflict.push("Registered municipality needs confirmation before using the Vantaa voucher route.");const criteria=(r.knowledge_criteria||[]).map((c:any)=>({label:c.label,type:c.criterion_type,field_key:c.field_key}));return{route_key:r.route_key,match_status:conflict.length?"does_not_fit":"possible_must_confirm",missing_fields:missing,conflicting_criteria:conflict,criteria,steps:r.steps||[],partner_disclosure_required:!!r.partner_disclosure_required,sources:(r.source_ids||[]).map((id:string)=>sourceMap.get(id)).filter(Boolean).map((s:any)=>({title:s.title,url:s.canonical_url}))};});return new Response(JSON.stringify({preview_mode:"read_only",candidates}),{headers:h});}
-if(action==="save_interview"||action==="interview_save"){const leadId=String(b.lead_id||""),type=txt(b.interview_type,80);if(!leadId||!type)return new Response(JSON.stringify({error:"missing_fields"}),{status:400,headers:h});const urg=["low","normal","high","urgent"].includes(b.urgency)?b.urgency:"normal",status=["draft","completed"].includes(b.status)?b.status:"completed",now=new Date().toISOString(),operatorId=resolveOperatorId(jwtOperatorId,b);let follow:string|null=null;if(b.next_follow_up_at){const d=new Date(b.next_follow_up_at);follow=Number.isNaN(d.getTime())?null:d.toISOString();}const payload:any={lead_id:leadId,interview_type:type,answers:(b.answers&&typeof b.answers==="object")?b.answers:{},summary:txt(b.summary,6000),research_prompt:txt(b.research_prompt,16000),next_action:txt(b.next_action,2500),urgency:urg,status,next_follow_up_at:follow,updated_at:now,operator_id:operatorId,interview_schema_version:txt(b.interview_schema_version,40)};const{data,error}=await db.from("family_interviews").upsert(payload,{onConflict:"lead_id,interview_type"}).select().single();if(error)return new Response(JSON.stringify({error:"db_error",detail:error.message}),{status:500,headers:h});const leadPatch:any={urgency:urg,next_follow_up_at:follow,interview_status:status,last_interview_at:now,updated_at:now};if(operatorId)leadPatch.last_actor_id=operatorId;if(status==="completed"){leadPatch.status="contacted";leadPatch.contacted_at=now;leadPatch.journey_stage="guide";const ans=payload.answers,yn=(v:any)=>v==="Yes"?true:v==="No"?false:undefined,ru=yn(ans.relevant_updates_ok),of=yn(ans.outcome_followup_ok);if(ru!==undefined)leadPatch.consent_relevant_updates_ok=ru;if(of!==undefined)leadPatch.consent_outcome_followup_ok=of;if(ru!==undefined||of!==undefined)leadPatch.consent_recorded_at=now;}await db.from("family_leads").update(leadPatch).eq("id",leadId).neq("status","resolved");return new Response(JSON.stringify({interview:data}),{headers:h});}
-if(action==="analytics"){const days=Math.min(Math.max(Number(b.days||30),1),365),sinceDate=new Date(Date.now()-days*86400000),since=sinceDate.toISOString();const[er,lr]=await Promise.all([db.from("family_funnel_events").select("created_at,visitor_id,session_id,event_name,form_version,screen,city,main_need,sub_need,age_group,referrer_host,utm_source,utm_medium,utm_campaign,device_type").gte("created_at",since).order("created_at",{ascending:true}).limit(30000),db.from("family_leads").select("id,created_at,status,source,analytics_session_id,analytics_visitor_id,form_version").gte("created_at",since).order("created_at",{ascending:true}).limit(5000)]);if(er.error||lr.error)return new Response(JSON.stringify({error:"db_error",detail:er.error?.message||lr.error?.message}),{status:500,headers:h});const rows=er.data||[],js=makeJourneys(rows),visitors=new Set(js.map((j:any)=>j.visitor_id||j.session_id)),pageViews=rows.filter((r:any)=>r.event_name==="page_view").length,sources=sourceCounts(js),needs=fieldCounts(js,"need"),cities=fieldCounts(js,"city"),devices=fieldCounts(js,"device");const trendMap:Record<string,{sessions:number,visitors:Set<string>}>={};for(const j of js){const d=new Date(j.first_seen),bucket=days<=1?d.toISOString().slice(0,13)+":00:00.000Z":d.toISOString().slice(0,10);if(!trendMap[bucket])trendMap[bucket]={sessions:0,visitors:new Set()};trendMap[bucket].sessions++;trendMap[bucket].visitors.add(j.visitor_id||j.session_id);}const hourMap:Record<string,{sessions:number,visitors:Set<string>}>={},dayAgo=Date.now()-86400000;for(const j of js){if(new Date(j.first_seen).getTime()<dayAgo)continue;const d=new Date(j.first_seen),bucket=d.toISOString().slice(0,13)+":00:00.000Z";if(!hourMap[bucket])hourMap[bucket]={sessions:0,visitors:new Set()};hourMap[bucket].sessions++;hourMap[bucket].visitors.add(j.visitor_id||j.session_id);}const traffic_trend=Object.entries(trendMap).sort().map(([bucket,v])=>({bucket,sessions:v.sessions,visitors:v.visitors.size})),hourly_24h=Object.entries(hourMap).sort().map(([bucket,v])=>({bucket,sessions:v.sessions,visitors:v.visitors.size}));const flowRows=rows.filter((r:any)=>r.form_version===CURRENT_FORM_VERSION),fjs=makeJourneys(flowRows),fcount=(e:string)=>fjs.filter((j:any)=>has(j,e)).length;const flow={form_version:CURRENT_FORM_VERSION,sessions:fjs.length,visitors:new Set(fjs.map((j:any)=>j.visitor_id||j.session_id)).size,started:fcount("start"),contact_view:fcount("contact_view"),contact_started:fcount("contact_started"),submit_attempt:fcount("submit_attempt"),validation_error:fcount("validation_error"),contact_saved:fcount("contact_saved"),progressed:fjs.filter((j:any)=>has(j,"city_selected")||has(j,"need_selected")).length,more_help_view:fcount("more_help_view"),additional_need_added:fcount("additional_need_added"),send_request:fcount("send_request"),completed:fcount("submit_success")};const pct=(a:number,b:number)=>b?Number((a/b*100).toFixed(1)):0;const flow_rates={view_to_start:pct(flow.started,flow.sessions),contact_to_attempt:pct(flow.submit_attempt,flow.contact_view),contact_to_saved:pct(flow.contact_saved,flow.contact_view),attempt_to_saved:pct(flow.contact_saved,flow.submit_attempt),saved_to_completed:pct(flow.completed,flow.contact_saved),session_to_completed:pct(flow.completed,flow.sessions)};const flow_dropoffs=[{from:"Viewed",to:"Started",lost:Math.max(0,flow.sessions-flow.started),base:flow.sessions},{from:"Contact screen",to:"Pressed continue",lost:Math.max(0,flow.contact_view-flow.submit_attempt),base:flow.contact_view},{from:"Pressed continue",to:"Contact saved",lost:Math.max(0,flow.submit_attempt-flow.contact_saved),base:flow.submit_attempt},{from:"Contact saved",to:"Completed",lost:Math.max(0,flow.contact_saved-flow.completed),base:flow.contact_saved}].map(x=>({...x,loss_rate:x.base?Number((x.lost/x.base*100).toFixed(1)):0}));const recent=js.sort((a:any,b:any)=>String(b.last_seen).localeCompare(String(a.last_seen))).slice(0,60).map((j:any)=>({...j,stage:stageFor(j)})),leadRows=lr.data||[],trackedLeadRecords=leadRows.filter((x:any)=>x.analytics_session_id).length;return new Response(JSON.stringify({days,definitions:{visitors:"Distinct browser visitor IDs in tracked events",sessions:"Distinct visit/session IDs",page_views:"All page_view events",sources:"Sessions grouped by source",funnel:"Distinct sessions using the current multi-need phone-first form only",lead_records:"Actual rows created in family_leads; one lead can now contain multiple needs"},unique_visitors:visitors.size,sessions:js.length,page_views:pageViews,sources,needs,cities,devices,traffic_trend,hourly_24h,flow,flow_rates,flow_dropoffs,lead_records_in_range:leadRows.length,tracked_lead_records:trackedLeadRecords,untracked_lead_records:leadRows.length-trackedLeadRecords,new_lead_records_in_range:leadRows.filter((x:any)=>x.status==="new").length,recent}),{headers:h});}
-if(action==="record_call_outcome"){const id=String(b.id||""),outcome=String(b.call_outcome||""),operatorId=resolveOperatorId(jwtOperatorId,b);if(!id)return new Response(JSON.stringify({error:"missing_id"}),{status:400,headers:h});if(!["reached","no_answer","call_later","busy"].includes(outcome))return new Response(JSON.stringify({error:"invalid_call_outcome"}),{status:400,headers:h});let follow:string|null=null;if(outcome!=="reached"){const d=new Date(b.next_follow_up_at||"");if(Number.isNaN(d.getTime())||d.getTime()<=Date.now())return new Response(JSON.stringify({error:"future_follow_up_required"}),{status:400,headers:h});follow=d.toISOString();}const{data:current,error:readError}=await db.from("family_leads").select("id,status,journey_stage,interview_status").eq("id",id).single();if(readError)return new Response(JSON.stringify({error:"db_error",detail:readError.message}),{status:500,headers:h});if(current.status==="resolved")return new Response(JSON.stringify({error:"family_already_resolved"}),{status:409,headers:h});const now=new Date().toISOString(),patch:any={last_call_outcome:outcome,last_call_at:now};if(operatorId)patch.last_actor_id=operatorId;if(outcome==="reached"){patch.next_follow_up_at=null;if(current.interview_status==="completed"){patch.status="contacted";patch.contacted_at=now;if(current.journey_stage==="reach")patch.journey_stage="guide";}else if(current.journey_stage!=="resolved")patch.journey_stage="reach";}else patch.next_follow_up_at=follow;const{data,error}=await db.from("family_leads").update(patch).eq("id",id).select("id,status,contacted_at,next_follow_up_at,journey_stage,last_call_outcome,last_call_at,assigned_operator_id,last_actor_id,updated_at").single();if(error)return new Response(JSON.stringify({error:"db_error",detail:error.message}),{status:500,headers:h});await db.from("family_call_log").insert({family_lead_id:id,operator_id:operatorId,outcome,next_follow_up_at:follow,notes:txt(b.notes,1000)});return new Response(JSON.stringify({lead:data}),{headers:h});}
-if(action==="update"&&b.status==="resolved"){const id=String(b.id||"");if(!id)return new Response(JSON.stringify({error:"missing_id"}),{status:400,headers:h});const{data:gate,error:gateError}=await db.from("family_leads").select("interview_status").eq("id",id).single();if(gateError)return new Response(JSON.stringify({error:"db_error",detail:gateError.message}),{status:500,headers:h});if(gate.interview_status!=="completed")return new Response(JSON.stringify({error:"completed_interview_required"}),{status:409,headers:h});}if(action==="update"){const id=String(b.id||""),operatorId=resolveOperatorId(jwtOperatorId,b);if(!id)return new Response(JSON.stringify({error:"missing_id"}),{status:400,headers:h});const patch:any={updated_at:new Date().toISOString()};if(operatorId)patch.last_actor_id=operatorId;if(typeof b.notes==="string"||b.notes===null)patch.notes=b.notes;if(["new","contacted","resolved"].includes(b.status)){patch.status=b.status;if(b.status==="contacted")patch.contacted_at=new Date().toISOString();if(b.status==="resolved"){patch.resolved_at=new Date().toISOString();patch.journey_stage="resolved";}if(b.status==="new"){patch.contacted_at=null;patch.resolved_at=null;}}if(["reach","guide","start","retention","referral","resolved"].includes(b.journey_stage))patch.journey_stage=b.journey_stage;if(["low","normal","high","urgent"].includes(b.urgency))patch.urgency=b.urgency;if(["not_started","draft","completed"].includes(b.interview_status))patch.interview_status=b.interview_status;if(Object.prototype.hasOwnProperty.call(b,"next_follow_up_at")){if(!b.next_follow_up_at)patch.next_follow_up_at=null;else{const d=new Date(b.next_follow_up_at);if(!Number.isNaN(d.getTime()))patch.next_follow_up_at=d.toISOString();}}if(Object.prototype.hasOwnProperty.call(b,"assigned_operator_id"))patch.assigned_operator_id=b.assigned_operator_id?String(b.assigned_operator_id):null;if(typeof b.consent_relevant_updates_ok==="boolean"){patch.consent_relevant_updates_ok=b.consent_relevant_updates_ok;patch.consent_recorded_at=new Date().toISOString();}if(typeof b.consent_outcome_followup_ok==="boolean"){patch.consent_outcome_followup_ok=b.consent_outcome_followup_ok;patch.consent_recorded_at=new Date().toISOString();}const{data,error}=await db.from("family_leads").update(patch).eq("id",id).select("id,created_at,updated_at,name,phone,city,main_need,sub_need,age_group,additional_needs,tier,status,contacted_at,resolved_at,notes,source,lang,referrer_host,utm_source,utm_medium,utm_campaign,next_follow_up_at,urgency,interview_status,last_interview_at,journey_stage,form_version,last_call_outcome,last_call_at,assigned_operator_id,last_actor_id,consent_relevant_updates_ok,consent_outcome_followup_ok,consent_recorded_at").single();if(error)return new Response(JSON.stringify({error:"db_error",detail:error.message}),{status:500,headers:h});return new Response(JSON.stringify({lead:data}),{headers:h});}
-return new Response(JSON.stringify({error:"unknown_action"}),{status:400,headers:h});});
+const CRITERIA_BRIDGE: Record<string, string[]> = {
+  preferred_area: ["preferred_area", "preferred_provider_or_area"],
+  preferred_provider_or_area: ["preferred_provider_or_area", "preferred_area"],
+  child_age: ["child_age", "child_age_or_birth_date"],
+  school_age_or_grade: ["school_age_or_grade", "grade"],
+  child_age_or_grade: ["child_age_or_grade", "grade"],
+  school_or_area: ["school_or_area", "school_name"],
+  current_school_or_enrolment: ["current_school_or_enrolment", "school_route"],
+  language_learning_concern: [
+    "language_learning_concern",
+    "s2",
+    "child_finnish",
+  ],
+  support_need_description: ["support_need_description", "school_goal"],
+  jobseeker_registration_status: [
+    "jobseeker_registration_status",
+    "jobseeker_active",
+  ],
+  work_status: ["work_status", "main_status", "jobseeker_active"],
+  main_status: ["main_status", "work_status", "jobseeker_active"],
+  right_to_work_known_when_relevant: [
+    "right_to_work_known_when_relevant",
+    "right_to_work_known",
+  ],
+  availability: ["availability", "days", "hobby_time"],
+  care_need_schedule: ["care_need_schedule", "care_schedule"],
+};
+function stageFor(j: any) {
+  if (has(j, "submit_success")) return "completed";
+  if (has(j, "send_request")) return "send request";
+  if (has(j, "more_help_view")) return "reviewing extra help";
+  if (has(j, "contact_saved")) return "contact saved";
+  if (has(j, "validation_error")) return "validation error";
+  if (has(j, "submit_attempt")) return "pressed continue";
+  if (has(j, "contact_started")) return "started typing";
+  if (has(j, "contact_view")) return "contact screen";
+  if (has(j, "start")) return "started";
+  return "viewed";
+}
+Deno.serve(async (req) => {
+  const h = H();
+  if (req.method === "OPTIONS")
+    return new Response(null, { status: 204, headers: h });
+  if (req.method !== "POST")
+    return new Response(JSON.stringify({ error: "method_not_allowed" }), {
+      status: 405,
+      headers: h,
+    });
+  const url = Deno.env.get("SUPABASE_URL"),
+    key = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+  if (!url || !key)
+    return new Response(JSON.stringify({ error: "server_config" }), {
+      status: 500,
+      headers: h,
+    });
+  const db = createClient(url, key, {
+    auth: { persistSession: false, autoRefreshToken: false },
+  });
+  const p = req.headers.get("x-tracker-password") || "";
+  const passwordOk = !!p && (await sha(p)) === PASSWORD_HASH;
+  let jwtOperatorId: string | null = null;
+  if (!passwordOk) {
+    const authHeader = req.headers.get("authorization") || "";
+    const m = authHeader.match(/^Bearer\s+(.+)$/i);
+    if (m) {
+      const { data, error } = await db.auth.getUser(m[1]);
+      if (!error && data?.user) {
+        const { data: op } = await db
+          .from("operators")
+          .select("id")
+          .eq("auth_user_id", data.user.id)
+          .maybeSingle();
+        if (op) jwtOperatorId = op.id;
+      }
+    }
+  }
+  if (!passwordOk && !jwtOperatorId)
+    return new Response(JSON.stringify({ error: "unauthorized" }), {
+      status: 401,
+      headers: h,
+    });
+  let b: any = {};
+  try {
+    b = await req.json();
+  } catch {}
+  const action = b.action || "list";
+  if (action === "ping")
+    return new Response(JSON.stringify({ ok: true }), { headers: h });
+  if (action === "operators") {
+    const { data, error } = await db
+      .from("operators")
+      .select("id,display_name,active")
+      .eq("active", true)
+      .order("display_name", { ascending: true });
+    if (error)
+      return new Response(
+        JSON.stringify({ error: "db_error", detail: error.message }),
+        { status: 500, headers: h },
+      );
+    return new Response(JSON.stringify({ operators: data || [] }), {
+      headers: h,
+    });
+  }
+  if (action === "whoami") {
+    const auth = req.headers.get("authorization") || "";
+    const m = auth.match(/^Bearer\s+(.+)$/i);
+    if (!m)
+      return new Response(JSON.stringify({ operator: null }), { headers: h });
+    const { data, error } = await db.auth.getUser(m[1]);
+    if (error || !data?.user)
+      return new Response(
+        JSON.stringify({ operator: null, invalid_token: true }),
+        { headers: h },
+      );
+    const { data: op } = await db
+      .from("operators")
+      .select("id,display_name")
+      .eq("auth_user_id", data.user.id)
+      .maybeSingle();
+    return new Response(
+      JSON.stringify({ operator: op || null, email: data.user.email }),
+      { headers: h },
+    );
+  }
+  if (action === "claim_operator") {
+    const auth = req.headers.get("authorization") || "";
+    const m = auth.match(/^Bearer\s+(.+)$/i);
+    if (!m)
+      return new Response(JSON.stringify({ error: "missing_token" }), {
+        status: 401,
+        headers: h,
+      });
+    const { data: userData, error: userErr } = await db.auth.getUser(m[1]);
+    if (userErr || !userData?.user)
+      return new Response(JSON.stringify({ error: "invalid_token" }), {
+        status: 401,
+        headers: h,
+      });
+    const user = userData.user;
+    const { data: already } = await db
+      .from("operators")
+      .select("id,display_name")
+      .eq("auth_user_id", user.id)
+      .maybeSingle();
+    if (already)
+      return new Response(JSON.stringify({ operator: already }), {
+        headers: h,
+      });
+    const operatorId = String(b.operator_id || "");
+    if (!operatorId)
+      return new Response(JSON.stringify({ error: "missing_operator_id" }), {
+        status: 400,
+        headers: h,
+      });
+    const { data: target, error: targetErr } = await db
+      .from("operators")
+      .select("id,display_name,auth_user_id")
+      .eq("id", operatorId)
+      .single();
+    if (targetErr)
+      return new Response(JSON.stringify({ error: "operator_not_found" }), {
+        status: 404,
+        headers: h,
+      });
+    if (target.auth_user_id && target.auth_user_id !== user.id)
+      return new Response(
+        JSON.stringify({ error: "operator_already_claimed" }),
+        { status: 409, headers: h },
+      );
+    const { data: updated, error: updErr } = await db
+      .from("operators")
+      .update({ auth_user_id: user.id, email: user.email })
+      .eq("id", operatorId)
+      .select("id,display_name")
+      .single();
+    if (updErr)
+      return new Response(
+        JSON.stringify({ error: "db_error", detail: updErr.message }),
+        { status: 500, headers: h },
+      );
+    return new Response(JSON.stringify({ operator: updated }), { headers: h });
+  }
+  if (action === "call_log") {
+    const leadId = String(b.lead_id || "");
+    if (!leadId)
+      return new Response(JSON.stringify({ error: "missing_lead_id" }), {
+        status: 400,
+        headers: h,
+      });
+    const { data, error } = await db
+      .from("family_call_log")
+      .select("id,operator_id,outcome,next_follow_up_at,notes,created_at")
+      .eq("family_lead_id", leadId)
+      .order("created_at", { ascending: false })
+      .limit(100);
+    if (error)
+      return new Response(
+        JSON.stringify({ error: "db_error", detail: error.message }),
+        { status: 500, headers: h },
+      );
+    return new Response(JSON.stringify({ call_log: data || [] }), {
+      headers: h,
+    });
+  }
+  if (action === "list") {
+    const [lr, cr, ir, opr] = await Promise.all([
+      db
+        .from("family_leads")
+        .select(
+          "id,created_at,updated_at,name,phone,city,main_need,sub_need,age_group,additional_needs,tier,status,contacted_at,resolved_at,notes,source,lang,analytics_session_id,analytics_visitor_id,referrer_host,utm_source,utm_medium,utm_campaign,intake_request_id,next_follow_up_at,urgency,interview_status,last_interview_at,journey_stage,form_version,last_call_outcome,last_call_at,assigned_operator_id,last_actor_id,consent_relevant_updates_ok,consent_outcome_followup_ok,consent_recorded_at",
+        )
+        .order("created_at", { ascending: false })
+        .limit(1000),
+      db
+        .from("family_intake_contacts")
+        .select(
+          "id,created_at,updated_at,request_id,name,phone,city,main_need,sub_need,age_group,additional_needs,completed,referrer_host,utm_source,utm_medium,utm_campaign,form_version,assigned_operator_id,last_call_outcome,last_call_at,last_call_next_follow_up_at,last_call_notes",
+        )
+        .eq("completed", false)
+        .order("created_at", { ascending: false })
+        .limit(500),
+      db
+        .from("family_interviews")
+        .select(
+          "id,lead_id,interview_type,answers,summary,research_prompt,next_follow_up_at,urgency,status,next_action,created_at,updated_at,operator_id,interview_schema_version",
+        )
+        .order("updated_at", { ascending: false })
+        .limit(2000),
+      db
+        .from("operators")
+        .select("id,display_name,active")
+        .eq("active", true)
+        .order("display_name", { ascending: true }),
+    ]);
+    if (lr.error || cr.error || ir.error || opr.error)
+      return new Response(
+        JSON.stringify({
+          error: "db_error",
+          detail:
+            lr.error?.message ||
+            cr.error?.message ||
+            ir.error?.message ||
+            opr.error?.message,
+        }),
+        { status: 500, headers: h },
+      );
+    const ints = ir.data || [],
+      latest: Record<string, any> = {};
+    for (const i of ints) if (!latest[i.lead_id]) latest[i.lead_id] = i;
+    const leads = (lr.data || []).map((l: any) => ({
+      ...l,
+      latest_interview: latest[l.id] || null,
+    }));
+    return new Response(
+      JSON.stringify({
+        leads,
+        incomplete_contacts: cr.data || [],
+        interviews: ints,
+        operators: opr.data || [],
+      }),
+      { headers: h },
+    );
+  }
+  if (action === "programs" || action === "programmes") {
+    const { data, error } = await db
+      .from("partner_programs")
+      .select(
+        "name,organisation,city,category,audience,pain_match,status,application_status,deadline,source_url,notes,last_verified_at,partner_priority,outreach_status",
+      )
+      .eq("status", "active")
+      .order("partner_priority", { ascending: true })
+      .limit(300);
+    if (error)
+      return new Response(
+        JSON.stringify({ error: "db_error", detail: error.message }),
+        { status: 500, headers: h },
+      );
+    return new Response(
+      JSON.stringify({ programs: data || [], programmes: data || [] }),
+      { headers: h },
+    );
+  }
+  if (action === "match_preview") {
+    const leadId = String(b.lead_id || "");
+    if (!leadId)
+      return new Response(JSON.stringify({ error: "missing_lead_id" }), {
+        status: 400,
+        headers: h,
+      });
+    const { data: lead, error: leadError } = await db
+      .from("family_leads")
+      .select(
+        "id,city,main_need,sub_need,additional_needs,age_group,interview_status",
+      )
+      .eq("id", leadId)
+      .single();
+    if (leadError || !lead)
+      return new Response(JSON.stringify({ error: "lead_not_found" }), {
+        status: 404,
+        headers: h,
+      });
+    if (lead.interview_status !== "completed")
+      return new Response(
+        JSON.stringify({ error: "first_interview_required" }),
+        { status: 409, headers: h },
+      );
+    const text = JSON.stringify([
+        lead.main_need,
+        lead.sub_need,
+        lead.additional_needs || [],
+      ]).toLowerCase(),
+      domains = needDomains(text),
+      now = Date.now(),
+      answers = b.answers && typeof b.answers === "object" ? b.answers : {},
+      city = String(lead.city || "").toLowerCase();
+    if (!domains.length)
+      return new Response(
+        JSON.stringify({ preview_mode: "read_only", candidates: [] }),
+        { headers: h },
+      );
+    const { data: rows, error: routeError } = await db
+      .from("knowledge_routes")
+      .select(
+        "id,route_key,need_domain,scope,required_inputs,blocking_inputs,steps,source_ids,partner_disclosure_required,verification_state,volatility,recheck_after,knowledge_criteria(label,criterion_type,field_key)",
+      )
+      .in("need_domain", domains)
+      .eq("verification_state", "verified")
+      .limit(30);
+    if (routeError)
+      return new Response(
+        JSON.stringify({ error: "db_error", detail: routeError.message }),
+        { status: 500, headers: h },
+      );
+    const routeCurrent = (rows || []).filter(
+        (r: any) =>
+          !r.recheck_after || new Date(r.recheck_after).getTime() > now,
+      ),
+      ids = [...new Set(routeCurrent.flatMap((r: any) => r.source_ids || []))],
+      { data: sources, error: sourceError } = ids.length
+        ? await db
+            .from("knowledge_sources")
+            .select("id,canonical_url,title,recheck_after,verification_state")
+            .in("id", ids)
+        : { data: [], error: null };
+    if (sourceError)
+      return new Response(
+        JSON.stringify({ error: "db_error", detail: sourceError.message }),
+        { status: 500, headers: h },
+      );
+    const sourceMap = new Map((sources || []).map((s: any) => [s.id, s]));
+    const active = routeCurrent.filter(
+      (r: any) =>
+        (r.source_ids || []).length > 0 &&
+        (r.source_ids || []).every((id: string) => {
+          const s = sourceMap.get(id);
+          return (
+            s &&
+            s.verification_state === "verified" &&
+            (!s.recheck_after || new Date(s.recheck_after).getTime() > now)
+          );
+        }),
+    );
+    const ext: Record<string, any> = {
+      ...answers,
+      city,
+      municipality: city,
+      interest: answers.interest || lead.sub_need || "",
+      child_age_or_birth_date:
+        answers.child_age_or_birth_date || lead.age_group || "",
+    };
+    const val = (key: string) => {
+      if (key === "permanent_vantaa_residence_context")
+        return city === "vantaa" && answers.home_municipality === "Yes"
+          ? "yes"
+          : "";
+      const keys = CRITERIA_BRIDGE[key] || [key];
+      for (const k of keys) {
+        if (ext[k]) return arrJoin(ext[k]);
+      }
+      return "";
+    };
+    const candidates = active.map((r: any) => {
+      const missing = (r.required_inputs || []).filter((k: string) => !val(k));
+      const conflict: string[] = [];
+      const scopeCity = String(r.scope?.city || "").toLowerCase();
+      if (scopeCity && city && city !== scopeCity)
+        conflict.push("Family city is not " + String(r.scope.city) + ".");
+      if (
+        r.route_key.includes("private-varhaiskasvatus") &&
+        answers.home_municipality === "No"
+      )
+        conflict.push(
+          "Registered municipality needs confirmation before using the Vantaa voucher route.",
+        );
+      const criteria = (r.knowledge_criteria || []).map((c: any) => ({
+        label: c.label,
+        type: c.criterion_type,
+        field_key: c.field_key,
+      }));
+      return {
+        route_key: r.route_key,
+        match_status: conflict.length
+          ? "does_not_fit"
+          : "possible_must_confirm",
+        missing_fields: missing,
+        conflicting_criteria: conflict,
+        criteria,
+        steps: r.steps || [],
+        partner_disclosure_required: !!r.partner_disclosure_required,
+        sources: (r.source_ids || [])
+          .map((id: string) => sourceMap.get(id))
+          .filter(Boolean)
+          .map((s: any) => ({ title: s.title, url: s.canonical_url })),
+      };
+    });
+    return new Response(
+      JSON.stringify({ preview_mode: "read_only", candidates }),
+      { headers: h },
+    );
+  }
+  if (action === "save_interview" || action === "interview_save") {
+    const leadId = String(b.lead_id || ""),
+      type = txt(b.interview_type, 80);
+    if (!leadId || !type)
+      return new Response(JSON.stringify({ error: "missing_fields" }), {
+        status: 400,
+        headers: h,
+      });
+    const urg = ["low", "normal", "high", "urgent"].includes(b.urgency)
+        ? b.urgency
+        : "normal",
+      status = ["draft", "completed"].includes(b.status)
+        ? b.status
+        : "completed",
+      now = new Date().toISOString(),
+      operatorId = resolveOperatorId(jwtOperatorId, b);
+    let follow: string | null = null;
+    if (b.next_follow_up_at) {
+      const d = new Date(b.next_follow_up_at);
+      follow = Number.isNaN(d.getTime()) ? null : d.toISOString();
+    }
+    const payload: any = {
+      lead_id: leadId,
+      interview_type: type,
+      answers: b.answers && typeof b.answers === "object" ? b.answers : {},
+      summary: txt(b.summary, 6000),
+      research_prompt: txt(b.research_prompt, 16000),
+      next_action: txt(b.next_action, 2500),
+      urgency: urg,
+      status,
+      next_follow_up_at: follow,
+      updated_at: now,
+      operator_id: operatorId,
+      interview_schema_version: txt(b.interview_schema_version, 40),
+    };
+    const { data, error } = await db
+      .from("family_interviews")
+      .upsert(payload, { onConflict: "lead_id,interview_type" })
+      .select()
+      .single();
+    if (error)
+      return new Response(
+        JSON.stringify({ error: "db_error", detail: error.message }),
+        { status: 500, headers: h },
+      );
+    const leadPatch: any = {
+      urgency: urg,
+      next_follow_up_at: follow,
+      interview_status: status,
+      last_interview_at: now,
+      updated_at: now,
+    };
+    if (operatorId) leadPatch.last_actor_id = operatorId;
+    if (status === "completed") {
+      leadPatch.status = "contacted";
+      leadPatch.contacted_at = now;
+      leadPatch.journey_stage = "guide";
+      const ans = payload.answers,
+        yn = (v: any) => (v === "Yes" ? true : v === "No" ? false : undefined),
+        ru = yn(ans.relevant_updates_ok),
+        of = yn(ans.outcome_followup_ok);
+      if (ru !== undefined) leadPatch.consent_relevant_updates_ok = ru;
+      if (of !== undefined) leadPatch.consent_outcome_followup_ok = of;
+      if (ru !== undefined || of !== undefined)
+        leadPatch.consent_recorded_at = now;
+    }
+    const leadUpdate = await db
+      .from("family_leads")
+      .update(leadPatch)
+      .eq("id", leadId)
+      .neq("status", "resolved");
+    if (leadUpdate.error)
+      return new Response(
+        JSON.stringify({ error: "lead_update_failed", detail: leadUpdate.error.message }),
+        { status: 500, headers: h },
+      );
+    return new Response(JSON.stringify({ interview: data }), { headers: h });
+  }
+  if (action === "analytics") {
+    const days = Math.min(Math.max(Number(b.days || 30), 1), 365),
+      sinceDate = new Date(Date.now() - days * 86400000),
+      since = sinceDate.toISOString();
+    const [er, lr] = await Promise.all([
+      db
+        .from("family_funnel_events")
+        .select(
+          "created_at,visitor_id,session_id,event_name,form_version,screen,city,main_need,sub_need,age_group,referrer_host,utm_source,utm_medium,utm_campaign,device_type",
+        )
+        .gte("created_at", since)
+        .order("created_at", { ascending: true })
+        .limit(30000),
+      db
+        .from("family_leads")
+        .select(
+          "id,created_at,status,source,analytics_session_id,analytics_visitor_id,form_version",
+        )
+        .gte("created_at", since)
+        .order("created_at", { ascending: true })
+        .limit(5000),
+    ]);
+    if (er.error || lr.error)
+      return new Response(
+        JSON.stringify({
+          error: "db_error",
+          detail: er.error?.message || lr.error?.message,
+        }),
+        { status: 500, headers: h },
+      );
+    const rows = er.data || [],
+      js = makeJourneys(rows),
+      visitors = new Set(js.map((j: any) => j.visitor_id || j.session_id)),
+      pageViews = rows.filter((r: any) => r.event_name === "page_view").length,
+      sources = sourceCounts(js),
+      needs = fieldCounts(js, "need"),
+      cities = fieldCounts(js, "city"),
+      devices = fieldCounts(js, "device");
+    const trendMap: Record<
+      string,
+      { sessions: number; visitors: Set<string> }
+    > = {};
+    for (const j of js) {
+      const d = new Date(j.first_seen),
+        bucket =
+          days <= 1
+            ? d.toISOString().slice(0, 13) + ":00:00.000Z"
+            : d.toISOString().slice(0, 10);
+      if (!trendMap[bucket])
+        trendMap[bucket] = { sessions: 0, visitors: new Set() };
+      trendMap[bucket].sessions++;
+      trendMap[bucket].visitors.add(j.visitor_id || j.session_id);
+    }
+    const hourMap: Record<string, { sessions: number; visitors: Set<string> }> =
+        {},
+      dayAgo = Date.now() - 86400000;
+    for (const j of js) {
+      if (new Date(j.first_seen).getTime() < dayAgo) continue;
+      const d = new Date(j.first_seen),
+        bucket = d.toISOString().slice(0, 13) + ":00:00.000Z";
+      if (!hourMap[bucket])
+        hourMap[bucket] = { sessions: 0, visitors: new Set() };
+      hourMap[bucket].sessions++;
+      hourMap[bucket].visitors.add(j.visitor_id || j.session_id);
+    }
+    const traffic_trend = Object.entries(trendMap)
+        .sort()
+        .map(([bucket, v]) => ({
+          bucket,
+          sessions: v.sessions,
+          visitors: v.visitors.size,
+        })),
+      hourly_24h = Object.entries(hourMap)
+        .sort()
+        .map(([bucket, v]) => ({
+          bucket,
+          sessions: v.sessions,
+          visitors: v.visitors.size,
+        }));
+    const flowRows = rows.filter(
+        (r: any) => r.form_version === CURRENT_FORM_VERSION,
+      ),
+      fjs = makeJourneys(flowRows),
+      fcount = (e: string) => fjs.filter((j: any) => has(j, e)).length;
+    const flow = {
+      form_version: CURRENT_FORM_VERSION,
+      sessions: fjs.length,
+      visitors: new Set(fjs.map((j: any) => j.visitor_id || j.session_id)).size,
+      started: fcount("start"),
+      contact_view: fcount("contact_view"),
+      contact_started: fcount("contact_started"),
+      submit_attempt: fcount("submit_attempt"),
+      validation_error: fcount("validation_error"),
+      contact_saved: fcount("contact_saved"),
+      progressed: fjs.filter(
+        (j: any) => has(j, "city_selected") || has(j, "need_selected"),
+      ).length,
+      more_help_view: fcount("more_help_view"),
+      additional_need_added: fcount("additional_need_added"),
+      send_request: fcount("send_request"),
+      completed: fcount("submit_success"),
+    };
+    const pct = (a: number, b: number) =>
+      b ? Number(((a / b) * 100).toFixed(1)) : 0;
+    const flow_rates = {
+      view_to_start: pct(flow.started, flow.sessions),
+      contact_to_attempt: pct(flow.submit_attempt, flow.contact_view),
+      contact_to_saved: pct(flow.contact_saved, flow.contact_view),
+      attempt_to_saved: pct(flow.contact_saved, flow.submit_attempt),
+      saved_to_completed: pct(flow.completed, flow.contact_saved),
+      session_to_completed: pct(flow.completed, flow.sessions),
+    };
+    const flow_dropoffs = [
+      {
+        from: "Viewed",
+        to: "Started",
+        lost: Math.max(0, flow.sessions - flow.started),
+        base: flow.sessions,
+      },
+      {
+        from: "Contact screen",
+        to: "Pressed continue",
+        lost: Math.max(0, flow.contact_view - flow.submit_attempt),
+        base: flow.contact_view,
+      },
+      {
+        from: "Pressed continue",
+        to: "Contact saved",
+        lost: Math.max(0, flow.submit_attempt - flow.contact_saved),
+        base: flow.submit_attempt,
+      },
+      {
+        from: "Contact saved",
+        to: "Completed",
+        lost: Math.max(0, flow.contact_saved - flow.completed),
+        base: flow.contact_saved,
+      },
+    ].map((x) => ({
+      ...x,
+      loss_rate: x.base ? Number(((x.lost / x.base) * 100).toFixed(1)) : 0,
+    }));
+    const recent = js
+        .sort((a: any, b: any) =>
+          String(b.last_seen).localeCompare(String(a.last_seen)),
+        )
+        .slice(0, 60)
+        .map((j: any) => ({ ...j, stage: stageFor(j) })),
+      leadRows = lr.data || [],
+      trackedLeadRecords = leadRows.filter(
+        (x: any) => x.analytics_session_id,
+      ).length;
+    return new Response(
+      JSON.stringify({
+        days,
+        definitions: {
+          visitors: "Distinct browser visitor IDs in tracked events",
+          sessions: "Distinct visit/session IDs",
+          page_views: "All page_view events",
+          sources: "Sessions grouped by source",
+          funnel:
+            "Distinct sessions using the current multi-need phone-first form only",
+          lead_records:
+            "Actual rows created in family_leads; one lead can now contain multiple needs",
+        },
+        unique_visitors: visitors.size,
+        sessions: js.length,
+        page_views: pageViews,
+        sources,
+        needs,
+        cities,
+        devices,
+        traffic_trend,
+        hourly_24h,
+        flow,
+        flow_rates,
+        flow_dropoffs,
+        lead_records_in_range: leadRows.length,
+        tracked_lead_records: trackedLeadRecords,
+        untracked_lead_records: leadRows.length - trackedLeadRecords,
+        new_lead_records_in_range: leadRows.filter(
+          (x: any) => x.status === "new",
+        ).length,
+        recent,
+      }),
+      { headers: h },
+    );
+  }
+  if (action === "record_call_outcome") {
+    const id = String(b.id || ""),
+      outcome = String(b.call_outcome || ""),
+      operatorId = resolveOperatorId(jwtOperatorId, b);
+    if (!id)
+      return new Response(JSON.stringify({ error: "missing_id" }), {
+        status: 400,
+        headers: h,
+      });
+    if (!["reached", "no_answer", "call_later", "busy"].includes(outcome))
+      return new Response(JSON.stringify({ error: "invalid_call_outcome" }), {
+        status: 400,
+        headers: h,
+      });
+    let follow: string | null = null;
+    if (outcome !== "reached") {
+      const d = new Date(b.next_follow_up_at || "");
+      if (Number.isNaN(d.getTime()) || d.getTime() <= Date.now())
+        return new Response(
+          JSON.stringify({ error: "future_follow_up_required" }),
+          { status: 400, headers: h },
+        );
+      follow = d.toISOString();
+    }
+    const { data: current, error: readError } = await db
+      .from("family_leads")
+      .select("id,status,journey_stage,interview_status")
+      .eq("id", id)
+      .single();
+    if (readError)
+      return new Response(
+        JSON.stringify({ error: "db_error", detail: readError.message }),
+        { status: 500, headers: h },
+      );
+    if (current.status === "resolved")
+      return new Response(
+        JSON.stringify({ error: "family_already_resolved" }),
+        { status: 409, headers: h },
+      );
+    const now = new Date().toISOString(),
+      patch: any = { last_call_outcome: outcome, last_call_at: now };
+    if (operatorId) patch.last_actor_id = operatorId;
+    if (outcome === "reached") {
+      patch.next_follow_up_at = null;
+      if (current.interview_status === "completed") {
+        patch.status = "contacted";
+        patch.contacted_at = now;
+        if (current.journey_stage === "reach") patch.journey_stage = "guide";
+      } else if (current.journey_stage !== "resolved")
+        patch.journey_stage = "reach";
+    } else patch.next_follow_up_at = follow;
+    const { data, error } = await db
+      .from("family_leads")
+      .update(patch)
+      .eq("id", id)
+      .select(
+        "id,status,contacted_at,next_follow_up_at,journey_stage,last_call_outcome,last_call_at,assigned_operator_id,last_actor_id,updated_at",
+      )
+      .single();
+    if (error)
+      return new Response(
+        JSON.stringify({ error: "db_error", detail: error.message }),
+        { status: 500, headers: h },
+      );
+    const callLog = await db
+      .from("family_call_log")
+      .insert({
+        family_lead_id: id,
+        operator_id: operatorId,
+        outcome,
+        next_follow_up_at: follow,
+        notes: txt(b.notes, 1000),
+      });
+    if (callLog.error)
+      return new Response(
+        JSON.stringify({ error: "call_history_write_failed", detail: callLog.error.message }),
+        { status: 500, headers: h },
+      );
+    return new Response(JSON.stringify({ lead: data }), { headers: h });
+  }
+  if (action === "update" && b.status === "resolved") {
+    const id = String(b.id || "");
+    if (!id)
+      return new Response(JSON.stringify({ error: "missing_id" }), {
+        status: 400,
+        headers: h,
+      });
+    const { data: gate, error: gateError } = await db
+      .from("family_leads")
+      .select("interview_status")
+      .eq("id", id)
+      .single();
+    if (gateError)
+      return new Response(
+        JSON.stringify({ error: "db_error", detail: gateError.message }),
+        { status: 500, headers: h },
+      );
+    if (gate.interview_status !== "completed")
+      return new Response(
+        JSON.stringify({ error: "completed_interview_required" }),
+        { status: 409, headers: h },
+      );
+  }
+  if (action === "update") {
+    const id = String(b.id || ""),
+      operatorId = resolveOperatorId(jwtOperatorId, b);
+    if (!id)
+      return new Response(JSON.stringify({ error: "missing_id" }), {
+        status: 400,
+        headers: h,
+      });
+    const patch: any = { updated_at: new Date().toISOString() };
+    if (operatorId) patch.last_actor_id = operatorId;
+    if (typeof b.notes === "string" || b.notes === null) patch.notes = b.notes;
+    if (["new", "contacted", "resolved"].includes(b.status)) {
+      patch.status = b.status;
+      if (b.status === "contacted")
+        patch.contacted_at = new Date().toISOString();
+      if (b.status === "resolved") {
+        patch.resolved_at = new Date().toISOString();
+        patch.journey_stage = "resolved";
+      }
+      if (b.status === "new") {
+        patch.contacted_at = null;
+        patch.resolved_at = null;
+      }
+    }
+    if (
+      ["reach", "guide", "start", "retention", "referral", "resolved"].includes(
+        b.journey_stage,
+      )
+    )
+      patch.journey_stage = b.journey_stage;
+    if (["low", "normal", "high", "urgent"].includes(b.urgency))
+      patch.urgency = b.urgency;
+    if (["not_started", "draft", "completed"].includes(b.interview_status))
+      patch.interview_status = b.interview_status;
+    if (Object.prototype.hasOwnProperty.call(b, "next_follow_up_at")) {
+      if (!b.next_follow_up_at) patch.next_follow_up_at = null;
+      else {
+        const d = new Date(b.next_follow_up_at);
+        if (!Number.isNaN(d.getTime()))
+          patch.next_follow_up_at = d.toISOString();
+      }
+    }
+    if (Object.prototype.hasOwnProperty.call(b, "assigned_operator_id"))
+      patch.assigned_operator_id = b.assigned_operator_id
+        ? String(b.assigned_operator_id)
+        : null;
+    if (typeof b.consent_relevant_updates_ok === "boolean") {
+      patch.consent_relevant_updates_ok = b.consent_relevant_updates_ok;
+      patch.consent_recorded_at = new Date().toISOString();
+    }
+    if (typeof b.consent_outcome_followup_ok === "boolean") {
+      patch.consent_outcome_followup_ok = b.consent_outcome_followup_ok;
+      patch.consent_recorded_at = new Date().toISOString();
+    }
+    const { data, error } = await db
+      .from("family_leads")
+      .update(patch)
+      .eq("id", id)
+      .select(
+        "id,created_at,updated_at,name,phone,city,main_need,sub_need,age_group,additional_needs,tier,status,contacted_at,resolved_at,notes,source,lang,referrer_host,utm_source,utm_medium,utm_campaign,next_follow_up_at,urgency,interview_status,last_interview_at,journey_stage,form_version,last_call_outcome,last_call_at,assigned_operator_id,last_actor_id,consent_relevant_updates_ok,consent_outcome_followup_ok,consent_recorded_at",
+      )
+      .single();
+    if (error)
+      return new Response(
+        JSON.stringify({ error: "db_error", detail: error.message }),
+        { status: 500, headers: h },
+      );
+    return new Response(JSON.stringify({ lead: data }), { headers: h });
+  }
+  return new Response(JSON.stringify({ error: "unknown_action" }), {
+    status: 400,
+    headers: h,
+  });
+});
