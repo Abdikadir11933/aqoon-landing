@@ -47,6 +47,23 @@ test('reopening a resolved case attaches the case_plan_id the backend requires',
   assert.match(lifecycle, /case_plan_id:plan\.id,event_type:'follow_up_attempted'/);
   assert.doesNotMatch(read('tracker/crm-queue-navigation.js'), /event_type: 'follow_up_attempted'/);
 });
+test('the analytics consent dialog can actually be dismissed', () => {
+  // analyticsChoice used to carry its layout as an inline style attribute
+  // (style="...display:grid..."), which beats any external stylesheet rule
+  // without !important - including caawi/app.css's own [hidden]{display:none}.
+  // JS toggled the hidden attribute correctly on every click, but the dialog
+  // never visually closed: every first-time /caawi visitor got stuck behind
+  // an undismissable full-viewport overlay. Fix moves the layout into a real
+  // .analytics-choice / .analytics-choice[hidden] CSS pair, the same pattern
+  // .leave-modal already uses correctly two lines above it.
+  const html = read('caawi/index.html');
+  const dialogTag = html.match(/<div class="analytics-choice"[^>]*>/)[0];
+  assert.doesNotMatch(dialogTag, /style="/);
+  const css = read('caawi/app.css');
+  assert.match(css, /\.analytics-choice\{[^}]*display:grid/);
+  assert.match(css, /\.analytics-choice\[hidden\]\{display:none\}/);
+});
+
 test('completed follow-up queue opens the workspace instead of premature resolution', () => {
   const queue = read('tracker/crm-queue-navigation.js');
   assert.match(queue, /Open research & case plan/);
