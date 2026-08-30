@@ -388,12 +388,20 @@ Deno.serve(async (request) => {
 
   if (action === "get_revisions") {
     const interviewTypes = String(body.interview_types || "all");
-    const { data: revisions, error } = await db
+    let interviewIds: string[] | null = null;
+    if (interviewTypes !== "all") {
+      const requestedTypes = interviewTypes.split("|").map((value: string) => value.trim()).filter(Boolean);
+      const { data: interviews, error: interviewsError } = await db.from("family_interviews").select("id").eq("lead_id", leadId).in("interview_type", requestedTypes);
+      if (interviewsError) return new Response(JSON.stringify({ error: "db_error", detail: interviewsError.message }), { status: 500, headers: responseHeaders });
+      interviewIds = (interviews || []).map((interview: any) => interview.id);
+      if (!interviewIds.length) return new Response(JSON.stringify({ revisions: [] }), { headers: responseHeaders });
+    }
+    let revisionsQuery: any = db
       .from("family_interview_revisions")
       .select("id, lead_id, interview_id, captured_at, answers, operator_id, operators(display_name)")
-      .eq("lead_id", leadId)
-      .order("captured_at", { ascending: false })
-      .limit(50);
+      .eq("lead_id", leadId);
+    if (interviewIds) revisionsQuery = revisionsQuery.in("interview_id", interviewIds);
+    const { data: revisions, error } = await revisionsQuery.order("captured_at", { ascending: false }).limit(50);
 
     if (error) return new Response(JSON.stringify({ error: "db_error", detail: error.message }), { status: 500, headers: responseHeaders });
 
