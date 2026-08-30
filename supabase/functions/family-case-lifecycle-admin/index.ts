@@ -190,6 +190,13 @@ Deno.serve(async (request) => {
     if (!id) {
       const { error: leadError } = await db.from("family_leads").update({ status: "contacted", updated_at: new Date().toISOString() }).eq("id", leadId);
       if (leadError) console.error("lead_status_update_failed", leadError.message);
+    } else if (planStatus === "resolved" || planStatus === "closed_unresolved") {
+      // The reverse direction: a plan reaching a terminal state must move the
+      // CRM lead too, in the same call, or the family stays stranded in the
+      // "Interview follow-up" queue with no active plan and no way to tell
+      // the case is actually done (docs/decisions/0003 - ADR §5, defect #3).
+      const { error: leadError } = await db.from("family_leads").update({ status: "resolved", journey_stage: "resolved", resolved_at: new Date().toISOString(), updated_at: new Date().toISOString() }).eq("id", leadId);
+      if (leadError) console.error("lead_status_update_failed", leadError.message);
     }
     return new Response(JSON.stringify({ plan: data }), { headers: responseHeaders });
   }

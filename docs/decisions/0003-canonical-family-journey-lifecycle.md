@@ -170,12 +170,26 @@ browser guesswork — see commits `8cbdcf7`, `b82a674`):
 **Confirmed, not yet fixed — implementation-ready** (root cause understood,
 low ambiguity):
 
-1. **Resolution bypasses the plan lifecycle** (#2). Fix is mechanical once
-   §2/§4 land: route "Open resolution" through `family-case-lifecycle-admin`,
-   require/derive plan closure, and make the lead-status write atomic with it.
-2. **Case-plan resolution doesn't resolve the CRM lead** (#3). Same root
-   cause and same fix as above — one atomic transition, not two disconnected
-   writes.
+1. **Resolution bypasses the plan lifecycle** (#2). "Open resolution" (the
+   free-text `prompt()` in `crm-queue-navigation.js`'s `mark-resolved`
+   action) still writes `family_leads.status='resolved'` directly with no
+   route/evidence/owner/date/reason capture — this is the §4.7 structured
+   resolution form, a real UI build, not a one-line fix. **Deferred until
+   live browser verification is available** (see the live-testing brief
+   below); shipping a new operator-facing form blind, in a sandbox that
+   cannot exercise it, is not a safe trade.
+2. ~~Case-plan resolution doesn't resolve the CRM lead~~ (#3) — done this
+   session. `family-case-lifecycle-admin`'s `save_plan` action now updates
+   `family_leads.status='resolved'`/`journey_stage='resolved'`/
+   `resolved_at` in the same call whenever an existing plan's `plan_status`
+   transitions to `resolved` or `closed_unresolved`, mirroring the reverse
+   transition the function already did (a new plan already moved the lead
+   back to `contacted`). Uses only existing `family_leads.status` values —
+   no schema change. Deployed as `family-case-lifecycle-admin` v9 with
+   `verify_jwt:false` preserved. This only fixes the *plan-resolution*
+   path (`case-lifecycle.js`'s Submitted/Responded/Resolve/Close buttons);
+   the separate "Open resolution" shortcut in item 1 above still bypasses
+   plans entirely and is not fixed by this.
 3. ~~"Next steps suggested" reads `plan.status` instead of
    `plan.plan_status`, and is wired to `window.saveInterview` while the
    active save handler is `interview-match.js`'s local `save()`~~ — done
