@@ -325,6 +325,10 @@ const CrmQueues = {
 
     panelContent.innerHTML = content;
 
+    if (phaseId === 'in_progress' && lead.interview_status === 'completed') {
+      this.renderDecisionBrief(panelContent, lead);
+    }
+
     if (phaseId !== 'incomplete') {
       window.AqoonCallHistory?.renderInto(document.getElementById('panelCallHistory'), leadId);
     }
@@ -340,6 +344,38 @@ const CrmQueues = {
 
     // Show panel
     panel.classList.remove('hidden');
+  },
+
+  renderDecisionBrief(panelContent, lead) {
+    const interview = lead.latest_interview || {};
+    const answers = interview.answers && typeof interview.answers === 'object' ? interview.answers : {};
+    const route = interview.interview_type ? interview.interview_type.split('+').join(' · ') : 'Interview complete';
+    const context = ['primary_situation','work_intent','study_path','availability','start_when','travel_limit']
+      .filter(k => answers[k]).map(k => this.escapeHtml(String(answers[k]))).join(' · ');
+    const brief = document.createElement('section');
+    brief.className = 'panel-section decision-brief';
+    brief.innerHTML = `<h4 class="panel-section-title">Decision brief</h4>
+      <p class="decision-brief-route"><strong>${this.escapeHtml(route)}</strong></p>
+      <p class="decision-brief-summary">${this.escapeHtml(interview.summary || 'Interview saved. Research recommendation is still being prepared.')}</p>
+      ${context ? `<p class="decision-brief-context"><strong>Situation:</strong> ${context}</p>` : ''}
+      ${interview.next_action ? `<p class="decision-brief-next"><strong>Next action:</strong> ${this.escapeHtml(interview.next_action)}</p>` : '<p class="decision-brief-next muted">Next action not recorded yet.</p>'}
+      <details class="decision-brief-evidence"><summary>Evidence and research brief</summary><div class="decision-brief-evidence-body"><p class="muted">Loading current case evidence…</p></div></details>`;
+    panelContent.prepend(brief);
+    const password = sessionStorage.getItem('aqoon_tracker_password') || '';
+    fetch('https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-case-lifecycle-admin', {
+      method:'POST', headers:{'Content-Type':'application/json','x-tracker-password':password},
+      body:JSON.stringify({action:'list',lead_id:lead.id}), cache:'no-store'
+    }).then(r=>r.json()).then(data=>{
+      const box=brief.querySelector('.decision-brief-evidence-body');
+      if(!box)return;
+      const plan=(data.plans||[]).find(p=>!['resolved','closed_unresolved'].includes(p.plan_status)) || (data.plans||[])[0];
+      const run=(data.match_runs||[])[0];
+      const links=(interview.research_prompt||'').match(/https?:\/\/[^\s)]+/g)||[];
+      box.innerHTML=(plan?`<p><strong>Plan:</strong> ${this.escapeHtml(plan.title||'Case plan')} · ${this.escapeHtml(plan.plan_status||'research')}${plan.next_action?' · '+this.escapeHtml(plan.next_action):''}</p>`:'<p class="muted">No case plan has been created yet.</p>')+
+        (run?.recommended_next_action?`<p><strong>Matched next action:</strong> ${this.escapeHtml(run.recommended_next_action)}</p>`:'')+
+        (links.length?'<p><strong>Sources:</strong> '+links.slice(0,3).map(u=>`<a href="${this.escapeHtml(u)}" target="_blank" rel="noreferrer">Official source</a>`).join(' · ')+'</p>':'')+
+        (interview.research_prompt?`<details><summary>Raw research brief</summary><pre>${this.escapeHtml(interview.research_prompt.slice(0,1600))}${interview.research_prompt.length>1600?'\n…':''}</pre></details>`:'');
+    }).catch(()=>{});
   },
 
   handleAction(action, leadId) {
