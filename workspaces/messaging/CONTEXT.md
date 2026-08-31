@@ -38,11 +38,11 @@ Buyer-facing:
 
 ## Canonical buyer proposition
 
-AQOON is not positioned as a translation agency, a generic marketing agency or three unrelated consultancies. It is one demand-to-outcome operating partner. Its shared engine can be purchased through three connected outcomes:
+AQOON is not positioned as a translation agency, a generic marketing agency or three unrelated consultancies. It is one demand-to-outcome operating partner. The shared engine is offered through one core outcome offer, an optional journey-conversion add-on and a separate enablement offer:
 
-1. **AQOON Outcomes** - acquire, qualify, guide and verify applications, starts or other agreed outcomes. A sensible commercial structure to test is a base retainer plus a clearly defined outcome fee; pricing is not yet canonical.
-2. **AQOON Journey** - improve multilingual messages, decision support, application instructions, onboarding materials and early retention where the measured funnel shows friction. This is journey conversion, not word-for-word translation.
-3. **AQOON Enablement** - practical Mustafe-led training for frontline staff, unit leaders and management, tied to observed family questions, handoff failures and retention risks rather than a generic culture lecture.
+1. **AQOON Outcomes** - the core offer: acquire, qualify, guide and verify applications, starts or other agreed outcomes. A sensible commercial structure to test is a base retainer plus a clearly defined outcome fee; pricing is not yet canonical.
+2. **AQOON Journey** - an optional add-on activated when the measured funnel shows friction. It improves multilingual messages, decision support, application instructions, onboarding materials and early retention. This is journey conversion, not word-for-word translation.
+3. **AQOON Enablement** - a separate practical Mustafe-led training offer for frontline staff, unit leaders and management, tied to observed family questions, handoff failures and retention risks rather than a generic culture lecture.
 
 The shared moat is the consented relationship, verified route knowledge and aggregate learning across the journey. Raw family identities and contact lists are not a buyer product.
 
