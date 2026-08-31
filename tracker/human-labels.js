@@ -14,47 +14,43 @@ const CODES=new Map([
   ['contacted','Contacted'],
   ['resolved','Resolved']
 ]);
-// Substring-safe only: these are long, distinctive phrases used for a
-// document-wide taxonomy rename. Never add a short/generic entry here — a
-// short key (e.g. 'start', 'new') matches inside unrelated words anywhere in
-// the document ("started" -> "Starteded", "knew" -> "kNew") because
-// replaceText() below does a blind substring find/replace across every text
-// node, not just the taxonomy labels it's meant for.
 const PHRASES=new Map([
   ['Dugsiga iyo taageerada ilmaha','Skuulka iyo taageerada ilmaha'],
   ['Ciyaaro iyo hiwaayado','Ciyaaro iyo harrastukset'],
   ['Hel ciyaar ama hobby ku habboon ilmaha','Hel ciyaar ama harrastus ku habboon ilmaha']
 ]);
-
+const SELECTOR='.stage-btn,.pill.stage,.pill.new,.pill.contacted,.pill.resolved';
 function cleanElement(el){
   if(!(el instanceof HTMLElement))return;
-  if(el.matches('.stage-btn')){
-    const raw=el.dataset.stage;
-    if(CODES.has(raw))el.textContent=CODES.get(raw);
-  }
-  if(el.matches('.pill.stage')){
-    const raw=el.textContent.trim();
-    if(CODES.has(raw))el.textContent=CODES.get(raw);
-  }
-  if(el.matches('.pill.new,.pill.contacted,.pill.resolved')){
-    const raw=el.textContent.trim();
-    if(CODES.has(raw))el.textContent=CODES.get(raw);
-  }
+  if(el.matches('.stage-btn')){const raw=el.dataset.stage;if(CODES.has(raw)&&el.textContent!==CODES.get(raw))el.textContent=CODES.get(raw);return}
+  if(el.matches('.pill.stage,.pill.new,.pill.contacted,.pill.resolved')){const raw=el.textContent.trim();if(CODES.has(raw))el.textContent=CODES.get(raw)}
 }
-
-function replaceText(root=document){
-  root.querySelectorAll?.('.stage-btn,.pill.stage,.pill.new,.pill.contacted,.pill.resolved').forEach(cleanElement);
+function replacePhrases(root){
   const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
-  const nodes=[];let n;
-  while((n=walker.nextNode()))nodes.push(n);
-  nodes.forEach(node=>{
-    let out=node.nodeValue;
-    PHRASES.forEach((next,old)=>{if(out.includes(old))out=out.split(old).join(next)});
-    node.nodeValue=out;
-  });
+  let node;
+  while((node=walker.nextNode())){
+    let out=node.nodeValue,next=out;
+    PHRASES.forEach((value,old)=>{if(next.includes(old))next=next.split(old).join(value)});
+    if(next!==out)node.nodeValue=next;
+  }
 }
-
-const observer=new MutationObserver(ms=>ms.forEach(m=>m.addedNodes.forEach(node=>{if(node.nodeType===1)replaceText(node)})));
-function start(){replaceText(document);observer.observe(document.body,{childList:true,subtree:true});}
+function normalize(root){
+  if(!(root instanceof Element||root instanceof Document))return;
+  if(root instanceof Element&&root.matches(SELECTOR))cleanElement(root);
+  root.querySelectorAll?.(SELECTOR).forEach(cleanElement);
+  replacePhrases(root);
+}
+let pending=new Set(),frame=0;
+function flush(){
+  frame=0;
+  const roots=[...pending];pending.clear();
+  // Drop descendants when an ancestor is already queued, so one large panel
+  // insertion is traversed once instead of once per nested mutation.
+  const unique=roots.filter((root,i)=>!roots.some((other,j)=>i!==j&&other.contains?.(root)));
+  unique.forEach(normalize);
+}
+function queue(root){if(!(root instanceof Element))return;pending.add(root);if(!frame)frame=requestAnimationFrame(flush)}
+const observer=new MutationObserver(ms=>ms.forEach(m=>m.addedNodes.forEach(node=>{if(node.nodeType===1)queue(node)})));
+function start(){normalize(document);observer.observe(document.body,{childList:true,subtree:true})}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
