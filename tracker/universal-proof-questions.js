@@ -79,7 +79,7 @@ function ready(root){return !!root.querySelector('.question [data-key]');}
 function ensure(){const root=document.querySelector(ROOT);if(!root||!ready(root))return;let s=root.querySelector('[data-universal-proof-section="1"]');if(!s){s=section();root.appendChild(s);}else if(root.lastElementChild!==s)root.appendChild(s);syncBranches();}
 
 function scrapeAnswers(){
-  const out={};document.querySelectorAll(ROOT+' [data-key]').forEach(el=>{const k=el.dataset.key;if(!k||el.closest('[data-branch-group][style*="display: none"]'))return;if(el.matches('input,textarea,select')){if(el.value!=='')out[k]=el.value;return;}if(el.classList.contains('choice-row')){const vals=[...el.querySelectorAll('.choice.on')].map(b=>b.dataset.value);if(vals.length)out[k]=el.classList.contains('match-multi')?vals:vals[0];}});
+  const out={};document.querySelectorAll(ROOT+' [data-key]').forEach(el=>{const k=el.dataset.key;if(!k||el.closest('.hidden')||el.closest('[data-branch-group][style*="display: none"]'))return;if(el.matches('input,textarea,select')){if(el.value!=='')out[k]=el.value;return;}if(el.classList.contains('choice-row')){const vals=[...el.querySelectorAll('.choice.on')].map(b=>b.dataset.value);if(vals.length)out[k]=el.classList.contains('match-multi')?vals:vals[0];}});
   Object.entries(ALIASES).forEach(([target,sources])=>{if(out[target]!==undefined)return;for(const source of sources){if(out[source]!==undefined){out[target]=out[source];break;}}});
   return out;
 }

@@ -15,6 +15,7 @@ operator attribution and read/write the tables below.
 |---|---|---|
 | Family CRM and interviews | `family-leads-admin` | `family_leads`, `family_interviews`, `family_intake_contacts`, `family_funnel_events`, `partner_programs` |
 | Incomplete intake follow-up | `family-incomplete-admin` | `family_intake_contacts`, `family_leads`, `family_call_log` |
+| Intake abuse protection and retention maintenance | `nightly-retention` | `family_intake_rate_limits` |
 | Call and case lifecycle | `family-case-lifecycle-admin` | `family_leads`, `family_interviews`, `family_interview_revisions`, `family_case_plans`, `family_case_events`, `family_case_interactions`, `family_future_opportunities`, `family_call_log` |
 | Reusable scenario learning | `family-scenario-admin` | `family_leads`, `family_interviews`, `family_scenarios`, `family_scenario_research` |
 | Route review and matching | route/admin functions | `knowledge_routes`, `knowledge_sources`, `family_match_runs`, `operators` |

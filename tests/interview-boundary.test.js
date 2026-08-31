@@ -70,7 +70,7 @@ test('work interviews branch around the person situation before asking eligibili
   assert.match(interview, /student_benefit_context/);
   assert.match(interview, /current_work_hours/);
   assert.match(interview, /student-studying/);
-  assert.match(interview, /situation!=='Unemployed \/ seeking work'/);
+  assert.match(interview, /setBranch\('jobseeker',situation==='Unemployed \/ seeking work'\)/);
 });
 
 test('saved interview summary is plain-language context, not a technical route count', () => {

@@ -202,7 +202,6 @@ async function reopenCase(leadId,note){
   return window.AqoonApp.updateLead(leadId,{status:'contacted',journey_stage:'guide'});
 }
 window.AqoonCaseLifecycle={
-  logInterviewCompleted:id=>id?api(END_LIFECYCLE,{action:'log_event',lead_id:id,event_type:'interview_completed'}).catch(()=>{}):Promise.resolve(),
   resolveActivePlan,
   reopenCase,
   contextForLead:id=>id===leadId?{plans:[...plans],events:[...events]}:{plans:[],events:[]}

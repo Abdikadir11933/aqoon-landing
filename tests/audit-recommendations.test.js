@@ -24,7 +24,7 @@ test('interview signal percentages count one hit per interview even for multi-se
 
 test('unknown or mixed work situations do not reveal jobseeker-only questions', () => {
   const interview = read('tracker/interview-match.js');
-  assert.match(interview, /data-branch="jobseeker".*situation!==['"]Unemployed \/ seeking work['"]/);
+  assert.match(interview, /setBranch\('jobseeker',situation==='Unemployed \/ seeking work'\)/);
 });
 
 test('resolved cards load lifecycle outcome summaries and reopen records an event', () => {
