@@ -25,7 +25,6 @@ def require(path):
 
 
 def meta_content(html, name):
-    # Support normal single- or double-quoted attributes without treating Somali apostrophes as delimiters.
     patterns = [
         rf'<meta[^>]*name="{re.escape(name)}"[^>]*content="([^"]*)"',
         rf"<meta[^>]*name='{re.escape(name)}'[^>]*content='([^']*)'",
@@ -40,19 +39,9 @@ def meta_content(html, name):
 
 
 required = [
-    "index.html",
-    "caawi/index.html",
-    "caawi/app.css",
-    "caawi/app.js",
-    "so/index.html",
-    "tracker/index.html",
-    "tracker/app.css",
-    "tracker/app.js",
-    "tests/caawi.test.js",
-    "robots.txt",
-    "sitemap.xml",
-    "llms.txt",
-    "vercel.json",
+    "index.html", "caawi/index.html", "caawi/app.css", "caawi/app.js",
+    "so/index.html", "tracker/index.html", "tracker/app.css", "tracker/app.js",
+    "tests/caawi.test.js", "robots.txt", "sitemap.xml", "llms.txt", "vercel.json",
 ]
 for path in required:
     require(path)
@@ -63,13 +52,13 @@ caawi = (ROOT / "caawi/index.html").read_text(encoding="utf-8")
 caawi_js = (ROOT / "caawi/app.js").read_text(encoding="utf-8")
 llms = (ROOT / "llms.txt").read_text(encoding="utf-8")
 
-# Tracker privacy + asset integrity. The tracker's per-feature CSS/JS files
-# are bundled (see scripts/build_tracker_bundle.js) into two files the page
-# actually loads; tests/tracker-bundle.test.js is what guards the bundle
-# against drifting from those source files.
-for asset in ("/tracker/bundle.css", "/tracker/bundle.js"):
-    if asset not in tracker:
-        fail(f"tracker/index.html does not reference {asset}")
+# Tracker privacy + asset integrity. CSS is generated into bundle.css;
+# JavaScript is deliberately loaded as explicit ordered files so deployed
+# behavior is directly auditable and cannot drift behind a stale JS bundle.
+if "/tracker/bundle.css" not in tracker:
+    fail("tracker/index.html does not reference /tracker/bundle.css")
+if "/tracker/bundle.js" in tracker:
+    fail("tracker/index.html should not load legacy /tracker/bundle.js")
 if "noindex" not in tracker.lower() or "nofollow" not in tracker.lower():
     fail("tracker must stay noindex,nofollow")
 if "Disallow: /tracker" not in robots:
@@ -90,11 +79,7 @@ for forbidden in ("SUPABASE_SERVICE_ROLE_KEY", "service_role", "SUPABASE_ANON_KE
     if forbidden in caawi or forbidden in caawi_js:
         fail(f"caawi browser code contains forbidden credential marker: {forbidden}")
 
-# Tracker browser code must never carry the service-role credential either,
-# even though it legitimately embeds the public anon key (used for the
-# operator sign-in flow). Flagged as a coverage gap in
-# docs/qa/current-state-audit-2026-08-28.md: this check previously only
-# scanned caawi/, leaving tracker/ unguarded.
+# Tracker browser code must never carry the service-role credential.
 for js_path in sorted((ROOT / "tracker").glob("*.js")):
     js_text = js_path.read_text(encoding="utf-8")
     for forbidden in ("SUPABASE_SERVICE_ROLE_KEY", "service_role"):
