@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 30.8.2026
+Last compiled: 31.8.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -49,7 +49,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Vantaan nuorten kesätyöseteli** — Vantaan kaupunki
   - Fits: eligible young people in Vantaa.
   - Helps with: first summer job; employer gets support.
-  - Deadline: 31.8.2026.
+  - Deadline: 31.8.2026. This is still open on the review date; remove/mark closed after the deadline passes.
   - Official: https://www.vantaa.fi/fi/palveluhakemisto/palvelu/nuorten-kesatyoseteli
 
 ### Helsinki
@@ -77,6 +77,18 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Helps with: employment-oriented social and health care training; do not infer a specific qualification from the listing without checking the application details.
   - Status: application open until 24.9.2026; training 1.12.2026–31.3.2027. Selection is made jointly by Stadin AO and Helsinki employment services.
   - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/tyovoimakoulutukset/
+
+- **Lähihoitaja, jatkuva haku** — Stadin AO
+  - Fits: applicants seeking the social and health care vocational qualification who meet the current language/admission requirements.
+  - Helps with: vocational route to a lähihoitaja qualification.
+  - Status: current application round 24.8.–23.9.2026; Finnish at least A2.2; studies begin September–November depending on available places. Stadin AO states that tuition fees from 1.8.2026 can apply to upper-secondary students coming from third countries, so do not describe this as universally free without checking the applicant's status.
+  - Official: https://stadinao.hel.fi/hae-opiskelemaan/jatkuva-haku/
+
+- **Aikuisten TUVA** — Stadin AO
+  - Fits: adults over 18 who want to strengthen Finnish through S2 teaching and prepare for further study.
+  - Helps with: Finnish, basic study skills, guidance and transition toward vocational or upper-secondary studies.
+  - Status: application open through 9.9.2026 for studies starting 30.9.; selection result 21.9. Current page says places for adults are specifically for applicants who want to develop Finnish through S2 teaching.
+  - Official: https://stadinao.hel.fi/hae-opiskelemaan/tuva/
 
 - **Kielituettu ryhmävalmennus** — Stadin AO / Helsinki employment services
   - Fits: unemployed Helsinki residents whose work/study direction is unclear.
@@ -147,6 +159,18 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: Fridays 4.9.–18.12.2026, 12.00–13.30, Entresse Library, Siltakatu 11; free. No session 16.10.2026.
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagpmwdj7im
 
+- **Finnish basics at Sello Library** — City of Espoo / Elinvoima
+  - Fits: anyone who wants to start Finnish from the beginning; no prior skills required.
+  - Helps with: beginner Finnish through the TOISTO method in an open low-threshold group.
+  - Status: Thursdays 10.00–11.00 through 17.12.2026 at Sello Library, Leppävaarankatu 9; free and open to everyone.
+  - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagp6xm5ujq
+
+- **Työnantajatreffit recruitment event** — Espoo Employment Services
+  - Fits: all jobseekers.
+  - Helps with: meeting employers that are currently recruiting across several sectors.
+  - Status: 3.9.2026, 12.00–15.00, Sello Library, Leppävaarankatu 9; free. Official event language is Finnish. Employer list is published on the event page and may still be updated.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagp5lrxn64
+
 ### Tampere
 
 - **Arjen avaimet 2026–2027** — Tampereen seudun työväenopisto / Tampereen kaupunki
@@ -158,7 +182,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Career Boost Workshop** — International House Tampere
   - Fits: international jobseekers living in Tampere and international students studying in Tampere.
   - Helps with: CV/application, networking, recruiter approach, job-search channels and interview preparation.
-  - Status: free, max 30; remaining autumn dates after 28.8. are 25.9. and 30.10.2026, 12–16. Register by email to iht.talentadvisor@tampere.fi; one-time participation only.
+  - Status: free, max 30; remaining autumn dates are 25.9. and 30.10.2026, 12–16. Register by email to iht.talentadvisor@tampere.fi; one-time participation only.
   - Official: https://internationalhouse.tampere.fi/en/working/career-boost-workshop/
 
 - **Job Fair Tampere 2026** — International House Tampere / City of Tampere
@@ -183,7 +207,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **SIMHE counselling** — Tampere University of Applied Sciences / International House Tampere
   - Fits: people already living in Finland who have completed upper-secondary education, studied in higher education or completed a higher-education degree.
   - Helps with: higher-education options, applications, recognising prior learning and career direction.
-  - Status: free walk-in 28.8., 18.9., 25.9., 2.10., 23.10., 13.11., 20.11. and 4.12.2026, 13–15; appointments also available via simhe@tuni.fi.
+  - Status: free upcoming walk-ins 18.9., 25.9., 2.10., 23.10., 13.11., 20.11. and 4.12.2026, 13–15; appointments also available via simhe@tuni.fi. The 28.8. session has passed and is no longer presented as an upcoming date.
   - Official: https://internationalhouse.tampere.fi/en/studying/counselling-on-higher-education-studies/
 
 ### Finland-wide / case-by-case
