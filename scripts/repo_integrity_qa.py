@@ -33,6 +33,10 @@ required = [
     "tracker/index.html",
     "tracker/multineed-adapter.js",
     "tracker/scenario-learning.js",
+    "tracker/interview-ux-v4.js",
+    "tracker/followup-workflow-v2.js",
+    "tracker/followup-panel-v2.js",
+    "tracker/phase-controls-v1.js",
     "robots.txt",
     "sitemap.xml",
     "vercel.json",
@@ -96,23 +100,34 @@ for top in ("assets", "caawi", "tracker"):
             fail(f"Browser code contains service-role credential marker: {p.relative_to(ROOT)}")
 
 tracker = (ROOT / "tracker/index.html").read_text(encoding="utf-8")
-if "/tracker/bundle.js" not in tracker:
-    fail("tracker/index.html must load the bundled tracker script (/tracker/bundle.js)")
-# These files must be genuinely present as static code, not dynamically
-# injected at runtime - see the adapter check below for the bug this once
-# was. Bundling (scripts/build_tracker_bundle.js) folds them into
-# tracker/bundle.js as one static <script>, so verify their source markers
-# actually landed in the bundle rather than checking index.html directly.
-bundle_js = (ROOT / "tracker/bundle.js").read_text(encoding="utf-8")
-for name in (
-    "multineed-adapter.js",
-    "scenario-learning.js",
-    "app.js",
-    "visual-v3.js",
-    "crm-reactive.js",
-):
-    if f"---- {name} ----" not in bundle_js:
-        fail(f"tracker/bundle.js missing required source file: {name}")
+# JavaScript is intentionally explicit rather than bundled so the exact
+# production execution order is visible and security-sensitive changes cannot
+# hide behind a stale generated bundle. bundle.css remains generated.
+required_tracker_scripts = [
+    "operator-identity.js", "crm-call-history.js", "multineed-adapter.js", "app.js",
+    "visual-v3.js", "crm-reactive.js", "interview-match.js", "interview-match-preview.js",
+    "interview-form-enhancements.js", "interview-smart-notes.js", "interview-answers-restore.js",
+    "case-lifecycle.js", "scenario-learning.js", "interview-context.js",
+    "interview-follow-up-recap.js", "interview-next-steps.js", "universal-proof-questions.js",
+    "incomplete-intake.js", "human-labels.js", "analytics-mobile-v2.js", "crm-manage.js",
+    "operations-system.js", "call-outcomes.js", "crm-queue-navigation.js",
+    "interview-ux-v4.js", "followup-workflow-v2.js", "followup-panel-v2.js",
+]
+positions = []
+for name in required_tracker_scripts:
+    marker = f'/tracker/{name}'
+    pos = tracker.find(marker)
+    if pos < 0:
+        fail(f"tracker/index.html missing required tracker script: {name}")
+    positions.append((name, pos))
+for (prev_name, prev_pos), (name, pos) in zip(positions, positions[1:]):
+    if prev_pos >= 0 and pos >= 0 and pos <= prev_pos:
+        fail(f"tracker script order drifted: {name} must load after {prev_name}")
+if "/tracker/bundle.js" in tracker:
+    fail("tracker/index.html must not load stale generated bundle.js; scripts are explicit")
+if "/tracker/bundle.css" not in tracker:
+    fail("tracker/index.html must load generated /tracker/bundle.css")
+
 adapter = (ROOT / "tracker/multineed-adapter.js").read_text(encoding="utf-8")
 if "scenario-learning.js" in adapter:
     fail("scenario-learning.js should load directly from tracker/index.html, not be dynamically injected by the adapter")
