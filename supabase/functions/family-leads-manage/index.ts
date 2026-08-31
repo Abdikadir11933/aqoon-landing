@@ -80,11 +80,15 @@ Deno.serve(async(req)=>{
   if(action==="delete"){
     const id=txt(b.id,80);
     if(!id)return new Response(JSON.stringify({error:"missing_id"}),{status:400,headers:h});
-    const {data:lead,error:findError}=await db.from("family_leads").select("id,name,phone").eq("id",id).maybeSingle();
+    const {data:lead,error:findError}=await db.from("family_leads").select("id,name,intake_request_id").eq("id",id).maybeSingle();
     if(findError)return new Response(JSON.stringify({error:"db_error",detail:findError.message}),{status:500,headers:h});
     if(!lead)return new Response(JSON.stringify({error:"not_found"}),{status:404,headers:h});
     const {error}=await db.from("family_leads").delete().eq("id",id);
     if(error)return new Response(JSON.stringify({error:"db_error",detail:error.message}),{status:500,headers:h});
+    if(lead.intake_request_id){
+      const intakeDelete=await db.from("family_intake_contacts").delete().eq("request_id",lead.intake_request_id);
+      if(intakeDelete.error)return new Response(JSON.stringify({error:"intake_cleanup_failed",detail:intakeDelete.error.message}),{status:500,headers:h});
+    }
     return new Response(JSON.stringify({deleted:{id:lead.id,name:lead.name}}),{headers:h});
   }
 
