@@ -9,10 +9,9 @@ const SUBS={
   'Arrin kale':['Wax aan kor ku qornayn']
 };
 let active=null;
-function pw(){return sessionStorage.getItem('aqoon_tracker_password')||''}
 function authToken(){return sessionStorage.getItem('aqoon_auth_token')||''}
 async function api(body){
-  const headers={'Content-Type':'application/json','x-tracker-password':pw()},token=authToken();
+  const headers={'Content-Type':'application/json'},token=authToken();
   if(token)headers.Authorization='Bearer '+token;
   const r=await fetch(END,{method:'POST',headers,body:JSON.stringify(body),cache:'no-store'}),d=await r.json().catch(()=>({}));if(!r.ok)throw Error(d.detail||d.error||'Request failed');return d
 }

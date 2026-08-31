@@ -148,14 +148,14 @@ const CrmQueues = {
   // near-identical 4-button grids, one of which (Contacted/No answer) fired
   // immediately with no note and no dialog, while Call later alone opened it.
   assignToMeButtonHtml(leadId, className) {
-    // Password-only sessions have no operator id, so assignment always
+    // An unlinked account has no operator id, so assignment always
     // fails with an alert after the click. Telling the operator that up
     // front - a disabled button instead of a dead-end alert - is clearer
     // than letting them click something that can never succeed.
     if (sessionStorage.getItem('aqoon_operator_id')) {
       return `<button class="btn ${className}" data-action="assign-to-me" data-lead-id="${leadId}">Assign to me</button>`;
     }
-    return `<button class="btn ${className}" type="button" disabled title="Sign in with your operator account (not just the shared password) to assign leads to yourself.">Assign to me</button>`;
+    return `<button class="btn ${className}" type="button" disabled title="Sign in with your AQOON operator account to assign leads to yourself.">Assign to me</button>`;
   },
 
   contactActionsHtml(leadId, lead, isIncomplete) {
@@ -354,9 +354,8 @@ const CrmQueues = {
       ${interview.next_action ? `<p class="decision-brief-next"><strong>Next action:</strong> ${this.escapeHtml(interview.next_action)}</p>` : '<p class="decision-brief-next muted">Next action not recorded yet.</p>'}
       <details class="decision-brief-evidence"><summary>Evidence and research brief</summary><div class="decision-brief-evidence-body"><p class="muted">Loading current case evidence…</p></div></details>`;
     panelContent.prepend(brief);
-    const password = sessionStorage.getItem('aqoon_tracker_password') || '';
     fetch('https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-case-lifecycle-admin', {
-      method:'POST', headers:Object.assign({'Content-Type':'application/json','x-tracker-password':password},sessionStorage.getItem('aqoon_auth_token')?{Authorization:'Bearer '+sessionStorage.getItem('aqoon_auth_token')}:{}),
+      method:'POST', headers:window.AqoonAuthHeaders(),
       body:JSON.stringify({action:'list',lead_id:lead.id}), cache:'no-store'
     }).then(r=>r.json()).then(data=>{
       const box=brief.querySelector('.decision-brief-evidence-body');
@@ -390,10 +389,9 @@ const CrmQueues = {
     summary.className = 'panel-section resolved-outcome';
     summary.innerHTML = '<h4 class="panel-section-title">Resolution summary</h4><p class="muted">Loading the latest case outcome…</p>';
     panelContent.querySelector('.assign-operator')?.insertAdjacentElement('afterend', summary);
-    const password = sessionStorage.getItem('aqoon_tracker_password') || '';
     fetch('https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-case-lifecycle-admin', {
       method: 'POST',
-      headers: Object.assign({'Content-Type': 'application/json', 'x-tracker-password': password},sessionStorage.getItem('aqoon_auth_token')?{Authorization:'Bearer '+sessionStorage.getItem('aqoon_auth_token')}:{}),
+      headers: window.AqoonAuthHeaders(),
       body: JSON.stringify({action: 'list', lead_id: lead.id}),
       cache: 'no-store'
     }).then(r => r.json()).then(data => {
@@ -420,7 +418,7 @@ const CrmQueues = {
       // family_leads, so they go through incomplete-intake.js's own
       // assign(), not the generic family_leads update() path.
       const operatorId = sessionStorage.getItem('aqoon_operator_id');
-      if (!operatorId) { alert('Sign in with your operator account (not just the shared password) to assign leads to yourself.'); return; }
+      if (!operatorId) { alert('Sign in with your AQOON operator account to assign leads to yourself.'); return; }
       if (lead) window.AqoonIncompleteIntake?.assign(lead, operatorId, () => this.closeFamilyPanel());
     } else if (action === 'assign-to-me') {
       this.assignToOperator(leadId);
@@ -490,7 +488,7 @@ const CrmQueues = {
     // assigned_operator_id directly, so no separate endpoint/action is needed.
     const operatorId = sessionStorage.getItem('aqoon_operator_id');
     if (!operatorId) {
-      alert('Sign in with your operator account (not just the shared password) to assign leads to yourself.');
+      alert('Sign in with your AQOON operator account to assign leads to yourself.');
       return;
     }
     if (!window.AqoonApp?.updateLead) return;

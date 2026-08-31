@@ -1,19 +1,15 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
+import { requireOperator } from "../_shared/operator-auth.ts";
 
 const ORIGIN = "https://aqoon.live";
-const PASSWORD_HASH = "67541863bd267f78446b60b489625bdd452dca1bd003fa1e620dd98de2fb6c6d";
 const headers = () => ({
   "Access-Control-Allow-Origin": ORIGIN,
-  "Access-Control-Allow-Headers": "content-type, x-tracker-password, authorization",
+  "Access-Control-Allow-Headers": "content-type, authorization",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
   "Content-Type": "application/json; charset=utf-8",
   "Cache-Control": "no-store",
 });
 const text = (value: unknown, max: number) => typeof value === "string" ? value.trim().slice(0, max) : null;
-async function sha(value: string) {
-  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(value));
-  return Array.from(new Uint8Array(digest)).map((byte) => byte.toString(16).padStart(2, "0")).join("");
-}
 
 Deno.serve(async (request) => {
   const responseHeaders = headers();
@@ -23,20 +19,9 @@ Deno.serve(async (request) => {
   const url = Deno.env.get("SUPABASE_URL"), serviceRole = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
   if (!url || !serviceRole) return new Response(JSON.stringify({ error: "server_config" }), { status: 500, headers: responseHeaders });
   const db = createClient(url, serviceRole, { auth: { persistSession: false, autoRefreshToken: false } });
-  const legacyPassword = request.headers.get("x-tracker-password") || "";
-  const passwordOk = Boolean(legacyPassword) && await sha(legacyPassword) === PASSWORD_HASH;
-  let operatorId: string | null = null;
-  if (!passwordOk) {
-    const bearer = (request.headers.get("authorization") || "").match(/^Bearer\s+(.+)$/i)?.[1];
-    if (bearer) {
-      const { data: userData, error } = await db.auth.getUser(bearer);
-      if (!error && userData.user) {
-        const { data: operator } = await db.from("operators").select("id").eq("auth_user_id", userData.user.id).maybeSingle();
-        operatorId = operator?.id || null;
-      }
-    }
-  }
-  if (!passwordOk && !operatorId) return new Response(JSON.stringify({ error: "unauthorized" }), { status: 401, headers: responseHeaders });
+  const auth = await requireOperator(request, db);
+  if (!auth) return new Response(JSON.stringify({ error: "unauthorized" }), { status: 401, headers: responseHeaders });
+  const operatorId = auth.operator.id;
 
   let body: any = {};
   try { body = await request.json(); } catch { /* invalid JSON handled below */ }
@@ -66,7 +51,7 @@ Deno.serve(async (request) => {
       urgency: revision.urgency,
       status: revision.status,
       interview_schema_version: revision.interview_schema_version,
-      operator_id: operatorId || text(body.operator_id, 80),
+      operator_id: operatorId,
       updated_at: new Date().toISOString(),
     }).eq("id", revision.interview_id).eq("lead_id", leadId).select("id,lead_id,interview_type,updated_at").maybeSingle();
     if (error || !data) return new Response(JSON.stringify({ error: "restore_failed", detail: error?.message }), { status: 500, headers: responseHeaders });

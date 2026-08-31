@@ -7,7 +7,7 @@ This document specifies the new API actions required by Phase C-F of the compreh
 Base URL: `https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-case-lifecycle-admin`
 
 All endpoints require:
-- `x-tracker-password` header with the operator password
+- Supabase Auth bearer token for the signed-in AQOON operator
 - `Content-Type: application/json`
 - POST method
 

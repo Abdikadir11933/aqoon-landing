@@ -1,22 +1,15 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
-const PASSWORD_HASH =
-  "67541863bd267f78446b60b489625bdd452dca1bd003fa1e620dd98de2fb6c6d";
+import { authenticatedUser, requireOperator } from "../_shared/operator-auth.ts";
 const ORIGIN = "https://aqoon.live";
 const CURRENT_FORM_VERSION = "phone-first-v2-multineed";
 const H = () => ({
   "Access-Control-Allow-Origin": ORIGIN,
   "Access-Control-Allow-Headers":
-    "content-type, x-tracker-password, authorization",
+    "content-type, authorization",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
   "Content-Type": "application/json; charset=utf-8",
   "Cache-Control": "no-store",
 });
-async function sha(v: string) {
-  const d = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(v));
-  return Array.from(new Uint8Array(d))
-    .map((b) => b.toString(16).padStart(2, "0"))
-    .join("");
-}
 function inc(o: Record<string, number>, k: string) {
   o[k] = (o[k] || 0) + 1;
 }
@@ -26,13 +19,8 @@ function txt(v: unknown, max = 4000) {
 function has(j: any, e: string) {
   return j.events.includes(e);
 }
-function opId(b: any) {
-  return typeof b.operator_id === "string" && b.operator_id.trim()
-    ? b.operator_id.trim()
-    : null;
-}
-function resolveOperatorId(jwtOperatorId: string | null, b: any) {
-  return jwtOperatorId || opId(b);
+function resolveOperatorId(jwtOperatorId: string, _b: any) {
+  return jwtOperatorId;
 }
 function makeJourneys(rows: any[]) {
   const journeys: Record<string, any> = {};
@@ -158,34 +146,40 @@ Deno.serve(async (req) => {
   const db = createClient(url, key, {
     auth: { persistSession: false, autoRefreshToken: false },
   });
-  const p = req.headers.get("x-tracker-password") || "";
-  const passwordOk = !!p && (await sha(p)) === PASSWORD_HASH;
-  let jwtOperatorId: string | null = null;
-  if (!passwordOk) {
-    const authHeader = req.headers.get("authorization") || "";
-    const m = authHeader.match(/^Bearer\s+(.+)$/i);
-    if (m) {
-      const { data, error } = await db.auth.getUser(m[1]);
-      if (!error && data?.user) {
-        const { data: op } = await db
-          .from("operators")
-          .select("id")
-          .eq("auth_user_id", data.user.id)
-          .maybeSingle();
-        if (op) jwtOperatorId = op.id;
-      }
-    }
+  let b: any = {};
+  try { b = await req.json(); } catch {}
+  const action = b.action || "list";
+
+  // This is deliberately available to a valid authenticated user even before
+  // their operator record is linked. The client uses it to decide whether a
+  // pre-approved account still needs its one-time automatic link.
+  if (action === "whoami") {
+    const user = await authenticatedUser(req, db);
+    if (!user) return new Response(JSON.stringify({ operator: null, invalid_token: true }), { status: 401, headers: h });
+    const { data: operator } = await db.from("operators").select("id,display_name").eq("auth_user_id", user.id).eq("active", true).maybeSingle();
+    return new Response(JSON.stringify({ operator: operator || null, email: user.email }), { headers: h });
   }
-  if (!passwordOk && !jwtOperatorId)
+
+  // A new account can link only to the pre-approved, still-unlinked operator
+  // record with the exact same email. It can never choose an operator ID.
+  if (action === "claim_operator") {
+    const user = await authenticatedUser(req, db);
+    const email = user?.email?.trim().toLowerCase();
+    if (!user || !email) return new Response(JSON.stringify({ error: "unauthorized" }), { status: 401, headers: h });
+    const { data: target } = await db.from("operators").select("id,display_name,auth_user_id").eq("email", email).eq("active", true).maybeSingle();
+    if (!target || target.auth_user_id) return new Response(JSON.stringify({ error: "operator_not_preapproved" }), { status: 403, headers: h });
+    const { data: operator, error } = await db.from("operators").update({ auth_user_id: user.id }).eq("id", target.id).is("auth_user_id", null).select("id,display_name").maybeSingle();
+    if (error || !operator) return new Response(JSON.stringify({ error: "operator_link_failed" }), { status: 409, headers: h });
+    return new Response(JSON.stringify({ operator }), { headers: h });
+  }
+
+  const auth = await requireOperator(req, db);
+  if (!auth)
     return new Response(JSON.stringify({ error: "unauthorized" }), {
       status: 401,
       headers: h,
     });
-  let b: any = {};
-  try {
-    b = await req.json();
-  } catch {}
-  const action = b.action || "list";
+  const jwtOperatorId = auth.operator.id;
   if (action === "ping")
     return new Response(JSON.stringify({ ok: true }), { headers: h });
   if (action === "operators") {
@@ -202,85 +196,6 @@ Deno.serve(async (req) => {
     return new Response(JSON.stringify({ operators: data || [] }), {
       headers: h,
     });
-  }
-  if (action === "whoami") {
-    const auth = req.headers.get("authorization") || "";
-    const m = auth.match(/^Bearer\s+(.+)$/i);
-    if (!m)
-      return new Response(JSON.stringify({ operator: null }), { headers: h });
-    const { data, error } = await db.auth.getUser(m[1]);
-    if (error || !data?.user)
-      return new Response(
-        JSON.stringify({ operator: null, invalid_token: true }),
-        { headers: h },
-      );
-    const { data: op } = await db
-      .from("operators")
-      .select("id,display_name")
-      .eq("auth_user_id", data.user.id)
-      .maybeSingle();
-    return new Response(
-      JSON.stringify({ operator: op || null, email: data.user.email }),
-      { headers: h },
-    );
-  }
-  if (action === "claim_operator") {
-    const auth = req.headers.get("authorization") || "";
-    const m = auth.match(/^Bearer\s+(.+)$/i);
-    if (!m)
-      return new Response(JSON.stringify({ error: "missing_token" }), {
-        status: 401,
-        headers: h,
-      });
-    const { data: userData, error: userErr } = await db.auth.getUser(m[1]);
-    if (userErr || !userData?.user)
-      return new Response(JSON.stringify({ error: "invalid_token" }), {
-        status: 401,
-        headers: h,
-      });
-    const user = userData.user;
-    const { data: already } = await db
-      .from("operators")
-      .select("id,display_name")
-      .eq("auth_user_id", user.id)
-      .maybeSingle();
-    if (already)
-      return new Response(JSON.stringify({ operator: already }), {
-        headers: h,
-      });
-    const operatorId = String(b.operator_id || "");
-    if (!operatorId)
-      return new Response(JSON.stringify({ error: "missing_operator_id" }), {
-        status: 400,
-        headers: h,
-      });
-    const { data: target, error: targetErr } = await db
-      .from("operators")
-      .select("id,display_name,auth_user_id")
-      .eq("id", operatorId)
-      .single();
-    if (targetErr)
-      return new Response(JSON.stringify({ error: "operator_not_found" }), {
-        status: 404,
-        headers: h,
-      });
-    if (target.auth_user_id && target.auth_user_id !== user.id)
-      return new Response(
-        JSON.stringify({ error: "operator_already_claimed" }),
-        { status: 409, headers: h },
-      );
-    const { data: updated, error: updErr } = await db
-      .from("operators")
-      .update({ auth_user_id: user.id, email: user.email })
-      .eq("id", operatorId)
-      .select("id,display_name")
-      .single();
-    if (updErr)
-      return new Response(
-        JSON.stringify({ error: "db_error", detail: updErr.message }),
-        { status: 500, headers: h },
-      );
-    return new Response(JSON.stringify({ operator: updated }), { headers: h });
   }
   if (action === "call_log") {
     const leadId = String(b.lead_id || "");

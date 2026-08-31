@@ -1,6 +1,6 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
+import { requireOperator } from "../_shared/operator-auth.ts";
 
-const PASSWORD_HASH = "67541863bd267f78446b60b489625bdd452dca1bd003fa1e620dd98de2fb6c6d";
 const ORIGIN = "https://aqoon.live";
 const STAGES = ["lead","contacted","discovery","proposal_sent","decision_review","won","delivery","expansion","closed_lost"];
 const HEALTH = ["on_track","waiting","at_risk","blocked"];
@@ -9,17 +9,15 @@ const EVENT_TYPES = ["call","meeting","deadline","task"];
 const EVENT_STATUS = ["planned","done","cancelled"];
 const headers = () => ({
   "Access-Control-Allow-Origin": ORIGIN,
-  "Access-Control-Allow-Headers": "content-type, x-tracker-password, authorization",
+  "Access-Control-Allow-Headers": "content-type, authorization",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
   "Content-Type": "application/json; charset=utf-8",
   "Cache-Control": "no-store"
 });
-async function sha(v:string){const d=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(v));return Array.from(new Uint8Array(d)).map(b=>b.toString(16).padStart(2,"0")).join("");}
 const text = (v:unknown, max=6000) => typeof v === "string" ? v.trim().slice(0,max) : null;
 const arr = (v:unknown) => Array.isArray(v) ? v.map(x=>text(x,1000)).filter(Boolean).slice(0,30) : [];
 const date = (v:unknown) => { if(!v) return null; const d=new Date(String(v)); return Number.isNaN(d.getTime())?null:d.toISOString(); };
-const opId = (b:any) => typeof b.operator_id === "string" && b.operator_id.trim() ? b.operator_id.trim() : null;
-const resolveOperatorId = (jwtOperatorId:string|null, b:any) => jwtOperatorId||opId(b);
+const resolveOperatorId = (jwtOperatorId:string, _b:any) => jwtOperatorId;
 const json = (body:unknown, status:number, h:Record<string,string>) => new Response(JSON.stringify(body),{status,headers:h});
 
 // PII-free aggregate of unmatched family demand, for buyer-facing conversations.
@@ -61,21 +59,9 @@ Deno.serve(async req => {
   const url=Deno.env.get("SUPABASE_URL"), key=Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
   if(!url||!key) return json({error:"server_config"},500,h);
   const db=createClient(url,key,{auth:{persistSession:false,autoRefreshToken:false}});
-  const password=req.headers.get("x-tracker-password")||"";
-  const passwordOk=!!password && await sha(password)===PASSWORD_HASH;
-  let jwtOperatorId:string|null=null;
-  if(!passwordOk){
-    const authHeader=req.headers.get("authorization")||"";
-    const m=authHeader.match(/^Bearer\s+(.+)$/i);
-    if(m){
-      const{data,error}=await db.auth.getUser(m[1]);
-      if(!error&&data?.user){
-        const{data:op}=await db.from("operators").select("id").eq("auth_user_id",data.user.id).maybeSingle();
-        if(op)jwtOperatorId=op.id;
-      }
-    }
-  }
-  if(!passwordOk&&!jwtOperatorId) return json({error:"unauthorized"},401,h);
+  const auth=await requireOperator(req,db);
+  if(!auth) return json({error:"unauthorized"},401,h);
+  const jwtOperatorId=auth.operator.id;
   let b:any={}; try{b=await req.json()}catch{}
   const action=String(b.action||"list");
 

@@ -6,8 +6,11 @@ const path = require('node:path');
 const read = file => fs.readFileSync(path.join(__dirname, '..', file), 'utf8');
 
 test('raw intake cannot load the verified-route preview', () => {
-  const html = read('tracker/index.html');
-  assert.doesNotMatch(html, /<script[^>]+interview-match-preview\.js/);
+  const preview = read('tracker/interview-match-preview.js');
+  const intake = read('tracker/incomplete-intake.js');
+  assert.match(preview, /if\(!interviewCompleted\(\)\)/);
+  assert.match(preview, /once this first interview is saved/);
+  assert.doesNotMatch(intake, /match_preview/);
 });
 
 test('first interviews only reveal prior context when it actually exists', () => {

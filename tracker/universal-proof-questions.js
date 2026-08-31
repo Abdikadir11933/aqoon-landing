@@ -101,9 +101,9 @@ function ensureAnalytics(){
 function bindResearchTabs(){document.querySelectorAll('[data-research-tab]').forEach(b=>b.onclick=()=>{currentResearchTab=b.dataset.researchTab;document.querySelectorAll('[data-research-tab]').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('[data-research-pane]').forEach(p=>p.hidden=p.dataset.researchPane!==currentResearchTab);});}
 async function load(force){
   const card=ensureAnalytics(),body=document.getElementById('universalProofBody');if(!card||!body||loading)return;if(!force&&lastLoaded&&Date.now()-lastLoaded<30000)return;
-  const pw=sessionStorage.getItem('aqoon_tracker_password')||'';if(!pw)return;loading=true;body.innerHTML='<div class="research-empty">Loading interview insights…</div>';
+  if(!sessionStorage.getItem('aqoon_auth_token'))return;loading=true;body.innerHTML='<div class="research-empty">Loading interview insights…</div>';
   try{
-    const r=await fetch(ADMIN,{method:'POST',headers:{'Content-Type':'application/json','x-tracker-password':pw},body:JSON.stringify({action:'list'}),cache:'no-store'}),d=await r.json();if(!r.ok)throw Error(d.detail||d.error||'Request failed');
+    const r=await fetch(ADMIN,{method:'POST',headers:window.AqoonAuthHeaders(),body:JSON.stringify({action:'list'}),cache:'no-store'}),d=await r.json();if(!r.ok)throw Error(d.detail||d.error||'Request failed');
     const m=new Map();(d.interviews||[]).filter(i=>i.status==='completed').forEach(i=>{const o=m.get(i.lead_id);if(!o||String(i.updated_at)>String(o.updated_at))m.set(i.lead_id,i)});
     const ints=[...m.values()],core=ints.filter(i=>i.answers&&Object.keys(i.answers).some(k=>['aqoon_awareness_before','entry_service_awareness','prior_awareness','household_children','work_interest_gate'].includes(k)));
     document.getElementById('researchCount').textContent=core.length;

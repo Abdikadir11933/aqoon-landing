@@ -9,14 +9,12 @@ document.head.appendChild(style);
 
 let nextStepsOpen=false;
 
-function pw(){return sessionStorage.getItem('aqoon_tracker_password')||''}
-
 async function loadLifecycle(leadId){
   if(!leadId)return null;
   try{
     const lc=await fetch(END_LIFECYCLE,{
       method:'POST',
-      headers:Object.assign({'Content-Type':'application/json','x-tracker-password':pw()},sessionStorage.getItem('aqoon_auth_token')?{Authorization:'Bearer '+sessionStorage.getItem('aqoon_auth_token')}:{}),
+      headers:window.AqoonAuthHeaders(),
       body:JSON.stringify({action:'list',lead_id:leadId}),
       cache:'no-store'
     }).then(r=>r.json());

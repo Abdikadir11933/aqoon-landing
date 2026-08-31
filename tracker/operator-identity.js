@@ -9,22 +9,19 @@ const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 
 let operators=[],opById={},leadAttrib={},oppRecords={},badgeTimer=null,pickerMode='signin';
 
-function pw(){return sessionStorage.getItem('aqoon_tracker_password')||''}
 function meId(){return sessionStorage.getItem('aqoon_operator_id')||''}
 function meName(){return sessionStorage.getItem('aqoon_operator_name')||''}
 function authToken(){return sessionStorage.getItem('aqoon_auth_token')||''}
+function authHeaders(){const token=authToken();return Object.assign({'Content-Type':'application/json'},token?{Authorization:'Bearer '+token}:{})}
+window.AqoonAuthHeaders=authHeaders;
 function setMe(id,name){sessionStorage.setItem('aqoon_operator_id',id);sessionStorage.setItem('aqoon_operator_name',name);renderPill();scheduleBadgeRefresh()}
 function setAuthSession(token,refresh){if(token)sessionStorage.setItem('aqoon_auth_token',token);if(refresh)sessionStorage.setItem('aqoon_auth_refresh_token',refresh)}
-function clearMe(){sessionStorage.removeItem('aqoon_operator_id');sessionStorage.removeItem('aqoon_operator_name');sessionStorage.removeItem('aqoon_auth_token');sessionStorage.removeItem('aqoon_auth_refresh_token');sessionStorage.removeItem('aqoon_tracker_password')}
+function clearMe(){sessionStorage.removeItem('aqoon_operator_id');sessionStorage.removeItem('aqoon_operator_name');sessionStorage.removeItem('aqoon_auth_token');sessionStorage.removeItem('aqoon_auth_refresh_token')}
 function nameFor(id){if(!id)return'';const o=opById[id];return o?o.display_name:''}
 
-// A real, verified sign-in makes the JWT sufficient on its own (see the
-// Edge Function OR-logic: correct shared password OR a verified operator
-// JWT). app.js still gates entirely on sessionStorage.aqoon_tracker_password,
-// so once we know the person is real, we hand it a harmless placeholder and
-// reload so app.js's own unchanged bootstrap does the rest, authenticated by
-// the JWT this script attaches to every request (patched below).
-function unlockWithSession(){sessionStorage.setItem('aqoon_tracker_password','session');location.reload()}
+// The Tracker unlocks only after Supabase Auth has produced a valid JWT
+// linked to an active AQOON operator.
+function unlockWithSession(){location.reload()}
 function signOut(){clearMe();location.reload()}
 
 async function authRequest(path,body){
@@ -36,11 +33,11 @@ async function authRequest(path,body){
 async function authSignIn(email,password){return authRequest('/auth/v1/token?grant_type=password',{email,password})}
 async function authSignUp(email,password){return authRequest('/auth/v1/signup',{email,password})}
 async function whoami(token){
-  const r=await fetch(LEADS_END,{method:'POST',headers:{'Content-Type':'application/json','x-tracker-password':pw(),Authorization:'Bearer '+token},body:JSON.stringify({action:'whoami'})});
+  const r=await fetch(LEADS_END,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+token},body:JSON.stringify({action:'whoami'})});
   return r.json().catch(()=>({}));
 }
 async function claimOperator(token,operatorId){
-  const r=await fetch(LEADS_END,{method:'POST',headers:{'Content-Type':'application/json','x-tracker-password':pw(),Authorization:'Bearer '+token},body:JSON.stringify({action:'claim_operator',operator_id:operatorId})});
+  const r=await fetch(LEADS_END,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+token},body:JSON.stringify({action:'claim_operator',operator_id:operatorId})});
   const d=await r.json().catch(()=>({}));
   if(!r.ok)throw new Error(d.error||'Could not link this account');
   return d;
@@ -72,15 +69,10 @@ function renderPill(){
   pill.innerHTML=name?('<span class="dot"></span>Signed in: <b>'+esc(name)+'</b> · Sign out'):'';
 }
 
-// Replaces the original shared-password #login form with real sign-in/sign-up,
-// the moment #lock is visible. The original form stays in the DOM (hidden),
-// reachable through "Trouble signing in?" as an emergency fallback if the
-// Edge Functions still accept the old shared password.
+// Builds the only Tracker access UI: Supabase Auth sign-in/sign-up.
 function ensureAuthUI(){
   const box=document.querySelector('.lockbox');
   if(!box||document.getElementById('operatorAuthWrap'))return;
-  const originalForm=document.getElementById('login');
-  if(originalForm)originalForm.classList.add('hidden');
   const wrap=document.createElement('div');
   wrap.id='operatorAuthWrap';
   box.appendChild(wrap);
@@ -91,32 +83,22 @@ function renderAuthUI(){
   if(!wrap)return;
   if(pickerMode==='signin'||pickerMode==='signup'){
     const isSignup=pickerMode==='signup';
-    wrap.innerHTML='<form class="operator-auth" id="operatorAuthForm"><input type="email" id="operatorEmail" placeholder="Your email" autocomplete="username" required><input type="password" id="operatorPassword" placeholder="Password" autocomplete="'+(isSignup?'new-password':'current-password')+'" minlength="6" required>'+(isSignup?'<div id="operatorSignupOptions" class="operator-options"><p class="muted">Loading…</p></div>':'')+'<div class="operator-error" id="operatorAuthError"></div><button type="submit" class="operator-auth-btn" id="operatorAuthSubmit">'+(isSignup?'Create my account':'Unlock')+'</button></form><div class="operator-switch">'+(isSignup?'Already have an account? <a id="operatorToSignin">Sign in</a>':'New here? <a id="operatorToSignup">Create an account</a>')+'</div><hr class="operator-hr"><div class="operator-switch">Trouble signing in? <a id="operatorUseShared">Use the shared password</a></div>';
-    let chosenOperatorId='';
-    if(isSignup){
-      fetchOperators().then(ops=>{
-        const optBox=document.getElementById('operatorSignupOptions');
-        if(!optBox)return;
-        optBox.innerHTML=ops.length?('<p class="muted" style="margin:0 0 4px">Which one are you?</p>'+ops.map(o=>'<button type="button" class="operator-choice" data-op="'+esc(o.id)+'">'+esc(o.display_name)+'</button>').join('')):'<p class="muted">No operators configured yet.</p>';
-        optBox.querySelectorAll('[data-op]').forEach(b=>b.onclick=()=>{optBox.querySelectorAll('[data-op]').forEach(x=>x.classList.remove('on'));b.classList.add('on');chosenOperatorId=b.dataset.op;});
-      });
-    }
+    wrap.innerHTML='<form class="operator-auth" id="operatorAuthForm"><input type="email" id="operatorEmail" placeholder="Your AQOON email" autocomplete="username" required><input type="password" id="operatorPassword" placeholder="Password" autocomplete="'+(isSignup?'new-password':'current-password')+'" minlength="6" required>'+(isSignup?'<div id="operatorSignupOptions" class="operator-options"><p class="muted">Loading…</p></div>':'')+'<div class="operator-error" id="operatorAuthError"></div><button type="submit" class="operator-auth-btn" id="operatorAuthSubmit">'+(isSignup?'Create my account':'Unlock')+'</button></form><div class="operator-switch">'+(isSignup?'Already have an account? <a id="operatorToSignin">Sign in</a>':'New here? <a id="operatorToSignup">Create an account</a>')+'</div>';
+    if(isSignup)document.getElementById('operatorSignupOptions').innerHTML='<p class="muted">Your email must already be approved for an AQOON operator account.</p>';
     document.getElementById('operatorToSignup')?.addEventListener('click',()=>{pickerMode='signup';renderAuthUI()});
     document.getElementById('operatorToSignin')?.addEventListener('click',()=>{pickerMode='signin';renderAuthUI()});
-    document.getElementById('operatorUseShared').onclick=()=>{wrap.classList.add('hidden');document.getElementById('login')?.classList.remove('hidden');document.getElementById('password')?.focus()};
     document.getElementById('operatorAuthForm').onsubmit=async e=>{
       e.preventDefault();
       const email=document.getElementById('operatorEmail').value.trim(),password=document.getElementById('operatorPassword').value;
       const errEl=document.getElementById('operatorAuthError'),btn=document.getElementById('operatorAuthSubmit');
       errEl.textContent='';
-      if(isSignup&&!chosenOperatorId){errEl.textContent='Pick which one of you this account is for.';return}
       btn.disabled=true;btn.textContent='Please wait…';
       try{
         const session=isSignup?await authSignUp(email,password):await authSignIn(email,password);
         if(!session.access_token)throw new Error('Check your email to confirm the account, then sign in.');
         setAuthSession(session.access_token,session.refresh_token);
         if(isSignup){
-          const claimed=await claimOperator(session.access_token,chosenOperatorId);
+          const claimed=await claimOperator(session.access_token,'');
           setMe(claimed.operator.id,claimed.operator.display_name);
           unlockWithSession();
         }else{
@@ -130,23 +112,17 @@ function renderAuthUI(){
     return;
   }
   if(pickerMode==='claim'){
-    wrap.innerHTML='<p class="muted">Signed in, but this account is not linked to either of you yet. Pick which one this is.</p><div id="operatorClaimOptions" class="operator-options"><p class="muted">Loading…</p></div><div class="operator-error" id="operatorAuthError"></div>';
-    fetchOperators().then(ops=>{
-      const box=document.getElementById('operatorClaimOptions');
-      if(!box)return;
-      box.innerHTML=ops.length?ops.map(o=>'<button type="button" class="operator-choice" data-op="'+esc(o.id)+'">'+esc(o.display_name)+'</button>').join(''):'<p class="muted">No operators configured yet.</p>';
-      box.querySelectorAll('[data-op]').forEach(b=>b.onclick=async()=>{
-        const errEl=document.getElementById('operatorAuthError');
-        try{const claimed=await claimOperator(authToken(),b.dataset.op);setMe(claimed.operator.id,claimed.operator.display_name);unlockWithSession();}
-        catch(ex){errEl.textContent=ex.message||'Could not link this account.';}
-      });
+    wrap.innerHTML='<p class="muted">Linking your approved AQOON account…</p><div class="operator-error" id="operatorAuthError"></div>';
+    claimOperator(authToken(),'').then(claimed=>{setMe(claimed.operator.id,claimed.operator.display_name);unlockWithSession();}).catch(ex=>{
+      const errEl=document.getElementById('operatorAuthError');
+      if(errEl)errEl.textContent=ex.message||'This email is not approved for AQOON Tracker.';
     });
   }
 }
 async function fetchOperators(){
   if(operators.length)return operators;
   try{
-    const r=await fetch(LEADS_END,{method:'POST',headers:{'Content-Type':'application/json','x-tracker-password':pw()},body:JSON.stringify({action:'operators'})});
+    const token=authToken();if(!token)return operators;const r=await fetch(LEADS_END,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+token},body:JSON.stringify({action:'operators'})});
     const d=await r.json();
     if(Array.isArray(d.operators)){operators=d.operators;opById=Object.fromEntries(operators.map(o=>[o.id,o]));}
   }catch(e){}
@@ -186,7 +162,7 @@ function refreshOppBadges(){
 async function claimOpportunity(id){
   const rec=oppRecords[id];if(!rec)return;
   try{
-    await fetch(OPS_END,{method:'POST',headers:{'Content-Type':'application/json','x-tracker-password':pw()},body:JSON.stringify(Object.assign({},rec,{action:'save_opportunity',owner_operator_id:meId(),operator_id:meId()}))});
+    await fetch(OPS_END,{method:'POST',headers:authHeaders(),body:JSON.stringify(Object.assign({},rec,{action:'save_opportunity',owner_operator_id:meId(),operator_id:meId()}))});
     document.getElementById('refresh')?.click();
   }catch(e){}
 }
@@ -211,8 +187,9 @@ function patchFetch(){
   const orig=window.fetch.bind(window);
   window.fetch=async function(input,init){
     const url=typeof input==='string'?input:(input&&input.url)||'';
+    const privateEndpoint=['/family-leads-admin','/family-incomplete-admin','/family-case-lifecycle-admin','/family-route-review-admin','/family-route-preview-admin','/family-interview-history-admin','/family-scenario-admin','/family-leads-manage','/ops-admin'].some(path=>url.includes(path));
     const isLeads=url.includes('/family-leads-admin'),isOps=url.includes('/ops-admin');
-    if((isLeads||isOps)&&init&&typeof init.body==='string'){
+    if(privateEndpoint&&init&&typeof init.body==='string'){
       try{
         const body=JSON.parse(init.body);
         const operator=meId();
@@ -253,21 +230,15 @@ patchFetch();
 
 function showSignIn(){clearMe();renderPill();pickerMode='signin';ensureAuthUI()}
 
-// #lock has no "hidden" class in the initial markup - it is visible from
-// first paint, before app.js's own async auto-login ping has had a chance
-// to resolve. So "lock is visible" cannot be trusted as "genuinely locked
-// out" until that ping has actually settled one way or the other:
-// app.js hides #lock on success, or its lock() clears
-// sessionStorage.aqoon_tracker_password on failure (removing an absent
-// "hidden" class is a no-op that never fires a MutationObserver, so this
-// first-load case has to be polled rather than observed).
+// #lock is visible from first paint. Wait for app.js's session check before
+// deciding whether to show the account form.
 function decideInitialAuthUI(){
-  if(!sessionStorage.getItem('aqoon_tracker_password')){showSignIn();return}
+  if(!sessionStorage.getItem('aqoon_auth_token')){showSignIn();return}
   let tries=0;
   const check=()=>{
     const appEl=document.getElementById('app');
     if(appEl&&!appEl.classList.contains('hidden'))return; // auto-login succeeded
-    if(!sessionStorage.getItem('aqoon_tracker_password')){showSignIn();return} // app.js's lock() ran: ping failed
+    if(!sessionStorage.getItem('aqoon_auth_token')){showSignIn();return} // app.js's lock() ran: ping failed
     if(tries++<25)setTimeout(check,120);else showSignIn(); // ~3s safety timeout
   };
   check();

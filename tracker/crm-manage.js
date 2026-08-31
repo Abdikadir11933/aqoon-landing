@@ -2,8 +2,7 @@
 const END='https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-leads-manage';
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
 let activeDelete=null;
-function pw(){return sessionStorage.getItem('aqoon_tracker_password')||''}
-async function api(body){const r=await fetch(END,{method:'POST',headers:{'Content-Type':'application/json','x-tracker-password':pw()},body:JSON.stringify(body),cache:'no-store'});let d={};try{d=await r.json()}catch{}if(!r.ok)throw Error(d.detail||d.error||'Request failed');return d}
+async function api(body){const r=await fetch(END,{method:'POST',headers:window.AqoonAuthHeaders(),body:JSON.stringify(body),cache:'no-store'});let d={};try{d=await r.json()}catch{}if(!r.ok)throw Error(d.detail||d.error||'Request failed');return d}
 function refresh(){const b=document.getElementById('refresh');if(b)b.click();else location.reload()}
 function toast(msg,bad=false){let t=document.getElementById('crmManageToast');if(!t){t=document.createElement('div');t.id='crmManageToast';t.className='crm-manage-toast';document.body.appendChild(t)}t.textContent=msg;t.classList.toggle('bad',bad);t.classList.add('show');clearTimeout(t._tm);t._tm=setTimeout(()=>t.classList.remove('show'),2600)}
 function ensureAddButton(){const header=document.querySelector('#crm .crm-header');if(!header||document.getElementById('crmAddLead'))return;const b=document.createElement('button');b.type='button';b.id='crmAddLead';b.className='crm-add-btn';b.setAttribute('aria-label','Add family or lead');b.innerHTML='<span>＋</span><b>Add family / lead</b>';header.appendChild(b);b.onclick=openAdd}

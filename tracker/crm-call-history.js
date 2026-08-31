@@ -2,8 +2,6 @@
 const END_CALL_LOG='https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-case-lifecycle-admin';
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
-function pw(){return sessionStorage.getItem('aqoon_tracker_password')||''}
-
 let callHistoryCache={};
 
 async function loadCallHistory(leadId){
@@ -16,7 +14,7 @@ async function loadCallHistory(leadId){
   try{
     const r=await fetch(END_CALL_LOG,{
       method:'POST',
-      headers:Object.assign({'Content-Type':'application/json','x-tracker-password':pw()},sessionStorage.getItem('aqoon_auth_token')?{Authorization:'Bearer '+sessionStorage.getItem('aqoon_auth_token')}:{}),
+      headers:window.AqoonAuthHeaders(),
       body:JSON.stringify({action:'get_call_history',lead_id:leadId}),
       cache:'no-store'
     });

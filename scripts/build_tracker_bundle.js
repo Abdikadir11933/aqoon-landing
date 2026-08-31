@@ -1,19 +1,13 @@
 #!/usr/bin/env node
 'use strict';
-// Regenerates tracker/bundle.css and tracker/bundle.js by concatenating the
-// tracker's individual source files, in the exact order they used to load
-// as separate <link>/<script> tags. Pure concatenation only - no minifying,
-// no reordering - so cascade order (CSS) and execution order (JS, all
-// `defer`) are identical to before. Every JS file here is either a
-// self-contained `(()=>{...})()` IIFE or (crm-queue-navigation.js only) a
-// single top-level `const`, so concatenating them introduces no scope
-// collisions; verified by hand before this script was written.
+// Regenerates tracker/bundle.css. Tracker JavaScript is intentionally loaded
+// as explicit, ordered deferred files in index.html so security-sensitive
+// source can be audited and deployed without a stale generated JS bundle.
 //
-// Run after editing ANY of the source files listed below:
+// Run after editing CSS files listed below:
 //   node scripts/build_tracker_bundle.js
-// tests/tracker-bundle.test.js fails if the checked-in bundle drifts from
-// what this script would produce, so a forgotten regenerate is caught by
-// the normal test run, not discovered as a silent production bug.
+// tests/tracker-bundle.test.js verifies the CSS bundle and the explicit
+// JavaScript loading order.
 
 const fs = require('fs');
 const path = require('path');
@@ -49,12 +43,11 @@ function buildBundles() {
   const cssHeader = '/* GENERATED FILE - do not edit directly. Edit the source .css files and\n' +
     '   run `node scripts/build_tracker_bundle.js` to regenerate.\n' +
     '   tests/tracker-bundle.test.js fails if this drifts from the sources. */\n\n';
-  const jsHeader = '// GENERATED FILE - do not edit directly. Edit the source .js files and\n' +
-    '// run `node scripts/build_tracker_bundle.js` to regenerate.\n' +
-    '// tests/tracker-bundle.test.js fails if this drifts from the sources.\n\n';
+  const jsHeader = '// Tracker JavaScript is loaded explicitly, in order, by tracker/index.html.\n' +
+    '// This file remains only for backwards-compatible caches and contains no app logic.\n';
   return {
     css: cssHeader + concat(CSS_FILES, '/*'),
-    js: jsHeader + concat(JS_FILES, '//')
+    js: jsHeader
   };
 }
 

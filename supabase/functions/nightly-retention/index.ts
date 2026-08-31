@@ -47,6 +47,19 @@ Deno.serve(async (_req) => {
     results.family_intake_error = err instanceof Error ? err.message : String(err);
   }
 
+  // Public form rate-limit keys are short-lived hashed network identifiers.
+  // Keep only the small window needed to stop bursts and retry storms.
+  try {
+    const { count, error } = await supabase
+      .from("family_intake_rate_limits")
+      .delete({ count: "exact" })
+      .lt("bucket_start", new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString());
+    if (error) throw error;
+    results.rate_limit_cleanup = { deleted: count || 0 };
+  } catch (err) {
+    results.rate_limit_error = err instanceof Error ? err.message : String(err);
+  }
+
   results.completed_at = new Date().toISOString();
   console.log("[AQOON] nightly-retention complete:", JSON.stringify(results));
 
@@ -55,4 +68,3 @@ Deno.serve(async (_req) => {
     headers: { "Content-Type": "application/json", "Cache-Control": "no-store" },
   });
 });
-

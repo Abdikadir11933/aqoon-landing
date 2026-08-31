@@ -1,16 +1,16 @@
 (()=>{'use strict';
 const END='https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-leads-admin';
-let password='',leads=[],partials=[],interviews=[],analytics={},programs=[],activeLead=null,answers={},activeQuestions=[],loading=null;
+let sessionReady=false,leads=[],partials=[],interviews=[],analytics={},programs=[],activeLead=null,answers={},activeQuestions=[],loading=null;
 window.AqoonInterview={activeLead:null,currentAnswers:{},announceSaved:detail=>window.dispatchEvent(new CustomEvent('aqoon:interview-saved',{detail}))};
 window.AqoonApp={get leads(){return leads},get partials(){return partials},get interviews(){return interviews},get programs(){return programs},updateLead:(id,patch)=>updateLead(id,patch)};
 const $=id=>document.getElementById(id);
 const esc=v=>String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
-function api(body){return fetch(END,{method:'POST',headers:{'Content-Type':'application/json','x-tracker-password':password},body:JSON.stringify(body)}).then(async r=>{let d={};try{d=await r.json()}catch{}if(r.status===401){lock();throw Error('Password expired or incorrect')}if(!r.ok)throw Error(d.detail||d.error||'Request failed');return d})}
+function api(body){const token=sessionStorage.getItem('aqoon_auth_token')||'';return fetch(END,{method:'POST',headers:Object.assign({'Content-Type':'application/json'},token?{Authorization:'Bearer '+token}:{}),body:JSON.stringify(body)}).then(async r=>{let d={};try{d=await r.json()}catch{}if(r.status===401){lock();throw Error('Sign in expired. Please sign in again.')}if(!r.ok)throw Error(d.detail||d.error||'Request failed');return d})}
 function fmt(v){if(!v)return'—';try{return new Intl.DateTimeFormat('fi-FI',{dateStyle:'short',timeStyle:'short'}).format(new Date(v))}catch{return v}}
 function fmtHour(v){try{return new Intl.DateTimeFormat('fi-FI',{hour:'2-digit'}).format(new Date(v))}catch{return''}}
 function fmtDay(v){try{return new Intl.DateTimeFormat('fi-FI',{day:'numeric',month:'short'}).format(new Date(v))}catch{return''}}
 function err(m){$('err').textContent=m||'';$('err').classList.toggle('hidden',!m)}
-function lock(){sessionStorage.removeItem('aqoon_tracker_password');password='';$('app').classList.add('hidden');$('lock').classList.remove('hidden')}
+function lock(){sessionStorage.removeItem('aqoon_auth_token');sessionStorage.removeItem('aqoon_auth_refresh_token');sessionReady=false;$('app').classList.add('hidden');$('lock').classList.remove('hidden')}
 function tab(n){document.querySelectorAll('.view').forEach(x=>x.classList.add('hidden'));$(n).classList.remove('hidden');document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.tab===n));window.scrollTo(0,0)}
 function load(){if(loading)return loading;err('');loading=Promise.all([api({action:'list'}),api({action:'analytics',days:Number($('days').value)}),api({action:'programs'})]).then(([l,a,p])=>{leads=l.leads||[];partials=l.incomplete_contacts||[];interviews=l.interviews||[];analytics=a;programs=p.programs||[];renderAll();window.dispatchEvent(new Event('dataUpdated'))}).catch(e=>err(e.message)).finally(()=>loading=null);return loading}
 function renderAll(){renderPulse();renderDashboard();renderAnalytics();correctValidationNote()}
@@ -53,9 +53,8 @@ function saveInterview(){if(!activeLead)return;const notes=$('iNotes').value.tri
 window.saveInterview=saveInterview;
 document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>tab(b.dataset.tab));
 document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{tab(b.dataset.go)});
-$('login').onsubmit=e=>{e.preventDefault();password=$('password').value;api({action:'ping'}).then(()=>{sessionStorage.setItem('aqoon_tracker_password',password);$('lock').classList.add('hidden');$('app').classList.remove('hidden');load()}).catch(()=>$('loginErr').textContent='Password not accepted.')};
 $('refresh').onclick=load;$('logout').onclick=lock;$('closeDrawer').onclick=()=>$('drawer').classList.add('hidden');$('saveInterview').onclick=saveInterview;$('copyPrompt').onclick=()=>{navigator.clipboard?.writeText($('promptBox').textContent);$('copyPrompt').textContent='Copied ✓'};
 $('days').onchange=()=>api({action:'analytics',days:Number($('days').value)}).then(a=>{analytics=a;renderDashboard();renderAnalytics();correctValidationNote()});
-const saved=sessionStorage.getItem('aqoon_tracker_password');if(saved){password=saved;api({action:'ping'}).then(()=>{$('lock').classList.add('hidden');$('app').classList.remove('hidden');load()}).catch(lock)}else $('password').focus();
-setInterval(()=>{if(password&&!document.hidden)load()},60000);document.addEventListener('visibilitychange',()=>{if(password&&!document.hidden)load()});
+const saved=sessionStorage.getItem('aqoon_auth_token');if(saved){sessionReady=true;api({action:'ping'}).then(()=>{$('lock').classList.add('hidden');$('app').classList.remove('hidden');load()}).catch(lock)}
+setInterval(()=>{if(sessionReady&&!document.hidden)load()},60000);document.addEventListener('visibilitychange',()=>{if(sessionReady&&!document.hidden)load()});
 })();

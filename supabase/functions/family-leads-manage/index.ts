@@ -1,15 +1,14 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
+import { requireOperator } from "../_shared/operator-auth.ts";
 
-const PASSWORD_HASH="67541863bd267f78446b60b489625bdd452dca1bd003fa1e620dd98de2fb6c6d";
 const ORIGIN="https://aqoon.live";
 const H=()=>({
   "Access-Control-Allow-Origin":ORIGIN,
-  "Access-Control-Allow-Headers":"content-type, x-tracker-password, authorization",
+  "Access-Control-Allow-Headers":"content-type, authorization",
   "Access-Control-Allow-Methods":"POST, OPTIONS",
   "Content-Type":"application/json; charset=utf-8",
   "Cache-Control":"no-store"
 });
-async function sha(v:string){const d=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(v));return Array.from(new Uint8Array(d)).map(b=>b.toString(16).padStart(2,"0")).join("");}
 function txt(v:unknown,max=4000){return typeof v==="string"?v.trim().slice(0,max):"";}
 function validPhone(v:string){return v.replace(/\D/g,"").length>=6;}
 
@@ -20,21 +19,7 @@ Deno.serve(async(req)=>{
   const url=Deno.env.get("SUPABASE_URL"),key=Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
   if(!url||!key)return new Response(JSON.stringify({error:"server_config"}),{status:500,headers:h});
   const db=createClient(url,key,{auth:{persistSession:false,autoRefreshToken:false}});
-  const p=req.headers.get("x-tracker-password")||"";
-  const passwordOk=!!p&&(await sha(p))===PASSWORD_HASH;
-  let jwtOperatorId:string|null=null;
-  if(!passwordOk){
-    const authHeader=req.headers.get("authorization")||"";
-    const m=authHeader.match(/^Bearer\s+(.+)$/i);
-    if(m){
-      const{data,error}=await db.auth.getUser(m[1]);
-      if(!error&&data?.user){
-        const{data:op}=await db.from("operators").select("id").eq("auth_user_id",data.user.id).maybeSingle();
-        if(op)jwtOperatorId=op.id;
-      }
-    }
-  }
-  if(!passwordOk&&!jwtOperatorId)return new Response(JSON.stringify({error:"unauthorized"}),{status:401,headers:h});
+  if(!await requireOperator(req,db))return new Response(JSON.stringify({error:"unauthorized"}),{status:401,headers:h});
   let b:any={};try{b=await req.json()}catch{}
   const action=String(b.action||"");
 

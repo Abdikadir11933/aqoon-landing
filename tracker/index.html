@@ -13,7 +13,7 @@
 </head>
 <body>
 <section class="lock" id="lock">
-  <div class="lockbox"><div class="mark">A</div><h1>AQOON Family Desk</h1><p class="muted">Private workspace for family follow-up and interviews.</p><form id="login"><input id="password" type="password" autocomplete="current-password" placeholder="Password" aria-label="Tracker password" required><button class="btn primary" style="width:100%;margin-top:11px">Unlock</button><div id="loginErr" style="color:var(--r);margin-top:8px"></div></form></div>
+  <div class="lockbox"><div class="mark">A</div><h1>AQOON Family Desk</h1><p class="muted">Private workspace for family follow-up and interviews.</p></div>
 </section>
 
 <section id="app" class="hidden">
@@ -30,7 +30,30 @@
 </main></section>
 <section id="drawer" class="drawer hidden"><div class="drawer-card"><div class="drawer-top"><div><h2 id="dName">First interview</h2><small class="muted" id="dMeta"></small></div><button class="btn secondary" id="closeDrawer">Close</button></div><div class="interview-capture"><label for="iNotes">Conversation notes</label><p>Write or dictate naturally. AQOON keeps the original words and can suggest structured answers for you to approve.</p><textarea id="iNotes" rows="5" placeholder="Example: She has not applied yet. She is thinking about private daycare but wants the price explained first…"></textarea><div class="capture-actions"><small id="draftStatus">Draft saves on this device</small><button class="btn secondary" id="structureNotes" type="button">Suggest answers</button></div><div id="noteSuggestions" class="note-suggestions hidden"></div></div><div id="questions"></div><div class="question"><label for="iRelevantUpdatesOk">Okay to send relevant updates about services/programmes?</label><select id="iRelevantUpdatesOk"><option value="">Not asked</option><option value="Yes">Yes</option><option value="No">No</option></select></div><div class="question"><label for="iOutcomeFollowupOk">Okay for AQOON to check back later what happened?</label><select id="iOutcomeFollowupOk"><option value="">Not asked</option><option value="Yes">Yes</option><option value="No">No</option></select></div><div class="question"><label for="iUrgency">Urgency</label><select id="iUrgency"><option value="normal">Normal</option><option value="high">High</option><option value="urgent">Urgent</option><option value="low">Low</option></select></div><div class="question"><label for="iNextAction">One concrete next action</label><input id="iNextAction" type="text" placeholder="Call municipality together, send link, confirm start…"></div><div class="question"><label for="iFollow">Next call / meeting</label><input id="iFollow" type="datetime-local"></div><div class="interview-actions"><button class="btn primary" id="saveInterview" style="width:100%;padding:14px">Save interview & build deep-research brief</button><div id="promptWrap" class="hidden"><div class="promptbox" id="promptBox"></div><button class="btn teal" id="copyPrompt" style="width:100%;margin-top:8px">Copy complete research brief</button></div></div></div></section>
 <section id="opsDialog" class="ops-modal hidden" aria-modal="true" role="dialog"><form id="opsForm" class="ops-modal-card"><div class="drawer-top"><div><h2 id="opsDialogTitle">New sales lead</h2><small id="opsDialogHint" class="muted">Keep the next action concrete.</small></div><button class="btn secondary" id="closeOpsDialog" type="button">Close</button></div><div id="opsFormBody"></div><div class="ops-form-actions"><button class="btn danger-btn hidden" id="deleteOpsRecord" type="button">Delete</button><button class="btn primary" id="saveOpsRecord" type="submit">Save</button></div></form></section>
-<script src="/tracker/bundle.js?v=1" defer></script>
+<script src="/tracker/operator-identity.js?v=2" defer></script>
+<script src="/tracker/crm-call-history.js?v=2" defer></script>
+<script src="/tracker/multineed-adapter.js?v=2" defer></script>
+<script src="/tracker/app.js?v=2" defer></script>
+<script src="/tracker/visual-v3.js?v=2" defer></script>
+<script src="/tracker/crm-reactive.js?v=2" defer></script>
+<script src="/tracker/interview-match.js?v=2" defer></script>
+<script src="/tracker/interview-match-preview.js?v=2" defer></script>
+<script src="/tracker/interview-form-enhancements.js?v=2" defer></script>
+<script src="/tracker/interview-smart-notes.js?v=2" defer></script>
+<script src="/tracker/interview-answers-restore.js?v=2" defer></script>
+<script src="/tracker/case-lifecycle.js?v=2" defer></script>
+<script src="/tracker/scenario-learning.js?v=2" defer></script>
+<script src="/tracker/interview-context.js?v=2" defer></script>
+<script src="/tracker/interview-follow-up-recap.js?v=2" defer></script>
+<script src="/tracker/interview-next-steps.js?v=2" defer></script>
+<script src="/tracker/universal-proof-questions.js?v=2" defer></script>
+<script src="/tracker/incomplete-intake.js?v=2" defer></script>
+<script src="/tracker/human-labels.js?v=2" defer></script>
+<script src="/tracker/analytics-mobile-v2.js?v=2" defer></script>
+<script src="/tracker/crm-manage.js?v=2" defer></script>
+<script src="/tracker/operations-system.js?v=2" defer></script>
+<script src="/tracker/call-outcomes.js?v=2" defer></script>
+<script src="/tracker/crm-queue-navigation.js?v=2" defer></script>
 <script src="/tracker/interview-ux-v4.js?v=1" defer></script>
 <script src="/tracker/followup-workflow-v2.js?v=1" defer></script>
 <script src="/tracker/followup-panel-v2.js?v=1" defer></script>

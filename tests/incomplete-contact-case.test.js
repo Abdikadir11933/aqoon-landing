@@ -64,7 +64,7 @@ test('dialing an incomplete intake never creates a case or advances the queue by
   assert.match(callIncompleteBlock, /AqoonCallOutcomes\?\.callLead\(lead\?\.id/);
 });
 
-test('incomplete-intake requests carry the operator auth token, not just the shared password', () => {
+test('incomplete-intake requests carry the operator auth token', () => {
   assert.match(incompleteIntake, /aqoon_auth_token/);
   assert.match(incompleteIntake, /headers\.Authorization\s*=\s*'Bearer '\s*\+\s*token/);
 });

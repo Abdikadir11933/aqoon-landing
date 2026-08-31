@@ -31,15 +31,9 @@ if(!global||typeof document==='undefined')return;
 
 const $=id=>document.getElementById(id);
 let pending=null,saving=false,pendingOutcome=null;
-function password(){return sessionStorage.getItem('aqoon_tracker_password')||''}
 function authToken(){return sessionStorage.getItem('aqoon_auth_token')||''}
 async function api(body,kind='lead'){
-  const headers={'Content-Type':'application/json','x-tracker-password':password()},token=authToken();
-  // family-leads-admin gets the operator's JWT from a global fetch patch in
-  // operator-identity.js; family-incomplete-admin isn't covered by that
-  // patch (same gap incomplete-intake.js already works around), so it's
-  // attached directly here for the intake target.
-  if(kind==='intake'&&token)headers.Authorization='Bearer '+token;
+  const headers=window.AqoonAuthHeaders();
   const response=await fetch(ENDPOINTS[kind]||ENDPOINTS.lead,{method:'POST',headers,body:JSON.stringify(body),cache:'no-store'});
   let data={};try{data=await response.json()}catch{}
   if(!response.ok)throw Error(data.detail||data.error||'Could not save call outcome');

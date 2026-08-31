@@ -15,8 +15,7 @@ function renderDemand(){
   const byNeedCity=Object.fromEntries((d.by_need_city||[]).map(x=>[`${x.need} · ${x.city}`,x.count]));
   $("#demandByNeedCity").innerHTML=bars(byNeedCity);
 }
-function password(){return sessionStorage.getItem("aqoon_tracker_password")||""}
-async function api(body){const r=await fetch(END,{method:"POST",headers:{"Content-Type":"application/json","x-tracker-password":password()},body:JSON.stringify(body),cache:"no-store"});const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.detail||d.error||"Operations request failed");return d}
+async function api(body){const r=await fetch(END,{method:"POST",headers:window.AqoonAuthHeaders(),body:JSON.stringify(body),cache:"no-store"});const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.detail||d.error||"Operations request failed");return d}
 function fail(e){const box=$("#err");if(box){box.textContent=e.message||String(e);box.classList.remove("hidden")}else alert(e.message||e)}
 function dt(v){if(!v)return"";const d=new Date(v);return Number.isNaN(d.getTime())?"":new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Helsinki",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}).format(d)}
 function local(v){if(!v)return"";const d=new Date(v);return Number.isNaN(d.getTime())?"":new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,16)}

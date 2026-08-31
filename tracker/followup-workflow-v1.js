@@ -14,9 +14,8 @@ const style=document.createElement('style');style.textContent=`
 .fu-note{background:#f7f4ee;border-radius:10px;padding:9px;font-size:10px;color:var(--m);margin-top:8px}.fu-input{width:100%;border:1px solid var(--l);border-radius:10px;padding:10px;font:inherit;font-size:11px;margin-top:8px;box-sizing:border-box}.fu-textarea{min-height:84px;resize:vertical}.fu-status{font-size:10px;color:var(--td);font-weight:700;margin-top:8px}.fu-old{margin-top:9px}.fu-old summary{font-size:10px;color:var(--m);cursor:pointer}.fu-error{font-size:10px;color:#92372f;margin-top:8px}
 `;
 document.head.appendChild(style);
-function password(){return sessionStorage.getItem('aqoon_tracker_password')||''}
 function authToken(){return sessionStorage.getItem('aqoon_auth_token')||''}
-async function api(url,body){const headers={'Content-Type':'application/json','x-tracker-password':password()},token=authToken();if(token)headers.Authorization='Bearer '+token;const r=await fetch(url,{method:'POST',headers,body:JSON.stringify(body),cache:'no-store'});let d={};try{d=await r.json()}catch{}if(!r.ok)throw Error(d.detail||d.error||'Request failed');return d}
+async function api(url,body){const r=await fetch(url,{method:'POST',headers:window.AqoonAuthHeaders(),body:JSON.stringify(body),cache:'no-store'});let d={};try{d=await r.json()}catch{}if(!r.ok)throw Error(d.detail||d.error||'Request failed');return d}
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
 function answers(){const out={};document.querySelectorAll('#questions input[data-key],#questions textarea[data-key]').forEach(x=>{if(x.value?.trim())out[x.dataset.key]=x.value.trim()});document.querySelectorAll('#questions .choice-row[data-key]').forEach(row=>{const vals=[...row.querySelectorAll('.choice.on')].map(x=>x.dataset.value);if(vals.length)out[row.dataset.key]=row.classList.contains('match-multi')?vals:vals[0]});return out}
 function routeTitle(key){return String(key||'').replace(/^route\./,'').split('.').map(x=>x.replaceAll('-',' ')).join(' · ')}

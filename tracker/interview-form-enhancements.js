@@ -105,10 +105,10 @@ function ensureEvidenceCard(){
 }
 async function loadEvidence(force=false){
   const card=ensureEvidenceCard(),body=document.getElementById('interviewEvidenceBody');if(!card||!body)return;
-  if(!force&&evidenceLoadedAt&&Date.now()-evidenceLoadedAt<30000)return;const pw=sessionStorage.getItem('aqoon_tracker_password')||'';if(!pw)return;
+  if(!force&&evidenceLoadedAt&&Date.now()-evidenceLoadedAt<30000)return;if(!sessionStorage.getItem('aqoon_auth_token'))return;
   body.innerHTML='<p class="sub">Loading interview evidence…</p>';
   try{
-    const r=await fetch(ADMIN,{method:'POST',headers:{'Content-Type':'application/json','x-tracker-password':pw},body:JSON.stringify({action:'list'}),cache:'no-store'}),d=await r.json();if(!r.ok)throw Error(d.detail||d.error||'Request failed');
+    const r=await fetch(ADMIN,{method:'POST',headers:window.AqoonAuthHeaders(),body:JSON.stringify({action:'list'}),cache:'no-store'}),d=await r.json();if(!r.ok)throw Error(d.detail||d.error||'Request failed');
     const ints=latestInterviews(d.interviews||[]),leads=d.leads||[];
     const hobby=ints.filter(i=>i.answers&&(i.answers.harrastusten_vantaa_awareness!==undefined||i.answers.hobby_registration_help!==undefined||i.answers.hobby_outcome_stage!==undefined));
     const daycare=ints.filter(i=>i.answers&&(i.answers.private_daycare_awareness!==undefined||i.answers.private_daycare_consider!==undefined||i.answers.daycare_action_stage!==undefined));
