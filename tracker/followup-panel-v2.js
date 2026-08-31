@@ -20,3 +20,4 @@ const obs=new MutationObserver(()=>setTimeout(apply,0));function start(){const p
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
 (()=>{if(document.querySelector('script[data-followup-confirm]'))return;const s=document.createElement('script');s.src='/tracker/followup-plan-confirm-v1.js?v=1';s.defer=true;s.dataset.followupConfirm='1';document.head.appendChild(s)})();
+(()=>{if(document.querySelector('script[data-phase-controls]'))return;const s=document.createElement('script');s.src='/tracker/phase-controls-v1.js?v=1';s.defer=true;s.dataset.phaseControls='1';document.head.appendChild(s)})();
