@@ -23,7 +23,7 @@ Somalinkielinen yhteisö on AQOONin nykyinen vahvin aloitusmarkkina, ei mallin l
 7. Varmenna toteutunut hakemus, aloitus, asiakkuus tai muu sovittu lopputulos sekä tarvittaessa pysyvyys.
 8. Muuta toistuvat havainnot henkilötiedottomaksi ja varmennetuksi oppimiseksi, joka parantaa seuraavaa sisältöä ja polkua.
 
-## Kolme ostettavaa lopputulosta
+## Kolme ostettavaa kokonaisuutta
 
 ### 1. AQOON Outcomes
 
@@ -47,11 +47,11 @@ Ostajalle ei myydä perheiden raakaa yhteystietokantaa. Ostettavia asioita ovat 
 
 Pilke-vaihe 1 osoitti vähintään yhden kokonaisen ketjun sisällöstä yhteydenottoon, hakemuksiin ja lapsen aloitukseen. Pilkkeen 28.8.2026 palautekeskustelu vahvisti, että suurin osa tunnistetuista ongelmista oli heille uskottavia ja jo osittain aavistettuja; pilotin arvo oli epäilyn todentaminen ja putoamiskohtien näkyväksi tekeminen. Jatkon ratkaiseva kysymys ei ole enää ”onko ongelma olemassa?” vaan ”mitkä kolme asiaa tehdään seuraavaksi ja kuka omistaa koko polun?”.
 
-Pilke-työssä seuraavat kolme kokonaisuutta muodostavat konkreettisen jatkon:
+Pilke-työssä sama jatko kuvataan nykyisillä kolmella tarjouksella:
 
-1. **Placement Engine:** jatkuva sisältö, kontaktit, kvalifiointi, hakemusten saattaminen ja todennettu aloitus.
-2. **Conversion Kit:** yksikkökohtainen saatavuus ja nimetty yhteys, kaksihakemuksiset kaupunkireitit, hinta- ja tukimyytin vastaukset, omankielinen onboarding sekä seuranta odotuksen aikana.
-3. **Handoff Team:** Mustafen kanssa toteutettava käytännön koulutus, joka antaa henkilöstölle ja johdolle valmiit vastaukset, yhteisen luovutustavan ja ymmärryksen todellisista putoamiskohdista.
+1. **AQOON Outcomes:** jatkuva tavoittaminen, kontaktit, kvalifiointi, hakemusten saattaminen ja todennettu aloitus. Tämä on perusmalli, jos tavoitteena on tuoda perheitä palveluun ja nähdä tulos.
+2. **AQOON Journey:** Outcomes-työn yhteydessä tarvittaessa aktivoitava lisäkokonaisuus. Se korjaa todetut putoamiskohdat, kuten viestit, hakemukset, hinta- ja tukikysymykset, omankieliset materiaalit, onboardingin ja odotusajan seurannan.
+3. **AQOON Enablement:** erillinen Mustafen kanssa toteutettava käytännön koulutus, joka antaa henkilöstölle ja johdolle valmiit vastaukset, yhteisen luovutustavan ja ymmärryksen todellisista putoamiskohdista.
 
 ## Mittaaminen
 
