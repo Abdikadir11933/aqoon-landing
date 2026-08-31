@@ -1,0 +1,30 @@
+(()=>{'use strict';
+const END='https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-case-lifecycle-admin';
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+const style=document.createElement('style');style.textContent=`
+.fu-confirm-card{border:1px solid #cfe5e1;background:#f7fcfb;border-radius:14px;padding:13px;margin:8px 0}.fu-confirm-card .fu-confirm-label{font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:var(--td);font-weight:800}.fu-confirm-card h5{font-size:14px;margin:4px 0 6px;color:var(--n)}.fu-confirm-card p{font-size:10px;line-height:1.45;color:var(--m);margin:3px 0}.fu-confirm-actions{display:grid;grid-template-columns:1fr;gap:7px;margin-top:10px}.fu-confirm-edit{margin-top:9px;padding-top:9px;border-top:1px solid #dcebe8}.fu-confirm-edit label{display:block;font-size:9px;font-weight:800;color:var(--td);margin-top:7px}.fu-confirm-edit input{width:100%;box-sizing:border-box;border:1px solid var(--l);border-radius:9px;padding:9px;font:inherit;font-size:10px;margin-top:4px}.fu-confirm-note{font-size:9px;color:var(--m);margin-top:6px}
+`;document.head.appendChild(style);
+function headers(){const h={'Content-Type':'application/json','x-tracker-password':sessionStorage.getItem('aqoon_tracker_password')||''};const t=sessionStorage.getItem('aqoon_auth_token')||'';if(t)h.Authorization='Bearer '+t;return h}
+async function api(body){const r=await fetch(END,{method:'POST',headers:headers(),body:JSON.stringify(body),cache:'no-store'});let d={};try{d=await r.json()}catch{}if(!r.ok)throw Error(d.detail||d.error||'Request failed');return d}
+function selectedLeadId(){return window.CrmQueues?.selectedFamily?.lead?.id||document.querySelector('#drawer')?.dataset?.leadId||''}
+async function activePlan(leadId){const d=await api({action:'list',lead_id:leadId});return (d.plans||[]).find(p=>p.plan_status==='options_ready')||null}
+function findStep2(flow){const kicker=flow.querySelector('.followup-kicker');return kicker&&/step 2 of 5/i.test(kicker.textContent||'')}
+function nativeButtons(flow){return {accept:flow.querySelector('#fuProceed'),back:flow.querySelector('#fuBack')}}
+async function enhance(flow){if(!flow||flow.dataset.confirmEnhanced==='1'||!findStep2(flow))return;flow.dataset.confirmEnhanced='1';const leadId=selectedLeadId();if(!leadId)return;
+ let plan=null;try{plan=await activePlan(leadId)}catch(e){flow.dataset.confirmEnhanced='';return}if(!plan)return;
+ const {accept,back}=nativeButtons(flow);if(!accept||!back){flow.dataset.confirmEnhanced='';return}
+ const body=flow.querySelector('.followup-body');if(!body)return;
+ const original=[...body.children];original.forEach(el=>{if(!el.classList.contains('fu-error')&&!el.classList.contains('fu-details'))el.style.display='none'});
+ const card=document.createElement('section');card.className='fu-confirm-card';card.innerHTML=`<div class="fu-confirm-label">Plan ready</div><h5>${esc(plan.title||'Case plan')}</h5><p><strong>First action:</strong> ${esc(plan.next_action||'Add the first concrete action before accepting.')}</p><p class="fu-confirm-note">Check this once. Then accept it and move to execution.</p><div class="fu-confirm-actions"><button class="fu-btn" type="button" data-confirm="accept">Accept plan</button><button class="fu-btn secondary" type="button" data-confirm="edit">Edit plan</button><button class="fu-btn ghost" type="button" data-confirm="back">Choose another route</button></div><div class="fu-confirm-edit" hidden><label>Plan</label><input data-confirm-field="title" value="${esc(plan.title||'')}"><label>First concrete action</label><input data-confirm-field="next" value="${esc(plan.next_action||'')}"><div class="fu-confirm-actions"><button class="fu-btn" type="button" data-confirm="save">Save changes</button><button class="fu-btn ghost" type="button" data-confirm="cancel">Cancel</button></div><div class="fu-error" data-confirm-error></div></div>`;
+ body.insertBefore(card,body.firstChild);
+ const edit=card.querySelector('.fu-confirm-edit'),err=card.querySelector('[data-confirm-error]');
+ card.querySelector('[data-confirm="accept"]').onclick=()=>accept.click();
+ card.querySelector('[data-confirm="back"]').onclick=()=>back.click();
+ card.querySelector('[data-confirm="edit"]').onclick=()=>{edit.hidden=false;card.querySelector('[data-confirm="edit"]').style.display='none';};
+ card.querySelector('[data-confirm="cancel"]').onclick=()=>{edit.hidden=true;card.querySelector('[data-confirm="edit"]').style.display='';err.textContent='';};
+ card.querySelector('[data-confirm="save"]').onclick=async e=>{const btn=e.currentTarget,title=card.querySelector('[data-confirm-field="title"]').value.trim(),next=card.querySelector('[data-confirm-field="next"]').value.trim();if(!title||!next){err.textContent='Add both the plan and first concrete action.';return}btn.disabled=true;btn.textContent='Saving…';err.textContent='';try{await api({action:'save_plan',lead_id:leadId,id:plan.id,title,official_decision_maker:plan.official_decision_maker,selected_option:plan.selected_option||{},plan_status:plan.plan_status,next_action:next,next_follow_up_at:plan.next_follow_up_at});card.querySelector('h5').textContent=title;card.querySelector('p').innerHTML='<strong>First action:</strong> '+esc(next);edit.hidden=true;card.querySelector('[data-confirm="edit"]').style.display='';window.dispatchEvent(new Event('dataUpdated'));}catch(ex){err.textContent=ex.message}finally{btn.disabled=false;btn.textContent='Save changes'}};
+}
+const obs=new MutationObserver(ms=>{for(const m of ms){const flow=(m.target.closest&&m.target.closest('#followupFlow'))||document.getElementById('followupFlow');if(flow){flow.dataset.confirmEnhanced='';setTimeout(()=>enhance(flow),0);break}}});
+function start(){const drawer=document.getElementById('drawer');if(drawer)obs.observe(drawer,{childList:true,subtree:true});setTimeout(()=>enhance(document.getElementById('followupFlow')),0)}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
+})();
