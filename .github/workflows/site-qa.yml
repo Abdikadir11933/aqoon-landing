@@ -35,6 +35,8 @@ jobs:
         run: node --check tracker/multineed-adapter.js && node --check tracker/interview-match.js && node --check tracker/interview-match-preview.js && node --check tracker/scenario-learning.js && node --check tracker/interview-form-enhancements.js && node --check tracker/interview-context.js && node --check tracker/crm-call-history.js && node --check tracker/crm-queue-navigation.js
       - name: Check tracker evidence, CRM management and identity syntax
         run: node --check tracker/universal-proof-questions.js && node --check tracker/human-labels.js && node --check tracker/analytics-mobile-v2.js && node --check tracker/call-outcomes.js && node --check tracker/crm-manage.js && node --check tracker/operator-identity.js && node --check tracker/case-lifecycle.js && node --check tracker/interview-answers-restore.js
+      - name: Check active interview and follow-up workflow layers
+        run: node --check tracker/interview-ux-v4.js && node --check tracker/followup-workflow-v2.js && node --check tracker/followup-panel-v2.js && node --check tracker/followup-plan-confirm-v1.js && node --check tracker/phase-management-v1.js
       - name: Check public site JavaScript syntax
         run: node --check assets/main.js && node --check assets/site.js && node --check caawi/app.js
       - name: Run caawi regression tests
