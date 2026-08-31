@@ -13,10 +13,11 @@ const TRACKER = path.join(ROOT, 'tracker');
 const expected = new Set([
   'family_call_log', 'family_case_events', 'family_case_interactions',
   'family_case_plans', 'family_funnel_events', 'family_future_opportunities',
-  'family_intake_contacts', 'family_interview_revisions', 'family_interviews',
-  'family_leads', 'family_match_runs', 'family_scenario_research',
-  'family_scenarios', 'knowledge_routes', 'knowledge_sources', 'operators',
-  'ops_events', 'partner_programs', 'sales_activities', 'sales_opportunities'
+  'family_intake_contacts', 'family_intake_rate_limits',
+  'family_interview_revisions', 'family_interviews', 'family_leads',
+  'family_match_runs', 'family_scenario_research', 'family_scenarios',
+  'knowledge_routes', 'knowledge_sources', 'operators', 'ops_events',
+  'partner_programs', 'sales_activities', 'sales_opportunities'
 ]);
 const seen = new Map();
 
