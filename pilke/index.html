@@ -5,9 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light only">
 <title>Ilmainen apu päiväkotipaikan hakuun · AQOON</title>
-<meta name="description" content="Asutko Vantaalla ja sinulla on 2–6-vuotias lapsi? Autan somaliksi päiväkotipaikan hakemisessa. Sinulle ilmaista, Pilke maksaa minulle.">
+<link rel="canonical" href="https://aqoon.live/pilke">
+<meta name="description" content="Asutko Vantaalla ja sinulla on 2–6-vuotias lapsi? Autan somaliksi päiväkotipaikan hakemisessa. Pohjantähden asiakasmaksu on 0–335 €/kk, ja tarkka maksu varmistetaan perheen tilanteen mukaan.">
 <meta property="og:title" content="Päiväkotipaikka Vantaalla · autan somaliksi, sinulle ilmaista">
-<meta property="og:description" content="Selitän, tulkkaan ja täytetään hakemukset yhdessä. Useimmille perheille päiväkoti maksaa 0 €/kk palvelusetelillä.">
+<meta property="og:description" content="Selitän hinnan, palvelusetelin ja hakemukset somaliksi. Pohjantähden asiakasmaksu on 0–335 €/kk, ja tarkka maksu varmistetaan perheen tilanteen mukaan.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -149,14 +150,14 @@
     <h3 class="big">Muutama asia, jota moni ei tiedä</h3>
 
     <div class="fact">
-      <div class="n">0 €<span>/kk</span></div>
-      <p><b>Yksityinen päiväkoti ei ole kallis.</b> Palvelusetelillä se maksaa saman kuin kunnan päiväkoti. Vantaalla yli puolet lapsista saa päiväkodin kokonaan maksutta, ja Pohjantähti ei peri mitään lisämaksua.</p>
-      <p style="margin-top:10px;"><b>Palveluseteli tarkoittaa:</b> kaupunki maksaa suurimman osan päiväkodista puolestasi. Autan sinua hakemaan sen.</p>
+      <div class="n">0–335 €<span>/kk</span></div>
+      <p><b>Yksityinen päiväkoti ei automaattisesti maksa enemmän.</b> Pohjantähden asiakasmaksu on 0–335 €/kk. Tarkka maksu riippuu palvelusetelin arvosta, perheen koosta, tuloista ja lapsen hoitoajasta.</p>
+      <p style="margin-top:10px;"><b>Palveluseteli tarkoittaa:</b> kaupunki korvaa osan yksityisen päiväkodin kustannuksista. Vantaan mukaan perheen maksu voi olla enintään 30 €/kk kunnallista varhaiskasvatusta suurempi. Tarkistamme oman tilanteesi ennen kuin päätät.</p>
     </div>
 
     <div class="fact">
       <div class="n">Tukesi<span>.</span></div>
-      <p><b>Vain sen lapsen kotihoidon tuki loppuu, joka aloittaa päiväkodissa.</b> Muut tukesi pysyvät ennallaan. Jos olet epävarma, käymme sen yhdessä läpi ennen kuin mitään tapahtuu.</p>
+      <p><b>Palveluseteli vaikuttaa siihen, mitä tukia voi saada samanaikaisesti.</b> Vantaan mukaan palvelusetelin kanssa ei voi saada lapsen hoidon järjestämiseen kotihoidon tukea tai yksityisen hoidon tukea. Käymme oman tilanteesi ja ajantasaiset ehdot yhdessä läpi ennen kuin päätät.</p>
     </div>
 
     <div class="fact">
@@ -176,7 +177,7 @@
       <div class="steps" style="margin-top:16px;">
         <div class="step"><div class="no">1</div><p>Jätät nimen ja numeron alla.</p></div>
         <div class="step"><div class="no">2</div><p>Laitan sinulle viestin tai soitan. Puhutaan somaliksi tai suomeksi, miten haluat.</p></div>
-        <div class="step"><div class="no">3</div><p>Selitän hinnat, tuet ja vastaan kaikkiin kysymyksiin. Vain kotihoidon tuki loppuu siitä lapsesta joka aloittaa, muut tuet eivät muutu.</p></div>
+        <div class="step"><div class="no">3</div><p>Selitän hinnan, palvelusetelin ja tukien vaikutukset sekä vastaan kysymyksiin. Tarkka maksu ja tukien ehdot varmistetaan aina perheen oman tilanteen mukaan.</p></div>
         <div class="step"><div class="no">4</div><p>Jos haluatte paikan, täytetään hakemukset yhdessä, istun vieressäsi ja tulkkaan joka kohdan.</p></div>
       </div>
       <p style="margin-top:16px;font-size:15px;"><b>Hakemuksia on kaksi:</b> yksi päiväkotiin ja yksi palvelusetelille. Et tee niitä yksin. Istun vieressäsi ja täytämme molemmat yhdessä, alusta loppuun.</p>
@@ -246,7 +247,7 @@
           <label for="puh">Puhelinnumero (WhatsApp)</label>
           <input type="tel" id="puh" placeholder="+358..." autocomplete="tel">
         </div>
-        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" style="display:none;position:absolute;left:-9999px;">
+        <input type="hidden" id="website" name="website" autocomplete="off">
         <div class="err" id="virhe"></div>
         <button type="submit" class="send" id="send-btn">Liity listalle</button>
         <p class="privacy">Tietosi tulevat vain minulle. Voit pyytää poistoa milloin vain.</p>
