@@ -41,6 +41,7 @@ Do not move these physical paths just to make the repository visually tidier; th
 - `workspaces/evidence-and-research/` — sanitized sources, evidence and verification records.
 - `workspaces/messaging/` — copy/messaging task context.
 - `workspaces/product-qa/` — site/repository QA context.
+- `workspaces/ai-coding/` — staged AI-assisted coding workflow with explicit handoffs.
 
 `internal/` is a historical name, not a security boundary. This repository is public; anything under `internal/` must still be safe for public GitHub.
 
@@ -65,5 +66,6 @@ Prefer adding a deterministic check when a rule can be tested automatically; pro
 Supabase is the source of truth for family operational data. Personal interviews remain private. Reusable scenario knowledge is generalized and PII-free. Browser code must not contain service-role credentials or expose family data through unauthenticated reads.
 
 The canonical business model is `docs/architecture/business-operating-model.md`. The current two-operator evolution brief is `docs/briefs/aqoon-two-operator-os-v2-fast-start.md`. The concrete field-by-field inventory of the public intake and first interview, and how each currently-seeded verified route resolves its required facts against them, is `docs/architecture/interview-and-intake-field-reference.md`. Neither file overrides runtime truth: tracker behaviour is what the deployed code, Edge Functions and production schema actually implement.
+The tracker-to-database collection contract is `docs/architecture/tracker-supabase-data-contract.md`; it is checked statically by `scripts/tracker_collection_qa.js`, while database changes still require live schema verification.
 
 Vercel hosts the public/static application. A Git commit is not equivalent to a production release; the intended commit must be deployed and READY before it is described as live.

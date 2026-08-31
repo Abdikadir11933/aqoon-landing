@@ -19,6 +19,8 @@ jobs:
           node-version: '22'
       - name: Check repository context, skills and file integrity
         run: python scripts/repo_integrity_qa.py
+      - name: Check tracker and Supabase collection contract
+        run: node scripts/tracker_collection_qa.js
       - name: Check routes, sitemap and architecture guards
         run: python scripts/site_qa.py
       - name: Check static SEO metadata

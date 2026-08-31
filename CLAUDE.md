@@ -28,6 +28,7 @@ Before substantive work:
 | Site-wide or repository audit | `workspaces/product-qa/CONTEXT.md` + `repository-auditing` skill |
 | Production release / deploy verification | `production-releasing` skill |
 | Shared rules and schemas | `_core/CONVENTIONS.md` |
+| AI-assisted code or data change | `workspaces/ai-coding/CONTEXT.md` |
 | Repository map | `docs/architecture/repo-map.md` |
 | Pilke campaign | PROTECTED — only when explicitly requested |
 
