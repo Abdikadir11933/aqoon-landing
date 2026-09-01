@@ -85,6 +85,7 @@
       "eq",
       "family_interviews",
       "filter",
+      "flatMap",
       "from",
       "gte",
       "if",
@@ -120,6 +121,7 @@
       "family_scenario_research",
       "family_scenarios",
       "filter",
+      "flatMap",
       "from",
       "gte",
       "if",
@@ -178,6 +180,7 @@
       "other_needs_discovered",
       "parent_hobby_attitude",
       "planned_unemployment_date",
+      "preferred_area",
       "prior_awareness",
       "private_daycare_awareness",
       "private_daycare_consider",
@@ -185,6 +188,7 @@
       "private_route_parallel_steps_awareness",
       "response_deadline",
       "school_deadline",
+      "school_name",
       "self_navigation"
     ]
   },
@@ -1042,7 +1046,7 @@
     {
       "slug": "family-case-lifecycle-admin",
       "file": "supabase/functions/family-case-lifecycle-admin/index.ts",
-      "lines": 511,
+      "lines": 549,
       "actions": [
         "batch_list",
         "get_call_history",
@@ -1068,9 +1072,11 @@
         "family_interview_revisions",
         "family_interviews",
         "family_leads",
-        "family_match_runs"
+        "family_match_runs",
+        "knowledge_routes"
       ],
       "embedded_relation_tables": [
+        "knowledge_criteria",
         "knowledge_routes",
         "operators"
       ],
@@ -1162,7 +1168,7 @@
     {
       "slug": "family-leads-admin",
       "file": "supabase/functions/family-leads-admin/index.ts",
-      "lines": 932,
+      "lines": 884,
       "actions": [
         "analytics",
         "call_log",
@@ -1198,6 +1204,7 @@
         "Set",
         "eq",
         "filter",
+        "flatMap",
         "from",
         "gte",
         "if",
@@ -1518,7 +1525,6 @@
         "tracker/interview-match.js"
       ],
       "backend_references": [
-        "supabase/functions/family-leads-admin/index.ts",
         "supabase/functions/family-scenario-admin/index.ts"
       ],
       "migration_references": [
@@ -1712,7 +1718,6 @@
         "tracker/interview-match.js"
       ],
       "backend_references": [
-        "supabase/functions/family-leads-admin/index.ts",
         "supabase/functions/family-scenario-admin/index.ts"
       ],
       "migration_references": []
@@ -1785,9 +1790,7 @@
         "tracker/interview-match-preview.js",
         "tracker/interview-ux-v4.js"
       ],
-      "backend_references": [
-        "supabase/functions/family-leads-admin/index.ts"
-      ],
+      "backend_references": [],
       "migration_references": [
         "supabase/migrations/20260830_complete_verified_legacy_discovery_routes.sql",
         "supabase/migrations/20260830_seed_verified_legacy_discovery_routes.sql"
@@ -1803,7 +1806,6 @@
         "tracker/interview-match.js"
       ],
       "backend_references": [
-        "supabase/functions/family-leads-admin/index.ts",
         "supabase/functions/family-scenario-admin/index.ts"
       ],
       "migration_references": []
@@ -2268,7 +2270,6 @@
         "tracker/interview-match.js"
       ],
       "backend_references": [
-        "supabase/functions/family-leads-admin/index.ts",
         "supabase/functions/family-scenario-admin/index.ts"
       ],
       "migration_references": []
@@ -2394,7 +2395,6 @@
         "tracker/interview-match.js"
       ],
       "backend_references": [
-        "supabase/functions/family-leads-admin/index.ts",
         "supabase/functions/family-scenario-admin/index.ts"
       ],
       "migration_references": []
@@ -2409,7 +2409,6 @@
         "tracker/interview-match.js"
       ],
       "backend_references": [
-        "supabase/functions/family-leads-admin/index.ts",
         "supabase/functions/family-scenario-admin/index.ts"
       ],
       "migration_references": []
@@ -2540,7 +2539,6 @@
         "tracker/universal-proof-questions.js"
       ],
       "backend_references": [
-        "supabase/functions/family-leads-admin/index.ts",
         "supabase/functions/family-scenario-admin/index.ts"
       ],
       "migration_references": []
@@ -2641,9 +2639,7 @@
         "tracker/interview-match-preview.js",
         "tracker/interview-ux-v4.js"
       ],
-      "backend_references": [
-        "supabase/functions/family-leads-admin/index.ts"
-      ],
+      "backend_references": [],
       "migration_references": [
         "supabase/migrations/20260828_seed_bridge_general_social_security_route.sql"
       ]
@@ -2782,9 +2778,7 @@
         "tracker/interview-match-preview.js",
         "tracker/interview-ux-v4.js"
       ],
-      "backend_references": [
-        "supabase/functions/family-leads-admin/index.ts"
-      ],
+      "backend_references": [],
       "migration_references": []
     },
     {
@@ -2801,7 +2795,6 @@
         "tracker/interview-ux-v4.js"
       ],
       "backend_references": [
-        "supabase/functions/family-leads-admin/index.ts",
         "supabase/functions/family-scenario-admin/index.ts"
       ],
       "migration_references": []
@@ -3029,7 +3022,6 @@
         "tracker/interview-match.js"
       ],
       "backend_references": [
-        "supabase/functions/family-leads-admin/index.ts",
         "supabase/functions/family-scenario-admin/index.ts"
       ],
       "migration_references": []
@@ -3044,7 +3036,6 @@
         "tracker/interview-match.js"
       ],
       "backend_references": [
-        "supabase/functions/family-leads-admin/index.ts",
         "supabase/functions/family-scenario-admin/index.ts"
       ],
       "migration_references": []
@@ -3085,7 +3076,6 @@
         "tracker/interview-match.js"
       ],
       "backend_references": [
-        "supabase/functions/family-leads-admin/index.ts",
         "supabase/functions/family-scenario-admin/index.ts"
       ],
       "migration_references": []
@@ -3099,9 +3089,7 @@
         "tracker/interview-contract.js",
         "tracker/interview-match.js"
       ],
-      "backend_references": [
-        "supabase/functions/family-leads-admin/index.ts"
-      ],
+      "backend_references": [],
       "migration_references": []
     },
     {
@@ -3114,7 +3102,6 @@
         "tracker/interview-match.js"
       ],
       "backend_references": [
-        "supabase/functions/family-leads-admin/index.ts",
         "supabase/functions/family-scenario-admin/index.ts"
       ],
       "migration_references": []
@@ -3372,9 +3359,7 @@
         "tracker/interview-contract.js",
         "tracker/interview-ux-v4.js"
       ],
-      "backend_references": [
-        "supabase/functions/family-leads-admin/index.ts"
-      ],
+      "backend_references": [],
       "migration_references": [
         "supabase/migrations/20260830_complete_verified_legacy_discovery_routes.sql",
         "supabase/migrations/20260830_seed_verified_legacy_discovery_routes.sql"
@@ -3540,7 +3525,7 @@
     }
   ],
   "migrations": {
-    "count": 34,
+    "count": 35,
     "files": [
       "20260827_aqoon_operations_system.sql",
       "20260828_aqoon_routing_intelligence_foundation.sql",
@@ -3575,7 +3560,8 @@
       "20260901183000_revoke_sensitive_default_table_grants.sql",
       "20260901190000_work_linked_education_routes.sql",
       "20260901193000_canonical_household_person_need_model.sql",
-      "20260901210000_household_member_write_rpc.sql"
+      "20260901210000_household_member_write_rpc.sql",
+      "20260901220000_confirmed_match_knowledge_guard.sql"
     ],
     "created_tables": [
       "family_call_log",
@@ -3635,6 +3621,7 @@
     "functions": [
       "aqoon_approve_scenario_research",
       "aqoon_dismiss_obsolete_route_feedback",
+      "aqoon_guard_confirmed_match_knowledge",
       "aqoon_link_interview_family_graph",
       "aqoon_link_interview_needs",
       "aqoon_need_domain",
@@ -3656,6 +3643,7 @@
       "capture_family_interview_revision_before_update",
       "family_interviews_completed_event_trg",
       "family_interviews_sync_future_opportunities",
+      "family_match_runs_confirmed_knowledge_guard",
       "family_match_runs_dismiss_obsolete_feedback"
     ]
   }

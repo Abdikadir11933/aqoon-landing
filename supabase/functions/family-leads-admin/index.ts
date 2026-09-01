@@ -1,6 +1,7 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
 import { authenticatedUser, requireOperator } from "../_shared/operator-auth.ts";
 import { evaluateRouteCriteria } from "../_shared/criteria-evaluator.mjs";
+import { routeFacts, valueForRouteFact } from "../_shared/criteria-context.mjs";
 import { needDomainsForLead } from "../_shared/route-domain-selector.mjs";
 import { validateCompletedInterview } from "../_shared/interview-save-contract.mjs";
 const ORIGIN = "https://aqoon.live";
@@ -74,40 +75,6 @@ function fieldCounts(js: any[], key: string) {
   });
   return o;
 }
-const arrJoin = (v: any) => (Array.isArray(v) ? v.join(", ") : v || "");
-// knowledge_criteria.field_key vocabulary was authored independently of the
-// first-interview question keys in interview-match.js (F object). Rather
-// than duplicate near-identical questions under two names, this bridges a
-// route's required_input key to whatever interview field already captures
-// the same fact; a field with no existing equivalent gets a genuinely new
-// dynamic question instead (interview-match-preview.js's INPUTS map).
-const CRITERIA_BRIDGE: Record<string, string[]> = {
-  preferred_area: ["preferred_area", "preferred_provider_or_area"],
-  preferred_provider_or_area: ["preferred_provider_or_area", "preferred_area"],
-  child_age: ["child_age", "child_age_or_birth_date"],
-  school_age_or_grade: ["school_age_or_grade", "grade"],
-  child_age_or_grade: ["child_age_or_grade", "grade"],
-  school_or_area: ["school_or_area", "school_name"],
-  current_school_or_enrolment: ["current_school_or_enrolment", "school_route"],
-  language_learning_concern: [
-    "language_learning_concern",
-    "s2",
-    "child_finnish",
-  ],
-  support_need_description: ["support_need_description", "school_goal"],
-  jobseeker_registration_status: [
-    "jobseeker_registration_status",
-    "jobseeker_active",
-  ],
-  work_status: ["work_status", "main_status", "primary_situation"],
-  main_status: ["main_status", "work_status", "primary_situation"],
-  right_to_work_known_when_relevant: [
-    "right_to_work_known_when_relevant",
-    "right_to_work_known",
-  ],
-  availability: ["availability", "days", "hobby_time"],
-  care_need_schedule: ["care_need_schedule", "care_schedule"],
-};
 function stageFor(j: any) {
   if (has(j, "submit_success")) return "completed";
   if (has(j, "send_request")) return "send request";
@@ -381,18 +348,13 @@ Deno.serve(async (req) => {
         "id,route_key,need_domain,scope,required_inputs,blocking_inputs,steps,source_ids,partner_disclosure_required,verification_state,volatility,recheck_after,knowledge_criteria(label,criterion_type,field_key,rule_json,source_ids,verification_state,recheck_after)",
       )
       .in("need_domain", domains)
-      .eq("verification_state", "verified")
       .limit(30);
     if (routeError)
       return new Response(
         JSON.stringify({ error: "db_error", detail: routeError.message }),
         { status: 500, headers: h },
       );
-    const routeCurrent = (rows || []).filter(
-        (r: any) =>
-          !r.recheck_after || new Date(r.recheck_after).getTime() > now,
-      ),
-      ids = [...new Set(routeCurrent.flatMap((r: any) => [
+    const ids = [...new Set((rows || []).flatMap((r: any) => [
         ...(r.source_ids || []),
         ...(r.knowledge_criteria || []).flatMap((c: any) => c.source_ids || []),
       ]))],
@@ -408,40 +370,27 @@ Deno.serve(async (req) => {
         { status: 500, headers: h },
       );
     const sourceMap = new Map((sources || []).map((s: any) => [s.id, s]));
-    const active = routeCurrent.filter(
-      (r: any) =>
-        (r.knowledge_criteria || []).every((c: any) =>
-          c.verification_state === "verified" &&
-          (!c.recheck_after || new Date(c.recheck_after).getTime() > now)
-        ) &&
-        (r.source_ids || []).length > 0 &&
-        [...(r.source_ids || []), ...(r.knowledge_criteria || []).flatMap((c: any) => c.source_ids || [])].every((id: string) => {
-          const s = sourceMap.get(id);
-          return (
-            s &&
-            s.verification_state === "verified" &&
-            (!s.recheck_after || new Date(s.recheck_after).getTime() > now)
-          );
-        }),
-    );
-    const ext: Record<string, any> = {
-      ...answers,
-      city,
-      municipality: city,
-      interest: answers.interest || lead.sub_need || "",
-      child_age_or_birth_date: answers.child_age_or_birth_date || "",
-      permanent_vantaa_residence_context:
-        answers.permanent_vantaa_residence_context ||
-        (answers.home_municipality === "Yes" ? "yes" :
-          answers.home_municipality === "No" ? "no" : ""),
-    };
-    const val = (key: string) => {
-      const keys = CRITERIA_BRIDGE[key] || [key];
-      for (const k of keys) {
-        if (ext[k]) return arrJoin(ext[k]);
+    const coverageIssues = (r: any) => {
+      const issues: string[] = [];
+      if (r.verification_state !== "verified") issues.push("route_not_verified");
+      if (!r.recheck_after || new Date(r.recheck_after).getTime() <= now) issues.push("route_recheck_due");
+      if (!(r.source_ids || []).length) issues.push("route_has_no_source");
+      for (const c of r.knowledge_criteria || []) {
+        if (c.verification_state !== "verified") issues.push("criterion_not_verified");
+        if (!c.recheck_after || new Date(c.recheck_after).getTime() <= now) issues.push("criterion_recheck_due");
       }
-      return "";
+      for (const id of [...(r.source_ids || []), ...(r.knowledge_criteria || []).flatMap((c: any) => c.source_ids || [])]) {
+        const s = sourceMap.get(id);
+        if (!s) issues.push("source_reference_missing");
+        else if (s.verification_state !== "verified") issues.push("source_not_verified");
+        else if (!s.recheck_after || new Date(s.recheck_after).getTime() <= now) issues.push("source_recheck_due");
+      }
+      return [...new Set(issues)];
     };
+    const coverageGaps = (rows || []).map((r: any) => ({ route_key: r.route_key, reasons: coverageIssues(r) })).filter((r: any) => r.reasons.length);
+    const active = (rows || []).filter((r: any) => !coverageIssues(r).length);
+    const ext = routeFacts(lead, answers);
+    const val = (key: string) => valueForRouteFact(ext, key);
     const candidates = active.map((r: any) => {
       const requiredMissing = (r.required_inputs || []).filter((k: string) => !val(k));
       const conflict: string[] = [];
@@ -450,17 +399,20 @@ Deno.serve(async (req) => {
         conflict.push("Family city is not " + String(r.scope.city || r.scope.municipality) + ".");
       const evaluated = evaluateRouteCriteria(r.knowledge_criteria || [], val);
       const missing = [...new Set([...requiredMissing, ...evaluated.missing])];
+      const confirmationNeeded = [...evaluated.needsConfirmation];
+      if (!(r.knowledge_criteria || []).length)
+        confirmationNeeded.push("No executable criteria are stored for this route; research and operator verification are required.");
       conflict.push(...evaluated.conflicts);
       return {
         route_key: r.route_key,
         match_status: conflict.length
           ? "does_not_fit"
-          : missing.length || evaluated.needsConfirmation.length
+          : missing.length || confirmationNeeded.length
             ? "possible_must_confirm"
             : "confirmed_match",
         missing_fields: missing,
         conflicting_criteria: conflict,
-        confirmation_needed: evaluated.needsConfirmation,
+        confirmation_needed: confirmationNeeded,
         criteria: evaluated.results,
         steps: r.steps || [],
         partner_disclosure_required: !!r.partner_disclosure_required,
@@ -471,7 +423,7 @@ Deno.serve(async (req) => {
       };
     });
     return new Response(
-      JSON.stringify({ preview_mode: "read_only", candidates }),
+      JSON.stringify({ preview_mode: "read_only", candidates, coverage_gaps: coverageGaps }),
       { headers: h },
     );
   }

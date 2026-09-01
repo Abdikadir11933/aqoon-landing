@@ -60,9 +60,9 @@ test('additional needs are included without borrowing the primary scenario answe
 test('jobseeker status is not accepted as a general work-status alias', () => {
   const fs = require('node:fs');
   const path = require('node:path');
-  const admin = fs.readFileSync(path.join(__dirname, '..', 'supabase/functions/family-leads-admin/index.ts'), 'utf8');
-  assert.match(admin, /work_status: \["work_status", "main_status", "primary_situation"\]/);
-  assert.match(admin, /main_status: \["main_status", "work_status", "primary_situation"\]/);
-  assert.doesNotMatch(admin, /work_status:\s*\[[^\]]*jobseeker_active/);
-  assert.doesNotMatch(admin, /main_status:\s*\[[^\]]*jobseeker_active/);
+  const context = fs.readFileSync(path.join(__dirname, '..', 'supabase/functions/_shared/criteria-context.mjs'), 'utf8');
+  assert.match(context, /work_status: \["work_status", "main_status", "primary_situation"\]/);
+  assert.match(context, /main_status: \["main_status", "work_status", "primary_situation"\]/);
+  assert.doesNotMatch(context, /work_status:\s*\[[^\]]*jobseeker_active/);
+  assert.doesNotMatch(context, /main_status:\s*\[[^\]]*jobseeker_active/);
 });

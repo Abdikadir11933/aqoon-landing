@@ -1,5 +1,8 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
 import { requireOperator } from "../_shared/operator-auth.ts";
+import { evaluateRouteCriteria } from "../_shared/criteria-evaluator.mjs";
+import { routeFacts, valueForRouteFact } from "../_shared/criteria-context.mjs";
+import { needDomainsForLead } from "../_shared/route-domain-selector.mjs";
 
 const ORIGIN = "https://aqoon.live";
 const PLAN_STATUSES = new Set(["research", "options_ready", "action_in_progress", "awaiting_outcome", "persistence_check", "resolved", "closed_unresolved"]);
@@ -213,13 +216,48 @@ Deno.serve(async (request) => {
     if (missingFields.length || conflictingCriteria.length) {
       return new Response(JSON.stringify({ error: "confirmed_route_has_unresolved_criteria" }), { status: 400, headers: responseHeaders });
     }
+    // Never trust a browser's empty missing/conflict arrays. Rebuild the same
+    // deterministic match from current route criteria and recorded facts at
+    // the write boundary before the transactional selection RPC runs.
+    const factsUsed = objectOrEmpty(body.facts_used);
+    const [leadResult, routeResult] = await Promise.all([
+      db.from("family_leads").select("id,city,main_need,sub_need,age_group,additional_needs").eq("id", leadId).maybeSingle(),
+      db.from("knowledge_routes").select("id,route_key,need_domain,scope,required_inputs,knowledge_criteria(label,criterion_type,field_key,rule_json)").eq("route_key", routeKey).maybeSingle(),
+    ]);
+    const selectionReadError = leadResult.error || routeResult.error;
+    if (selectionReadError) return new Response(JSON.stringify({ error: "db_error", detail: selectionReadError.message }), { status: 500, headers: responseHeaders });
+    if (!leadResult.data) return new Response(JSON.stringify({ error: "lead_not_found" }), { status: 404, headers: responseHeaders });
+    if (!routeResult.data) return new Response(JSON.stringify({ error: "route_not_currently_verified" }), { status: 409, headers: responseHeaders });
+    const route = routeResult.data as any;
+    const lead = leadResult.data as any;
+    const allowedDomains = needDomainsForLead(lead, factsUsed);
+    const routeCity = String(route.scope?.city || route.scope?.municipality || "").toLowerCase();
+    const leadCity = String(lead.city || "").toLowerCase();
+    if (!allowedDomains.includes(route.need_domain) || (routeCity && leadCity && routeCity !== leadCity)) {
+      return new Response(JSON.stringify({ error: "route_not_applicable_to_case" }), { status: 400, headers: responseHeaders });
+    }
+    const criteria = route.knowledge_criteria || [];
+    if (!criteria.length) {
+      return new Response(JSON.stringify({ error: "confirmed_route_requires_research" }), { status: 400, headers: responseHeaders });
+    }
+    const normalizedFacts = routeFacts(lead, factsUsed);
+    const requiredMissing = (route.required_inputs || []).filter((key: string) => !valueForRouteFact(normalizedFacts, key));
+    const evaluated = evaluateRouteCriteria(criteria, (key: string) => valueForRouteFact(normalizedFacts, key));
+    if (requiredMissing.length || evaluated.missing.length || evaluated.conflicts.length || evaluated.needsConfirmation.length) {
+      return new Response(JSON.stringify({
+        error: "confirmed_route_has_unresolved_criteria",
+        missing_fields: [...new Set([...requiredMissing, ...evaluated.missing])],
+        conflicting_criteria: evaluated.conflicts,
+        confirmation_needed: evaluated.needsConfirmation,
+      }), { status: 400, headers: responseHeaders });
+    }
     const { data, error } = await db.rpc("aqoon_select_case_route", {
       p_lead_id: leadId,
       p_operator_id: operatorId,
       p_route_key: routeKey,
-      p_facts_used: objectOrEmpty(body.facts_used),
-      p_missing_fields: missingFields,
-      p_conflicting_criteria: conflictingCriteria,
+      p_facts_used: normalizedFacts,
+      p_missing_fields: [],
+      p_conflicting_criteria: [],
       p_title: title,
       p_selected_option: objectOrEmpty(body.selected_option),
       p_next_action: cleanText(body.next_action, 2500),
