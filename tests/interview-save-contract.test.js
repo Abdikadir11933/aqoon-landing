@@ -1,5 +1,9 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+
+const read = file => fs.readFileSync(path.join(__dirname, '..', file), 'utf8');
 
 test('completed v5 work interview requires operational and scenario anchors', async () => {
   const { validateCompletedInterview, CURRENT_INTERVIEW_SCHEMA } = await import('../supabase/functions/_shared/interview-save-contract.mjs');
@@ -61,4 +65,12 @@ test('a genuine education intake still requires the education anchor', async () 
 test('drafts remain saveable without pretending to be completed interviews', async () => {
   const { validateCompletedInterview } = await import('../supabase/functions/_shared/interview-save-contract.mjs');
   assert.deepEqual(validateCompletedInterview({ status: 'draft' }), []);
+});
+
+test('historical completed interviews are explicitly marked, never mislabeled as v5', () => {
+  const migration = read('supabase/migrations/20260901233000_tag_legacy_unversioned_interviews.sql');
+  assert.match(migration, /interview_schema_version\s*=\s*'legacy-unversioned'/);
+  assert.match(migration, /where status = 'completed'[\s\S]*nullif\(btrim\(interview_schema_version\)/);
+  assert.doesNotMatch(migration, /interview_schema_version\s*=\s*'first-interview-v5'/);
+  assert.match(migration, /validate constraint family_interviews_completed_schema_version_chk/);
 });

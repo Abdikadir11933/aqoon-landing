@@ -97,3 +97,9 @@ execution of the internal interview-completion trigger function.
 The production reconciliation migrations were applied successfully. The
 rate-limit RPC and internal trigger function are executable by `service_role`
 and not by `anon` or `authenticated`.
+
+The final integrity pass found six completed interviews from before schema
+versioning. `20260901233000_tag_legacy_unversioned_interviews.sql` marks them
+`legacy-unversioned` rather than falsely calling them v5, preserves the prior
+rows through revision history, and validates the completed-interview version
+constraint across existing and future data.

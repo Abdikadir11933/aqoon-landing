@@ -560,3 +560,15 @@ Next gate: commit/push this reconciliation, require exact-commit CI and READY
 production deployment, then run the final live release checks. Shared legacy
 product grants and Auth leaked-password protection remain explicitly
 unverified/configuration-owned; they are not silently treated as fixed.
+
+### 2026-09-01 — Gate 10 release verification pending exact-commit close
+
+The release query found six completed interviews created before versioned
+answer keys. They are not being guessed into the current v5 contract. The
+correction explicitly tags them `legacy-unversioned`, preserves the previous
+rows through interview revision history and validates the table-wide version
+constraint. The production Edge parity pass also found and corrected an older
+route-domain selector in `family-route-preview-admin`; all 13 functions now
+match repository source. The rollback-only lifecycle probe and all aggregate
+integrity checks passed with zero residue. Exact-commit CI and READY deployment
+remain the final closing evidence for this gate.
