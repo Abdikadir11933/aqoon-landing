@@ -41,7 +41,7 @@ window.openInterview=function(id){
   // just to look up one record already in memory.
   const lead=(window.AqoonApp?.leads||[]).find(x=>x.id===id);
   const answers=lead?.latest_interview?.answers;
-  if(answers&&typeof answers==='object'&&Object.keys(answers).length){pending=answers;watch()}
+  if(answers&&typeof answers==='object'&&Object.keys(answers).length){pending=answers;const notes=$('iNotes');if(notes&&!notes.value&&typeof answers.operator_context_notes==='string')notes.value=answers.operator_context_notes;watch()}
 };
 document.addEventListener('click',event=>{if(event.target.closest('#closeDrawer')){pending=null;stopWatching()}});
 })();

@@ -22,14 +22,18 @@ test('child registration uses the recorded child stage to select the route famil
 test('adult education maps to education knowledge rather than work knowledge', async () => {
   const { needDomainsForLead } = await import('../supabase/functions/_shared/route-domain-selector.mjs');
   assert.deepEqual(needDomainsForLead({ main_need: 'Waxbarasho', sub_need: 'Barashada Finnish-ka' }), ['education']);
+  assert.deepEqual(needDomainsForLead({ main_need: 'Waxbarasho', sub_need: 'Ammatillinen koulutus' }, { current_study: 'Vocational' }), ['education', 'education_current_student']);
 });
 
-test('student and working job searches do not inherit unemployment criteria', async () => {
+test('work cases only add benefit or education knowledge when that need is explicit', async () => {
   const { needDomainsForLead } = await import('../supabase/functions/_shared/route-domain-selector.mjs');
   const lead = { main_need: 'Shaqo', sub_need: 'Shaqo raadis' };
   assert.deepEqual(needDomainsForLead(lead, { primary_situation: 'Studying' }), ['work']);
   assert.deepEqual(needDomainsForLead(lead, { primary_situation: 'Working' }), ['work']);
-  assert.deepEqual(needDomainsForLead(lead, { primary_situation: 'Unemployed / seeking work' }), ['work', 'income_and_unemployment']);
+  assert.deepEqual(needDomainsForLead(lead, { primary_situation: 'Unemployed / seeking work' }), ['work']);
+  assert.deepEqual(needDomainsForLead(lead, { primary_situation: 'Unemployed / seeking work', work_search_scope: 'Work plus training options' }), ['work', 'education']);
+  assert.deepEqual(needDomainsForLead(lead, { primary_situation: 'Unemployed / seeking work', apprenticeship: 'Yes' }), ['work', 'education']);
+  assert.deepEqual(needDomainsForLead(lead, { primary_situation: 'Unemployed / seeking work', cross_service_needs_all: ['Kela / benefits'] }), ['work', 'income_and_unemployment']);
 });
 
 test('additional needs are included without borrowing the primary scenario answers', async () => {

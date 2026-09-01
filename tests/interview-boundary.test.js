@@ -89,7 +89,7 @@ test('work interviews branch around the person situation before asking eligibili
 
 test('saved interview summary is plain-language context, not a technical route count', () => {
   const interview = read('tracker/interview-match.js');
-  assert.match(interview, /function summary\(a\)/);
+  assert.match(interview, /function summary\(a(?:,notes='')?\)/);
   assert.match(interview, /adult situation: '\+a\.primary_situation/);
   assert.match(interview, /summary:summary\(a\)/);
   assert.doesNotMatch(interview, /summary:'Routes: '\+C\.routes/);

@@ -69,6 +69,12 @@ without a value).
 
 | field_key | Question | Type | Options | Required for matching |
 |---|---|---|---|---|
+| `primary_situation` | What is the person’s main situation right now? | select | Studying; Working; Unemployed / seeking work; Other / mixed; Not sure | Yes |
+| `work_search_scope` | Is today about one opportunity or wider work support? | select | One specific job / pilot / shift; Ongoing job search; Work plus training options; Not sure | Yes |
+| `work_intent` | What kind of work are they looking for? | select | Part-time; Full-time; Both; Occasional / flexible; Not sure | Yes |
+| `qualification_status` | What qualification have they already completed? | select | No completed vocational or degree qualification; Basic education only; Qualification outside Finland; Finnish vocational or degree qualification; Not sure | Yes, only when `work_search_scope = Work plus training options` |
+| `work_study_route` | Which work-and-study route should AQOON compare? | select | Oppisopimus; vocational continuous application; labour-market training; work first; compare all; not sure | Yes, only when `work_search_scope = Work plus training options` |
+| `training_schedule` | What study schedule is realistically possible? | multi | Weekday daytime only; part-time daytime; evenings; full-time; online/hybrid; not sure | Yes, only when `work_search_scope = Work plus training options` |
 | `jobseeker_active` | Is job search currently active in local employment services / Työmarkkinatori? | select | Yes – active; Registered, active status not sure; No; Not sure | Yes |
 | `unemployment_duration` | How long unemployed? | select | Not unemployed; Under 3 months; 3–6 months; 6–12 months; 12–24 months; 24+ months; Not sure | Yes |
 | `employment_plan` | Current employment plan with employment services? | select | Yes; No; Not sure | Yes |
@@ -81,6 +87,12 @@ without a value).
 | `childcare_limit` | Childcare constraint? | select | None; Daytime only; Need childcare/daycare first; Other / not sure | Yes |
 | `work_tryout` | Open to työkokeilu if employment services agrees? | select | Yes; No; Maybe | No |
 | `apprenticeship` | Open to oppisopimus? | select | Yes; No; Maybe | No |
+
+`operator_context_notes` stores the operator's additional free-text context in
+the same private `answers` object. It is restored on follow-up and included in
+the human-readable summary/research brief, but it is deliberately excluded
+from automatic reusable-scenario fingerprints; route-changing facts still
+need an approved structured answer.
 
 ### entrepreneurship
 
@@ -305,5 +317,4 @@ and crosswalk (section 5) were built by hand from `caawi/app.js`,
 same extraction after a future change to `F` is the fastest way to keep
 section 3 accurate; sections 4-5 need a fresh query against
 `knowledge_routes` since they reflect whatever routes are seeded at the time.
-
 

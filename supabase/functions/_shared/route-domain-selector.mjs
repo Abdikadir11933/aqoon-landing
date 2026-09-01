@@ -2,11 +2,34 @@ function normalized(value) {
   return String(value ?? "").trim().toLowerCase();
 }
 
-function isUnemployedWorkScenario(answers = {}) {
-  const situation = normalized(answers.primary_situation);
-  return situation === "unemployed / seeking work" ||
-    situation === "unemployed" ||
-    situation === "seeking work";
+function values(value) {
+  return (Array.isArray(value) ? value : [value]).map(normalized).filter(Boolean);
+}
+
+function workAlsoNeedsEducation(answers = {}) {
+  const scope = normalized(answers.work_search_scope);
+  const apprenticeship = normalized(answers.apprenticeship);
+  const immediateGoal = normalized(answers.immediate_goal);
+  const crossNeeds = values(answers.cross_service_needs_all);
+  return scope === "work plus training options" ||
+    ["yes", "maybe"].includes(apprenticeship) ||
+    immediateGoal === "study or course" ||
+    crossNeeds.some((value) =>
+      value === "finnish / education" || value === "programmes / training"
+    );
+}
+
+function workExplicitlyNeedsIncomeGuidance(answers = {}) {
+  const immediateGoal = normalized(answers.immediate_goal);
+  const situation = normalized(answers.current_situation);
+  const authorityIssue = normalized(answers.authority_issue);
+  const serviceArea = normalized(answers.service_area);
+  const crossNeeds = values(answers.cross_service_needs_all);
+  return immediateGoal === "understand a letter or benefit" ||
+    situation === "authority or benefit matter" ||
+    serviceArea === "kela" ||
+    /payment|support changed|benefit/.test(authorityIssue) ||
+    crossNeeds.includes("kela / benefits");
 }
 
 export function domainsForNeed(need = {}, answers = {}) {
@@ -35,9 +58,10 @@ export function domainsForNeed(need = {}, answers = {}) {
 
   if (/shaqo|work|employment|job/.test(main)) {
     if (/ganacsi|business|entrepreneur|starttiraha/.test(sub)) return ["entrepreneurship"];
-    return isUnemployedWorkScenario(answers)
-      ? ["work", "income_and_unemployment"]
-      : ["work"];
+    const domains = ["work"];
+    if (workAlsoNeedsEducation(answers)) domains.push("education");
+    if (workExplicitlyNeedsIncomeGuidance(answers)) domains.push("income_and_unemployment");
+    return domains;
   }
 
   if (/kela|benefit|allowance|tuki|etuus|perhe-etuus/.test(sub)) return ["family_finances"];
@@ -52,7 +76,14 @@ export function needDomainsForLead(lead = {}, answers = {}) {
     { main_need: lead.main_need, sub_need: lead.sub_need, age_group: lead.age_group },
     ...(Array.isArray(lead.additional_needs) ? lead.additional_needs : []),
   ];
-  return [...new Set(needs.flatMap((need, index) =>
+  const domains = [...new Set(needs.flatMap((need, index) =>
     domainsForNeed(need, index === 0 ? answers : {})
   ))];
+  const currentStudy = normalized(answers.current_study);
+  const studyPath = normalized(answers.study_path);
+  if (domains.includes("education") &&
+      (currentStudy === "vocational" || /vocational/.test(studyPath))) {
+    domains.push("education_current_student");
+  }
+  return domains;
 }
