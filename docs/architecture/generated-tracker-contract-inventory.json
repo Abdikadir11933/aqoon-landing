@@ -40,6 +40,7 @@
       "prepareFollowUp",
       "programs",
       "recordOutcome",
+      "record_partner_handoff_outcome",
       "reopen_case",
       "restore",
       "review_feedback",
@@ -52,10 +53,12 @@
       "save_research_evidence",
       "save_review",
       "select_route",
+      "start_partner_handoff",
       "summary",
       "transition_plan",
       "update",
       "whoami",
+      "withdraw_partner_handoff",
       "workflow"
     ],
     "edge_function_tables": [
@@ -72,6 +75,7 @@
       "family_leads",
       "family_match_runs",
       "family_needs",
+      "family_partner_handoffs",
       "family_people",
       "family_scenario_research",
       "family_scenarios",
@@ -122,6 +126,7 @@
       "family_leads",
       "family_match_runs",
       "family_needs",
+      "family_partner_handoffs",
       "family_people",
       "family_scenario_research",
       "family_scenarios",
@@ -150,13 +155,16 @@
     "edge_function_rpcs": [
       "aqoon_approve_researched_route",
       "aqoon_approve_scenario_research",
+      "aqoon_record_partner_handoff_outcome",
       "aqoon_reopen_family_case",
       "aqoon_review_route_feedback_signal",
       "aqoon_save_household_member",
       "aqoon_save_research_evidence",
       "aqoon_save_route_review",
       "aqoon_select_case_route",
+      "aqoon_start_partner_handoff",
       "aqoon_transition_case_plan",
+      "aqoon_withdraw_partner_handoff",
       "take_family_intake_rate_limit"
     ],
     "discovered_answer_keys": 152,
@@ -849,7 +857,7 @@
     },
     {
       "order": 22,
-      "src": "/tracker/analytics-mobile-v2.js?v=3",
+      "src": "/tracker/analytics-mobile-v2.js?v=4",
       "file": "tracker/analytics-mobile-v2.js",
       "lines": 49,
       "edge_functions": [
@@ -897,7 +905,7 @@
     },
     {
       "order": 24,
-      "src": "/tracker/operations-system.js?v=3",
+      "src": "/tracker/operations-system.js?v=4",
       "file": "tracker/operations-system.js",
       "lines": 66,
       "edge_functions": [
@@ -1000,9 +1008,9 @@
     },
     {
       "order": 28,
-      "src": "/tracker/followup-workflow-v2.js?v=4",
+      "src": "/tracker/followup-workflow-v2.js?v=5",
       "file": "tracker/followup-workflow-v2.js",
-      "lines": 62,
+      "lines": 66,
       "edge_functions": [
         "family-case-lifecycle-admin",
         "family-leads-admin",
@@ -1012,11 +1020,14 @@
         "approve_researched_route",
         "log_event",
         "match_preview",
+        "record_partner_handoff_outcome",
         "save_plan",
         "save_research_evidence",
         "save_review",
         "select_route",
+        "start_partner_handoff",
         "transition_plan",
+        "withdraw_partner_handoff",
         "workflow"
       ],
       "window_exports": [
@@ -1060,7 +1071,7 @@
     {
       "slug": "family-case-lifecycle-admin",
       "file": "supabase/functions/family-case-lifecycle-admin/index.ts",
-      "lines": 638,
+      "lines": 737,
       "actions": [
         "approve_researched_route",
         "batch_list",
@@ -1070,14 +1081,17 @@
         "get_timeline",
         "list",
         "log_event",
+        "record_partner_handoff_outcome",
         "reopen_case",
         "save_interaction",
         "save_opportunity",
         "save_plan",
         "save_research_evidence",
         "select_route",
+        "start_partner_handoff",
         "summary",
         "transition_plan",
+        "withdraw_partner_handoff",
         "workflow"
       ],
       "tables": [
@@ -1091,7 +1105,9 @@
         "family_leads",
         "family_match_runs",
         "family_needs",
-        "knowledge_routes"
+        "family_partner_handoffs",
+        "knowledge_routes",
+        "sales_opportunities"
       ],
       "embedded_relation_tables": [
         "knowledge_criteria",
@@ -1100,10 +1116,13 @@
       ],
       "rpcs": [
         "aqoon_approve_researched_route",
+        "aqoon_record_partner_handoff_outcome",
         "aqoon_reopen_family_case",
         "aqoon_save_research_evidence",
         "aqoon_select_case_route",
-        "aqoon_transition_case_plan"
+        "aqoon_start_partner_handoff",
+        "aqoon_transition_case_plan",
+        "aqoon_withdraw_partner_handoff"
       ],
       "auth_boundary": "operator_jwt_or_repository_fallback_contract"
     },
@@ -1338,7 +1357,7 @@
     {
       "slug": "ops-admin",
       "file": "supabase/functions/ops-admin/index.ts",
-      "lines": 138,
+      "lines": 139,
       "actions": [
         "add_activity",
         "delete_event",
@@ -1353,6 +1372,7 @@
         "family_future_opportunities",
         "family_leads",
         "family_needs",
+        "family_partner_handoffs",
         "operators",
         "ops_events",
         "sales_activities",
@@ -2638,7 +2658,8 @@
         "supabase/functions/family-leads-manage/index.ts",
         "supabase/functions/family-route-preview-admin/index.ts",
         "supabase/functions/family-route-review-admin/index.ts",
-        "supabase/functions/family-scenario-admin/index.ts"
+        "supabase/functions/family-scenario-admin/index.ts",
+        "supabase/functions/ops-admin/index.ts"
       ],
       "migration_references": []
     },
@@ -3553,7 +3574,7 @@
     }
   ],
   "migrations": {
-    "count": 37,
+    "count": 38,
     "files": [
       "20260827_aqoon_operations_system.sql",
       "20260828_aqoon_routing_intelligence_foundation.sql",
@@ -3591,7 +3612,8 @@
       "20260901210000_household_member_write_rpc.sql",
       "20260901220000_confirmed_match_knowledge_guard.sql",
       "20260901221000_post_interview_decision_contract.sql",
-      "20260901223000_analytics_sales_learning_contract.sql"
+      "20260901223000_analytics_sales_learning_contract.sql",
+      "20260901224500_partner_handoff_consent_contract.sql"
     ],
     "created_tables": [
       "family_call_log",
@@ -3604,6 +3626,7 @@
       "family_interview_revisions",
       "family_match_runs",
       "family_needs",
+      "family_partner_handoffs",
       "family_people",
       "knowledge_criteria",
       "knowledge_feedback_signals",
@@ -3632,6 +3655,7 @@
       "family_leads",
       "family_match_runs",
       "family_needs",
+      "family_partner_handoffs",
       "family_people",
       "family_scenario_research",
       "family_scenarios",
@@ -3656,16 +3680,19 @@
       "aqoon_link_interview_family_graph",
       "aqoon_link_interview_needs",
       "aqoon_need_domain",
+      "aqoon_record_partner_handoff_outcome",
       "aqoon_reopen_family_case",
       "aqoon_review_route_feedback_signal",
       "aqoon_save_household_member",
       "aqoon_save_research_evidence",
       "aqoon_save_route_review",
       "aqoon_select_case_route",
+      "aqoon_start_partner_handoff",
       "aqoon_sync_lead_household",
       "aqoon_sync_lead_household_trigger",
       "aqoon_target_case_plan_need",
       "aqoon_transition_case_plan",
+      "aqoon_withdraw_partner_handoff",
       "capture_family_interview_revision",
       "family_interview_opportunity_signals",
       "log_completed_interview_case_event",

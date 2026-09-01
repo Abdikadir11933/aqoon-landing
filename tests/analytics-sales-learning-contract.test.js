@@ -15,8 +15,8 @@ test('sales demand dedupes by household and controlled need domain', async () =>
       { id: 'lead-2', household_id: 'home-1', city: 'Vantaa', interview_status: 'completed' },
     ],
     needs: [
-      { id: 'need-1', source_lead_id: 'lead-1', household_id: 'home-1', need_domain: 'daycare' },
-      { id: 'need-2', source_lead_id: 'lead-2', household_id: 'home-1', need_domain: 'daycare' },
+      { id: 'need-1', source_lead_id: 'lead-1', household_id: 'home-1', need_domain: 'daycare', timing: 'now' },
+      { id: 'need-2', source_lead_id: 'lead-2', household_id: 'home-1', need_domain: 'daycare', timing: 'now' },
     ],
     plans: [{ family_need_id: 'need-1', plan_status: 'research' }],
     futureOpportunities: [
@@ -26,23 +26,32 @@ test('sales demand dedupes by household and controlled need domain', async () =>
       { family_lead_id: 'lead-1', need_domain: 'work', status: 'ready', contact_permission_status: 'granted', earliest_contact_at: '2027-01-01T10:00:00Z' },
     ],
   });
-  assert.deepEqual(rows.map(row => [row.need_domain, row.interest_state]).sort(), [['daycare', 'stated_need'], ['hobby', 'ready_future']]);
+  assert.deepEqual(rows.map(row => [row.need_domain, row.interest_state, row.timing]).sort(), [['daycare', 'stated_need', 'now'], ['hobby', 'ready_future', 'now'], ['work', 'ready_future', 'within_6_months']]);
   const aggregate = demandAggregate(rows);
-  assert.equal(aggregate.total_active, 2);
-  assert.equal(aggregate.total_unmatched, 2);
+  assert.equal(aggregate.total_active, 3);
+  assert.equal(aggregate.total_unmatched, 3);
+  assert.deepEqual(aggregate.by_timing, { now: 2, within_6_months: 1 });
   assert.equal(aggregate.metric_contract.dedupe_unit, 'household + need_domain');
 });
 
 test('sales opportunity matching uses domain, area scope and interest state', async () => {
   const { opportunityDemand } = await import('../supabase/functions/_shared/demand-aggregate.mjs');
   const rows = [
-    { need_domain: 'daycare', city: 'Vantaa', interview_status: 'completed', interest_state: 'stated_need' },
-    { need_domain: 'daycare', city: 'Espoo', interview_status: 'completed', interest_state: 'ready_future' },
-    { need_domain: 'work', city: 'Vantaa', interview_status: 'completed', interest_state: 'stated_need' },
+    { need_domain: 'daycare', city: 'Vantaa', interview_status: 'completed', interest_state: 'stated_need', timing: 'now' },
+    { need_domain: 'daycare', city: 'Espoo', interview_status: 'completed', interest_state: 'ready_future', timing: 'within_6_months' },
+    { need_domain: 'work', city: 'Vantaa', interview_status: 'completed', interest_state: 'stated_need', timing: 'now' },
   ];
   assert.deepEqual(opportunityDemand(rows, 'daycare', 'Vantaa / Helsinki / Espoo', 'stated_or_ready'), { total: 2, past_interview: 2, ready_future: 1 });
   assert.deepEqual(opportunityDemand(rows, 'daycare', 'Vantaa', 'stated_need'), { total: 1, past_interview: 1, ready_future: 0 });
+  assert.deepEqual(opportunityDemand(rows, 'daycare', null, 'stated_or_ready', 'within_6_months'), { total: 1, past_interview: 1, ready_future: 1 });
+  assert.deepEqual(opportunityDemand(rows, 'daycare', null, 'stated_or_ready', 'now'), { total: 1, past_interview: 1, ready_future: 0 });
   assert.equal(opportunityDemand(rows, null, null, null), null);
+});
+
+test('transition-owned lifecycle events cannot bypass the atomic workflow', () => {
+  const edge = read('supabase/functions/family-case-lifecycle-admin/index.ts');
+  assert.match(edge, /DIRECT_EVENT_TYPES = new Set\(\["research_route_rejected"\]\)/);
+  assert.match(edge, /event_requires_workflow_action/);
 });
 
 test('analytics separates completed interviews from active case plans', () => {

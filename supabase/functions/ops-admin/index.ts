@@ -53,21 +53,22 @@ Deno.serve(async req => {
   }
 
   if(action==="list"){
-    const [or,ar,er,fr,opr,dr,nr,pr,fur]=await Promise.all([
+    const [or,ar,er,fr,opr,dr,nr,pr,fur,hr]=await Promise.all([
       db.from("sales_opportunities").select("*").order("updated_at",{ascending:false}).limit(500),
       db.from("sales_activities").select("*").order("created_at",{ascending:false}).limit(2000),
       db.from("ops_events").select("*").gte("starts_at",new Date(Date.now()-14*86400000).toISOString()).order("starts_at",{ascending:true}).limit(1000),
       db.from("family_leads").select("id,name,phone,city,main_need,next_follow_up_at,latest_interview:family_interviews(next_action)").not("next_follow_up_at","is",null).order("next_follow_up_at",{ascending:true}).limit(500),
       db.from("operators").select("id,display_name,active").eq("active",true).order("display_name",{ascending:true}),
       db.from("family_leads").select("id,household_id,city,status,interview_status").neq("status","resolved").limit(2000),
-      db.from("family_needs").select("id,household_id,need_domain,status,source_lead_id").eq("status","active").limit(4000),
+      db.from("family_needs").select("id,household_id,need_domain,status,source_lead_id,timing").eq("status","active").limit(4000),
       db.from("family_case_plans").select("family_need_id,plan_status").not("family_need_id","is",null).limit(4000),
-      db.from("family_future_opportunities").select("family_lead_id,need_domain,status,earliest_contact_at,contact_permission_status").in("status",["ready","offered","accepted"]).limit(4000)
+      db.from("family_future_opportunities").select("family_lead_id,need_domain,status,earliest_contact_at,contact_permission_status").in("status",["watching","ready","offered","accepted"]).limit(4000),
+      db.from("family_partner_handoffs").select("sales_opportunity_id,handoff_status,consent_status").limit(4000)
     ]);
-    const error=or.error||ar.error||er.error||fr.error||opr.error||dr.error||nr.error||pr.error||fur.error;
+    const error=or.error||ar.error||er.error||fr.error||opr.error||dr.error||nr.error||pr.error||fur.error||hr.error;
     if(error) return json({error:"db_error",detail:error.message},500,h);
     const familyRows=buildDemandRows({leads:dr.data||[],needs:nr.data||[],plans:pr.data||[],futureOpportunities:fur.data||[]});
-    const opportunities=(or.data||[]).map((o:any)=>({...o, matched_demand:opportunityDemand(familyRows,o.demand_need_domain,o.demand_city,o.demand_interest_state)}));
+    const opportunities=(or.data||[]).map((o:any)=>{const handoffs=(hr.data||[]).filter((handoff:any)=>handoff.sales_opportunity_id===o.id);return {...o,matched_demand:opportunityDemand(familyRows,o.demand_need_domain,o.demand_city,o.demand_interest_state,o.demand_timing),handoff_counts:{sent:handoffs.length,outcomes:handoffs.filter((handoff:any)=>["partner_accepted","partner_declined","outcome_confirmed"].includes(handoff.handoff_status)).length,withdrawn:handoffs.filter((handoff:any)=>handoff.handoff_status==="family_withdrew").length}}});
     return json({opportunities,activities:ar.data||[],events:er.data||[],family_followups:fr.data||[],operators:opr.data||[],demand:demandAggregate(familyRows)},200,h);
   }
 

@@ -6,7 +6,8 @@ import { needDomainsForLead } from "../_shared/route-domain-selector.mjs";
 
 const ORIGIN = "https://aqoon.live";
 const PLAN_STATUSES = new Set(["research", "options_ready", "action_in_progress", "awaiting_outcome", "persistence_check", "resolved", "closed_unresolved"]);
-const EVENT_TYPES = new Set(["interview_completed", "research_completed", "research_route_rejected", "options_presented", "plan_selected", "family_route_agreed", "family_decision_pending", "family_route_declined", "route_reconsidered", "official_action_started", "official_response_received", "persistence_confirmed", "case_resolved", "case_closed_unresolved", "follow_up_attempted"]);
+const EVENT_TYPES = new Set(["interview_completed", "research_completed", "research_route_rejected", "options_presented", "plan_selected", "family_route_agreed", "family_decision_pending", "family_route_declined", "route_reconsidered", "official_action_started", "official_response_received", "persistence_confirmed", "case_resolved", "case_closed_unresolved", "follow_up_attempted", "partner_handoff_withdrawn"]);
+const DIRECT_EVENT_TYPES = new Set(["research_route_rejected"]);
 const OPPORTUNITY_STATUSES = new Set(["watching", "ready", "offered", "accepted", "not_interested", "expired", "closed"]);
 const CONTACT_PERMISSIONS = new Set(["not_requested", "granted", "declined", "not_needed"]);
 const INTERACTION_TYPES = new Set(["first_interview", "research", "options_call", "follow_up_call", "official_update", "outcome_check"]);
@@ -83,14 +84,15 @@ Deno.serve(async (request) => {
   // notes or family-level answers and is separate from anonymous web funnel data.
   if (action === "summary") {
     const now = new Date().toISOString();
-    const [plans, opportunities, events, interviewedLeads, activeNeeds] = await Promise.all([
+    const [plans, opportunities, events, interviewedLeads, activeNeeds, partnerHandoffs] = await Promise.all([
       db.from("family_case_plans").select("family_lead_id,plan_status,next_follow_up_at").not("plan_status", "in", "(resolved,closed_unresolved)").limit(2000),
       db.from("family_future_opportunities").select("family_lead_id,need_domain,status,earliest_contact_at,contact_permission_status").in("status", ["watching", "ready", "offered"]).limit(2000),
       db.from("family_case_events").select("case_plan_id,event_type,occurred_at").in("event_type", ["interview_completed", "official_action_started", "official_response_received", "persistence_confirmed", "case_resolved"]).order("occurred_at", { ascending: true }).limit(20000),
       db.from("family_leads").select("id,household_id,status,interview_status").eq("interview_status", "completed").limit(2000),
       db.from("family_needs").select("household_id,need_domain").eq("status", "active").limit(4000),
+      db.from("family_partner_handoffs").select("handoff_status,consent_status").limit(4000),
     ]);
-    const error = plans.error || opportunities.error || events.error || interviewedLeads.error || activeNeeds.error;
+    const error = plans.error || opportunities.error || events.error || interviewedLeads.error || activeNeeds.error || partnerHandoffs.error;
     if (error) return new Response(JSON.stringify({ error: "db_error", detail: error.message }), { status: 500, headers: responseHeaders });
     const activePlans = plans.data || [], activeOpportunities = opportunities.data || [], completedLeads = interviewedLeads.data || [];
     const activePlanLeadIds = new Set(activePlans.map((plan: any) => plan.family_lead_id));
@@ -125,11 +127,17 @@ Deno.serve(async (request) => {
       persistence_confirmed: eventCaseCount("persistence_confirmed"),
       case_follow_ups_due: activePlans.filter((plan: any) => plan.next_follow_up_at && plan.next_follow_up_at <= now).length,
       future_opportunities_ready_with_permission: dueOpportunityHouseholdDomains.size,
+      partner_handoffs_sent: (partnerHandoffs.data || []).length,
+      partner_handoff_outcomes: (partnerHandoffs.data || []).filter((handoff: any) => ["partner_accepted", "partner_declined", "outcome_confirmed"].includes(handoff.handoff_status)).length,
+      partner_handoff_withdrawals: (partnerHandoffs.data || []).filter((handoff: any) => handoff.handoff_status === "family_withdrew").length,
       metric_contract: {
         completed_interviews: { source: "family_leads", denominator: "all completed latest lead interviews", dedupe_unit: "family_lead" },
         interviews_awaiting_route: { source: "family_leads + family_case_plans", denominator: "non-resolved completed interviews", dedupe_unit: "family_lead" },
         active_cases: { source: "family_case_plans", denominator: "non-terminal plans", dedupe_unit: "case_plan" },
         future_opportunities_ready_with_permission: { source: "family_future_opportunities + family_leads", denominator: "due, permission-granted active signals", dedupe_unit: "household + need_domain" },
+        partner_handoffs_sent: { source: "family_partner_handoffs", denominator: "explicitly consented named handoffs", dedupe_unit: "handoff" },
+        partner_handoff_outcomes: { source: "family_partner_handoffs", denominator: "handoffs with a recorded partner response", dedupe_unit: "handoff" },
+        partner_handoff_withdrawals: { source: "family_partner_handoffs", denominator: "handoffs where consent was later withdrawn", dedupe_unit: "handoff" },
       },
       cycle_time: {
         interview_to_action_cases: hoursBetween("interview_completed", "official_action_started").length,
@@ -175,7 +183,7 @@ Deno.serve(async (request) => {
   // payload so every button press does not read and serialize unrelated
   // future opportunities and interaction history.
   if (action === "workflow") {
-    const [plans, events, matchRuns] = await Promise.all([
+    const [plans, events, matchRuns, handoffs, partnerTargets] = await Promise.all([
       db.from("family_case_plans")
         .select("id,family_lead_id,family_need_id,match_run_id,owner_operator_id,title,official_decision_maker,selected_option,plan_status,next_action,next_follow_up_at,resolved_at,created_at,updated_at")
         .eq("family_lead_id", leadId)
@@ -191,10 +199,95 @@ Deno.serve(async (request) => {
         .in("status", ["ready_for_review", "reviewed"])
         .order("created_at", { ascending: false })
         .limit(50),
+      db.from("family_partner_handoffs")
+        .select("id,family_lead_id,family_need_id,case_plan_id,sales_opportunity_id,recipient_organisation,consent_status,consent_method,consent_scope,consent_recorded_at,handoff_status,sent_at,outcome_at,outcome_note,created_at,updated_at")
+        .eq("family_lead_id", leadId)
+        .order("created_at", { ascending: false })
+        .limit(50),
+      db.from("sales_opportunities")
+        .select("id,organization,demand_need_domain,stage")
+        .in("stage", ["won", "delivery", "expansion"])
+        .not("demand_need_domain", "is", null)
+        .order("organization", { ascending: true })
+        .limit(200),
     ]);
-    const error = plans.error || events.error || matchRuns.error;
+    const error = plans.error || events.error || matchRuns.error || handoffs.error || partnerTargets.error;
     if (error) return new Response(JSON.stringify({ error: "db_error", detail: error.message }), { status: 500, headers: responseHeaders });
-    return new Response(JSON.stringify({ plans: plans.data || [], events: events.data || [], match_runs: matchRuns.data || [] }), { headers: responseHeaders });
+    return new Response(JSON.stringify({ plans: plans.data || [], events: events.data || [], match_runs: matchRuns.data || [], handoffs: handoffs.data || [], partner_targets: partnerTargets.data || [] }), { headers: responseHeaders });
+  }
+
+  if (action === "start_partner_handoff") {
+    const planId = cleanText(body.case_plan_id, 80);
+    const salesOpportunityId = cleanText(body.sales_opportunity_id, 80);
+    const requestId = cleanText(body.request_id, 80);
+    const consentScope = Array.isArray(body.consent_scope) ? body.consent_scope.filter((value: unknown) => typeof value === "string").slice(0, 5) : [];
+    if (!planId || !salesOpportunityId || !requestId) return new Response(JSON.stringify({ error: "missing_handoff_fields" }), { status: 400, headers: responseHeaders });
+    const { data, error } = await db.rpc("aqoon_start_partner_handoff", {
+      p_lead_id: leadId,
+      p_plan_id: planId,
+      p_sales_opportunity_id: salesOpportunityId,
+      p_operator_id: operatorId,
+      p_disclosure_statement: cleanText(body.disclosure_statement, 2000),
+      p_disclosure_explained: body.disclosure_explained === true,
+      p_consent_granted: body.consent_granted === true,
+      p_consent_method: cleanText(body.consent_method, 80),
+      p_consent_scope: consentScope,
+      p_note: cleanText(body.note, 4000),
+      p_next_follow_up_at: isoOrNull(body.next_follow_up_at),
+      p_request_id: requestId,
+    });
+    if (error) {
+      const known = ["lead_not_found", "plan_not_found", "stale_plan_status", "plan_need_required", "invalid_plan_need", "selected_route_required", "route_not_currently_verified", "partner_not_handoff_enabled", "partner_need_domain_mismatch", "partner_disclosure_required", "partner_handoff_consent_required", "invalid_consent_method", "invalid_consent_scope", "transition_note_required", "future_follow_up_required", "idempotency_key_conflict", "missing_request_id"]
+        .find((code) => error.message?.includes(code));
+      const status = known === "lead_not_found" || known === "plan_not_found" ? 404 : known === "stale_plan_status" || known === "idempotency_key_conflict" ? 409 : known ? 400 : 500;
+      return new Response(JSON.stringify({ error: known || "db_error", ...(known ? {} : { detail: error.message }) }), { status, headers: responseHeaders });
+    }
+    return new Response(JSON.stringify(data || {}), { headers: responseHeaders });
+  }
+
+  if (action === "record_partner_handoff_outcome") {
+    const planId = cleanText(body.case_plan_id, 80);
+    const handoffId = cleanText(body.handoff_id, 80);
+    const requestId = cleanText(body.request_id, 80);
+    if (!planId || !handoffId || !requestId) return new Response(JSON.stringify({ error: "missing_handoff_outcome_fields" }), { status: 400, headers: responseHeaders });
+    const { data, error } = await db.rpc("aqoon_record_partner_handoff_outcome", {
+      p_lead_id: leadId,
+      p_plan_id: planId,
+      p_handoff_id: handoffId,
+      p_operator_id: operatorId,
+      p_outcome: cleanText(body.outcome, 80),
+      p_note: cleanText(body.note, 4000),
+      p_request_id: requestId,
+    });
+    if (error) {
+      const known = ["handoff_not_found", "handoff_not_awaiting_outcome", "invalid_handoff_outcome", "transition_note_required", "stale_plan_status", "idempotency_key_conflict", "missing_request_id"]
+        .find((code) => error.message?.includes(code));
+      const status = known === "handoff_not_found" ? 404 : known === "handoff_not_awaiting_outcome" || known === "stale_plan_status" || known === "idempotency_key_conflict" ? 409 : known ? 400 : 500;
+      return new Response(JSON.stringify({ error: known || "db_error", ...(known ? {} : { detail: error.message }) }), { status, headers: responseHeaders });
+    }
+    return new Response(JSON.stringify(data || {}), { headers: responseHeaders });
+  }
+
+  if (action === "withdraw_partner_handoff") {
+    const planId = cleanText(body.case_plan_id, 80);
+    const handoffId = cleanText(body.handoff_id, 80);
+    const requestId = cleanText(body.request_id, 80);
+    if (!planId || !handoffId || !requestId) return new Response(JSON.stringify({ error: "missing_handoff_withdrawal_fields" }), { status: 400, headers: responseHeaders });
+    const { data, error } = await db.rpc("aqoon_withdraw_partner_handoff", {
+      p_lead_id: leadId,
+      p_plan_id: planId,
+      p_handoff_id: handoffId,
+      p_operator_id: operatorId,
+      p_note: cleanText(body.note, 4000),
+      p_request_id: requestId,
+    });
+    if (error) {
+      const known = ["lead_not_found", "plan_not_found", "handoff_not_found", "handoff_not_withdrawable", "stale_plan_status", "transition_note_required", "idempotency_key_conflict", "missing_request_id"]
+        .find((code) => error.message?.includes(code));
+      const status = ["lead_not_found", "plan_not_found", "handoff_not_found"].includes(known || "") ? 404 : ["handoff_not_withdrawable", "stale_plan_status", "idempotency_key_conflict"].includes(known || "") ? 409 : known ? 400 : 500;
+      return new Response(JSON.stringify({ error: known || "db_error", ...(known ? {} : { detail: error.message }) }), { status, headers: responseHeaders });
+    }
+    return new Response(JSON.stringify(data || {}), { headers: responseHeaders });
   }
 
   if (action === "transition_plan") {
@@ -246,7 +339,7 @@ Deno.serve(async (request) => {
     const factsUsed = objectOrEmpty(body.facts_used);
     const [leadResult, routeResult] = await Promise.all([
       db.from("family_leads").select("id,city,main_need,sub_need,age_group,additional_needs").eq("id", leadId).maybeSingle(),
-      db.from("knowledge_routes").select("id,route_key,need_domain,scope,required_inputs,knowledge_criteria(label,criterion_type,field_key,rule_json)").eq("route_key", routeKey).maybeSingle(),
+      db.from("knowledge_routes").select("id,route_key,need_domain,scope,required_inputs,partner_disclosure_required,knowledge_criteria(label,criterion_type,field_key,rule_json)").eq("route_key", routeKey).maybeSingle(),
     ]);
     const selectionReadError = leadResult.error || routeResult.error;
     if (selectionReadError) return new Response(JSON.stringify({ error: "db_error", detail: selectionReadError.message }), { status: 500, headers: responseHeaders });
@@ -283,7 +376,12 @@ Deno.serve(async (request) => {
       p_missing_fields: [],
       p_conflicting_criteria: [],
       p_title: title,
-      p_selected_option: objectOrEmpty(body.selected_option),
+      p_selected_option: {
+        ...objectOrEmpty(body.selected_option),
+        route_key: route.route_key,
+        need_domain: route.need_domain,
+        partner_disclosure_required: Boolean(route.partner_disclosure_required),
+      },
       p_next_action: cleanText(body.next_action, 2500),
       p_existing_plan_id: cleanText(body.existing_plan_id, 80),
       p_request_id: requestId,
@@ -416,6 +514,7 @@ Deno.serve(async (request) => {
   if (action === "log_event") {
     const eventType = String(body.event_type || "");
     if (!EVENT_TYPES.has(eventType)) return new Response(JSON.stringify({ error: "invalid_event_type" }), { status: 400, headers: responseHeaders });
+    if (!DIRECT_EVENT_TYPES.has(eventType)) return new Response(JSON.stringify({ error: "event_requires_workflow_action" }), { status: 409, headers: responseHeaders });
     const casePlanId = cleanText(body.case_plan_id, 80);
     if (eventType !== "interview_completed" && !casePlanId) return new Response(JSON.stringify({ error: "case_plan_required" }), { status: 400, headers: responseHeaders });
     const payload = {
