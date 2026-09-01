@@ -1,6 +1,6 @@
 (()=>{'use strict';
 const END='https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-leads-admin';
-let sessionReady=false,leads=[],partials=[],interviews=[],analytics={},programs=[],activeLead=null,answers={},activeQuestions=[],loading=null;
+let sessionReady=false,leads=[],partials=[],interviews=[],analytics={},programs=[],activeLead=null,answers={},activeQuestions=[],loading=null,reopenDrawerAfterAuth=false;
 window.AqoonInterview={activeLead:null,currentAnswers:{},announceSaved:detail=>window.dispatchEvent(new CustomEvent('aqoon:interview-saved',{detail}))};
 window.AqoonApp={get leads(){return leads},get partials(){return partials},get interviews(){return interviews},get programs(){return programs},updateLead:(id,patch)=>updateLead(id,patch)};
 const $=id=>document.getElementById(id);
@@ -10,8 +10,8 @@ function fmt(v){if(!v)return'—';try{return new Intl.DateTimeFormat('fi-FI',{da
 function fmtHour(v){try{return new Intl.DateTimeFormat('fi-FI',{hour:'2-digit'}).format(new Date(v))}catch{return''}}
 function fmtDay(v){try{return new Intl.DateTimeFormat('fi-FI',{day:'numeric',month:'short'}).format(new Date(v))}catch{return''}}
 function err(m){$('err').textContent=m||'';$('err').classList.toggle('hidden',!m)}
-function lock(){sessionStorage.removeItem('aqoon_auth_token');sessionStorage.removeItem('aqoon_auth_refresh_token');sessionReady=false;$('app').classList.add('hidden');$('lock').classList.remove('hidden')}
-function resumeAfterAuth(){sessionReady=true;$('lock').classList.add('hidden');$('app').classList.remove('hidden');setTimeout(load,0)}
+function lock(){const drawer=$('drawer');reopenDrawerAfterAuth=!!(drawer&&!drawer.classList.contains('hidden'));drawer?.classList.add('hidden');sessionStorage.removeItem('aqoon_auth_token');sessionStorage.removeItem('aqoon_auth_refresh_token');sessionReady=false;$('app').classList.add('hidden');$('lock').classList.remove('hidden')}
+function resumeAfterAuth(){sessionReady=true;$('lock').classList.add('hidden');$('app').classList.remove('hidden');if(reopenDrawerAfterAuth)$('drawer')?.classList.remove('hidden');reopenDrawerAfterAuth=false;setTimeout(load,0)}
 function tab(n){document.querySelectorAll('.view').forEach(x=>x.classList.add('hidden'));$(n).classList.remove('hidden');document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.tab===n));window.scrollTo(0,0)}
 function load(){if(loading)return loading;err('');loading=Promise.all([api({action:'list'}),api({action:'analytics',days:Number($('days').value)}),api({action:'programs'})]).then(([l,a,p])=>{leads=l.leads||[];partials=l.incomplete_contacts||[];interviews=l.interviews||[];analytics=a;programs=p.programs||[];renderAll();window.dispatchEvent(new Event('dataUpdated'))}).catch(e=>err(e.message)).finally(()=>loading=null);return loading}
 function renderAll(){renderPulse();renderDashboard();renderAnalytics();correctValidationNote()}

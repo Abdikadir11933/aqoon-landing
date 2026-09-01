@@ -32,6 +32,9 @@ test('signing in again resumes the open tracker without a page reload', () => {
   assert.match(source, /aqoon:auth-restored/);
   assert.match(app, /addEventListener\('aqoon:auth-restored',resumeAfterAuth\)/);
   assert.match(app, /function resumeAfterAuth/);
+  assert.match(app, /reopenDrawerAfterAuth/);
+  assert.match(app, /drawer\?\.classList\.add\('hidden'\)/);
+  assert.match(app, /if\(reopenDrawerAfterAuth\).*classList\.remove\('hidden'\)/);
 });
 
 test('operators can recover a forgotten password without an admin-created shared secret', () => {
