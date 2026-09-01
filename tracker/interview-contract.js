@@ -16,6 +16,7 @@ const groups={
   evidence:['aqoon_awareness_before','entry_service_awareness','entry_service_self_navigation','entry_blockers','system_navigation_confidence','digital_application_independence','official_service_connections','employment_plan_status','work_support_awareness','private_daycare_awareness_all','daycare_application_awareness_all','vantaa_hobbies_awareness_all','aqoon_return_intent'],
   future_signal:['household_children','other_children_stages','work_interest_gate','caregiver_future_goal','child_activity_interest','daycare_possible_need_all','daycare_future_reminder','other_child_daycare_timing','school_help_possible','vantaa_hobbies_possible_need','vantaa_hobbies_reminder','cross_service_needs_all'],
   consent:['relevant_updates_ok','outcome_followup_ok'],
+  operator_signal:['relationship_close_scope'],
   operator_note:['operator_context_notes','work_tryout_notes','apprenticeship_notes'],
 };
 const groupPolicy={
@@ -34,6 +35,7 @@ const groupPolicy={
   evidence:{source:'family_answer',purpose:'Measure access, awareness and navigation outcomes without deciding eligibility.',consumers:['evidence_analytics','pilot_reporting']},
   future_signal:{source:'family_answer',purpose:'Record a possible later need without activating matching or a plan.',consumers:['future_opportunity','lead_analytics','operator_follow_up']},
   consent:{source:'family_answer',purpose:'Record purpose-specific permission for relevant updates or outcome follow-up.',consumers:['lead_consent','future_opportunity','operator_follow_up']},
+  operator_signal:{source:'operator_observation',purpose:'Control whether this call ends after the active need, adds three evidence questions, or explores a need the family raised.',consumers:['interview_branching','operational_quality']},
   operator_note:{source:'operator_note',purpose:'Preserve operator context verbatim without treating it as a confirmed route fact.',consumers:['research_brief','operator_follow_up','interview_revision']},
 };
 const fields={};
@@ -60,5 +62,9 @@ function buildSavePayload(input){
   const answers=normalizeAnswers(input.answers),topics=researchTopics(input.routeTopics,answers);
   return {action:'save_interview',lead_id:input.leadId,interview_type:topics.join('+'),interview_schema_version:SCHEMA_VERSION,answers,summary:input.summary||null,research_prompt:input.researchPrompt||null,next_action:input.nextAction?.trim()||null,next_follow_up_at:input.followUp||null,urgency:input.urgency||'normal',status:'completed'};
 }
-root.AqoonInterviewContract=Object.freeze({SCHEMA_VERSION,groups:Object.freeze(groups),fields:Object.freeze(fields),aliases:Object.freeze(aliases),normalizeAnswers,researchTopics,buildSavePayload});
+const scenarioBudgets=Object.freeze({
+  one_specific_work:10,student_part_time_work:13,unemployed_work:14,work_plus_training:17,
+  education:10,daycare:13,hobby:10,school_child:12,program:14,service_support:10,general_or_mixed:16,
+});
+root.AqoonInterviewContract=Object.freeze({SCHEMA_VERSION,groups:Object.freeze(groups),fields:Object.freeze(fields),aliases:Object.freeze(aliases),scenarioBudgets,normalizeAnswers,researchTopics,buildSavePayload});
 })(typeof window!=='undefined'?window:globalThis);

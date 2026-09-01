@@ -3,9 +3,9 @@
   "contract_version": 1,
   "tracker_entrypoint": "tracker/index.html",
   "summary": {
-    "tracker_scripts": 28,
+    "tracker_scripts": 29,
     "scripts_wrapping_fetch": 2,
-    "scripts_wrapping_open_interview": 9,
+    "scripts_wrapping_open_interview": 10,
     "edge_functions": 13,
     "frontend_edge_function_slugs": [
       "family-case-lifecycle-admin",
@@ -41,6 +41,7 @@
       "reopen",
       "restore",
       "save_event",
+      "save_household_member",
       "save_interview",
       "save_opportunity",
       "save_plan",
@@ -66,6 +67,8 @@
       "family_interviews",
       "family_leads",
       "family_match_runs",
+      "family_needs",
+      "family_people",
       "family_scenario_research",
       "family_scenarios",
       "knowledge_routes",
@@ -112,6 +115,8 @@
       "family_interviews",
       "family_leads",
       "family_match_runs",
+      "family_needs",
+      "family_people",
       "family_scenario_research",
       "family_scenarios",
       "filter",
@@ -136,6 +141,7 @@
     ],
     "edge_function_rpcs": [
       "aqoon_approve_scenario_research",
+      "aqoon_save_household_member",
       "aqoon_save_route_review",
       "aqoon_select_case_route",
       "aqoon_transition_case_plan",
@@ -255,9 +261,9 @@
     },
     {
       "order": 4,
-      "src": "/tracker/app.js?v=5",
+      "src": "/tracker/app.js?v=6",
       "file": "tracker/app.js",
-      "lines": 69,
+      "lines": 70,
       "edge_functions": [
         "family-leads-admin"
       ],
@@ -293,7 +299,7 @@
       "order": 5,
       "src": "/tracker/interview-contract.js?v=1",
       "file": "tracker/interview-contract.js",
-      "lines": 65,
+      "lines": 71,
       "edge_functions": [],
       "api_actions": [
         "save_interview"
@@ -342,7 +348,7 @@
       "order": 8,
       "src": "/tracker/interview-match.js?v=6",
       "file": "tracker/interview-match.js",
-      "lines": 134,
+      "lines": 135,
       "edge_functions": [
         "family-leads-admin"
       ],
@@ -746,9 +752,33 @@
     },
     {
       "order": 18,
+      "src": "/tracker/household-people.js?v=1",
+      "file": "tracker/household-people.js",
+      "lines": 16,
+      "edge_functions": [
+        "family-leads-admin"
+      ],
+      "api_actions": [
+        "save_household_member"
+      ],
+      "window_exports": [
+        "openInterview"
+      ],
+      "window_wrappers": [
+        "openInterview"
+      ],
+      "listened_events": [
+        "dataUpdated",
+        "submit"
+      ],
+      "dispatched_events": [],
+      "answer_keys": []
+    },
+    {
+      "order": 19,
       "src": "/tracker/universal-proof-questions.js?v=2",
       "file": "tracker/universal-proof-questions.js",
-      "lines": 178,
+      "lines": 173,
       "edge_functions": [
         "family-leads-admin"
       ],
@@ -765,7 +795,7 @@
       "answer_keys": []
     },
     {
-      "order": 19,
+      "order": 20,
       "src": "/tracker/incomplete-intake.js?v=2",
       "file": "tracker/incomplete-intake.js",
       "lines": 52,
@@ -790,7 +820,7 @@
       "answer_keys": []
     },
     {
-      "order": 20,
+      "order": 21,
       "src": "/tracker/human-labels.js?v=2",
       "file": "tracker/human-labels.js",
       "lines": 57,
@@ -805,7 +835,7 @@
       "answer_keys": []
     },
     {
-      "order": 21,
+      "order": 22,
       "src": "/tracker/analytics-mobile-v2.js?v=2",
       "file": "tracker/analytics-mobile-v2.js",
       "lines": 43,
@@ -827,7 +857,7 @@
       "answer_keys": []
     },
     {
-      "order": 22,
+      "order": 23,
       "src": "/tracker/crm-manage.js?v=2",
       "file": "tracker/crm-manage.js",
       "lines": 19,
@@ -850,7 +880,7 @@
       "answer_keys": []
     },
     {
-      "order": 23,
+      "order": 24,
       "src": "/tracker/operations-system.js?v=2",
       "file": "tracker/operations-system.js",
       "lines": 66,
@@ -874,7 +904,7 @@
       "answer_keys": []
     },
     {
-      "order": 24,
+      "order": 25,
       "src": "/tracker/call-outcomes.js?v=2",
       "file": "tracker/call-outcomes.js",
       "lines": 132,
@@ -894,7 +924,7 @@
       "answer_keys": []
     },
     {
-      "order": 25,
+      "order": 26,
       "src": "/tracker/crm-queue-navigation.js?v=3",
       "file": "tracker/crm-queue-navigation.js",
       "lines": 562,
@@ -921,7 +951,7 @@
       "answer_keys": []
     },
     {
-      "order": 26,
+      "order": 27,
       "src": "/tracker/interview-ux-v4.js?v=2",
       "file": "tracker/interview-ux-v4.js",
       "lines": 234,
@@ -953,7 +983,7 @@
       ]
     },
     {
-      "order": 27,
+      "order": 28,
       "src": "/tracker/followup-workflow-v2.js?v=4",
       "file": "tracker/followup-workflow-v2.js",
       "lines": 59,
@@ -988,7 +1018,7 @@
       ]
     },
     {
-      "order": 28,
+      "order": 29,
       "src": "/tracker/followup-panel-v2.js?v=1",
       "file": "tracker/followup-panel-v2.js",
       "lines": 23,
@@ -1132,7 +1162,7 @@
     {
       "slug": "family-leads-admin",
       "file": "supabase/functions/family-leads-admin/index.ts",
-      "lines": 880,
+      "lines": 932,
       "actions": [
         "analytics",
         "call_log",
@@ -1145,6 +1175,7 @@
         "programmes",
         "programs",
         "record_call_outcome",
+        "save_household_member",
         "save_interview",
         "update",
         "whoami"
@@ -1155,6 +1186,8 @@
         "family_intake_contacts",
         "family_interviews",
         "family_leads",
+        "family_needs",
+        "family_people",
         "knowledge_routes",
         "knowledge_sources",
         "operators",
@@ -1177,7 +1210,9 @@
         "single",
         "stringify"
       ],
-      "rpcs": [],
+      "rpcs": [
+        "aqoon_save_household_member"
+      ],
       "auth_boundary": "operator_jwt_or_repository_fallback_contract"
     },
     {
@@ -2101,6 +2136,7 @@
         "tracker/crm-reactive.js",
         "tracker/followup-panel-v2.js",
         "tracker/followup-workflow-v2.js",
+        "tracker/household-people.js",
         "tracker/human-labels.js",
         "tracker/interview-contract.js",
         "tracker/interview-form-enhancements.js",
@@ -2149,6 +2185,7 @@
         "tracker/crm-queue-navigation.js",
         "tracker/followup-panel-v2.js",
         "tracker/followup-workflow-v2.js",
+        "tracker/household-people.js",
         "tracker/interview-answers-restore.js",
         "tracker/interview-match-preview.js",
         "tracker/interview-match.js",
@@ -2550,6 +2587,7 @@
         "tracker/crm-queue-navigation.js",
         "tracker/crm-reactive.js",
         "tracker/followup-workflow-v2.js",
+        "tracker/household-people.js",
         "tracker/incomplete-intake.js",
         "tracker/interview-answers-restore.js",
         "tracker/interview-context.js",
@@ -3502,7 +3540,7 @@
     }
   ],
   "migrations": {
-    "count": 33,
+    "count": 34,
     "files": [
       "20260827_aqoon_operations_system.sql",
       "20260828_aqoon_routing_intelligence_foundation.sql",
@@ -3536,7 +3574,8 @@
       "20260901180000_scenario_research_human_approval.sql",
       "20260901183000_revoke_sensitive_default_table_grants.sql",
       "20260901190000_work_linked_education_routes.sql",
-      "20260901193000_canonical_household_person_need_model.sql"
+      "20260901193000_canonical_household_person_need_model.sql",
+      "20260901210000_household_member_write_rpc.sql"
     ],
     "created_tables": [
       "family_call_log",
@@ -3599,6 +3638,7 @@
       "aqoon_link_interview_family_graph",
       "aqoon_link_interview_needs",
       "aqoon_need_domain",
+      "aqoon_save_household_member",
       "aqoon_save_route_review",
       "aqoon_select_case_route",
       "aqoon_sync_lead_household",

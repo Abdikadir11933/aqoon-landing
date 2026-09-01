@@ -31,6 +31,19 @@ test('non-work interview topics use scenario gates instead of exposing every det
   assert.match(interview, /data-branch-source/);
 });
 
+test('single-topic interviews do not repeat the intake as three universal questions', () => {
+  const interview = read('tracker/interview-match.js');
+  assert.match(interview, /const needsUniversalContext=rs\.length>1\|\|rs\.includes\('general'\)/);
+  assert.match(interview, /needsUniversalContext\?universalContext\.map/);
+});
+
+test('every released scenario has an explicit maximum matching-question budget', () => {
+  const contractSource = read('tracker/interview-contract.js');
+  for (const scenario of ['one_specific_work','student_part_time_work','unemployed_work','work_plus_training','education','daycare','hobby','school_child','program','service_support','general_or_mixed']) {
+    assert.match(contractSource, new RegExp(`${scenario}:\\d+`));
+  }
+});
+
 test('changing a scenario clears hidden answers and no hidden answer can be saved', () => {
   const interview = read('tracker/interview-match.js');
   const universal = read('tracker/universal-proof-questions.js');

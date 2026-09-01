@@ -213,11 +213,11 @@ Deno.serve(async (req) => {
     });
   }
   if (action === "list") {
-    const [lr, cr, ir, opr] = await Promise.all([
+    const [lr, cr, ir, opr, peopleResult, needsResult] = await Promise.all([
       db
         .from("family_leads")
         .select(
-          "id,created_at,updated_at,name,phone,city,main_need,sub_need,age_group,additional_needs,tier,status,contacted_at,resolved_at,notes,source,lang,analytics_session_id,analytics_visitor_id,referrer_host,utm_source,utm_medium,utm_campaign,intake_request_id,next_follow_up_at,urgency,interview_status,last_interview_at,journey_stage,form_version,last_call_outcome,last_call_at,assigned_operator_id,last_actor_id,consent_relevant_updates_ok,consent_outcome_followup_ok,consent_recorded_at",
+          "id,created_at,updated_at,name,phone,city,main_need,sub_need,age_group,additional_needs,tier,status,contacted_at,resolved_at,notes,source,lang,analytics_session_id,analytics_visitor_id,referrer_host,utm_source,utm_medium,utm_campaign,intake_request_id,next_follow_up_at,urgency,interview_status,last_interview_at,journey_stage,form_version,last_call_outcome,last_call_at,assigned_operator_id,last_actor_id,consent_relevant_updates_ok,consent_outcome_followup_ok,consent_recorded_at,household_id,primary_person_id,primary_need_id",
         )
         .order("created_at", { ascending: false })
         .limit(1000),
@@ -232,7 +232,7 @@ Deno.serve(async (req) => {
       db
         .from("family_interviews")
         .select(
-          "id,lead_id,interview_type,answers,summary,research_prompt,next_follow_up_at,urgency,status,next_action,created_at,updated_at,operator_id,interview_schema_version",
+          "id,lead_id,interview_type,answers,summary,research_prompt,next_follow_up_at,urgency,status,next_action,created_at,updated_at,operator_id,interview_schema_version,household_id,subject_person_id",
         )
         .order("updated_at", { ascending: false })
         .limit(2000),
@@ -241,8 +241,19 @@ Deno.serve(async (req) => {
         .select("id,display_name,active")
         .eq("active", true)
         .order("display_name", { ascending: true }),
+      db
+        .from("family_people")
+        .select("id,household_id,role,display_label,birth_date,age_years,age_band,created_at,updated_at")
+        .order("created_at", { ascending: true })
+        .limit(5000),
+      db
+        .from("family_needs")
+        .select("id,household_id,subject_person_id,source_lead_id,source_position,need_domain,raw_main_need,raw_sub_need,age_group,timing,status,source,created_at,updated_at")
+        .neq("status", "archived")
+        .order("created_at", { ascending: true })
+        .limit(5000),
     ]);
-    if (lr.error || cr.error || ir.error || opr.error)
+    if (lr.error || cr.error || ir.error || opr.error || peopleResult.error || needsResult.error)
       return new Response(
         JSON.stringify({
           error: "db_error",
@@ -250,7 +261,9 @@ Deno.serve(async (req) => {
             lr.error?.message ||
             cr.error?.message ||
             ir.error?.message ||
-            opr.error?.message,
+            opr.error?.message ||
+            peopleResult.error?.message ||
+            needsResult.error?.message,
         }),
         { status: 500, headers: h },
       );
@@ -267,9 +280,48 @@ Deno.serve(async (req) => {
         incomplete_contacts: cr.data || [],
         interviews: ints,
         operators: opr.data || [],
+        household_people: peopleResult.data || [],
+        family_needs: needsResult.data || [],
       }),
       { headers: h },
     );
+  }
+  if (action === "save_household_member") {
+    const leadId = String(b.lead_id || ""),
+      personId = b.person_id ? String(b.person_id) : null,
+      role = String(b.role || ""),
+      displayLabel = txt(b.display_label, 80),
+      ageBand = txt(b.age_band, 40),
+      familyNeedId = b.family_need_id ? String(b.family_need_id) : null;
+    if (!leadId || !displayLabel || !["adult", "child", "dependent", "other"].includes(role))
+      return new Response(JSON.stringify({ error: "invalid_household_member" }), {
+        status: 400,
+        headers: h,
+      });
+    const ageYears = b.age_years === "" || b.age_years === null || b.age_years === undefined
+      ? null
+      : Number(b.age_years);
+    if (ageYears !== null && (!Number.isInteger(ageYears) || ageYears < 0 || ageYears > 120))
+      return new Response(JSON.stringify({ error: "invalid_age" }), { status: 400, headers: h });
+    const birthDate = b.birth_date ? String(b.birth_date) : null;
+    if (birthDate && !/^\d{4}-\d{2}-\d{2}$/.test(birthDate))
+      return new Response(JSON.stringify({ error: "invalid_birth_date" }), { status: 400, headers: h });
+    const memberResult = await db.rpc("aqoon_save_household_member", {
+      p_lead_id: leadId,
+      p_person_id: personId,
+      p_role: role,
+      p_display_label: displayLabel,
+      p_birth_date: birthDate,
+      p_age_years: ageYears,
+      p_age_band: ageBand,
+      p_family_need_id: familyNeedId,
+    });
+    if (memberResult.error)
+      return new Response(JSON.stringify({ error: "member_write_failed", detail: memberResult.error.message }), {
+        status: 500,
+        headers: h,
+      });
+    return new Response(JSON.stringify(memberResult.data), { headers: h });
   }
   if (action === "programs" || action === "programmes") {
     const { data, error } = await db
