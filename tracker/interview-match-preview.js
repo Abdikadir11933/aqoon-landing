@@ -36,6 +36,7 @@ async function saveReview(btn){
 }
 function interviewCompleted(){return (window.AqoonApp?.leads||[]).find(l=>l.id===leadId)?.interview_status==='completed'}
 async function load(){
+  if(window.AqoonFollowupWorkflowV2?.active){$('routePreview')?.remove();return}
   if(!leadId)return;const el=host();if(!el)return;
   // match_preview is server-gated on a completed interview (by design - a
   // route match must never be produced from raw intake); on every other
@@ -57,6 +58,7 @@ window.openInterview=function(id){
 // refresh completes. The server has already accepted the interview, so use
 // that confirmed save to run the authoritative match_preview immediately.
 window.addEventListener('aqoon:interview-saved',async event=>{
+  if(window.AqoonFollowupWorkflowV2?.active)return;
   const detail=event.detail||{};
   if(!detail.lead?.id)return;
   leadId=detail.lead.id;

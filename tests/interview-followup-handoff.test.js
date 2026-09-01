@@ -5,7 +5,7 @@ const path = require('node:path');
 
 const read = file => fs.readFileSync(path.join(__dirname, '..', file), 'utf8');
 
-test('successful interview save moves the local case to follow-up and forces fresh CRM data', () => {
+test('successful interview save moves the local case to follow-up without blocking on a full CRM refresh', () => {
   const app = read('tracker/app.js');
   const interview = read('tracker/interview-match.js');
   const queues = read('tracker/crm-queue-navigation.js');
@@ -14,7 +14,8 @@ test('successful interview save moves the local case to follow-up and forces fre
   assert.match(app, /async function load\(force=false\)/);
   assert.match(interview, /C\.lead\.status='contacted'/);
   assert.match(interview, /C\.lead\.interview_status='completed'/);
-  assert.match(interview, /await window\.AqoonApp\?\.refresh\?\.\(\)/);
+  assert.match(interview, /AqoonApp\?\.patchLeadLocal\?\.\(C\.lead\.id/);
+  assert.doesNotMatch(interview, /await window\.AqoonApp\?\.refresh\?\.\(\)/);
   assert.match(queues, /addEventListener\('aqoon:interview-saved'/);
   assert.match(queues, /expandedPhase = 'in_progress'/);
 });

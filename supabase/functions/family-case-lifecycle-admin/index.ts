@@ -143,6 +143,33 @@ Deno.serve(async (request) => {
     return new Response(JSON.stringify({ plans: plans.data || [], events: events.data || [], opportunities: opportunities.data || [], match_runs: matchRuns.data || [], interactions: interactions.data || [] }), { headers: responseHeaders });
   }
 
+  // The sequenced interview follow-up only needs the plan, its audit events,
+  // and route-review runs. Keep this separate from the larger case-detail
+  // payload so every button press does not read and serialize unrelated
+  // future opportunities and interaction history.
+  if (action === "workflow") {
+    const [plans, events, matchRuns] = await Promise.all([
+      db.from("family_case_plans")
+        .select("id,family_lead_id,match_run_id,owner_operator_id,title,official_decision_maker,selected_option,plan_status,next_action,next_follow_up_at,resolved_at,created_at,updated_at")
+        .eq("family_lead_id", leadId)
+        .order("updated_at", { ascending: false }),
+      db.from("family_case_events")
+        .select("id,family_lead_id,case_plan_id,operator_id,event_type,event_data,note,occurred_at,created_at,request_id")
+        .eq("family_lead_id", leadId)
+        .order("occurred_at", { ascending: false })
+        .limit(100),
+      db.from("family_match_runs")
+        .select("id,status,match_status,recommended_next_action,created_at,knowledge_routes(route_key,need_domain)")
+        .eq("family_lead_id", leadId)
+        .in("status", ["ready_for_review", "reviewed"])
+        .order("created_at", { ascending: false })
+        .limit(50),
+    ]);
+    const error = plans.error || events.error || matchRuns.error;
+    if (error) return new Response(JSON.stringify({ error: "db_error", detail: error.message }), { status: 500, headers: responseHeaders });
+    return new Response(JSON.stringify({ plans: plans.data || [], events: events.data || [], match_runs: matchRuns.data || [] }), { headers: responseHeaders });
+  }
+
   if (action === "transition_plan") {
     const planId = cleanText(body.case_plan_id, 80);
     const expectedStatus = cleanText(body.expected_status, 80);

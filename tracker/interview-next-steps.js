@@ -152,6 +152,7 @@ function handleAction(action,lead,needs){
 }
 
 function attach(lead,currentAnswers){
+  if(window.AqoonFollowupWorkflowV2?.active)return;
   loadLifecycle(lead.id).then(lifecycle=>{
     if(lifecycle)renderNextSteps(lead,currentAnswers,lifecycle);
   });

@@ -134,6 +134,13 @@ function attach(lead,firstAnswers,currentAnswers){
     questions?.parentNode?.insertBefore(host,questions);
   }
   recapOpen=false;
+  const workflow=window.AqoonFollowupWorkflowV2;
+  if(workflow?.active){
+    const context=workflow.contextForLead?.(lead.id);
+    leadData=context?{plans:context.plans||[],events:context.events||[]}:null;
+    render(lead,firstAnswers,currentAnswers);
+    return;
+  }
   load(lead.id).then(()=>render(lead,firstAnswers,currentAnswers));
 }
 

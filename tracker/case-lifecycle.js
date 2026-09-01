@@ -83,6 +83,7 @@ function render(){
 }
 function fail(message){const box=$('caseLifecycleError');if(box){box.textContent=message;box.classList.remove('hidden')}}
 async function load(){
+  if(window.AqoonFollowupWorkflowV2?.active){$('caseLifecycle')?.remove();return}
   if(!leadId)return;
   const lead=(window.AqoonApp?.leads||[]).find(l=>l.id===leadId);
   if(lead?.interview_status!=='completed'){$('caseLifecycle')?.remove();plans=[];events=[];opportunities=[];revisions=[];return}
@@ -162,6 +163,7 @@ window.openInterview=function(id){
   setTimeout(load,450);
 };
 window.addEventListener('aqoon:interview-saved',event=>{
+  if(window.AqoonFollowupWorkflowV2?.active)return;
   if(event.detail?.lead?.id!==leadId)return;
   setTimeout(load,0);
 });

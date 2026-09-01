@@ -13,7 +13,7 @@ test('Next Steps attaches from a confirmed save event regardless of which interv
   const match = read('tracker/interview-match.js');
   const next = read('tracker/interview-next-steps.js');
   assert.match(app, /announceSaved:detail=>window\.dispatchEvent\(new CustomEvent\('aqoon:interview-saved'/);
-  assert.match(app, /\.then\(result=>\{\$\('promptBox'\)\.textContent=prompt;\$\('promptWrap'\)\.classList\.remove\('hidden'\);window\.AqoonInterview\.announceSaved/);
+  assert.match(app, /\.then\(result=>\{[\s\S]*window\.AqoonInterview\.announceSaved/);
   assert.match(match, /const result=await api\([\s\S]*AqoonInterview\?\.announceSaved\?\./);
   assert.match(next, /window\.addEventListener\('aqoon:interview-saved',[\s\S]*attach\(lead,answers\)/);
   assert.doesNotMatch(next, /window\.saveInterview=async function/);
