@@ -28,22 +28,26 @@ function ageBucket(v:any){
   if(n<3)return"0-2";if(n<7)return"3-6";if(n<16)return"7-15";if(n<18)return"16-17";if(n<30)return"18-29";if(n<45)return"30-44";if(n<65)return"45-64";return"65+";
 }
 const SAFE_KEYS=new Set([
+  "case_subject","current_situation","immediate_goal","client_age","home_municipality",
   "finland_time","work_status","jobseeker","jobseeker_active","unemployment_duration","employment_plan","integration_plan","right_to_work_known","palkkatuki","availability","start_when","travel_limit","childcare_limit","work_tryout","apprenticeship",
-  "child_age","grade","born_finland","fin_school_time","school_route","child_finnish","s2","support_tried","support_decision","care_goal","care_schedule","sudden_need","all_guardians","urgent_proof","care_options","cost_priority","has_place","applied","reason","private_ok",
-  "finnish","finnish_match","literacy","basic_school","current_study","study_language","study_load","study_travel","study_start","yki_purpose","yki_level","documents","childcare","education_goal",
-  "business_stage","fulltime_started","business_plan","business_numbers","starttiraha","business_help","integration_assessment","residence_status","first_permit_time","parent_status","kotihoidon_tuki","program_goal","program_time","program_childcare","program_cost","program_travel",
-  "service_area","case_status","support_goal","authority_contacted","interest","cost","travel","concern","school_support","message","cv","barrier","training"
+  "primary_situation","work_search_scope","work_intent","study_path","student_schedule","study_completion","student_benefit_context","current_work_hours","change_reason","job_search_profile",
+  "child_age","child_stage","household_schedule","grade","born_finland","fin_school_time","school_route","child_finnish","s2","support_tried","support_decision","school_situation","school_decision_needed","school_goal","care_reason","care_start_urgency","care_goal","care_schedule","sudden_need","all_guardians","urgent_proof","care_options","cost_priority","support_arrangement","has_place","applied","reason","private_ok",
+  "activity_goal","activity_cost","days","hobby_time","other_school","hobby_language","accessibility","registration",
+  "finnish","finnish_match","literacy","basic_school","current_study","study_language","study_load","study_travel","study_start","yki_purpose","yki_level","documents","childcare","education_goal","education_entry_reason","education_barriers",
+  "business_stage","fulltime_started","business_plan","business_numbers","starttiraha","business_help","integration_assessment","residence_status","first_permit_time","parent_status","kotihoidon_tuki","program_goal","program_time","program_childcare","program_cost","program_travel","program_reason","program_constraints",
+  "service_area","case_status","support_goal","authority_contacted","authority_issue","authority_goal","desired_help","interest","cost","concern","school_support","message","cv","barrier","training",
+  "household_children","other_children_stages","caregiver_future_goal","child_activity_interest","work_interest_gate","employment_plan_status","daycare_possible_need_all","other_child_daycare_timing","school_help_possible","vantaa_hobbies_possible_need"
 ]);
 function piiFreeDimensions(lead:any,route:string,answers:any){
   const selected:Record<string,any>={};
   if(answers&&typeof answers==="object")for(const [k,v] of Object.entries(answers)){
     if(!SAFE_KEYS.has(k)||v===null||v===undefined||v==="")continue;
-    if(k==="child_age")selected[k]=ageBucket(v);
+    if(k==="child_age"||k==="client_age")selected[k]=ageBucket(v);
     else if(Array.isArray(v))selected[k]=safeArray(v).map(norm).filter(Boolean).sort();
     else selected[k]=norm(v);
   }
   return {
-    version:1,
+    version:2,
     route:norm(route)||"general",
     city:norm(lead.city),
     main_need:norm(lead.main_need),

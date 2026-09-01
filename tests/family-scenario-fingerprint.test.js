@@ -24,3 +24,17 @@ test('SHA-256 fingerprints are stable and use the full 64-character hex digest',
   assert.equal(first, second);
   assert.match(first, /^[a-f0-9]{64}$/);
 });
+
+test('scenario version 2 fingerprints include current route-changing interview facts without analytics or consent noise', () => {
+  assert.match(edge, /version:2/);
+  for (const key of [
+    'client_age', 'home_municipality', 'primary_situation',
+    'student_schedule', 'care_start_urgency', 'support_arrangement',
+    'school_situation', 'program_constraints', 'household_children'
+  ]) assert.match(edge, new RegExp(`"${key}"`));
+  assert.match(edge, /k==="child_age"\|\|k==="client_age"/);
+  for (const key of [
+    'aqoon_awareness_before', 'aqoon_return_intent',
+    'relevant_updates_ok', 'outcome_followup_ok', 'system_navigation_confidence'
+  ]) assert.doesNotMatch(edge, new RegExp(`"${key}"`));
+});
