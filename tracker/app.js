@@ -11,6 +11,7 @@ function fmtHour(v){try{return new Intl.DateTimeFormat('fi-FI',{hour:'2-digit'})
 function fmtDay(v){try{return new Intl.DateTimeFormat('fi-FI',{day:'numeric',month:'short'}).format(new Date(v))}catch{return''}}
 function err(m){$('err').textContent=m||'';$('err').classList.toggle('hidden',!m)}
 function lock(){sessionStorage.removeItem('aqoon_auth_token');sessionStorage.removeItem('aqoon_auth_refresh_token');sessionReady=false;$('app').classList.add('hidden');$('lock').classList.remove('hidden')}
+function resumeAfterAuth(){sessionReady=true;$('lock').classList.add('hidden');$('app').classList.remove('hidden');setTimeout(load,0)}
 function tab(n){document.querySelectorAll('.view').forEach(x=>x.classList.add('hidden'));$(n).classList.remove('hidden');document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.tab===n));window.scrollTo(0,0)}
 function load(){if(loading)return loading;err('');loading=Promise.all([api({action:'list'}),api({action:'analytics',days:Number($('days').value)}),api({action:'programs'})]).then(([l,a,p])=>{leads=l.leads||[];partials=l.incomplete_contacts||[];interviews=l.interviews||[];analytics=a;programs=p.programs||[];renderAll();window.dispatchEvent(new Event('dataUpdated'))}).catch(e=>err(e.message)).finally(()=>loading=null);return loading}
 function renderAll(){renderPulse();renderDashboard();renderAnalytics();correctValidationNote()}
@@ -56,5 +57,7 @@ document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{tab(b.dataset.g
 $('refresh').onclick=load;$('logout').onclick=lock;$('closeDrawer').onclick=()=>$('drawer').classList.add('hidden');$('saveInterview').onclick=saveInterview;$('copyPrompt').onclick=()=>{navigator.clipboard?.writeText($('promptBox').textContent);$('copyPrompt').textContent='Copied ✓'};
 $('days').onchange=()=>api({action:'analytics',days:Number($('days').value)}).then(a=>{analytics=a;renderDashboard();renderAnalytics();correctValidationNote()});
 const saved=sessionStorage.getItem('aqoon_auth_token');if(saved){sessionReady=true;api({action:'ping'}).then(()=>{$('lock').classList.add('hidden');$('app').classList.remove('hidden');load()}).catch(lock)}
+window.addEventListener('aqoon:auth-expired',event=>{lock();err(event.detail?.message||'Your sign-in expired. Sign in again; your interview draft is safe on this device.')});
+window.addEventListener('aqoon:auth-restored',resumeAfterAuth);
 setInterval(()=>{if(sessionReady&&!document.hidden)load()},60000);document.addEventListener('visibilitychange',()=>{if(sessionReady&&!document.hidden)load()});
 })();

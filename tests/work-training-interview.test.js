@@ -24,6 +24,15 @@ test('operator context is persisted and restored instead of living only in a gen
   assert.match(restore, /answers\.operator_context_notes/);
 });
 
+test('the complete interview is kept as a short-lived device draft until the database confirms save', () => {
+  assert.match(notes, /DRAFT_TTL_MS=7\*24\*60\*60\*1000/);
+  assert.match(notes, /function collectFields/);
+  assert.match(notes, /canonical:/);
+  assert.match(notes, /aqoon:auth-expired/);
+  assert.match(notes, /aqoon:interview-saved/);
+  assert.match(notes, /localStorage\.removeItem\(key\(\)\)/);
+});
+
 test('verified work-linked education routes retain human and authority gates', () => {
   assert.match(migration, /route\.finland\.oppisopimus/);
   assert.match(migration, /route\.finland\.vocational-labour-market-training/);

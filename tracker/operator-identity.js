@@ -7,7 +7,7 @@ const MUTATING_LEAD_ACTIONS=new Set(['save_interview','interview_save','record_c
 const MUTATING_OPS_ACTIONS=new Set(['save_opportunity','delete_opportunity','add_activity','save_event','delete_event']);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
-let operators=[],opById={},leadAttrib={},oppRecords={},badgeTimer=null,pickerMode='signin',refreshPromise=null;
+let operators=[],opById={},leadAttrib={},oppRecords={},badgeTimer=null,pickerMode='signin',refreshPromise=null,authRefreshBlocked=false,authFailureNotified=false;
 
 function meId(){return sessionStorage.getItem('aqoon_operator_id')||''}
 function meName(){return sessionStorage.getItem('aqoon_operator_name')||''}
@@ -15,14 +15,21 @@ function authToken(){return sessionStorage.getItem('aqoon_auth_token')||''}
 function authHeaders(){const token=authToken();return Object.assign({'Content-Type':'application/json'},token?{Authorization:'Bearer '+token}:{})}
 window.AqoonAuthHeaders=authHeaders;
 function setMe(id,name){sessionStorage.setItem('aqoon_operator_id',id);sessionStorage.setItem('aqoon_operator_name',name);renderPill();scheduleBadgeRefresh()}
-function setAuthSession(token,refresh){if(token)sessionStorage.setItem('aqoon_auth_token',token);if(refresh)sessionStorage.setItem('aqoon_auth_refresh_token',refresh)}
+function setAuthSession(token,refresh){if(token)sessionStorage.setItem('aqoon_auth_token',token);if(refresh)sessionStorage.setItem('aqoon_auth_refresh_token',refresh);authRefreshBlocked=false;authFailureNotified=false}
 function clearMe(){sessionStorage.removeItem('aqoon_operator_id');sessionStorage.removeItem('aqoon_operator_name');sessionStorage.removeItem('aqoon_auth_token');sessionStorage.removeItem('aqoon_auth_refresh_token')}
 function nameFor(id){if(!id)return'';const o=opById[id];return o?o.display_name:''}
 
 // The Tracker unlocks only after Supabase Auth has produced a valid JWT
 // linked to an active AQOON operator.
-function unlockWithSession(){location.reload()}
+function unlockWithSession(){window.dispatchEvent(new CustomEvent('aqoon:auth-restored'))}
 function signOut(){clearMe();location.reload()}
+
+function notifyAuthExpired(){
+  authRefreshBlocked=true;
+  if(authFailureNotified)return;
+  authFailureNotified=true;
+  window.dispatchEvent(new CustomEvent('aqoon:auth-expired',{detail:{message:'Your sign-in expired. The interview draft is safe on this device. Sign in again, then press Save once more.'}}));
+}
 
 async function authRequest(path,body){
   const r=await fetch(SUPABASE_URL+path,{method:'POST',headers:{'Content-Type':'application/json',apikey:ANON_KEY},body:JSON.stringify(body)});
@@ -52,9 +59,9 @@ async function refreshAuthSession(force=false){
   const current=authToken();
   if(!force&&current&&!tokenExpiresSoon(current))return current;
   const refresh=sessionStorage.getItem('aqoon_auth_refresh_token')||'';
-  if(!refresh)return current;
+  if(!refresh||authRefreshBlocked)return force?'':current;
   if(!refreshPromise)refreshPromise=authRequest('/auth/v1/token?grant_type=refresh_token',{refresh_token:refresh}).then(session=>{if(!session.access_token)throw new Error('Session refresh failed');setAuthSession(session.access_token,session.refresh_token);return session.access_token}).finally(()=>{refreshPromise=null});
-  try{return await refreshPromise}catch{return current}
+  try{return await refreshPromise}catch{if(force)notifyAuthExpired();return force?'':current}
 }
 async function whoami(token){
   const r=await fetch(LEADS_END,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+token},body:JSON.stringify({action:'whoami'})});
@@ -225,6 +232,7 @@ function patchFetch(){
     const url=typeof input==='string'?input:(input&&input.url)||'';
     const privateEndpoint=['/family-leads-admin','/family-incomplete-admin','/family-case-lifecycle-admin','/family-route-review-admin','/family-route-preview-admin','/family-interview-history-admin','/family-scenario-admin','/family-leads-manage','/ops-admin'].some(path=>url.includes(path));
     const isLeads=url.includes('/family-leads-admin'),isOps=url.includes('/ops-admin');
+    if(privateEndpoint&&authRefreshBlocked)return new Response(JSON.stringify({error:'session_expired',detail:'Your sign-in expired. The interview draft is safe on this device. Sign in again, then press Save once more.'}),{status:401,headers:{'Content-Type':'application/json'}});
     if(privateEndpoint&&init&&typeof init.body==='string'){
       try{
         const body=JSON.parse(init.body);
@@ -245,6 +253,7 @@ function patchFetch(){
         response=await orig(input,retryInit);
       }
     }
+    if(privateEndpoint&&response.status===401)notifyAuthExpired();
     if(!isLeads&&!isOps)return response;
     try{
       const data=await response.clone().json();
