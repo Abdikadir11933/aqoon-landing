@@ -3574,7 +3574,7 @@
     }
   ],
   "migrations": {
-    "count": 38,
+    "count": 39,
     "files": [
       "20260827_aqoon_operations_system.sql",
       "20260828_aqoon_routing_intelligence_foundation.sql",
@@ -3613,7 +3613,8 @@
       "20260901220000_confirmed_match_knowledge_guard.sql",
       "20260901221000_post_interview_decision_contract.sql",
       "20260901223000_analytics_sales_learning_contract.sql",
-      "20260901224500_partner_handoff_consent_contract.sql"
+      "20260901224500_partner_handoff_consent_contract.sql",
+      "20260901225000_partner_handoff_fk_indexes.sql"
     ],
     "created_tables": [
       "family_call_log",
