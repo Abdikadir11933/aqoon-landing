@@ -1,6 +1,6 @@
 # Work and unemployment cheat sheet
 
-Updated 2026-08-28. Recheck live Työmarkkinatori/Kela rules before case-specific promises.
+Updated 2026-09-01. Recheck live Työmarkkinatori/Kela/local employment-service rules before case-specific promises.
 
 ## Ilmoittautuminen työttömäksi työnhakijaksi
 **What it is:** Official registration as an unemployed jobseeker with the local employment authority through Työmarkkinatori.
@@ -39,6 +39,19 @@ Updated 2026-08-28. Recheck live Työmarkkinatori/Kela rules before case-specifi
 **Watch out:** Do not treat this as only a CV suggestion after 1.9. It can be an actual job-search obligation, but do not incorrectly threaten loss of benefit or job-search status if the profile has not yet been published.
 
 **Verify:** Työmarkkinatori, “Työnhakuprofiilin julkaisemista koskeva lakimuutos astuu voimaan syyskuun alusta” (17.8.2026): https://tyomarkkinatori.fi/uutiset/tyonhakuprofiilin-julkaisemista-koskeva-lakimuutos-astuu-voimaan-syyskuun-alusta
+
+## Espoo walk-in access from 1.9.2026
+**Official matters without an appointment:** Sello Monday-Friday 9-15; Piispanportti Monday and Friday 9-15.
+
+**Iso Omena Information Point:** Wednesday 9-12 and 13-16. It gives general advice and form/service help but does not handle official matters.
+
+**Job-search guidance:** Sello and Piispanportti Monday-Friday 9-16; open to everyone, but this guidance service does not handle official matters either.
+
+**Ask before routing:** Is this an urgent official job-search matter (registration, documents, plan), or does the person need general CV/application/job-search help?
+
+**Watch out:** Do not send someone to Piispanportti for a Tuesday-Thursday walk-in official matter based on old hours. Recheck same-day hours before promising access.
+
+**Verify:** City of Espoo, change effective 1.9.2026: https://www.espoo.fi/en/news/2026/08/changes-opening-hours-jobseekers-advisory-services-1-september-2026
 
 ## Yleistuki
 **What it is:** Kela unemployment support from 1 May 2026, replacing Kela’s old työmarkkinatuki and peruspäiväraha.
