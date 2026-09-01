@@ -52,7 +52,7 @@ const requiredActions = {
     'match_preview', 'save_interview', 'analytics', 'record_call_outcome', 'update'
   ],
   'family-leads-manage': ['create', 'update', 'move_phase', 'delete'],
-  'family-case-lifecycle-admin': ['batch_list', 'summary', 'get_call_history', 'list', 'save_plan', 'log_event'],
+  'family-case-lifecycle-admin': ['batch_list', 'summary', 'get_call_history', 'list', 'select_route', 'save_plan', 'log_event'],
   'ops-admin': ['operators', 'list', 'save_opportunity', 'delete_opportunity', 'add_activity', 'save_event', 'delete_event']
 };
 for (const [slug, actions] of Object.entries(requiredActions)) {

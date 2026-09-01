@@ -174,6 +174,40 @@ Deno.serve(async (request) => {
     return new Response(JSON.stringify(data || {}), { headers: responseHeaders });
   }
 
+  if (action === "select_route") {
+    const routeKey = cleanText(body.route_key, 240);
+    const title = cleanText(body.title, 240);
+    const requestId = cleanText(body.request_id, 80);
+    const missingFields = Array.isArray(body.missing_fields) ? body.missing_fields : [];
+    const conflictingCriteria = Array.isArray(body.conflicting_criteria) ? body.conflicting_criteria : [];
+    if (!routeKey || !title || !requestId) {
+      return new Response(JSON.stringify({ error: "missing_route_selection_fields" }), { status: 400, headers: responseHeaders });
+    }
+    if (missingFields.length || conflictingCriteria.length) {
+      return new Response(JSON.stringify({ error: "confirmed_route_has_unresolved_criteria" }), { status: 400, headers: responseHeaders });
+    }
+    const { data, error } = await db.rpc("aqoon_select_case_route", {
+      p_lead_id: leadId,
+      p_operator_id: operatorId,
+      p_route_key: routeKey,
+      p_facts_used: objectOrEmpty(body.facts_used),
+      p_missing_fields: missingFields,
+      p_conflicting_criteria: conflictingCriteria,
+      p_title: title,
+      p_selected_option: objectOrEmpty(body.selected_option),
+      p_next_action: cleanText(body.next_action, 2500),
+      p_existing_plan_id: cleanText(body.existing_plan_id, 80),
+      p_request_id: requestId,
+    });
+    if (error) {
+      const known = ["lead_not_found", "plan_not_found", "first_interview_required", "route_not_currently_verified", "plan_not_selectable", "confirmed_route_has_unresolved_criteria", "selected_option_route_mismatch", "invalid_route_selection_payload", "idempotency_key_conflict", "missing_request_id", "missing_route_key", "missing_title"]
+        .find((code) => error.message?.includes(code));
+      const status = known === "lead_not_found" || known === "plan_not_found" ? 404 : known === "plan_not_selectable" || known === "idempotency_key_conflict" || known === "route_not_currently_verified" ? 409 : known ? 400 : 500;
+      return new Response(JSON.stringify({ error: known || "db_error", ...(known ? {} : { detail: error.message }) }), { status, headers: responseHeaders });
+    }
+    return new Response(JSON.stringify(data || {}), { headers: responseHeaders });
+  }
+
   if (action === "save_plan") {
     const planStatus = PLAN_STATUSES.has(body.plan_status) ? body.plan_status : "research";
     const plan = {
