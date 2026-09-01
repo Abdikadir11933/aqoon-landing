@@ -11,6 +11,10 @@ function fill(el,value){
 }
 function applyTo(root){
   if(!pending||!root.querySelectorAll)return;
+  if(root.matches?.('[data-key]')){
+    const key=root.dataset.key;
+    if(key&&Object.prototype.hasOwnProperty.call(pending,key))fill(root,pending[key]);
+  }
   root.querySelectorAll('[data-key]').forEach(el=>{
     const key=el.dataset.key;
     if(key&&Object.prototype.hasOwnProperty.call(pending,key))fill(el,pending[key]);
@@ -23,7 +27,7 @@ function watch(){
   const host=$('questions');if(!host)return;
   applyTo(host);
   notifyRestored();
-  observer=new MutationObserver(mutations=>{mutations.forEach(m=>m.addedNodes.forEach(node=>{if(node.nodeType===1)applyTo(node)}));notifyRestored()});
+  observer=new MutationObserver(mutations=>{mutations.forEach(m=>{if(m.target?.nodeType===1)applyTo(m.target);m.addedNodes.forEach(node=>{if(node.nodeType===1)applyTo(node)})});notifyRestored()});
   observer.observe(host,{childList:true,subtree:true});
 }
 const originalOpenForRestore=window.openInterview;

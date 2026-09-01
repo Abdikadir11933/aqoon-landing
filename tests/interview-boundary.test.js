@@ -51,6 +51,13 @@ test('route preview respects route scope and never uses a route with a stale sou
   assert.match(admin, /evaluateRouteCriteria\(r\.knowledge_criteria\s*\|\|\s*\[\],\s*val\)/);
 });
 
+test('route preview does not inject a duplicate question when an equivalent interview fact exists', () => {
+  const preview = read('tracker/interview-match-preview.js');
+  assert.match(preview, /UI_EQUIVALENTS/);
+  assert.match(preview, /preferred_provider_or_area:\['preferred_provider_or_area','preferred_area'\]/);
+  assert.match(preview, /equivalents\.some\(k=>questions\.querySelector/);
+});
+
 test('follow-up starts with one canonical decision brief', () => {
   const queue = read('tracker/crm-queue-navigation.js');
   assert.match(queue, /renderDecisionBrief\(panelContent, lead\)/);

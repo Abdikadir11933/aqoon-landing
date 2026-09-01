@@ -32,3 +32,9 @@ test('programmatic answer restore refreshes branch visibility and the collapsed 
   assert.match(restore, /applyTo\(host\);\s*notifyRestored\(\)/);
   assert.match(match, /addEventListener\('aqoon:interview-answers-restored',\(\)=>\{applyWorkContext\(\);renderCompleteness\(\)\}\)/);
 });
+
+test('answer restore reapplies after a scenario module replaces a choice row', () => {
+  const restore = read('tracker/interview-answers-restore.js');
+  assert.match(restore, /root\.matches\?\.\('\[data-key\]'\)/);
+  assert.match(restore, /applyTo\(m\.target\)/);
+});
