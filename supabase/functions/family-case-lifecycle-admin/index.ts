@@ -6,7 +6,7 @@ import { needDomainsForLead } from "../_shared/route-domain-selector.mjs";
 
 const ORIGIN = "https://aqoon.live";
 const PLAN_STATUSES = new Set(["research", "options_ready", "action_in_progress", "awaiting_outcome", "persistence_check", "resolved", "closed_unresolved"]);
-const EVENT_TYPES = new Set(["interview_completed", "research_completed", "options_presented", "plan_selected", "route_reconsidered", "official_action_started", "official_response_received", "persistence_confirmed", "case_resolved", "case_closed_unresolved", "follow_up_attempted"]);
+const EVENT_TYPES = new Set(["interview_completed", "research_completed", "research_route_rejected", "options_presented", "plan_selected", "family_route_agreed", "family_decision_pending", "family_route_declined", "route_reconsidered", "official_action_started", "official_response_received", "persistence_confirmed", "case_resolved", "case_closed_unresolved", "follow_up_attempted"]);
 const OPPORTUNITY_STATUSES = new Set(["watching", "ready", "offered", "accepted", "not_interested", "expired", "closed"]);
 const CONTACT_PERMISSIONS = new Set(["not_requested", "granted", "declined", "not_needed"]);
 const INTERACTION_TYPES = new Set(["first_interview", "research", "options_call", "follow_up_call", "official_update", "outcome_check"]);
@@ -153,7 +153,7 @@ Deno.serve(async (request) => {
   if (action === "workflow") {
     const [plans, events, matchRuns] = await Promise.all([
       db.from("family_case_plans")
-        .select("id,family_lead_id,match_run_id,owner_operator_id,title,official_decision_maker,selected_option,plan_status,next_action,next_follow_up_at,resolved_at,created_at,updated_at")
+        .select("id,family_lead_id,family_need_id,match_run_id,owner_operator_id,title,official_decision_maker,selected_option,plan_status,next_action,next_follow_up_at,resolved_at,created_at,updated_at")
         .eq("family_lead_id", leadId)
         .order("updated_at", { ascending: false }),
       db.from("family_case_events")
@@ -196,7 +196,7 @@ Deno.serve(async (request) => {
       p_clear_selected_option: body.clear_selected_option === true,
     });
     if (error) {
-      const known = ["plan_not_found", "lead_not_found", "stale_plan_status", "invalid_plan_transition", "transition_note_required", "idempotency_key_conflict", "invalid_event_data", "missing_request_id"]
+      const known = ["plan_not_found", "lead_not_found", "stale_plan_status", "invalid_plan_transition", "transition_note_required", "future_follow_up_required", "idempotency_key_conflict", "invalid_event_data", "missing_request_id"]
         .find((code) => error.message?.includes(code));
       const status = known === "plan_not_found" || known === "lead_not_found" ? 404 : known === "stale_plan_status" || known === "idempotency_key_conflict" ? 409 : known ? 400 : 500;
       return new Response(JSON.stringify({ error: known || "db_error", ...(known ? {} : { detail: error.message }) }), { status, headers: responseHeaders });
@@ -273,6 +273,70 @@ Deno.serve(async (request) => {
     return new Response(JSON.stringify(data || {}), { headers: responseHeaders });
   }
 
+  if (action === "approve_researched_route") {
+    const planId = cleanText(body.case_plan_id, 80);
+    const requestId = cleanText(body.request_id, 80);
+    const selectedOption = objectOrEmpty(body.selected_option);
+    const note = cleanText(body.note, 4000);
+    if (!planId || !requestId) return new Response(JSON.stringify({ error: "missing_research_approval_fields" }), { status: 400, headers: responseHeaders });
+    const { data, error } = await db.rpc("aqoon_approve_researched_route", {
+      p_lead_id: leadId,
+      p_plan_id: planId,
+      p_operator_id: operatorId,
+      p_selected_option: selectedOption,
+      p_next_action: cleanText(body.next_action, 2500),
+      p_note: note,
+      p_request_id: requestId,
+    });
+    if (error) {
+      const known = ["lead_not_found", "plan_not_found", "plan_not_selectable", "research_approval_evidence_required", "researched_route_mismatch", "transition_note_required", "idempotency_key_conflict", "missing_request_id"]
+        .find((code) => error.message?.includes(code));
+      const status = known === "lead_not_found" || known === "plan_not_found" ? 404 : known === "plan_not_selectable" || known === "idempotency_key_conflict" ? 409 : known ? 400 : 500;
+      return new Response(JSON.stringify({ error: known || "db_error", ...(known ? {} : { detail: error.message }) }), { status, headers: responseHeaders });
+    }
+    return new Response(JSON.stringify(data || {}), { headers: responseHeaders });
+  }
+
+  if (action === "save_research_evidence") {
+    const planId = cleanText(body.case_plan_id, 80);
+    const requestId = cleanText(body.request_id, 80);
+    if (!planId || !requestId) return new Response(JSON.stringify({ error: "missing_research_evidence_fields" }), { status: 400, headers: responseHeaders });
+    const { data, error } = await db.rpc("aqoon_save_research_evidence", {
+      p_lead_id: leadId,
+      p_plan_id: planId,
+      p_operator_id: operatorId,
+      p_selected_option: objectOrEmpty(body.selected_option),
+      p_request_id: requestId,
+    });
+    if (error) {
+      const known = ["plan_not_found", "plan_not_selectable", "research_evidence_required", "researched_route_mismatch", "idempotency_key_conflict", "missing_request_id"]
+        .find((code) => error.message?.includes(code));
+      const status = known === "plan_not_found" ? 404 : known === "plan_not_selectable" || known === "idempotency_key_conflict" ? 409 : known ? 400 : 500;
+      return new Response(JSON.stringify({ error: known || "db_error", ...(known ? {} : { detail: error.message }) }), { status, headers: responseHeaders });
+    }
+    return new Response(JSON.stringify(data || {}), { headers: responseHeaders });
+  }
+
+  if (action === "reopen_case") {
+    const planId = cleanText(body.case_plan_id, 80);
+    const requestId = cleanText(body.request_id, 80);
+    if (!planId || !requestId) return new Response(JSON.stringify({ error: "missing_reopen_fields" }), { status: 400, headers: responseHeaders });
+    const { data, error } = await db.rpc("aqoon_reopen_family_case", {
+      p_lead_id: leadId,
+      p_plan_id: planId,
+      p_operator_id: operatorId,
+      p_note: cleanText(body.note, 4000),
+      p_request_id: requestId,
+    });
+    if (error) {
+      const known = ["lead_not_found", "plan_not_found", "case_not_closed", "transition_note_required", "idempotency_key_conflict", "missing_request_id"]
+        .find((code) => error.message?.includes(code));
+      const status = known === "lead_not_found" || known === "plan_not_found" ? 404 : known === "case_not_closed" || known === "idempotency_key_conflict" ? 409 : known ? 400 : 500;
+      return new Response(JSON.stringify({ error: known || "db_error", ...(known ? {} : { detail: error.message }) }), { status, headers: responseHeaders });
+    }
+    return new Response(JSON.stringify(data || {}), { headers: responseHeaders });
+  }
+
   if (action === "save_plan") {
     const planStatus = PLAN_STATUSES.has(body.plan_status) ? body.plan_status : "research";
     const plan = {
@@ -288,20 +352,28 @@ Deno.serve(async (request) => {
       resolved_at: planStatus === "resolved" ? new Date().toISOString() : null,
       updated_at: new Date().toISOString(),
     };
-    if (!plan.title) return new Response(JSON.stringify({ error: "missing_title" }), { status: 400, headers: responseHeaders });
     const id = cleanText(body.id, 80);
+    if (!plan.title) return new Response(JSON.stringify({ error: "missing_title" }), { status: 400, headers: responseHeaders });
+    if (!id && planStatus !== "research") return new Response(JSON.stringify({ error: "new_plan_must_start_in_research" }), { status: 400, headers: responseHeaders });
+    let currentPlan: any = null;
+    if (id) {
+      const currentResult = await db.from("family_case_plans").select("id,plan_status,match_run_id,selected_option,family_need_id,next_follow_up_at,resolved_at").eq("id", id).eq("family_lead_id", leadId).maybeSingle();
+      if (currentResult.error) return new Response(JSON.stringify({ error: "db_error", detail: currentResult.error.message }), { status: 500, headers: responseHeaders });
+      if (!currentResult.data) return new Response(JSON.stringify({ error: "plan_not_found" }), { status: 404, headers: responseHeaders });
+      currentPlan = currentResult.data;
+      if (planStatus !== currentPlan.plan_status) return new Response(JSON.stringify({ error: "plan_transition_requires_workflow_action" }), { status: 409, headers: responseHeaders });
+      if (["resolved", "closed_unresolved"].includes(currentPlan.plan_status)) return new Response(JSON.stringify({ error: "terminal_plan_requires_reopen" }), { status: 409, headers: responseHeaders });
+      if (currentPlan.plan_status !== "research") {
+        plan.selected_option = currentPlan.selected_option || {};
+        plan.match_run_id = currentPlan.match_run_id;
+        plan.next_follow_up_at = currentPlan.next_follow_up_at;
+        plan.resolved_at = currentPlan.resolved_at;
+      }
+    }
     if (!id) {
       const { data: interview, error: interviewError } = await db.from("family_interviews").select("id").eq("lead_id", leadId).eq("status", "completed").limit(1).maybeSingle();
       if (interviewError) return new Response(JSON.stringify({ error: "db_error", detail: interviewError.message }), { status: 500, headers: responseHeaders });
       if (!interview) return new Response(JSON.stringify({ error: "first_interview_required" }), { status: 409, headers: responseHeaders });
-    }
-    if (id && (planStatus === "resolved" || planStatus === "closed_unresolved")) {
-      const { data: currentPlan, error: currentPlanError } = await db.from("family_case_plans").select("id,plan_status").eq("id", id).eq("family_lead_id", leadId).maybeSingle();
-      if (currentPlanError) return new Response(JSON.stringify({ error: "db_error", detail: currentPlanError.message }), { status: 500, headers: responseHeaders });
-      if (!currentPlan) return new Response(JSON.stringify({ error: "plan_not_found" }), { status: 404, headers: responseHeaders });
-      if (planStatus === "resolved" && !["persistence_check", "awaiting_outcome"].includes(currentPlan.plan_status)) {
-        return new Response(JSON.stringify({ error: "follow_up_outcome_required" }), { status: 409, headers: responseHeaders });
-      }
     }
     const query = id ? db.from("family_case_plans").update(plan).eq("id", id).eq("family_lead_id", leadId) : db.from("family_case_plans").insert(plan);
     const { data, error } = await query.select().single();
@@ -312,13 +384,6 @@ Deno.serve(async (request) => {
     // state instead of leaving it hidden in the resolved queue.
     if (!id) {
       const { error: leadError } = await db.from("family_leads").update({ status: "contacted", updated_at: new Date().toISOString() }).eq("id", leadId);
-      if (leadError) return new Response(JSON.stringify({ error: "lead_status_update_failed", detail: leadError.message }), { status: 500, headers: responseHeaders });
-    } else if (planStatus === "resolved" || planStatus === "closed_unresolved") {
-      // The reverse direction: a plan reaching a terminal state must move the
-      // CRM lead too, in the same call, or the family stays stranded in the
-      // "Interview follow-up" queue with no active plan and no way to tell
-      // the case is actually done (docs/decisions/0003 - ADR §5, defect #3).
-      const { error: leadError } = await db.from("family_leads").update({ status: "resolved", journey_stage: "resolved", resolved_at: new Date().toISOString(), updated_at: new Date().toISOString() }).eq("id", leadId);
       if (leadError) return new Response(JSON.stringify({ error: "lead_status_update_failed", detail: leadError.message }), { status: 500, headers: responseHeaders });
     }
     return new Response(JSON.stringify({ plan: data }), { headers: responseHeaders });

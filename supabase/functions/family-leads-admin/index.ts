@@ -405,6 +405,7 @@ Deno.serve(async (req) => {
       conflict.push(...evaluated.conflicts);
       return {
         route_key: r.route_key,
+        need_domain: r.need_domain,
         match_status: conflict.length
           ? "does_not_fit"
           : missing.length || confirmationNeeded.length

@@ -197,9 +197,11 @@ async function reopenCase(leadId,note){
   const data=await api(END_LIFECYCLE,{action:'list',lead_id:leadId});
   const plan=(data.plans||[]).sort((a,b)=>String(b.updated_at||b.created_at||'').localeCompare(String(a.updated_at||a.created_at||'')))[0];
   if(!plan)return Promise.reject(new Error('No case plan is on record for this family, so there is nothing to reopen.'));
-  await api(END_LIFECYCLE,{action:'log_event',lead_id:leadId,case_plan_id:plan.id,event_type:'follow_up_attempted',event_data:{source:'resolved_queue',action:'reopen'},note});
-  if(!window.AqoonApp?.updateLead)throw new Error('CRM update is unavailable; the case was not reopened.');
-  return window.AqoonApp.updateLead(leadId,{status:'contacted',journey_stage:'guide'});
+  const body={action:'reopen_case',lead_id:leadId,case_plan_id:plan.id,note,request_id:crypto.randomUUID()};
+  let result;
+  for(let attempt=0;attempt<2;attempt+=1){try{result=await api(END_LIFECYCLE,body);break}catch(error){if(attempt||error.status&&error.status<500)throw error}}
+  window.AqoonApp?.patchLeadLocal?.(leadId,result?.lead||{status:'contacted',journey_stage:'guide',resolved_at:null,next_follow_up_at:null});
+  return result;
 }
 window.AqoonCaseLifecycle={
   resolveActivePlan,

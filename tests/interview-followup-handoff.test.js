@@ -39,7 +39,7 @@ test('possible routes persist a research draft and require evidence before opera
   assert.match(flow, /Paste the deep-research answer here/);
   assert.match(flow, /Save the research answer before making the final operator choice/);
   assert.match(flow, /Use as plan after review/);
-  assert.match(flow, /plan_status:'options_ready'/);
+  assert.match(flow, /action:'approve_researched_route'/);
   assert.match(flow, /plan\.selected_option\?\.provisional_route\)renderResearch\(plan\)/);
   assert.match(flow, /\['Review','Agree','Action','Result','Outcome'\]/);
 });

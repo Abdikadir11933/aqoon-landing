@@ -66,14 +66,9 @@ test('the public intake request id survives a closed tab, bounded by a TTL so an
 });
 
 test('resolving a case plan atomically resolves the CRM lead in the same request', () => {
-  const lifecycle = read('supabase/functions/family-case-lifecycle-admin/index.ts');
-  // save_plan already moved a lead back to 'contacted' when a *new* plan
-  // was created after a prior resolution (reopening). The reverse case -
-  // an existing plan reaching a terminal plan_status - must move the lead
-  // to 'resolved' in the same call, or the family is stranded showing an
-  // active-looking CRM card with a closed plan and no visible sign it's done.
-  assert.match(lifecycle, /planStatus === "resolved" \|\| planStatus === "closed_unresolved"/);
-  assert.match(lifecycle, /status: "resolved", journey_stage: "resolved", resolved_at: new Date\(\)\.toISOString\(\)/);
+  const sql = read('supabase/migrations/20260901221000_post_interview_decision_contract.sql');
+  assert.match(sql, /update public\.family_case_plans[\s\S]*plan_status = p_next_status/);
+  assert.match(sql, /update public\.family_leads[\s\S]*when p_next_status in \('resolved','closed_unresolved'\) then 'resolved'/);
 });
 
 test('an unlinked Tracker account sees "Assign to me" disabled with an explanation, not a dead-end alert after clicking', () => {

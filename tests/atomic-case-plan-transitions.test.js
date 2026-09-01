@@ -29,11 +29,14 @@ test('guided follow-up uses one transition call per operator action', () => {
   const flow = read('tracker/followup-workflow-v2.js');
   assert.match(flow, /action:'transition_plan'/);
   assert.match(flow, /request_id:crypto\.randomUUID\(\)/);
-  assert.match(flow, /transitionPlan\(plan,'action_in_progress','options_presented'/);
+  assert.match(flow, /transitionPlan\(plan,'action_in_progress','family_route_agreed'/);
+  assert.match(flow, /transitionPlan\(plan,'options_ready','family_decision_pending'/);
+  assert.match(flow, /transitionPlan\(plan,'research','family_route_declined'/);
   assert.match(flow, /transitionPlan\(plan,'awaiting_outcome','official_action_started'/);
   assert.match(flow, /transitionPlan\(plan,'persistence_check','official_response_received'/);
   assert.match(flow, /transitionPlan\(plan,'resolved','case_resolved'/);
   assert.match(flow, /transitionPlan\(plan,'closed_unresolved','case_closed_unresolved'/);
+  assert.match(flow, /transitionPlan\(plan,'awaiting_outcome','follow_up_attempted'/);
   assert.doesNotMatch(flow, /event_type:'options_presented'\}\)\.catch/);
   assert.doesNotMatch(flow, /event_type:'follow_up_attempted'.*\.catch/);
 });

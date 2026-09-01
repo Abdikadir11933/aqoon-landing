@@ -27,24 +27,22 @@ test('unknown or mixed work situations do not reveal jobseeker-only questions', 
   assert.match(interview, /setBranch\('jobseeker',situation==='Unemployed \/ seeking work'\)/);
 });
 
-test('resolved cards load lifecycle outcome summaries and reopen records an event', () => {
+test('resolved cards load lifecycle outcome summaries and reopen transactionally', () => {
   const nav = read('tracker/crm-queue-navigation.js');
   assert.match(nav, /renderResolvedSummary\(panelContent, lead\)/);
   assert.match(nav, /AqoonCaseLifecycle\?\.reopenCase\(leadId/);
   assert.match(nav, /No verified decision has been recorded yet/);
   const lifecycle = read('tracker/case-lifecycle.js');
   assert.match(lifecycle, /async function reopenCase\(leadId,note\)/);
-  assert.match(lifecycle, /event_type:'follow_up_attempted'/);
-  assert.match(lifecycle, /action:'reopen'/);
+  assert.match(lifecycle, /action:'reopen_case'/);
+  assert.match(lifecycle, /request_id:crypto\.randomUUID\(\)/);
 });
 
 test('reopening a resolved case attaches the case_plan_id the backend requires', () => {
-  // family-case-lifecycle-admin's log_event rejects any event_type other than
-  // interview_completed without a case_plan_id (see supabase/functions/
-  // family-case-lifecycle-admin/index.ts). reopenCase must look the plan up
-  // and pass its id, or every reopen silently 400s.
+  // The transactional reopen action still needs the closed plan id so its
+  // event, CRM lead update and idempotency key share one database operation.
   const lifecycle = read('tracker/case-lifecycle.js');
-  assert.match(lifecycle, /case_plan_id:plan\.id,event_type:'follow_up_attempted'/);
+  assert.match(lifecycle, /action:'reopen_case',lead_id:leadId,case_plan_id:plan\.id/);
   assert.doesNotMatch(read('tracker/crm-queue-navigation.js'), /event_type: 'follow_up_attempted'/);
 });
 test('cross-service needs reach the follow-up summary instead of a generic alert', () => {
