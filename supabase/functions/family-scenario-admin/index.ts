@@ -18,6 +18,11 @@ function stable(v:any):string{
   if(Array.isArray(v))return "["+v.map(stable).sort().join(",")+"]";
   return "{"+Object.keys(v).sort().map(k=>JSON.stringify(k)+":"+stable(v[k])).join(",")+"}";
 }
+async function sha(v:string):Promise<string>{
+  const bytes=new TextEncoder().encode(v);
+  const digest=await crypto.subtle.digest("SHA-256",bytes);
+  return Array.from(new Uint8Array(digest),byte=>byte.toString(16).padStart(2,"0")).join("");
+}
 function ageBucket(v:any){
   const n=Number(v); if(!Number.isFinite(n))return norm(v)||null;
   if(n<3)return"0-2";if(n<7)return"3-6";if(n<16)return"7-15";if(n<18)return"16-17";if(n<30)return"18-29";if(n<45)return"30-44";if(n<65)return"45-64";return"65+";
