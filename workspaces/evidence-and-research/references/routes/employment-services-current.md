@@ -7,7 +7,7 @@ authority_ids: [authority.employment-area]
 required_inputs: [municipality, jobseeker_status, jobsearch_start_date, employment_status, goal, authentication_or_nationality_barrier]
 source_ids: [src.jobmarket.te24, src.jobmarket.jobseeker-registration, src.jobmarket.employment-plan, src.jobmarket.employment-reforms-2026, src.jobmarket.unemployment-consequences]
 volatility: high
-last_verified_at: 2026-08-28
+last_verified_at: 2026-09-01
 decision_maker: user's municipal employment area / relevant provider
 aqoon_role: [explain, navigate, help_prepare, remind]
 aqoon_must_not: [register_user, decide_unemployment_security, create_authority_plan, determine_statutory_obligations]
@@ -27,7 +27,6 @@ Someone who is becoming unemployed or laid off can register through Työmarkkina
 
 After registration, the authority agrees how the customer's case will proceed. The person can see agreed tasks, messages, requests for clarification and employment-plan items in their own Asiointi account. AQOON can help the person understand an official instruction, prepare for the first discussion and set reminders. It must never register on their behalf, guess a deadline that is not visible in the authority's instruction, or represent a benefit decision as confirmed.
 
-
 ## 2026 interview, search and consequence context
 
 The official 2026 guidance says the initial interview is arranged within ten working days from the start of job search, and job-search discussions continue at three-month intervals. It also says part-time jobseekers generally moved to the same four-job-opportunities-per-month obligation from 1 January 2026. The employment authority records a person's actual obligation and instructions in their plan; AQOON must read the person's own authority instruction rather than apply a generic number.
@@ -46,3 +45,16 @@ From 1 September 2026, creating, publishing and keeping a Työnhakuprofiili publ
 Primary source: https://tyomarkkinatori.fi/uutiset/tyonhakuprofiilin-julkaisemista-koskeva-lakimuutos-astuu-voimaan-syyskuun-alusta
 
 Operator implication: from September onward, when work is relevant, ask whether job search is active, when it started, whether a post-1.9 `työnhakukeskustelu` has happened for an older job search, whether Työnhakuprofiili is published, and what deadline/instruction appears in the person's own Työmarkkinatori account. Do not frame the profile as only an optional CV tip, and do not incorrectly threaten loss of benefit or job-search status.
+
+## Espoo service-access change from 1.9.2026
+
+Espoo changed its walk-in employment-service access on 1 September 2026. For urgent official job-search matters without an appointment, the current published hours are:
+
+- Sello office: Monday-Friday 9.00-15.00.
+- Piispanportti office: Monday and Friday 9.00-15.00 only.
+- Iso Omena Information Point: Wednesday 9.00-12.00 and 13.00-16.00. This is general low-threshold advice and does **not** handle official matters.
+- Separate job-search guidance at Sello and Piispanportti remains Monday-Friday 9.00-16.00 and is open to everyone, but it also does not handle official matters.
+
+Primary source: https://www.espoo.fi/en/news/2026/08/changes-opening-hours-jobseekers-advisory-services-1-september-2026
+
+Operator implication: distinguish an **official job-search matter** (for example registration, submitting documents or signing a plan) from general job-search guidance before sending an Espoo client to a service point. Re-check the City of Espoo page before giving same-day opening-hour advice because local hours are operational and can change.
