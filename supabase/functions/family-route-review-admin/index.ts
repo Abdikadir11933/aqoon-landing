@@ -19,6 +19,64 @@ Deno.serve(async (request) => {
   const operatorId = auth.operator.id;
   let body: any = {}; try { body = await request.json(); } catch { /* handled below */ }
   const leadId = cleanText(body.lead_id, 80), action = String(body.action || "");
+
+  if (action === "learning_summary") {
+    const { data, error } = await db.from("knowledge_feedback_signals")
+      .select("id,reason_code,criterion_fields,review_status,created_at,updated_at,knowledge_routes(route_key,need_domain,verification_state,recheck_after)")
+      .in("review_status", ["pending_review", "accepted"])
+      .order("created_at", { ascending: true })
+      .limit(500);
+    if (error) return new Response(JSON.stringify({ error: "db_error", detail: error.message }), { status: 500, headers: responseHeaders });
+    const grouped = new Map<string, any>();
+    for (const row of data || []) {
+      const route: any = (row as any).knowledge_routes || {};
+      const fields = Array.isArray(row.criterion_fields) ? [...row.criterion_fields].sort() : [];
+      const key = [route.route_key || "unknown", row.reason_code, fields.join("|")].join("::");
+      const current = grouped.get(key) || {
+        route_key: route.route_key || "unknown",
+        need_domain: route.need_domain || "general",
+        reason_code: row.reason_code,
+        criterion_fields: fields,
+        review_status: row.review_status,
+        affected_cases: 0,
+        signal_ids: [],
+        first_seen_at: row.created_at,
+        last_seen_at: row.updated_at,
+        route_verification_state: route.verification_state || null,
+        route_recheck_after: route.recheck_after || null,
+      };
+      current.affected_cases += 1;
+      current.signal_ids.push(row.id);
+      if (row.review_status === "accepted") current.review_status = "accepted";
+      if (String(row.updated_at) > String(current.last_seen_at)) current.last_seen_at = row.updated_at;
+      grouped.set(key, current);
+    }
+    const groups = [...grouped.values()].sort((a, b) => b.affected_cases - a.affected_cases || String(a.first_seen_at).localeCompare(String(b.first_seen_at)));
+    return new Response(JSON.stringify({
+      pending_signals: (data || []).filter((row: any) => row.review_status === "pending_review").length,
+      accepted_signals: (data || []).filter((row: any) => row.review_status === "accepted").length,
+      groups,
+    }), { headers: responseHeaders });
+  }
+
+  if (action === "review_feedback") {
+    const signalId = cleanText(body.signal_id, 80), decision = cleanText(body.decision, 40), note = cleanText(body.review_note, 2000);
+    if (!signalId || !decision || !note) return new Response(JSON.stringify({ error: "missing_feedback_review_fields" }), { status: 400, headers: responseHeaders });
+    const { data, error } = await db.rpc("aqoon_review_route_feedback_signal", {
+      p_signal_id: signalId,
+      p_operator_id: operatorId,
+      p_decision: decision,
+      p_review_note: note,
+      p_official_sources_checked: body.official_sources_checked === true,
+      p_knowledge_change_reference: cleanText(body.knowledge_change_reference, 500),
+    });
+    if (error) {
+      const known = ["invalid_feedback_decision", "feedback_review_note_required", "official_source_check_required", "knowledge_change_reference_required", "feedback_signal_not_reviewable"].find((code) => error.message?.includes(code));
+      return new Response(JSON.stringify({ error: known || "db_error", ...(known ? {} : { detail: error.message }) }), { status: known === "feedback_signal_not_reviewable" ? 409 : known ? 400 : 500, headers: responseHeaders });
+    }
+    return new Response(JSON.stringify({ feedback_signal: data }), { headers: responseHeaders });
+  }
+
   if (!leadId) return new Response(JSON.stringify({ error: "missing_lead_id" }), { status: 400, headers: responseHeaders });
 
   if (action === "list") {

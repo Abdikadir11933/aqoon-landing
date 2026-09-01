@@ -83,14 +83,23 @@ Deno.serve(async (request) => {
   // notes or family-level answers and is separate from anonymous web funnel data.
   if (action === "summary") {
     const now = new Date().toISOString();
-    const [plans, opportunities, events] = await Promise.all([
-      db.from("family_case_plans").select("plan_status,next_follow_up_at").not("plan_status", "in", "(resolved,closed_unresolved)").limit(2000),
-      db.from("family_future_opportunities").select("status,earliest_contact_at,contact_permission_status").in("status", ["watching", "ready", "offered"]).limit(2000),
+    const [plans, opportunities, events, interviewedLeads, activeNeeds] = await Promise.all([
+      db.from("family_case_plans").select("family_lead_id,plan_status,next_follow_up_at").not("plan_status", "in", "(resolved,closed_unresolved)").limit(2000),
+      db.from("family_future_opportunities").select("family_lead_id,need_domain,status,earliest_contact_at,contact_permission_status").in("status", ["watching", "ready", "offered"]).limit(2000),
       db.from("family_case_events").select("case_plan_id,event_type,occurred_at").in("event_type", ["interview_completed", "official_action_started", "official_response_received", "persistence_confirmed", "case_resolved"]).order("occurred_at", { ascending: true }).limit(20000),
+      db.from("family_leads").select("id,household_id,status,interview_status").eq("interview_status", "completed").limit(2000),
+      db.from("family_needs").select("household_id,need_domain").eq("status", "active").limit(4000),
     ]);
-    const error = plans.error || opportunities.error || events.error;
+    const error = plans.error || opportunities.error || events.error || interviewedLeads.error || activeNeeds.error;
     if (error) return new Response(JSON.stringify({ error: "db_error", detail: error.message }), { status: 500, headers: responseHeaders });
-    const activePlans = plans.data || [], activeOpportunities = opportunities.data || [];
+    const activePlans = plans.data || [], activeOpportunities = opportunities.data || [], completedLeads = interviewedLeads.data || [];
+    const activePlanLeadIds = new Set(activePlans.map((plan: any) => plan.family_lead_id));
+    const householdByLead = new Map(completedLeads.map((lead: any) => [lead.id, lead.household_id || lead.id]));
+    const activeNeedHouseholdDomains = new Set((activeNeeds.data || []).map((need: any) => `${need.household_id}:${need.need_domain}`));
+    const dueOpportunityHouseholdDomains = new Set(activeOpportunities
+      .filter((opportunity: any) => opportunity.contact_permission_status === "granted" && opportunity.earliest_contact_at && opportunity.earliest_contact_at <= now)
+      .map((opportunity: any) => `${householdByLead.get(opportunity.family_lead_id) || opportunity.family_lead_id}:${opportunity.need_domain}`)
+      .filter((key: string) => !activeNeedHouseholdDomains.has(key)));
     const eventTimes = new Map<string, Record<string, number>>();
     for (const event of events.data || []) {
       const planId = String(event.case_plan_id || "");
@@ -101,12 +110,27 @@ Deno.serve(async (request) => {
       eventTimes.set(planId, row);
     }
     const hoursBetween = (start: string, end: string) => Array.from(eventTimes.values()).flatMap((row) => row[start] !== undefined && row[end] !== undefined ? [(row[end] - row[start]) / 36e5] : []);
+    const eventCaseCount = (eventType: string) => Array.from(eventTimes.values()).filter((row) => row[eventType] !== undefined).length;
     return new Response(JSON.stringify({
+      completed_interviews: completedLeads.length,
+      interviews_awaiting_route: completedLeads.filter((lead: any) => lead.status !== "resolved" && !activePlanLeadIds.has(lead.id)).length,
       active_cases: activePlans.length,
+      research_cases: activePlans.filter((plan: any) => plan.plan_status === "research").length,
       options_ready: activePlans.filter((plan: any) => plan.plan_status === "options_ready").length,
+      action_in_progress: activePlans.filter((plan: any) => plan.plan_status === "action_in_progress").length,
       awaiting_outcome: activePlans.filter((plan: any) => plan.plan_status === "awaiting_outcome").length,
+      persistence_check: activePlans.filter((plan: any) => plan.plan_status === "persistence_check").length,
+      official_actions_started: eventCaseCount("official_action_started"),
+      official_responses_received: eventCaseCount("official_response_received"),
+      persistence_confirmed: eventCaseCount("persistence_confirmed"),
       case_follow_ups_due: activePlans.filter((plan: any) => plan.next_follow_up_at && plan.next_follow_up_at <= now).length,
-      future_opportunities_ready_with_permission: activeOpportunities.filter((opportunity: any) => opportunity.contact_permission_status === "granted" && opportunity.earliest_contact_at && opportunity.earliest_contact_at <= now).length,
+      future_opportunities_ready_with_permission: dueOpportunityHouseholdDomains.size,
+      metric_contract: {
+        completed_interviews: { source: "family_leads", denominator: "all completed latest lead interviews", dedupe_unit: "family_lead" },
+        interviews_awaiting_route: { source: "family_leads + family_case_plans", denominator: "non-resolved completed interviews", dedupe_unit: "family_lead" },
+        active_cases: { source: "family_case_plans", denominator: "non-terminal plans", dedupe_unit: "case_plan" },
+        future_opportunities_ready_with_permission: { source: "family_future_opportunities + family_leads", denominator: "due, permission-granted active signals", dedupe_unit: "household + need_domain" },
+      },
       cycle_time: {
         interview_to_action_cases: hoursBetween("interview_completed", "official_action_started").length,
         interview_to_action_median_hours: medianHours(hoursBetween("interview_completed", "official_action_started")),

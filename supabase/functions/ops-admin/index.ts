@@ -1,5 +1,6 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
 import { requireOperator } from "../_shared/operator-auth.ts";
+import { buildDemandRows, demandAggregate, opportunityDemand } from "../_shared/demand-aggregate.mjs";
 
 const ORIGIN = "https://aqoon.live";
 const STAGES = ["lead","contacted","discovery","proposal_sent","decision_review","won","delivery","expansion","closed_lost"];
@@ -7,6 +8,9 @@ const HEALTH = ["on_track","waiting","at_risk","blocked"];
 const TYPES = ["email","call","meeting","proposal","report","note","task","stage_change"];
 const EVENT_TYPES = ["call","meeting","deadline","task"];
 const EVENT_STATUS = ["planned","done","cancelled"];
+const DEMAND_DOMAINS = ["work","education","school","daycare","hobby","live_programme","service_support","family_finances","housing_debt_family","entrepreneurship","general"];
+const DEMAND_TIMING = ["any","now","within_6_months","within_12_months","later"];
+const DEMAND_INTEREST = ["stated_need","ready_future","stated_or_ready"];
 const headers = () => ({
   "Access-Control-Allow-Origin": ORIGIN,
   "Access-Control-Allow-Headers": "content-type, authorization",
@@ -25,32 +29,9 @@ const json = (body:unknown, status:number, h:Record<string,string>) => new Respo
 // family contact data, only agreed outcomes and anonymized aggregate counts.
 // This receives only main_need/city/journey_stage/status - never name, phone,
 // or any other identifying field - by construction of the caller's select().
-const MATCHED_STAGES = new Set(["start","retention","referral","resolved"]);
-function demandAggregate(rows:{main_need:string|null,city:string|null,journey_stage:string|null}[]){
-  const unmatched = rows.filter(r => !MATCHED_STAGES.has(r.journey_stage || "reach"));
-  const byNeed:Record<string,number> = {}, byCity:Record<string,number> = {};
-  const byNeedCityMap = new Map<string,{need:string,city:string,count:number}>();
-  for(const r of unmatched){
-    const need = r.main_need || "Unspecified", city = r.city || "Unspecified";
-    byNeed[need] = (byNeed[need]||0) + 1;
-    byCity[city] = (byCity[city]||0) + 1;
-    const key = need + "|" + city;
-    const existing = byNeedCityMap.get(key);
-    if(existing) existing.count++; else byNeedCityMap.set(key, {need, city, count:1});
-  }
-  const byNeedCity = [...byNeedCityMap.values()].sort((a,b)=>b.count-a.count).slice(0,40);
-  return { total_active: rows.length, total_unmatched: unmatched.length, by_need: byNeed, by_city: byCity, by_need_city: byNeedCity };
-}
-
 // Per-opportunity demand: how many active families match the need/city this
 // deal is actually about, and how many of those are past their first
 // interview. Counts only - the same rows never carry name/phone here either.
-function opportunityDemand(rows:{main_need:string|null,city:string|null,interview_status:string|null}[], need:string|null, city:string|null){
-  if(!need) return null;
-  const n = need.toLowerCase().trim(), c = city ? city.toLowerCase().trim() : null;
-  const matching = rows.filter(r => (r.main_need||"").toLowerCase().trim()===n && (!c || (r.city||"").toLowerCase().trim()===c));
-  return { total: matching.length, past_interview: matching.filter(r => r.interview_status==="completed").length };
-}
 
 Deno.serve(async req => {
   const h=headers();
@@ -72,18 +53,21 @@ Deno.serve(async req => {
   }
 
   if(action==="list"){
-    const [or,ar,er,fr,opr,dr]=await Promise.all([
+    const [or,ar,er,fr,opr,dr,nr,pr,fur]=await Promise.all([
       db.from("sales_opportunities").select("*").order("updated_at",{ascending:false}).limit(500),
       db.from("sales_activities").select("*").order("created_at",{ascending:false}).limit(2000),
       db.from("ops_events").select("*").gte("starts_at",new Date(Date.now()-14*86400000).toISOString()).order("starts_at",{ascending:true}).limit(1000),
       db.from("family_leads").select("id,name,phone,city,main_need,next_follow_up_at,latest_interview:family_interviews(next_action)").not("next_follow_up_at","is",null).order("next_follow_up_at",{ascending:true}).limit(500),
       db.from("operators").select("id,display_name,active").eq("active",true).order("display_name",{ascending:true}),
-      db.from("family_leads").select("main_need,city,journey_stage,status,interview_status").neq("status","resolved")
+      db.from("family_leads").select("id,household_id,city,status,interview_status").neq("status","resolved").limit(2000),
+      db.from("family_needs").select("id,household_id,need_domain,status,source_lead_id").eq("status","active").limit(4000),
+      db.from("family_case_plans").select("family_need_id,plan_status").not("family_need_id","is",null).limit(4000),
+      db.from("family_future_opportunities").select("family_lead_id,need_domain,status,earliest_contact_at,contact_permission_status").in("status",["ready","offered","accepted"]).limit(4000)
     ]);
-    const error=or.error||ar.error||er.error||fr.error||opr.error||dr.error;
+    const error=or.error||ar.error||er.error||fr.error||opr.error||dr.error||nr.error||pr.error||fur.error;
     if(error) return json({error:"db_error",detail:error.message},500,h);
-    const familyRows=dr.data||[];
-    const opportunities=(or.data||[]).map((o:any)=>({...o, matched_demand:opportunityDemand(familyRows,o.demand_need,o.demand_city)}));
+    const familyRows=buildDemandRows({leads:dr.data||[],needs:nr.data||[],plans:pr.data||[],futureOpportunities:fur.data||[]});
+    const opportunities=(or.data||[]).map((o:any)=>({...o, matched_demand:opportunityDemand(familyRows,o.demand_need_domain,o.demand_city,o.demand_interest_state)}));
     return json({opportunities,activities:ar.data||[],events:er.data||[],family_followups:fr.data||[],operators:opr.data||[],demand:demandAggregate(familyRows)},200,h);
   }
 
@@ -97,7 +81,13 @@ Deno.serve(async req => {
       summary:text(b.summary), goal:text(b.goal), success_definition:text(b.success_definition),
       completed_steps:arr(b.completed_steps), next_steps:arr(b.next_steps), next_action:text(b.next_action,1500),
       next_action_at:date(b.next_action_at), probability:b.probability!==null&&b.probability!==""&&Number.isFinite(Number(b.probability))?Math.max(0,Math.min(100,Number(b.probability))):null,
-      source:text(b.source,200), demand_need:text(b.demand_need,120), demand_city:text(b.demand_city,100), updated_at:new Date().toISOString()
+      source:text(b.source,200),
+      demand_need:Object.prototype.hasOwnProperty.call(b,"demand_need")?text(b.demand_need,120):undefined,
+      demand_need_domain:DEMAND_DOMAINS.includes(b.demand_need_domain)?b.demand_need_domain:null,
+      demand_city:text(b.demand_city,100),
+      demand_timing:DEMAND_TIMING.includes(b.demand_timing)?b.demand_timing:"any",
+      demand_interest_state:DEMAND_INTEREST.includes(b.demand_interest_state)?b.demand_interest_state:"stated_or_ready",
+      updated_at:new Date().toISOString()
     };
     if(Object.prototype.hasOwnProperty.call(b,"owner_operator_id")) payload.owner_operator_id=b.owner_operator_id?String(b.owner_operator_id):null;
     else if(!b.id&&operatorId) payload.owner_operator_id=operatorId;

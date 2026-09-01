@@ -90,7 +90,7 @@ Deno.serve(async(req)=>{
     if(!leadId||!interviewId)return new Response(JSON.stringify({error:"missing_fields"}),{status:400,headers:h});
     const [lr,ir]=await Promise.all([
       db.from("family_leads").select("id,city,main_need,sub_need,age_group").eq("id",leadId).single(),
-      db.from("family_interviews").select("id,lead_id,interview_type,answers").eq("id",interviewId).eq("lead_id",leadId).single()
+      db.from("family_interviews").select("id,lead_id,interview_type,answers,matched_scenario_id,scenario_match_status").eq("id",interviewId).eq("lead_id",leadId).single()
     ]);
     if(lr.error||ir.error)return new Response(JSON.stringify({error:"not_found",detail:lr.error?.message||ir.error?.message}),{status:404,headers:h});
     const lead=lr.data,interview=ir.data;
@@ -103,30 +103,24 @@ Deno.serve(async(req)=>{
     let matchStatus="needs_research";
     const now=new Date().toISOString();
     if(!scenario){
-      const title=[lead.sub_need||lead.main_need,lead.city].filter(Boolean).join(" · ").slice(0,240);
-      const ins=await db.from("family_scenarios").upsert({scenario_key:scenarioKey,dimensions,title,main_need:lead.main_need||null,sub_need:lead.sub_need||null,city_scope:lead.city||null,age_group:lead.age_group||null,status:"draft",updated_at:now},{onConflict:"scenario_key"}).select("*").single();
-      if(ins.error)return new Response(JSON.stringify({error:"db_error",detail:ins.error.message}),{status:500,headers:h});
-      scenario=ins.data;matchStatus="needs_research";
+      // A fingerprint miss is not research and must not create operational
+      // debt. The evidence-gated follow-up flow creates research only after
+      // an operator chooses a possible route.
+      matchStatus="needs_research";
     }else if(currentScenario(scenario)){
       matchStatus="matched";
-      const upd=await db.from("family_scenarios").update({times_reused:(scenario.times_reused||0)+1,last_reused_at:now,updated_at:now}).eq("id",scenario.id).select("*").single();
-      if(upd.error)return new Response(JSON.stringify({error:"db_error",detail:upd.error.message}),{status:500,headers:h});scenario=upd.data;
+      if(interview.matched_scenario_id!==scenario.id||interview.scenario_match_status!=="matched"){
+        const upd=await db.from("family_scenarios").update({times_reused:(scenario.times_reused||0)+1,last_reused_at:now,updated_at:now}).eq("id",scenario.id).select("*").single();
+        if(upd.error)return new Response(JSON.stringify({error:"db_error",detail:upd.error.message}),{status:500,headers:h});scenario=upd.data;
+      }
     }else if(scenario.status==="retired"){
       matchStatus="no_match";
     }else{
       matchStatus="possible_match";
     }
-    const ui=await db.from("family_interviews").update({scenario_fingerprint:scenarioKey,matched_scenario_id:scenario.id,scenario_match_status:matchStatus,updated_at:now}).eq("id",interviewId);
+    const ui=await db.from("family_interviews").update({scenario_fingerprint:scenarioKey,matched_scenario_id:scenario?.id||null,scenario_match_status:matchStatus,updated_at:now}).eq("id",interviewId);
     if(ui.error)return new Response(JSON.stringify({error:"db_error",detail:ui.error.message}),{status:500,headers:h});
-    let pendingResearchId:string|null=null;
-    if(matchStatus!=="matched"){
-      const existing=await db.from("family_scenario_research").select("id").eq("scenario_id",scenario.id).eq("interview_id",interviewId).eq("review_status","pending_review").limit(1);
-      pendingResearchId=existing.data?.[0]?.id||null;
-      if(!existing.error&&!(existing.data||[]).length){
-        const queued=await db.from("family_scenario_research").insert({scenario_id:scenario.id,interview_id:interviewId,research_status:"pending",review_status:"pending_review",research_question:safeResearchQuestion(dimensions)}).select("id").single();if(queued.error)return new Response(JSON.stringify({error:"db_error",detail:queued.error.message}),{status:500,headers:h});pendingResearchId=queued.data.id;
-      }
-    }
-    return new Response(JSON.stringify({match_status:matchStatus,scenario:publicScenario(scenario),fingerprint:scenarioKey,research_id:pendingResearchId}),{headers:h});
+    return new Response(JSON.stringify({match_status:matchStatus,scenario:publicScenario(scenario),fingerprint:scenarioKey,research_id:null}),{headers:h});
   }
 
   if(action==="get_scenario"){
