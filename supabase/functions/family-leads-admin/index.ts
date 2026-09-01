@@ -1,5 +1,6 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
 import { authenticatedUser, requireOperator } from "../_shared/operator-auth.ts";
+import { evaluateRouteCriteria } from "../_shared/criteria-evaluator.mjs";
 const ORIGIN = "https://aqoon.live";
 const CURRENT_FORM_VERSION = "phone-first-v2-multineed";
 const H = () => ({
@@ -338,7 +339,7 @@ Deno.serve(async (req) => {
     const { data: rows, error: routeError } = await db
       .from("knowledge_routes")
       .select(
-        "id,route_key,need_domain,scope,required_inputs,blocking_inputs,steps,source_ids,partner_disclosure_required,verification_state,volatility,recheck_after,knowledge_criteria(label,criterion_type,field_key)",
+        "id,route_key,need_domain,scope,required_inputs,blocking_inputs,steps,source_ids,partner_disclosure_required,verification_state,volatility,recheck_after,knowledge_criteria(label,criterion_type,field_key,rule_json,source_ids,verification_state,recheck_after)",
       )
       .in("need_domain", domains)
       .eq("verification_state", "verified")
@@ -352,7 +353,10 @@ Deno.serve(async (req) => {
         (r: any) =>
           !r.recheck_after || new Date(r.recheck_after).getTime() > now,
       ),
-      ids = [...new Set(routeCurrent.flatMap((r: any) => r.source_ids || []))],
+      ids = [...new Set(routeCurrent.flatMap((r: any) => [
+        ...(r.source_ids || []),
+        ...(r.knowledge_criteria || []).flatMap((c: any) => c.source_ids || []),
+      ]))],
       { data: sources, error: sourceError } = ids.length
         ? await db
             .from("knowledge_sources")
@@ -367,8 +371,12 @@ Deno.serve(async (req) => {
     const sourceMap = new Map((sources || []).map((s: any) => [s.id, s]));
     const active = routeCurrent.filter(
       (r: any) =>
+        (r.knowledge_criteria || []).every((c: any) =>
+          c.verification_state === "verified" &&
+          (!c.recheck_after || new Date(c.recheck_after).getTime() > now)
+        ) &&
         (r.source_ids || []).length > 0 &&
-        (r.source_ids || []).every((id: string) => {
+        [...(r.source_ids || []), ...(r.knowledge_criteria || []).flatMap((c: any) => c.source_ids || [])].every((id: string) => {
           const s = sourceMap.get(id);
           return (
             s &&
@@ -382,14 +390,13 @@ Deno.serve(async (req) => {
       city,
       municipality: city,
       interest: answers.interest || lead.sub_need || "",
-      child_age_or_birth_date:
-        answers.child_age_or_birth_date || lead.age_group || "",
+      child_age_or_birth_date: answers.child_age_or_birth_date || "",
+      permanent_vantaa_residence_context:
+        answers.permanent_vantaa_residence_context ||
+        (answers.home_municipality === "Yes" ? "yes" :
+          answers.home_municipality === "No" ? "no" : ""),
     };
     const val = (key: string) => {
-      if (key === "permanent_vantaa_residence_context")
-        return city === "vantaa" && answers.home_municipality === "Yes"
-          ? "yes"
-          : "";
       const keys = CRITERIA_BRIDGE[key] || [key];
       for (const k of keys) {
         if (ext[k]) return arrJoin(ext[k]);
@@ -397,31 +404,25 @@ Deno.serve(async (req) => {
       return "";
     };
     const candidates = active.map((r: any) => {
-      const missing = (r.required_inputs || []).filter((k: string) => !val(k));
+      const requiredMissing = (r.required_inputs || []).filter((k: string) => !val(k));
       const conflict: string[] = [];
-      const scopeCity = String(r.scope?.city || "").toLowerCase();
+      const scopeCity = String(r.scope?.city || r.scope?.municipality || "").toLowerCase();
       if (scopeCity && city && city !== scopeCity)
-        conflict.push("Family city is not " + String(r.scope.city) + ".");
-      if (
-        r.route_key.includes("private-varhaiskasvatus") &&
-        answers.home_municipality === "No"
-      )
-        conflict.push(
-          "Registered municipality needs confirmation before using the Vantaa voucher route.",
-        );
-      const criteria = (r.knowledge_criteria || []).map((c: any) => ({
-        label: c.label,
-        type: c.criterion_type,
-        field_key: c.field_key,
-      }));
+        conflict.push("Family city is not " + String(r.scope.city || r.scope.municipality) + ".");
+      const evaluated = evaluateRouteCriteria(r.knowledge_criteria || [], val);
+      const missing = [...new Set([...requiredMissing, ...evaluated.missing])];
+      conflict.push(...evaluated.conflicts);
       return {
         route_key: r.route_key,
         match_status: conflict.length
           ? "does_not_fit"
-          : "possible_must_confirm",
+          : missing.length || evaluated.needsConfirmation.length
+            ? "possible_must_confirm"
+            : "confirmed_match",
         missing_fields: missing,
         conflicting_criteria: conflict,
-        criteria,
+        confirmation_needed: evaluated.needsConfirmation,
+        criteria: evaluated.results,
         steps: r.steps || [],
         partner_disclosure_required: !!r.partner_disclosure_required,
         sources: (r.source_ids || [])

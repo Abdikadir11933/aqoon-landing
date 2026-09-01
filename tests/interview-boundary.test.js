@@ -45,9 +45,10 @@ test('no matching decision (preview or a saved match run) can be produced before
 
 test('route preview respects route scope and never uses a route with a stale source', () => {
   const admin = read('supabase/functions/family-leads-admin/index.ts');
-  assert.match(admin, /scopeCity\s*=\s*String\(r\.scope\?\.city\s*\|\|\s*""\)\.toLowerCase\(\)/);
+  assert.match(admin, /scopeCity\s*=\s*String\(r\.scope\?\.city\s*\|\|\s*r\.scope\?\.municipality\s*\|\|\s*""\)\.toLowerCase\(\)/);
   assert.match(admin, /s\.verification_state\s*===\s*"verified"/);
   assert.match(admin, /new Date\(s\.recheck_after\)\.getTime\(\)\s*>\s*now/);
+  assert.match(admin, /evaluateRouteCriteria\(r\.knowledge_criteria\s*\|\|\s*\[\],\s*val\)/);
 });
 
 test('follow-up starts with one canonical decision brief', () => {
