@@ -208,7 +208,7 @@ function setSaveBusy(){
 }
 function markSaved(){
   const b=$('saveInterview');if(!b)return;
-  clearTimeout(busyRestoreTimer);b.removeAttribute('aria-busy');b.textContent='Saved ✓';
+  clearTimeout(busyRestoreTimer);b.removeAttribute('aria-busy');b.textContent='Saved in CRM ✓';
   setTimeout(()=>{if(b.isConnected)b.textContent=b.dataset.uxOriginalText||'Save interview & build deep-research brief'},900);
 }
 function start(){

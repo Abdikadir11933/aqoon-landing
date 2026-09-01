@@ -17,6 +17,15 @@ const CrmQueues = {
 
     // Re-render when data updates
     window.addEventListener('dataUpdated', () => this.renderQueues());
+    window.addEventListener('aqoon:interview-saved', event => {
+      const savedLead = event.detail?.lead;
+      if (!savedLead?.id) return;
+      savedLead.status = 'contacted';
+      savedLead.interview_status = 'completed';
+      savedLead.journey_stage = 'guide';
+      this.expandedPhase = 'in_progress';
+      this.renderQueues();
+    });
   },
 
   renderQueues() {

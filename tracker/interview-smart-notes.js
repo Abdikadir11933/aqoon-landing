@@ -40,7 +40,7 @@ function collectFields(){
   return fields;
 }
 function draftSnapshot(){return{version:2,saved_at:new Date().toISOString(),notes:$("#iNotes")?.value||"",fields:collectFields(),canonical:{relevant_updates_ok:$("#iRelevantUpdatesOk")?.value||"",outcome_followup_ok:$("#iOutcomeFollowupOk")?.value||"",urgency:$("#iUrgency")?.value||"normal",next_action:$("#iNextAction")?.value||"",follow_up:$("#iFollow")?.value||""}}}
-function writeDraft(){const k=key();if(!k)return;localStorage.setItem(k,JSON.stringify(draftSnapshot()));status("All answers saved as a device draft")}
+function writeDraft(){const k=key();if(!k)return;localStorage.setItem(k,JSON.stringify(draftSnapshot()));status("Draft only: not yet saved in CRM")}
 function saveDraft(now=false){clearTimeout(timer);if(now){writeDraft();return}timer=setTimeout(writeDraft,200)}
 function restoreField(el,value){
   if(el.matches("input,textarea,select")){el.value=Array.isArray(value)?value.join(", "):value;return}
@@ -49,14 +49,14 @@ function restoreField(el,value){
   el.querySelectorAll(".choice").forEach(b=>b.classList.toggle("on",wanted.includes(b.dataset.value)));
 }
 function restore(){
-  const draft=readDraft();if(!draft){status("All answers save on this device until the interview is saved");return}
+  const draft=readDraft();if(!draft){status("Draft only: answers stay on this device until you save to CRM");return}
   if($("#iNotes"))$("#iNotes").value=draft.notes||"";
   document.querySelectorAll("#drawer [data-key]").forEach(el=>{const k=el.dataset.key;if(Object.prototype.hasOwnProperty.call(draft.fields||{},k))restoreField(el,draft.fields[k])});
   const c=draft.canonical||{},ids={relevant_updates_ok:"iRelevantUpdatesOk",outcome_followup_ok:"iOutcomeFollowupOk",urgency:"iUrgency",next_action:"iNextAction",follow_up:"iFollow"};
   Object.entries(ids).forEach(([k,id])=>{const el=document.getElementById(id);if(el&&Object.prototype.hasOwnProperty.call(c,k))el.value=c[k]});
   if(window.AqoonInterview?.currentAnswers)Object.assign(window.AqoonInterview.currentAnswers,draft.fields||{});
   document.dispatchEvent(new CustomEvent("aqoon:interview-answers-restored"));
-  status("Unsaved interview restored from this device");
+  status("Unsaved device draft restored. Press Save interview");
 }
 function patchInterviewContextSave(){
   if(window.__aqoonInterviewContextSavePatch)return;
@@ -118,7 +118,7 @@ function start(){
   drawer?.addEventListener("change",()=>saveDraft());
   drawer?.addEventListener("click",e=>{if(e.target.closest(".choice"))setTimeout(()=>saveDraft(),0);if(e.target.closest("#saveInterview")){saveDraft(true);status("Saving interview…")}},true);
   window.addEventListener("aqoon:auth-expired",()=>saveDraft(true));
-  window.addEventListener("aqoon:interview-saved",()=>{localStorage.removeItem(key());status("Saved to the family record")});
+  window.addEventListener("aqoon:interview-saved",()=>{localStorage.removeItem(key());status("Saved in CRM ✓")});
 }
 document.readyState==="loading"?document.addEventListener("DOMContentLoaded",start):start();
 })();
