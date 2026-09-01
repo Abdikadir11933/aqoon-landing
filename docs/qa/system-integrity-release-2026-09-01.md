@@ -80,18 +80,36 @@ safe or that future regressions are impossible.
   non-core static warning remains for a dynamically generated PKV practice
   checkbox label.
 
+## Shared-project security follow-up
+
+- A repository-wide and connected-GitHub caller trace identified the legacy
+  RPC owner as `Abdikadir11933/AqoonPRO`, not AQOON Family Desk.
+- `AqoonPRO/src/db/supabase.js` creates its database client with
+  `SUPABASE_SERVICE_ROLE_KEY`; its own migrations grant `increment_usage` and
+  the eight `match_*_chunks` functions only to `service_role` and define no
+  browser RLS policies for the chunk tables.
+- Production now pins both `increment_usage` overloads to
+  `search_path = pg_catalog, public`, removes browser execution from
+  `rls_auto_enable`, and enforces service-role-only execution on the two usage
+  overloads and eight vector-match functions.
+- Direct `anon`/`authenticated` privileges were removed from all nine legacy
+  knowledge-chunk tables. Verification found zero browser grants while all
+  verified server RPC callers retain `service_role` execution.
+- The Supabase security-advisor result fell from 41 INFO + 27 WARN to
+  41 INFO + 3 WARN. The remaining warnings are two shared extension-location
+  notices and the Auth leaked-password setting.
+- Regression coverage now contains 192 passing tests, including the
+  shared-project service-role boundary.
+
 ## Remaining boundaries—not called fixed
 
 | Boundary | Status | Why it remains |
 |---|---|---|
 | Supabase leaked-password protection | configuration action required | The advisor reports it disabled; the available database/Edge tools do not own Auth password-policy configuration. |
-| Legacy `increment_usage`, vector `match_*_chunks` and `rls_auto_enable` grants | unverified external callers | They belong to a separate shared-project product surface. Revoking execution without its client inventory could break that product. |
-| `pg_net` and `vector` in `public` | infrastructure review required | Moving installed extensions is not an AQOON feature migration and requires shared-project compatibility verification. |
-| Legacy knowledge-chunk browser table grants | RLS currently denies access; owner unverified | They are discovery-only for AQOON but may have callers outside this repository. |
+| `pg_net` and `vector` in `public` | accepted shared-infrastructure boundary | Moving either extension changes shared database object resolution and is not necessary for the Family Desk release. Keep this visible and migrate only as a separately tested AqoonPRO/Supabase infrastructure change. |
 | Authenticated operator browser walkthrough | operator acceptance test | Static/live asset, Edge parity and rollback database tests pass; the owner should still complete one real no-PII acceptance persona through the browser after this release. |
 
 The weekly `AQOON System Drift` and `AQOON Account Drift` automations are
 enabled for Monday mornings in `Europe/Helsinki`. The system task checks the
 exact GitHub/Vercel/Supabase contract read-only and treats lead assignment as
 informational, per the owner’s rule.
-

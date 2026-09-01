@@ -572,3 +572,25 @@ route-domain selector in `family-route-preview-admin`; all 13 functions now
 match repository source. The rollback-only lifecycle probe and all aggregate
 integrity checks passed with zero residue. Exact-commit CI and READY deployment
 remain the final closing evidence for this gate.
+
+### 2026-09-01 — Gate 11 shared-project security boundary complete
+
+- traced `increment_usage` and all eight `match_*_chunks` callers across the
+  connected GitHub account and identified `Abdikadir11933/AqoonPRO` as owner;
+- verified that AqoonPRO calls the RPCs from a server client configured with
+  `SUPABASE_SERVICE_ROLE_KEY`, matching its migrations' service-role-only
+  grants;
+- pinned both mutable `increment_usage` search paths, removed browser execution
+  from the internal `rls_auto_enable` event-trigger function, and revoked
+  `anon`/`authenticated` execution from the ten verified server RPCs;
+- removed direct browser grants from all nine legacy knowledge-chunk tables;
+- verified `anon=false`, `authenticated=false`, `service_role=true` for every
+  affected function and zero remaining browser chunk-table grants;
+- reduced the live Supabase security-advisor result to 41 INFO + 3 WARN and
+  added a two-test regression contract, bringing the local suite to 192/192.
+
+The remaining Auth leaked-password switch is owned by Supabase Auth project
+configuration, not SQL or Edge Functions. `pg_net` and `vector` remain in
+`public` as an explicit shared-infrastructure compatibility boundary; moving
+them is not part of the Family Desk application release. One authenticated,
+synthetic browser walkthrough still requires an operator session.

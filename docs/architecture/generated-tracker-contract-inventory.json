@@ -3575,7 +3575,7 @@
     }
   ],
   "migrations": {
-    "count": 43,
+    "count": 45,
     "files": [
       "20260826000000_recovered_operational_baseline.sql",
       "20260827_aqoon_operations_system.sql",
@@ -3619,7 +3619,9 @@
       "20260901225000_partner_handoff_fk_indexes.sql",
       "20260901230000_live_schema_reconciliation.sql",
       "20260901233000_tag_legacy_unversioned_interviews.sql",
-      "20260901234500_drop_orphan_contact_starts_trigger.sql"
+      "20260901234500_drop_orphan_contact_starts_trigger.sql",
+      "20260901235500_harden_shared_security_functions.sql",
+      "20260902000500_enforce_service_role_legacy_rpcs.sql"
     ],
     "created_tables": [
       "family_call_log",
