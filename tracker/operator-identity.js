@@ -7,7 +7,7 @@ const MUTATING_LEAD_ACTIONS=new Set(['save_interview','interview_save','record_c
 const MUTATING_OPS_ACTIONS=new Set(['save_opportunity','delete_opportunity','add_activity','save_event','delete_event']);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
-let operators=[],opById={},leadAttrib={},oppRecords={},badgeTimer=null,pickerMode='signin';
+let operators=[],opById={},leadAttrib={},oppRecords={},badgeTimer=null,pickerMode='signin',refreshPromise=null;
 
 function meId(){return sessionStorage.getItem('aqoon_operator_id')||''}
 function meName(){return sessionStorage.getItem('aqoon_operator_name')||''}
@@ -32,6 +32,15 @@ async function authRequest(path,body){
 }
 async function authSignIn(email,password){return authRequest('/auth/v1/token?grant_type=password',{email,password})}
 async function authSignUp(email,password){return authRequest('/auth/v1/signup',{email,password})}
+function tokenExpiresSoon(token){try{const raw=token.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'),padded=raw+'='.repeat((4-raw.length%4)%4),payload=JSON.parse(atob(padded));return !payload.exp||payload.exp*1000<=Date.now()+60000}catch{return true}}
+async function refreshAuthSession(force=false){
+  const current=authToken();
+  if(!force&&current&&!tokenExpiresSoon(current))return current;
+  const refresh=sessionStorage.getItem('aqoon_auth_refresh_token')||'';
+  if(!refresh)return current;
+  if(!refreshPromise)refreshPromise=authRequest('/auth/v1/token?grant_type=refresh_token',{refresh_token:refresh}).then(session=>{if(!session.access_token)throw new Error('Session refresh failed');setAuthSession(session.access_token,session.refresh_token);return session.access_token}).finally(()=>{refreshPromise=null});
+  try{return await refreshPromise}catch{return current}
+}
 async function whoami(token){
   const r=await fetch(LEADS_END,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+token},body:JSON.stringify({action:'whoami'})});
   return r.json().catch(()=>({}));
@@ -197,13 +206,18 @@ function patchFetch(){
           body.operator_id=operator;
           init=Object.assign({},init,{body:JSON.stringify(body)});
         }
-        const token=authToken();
-        if(token&&!(init.headers&&init.headers.Authorization)){
-          init=Object.assign({},init,{headers:Object.assign({},init.headers,{Authorization:'Bearer '+token})});
-        }
+        const token=await refreshAuthSession(false);
+        if(token)init=Object.assign({},init,{headers:Object.assign({},init.headers,{Authorization:'Bearer '+token})});
       }catch(e){}
     }
-    const response=await orig(input,init);
+    let response=await orig(input,init);
+    if(privateEndpoint&&response.status===401&&sessionStorage.getItem('aqoon_auth_refresh_token')){
+      const refreshed=await refreshAuthSession(true);
+      if(refreshed){
+        const retryInit=Object.assign({},init,{headers:Object.assign({},init?.headers,{Authorization:'Bearer '+refreshed})});
+        response=await orig(input,retryInit);
+      }
+    }
     if(!isLeads&&!isOps)return response;
     try{
       const data=await response.clone().json();
