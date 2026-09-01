@@ -513,3 +513,50 @@ Evidence: `docs/architecture/generated-tracker-contract-inventory.json` and
 Next gate: assign a purpose, owner, writer, consumer, correction path, privacy
 class and test to every active intake/interview/decision field before changing
 the question set.
+
+### 2026-09-01 — Gates 2–8 implemented and regression-locked
+
+- assigned provenance, purpose, consumer, privacy and correction ownership to
+  every released interview field;
+- introduced canonical household/person/need identity and correction-safe
+  interview coverage;
+- shortened interviews into explicit scenario branches with hidden-answer
+  clearing, `Not applicable` support and server-side completion validation;
+- made route matching deterministic, evidence-gated and current-source-only;
+- made route selection, research approval, lifecycle progression, reopening,
+  partner handoff and outcomes atomic and retry-safe;
+- connected future demand, Analytics, Sales and the human-reviewed learning
+  queue without copying family PII into commercial aggregates;
+- expanded CI from a small subset to the complete regression suite and added
+  browser asset, endpoint/action, import and database-ownership graph checks.
+
+Evidence: 189 local tests and both exact-commit GitHub workflows passed at
+`28a7c1c47f1dc588fda222223d633d1145336c22`; the matching Vercel production
+deployment was READY.
+
+### 2026-09-01 — Gate 9 production schema reconciliation complete
+
+- enumerated every active table, column and foreign key from production
+  metadata without reading family rows;
+- verified all 29 operational tables are RLS-enabled with zero browser table
+  grants;
+- recovered the missing pre-repository structural baseline for eight core
+  tables, `operators` and the public-intake rate-limit RPC;
+- removed the regression-suite legacy exception so every Edge table and RPC
+  must now be owned by repository SQL;
+- versioned three production-only diagnostic indexes and removed browser
+  execution from the internal interview-completion trigger function;
+- applied both reconciliation migrations and verified service-role-only RPC
+  execution in production;
+- confirmed all 13 repository Edge Functions exist and are ACTIVE with the
+  expected public/private JWT split.
+
+Evidence:
+`docs/architecture/supabase-operational-schema-contract-2026-09-01.md`,
+`supabase/migrations/20260826000000_recovered_operational_baseline.sql`, and
+`supabase/migrations/20260901230000_live_schema_reconciliation.sql`.
+
+Next gate: commit/push this reconciliation, require exact-commit CI and READY
+production deployment, then run the final live release checks. Shared legacy
+product grants and Auth leaked-password protection remain explicitly
+unverified/configuration-owned; they are not silently treated as fixed.

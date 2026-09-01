@@ -83,19 +83,28 @@ test('literal frontend endpoint actions are implemented by their target Edge Fun
   assert.ok(checked >= 20, 'expected literal action coverage across the active Tracker API clients');
 });
 
-test('every Edge RPC has repository SQL or an explicitly tracked legacy baseline', () => {
+test('every Edge table and RPC is owned by repository migrations', () => {
   const migrationSql = walk(path.join(root, 'supabase', 'migrations')).filter(file => file.endsWith('.sql')).map(file => fs.readFileSync(file, 'utf8')).join('\n');
-  // This function predates the recovered migration history. Its grants and
-  // revocations are versioned, but the original CREATE FUNCTION is not yet.
-  const knownLegacyBaseline = new Set(['take_family_intake_rate_limit']);
   const entries = walk(path.join(root, 'supabase', 'functions')).filter(file => file.endsWith('index.ts'));
   for (const file of entries) {
     const source = fs.readFileSync(file, 'utf8');
+    for (const match of source.matchAll(/\.from\(\s*["']([A-Za-z0-9_]+)["']\s*\)/g)) {
+      const table = match[1];
+      assert.ok(new RegExp(`create\\s+table\\s+(?:if\\s+not\\s+exists\\s+)?(?:public\\.)?${table}\\b`, 'i').test(migrationSql), `${relative(file)} uses unversioned table ${table}`);
+    }
     for (const match of source.matchAll(/\.rpc\(\s*["']([A-Za-z0-9_]+)["']/g)) {
       const rpc = match[1];
-      assert.ok(new RegExp(`create\\s+or\\s+replace\\s+function\\s+(?:public\\.)?${rpc}\\b`, 'i').test(migrationSql) || knownLegacyBaseline.has(rpc), `${relative(file)} calls unversioned RPC ${rpc}`);
+      assert.ok(new RegExp(`create\\s+(?:or\\s+replace\\s+)?function\\s+(?:public\\.)?${rpc}\\b`, 'i').test(migrationSql), `${relative(file)} calls unversioned RPC ${rpc}`);
     }
   }
+});
+
+test('the recovered baseline precedes migrations that reference its tables', () => {
+  const files = fs.readdirSync(path.join(root, 'supabase', 'migrations')).filter(file => file.endsWith('.sql')).sort();
+  const baseline = files.indexOf('20260826000000_recovered_operational_baseline.sql');
+  assert.ok(baseline >= 0, 'recovered operational baseline is missing');
+  assert.ok(baseline < files.indexOf('20260827_aqoon_operations_system.sql'));
+  assert.ok(baseline < files.indexOf('20260828_aqoon_routing_intelligence_foundation.sql'));
 });
 
 test('the deployed Tracker uses one canonical follow-up owner', () => {

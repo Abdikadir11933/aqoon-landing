@@ -38,17 +38,22 @@ The browser calls eight operator-facing Edge Functions:
 | `family-interview-history-admin` | interview revision history | active operator session |
 | `ops-admin` | Sales activities and calendar events | active operator session |
 
-`family-case-lifecycle-admin` is deployed with platform JWT verification off,
-but it still calls the shared `requireOperator` guard before processing an
-action. That difference must remain explicit in deployment verification.
+All ten operator/admin functions are currently deployed with platform JWT
+verification on and also resolve the active operator at the application
+boundary. The three public-input functions (`family-intake-contact`,
+`family-intake-submit`, `family-funnel-track`) intentionally have platform JWT
+verification off and validate/rate-limit their narrow anonymous payloads.
 
 ## Live Supabase reconciliation
 
-All 21 tables directly named by the operator Edge Functions exist in the live
+All 25 tables directly named by the current Edge Functions exist in the live
 project and have RLS enabled. The matching read additionally traverses
 `knowledge_criteria` from `knowledge_routes`; `knowledge_routes.service_id`
-references `knowledge_services`. Those two relations are part of the active
-route engine even when they do not appear as a direct `.from(...)` call.
+references `knowledge_services`; `family_households` is the parent of the
+canonical family graph. Those relations are part of the active system even
+when they do not appear as direct `.from(...)` calls. Exact columns and
+relationships are recorded in
+`docs/architecture/supabase-operational-schema-contract-2026-09-01.md`.
 
 Every active Tracker table currently has zero browser-facing RLS policies. This
 is intentional deny-by-default storage: operator access goes through Edge
@@ -98,4 +103,3 @@ No runtime layer may be retired until its behavior has either:
 
 1. moved into the canonical owner and is covered by a contract test, or
 2. been proven unused in the deployed entry point and live data path.
-

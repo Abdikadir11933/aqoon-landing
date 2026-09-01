@@ -1,7 +1,7 @@
 # Tracker ↔ Supabase data contract
 
-Status: implementation contract verified against the production schema on
-2026-08-31. This is a routing and QA reference, not a copy of family data.
+Status: implementation contract reconciled against the production schema on
+2026-09-01. This is a routing and QA reference, not a copy of family data.
 
 ## Runtime ownership
 
@@ -16,9 +16,9 @@ operator attribution and read/write the tables below.
 | Family CRM and interviews | `family-leads-admin` | `family_leads`, `family_interviews`, `family_intake_contacts`, `family_funnel_events`, `partner_programs` |
 | Incomplete intake follow-up | `family-incomplete-admin` | `family_intake_contacts`, `family_leads`, `family_call_log` |
 | Intake abuse protection and retention maintenance | `nightly-retention` | `family_intake_rate_limits` |
-| Call and case lifecycle | `family-case-lifecycle-admin` | `family_leads`, `family_interviews`, `family_interview_revisions`, `family_case_plans`, `family_case_events`, `family_case_interactions`, `family_future_opportunities`, `family_call_log` |
+| Call and case lifecycle | `family-case-lifecycle-admin` | `family_leads`, `family_interviews`, `family_interview_revisions`, `family_case_plans`, `family_case_events`, `family_case_interactions`, `family_future_opportunities`, `family_partner_handoffs`, `family_call_log` |
 | Reusable scenario learning | `family-scenario-admin` | `family_leads`, `family_interviews`, `family_scenarios`, `family_scenario_research` |
-| Route review and matching | route/admin functions | `knowledge_routes`, `knowledge_sources`, `family_match_runs`, `operators` |
+| Route review and matching | route/admin functions | `knowledge_services`, `knowledge_routes`, `knowledge_criteria`, `knowledge_sources`, `knowledge_feedback_signals`, `family_match_runs`, `operators` |
 | Sales and agenda | `ops-admin` | `sales_opportunities`, `sales_activities`, `ops_events`, `family_leads`, `operators` |
 
 ## Sales rule

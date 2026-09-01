@@ -3575,8 +3575,9 @@
     }
   ],
   "migrations": {
-    "count": 39,
+    "count": 41,
     "files": [
+      "20260826000000_recovered_operational_baseline.sql",
       "20260827_aqoon_operations_system.sql",
       "20260828_aqoon_routing_intelligence_foundation.sql",
       "20260828_call_outcomes_and_funnel_events.sql",
@@ -3615,21 +3616,29 @@
       "20260901221000_post_interview_decision_contract.sql",
       "20260901223000_analytics_sales_learning_contract.sql",
       "20260901224500_partner_handoff_consent_contract.sql",
-      "20260901225000_partner_handoff_fk_indexes.sql"
+      "20260901225000_partner_handoff_fk_indexes.sql",
+      "20260901230000_live_schema_reconciliation.sql"
     ],
     "created_tables": [
       "family_call_log",
       "family_case_events",
       "family_case_interactions",
       "family_case_plans",
+      "family_funnel_events",
       "family_future_opportunities",
       "family_households",
+      "family_intake_contacts",
+      "family_intake_rate_limits",
       "family_interview_needs",
       "family_interview_revisions",
+      "family_interviews",
+      "family_leads",
       "family_match_runs",
       "family_needs",
       "family_partner_handoffs",
       "family_people",
+      "family_scenario_research",
+      "family_scenarios",
       "knowledge_criteria",
       "knowledge_feedback_signals",
       "knowledge_routes",
@@ -3638,6 +3647,7 @@
       "knowledge_verifications",
       "operators",
       "ops_events",
+      "partner_programs",
       "sales_activities",
       "sales_opportunities"
     ],
@@ -3669,6 +3679,7 @@
       "knowledge_verifications",
       "operators",
       "ops_events",
+      "partner_programs",
       "sales_activities",
       "sales_opportunities",
       "users",
@@ -3698,7 +3709,8 @@
       "capture_family_interview_revision",
       "family_interview_opportunity_signals",
       "log_completed_interview_case_event",
-      "sync_family_interview_future_opportunities"
+      "sync_family_interview_future_opportunities",
+      "take_family_intake_rate_limit"
     ],
     "triggers": [
       "aqoon_link_interview_family_graph_before_write",
