@@ -37,7 +37,7 @@ function routeSet(){const meta=document.getElementById('dMeta')?.textContent||''
 function childCase(){const rs=routeSet();return ['daycare','school_child','hobby'].some(x=>rs.has(x));}
 function selected(key){const r=document.querySelector(ROOT+' .choice-row[data-key="'+key+'"]');if(!r)return[];return [...r.querySelectorAll('.choice.on')].map(b=>b.dataset.value);}
 function showGroup(group,on){document.querySelectorAll(ROOT+' [data-branch-group="'+group+'"]').forEach(el=>{el.style.display=on?'':'none';if(!on){el.querySelectorAll?.('.choice.on').forEach(x=>x.classList.remove('on'));el.querySelectorAll?.('input,textarea,select').forEach(x=>{x.value=''})}});}
-function syncBranches(){const kids=[...selected('household_children'),...selected('other_children_stages')],hasYoung=kids.includes('Under 3')||kids.includes('Age 3–6'),hasSchool=kids.includes('Grades 1–9'),work=selected('work_interest_gate')[0]||'',caregiver=selected('caregiver_future_goal');showGroup('daycare',hasYoung);showGroup('other-child-daycare',hasYoung);showGroup('school',hasSchool);showGroup('vantaa-hobby',hasSchool&&city().toLowerCase()==='vantaa');showGroup('work-proof',work==='Looking for work now'||work==='Likely within 12 months'||caregiver.some(v=>v==='Work now'||v==='Work within 12 months'));if(WEEKLY.enabled)showGroup('weekly',!WEEKLY.city||city().toLowerCase()===String(WEEKLY.city).toLowerCase());}
+function syncBranches(){const kids=[...selected('household_children'),...selected('other_children_stages')],hasYoung=kids.includes('Under 3')||kids.includes('Age 3–6'),hasSchool=kids.includes('Grades 1–9'),work=selected('work_interest_gate')[0]||'',caregiver=selected('caregiver_future_goal'),oneOff=selected('work_search_scope')[0]==='One specific job / pilot / shift';showGroup('relationship-discovery',!oneOff);showGroup('daycare',hasYoung&&!oneOff);showGroup('other-child-daycare',hasYoung&&!oneOff);showGroup('school',hasSchool&&!oneOff);showGroup('vantaa-hobby',hasSchool&&!oneOff&&city().toLowerCase()==='vantaa');showGroup('work-proof',!oneOff&&(work==='Looking for work now'||work==='Likely within 12 months'||caregiver.some(v=>v==='Work now'||v==='Work within 12 months')));if(WEEKLY.enabled)showGroup('weekly',!oneOff&&(!WEEKLY.city||city().toLowerCase()===String(WEEKLY.city).toLowerCase()));}
 function exists(key){return !!document.querySelector(ROOT+' [data-key="'+key+'"]');}
 function anyExists(keys){return keys.some(exists);}
 function appendIfMissing(wrap,key,node){if(!exists(key))wrap.appendChild(node);}
@@ -53,14 +53,14 @@ function section(){
     appendIfMissing(wrap,'caregiver_future_goal',row('caregiver_future_goal','Does the parent / caregiver want help with their own next step?',['Work now','Work within 12 months','Finnish / education now','Finnish / education later','Start a business','No current goal','Not sure'],{multi:true}));
     appendIfMissing(wrap,'child_activity_interest',row('child_activity_interest','Could this child or another child want a hobby / activity?',['Yes – wants help now','Maybe later','No','Not sure']));
   }else{
-    appendIfMissing(wrap,'household_children',row('household_children','Children in the household?',['No children','Under 3','Age 3–6','Grades 1–9','Older children'],{multi:true,note:'Branch gate only — keeps the rest of the call short.'}));
-    appendIfMissing(wrap,'work_interest_gate',row('work_interest_gate','Work situation for future support?',['Looking for work now','Likely within 12 months','Already working / no current need','Not looking for work now','Not sure']));
+    appendIfMissing(wrap,'household_children',row('household_children','Children in the household?',['No children','Under 3','Age 3–6','Grades 1–9','Older children'],{multi:true,note:'Branch gate only — keeps the rest of the call short.',group:'relationship-discovery'}));
+    appendIfMissing(wrap,'work_interest_gate',row('work_interest_gate','Work situation for future support?',['Looking for work now','Likely within 12 months','Already working / no current need','Not looking for work now','Not sure'],{group:'relationship-discovery'}));
   }
 
-  wrap.appendChild(head('Three quick system questions','Ask every adult / caregiver. These measure the wider access gap, not eligibility for today’s route.'));
-  appendIfMissing(wrap,'system_navigation_confidence',row('system_navigation_confidence','How confident are they finding the correct Finnish service or programme?',['Usually can find it','Can find some things with help','Often do not know where to start','Not sure']));
-  appendIfMissing(wrap,'digital_application_independence',row('digital_application_independence','Could they complete an official online application without help?',['Yes, usually','With a little help','No, needs hands-on help','Depends on the application','Not sure']));
-  appendIfMissing(wrap,'official_service_connections',row('official_service_connections','Which systems are they currently connected to?',['Kela','Employment services / Työmarkkinatori','School / education','Municipal integration services','Daycare / school as a parent','Other authority','None of these','Not sure'],{multi:true,note:'Current connection only; this is not proof of eligibility or active status.'}));
+  wrap.appendChild(head('Three quick system questions','Ask every adult / caregiver unless this is a one-off job/pilot call. These measure the wider access gap, not eligibility for today’s route.','relationship-discovery'));
+  appendIfMissing(wrap,'system_navigation_confidence',row('system_navigation_confidence','How confident are they finding the correct Finnish service or programme?',['Usually can find it','Can find some things with help','Often do not know where to start','Not sure'],{group:'relationship-discovery'}));
+  appendIfMissing(wrap,'digital_application_independence',row('digital_application_independence','Could they complete an official online application without help?',['Yes, usually','With a little help','No, needs hands-on help','Depends on the application','Not sure'],{group:'relationship-discovery'}));
+  appendIfMissing(wrap,'official_service_connections',row('official_service_connections','Which systems are they currently connected to?',['Kela','Employment services / Työmarkkinatori','School / education','Municipal integration services','Daycare / school as a parent','Other authority','None of these','Not sure'],{multi:true,note:'Current connection only; this is not proof of eligibility or active status.',group:'relationship-discovery'}));
 
   wrap.appendChild(head('Work-system check','Only when work is relevant.','work-proof'));
   if(!anyExists(['jobseeker','jobseeker_active']))wrap.appendChild(row('jobseeker','Is job search currently active with employment services?',['Yes','No','Not sure'],{group:'work-proof'}));
@@ -83,21 +83,14 @@ function section(){
   if(WEEKLY.enabled&&WEEKLY.id&&WEEKLY.label)wrap.appendChild(row('weekly_'+WEEKLY.id,WEEKLY.label,WEEKLY.values,{group:'weekly',note:'Rotating research question. Use a new ID if wording/meaning changes.'}));
 
   wrap.appendChild(head('Finish','Capture broader demand without forcing it.'));
-  if(!anyExists(['cross_service_needs_all','other_needs_discovered']))wrap.appendChild(row('cross_service_needs_all','After talking, what else is genuinely relevant?',['Work','School / child support','Daycare','Children’s hobbies','Finnish / education','Kela / benefits','Programmes / training','Housing','Letters / applications','Nothing else now'],{multi:true,note:'Only tick confirmed needs.'}));
-  appendIfMissing(wrap,'aqoon_return_intent',row('aqoon_return_intent','If another Finnish-system question comes up, would they contact AQOON again?',['Yes','Maybe','No','Not sure']));
-  appendIfMissing(wrap,'relevant_updates_ok',row('relevant_updates_ok','Okay for AQOON to contact them when a clearly relevant opportunity/application window opens?',['Yes','No','Ask each time / not sure'],{note:'Operational permission only; do not treat as blanket marketing consent.'}));
+  if(!anyExists(['cross_service_needs_all','other_needs_discovered']))wrap.appendChild(row('cross_service_needs_all','After talking, what else is genuinely relevant?',['Work','School / child support','Daycare','Children’s hobbies','Finnish / education','Kela / benefits','Programmes / training','Housing','Letters / applications','Nothing else now'],{multi:true,note:'Only tick confirmed needs.',group:'relationship-discovery'}));
+  appendIfMissing(wrap,'aqoon_return_intent',row('aqoon_return_intent','If another Finnish-system question comes up, would they contact AQOON again?',['Yes','Maybe','No','Not sure'],{group:'relationship-discovery'}));
+  appendIfMissing(wrap,'relevant_updates_ok',row('relevant_updates_ok','Okay for AQOON to contact them when a clearly relevant opportunity/application window opens?',['Yes','No','Ask each time / not sure'],{note:'Operational permission only; do not treat as blanket marketing consent.',group:'relationship-discovery'}));
   appendIfMissing(wrap,'outcome_followup_ok',row('outcome_followup_ok','Okay for AQOON to check later what happened with today’s issue?',['Yes','No','Not sure']));
   return wrap;
 }
 function ready(root){return !!root.querySelector('.question [data-key]');}
 function ensure(){const root=document.querySelector(ROOT);if(!root||!ready(root))return;let s=root.querySelector('[data-universal-proof-section="1"]');if(!s){s=section();root.appendChild(s);}else if(root.lastElementChild!==s)root.appendChild(s);syncBranches();}
-
-function scrapeAnswers(){
-  const out={};document.querySelectorAll(ROOT+' [data-key]').forEach(el=>{const k=el.dataset.key;if(!k||el.closest('.hidden')||el.closest('[data-branch-group][style*="display: none"]'))return;if(el.matches('input,textarea,select')){if(el.value!=='')out[k]=el.value;return;}if(el.classList.contains('choice-row')){const vals=[...el.querySelectorAll('.choice.on')].map(b=>b.dataset.value);if(vals.length)out[k]=el.classList.contains('match-multi')?vals:vals[0];}});
-  Object.entries(ALIASES).forEach(([target,sources])=>{if(out[target]!==undefined)return;for(const source of sources){if(out[source]!==undefined){out[target]=out[source];break;}}});
-  return out;
-}
-function patchSaveFetch(){if(window.__aqoonUniversalSavePatch)return;window.__aqoonUniversalSavePatch=1;const original=window.fetch.bind(window);window.fetch=async function(input,init){try{const url=typeof input==='string'?input:(input&&input.url)||'';if(url.includes('family-leads-admin')&&init?.body){const body=JSON.parse(init.body);if(body.action==='save_interview'){const extra=scrapeAnswers();body.answers=Object.assign({},body.answers||{},extra);const lines=Object.entries(extra).map(([k,v])=>'- '+k+': '+(Array.isArray(v)?v.join(', '):v));if(lines.length)body.research_prompt=(body.research_prompt||'')+'\n\nUNIVERSAL INTERVIEW EVIDENCE / CROSS-NEEDS\n'+lines.join('\n');init=Object.assign({},init,{body:JSON.stringify(body)});}}}catch(e){console.warn('AQOON universal interview save merge skipped',e);}return original(input,init);};}
 
 function count(ints,key){const c={};let n=0;(ints||[]).forEach(i=>{let v=i.answers&&i.answers[key];if(v===undefined&&ALIASES[key])for(const s of ALIASES[key]){if(i.answers?.[s]!==undefined){v=i.answers[s];break;}}if(v===undefined||v===null||v==='')return;n++;(Array.isArray(v)?v:[v]).forEach(x=>c[x]=(c[x]||0)+1)});return{n,c};}
 function pct(d,match){if(!d.n)return 0;let v=0;Object.entries(d.c).forEach(([k,n])=>{if(match(k))v+=n});return Math.round(v/d.n*100);}
@@ -178,7 +171,7 @@ const obs=new MutationObserver(()=>{ensure();document.getElementById('interviewE
 // card that analytics-mobile-v2.css permanently hides (#aqResearchPulse in
 // analytics-mobile-v2.js is the one visible card now) - no longer called, so
 // this file stops fetching/computing an aggregate that's never shown.
-function start(){patchSaveFetch();const r=document.querySelector(ROOT);if(r)obs.observe(r,{childList:true,subtree:true});ensure();}
+function start(){const r=document.querySelector(ROOT);if(r){obs.observe(r,{childList:true,subtree:true});r.addEventListener('click',event=>{if(event.target.closest('.choice'))setTimeout(syncBranches,0)})}ensure();}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 document.addEventListener('click',e=>{if(e.target.closest('[data-interview]'))setTimeout(ensure,180)},false);
 })();

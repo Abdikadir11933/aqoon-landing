@@ -1,0 +1,3622 @@
+{
+  "generated_by": "scripts/generate_tracker_contract_inventory.mjs",
+  "contract_version": 1,
+  "tracker_entrypoint": "tracker/index.html",
+  "summary": {
+    "tracker_scripts": 28,
+    "scripts_wrapping_fetch": 2,
+    "scripts_wrapping_open_interview": 9,
+    "edge_functions": 13,
+    "frontend_edge_function_slugs": [
+      "family-case-lifecycle-admin",
+      "family-incomplete-admin",
+      "family-interview-history-admin",
+      "family-leads-admin",
+      "family-leads-manage",
+      "family-route-review-admin",
+      "family-scenario-admin",
+      "ops-admin"
+    ],
+    "frontend_api_actions": [
+      "add_activity",
+      "analytics",
+      "approve_research",
+      "assign",
+      "checkResponse",
+      "claim_operator",
+      "complete",
+      "create",
+      "delete",
+      "get_call_history",
+      "list",
+      "logNeeds",
+      "log_event",
+      "match_preview",
+      "match_scenario",
+      "operators",
+      "ping",
+      "prepareFollowUp",
+      "programs",
+      "recordOutcome",
+      "reopen",
+      "restore",
+      "save_event",
+      "save_interview",
+      "save_opportunity",
+      "save_plan",
+      "save_research",
+      "save_review",
+      "select_route",
+      "summary",
+      "transition_plan",
+      "update",
+      "whoami",
+      "workflow"
+    ],
+    "edge_function_tables": [
+      "family_call_log",
+      "family_case_events",
+      "family_case_interactions",
+      "family_case_plans",
+      "family_funnel_events",
+      "family_future_opportunities",
+      "family_intake_contacts",
+      "family_intake_rate_limits",
+      "family_interview_revisions",
+      "family_interviews",
+      "family_leads",
+      "family_match_runs",
+      "family_scenario_research",
+      "family_scenarios",
+      "knowledge_routes",
+      "knowledge_sources",
+      "operators",
+      "ops_events",
+      "partner_programs",
+      "sales_activities",
+      "sales_opportunities"
+    ],
+    "edge_function_embedded_relation_tables": [
+      "Response",
+      "Set",
+      "eq",
+      "family_interviews",
+      "filter",
+      "from",
+      "gte",
+      "if",
+      "in",
+      "knowledge_criteria",
+      "knowledge_routes",
+      "limit",
+      "makeJourneys",
+      "map",
+      "operators",
+      "order",
+      "single",
+      "stringify"
+    ],
+    "edge_function_database_surface": [
+      "Response",
+      "Set",
+      "eq",
+      "family_call_log",
+      "family_case_events",
+      "family_case_interactions",
+      "family_case_plans",
+      "family_funnel_events",
+      "family_future_opportunities",
+      "family_intake_contacts",
+      "family_intake_rate_limits",
+      "family_interview_revisions",
+      "family_interviews",
+      "family_leads",
+      "family_match_runs",
+      "family_scenario_research",
+      "family_scenarios",
+      "filter",
+      "from",
+      "gte",
+      "if",
+      "in",
+      "knowledge_criteria",
+      "knowledge_routes",
+      "knowledge_sources",
+      "limit",
+      "makeJourneys",
+      "map",
+      "operators",
+      "ops_events",
+      "order",
+      "partner_programs",
+      "sales_activities",
+      "sales_opportunities",
+      "single",
+      "stringify"
+    ],
+    "edge_function_rpcs": [
+      "aqoon_approve_scenario_research",
+      "aqoon_save_route_review",
+      "aqoon_select_case_route",
+      "aqoon_transition_case_plan",
+      "take_family_intake_rate_limit"
+    ],
+    "discovered_answer_keys": 152,
+    "answer_keys_without_backend_or_migration_reference": [
+      "access_barriers",
+      "already_tried",
+      "application_date",
+      "application_steps_known",
+      "aqoon_discovery",
+      "business_idea",
+      "business_start",
+      "daycare_action_stage",
+      "daycare_application_help",
+      "daycare_child_age",
+      "daycare_current_state",
+      "daycare_priorities",
+      "decision_date",
+      "eligible_children_count",
+      "eligible_grades",
+      "harrastusten_vantaa_awareness",
+      "hobby_before",
+      "hobby_free_awareness",
+      "hobby_main_barrier",
+      "hobby_outcome_stage",
+      "hobby_persistence",
+      "hobby_registration_help",
+      "income_statement_status",
+      "issue_context",
+      "known_service",
+      "operator_context_notes",
+      "other_needs_discovered",
+      "parent_hobby_attitude",
+      "planned_unemployment_date",
+      "prior_awareness",
+      "private_daycare_awareness",
+      "private_daycare_consider",
+      "private_daycare_cost_belief",
+      "private_route_parallel_steps_awareness",
+      "response_deadline",
+      "school_deadline",
+      "self_navigation"
+    ]
+  },
+  "tracker_scripts": [
+    {
+      "order": 1,
+      "src": "/tracker/operator-identity.js?v=4",
+      "file": "tracker/operator-identity.js",
+      "lines": 321,
+      "edge_functions": [
+        "family-leads-admin",
+        "ops-admin"
+      ],
+      "api_actions": [
+        "claim_operator",
+        "operators",
+        "save_opportunity",
+        "whoami"
+      ],
+      "window_exports": [
+        "AqoonAuthHeaders",
+        "AqoonOperators",
+        "__aqoonOperatorFetchPatch",
+        "fetch"
+      ],
+      "window_wrappers": [
+        "fetch"
+      ],
+      "listened_events": [
+        "DOMContentLoaded",
+        "click"
+      ],
+      "dispatched_events": [
+        "aqoon:auth-expired",
+        "aqoon:auth-restored"
+      ],
+      "answer_keys": []
+    },
+    {
+      "order": 2,
+      "src": "/tracker/crm-call-history.js?v=2",
+      "file": "tracker/crm-call-history.js",
+      "lines": 87,
+      "edge_functions": [
+        "family-case-lifecycle-admin"
+      ],
+      "api_actions": [
+        "get_call_history"
+      ],
+      "window_exports": [
+        "AqoonCallHistory"
+      ],
+      "window_wrappers": [],
+      "listened_events": [],
+      "dispatched_events": [],
+      "answer_keys": []
+    },
+    {
+      "order": 3,
+      "src": "/tracker/multineed-adapter.js?v=2",
+      "file": "tracker/multineed-adapter.js",
+      "lines": 107,
+      "edge_functions": [],
+      "api_actions": [],
+      "window_exports": [
+        "fetch"
+      ],
+      "window_wrappers": [
+        "fetch"
+      ],
+      "listened_events": [],
+      "dispatched_events": [],
+      "answer_keys": []
+    },
+    {
+      "order": 4,
+      "src": "/tracker/app.js?v=5",
+      "file": "tracker/app.js",
+      "lines": 69,
+      "edge_functions": [
+        "family-leads-admin"
+      ],
+      "api_actions": [
+        "analytics",
+        "list",
+        "ping",
+        "programs",
+        "save_interview",
+        "update"
+      ],
+      "window_exports": [
+        "AqoonApp",
+        "AqoonInterview",
+        "openInterview",
+        "saveInterview"
+      ],
+      "window_wrappers": [],
+      "listened_events": [
+        "aqoon:auth-expired",
+        "aqoon:auth-restored",
+        "visibilitychange"
+      ],
+      "dispatched_events": [
+        "aqoon:interview-saved",
+        "dataUpdated"
+      ],
+      "answer_keys": [
+        "goal"
+      ]
+    },
+    {
+      "order": 5,
+      "src": "/tracker/interview-contract.js?v=1",
+      "file": "tracker/interview-contract.js",
+      "lines": 65,
+      "edge_functions": [],
+      "api_actions": [
+        "save_interview"
+      ],
+      "window_exports": [],
+      "window_wrappers": [],
+      "listened_events": [],
+      "dispatched_events": [],
+      "answer_keys": [
+        "main_status",
+        "primary_situation"
+      ]
+    },
+    {
+      "order": 6,
+      "src": "/tracker/visual-v3.js?v=2",
+      "file": "tracker/visual-v3.js",
+      "lines": 10,
+      "edge_functions": [],
+      "api_actions": [],
+      "window_exports": [],
+      "window_wrappers": [],
+      "listened_events": [],
+      "dispatched_events": [
+        "change"
+      ],
+      "answer_keys": []
+    },
+    {
+      "order": 7,
+      "src": "/tracker/crm-reactive.js?v=3",
+      "file": "tracker/crm-reactive.js",
+      "lines": 14,
+      "edge_functions": [],
+      "api_actions": [],
+      "window_exports": [],
+      "window_wrappers": [],
+      "listened_events": [
+        "click",
+        "dataUpdated"
+      ],
+      "dispatched_events": [],
+      "answer_keys": []
+    },
+    {
+      "order": 8,
+      "src": "/tracker/interview-match.js?v=6",
+      "file": "tracker/interview-match.js",
+      "lines": 134,
+      "edge_functions": [
+        "family-leads-admin"
+      ],
+      "api_actions": [],
+      "window_exports": [
+        "openInterview"
+      ],
+      "window_wrappers": [
+        "AqoonFollowupWorkflowV2",
+        "AqoonInterviewContract",
+        "openInterview"
+      ],
+      "listened_events": [
+        "aqoon:interview-answers-restored",
+        "click",
+        "input"
+      ],
+      "dispatched_events": [],
+      "answer_keys": [
+        "accessibility",
+        "activity_cost",
+        "activity_goal",
+        "all_guardians",
+        "already_tried",
+        "application_date",
+        "apprenticeship",
+        "authority_contacted",
+        "authority_goal",
+        "authority_issue",
+        "availability",
+        "basic_school",
+        "born_finland",
+        "business_help",
+        "business_idea",
+        "business_numbers",
+        "business_plan",
+        "business_stage",
+        "business_start",
+        "care_goal",
+        "care_options",
+        "care_reason",
+        "care_schedule",
+        "care_start_urgency",
+        "case_status",
+        "case_subject",
+        "change_reason",
+        "child_finnish",
+        "child_stage",
+        "childcare_limit",
+        "client_age",
+        "cost_priority",
+        "current_situation",
+        "current_study",
+        "current_work_hours",
+        "days",
+        "decision_date",
+        "desired_help",
+        "education_barriers",
+        "education_entry_reason",
+        "employment_plan",
+        "filter",
+        "fin_school_time",
+        "finnish_match",
+        "first_permit_time",
+        "fulltime_started",
+        "grade",
+        "hobby_language",
+        "hobby_time",
+        "home_municipality",
+        "household_schedule",
+        "immediate_goal",
+        "integration_assessment",
+        "integration_plan",
+        "issue_context",
+        "jobseeker_active",
+        "known_service",
+        "kotihoidon_tuki",
+        "literacy",
+        "other_school",
+        "palkkatuki",
+        "parent_status",
+        "primary_situation",
+        "program_childcare",
+        "program_constraints",
+        "program_cost",
+        "program_goal",
+        "program_reason",
+        "program_time",
+        "program_travel",
+        "qualification_status",
+        "registration",
+        "residence_status",
+        "response_deadline",
+        "right_to_work_known",
+        "s2",
+        "school_deadline",
+        "school_decision_needed",
+        "school_goal",
+        "school_name",
+        "school_route",
+        "school_situation",
+        "service_area",
+        "start_when",
+        "starttiraha",
+        "student_benefit_context",
+        "student_schedule",
+        "study_completion",
+        "study_language",
+        "study_load",
+        "study_path",
+        "study_start",
+        "study_travel",
+        "sudden_need",
+        "support_arrangement",
+        "support_decision",
+        "support_goal",
+        "support_tried",
+        "training_schedule",
+        "travel_limit",
+        "unemployment_duration",
+        "urgent_proof",
+        "work_intent",
+        "work_search_scope",
+        "work_study_route",
+        "work_tryout",
+        "yki_level",
+        "yki_purpose"
+      ]
+    },
+    {
+      "order": 9,
+      "src": "/tracker/interview-match-preview.js?v=4",
+      "file": "tracker/interview-match-preview.js",
+      "lines": 73,
+      "edge_functions": [
+        "family-leads-admin",
+        "family-route-review-admin"
+      ],
+      "api_actions": [
+        "match_preview",
+        "save_review"
+      ],
+      "window_exports": [
+        "AqoonRoutePreview",
+        "openInterview"
+      ],
+      "window_wrappers": [
+        "openInterview"
+      ],
+      "listened_events": [
+        "aqoon:interview-saved",
+        "click"
+      ],
+      "dispatched_events": [],
+      "answer_keys": []
+    },
+    {
+      "order": 10,
+      "src": "/tracker/interview-form-enhancements.js?v=2",
+      "file": "tracker/interview-form-enhancements.js",
+      "lines": 141,
+      "edge_functions": [
+        "family-leads-admin"
+      ],
+      "api_actions": [
+        "list"
+      ],
+      "window_exports": [
+        "openInterview"
+      ],
+      "window_wrappers": [
+        "openInterview"
+      ],
+      "listened_events": [
+        "DOMContentLoaded",
+        "click",
+        "toggle"
+      ],
+      "dispatched_events": [],
+      "answer_keys": [
+        "access_barriers",
+        "application_steps_known",
+        "aqoon_discovery",
+        "barrier",
+        "business_stage",
+        "care_goal",
+        "client_age",
+        "daycare_action_stage",
+        "daycare_application_help",
+        "daycare_child_age",
+        "daycare_current_state",
+        "daycare_priorities",
+        "eligible_children_count",
+        "eligible_grades",
+        "grade",
+        "harrastusten_vantaa_awareness",
+        "hobby_before",
+        "hobby_free_awareness",
+        "hobby_main_barrier",
+        "hobby_outcome_stage",
+        "hobby_persistence",
+        "hobby_registration_help",
+        "hobby_time",
+        "job_search_profile",
+        "jobseeker_active",
+        "known_service",
+        "other_needs_discovered",
+        "outcome_followup_ok",
+        "parent_hobby_attitude",
+        "prior_awareness",
+        "private_daycare_awareness",
+        "private_daycare_consider",
+        "private_daycare_cost_belief",
+        "private_route_parallel_steps_awareness",
+        "self_navigation",
+        "service_area"
+      ]
+    },
+    {
+      "order": 11,
+      "src": "/tracker/interview-smart-notes.js?v=5",
+      "file": "tracker/interview-smart-notes.js",
+      "lines": 99,
+      "edge_functions": [],
+      "api_actions": [],
+      "window_exports": [
+        "openInterview"
+      ],
+      "window_wrappers": [
+        "openInterview"
+      ],
+      "listened_events": [
+        "DOMContentLoaded",
+        "aqoon:auth-expired",
+        "aqoon:interview-saved",
+        "change",
+        "click",
+        "input"
+      ],
+      "dispatched_events": [
+        "aqoon:interview-answers-restored"
+      ],
+      "answer_keys": []
+    },
+    {
+      "order": 12,
+      "src": "/tracker/interview-answers-restore.js?v=3",
+      "file": "tracker/interview-answers-restore.js",
+      "lines": 48,
+      "edge_functions": [],
+      "api_actions": [],
+      "window_exports": [
+        "openInterview"
+      ],
+      "window_wrappers": [
+        "openInterview"
+      ],
+      "listened_events": [
+        "click"
+      ],
+      "dispatched_events": [
+        "aqoon:interview-answers-restored"
+      ],
+      "answer_keys": [
+        "operator_context_notes"
+      ]
+    },
+    {
+      "order": 13,
+      "src": "/tracker/case-lifecycle.js?v=3",
+      "file": "tracker/case-lifecycle.js",
+      "lines": 210,
+      "edge_functions": [
+        "family-case-lifecycle-admin",
+        "family-interview-history-admin"
+      ],
+      "api_actions": [
+        "list",
+        "log_event",
+        "reopen",
+        "restore",
+        "save_plan",
+        "transition_plan"
+      ],
+      "window_exports": [
+        "AqoonCaseLifecycle",
+        "openInterview"
+      ],
+      "window_wrappers": [
+        "openInterview"
+      ],
+      "listened_events": [
+        "aqoon:interview-saved",
+        "click"
+      ],
+      "dispatched_events": [],
+      "answer_keys": [
+        "filter",
+        "find",
+        "length"
+      ]
+    },
+    {
+      "order": 14,
+      "src": "/tracker/scenario-learning.js?v=3",
+      "file": "tracker/scenario-learning.js",
+      "lines": 34,
+      "edge_functions": [
+        "family-scenario-admin"
+      ],
+      "api_actions": [
+        "approve_research",
+        "match_scenario",
+        "save_research"
+      ],
+      "window_exports": [
+        "openInterview"
+      ],
+      "window_wrappers": [
+        "openInterview"
+      ],
+      "listened_events": [
+        "aqoon:interview-saved"
+      ],
+      "dispatched_events": [],
+      "answer_keys": []
+    },
+    {
+      "order": 15,
+      "src": "/tracker/interview-context.js?v=2",
+      "file": "tracker/interview-context.js",
+      "lines": 88,
+      "edge_functions": [
+        "family-case-lifecycle-admin"
+      ],
+      "api_actions": [],
+      "window_exports": [
+        "AqoonInterviewContext",
+        "openInterview"
+      ],
+      "window_wrappers": [
+        "AqoonInterview",
+        "openInterview"
+      ],
+      "listened_events": [
+        "click"
+      ],
+      "dispatched_events": [],
+      "answer_keys": []
+    },
+    {
+      "order": 16,
+      "src": "/tracker/interview-follow-up-recap.js?v=3",
+      "file": "tracker/interview-follow-up-recap.js",
+      "lines": 167,
+      "edge_functions": [
+        "family-case-lifecycle-admin"
+      ],
+      "api_actions": [
+        "list"
+      ],
+      "window_exports": [
+        "AqoonFollowUpRecap"
+      ],
+      "window_wrappers": [
+        "AqoonFollowupWorkflowV2",
+        "AqoonInterview",
+        "AqoonInterviewContext"
+      ],
+      "listened_events": [
+        "click"
+      ],
+      "dispatched_events": [],
+      "answer_keys": []
+    },
+    {
+      "order": 17,
+      "src": "/tracker/interview-next-steps.js?v=3",
+      "file": "tracker/interview-next-steps.js",
+      "lines": 172,
+      "edge_functions": [
+        "family-case-lifecycle-admin"
+      ],
+      "api_actions": [
+        "checkResponse",
+        "list",
+        "logNeeds",
+        "prepareFollowUp",
+        "recordOutcome"
+      ],
+      "window_exports": [
+        "AqoonNextSteps"
+      ],
+      "window_wrappers": [],
+      "listened_events": [
+        "aqoon:interview-saved",
+        "click"
+      ],
+      "dispatched_events": [],
+      "answer_keys": []
+    },
+    {
+      "order": 18,
+      "src": "/tracker/universal-proof-questions.js?v=2",
+      "file": "tracker/universal-proof-questions.js",
+      "lines": 178,
+      "edge_functions": [
+        "family-leads-admin"
+      ],
+      "api_actions": [
+        "list"
+      ],
+      "window_exports": [],
+      "window_wrappers": [],
+      "listened_events": [
+        "DOMContentLoaded",
+        "click"
+      ],
+      "dispatched_events": [],
+      "answer_keys": []
+    },
+    {
+      "order": 19,
+      "src": "/tracker/incomplete-intake.js?v=2",
+      "file": "tracker/incomplete-intake.js",
+      "lines": 52,
+      "edge_functions": [
+        "family-incomplete-admin"
+      ],
+      "api_actions": [
+        "assign",
+        "complete",
+        "delete"
+      ],
+      "window_exports": [
+        "AqoonIncompleteIntake",
+        "openInterview"
+      ],
+      "window_wrappers": [],
+      "listened_events": [
+        "click",
+        "dataUpdated"
+      ],
+      "dispatched_events": [],
+      "answer_keys": []
+    },
+    {
+      "order": 20,
+      "src": "/tracker/human-labels.js?v=2",
+      "file": "tracker/human-labels.js",
+      "lines": 57,
+      "edge_functions": [],
+      "api_actions": [],
+      "window_exports": [],
+      "window_wrappers": [],
+      "listened_events": [
+        "DOMContentLoaded"
+      ],
+      "dispatched_events": [],
+      "answer_keys": []
+    },
+    {
+      "order": 21,
+      "src": "/tracker/analytics-mobile-v2.js?v=2",
+      "file": "tracker/analytics-mobile-v2.js",
+      "lines": 43,
+      "edge_functions": [
+        "family-case-lifecycle-admin",
+        "family-leads-admin"
+      ],
+      "api_actions": [
+        "list",
+        "summary"
+      ],
+      "window_exports": [],
+      "window_wrappers": [],
+      "listened_events": [
+        "DOMContentLoaded",
+        "click"
+      ],
+      "dispatched_events": [],
+      "answer_keys": []
+    },
+    {
+      "order": 22,
+      "src": "/tracker/crm-manage.js?v=2",
+      "file": "tracker/crm-manage.js",
+      "lines": 19,
+      "edge_functions": [
+        "family-leads-manage"
+      ],
+      "api_actions": [
+        "create",
+        "delete"
+      ],
+      "window_exports": [
+        "AqoonCrmManage"
+      ],
+      "window_wrappers": [],
+      "listened_events": [
+        "DOMContentLoaded",
+        "click"
+      ],
+      "dispatched_events": [],
+      "answer_keys": []
+    },
+    {
+      "order": 23,
+      "src": "/tracker/operations-system.js?v=2",
+      "file": "tracker/operations-system.js",
+      "lines": 66,
+      "edge_functions": [
+        "ops-admin"
+      ],
+      "api_actions": [
+        "add_activity",
+        "list",
+        "save_event",
+        "save_opportunity"
+      ],
+      "window_exports": [],
+      "window_wrappers": [],
+      "listened_events": [
+        "DOMContentLoaded",
+        "click",
+        "input"
+      ],
+      "dispatched_events": [],
+      "answer_keys": []
+    },
+    {
+      "order": 24,
+      "src": "/tracker/call-outcomes.js?v=2",
+      "file": "tracker/call-outcomes.js",
+      "lines": 132,
+      "edge_functions": [
+        "family-incomplete-admin",
+        "family-leads-admin"
+      ],
+      "api_actions": [],
+      "window_exports": [],
+      "window_wrappers": [
+        "AqoonAuthHeaders"
+      ],
+      "listened_events": [
+        "click"
+      ],
+      "dispatched_events": [],
+      "answer_keys": []
+    },
+    {
+      "order": 25,
+      "src": "/tracker/crm-queue-navigation.js?v=3",
+      "file": "tracker/crm-queue-navigation.js",
+      "lines": 562,
+      "edge_functions": [
+        "family-case-lifecycle-admin"
+      ],
+      "api_actions": [
+        "list"
+      ],
+      "window_exports": [
+        "CrmQueues"
+      ],
+      "window_wrappers": [
+        "AqoonApp",
+        "AqoonOperators"
+      ],
+      "listened_events": [
+        "DOMContentLoaded",
+        "aqoon:interview-saved",
+        "click",
+        "dataUpdated"
+      ],
+      "dispatched_events": [],
+      "answer_keys": []
+    },
+    {
+      "order": 26,
+      "src": "/tracker/interview-ux-v4.js?v=2",
+      "file": "tracker/interview-ux-v4.js",
+      "lines": 234,
+      "edge_functions": [],
+      "api_actions": [],
+      "window_exports": [],
+      "window_wrappers": [],
+      "listened_events": [
+        "DOMContentLoaded",
+        "aqoon:interview-saved",
+        "click"
+      ],
+      "dispatched_events": [
+        "change"
+      ],
+      "answer_keys": [
+        "child_age_or_birth_date",
+        "current_earned_income",
+        "desired_start_date",
+        "education_support_need",
+        "hobby_support_need",
+        "household_income_context",
+        "income_statement_status",
+        "main_status",
+        "other_income_context",
+        "planned_unemployment_date",
+        "preferred_area",
+        "support_need_description"
+      ]
+    },
+    {
+      "order": 27,
+      "src": "/tracker/followup-workflow-v2.js?v=4",
+      "file": "tracker/followup-workflow-v2.js",
+      "lines": 59,
+      "edge_functions": [
+        "family-case-lifecycle-admin",
+        "family-leads-admin",
+        "family-route-review-admin"
+      ],
+      "api_actions": [
+        "log_event",
+        "match_preview",
+        "save_plan",
+        "save_review",
+        "select_route",
+        "transition_plan",
+        "workflow"
+      ],
+      "window_exports": [
+        "AqoonFollowupWorkflowV2",
+        "openInterview"
+      ],
+      "window_wrappers": [
+        "openInterview"
+      ],
+      "listened_events": [
+        "aqoon:interview-saved"
+      ],
+      "dispatched_events": [],
+      "answer_keys": [
+        "find",
+        "length"
+      ]
+    },
+    {
+      "order": 28,
+      "src": "/tracker/followup-panel-v2.js?v=1",
+      "file": "tracker/followup-panel-v2.js",
+      "lines": 23,
+      "edge_functions": [
+        "family-case-lifecycle-admin"
+      ],
+      "api_actions": [
+        "save_plan"
+      ],
+      "window_exports": [],
+      "window_wrappers": [],
+      "listened_events": [
+        "DOMContentLoaded",
+        "click"
+      ],
+      "dispatched_events": [],
+      "answer_keys": []
+    }
+  ],
+  "edge_functions": [
+    {
+      "slug": "family-case-lifecycle-admin",
+      "file": "supabase/functions/family-case-lifecycle-admin/index.ts",
+      "lines": 511,
+      "actions": [
+        "batch_list",
+        "get_call_history",
+        "get_consent",
+        "get_revisions",
+        "get_timeline",
+        "list",
+        "log_event",
+        "save_interaction",
+        "save_opportunity",
+        "save_plan",
+        "select_route",
+        "summary",
+        "transition_plan",
+        "workflow"
+      ],
+      "tables": [
+        "family_call_log",
+        "family_case_events",
+        "family_case_interactions",
+        "family_case_plans",
+        "family_future_opportunities",
+        "family_interview_revisions",
+        "family_interviews",
+        "family_leads",
+        "family_match_runs"
+      ],
+      "embedded_relation_tables": [
+        "knowledge_routes",
+        "operators"
+      ],
+      "rpcs": [
+        "aqoon_select_case_route",
+        "aqoon_transition_case_plan"
+      ],
+      "auth_boundary": "operator_jwt_or_repository_fallback_contract"
+    },
+    {
+      "slug": "family-funnel-track",
+      "file": "supabase/functions/family-funnel-track/index.ts",
+      "lines": 15,
+      "actions": [],
+      "tables": [
+        "family_funnel_events"
+      ],
+      "embedded_relation_tables": [],
+      "rpcs": [],
+      "auth_boundary": "public_or_self_validated"
+    },
+    {
+      "slug": "family-incomplete-admin",
+      "file": "supabase/functions/family-incomplete-admin/index.ts",
+      "lines": 32,
+      "actions": [
+        "assign",
+        "complete",
+        "delete",
+        "list",
+        "log_call"
+      ],
+      "tables": [
+        "family_call_log",
+        "family_intake_contacts",
+        "family_leads"
+      ],
+      "embedded_relation_tables": [],
+      "rpcs": [],
+      "auth_boundary": "operator_jwt_or_repository_fallback_contract"
+    },
+    {
+      "slug": "family-intake-contact",
+      "file": "supabase/functions/family-intake-contact/index.ts",
+      "lines": 17,
+      "actions": [],
+      "tables": [
+        "family_funnel_events",
+        "family_intake_contacts"
+      ],
+      "embedded_relation_tables": [],
+      "rpcs": [
+        "take_family_intake_rate_limit"
+      ],
+      "auth_boundary": "public_or_self_validated"
+    },
+    {
+      "slug": "family-intake-submit",
+      "file": "supabase/functions/family-intake-submit/index.ts",
+      "lines": 16,
+      "actions": [],
+      "tables": [
+        "family_funnel_events",
+        "family_intake_contacts",
+        "family_leads"
+      ],
+      "embedded_relation_tables": [],
+      "rpcs": [
+        "take_family_intake_rate_limit"
+      ],
+      "auth_boundary": "public_or_self_validated"
+    },
+    {
+      "slug": "family-interview-history-admin",
+      "file": "supabase/functions/family-interview-history-admin/index.ts",
+      "lines": 62,
+      "actions": [
+        "list",
+        "restore"
+      ],
+      "tables": [
+        "family_interview_revisions",
+        "family_interviews"
+      ],
+      "embedded_relation_tables": [],
+      "rpcs": [],
+      "auth_boundary": "operator_jwt_or_repository_fallback_contract"
+    },
+    {
+      "slug": "family-leads-admin",
+      "file": "supabase/functions/family-leads-admin/index.ts",
+      "lines": 880,
+      "actions": [
+        "analytics",
+        "call_log",
+        "claim_operator",
+        "interview_save",
+        "list",
+        "match_preview",
+        "operators",
+        "ping",
+        "programmes",
+        "programs",
+        "record_call_outcome",
+        "save_interview",
+        "update",
+        "whoami"
+      ],
+      "tables": [
+        "family_call_log",
+        "family_funnel_events",
+        "family_intake_contacts",
+        "family_interviews",
+        "family_leads",
+        "knowledge_routes",
+        "knowledge_sources",
+        "operators",
+        "partner_programs"
+      ],
+      "embedded_relation_tables": [
+        "Response",
+        "Set",
+        "eq",
+        "filter",
+        "from",
+        "gte",
+        "if",
+        "in",
+        "knowledge_criteria",
+        "limit",
+        "makeJourneys",
+        "map",
+        "order",
+        "single",
+        "stringify"
+      ],
+      "rpcs": [],
+      "auth_boundary": "operator_jwt_or_repository_fallback_contract"
+    },
+    {
+      "slug": "family-leads-manage",
+      "file": "supabase/functions/family-leads-manage/index.ts",
+      "lines": 97,
+      "actions": [
+        "create",
+        "delete",
+        "move_phase",
+        "update"
+      ],
+      "tables": [
+        "family_intake_contacts",
+        "family_leads"
+      ],
+      "embedded_relation_tables": [],
+      "rpcs": [],
+      "auth_boundary": "operator_jwt_or_repository_fallback_contract"
+    },
+    {
+      "slug": "family-route-preview-admin",
+      "file": "supabase/functions/family-route-preview-admin/index.ts",
+      "lines": 48,
+      "actions": [],
+      "tables": [
+        "family_leads",
+        "knowledge_routes",
+        "knowledge_sources"
+      ],
+      "embedded_relation_tables": [
+        "knowledge_criteria"
+      ],
+      "rpcs": [],
+      "auth_boundary": "operator_jwt_or_repository_fallback_contract"
+    },
+    {
+      "slug": "family-route-review-admin",
+      "file": "supabase/functions/family-route-review-admin/index.ts",
+      "lines": 61,
+      "actions": [
+        "list"
+      ],
+      "tables": [
+        "family_interviews",
+        "family_match_runs"
+      ],
+      "embedded_relation_tables": [
+        "knowledge_routes"
+      ],
+      "rpcs": [
+        "aqoon_save_route_review"
+      ],
+      "auth_boundary": "operator_jwt_or_repository_fallback_contract"
+    },
+    {
+      "slug": "family-scenario-admin",
+      "file": "supabase/functions/family-scenario-admin/index.ts",
+      "lines": 173,
+      "actions": [
+        "approve_research",
+        "get_scenario",
+        "match_scenario",
+        "ping",
+        "save_research"
+      ],
+      "tables": [
+        "family_interviews",
+        "family_leads",
+        "family_scenario_research",
+        "family_scenarios"
+      ],
+      "embedded_relation_tables": [],
+      "rpcs": [
+        "aqoon_approve_scenario_research"
+      ],
+      "auth_boundary": "operator_jwt_or_repository_fallback_contract"
+    },
+    {
+      "slug": "nightly-retention",
+      "file": "supabase/functions/nightly-retention/index.ts",
+      "lines": 58,
+      "actions": [],
+      "tables": [
+        "family_intake_rate_limits"
+      ],
+      "embedded_relation_tables": [],
+      "rpcs": [],
+      "auth_boundary": "operator_jwt_or_repository_fallback_contract"
+    },
+    {
+      "slug": "ops-admin",
+      "file": "supabase/functions/ops-admin/index.ts",
+      "lines": 148,
+      "actions": [
+        "add_activity",
+        "delete_event",
+        "delete_opportunity",
+        "list",
+        "operators",
+        "save_event",
+        "save_opportunity"
+      ],
+      "tables": [
+        "family_leads",
+        "operators",
+        "ops_events",
+        "sales_activities",
+        "sales_opportunities"
+      ],
+      "embedded_relation_tables": [
+        "family_interviews"
+      ],
+      "rpcs": [],
+      "auth_boundary": "operator_jwt_or_repository_fallback_contract"
+    }
+  ],
+  "answer_key_lineage": [
+    {
+      "key": "access_barriers",
+      "declared_by": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/analytics-mobile-v2.js",
+        "tracker/interview-contract.js",
+        "tracker/interview-form-enhancements.js",
+        "tracker/universal-proof-questions.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "accessibility",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "activity_cost",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js",
+        "tracker/interview-ux-v4.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "activity_goal",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "all_guardians",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "already_tried",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "application_date",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "application_steps_known",
+      "declared_by": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "apprenticeship",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-form-enhancements.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": [
+        "supabase/migrations/20260901190000_work_linked_education_routes.sql"
+      ]
+    },
+    {
+      "key": "aqoon_discovery",
+      "declared_by": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "authority_contacted",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "authority_goal",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "authority_issue",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "availability",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/crm-queue-navigation.js",
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-leads-admin/index.ts",
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": [
+        "supabase/migrations/20260830_complete_verified_legacy_discovery_routes.sql",
+        "supabase/migrations/20260830_seed_verified_legacy_discovery_routes.sql",
+        "supabase/migrations/20260901190000_work_linked_education_routes.sql"
+      ]
+    },
+    {
+      "key": "barrier",
+      "declared_by": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/app.js",
+        "tracker/interview-form-enhancements.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "basic_school",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "born_finland",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "business_help",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "business_idea",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "business_numbers",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "business_plan",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "business_stage",
+      "declared_by": [
+        "tracker/interview-match.js",
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-form-enhancements.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "business_start",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "care_goal",
+      "declared_by": [
+        "tracker/interview-match.js",
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-form-enhancements.js",
+        "tracker/interview-match.js",
+        "tracker/interview-ux-v4.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": [
+        "supabase/migrations/20260830_complete_verified_legacy_discovery_routes.sql",
+        "supabase/migrations/20260830_seed_verified_legacy_discovery_routes.sql"
+      ]
+    },
+    {
+      "key": "care_options",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js",
+        "tracker/interview-ux-v4.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "care_reason",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "care_schedule",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match-preview.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-leads-admin/index.ts",
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "care_start_urgency",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "case_status",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "case_subject",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/crm-queue-navigation.js",
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js",
+        "tracker/interview-ux-v4.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "change_reason",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "child_age_or_birth_date",
+      "declared_by": [
+        "tracker/interview-ux-v4.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match-preview.js",
+        "tracker/interview-ux-v4.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-leads-admin/index.ts"
+      ],
+      "migration_references": [
+        "supabase/migrations/20260830_complete_verified_legacy_discovery_routes.sql",
+        "supabase/migrations/20260830_seed_verified_legacy_discovery_routes.sql"
+      ]
+    },
+    {
+      "key": "child_finnish",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-leads-admin/index.ts",
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "child_stage",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/crm-queue-navigation.js",
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "childcare_limit",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "client_age",
+      "declared_by": [
+        "tracker/interview-match.js",
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-form-enhancements.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "cost_priority",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "current_earned_income",
+      "declared_by": [
+        "tracker/interview-ux-v4.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-ux-v4.js"
+      ],
+      "backend_references": [],
+      "migration_references": [
+        "supabase/migrations/20260828_seed_bridge_general_social_security_route.sql"
+      ]
+    },
+    {
+      "key": "current_situation",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/crm-queue-navigation.js",
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js",
+        "tracker/interview-ux-v4.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "current_study",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js",
+        "tracker/interview-ux-v4.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": [
+        "supabase/migrations/20260830_complete_verified_legacy_discovery_routes.sql",
+        "supabase/migrations/20260830_seed_verified_legacy_discovery_routes.sql"
+      ]
+    },
+    {
+      "key": "current_work_hours",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "daycare_action_stage",
+      "declared_by": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "daycare_application_help",
+      "declared_by": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "daycare_child_age",
+      "declared_by": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "daycare_current_state",
+      "declared_by": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "daycare_priorities",
+      "declared_by": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "days",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/app.js",
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js",
+        "tracker/multineed-adapter.js",
+        "tracker/visual-v3.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-leads-admin/index.ts",
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "decision_date",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "desired_help",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "desired_start_date",
+      "declared_by": [
+        "tracker/interview-ux-v4.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-ux-v4.js"
+      ],
+      "backend_references": [],
+      "migration_references": [
+        "supabase/migrations/20260830_complete_verified_legacy_discovery_routes.sql",
+        "supabase/migrations/20260830_seed_verified_legacy_discovery_routes.sql"
+      ]
+    },
+    {
+      "key": "education_barriers",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "education_entry_reason",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "education_support_need",
+      "declared_by": [
+        "tracker/interview-ux-v4.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-ux-v4.js"
+      ],
+      "backend_references": [],
+      "migration_references": [
+        "supabase/migrations/20260830_complete_verified_legacy_discovery_routes.sql",
+        "supabase/migrations/20260830_seed_verified_legacy_discovery_routes.sql"
+      ]
+    },
+    {
+      "key": "eligible_children_count",
+      "declared_by": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "eligible_grades",
+      "declared_by": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "employment_plan",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "filter",
+      "declared_by": [
+        "tracker/interview-match.js",
+        "tracker/case-lifecycle.js"
+      ],
+      "tracker_references": [
+        "tracker/analytics-mobile-v2.js",
+        "tracker/app.js",
+        "tracker/case-lifecycle.js",
+        "tracker/crm-queue-navigation.js",
+        "tracker/crm-reactive.js",
+        "tracker/followup-panel-v2.js",
+        "tracker/followup-workflow-v2.js",
+        "tracker/human-labels.js",
+        "tracker/interview-contract.js",
+        "tracker/interview-form-enhancements.js",
+        "tracker/interview-match.js",
+        "tracker/interview-next-steps.js",
+        "tracker/interview-smart-notes.js",
+        "tracker/interview-ux-v4.js",
+        "tracker/multineed-adapter.js",
+        "tracker/operations-system.js",
+        "tracker/scenario-learning.js",
+        "tracker/universal-proof-questions.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-case-lifecycle-admin/index.ts",
+        "supabase/functions/family-leads-admin/index.ts",
+        "supabase/functions/family-route-preview-admin/index.ts",
+        "supabase/functions/family-route-review-admin/index.ts",
+        "supabase/functions/family-scenario-admin/index.ts",
+        "supabase/functions/ops-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "fin_school_time",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "find",
+      "declared_by": [
+        "tracker/case-lifecycle.js",
+        "tracker/followup-workflow-v2.js"
+      ],
+      "tracker_references": [
+        "tracker/app.js",
+        "tracker/case-lifecycle.js",
+        "tracker/crm-queue-navigation.js",
+        "tracker/followup-panel-v2.js",
+        "tracker/followup-workflow-v2.js",
+        "tracker/interview-answers-restore.js",
+        "tracker/interview-match-preview.js",
+        "tracker/interview-match.js",
+        "tracker/interview-next-steps.js",
+        "tracker/interview-smart-notes.js",
+        "tracker/operations-system.js",
+        "tracker/universal-proof-questions.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-case-lifecycle-admin/index.ts",
+        "supabase/functions/family-route-review-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "finnish_match",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "first_permit_time",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "fulltime_started",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "goal",
+      "declared_by": [
+        "tracker/app.js"
+      ],
+      "tracker_references": [
+        "tracker/app.js",
+        "tracker/operations-system.js"
+      ],
+      "backend_references": [
+        "supabase/functions/ops-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "grade",
+      "declared_by": [
+        "tracker/interview-match.js",
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-form-enhancements.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-leads-admin/index.ts",
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "harrastusten_vantaa_awareness",
+      "declared_by": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/analytics-mobile-v2.js",
+        "tracker/interview-contract.js",
+        "tracker/interview-form-enhancements.js",
+        "tracker/universal-proof-questions.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "hobby_before",
+      "declared_by": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "hobby_free_awareness",
+      "declared_by": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "hobby_language",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "hobby_main_barrier",
+      "declared_by": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "hobby_outcome_stage",
+      "declared_by": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "hobby_persistence",
+      "declared_by": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "hobby_registration_help",
+      "declared_by": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "hobby_support_need",
+      "declared_by": [
+        "tracker/interview-ux-v4.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-ux-v4.js"
+      ],
+      "backend_references": [],
+      "migration_references": [
+        "supabase/migrations/20260830_complete_verified_legacy_discovery_routes.sql",
+        "supabase/migrations/20260830_seed_verified_legacy_discovery_routes.sql"
+      ]
+    },
+    {
+      "key": "hobby_time",
+      "declared_by": [
+        "tracker/interview-match.js",
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-form-enhancements.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-leads-admin/index.ts",
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "home_municipality",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-leads-admin/index.ts",
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "household_income_context",
+      "declared_by": [
+        "tracker/interview-ux-v4.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-ux-v4.js"
+      ],
+      "backend_references": [],
+      "migration_references": [
+        "supabase/migrations/20260830_complete_verified_legacy_discovery_routes.sql",
+        "supabase/migrations/20260830_seed_verified_legacy_discovery_routes.sql"
+      ]
+    },
+    {
+      "key": "household_schedule",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/crm-queue-navigation.js",
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "immediate_goal",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/crm-queue-navigation.js",
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js",
+        "tracker/interview-ux-v4.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "income_statement_status",
+      "declared_by": [
+        "tracker/interview-ux-v4.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-ux-v4.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "integration_assessment",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "integration_plan",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "issue_context",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "job_search_profile",
+      "declared_by": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-form-enhancements.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "jobseeker_active",
+      "declared_by": [
+        "tracker/interview-match.js",
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/analytics-mobile-v2.js",
+        "tracker/interview-contract.js",
+        "tracker/interview-form-enhancements.js",
+        "tracker/interview-match.js",
+        "tracker/universal-proof-questions.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-leads-admin/index.ts",
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "known_service",
+      "declared_by": [
+        "tracker/interview-match.js",
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-form-enhancements.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "kotihoidon_tuki",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "length",
+      "declared_by": [
+        "tracker/case-lifecycle.js",
+        "tracker/followup-workflow-v2.js"
+      ],
+      "tracker_references": [
+        "tracker/analytics-mobile-v2.js",
+        "tracker/app.js",
+        "tracker/case-lifecycle.js",
+        "tracker/crm-call-history.js",
+        "tracker/crm-queue-navigation.js",
+        "tracker/crm-reactive.js",
+        "tracker/followup-workflow-v2.js",
+        "tracker/incomplete-intake.js",
+        "tracker/interview-answers-restore.js",
+        "tracker/interview-context.js",
+        "tracker/interview-follow-up-recap.js",
+        "tracker/interview-form-enhancements.js",
+        "tracker/interview-match-preview.js",
+        "tracker/interview-match.js",
+        "tracker/interview-next-steps.js",
+        "tracker/interview-smart-notes.js",
+        "tracker/interview-ux-v4.js",
+        "tracker/multineed-adapter.js",
+        "tracker/operations-system.js",
+        "tracker/operator-identity.js",
+        "tracker/scenario-learning.js",
+        "tracker/universal-proof-questions.js",
+        "tracker/visual-v3.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-case-lifecycle-admin/index.ts",
+        "supabase/functions/family-intake-submit/index.ts",
+        "supabase/functions/family-leads-admin/index.ts",
+        "supabase/functions/family-leads-manage/index.ts",
+        "supabase/functions/family-route-preview-admin/index.ts",
+        "supabase/functions/family-scenario-admin/index.ts",
+        "supabase/functions/ops-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "literacy",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "main_status",
+      "declared_by": [
+        "tracker/interview-contract.js",
+        "tracker/interview-ux-v4.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match-preview.js",
+        "tracker/interview-ux-v4.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-leads-admin/index.ts"
+      ],
+      "migration_references": [
+        "supabase/migrations/20260828_seed_bridge_general_social_security_route.sql"
+      ]
+    },
+    {
+      "key": "operator_context_notes",
+      "declared_by": [
+        "tracker/interview-answers-restore.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-answers-restore.js",
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "other_income_context",
+      "declared_by": [
+        "tracker/interview-ux-v4.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-ux-v4.js"
+      ],
+      "backend_references": [],
+      "migration_references": [
+        "supabase/migrations/20260828_seed_bridge_general_social_security_route.sql"
+      ]
+    },
+    {
+      "key": "other_needs_discovered",
+      "declared_by": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/analytics-mobile-v2.js",
+        "tracker/interview-contract.js",
+        "tracker/interview-form-enhancements.js",
+        "tracker/universal-proof-questions.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "other_school",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "outcome_followup_ok",
+      "declared_by": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/analytics-mobile-v2.js",
+        "tracker/interview-contract.js",
+        "tracker/interview-form-enhancements.js",
+        "tracker/interview-match.js",
+        "tracker/interview-ux-v4.js",
+        "tracker/universal-proof-questions.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-leads-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "palkkatuki",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "parent_hobby_attitude",
+      "declared_by": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "parent_status",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "planned_unemployment_date",
+      "declared_by": [
+        "tracker/interview-ux-v4.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-ux-v4.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "preferred_area",
+      "declared_by": [
+        "tracker/interview-ux-v4.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match-preview.js",
+        "tracker/interview-ux-v4.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-leads-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "primary_situation",
+      "declared_by": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/crm-queue-navigation.js",
+        "tracker/interview-contract.js",
+        "tracker/interview-match-preview.js",
+        "tracker/interview-match.js",
+        "tracker/interview-ux-v4.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-leads-admin/index.ts",
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "prior_awareness",
+      "declared_by": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/analytics-mobile-v2.js",
+        "tracker/interview-contract.js",
+        "tracker/interview-form-enhancements.js",
+        "tracker/universal-proof-questions.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "private_daycare_awareness",
+      "declared_by": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/analytics-mobile-v2.js",
+        "tracker/interview-contract.js",
+        "tracker/interview-form-enhancements.js",
+        "tracker/universal-proof-questions.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "private_daycare_consider",
+      "declared_by": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "private_daycare_cost_belief",
+      "declared_by": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "private_route_parallel_steps_awareness",
+      "declared_by": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "program_childcare",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "program_constraints",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "program_cost",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "program_goal",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "program_reason",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "program_time",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "program_travel",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "qualification_status",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [],
+      "migration_references": [
+        "supabase/migrations/20260901190000_work_linked_education_routes.sql"
+      ]
+    },
+    {
+      "key": "registration",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "residence_status",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "response_deadline",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "right_to_work_known",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-leads-admin/index.ts",
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "s2",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-leads-admin/index.ts",
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "school_deadline",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "school_decision_needed",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "school_goal",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-leads-admin/index.ts",
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "school_name",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-leads-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "school_route",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-leads-admin/index.ts",
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "school_situation",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "self_navigation",
+      "declared_by": [
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/analytics-mobile-v2.js",
+        "tracker/interview-contract.js",
+        "tracker/interview-form-enhancements.js",
+        "tracker/universal-proof-questions.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "service_area",
+      "declared_by": [
+        "tracker/interview-match.js",
+        "tracker/interview-form-enhancements.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-form-enhancements.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "start_when",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/crm-queue-navigation.js",
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "starttiraha",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "student_benefit_context",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js",
+        "tracker/interview-ux-v4.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "student_schedule",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "study_completion",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "study_language",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "study_load",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "study_path",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/crm-queue-navigation.js",
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "study_start",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "study_travel",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "sudden_need",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "support_arrangement",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js",
+        "tracker/interview-ux-v4.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "support_decision",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "support_goal",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "support_need_description",
+      "declared_by": [
+        "tracker/interview-ux-v4.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-ux-v4.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-leads-admin/index.ts"
+      ],
+      "migration_references": [
+        "supabase/migrations/20260830_complete_verified_legacy_discovery_routes.sql",
+        "supabase/migrations/20260830_seed_verified_legacy_discovery_routes.sql"
+      ]
+    },
+    {
+      "key": "support_tried",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "training_schedule",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [],
+      "migration_references": [
+        "supabase/migrations/20260901190000_work_linked_education_routes.sql"
+      ]
+    },
+    {
+      "key": "travel_limit",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/crm-queue-navigation.js",
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "unemployment_duration",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "urgent_proof",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "work_intent",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/crm-queue-navigation.js",
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "work_search_scope",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js",
+        "tracker/universal-proof-questions.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "work_study_route",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [],
+      "migration_references": [
+        "supabase/migrations/20260901190000_work_linked_education_routes.sql"
+      ]
+    },
+    {
+      "key": "work_tryout",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-form-enhancements.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "yki_level",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    },
+    {
+      "key": "yki_purpose",
+      "declared_by": [
+        "tracker/interview-match.js"
+      ],
+      "tracker_references": [
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [
+        "supabase/functions/family-scenario-admin/index.ts"
+      ],
+      "migration_references": []
+    }
+  ],
+  "migrations": {
+    "count": 33,
+    "files": [
+      "20260827_aqoon_operations_system.sql",
+      "20260828_aqoon_routing_intelligence_foundation.sql",
+      "20260828_call_outcomes_and_funnel_events.sql",
+      "20260828_operator_fk_indexes_and_dedupe.sql",
+      "20260828_operators_auth_link.sql",
+      "20260828_sales_activities_operator_attribution.sql",
+      "20260828_seed_bridge_general_social_security_route.sql",
+      "20260828_two_operator_os_foundation.sql",
+      "20260829_diagnostic_gates_tracking.sql",
+      "20260829_family_case_interaction_history.sql",
+      "20260829_family_case_lifecycle_and_future_opportunities.sql",
+      "20260829_family_case_lifecycle_fk_indexes.sql",
+      "20260829_family_interview_revisions.sql",
+      "20260829_revoke_family_interview_revision_function.sql",
+      "20260830_add_busy_call_outcome.sql",
+      "20260830_complete_verified_legacy_discovery_routes.sql",
+      "20260830_drop_orphaned_family_contact_starts.sql",
+      "20260830_family_intake_contacts_operator_assignment.sql",
+      "20260830_incomplete_intake_call_log.sql",
+      "20260830_programs_diagnostic_tracking.sql",
+      "20260830_sales_opportunity_demand_filter.sql",
+      "20260830_seed_verified_legacy_discovery_routes.sql",
+      "20260831_harden_nightly_retention_maintenance.sql",
+      "20260831_log_completed_interviews_in_case_timeline.sql",
+      "20260831_restrict_retention_rpcs_to_service_role.sql",
+      "20260901135656_atomic_case_plan_transitions.sql",
+      "20260901150000_interview_future_opportunity_signals.sql",
+      "20260901164000_atomic_confirmed_route_selection.sql",
+      "20260901171000_operator_route_feedback_learning.sql",
+      "20260901180000_scenario_research_human_approval.sql",
+      "20260901183000_revoke_sensitive_default_table_grants.sql",
+      "20260901190000_work_linked_education_routes.sql",
+      "20260901193000_canonical_household_person_need_model.sql"
+    ],
+    "created_tables": [
+      "family_call_log",
+      "family_case_events",
+      "family_case_interactions",
+      "family_case_plans",
+      "family_future_opportunities",
+      "family_households",
+      "family_interview_needs",
+      "family_interview_revisions",
+      "family_match_runs",
+      "family_needs",
+      "family_people",
+      "knowledge_criteria",
+      "knowledge_feedback_signals",
+      "knowledge_routes",
+      "knowledge_services",
+      "knowledge_sources",
+      "knowledge_verifications",
+      "operators",
+      "ops_events",
+      "sales_activities",
+      "sales_opportunities"
+    ],
+    "altered_tables": [
+      "family_call_log",
+      "family_case_events",
+      "family_case_interactions",
+      "family_case_plans",
+      "family_funnel_events",
+      "family_future_opportunities",
+      "family_households",
+      "family_intake_contacts",
+      "family_intake_rate_limits",
+      "family_interview_needs",
+      "family_interview_revisions",
+      "family_interviews",
+      "family_leads",
+      "family_match_runs",
+      "family_needs",
+      "family_people",
+      "family_scenario_research",
+      "family_scenarios",
+      "knowledge_criteria",
+      "knowledge_feedback_signals",
+      "knowledge_routes",
+      "knowledge_services",
+      "knowledge_sources",
+      "knowledge_verifications",
+      "operators",
+      "ops_events",
+      "sales_activities",
+      "sales_opportunities",
+      "users",
+      "waiver_acceptances"
+    ],
+    "functions": [
+      "aqoon_approve_scenario_research",
+      "aqoon_dismiss_obsolete_route_feedback",
+      "aqoon_link_interview_family_graph",
+      "aqoon_link_interview_needs",
+      "aqoon_need_domain",
+      "aqoon_save_route_review",
+      "aqoon_select_case_route",
+      "aqoon_sync_lead_household",
+      "aqoon_sync_lead_household_trigger",
+      "aqoon_transition_case_plan",
+      "capture_family_interview_revision",
+      "family_interview_opportunity_signals",
+      "log_completed_interview_case_event",
+      "sync_family_interview_future_opportunities"
+    ],
+    "triggers": [
+      "aqoon_link_interview_family_graph_before_write",
+      "aqoon_link_interview_needs_after_write",
+      "aqoon_sync_lead_household_after_write",
+      "capture_family_interview_revision_before_update",
+      "family_interviews_completed_event_trg",
+      "family_interviews_sync_future_opportunities",
+      "family_match_runs_dismiss_obsolete_feedback"
+    ]
+  }
+}

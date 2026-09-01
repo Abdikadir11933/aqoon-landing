@@ -38,5 +38,5 @@ test('changing a scenario clears hidden answers and no hidden answer can be save
   assert.match(interview, /if\(wasVisible&&!on\)clearQuestion\(node\)/);
   assert.match(interview, /if\(!x\.closest\('\.hidden'\)&&x\.value\.trim\(\)\)/);
   assert.match(interview, /if\(r\.closest\('\.hidden'\)\)return/);
-  assert.match(universal, /el\.closest\('\.hidden'\)/);
+  assert.match(universal, /if\(!on\).*choice\.on/);
 });

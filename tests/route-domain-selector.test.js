@@ -33,7 +33,17 @@ test('work cases only add benefit or education knowledge when that need is expli
   assert.deepEqual(needDomainsForLead(lead, { primary_situation: 'Unemployed / seeking work' }), ['work']);
   assert.deepEqual(needDomainsForLead(lead, { primary_situation: 'Unemployed / seeking work', work_search_scope: 'Work plus training options' }), ['work', 'education']);
   assert.deepEqual(needDomainsForLead(lead, { primary_situation: 'Unemployed / seeking work', apprenticeship: 'Yes' }), ['work', 'education']);
-  assert.deepEqual(needDomainsForLead(lead, { primary_situation: 'Unemployed / seeking work', cross_service_needs_all: ['Kela / benefits'] }), ['work', 'income_and_unemployment']);
+  assert.deepEqual(needDomainsForLead(lead, { primary_situation: 'Unemployed / seeking work', cross_service_needs_all: ['Kela / benefits'] }), ['work']);
+});
+
+test('future and cross-service signals never activate matching by themselves', async () => {
+  const { needDomainsForLead } = await import('../supabase/functions/_shared/route-domain-selector.mjs');
+  const lead = { main_need: 'Shaqo', sub_need: 'Shaqo raadis' };
+  assert.deepEqual(needDomainsForLead(lead, {
+    household_children: ['Under 3'],
+    caregiver_future_goal: ['Finnish / education later'],
+    cross_service_needs_all: ['Kela / benefits', 'Programmes / training'],
+  }), ['work']);
 });
 
 test('additional needs are included without borrowing the primary scenario answers', async () => {

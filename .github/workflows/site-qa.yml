@@ -21,6 +21,8 @@ jobs:
         run: python scripts/repo_integrity_qa.py
       - name: Check tracker and Supabase collection contract
         run: node scripts/tracker_collection_qa.js
+      - name: Check generated Tracker contract inventory
+        run: node --test tests/tracker-contract-inventory.test.js tests/interview-field-contract.test.js tests/interview-save-contract.test.js tests/canonical-family-graph.test.js
       - name: Check routes, sitemap and architecture guards
         run: python scripts/site_qa.py
       - name: Check static SEO metadata
@@ -30,7 +32,7 @@ jobs:
       - name: Check legal, independence and privacy guards
         run: python scripts/legal_trust_qa.py
       - name: Check tracker core JavaScript syntax
-        run: node --check tracker/app.js && node --check tracker/visual-v3.js && node --check tracker/crm-reactive.js && node --check tracker/operations-system.js && node --check tracker/interview-smart-notes.js && node --check tracker/incomplete-intake.js && node --check tracker/interview-follow-up-recap.js && node --check tracker/interview-next-steps.js
+        run: node --check tracker/app.js && node --check tracker/interview-contract.js && node --check tracker/visual-v3.js && node --check tracker/crm-reactive.js && node --check tracker/operations-system.js && node --check tracker/interview-smart-notes.js && node --check tracker/incomplete-intake.js && node --check tracker/interview-follow-up-recap.js && node --check tracker/interview-next-steps.js
       - name: Check tracker adapters, matching and scenario learning syntax
         run: node --check tracker/multineed-adapter.js && node --check tracker/interview-match.js && node --check tracker/interview-match-preview.js && node --check tracker/scenario-learning.js && node --check tracker/interview-form-enhancements.js && node --check tracker/interview-context.js && node --check tracker/crm-call-history.js && node --check tracker/crm-queue-navigation.js
       - name: Check tracker evidence, CRM management and identity syntax

@@ -2,6 +2,7 @@ import { createClient } from "npm:@supabase/supabase-js@2";
 import { authenticatedUser, requireOperator } from "../_shared/operator-auth.ts";
 import { evaluateRouteCriteria } from "../_shared/criteria-evaluator.mjs";
 import { needDomainsForLead } from "../_shared/route-domain-selector.mjs";
+import { validateCompletedInterview } from "../_shared/interview-save-contract.mjs";
 const ORIGIN = "https://aqoon.live";
 const CURRENT_FORM_VERSION = "phone-first-v2-multineed";
 const H = () => ({
@@ -443,6 +444,18 @@ Deno.serve(async (req) => {
       const d = new Date(b.next_follow_up_at);
       follow = Number.isNaN(d.getTime()) ? null : d.toISOString();
     }
+    const completionErrors = validateCompletedInterview({
+      status,
+      schemaVersion: txt(b.interview_schema_version, 40),
+      interviewType: type,
+      answers: b.answers,
+      nextAction: txt(b.next_action, 2500),
+    });
+    if (completionErrors.length)
+      return new Response(
+        JSON.stringify({ error: "incomplete_interview", missing_fields: completionErrors }),
+        { status: 400, headers: h },
+      );
     const payload: any = {
       lead_id: leadId,
       interview_type: type,

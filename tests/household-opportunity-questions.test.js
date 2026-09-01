@@ -43,10 +43,18 @@ test('non-applicable household branches stay closed and one-off work is explicit
   const universal = read('tracker/universal-proof-questions.js');
   const interview = read('tracker/interview-match.js');
   assert.match(universal, /hasYoung=kids\.includes\('Under 3'\)\|\|kids\.includes\('Age 3–6'\)/);
-  assert.match(universal, /showGroup\('daycare',hasYoung\)/);
-  assert.match(universal, /showGroup\('other-child-daycare',hasYoung\)/);
+  assert.match(universal, /showGroup\('daycare',hasYoung&&!oneOff\)/);
+  assert.match(universal, /showGroup\('other-child-daycare',hasYoung&&!oneOff\)/);
   assert.match(universal, /No children/);
   assert.match(universal, /No other children/);
   assert.match(interview, /work_search_scope/);
   assert.match(interview, /One specific job \/ pilot \/ shift/);
+  assert.match(universal, /oneOff=selected\('work_search_scope'\)\[0\]==='One specific job \/ pilot \/ shift'/);
+  assert.match(universal, /showGroup\('relationship-discovery',!oneOff\)/);
+});
+
+test('jobseeker-only profile question inherits the unemployed branch', () => {
+  const enhancements = read('tracker/interview-form-enhancements.js');
+  assert.match(enhancements, /question\.dataset\.branch=anchorQuestion\.dataset\.branch/);
+  assert.match(enhancements, /question\.dataset\.branchSource=anchorQuestion\.dataset\.branchSource/);
 });

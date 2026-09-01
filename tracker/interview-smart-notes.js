@@ -58,31 +58,6 @@ function restore(){
   document.dispatchEvent(new CustomEvent("aqoon:interview-answers-restored"));
   status("Unsaved device draft restored. Press Save interview");
 }
-function patchInterviewContextSave(){
-  if(window.__aqoonInterviewContextSavePatch)return;
-  window.__aqoonInterviewContextSavePatch=1;
-  const original=window.fetch.bind(window);
-  window.fetch=async function(input,init){
-    try{
-      const url=typeof input==="string"?input:(input&&input.url)||"";
-      if(url.includes("family-leads-admin")&&init?.body){
-        const body=JSON.parse(init.body);
-        if(body.action==="save_interview"){
-          const notes=$("#iNotes")?.value.trim()||"";
-          body.answers=Object.assign({},body.answers||{});
-          if(notes){
-            body.answers.operator_context_notes=notes;
-            if(!String(body.summary||"").includes("operator context:"))body.summary=(body.summary||"Interview saved.").replace(/\.?$/,"; operator context: ")+notes+".";
-          }
-          const training=body.answers.work_search_scope==="Work plus training options"||["Yes","Maybe"].includes(body.answers.apprenticeship)||(Array.isArray(body.answers.cross_service_needs_all)&&body.answers.cross_service_needs_all.some(x=>["Finnish / education","Programmes / training"].includes(x)));
-          if(training){const topics=String(body.interview_type||"work").split("+").filter(Boolean);if(!topics.includes("education"))topics.push("education");body.interview_type=[...new Set(topics)].join("+")}
-          init=Object.assign({},init,{body:JSON.stringify(body)});
-        }
-      }
-    }catch(e){console.warn("AQOON interview context save merge skipped",e)}
-    return original(input,init);
-  };
-}
 function selectValue(options,sentence){const s=sentence.toLowerCase(),find=x=>options.find(o=>o.toLowerCase()===x)||options.find(o=>o.toLowerCase().includes(x));
   if(/doesn.?t want|not interested|do not want|ei halua|ma rabto/.test(s))return find("no");
   if(/not yet|hasn.?t|haven.?t|didn.?t|ei vielä|not applied|no application/.test(s))return find("no")||find("no place")||find("no cv");
@@ -99,7 +74,6 @@ function suggest(){const notes=$("#iNotes")?.value.trim(),out=$("#noteSuggestion
   out.innerHTML=found.length?`<small>Suggestions only — approve each one. Original notes stay unchanged.</small>`+found.map((x,i)=>`<div class="suggestion" data-suggestion="${i}"><p><strong>${esc(x.label)}</strong><br>${esc(x.value)} <span class="muted">from “${esc(x.sentence)}”</span></p><button type="button">Apply</button></div>`).join(""):`<div class="empty">No safe structured suggestions found. Keep the notes and tap the answer choices directly.</div>`;out.classList.remove("hidden");out.querySelectorAll("[data-suggestion]").forEach(el=>el.querySelector("button").onclick=()=>{const x=found[Number(el.dataset.suggestion)],b=[...x.row.querySelectorAll(".choice")].find(v=>v.dataset.value===x.value);b?.click();el.classList.add("applied");el.querySelector("button").textContent="Applied ✓"})
 }
 function start(){
-  patchInterviewContextSave();
   const notesLabel=document.querySelector('label[for="iNotes"]');
   if(notesLabel)notesLabel.textContent='Additional information / specify';
   const notesHint=document.querySelector('#iNotes')?.previousElementSibling;

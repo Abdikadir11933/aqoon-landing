@@ -5,6 +5,7 @@ const path = require('node:path');
 
 const root = path.join(__dirname, '..');
 const match = fs.readFileSync(path.join(root, 'tracker/interview-match.js'), 'utf8');
+const contract = fs.readFileSync(path.join(root, 'tracker/interview-contract.js'), 'utf8');
 const notes = fs.readFileSync(path.join(root, 'tracker/interview-smart-notes.js'), 'utf8');
 const restore = fs.readFileSync(path.join(root, 'tracker/interview-answers-restore.js'), 'utf8');
 const preview = fs.readFileSync(path.join(root, 'tracker/interview-match-preview.js'), 'utf8');
@@ -16,11 +17,12 @@ test('work plus training opens a short qualification branch and expands research
   assert.match(match, /training_schedule/);
   assert.match(match, /setBranch\('work-training',scope==='Work plus training options'\)/);
   assert.match(match, /function researchRoutes/);
+  assert.doesNotMatch(contract, /cross_service_needs_all.*topics\.push/);
 });
 
 test('operator context is persisted and restored instead of living only in a generated prompt', () => {
-  assert.match(notes, /body\.answers\.operator_context_notes=notes/);
-  assert.match(notes, /operator context:/);
+  assert.match(match, /answerInput\.operator_context_notes=notes/);
+  assert.match(match, /summary\(savedAnswers,notes\)/);
   assert.match(restore, /answers\.operator_context_notes/);
 });
 
