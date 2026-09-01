@@ -25,17 +25,21 @@ Somalinkielinen yhteisö on AQOONin nykyinen vahvin aloitusmarkkina, ei mallin l
 
 ## Kolme ostettavaa kokonaisuutta
 
-### 1. AQOON Outcomes
+### 1. Jatkuva tavoittamisen ja aloituksen toteutus
 
-AQOON hankkii, tunnistaa, kvalifioi ja saattaa sovittuun mitattavaan lopputulokseen. Pääkysymys ei ole näyttökertojen määrä vaan esimerkiksi soveltuva hakemus, aloitus tai pysyvä asiakkuus. Kaupallisesti testattava lähtömalli on riittävä kuukausiperusta jatkuvan kapasiteetin kattamiseksi sekä täsmällisesti määritelty tulospalkkio. Hintaa tai lopullista laskutusmallia ei ole vielä vahvistettu.
+AQOON auttaa sovittuja Pilkkeen yksiköitä tavoittamaan sopivia perheitä, ohjaa heitä tiedon ja hakemisen läpi ja tukee etenemistä vahvistettuun aloitukseen. Pilkkeen kanssa sovitaan yksiköt, ikäryhmät, kapasiteettitieto, aloitusajankohta ja nimetty yhteyshenkilö.
 
-### 2. AQOON Journey
+Pilken nykyinen kaupallinen malli on 90 päivän vähimmäiskestoinen toteutus: 2 000 € + alv kuukaudessa sekä 750 € + alv lapsesta, joka aloittaa sovitussa yksikössä ja jonka hoitosuhde on voimassa 30 päivää aloituksesta. Kuukausiraportti erottaa kiinnostuneet, sopivat perheet, hakemiseen edenneet, Pilkkeelle luovutetut ja vahvistetut aloitukset sekä keskeiset esteet.
 
-AQOON korjaa mitattuja polun kitkakohtia: viestit, päätöksenteon tuki, hakemisen ohjeet, omankieliset materiaalit, käyttöönotto ja ensimmäisten viikkojen tuki. Kyse ei ole geneerisestä käännöspalvelusta, vaan ymmärtämisen ja etenemisen parantamisesta.
+### 2. Asiakaspolun ja materiaalien kehitys
 
-### 3. AQOON Enablement
+Tarvittaessa aktivoitava lisäosa, jonka hinta on 2 900 € + alv. Se kohdistuu perheille tarkoitettujen tietojen, hakemis- ja aloitusohjeiden, Daisy-ohjeistuksen tai muiden materiaalien kehittämiseen. Lisäosa ei kuulu automaattisesti jatkuvaan toteutukseen, vaan se käynnistetään, jos polun tai aloituksen tarkastelu osoittaa sille tarpeen.
 
-Mustafen osaamiseen perustuva käytännön koulutus auttaa työntekijöitä, yksikönjohtajia ja johtoa tunnistamaan perheen pelot, kysymykset, konfliktikohdat ja palvelupolun katkokset sekä vastaamaan yhdenmukaisesti. Koulutuksen tavoite sidotaan havaittavaan muutokseen - esimerkiksi parempaan ensikontaktiin, oikeaan luovutukseen tai vähäisempään aloituksen jälkeiseen kitkaan - ei yleiseen tietoisuuden lisäämiseen.
+### 3. Henkilöstön koulutus ja sujuvan aloituksen kehittäminen
+
+Erillinen kokonaisuus, jonka hinta on 2 200 € + alv / koulutus. Kolmen tunnin työpajassa, enintään 20–25 osallistujalle, käsitellään käytännön tilanteita: hinta, tuet, hakeminen ja aloitus, Daisy ja hoitoaikojen ilmoittaminen, kodin ja päiväkodin viestintä, ensimmäiset viikot sekä kulttuurisensitiivinen kohtaaminen. Koulutukseen kuuluu Pilkkeelle mukautettu tiivis vastaus- ja materiaalipohja. Mustafe ja Abducadir toteuttavat koulutuksen yhdessä.
+
+Tämä on AQOONin oletusmalli kumppanuuksissa: jatkuva toteutus, tarvittaessa aktivoitava asiakaspolun ja materiaalien lisäosa sekä erillinen henkilöstön koulutus. Tarkka sisältö sovitaan kumppanin tilanteen ja tavoitteen mukaan.
 
 ## Kaksi toisiaan vahvistavaa arvolupausta
 
@@ -47,11 +51,11 @@ Ostajalle ei myydä perheiden raakaa yhteystietokantaa. Ostettavia asioita ovat 
 
 Pilke-vaihe 1 osoitti vähintään yhden kokonaisen ketjun sisällöstä yhteydenottoon, hakemuksiin ja lapsen aloitukseen. Pilkkeen 28.8.2026 palautekeskustelu vahvisti, että suurin osa tunnistetuista ongelmista oli heille uskottavia ja jo osittain aavistettuja; pilotin arvo oli epäilyn todentaminen ja putoamiskohtien näkyväksi tekeminen. Jatkon ratkaiseva kysymys ei ole enää ”onko ongelma olemassa?” vaan ”mitkä kolme asiaa tehdään seuraavaksi ja kuka omistaa koko polun?”.
 
-Pilke-työssä sama jatko kuvataan nykyisillä kolmella tarjouksella:
+Pilke-työssä nämä kokonaisuudet näkyvät käytännössä näin:
 
-1. **AQOON Outcomes:** jatkuva tavoittaminen, kontaktit, kvalifiointi, hakemusten saattaminen ja todennettu aloitus. Tämä on perusmalli, jos tavoitteena on tuoda perheitä palveluun ja nähdä tulos.
-2. **AQOON Journey:** Outcomes-työn yhteydessä tarvittaessa aktivoitava lisäkokonaisuus. Se korjaa todetut putoamiskohdat, kuten viestit, hakemukset, hinta- ja tukikysymykset, omankieliset materiaalit, onboardingin ja odotusajan seurannan.
-3. **AQOON Enablement:** erillinen Mustafen kanssa toteutettava käytännön koulutus, joka antaa henkilöstölle ja johdolle valmiit vastaukset, yhteisen luovutustavan ja ymmärryksen todellisista putoamiskohdista.
+1. **Jatkuva toteutus:** tavoittaminen, kartoitus, hakemiseen eteneminen, Pilkkeelle luovutus ja vahvistettu aloitus.
+2. **Asiakaspolun ja materiaalien lisäosa:** yksikkökohtainen saatavuus, hinta- ja tukitiedot, hakemisen ja aloituksen ohjeet sekä Daisy- ja onboarding-materiaalit, jos niitä tarvitaan.
+3. **Henkilöstön koulutus:** Mustafen ja Abducadirin vetämä käytännön työpaja, joka vahvistaa henkilöstön valmiutta vastata perheiden kysymyksiin ja tukea sujuvaa aloitusta.
 
 ## Mittaaminen
 
