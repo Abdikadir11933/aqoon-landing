@@ -5,6 +5,7 @@ const ORIGIN = "https://aqoon.live";
 const headers = () => ({ "Access-Control-Allow-Origin": ORIGIN, "Access-Control-Allow-Headers": "content-type, authorization", "Access-Control-Allow-Methods": "POST, OPTIONS", "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" });
 const cleanText = (value: unknown, max: number) => typeof value === "string" ? value.trim().slice(0, max) : null;
 const objectOrEmpty = (value: unknown) => value && typeof value === "object" && !Array.isArray(value) ? value : {};
+const REASON_CODES = new Set(["criterion_conflict", "wrong_need", "family_preference", "provider_unavailable", "information_outdated", "duplicate_route", "other"]);
 
 Deno.serve(async (request) => {
   const responseHeaders = headers();
@@ -29,18 +30,31 @@ Deno.serve(async (request) => {
   if (action !== "save_review") return new Response(JSON.stringify({ error: "unknown_action" }), { status: 400, headers: responseHeaders });
   const routeKey = cleanText(body.route_key, 240);
   if (!routeKey) return new Response(JSON.stringify({ error: "missing_route_key" }), { status: 400, headers: responseHeaders });
+  // Fast boundary check for a clear 409; the transactional RPC repeats and
+  // locks this invariant before it writes anything.
   const { data: interview, error: interviewError } = await db.from("family_interviews").select("id").eq("lead_id", leadId).eq("status", "completed").order("updated_at", { ascending: false }).limit(1).maybeSingle();
   if (interviewError) return new Response(JSON.stringify({ error: "db_error", detail: interviewError.message }), { status: 500, headers: responseHeaders });
   if (!interview) return new Response(JSON.stringify({ error: "first_interview_required" }), { status: 409, headers: responseHeaders });
-  const { data: route, error: routeError } = await db.from("knowledge_routes").select("id,source_ids,verification_state,recheck_after").eq("route_key", routeKey).maybeSingle();
-  if (routeError) return new Response(JSON.stringify({ error: "db_error", detail: routeError.message }), { status: 500, headers: responseHeaders });
-  if (!route || route.verification_state !== "verified" || (route.recheck_after && new Date(route.recheck_after).getTime() <= Date.now())) return new Response(JSON.stringify({ error: "route_not_currently_verified" }), { status: 409, headers: responseHeaders });
   const matchStatus = ["confirmed_match", "possible_must_confirm", "does_not_fit"].includes(body.match_status) ? body.match_status : "possible_must_confirm";
-  const review = { family_lead_id: leadId, interview_id: interview.id, route_id: route.id, operator_id: operatorId || cleanText(body.operator_id, 80), status: "reviewed", match_status: matchStatus, facts_used: objectOrEmpty(body.facts_used), missing_fields: Array.isArray(body.missing_fields) ? body.missing_fields : [], conflicting_criteria: Array.isArray(body.conflicting_criteria) ? body.conflicting_criteria : [], source_ids: route.source_ids || [], recommended_next_action: cleanText(body.recommended_next_action, 2500), reviewed_at: new Date().toISOString(), updated_at: new Date().toISOString() };
-  const { data: existing, error: existingError } = await db.from("family_match_runs").select("id").eq("family_lead_id", leadId).eq("interview_id", interview.id).eq("route_id", route.id).order("created_at", { ascending: false }).limit(1).maybeSingle();
-  if (existingError) return new Response(JSON.stringify({ error: "db_error", detail: existingError.message }), { status: 500, headers: responseHeaders });
-  const query = existing ? db.from("family_match_runs").update(review).eq("id", existing.id) : db.from("family_match_runs").insert(review);
-  const { data, error } = await query.select().single();
-  if (error) return new Response(JSON.stringify({ error: "db_error", detail: error.message }), { status: 500, headers: responseHeaders });
-  return new Response(JSON.stringify({ match_run: data }), { headers: responseHeaders });
+  const reasonCode = cleanText(body.reason_code, 80);
+  if (matchStatus === "does_not_fit" && (!reasonCode || !REASON_CODES.has(reasonCode))) return new Response(JSON.stringify({ error: "feedback_reason_required" }), { status: 400, headers: responseHeaders });
+  const criterionFields = Array.isArray(body.criterion_fields) ? body.criterion_fields.filter((value: unknown) => typeof value === "string").map((value: string) => value.trim().slice(0, 120)).filter(Boolean).slice(0, 30) : [];
+  const { data, error } = await db.rpc("aqoon_save_route_review", {
+    p_lead_id: leadId,
+    p_operator_id: operatorId,
+    p_route_key: routeKey,
+    p_match_status: matchStatus,
+    p_facts_used: objectOrEmpty(body.facts_used),
+    p_missing_fields: Array.isArray(body.missing_fields) ? body.missing_fields : [],
+    p_conflicting_criteria: Array.isArray(body.conflicting_criteria) ? body.conflicting_criteria : [],
+    p_recommended_next_action: cleanText(body.recommended_next_action, 2500),
+    p_reason_code: reasonCode,
+    p_criterion_fields: criterionFields,
+  });
+  if (error) {
+    const known = ["lead_not_found", "first_interview_required", "route_not_currently_verified", "invalid_match_status", "invalid_review_payload", "feedback_reason_required", "too_many_criterion_fields"].find((code) => error.message?.includes(code));
+    const status = known === "lead_not_found" ? 404 : known === "first_interview_required" || known === "route_not_currently_verified" ? 409 : known ? 400 : 500;
+    return new Response(JSON.stringify({ error: known || "db_error", ...(known ? {} : { detail: error.message }) }), { status, headers: responseHeaders });
+  }
+  return new Response(JSON.stringify(data || {}), { headers: responseHeaders });
 });
