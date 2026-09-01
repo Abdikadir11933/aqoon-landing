@@ -75,7 +75,8 @@ Deno.serve(async(req)=>{
   const url=Deno.env.get("SUPABASE_URL"),key=Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
   if(!url||!key)return new Response(JSON.stringify({error:"server_config"}),{status:500,headers:h});
   const db=createClient(url,key,{auth:{persistSession:false,autoRefreshToken:false}});
-  if(!await requireOperator(req,db))return new Response(JSON.stringify({error:"unauthorized"}),{status:401,headers:h});
+  const auth=await requireOperator(req,db);
+  if(!auth)return new Response(JSON.stringify({error:"unauthorized"}),{status:401,headers:h});
   let b:any={};try{b=await req.json()}catch{}
   const action=b.action||"";
   if(action==="ping")return new Response(JSON.stringify({ok:true}),{headers:h});
@@ -113,13 +114,15 @@ Deno.serve(async(req)=>{
     }
     const ui=await db.from("family_interviews").update({scenario_fingerprint:scenarioKey,matched_scenario_id:scenario.id,scenario_match_status:matchStatus,updated_at:now}).eq("id",interviewId);
     if(ui.error)return new Response(JSON.stringify({error:"db_error",detail:ui.error.message}),{status:500,headers:h});
+    let pendingResearchId:string|null=null;
     if(matchStatus!=="matched"){
-      const existing=await db.from("family_scenario_research").select("id").eq("scenario_id",scenario.id).eq("interview_id",interviewId).in("research_status",["pending","in_progress"]).limit(1);
+      const existing=await db.from("family_scenario_research").select("id").eq("scenario_id",scenario.id).eq("interview_id",interviewId).eq("review_status","pending_review").limit(1);
+      pendingResearchId=existing.data?.[0]?.id||null;
       if(!existing.error&&!(existing.data||[]).length){
-        const queued=await db.from("family_scenario_research").insert({scenario_id:scenario.id,interview_id:interviewId,research_status:"pending",research_question:safeResearchQuestion(dimensions)});if(queued.error)return new Response(JSON.stringify({error:"db_error",detail:queued.error.message}),{status:500,headers:h});
+        const queued=await db.from("family_scenario_research").insert({scenario_id:scenario.id,interview_id:interviewId,research_status:"pending",review_status:"pending_review",research_question:safeResearchQuestion(dimensions)}).select("id").single();if(queued.error)return new Response(JSON.stringify({error:"db_error",detail:queued.error.message}),{status:500,headers:h});pendingResearchId=queued.data.id;
       }
     }
-    return new Response(JSON.stringify({match_status:matchStatus,scenario:publicScenario(scenario),fingerprint:scenarioKey}),{headers:h});
+    return new Response(JSON.stringify({match_status:matchStatus,scenario:publicScenario(scenario),fingerprint:scenarioKey,research_id:pendingResearchId}),{headers:h});
   }
 
   if(action==="get_scenario"){
@@ -132,9 +135,9 @@ Deno.serve(async(req)=>{
   if(action==="save_research"){
     const scenarioId=String(b.scenario_id||""),interviewId=String(b.interview_id||"");
     const structured=(b.structured&&typeof b.structured==="object")?b.structured:{};
-    const sources=Array.isArray(structured.official_sources)?structured.official_sources.filter((x:any)=>x&&typeof x.url==="string"&&/^https:\/\//i.test(x.url)).slice(0,30):[];
+    const sources=Array.isArray(structured.official_sources)?structured.official_sources.filter((x:any)=>x&&typeof x.title==="string"&&x.title.trim()&&typeof x.url==="string"&&/^https:\/\//i.test(x.url)&&typeof x.checked_at==="string"&&/^\d{4}-\d{2}-\d{2}/.test(x.checked_at)).map((x:any)=>({title:text(x.title,300),url:text(x.url,2000),checked_at:text(x.checked_at,40)})).slice(0,30):[];
     const verified=(structured.verified_answer&&typeof structured.verified_answer==="object")?structured.verified_answer:null;
-    if(!scenarioId||!interviewId||!verified||!sources.length)return new Response(JSON.stringify({error:"invalid_research_output",detail:"A verified answer and at least one HTTPS official source URL are required."}),{status:400,headers:h});
+    if(!scenarioId||!interviewId||!verified||!sources.length)return new Response(JSON.stringify({error:"invalid_research_output",detail:"A structured answer and at least one titled HTTPS official source with a checked_at date are required."}),{status:400,headers:h});
     const sc=await db.from("family_scenarios").select("*").eq("id",scenarioId).single();
     const it=await db.from("family_interviews").select("id,matched_scenario_id").eq("id",interviewId).single();
     if(sc.error||it.error||it.data.matched_scenario_id!==scenarioId)return new Response(JSON.stringify({error:"not_found"}),{status:404,headers:h});
@@ -142,19 +145,23 @@ Deno.serve(async(req)=>{
     const requested=futureIso(structured.recheck_after);
     const defaultRecheck=new Date(Date.now()+30*86400000).toISOString();
     const recheck=requested&&new Date(requested).getTime()>Date.now()?requested:defaultRecheck;
-    const pending=await db.from("family_scenario_research").select("id").eq("scenario_id",scenarioId).eq("interview_id",interviewId).in("research_status",["pending","in_progress"]).order("created_at",{ascending:false}).limit(1).maybeSingle();
-    const findings:any={verified_answer:verified,operator_guidance:structured.operator_guidance||{}};
+    const pending=await db.from("family_scenario_research").select("id").eq("scenario_id",scenarioId).eq("interview_id",interviewId).eq("review_status","pending_review").order("created_at",{ascending:false}).limit(1).maybeSingle();
+    const findings:any={verified_answer:verified,operator_guidance:structured.operator_guidance||{},proposed_title:text(structured.title,240)||sc.data.title,proposed_recheck_after:recheck};
     const summary=text(structured.research_summary,4000);
     if(summary)findings.research_summary=summary;
-    const researchPayload={checked_at:now,research_status:"completed",findings,official_sources:sources,changed_canonical_knowledge:true,notes:text(structured.notes,4000)};
-    if(pending.data?.id){const saved=await db.from("family_scenario_research").update(researchPayload).eq("id",pending.data.id);if(saved.error)return new Response(JSON.stringify({error:"db_error",detail:saved.error.message}),{status:500,headers:h});}
-    else {const saved=await db.from("family_scenario_research").insert({...researchPayload,scenario_id:scenarioId,interview_id:interviewId,research_question:safeResearchQuestion(sc.data.dimensions||{})});if(saved.error)return new Response(JSON.stringify({error:"db_error",detail:saved.error.message}),{status:500,headers:h});}
-    const patch:any={title:text(structured.title,240)||sc.data.title,verified_answer:verified,official_sources:sources,operator_guidance:(structured.operator_guidance&&typeof structured.operator_guidance==="object")?structured.operator_guidance:{},status:"verified",last_verified_at:now,recheck_after:recheck,updated_at:now};
-    if(!sc.data.first_verified_at)patch.first_verified_at=now;
-    const upd=await db.from("family_scenarios").update(patch).eq("id",scenarioId).select("*").single();
-    if(upd.error)return new Response(JSON.stringify({error:"db_error",detail:upd.error.message}),{status:500,headers:h});
-    const interviewUpdate=await db.from("family_interviews").update({scenario_match_status:"matched",updated_at:now}).eq("id",interviewId);if(interviewUpdate.error)return new Response(JSON.stringify({error:"db_error",detail:interviewUpdate.error.message}),{status:500,headers:h});
-    return new Response(JSON.stringify({saved:true,scenario:publicScenario(upd.data)}),{headers:h});
+    const researchPayload={checked_at:now,research_status:"completed",review_status:"pending_review",findings,official_sources:sources,changed_canonical_knowledge:false,submitted_by_operator_id:auth.operator.id,reviewed_by_operator_id:null,reviewed_at:null,notes:text(structured.notes,4000)};
+    let researchId=pending.data?.id||null;
+    if(pending.data?.id){const saved=await db.from("family_scenario_research").update(researchPayload).eq("id",pending.data.id).select("id").single();if(saved.error)return new Response(JSON.stringify({error:"db_error",detail:saved.error.message}),{status:500,headers:h});researchId=saved.data.id;}
+    else {const saved=await db.from("family_scenario_research").insert({...researchPayload,scenario_id:scenarioId,interview_id:interviewId,research_question:safeResearchQuestion(sc.data.dimensions||{})}).select("id").single();if(saved.error)return new Response(JSON.stringify({error:"db_error",detail:saved.error.message}),{status:500,headers:h});researchId=saved.data.id;}
+    return new Response(JSON.stringify({saved:true,pending_approval:true,research_id:researchId,scenario:publicScenario(sc.data)}),{headers:h});
+  }
+
+  if(action==="approve_research"){
+    const scenarioId=String(b.scenario_id||""),interviewId=String(b.interview_id||""),researchId=String(b.research_id||"");
+    if(!scenarioId||!interviewId||!researchId||b.official_sources_checked!==true)return new Response(JSON.stringify({error:"approval_confirmation_required",detail:"Confirm that the official sources were checked before approving reusable knowledge."}),{status:400,headers:h});
+    const {data,error}=await db.rpc("aqoon_approve_scenario_research",{p_research_id:researchId,p_scenario_id:scenarioId,p_interview_id:interviewId,p_operator_id:auth.operator.id,p_official_sources_checked:true});
+    if(error)return new Response(JSON.stringify({error:"approval_failed",detail:error.message}),{status:400,headers:h});
+    return new Response(JSON.stringify({approved:true,replayed:Boolean(data?.replayed),research_id:researchId,scenario:publicScenario(data?.scenario)}),{headers:h});
   }
 
   return new Response(JSON.stringify({error:"unknown_action"}),{status:400,headers:h});

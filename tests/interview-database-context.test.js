@@ -29,3 +29,19 @@ test('scenario matching receives the saved interview id directly instead of raci
   assert.doesNotMatch(scenario, /action:'list'/);
   assert.doesNotMatch(scenario, /setTimeout\(sync/);
 });
+
+test('deep research stays pending until an operator checks sources and explicitly approves it', () => {
+  const edge = read('supabase/functions/family-scenario-admin/index.ts');
+  const scenario = read('tracker/scenario-learning.js');
+  const migration = read('supabase/migrations/20260901180000_scenario_research_human_approval.sql');
+  assert.match(edge, /action==="approve_research"/);
+  assert.match(edge, /changed_canonical_knowledge:false/);
+  assert.match(edge, /review_status:"pending_review"/);
+  assert.doesNotMatch(edge, /status:"verified",last_verified_at:now/);
+  assert.match(scenario, /I checked the official sources and the answer against them/);
+  assert.match(scenario, /action:'approve_research'/);
+  assert.match(migration, /p_official_sources_checked is not true/);
+  assert.match(migration, /review_status = 'approved'/);
+  assert.match(migration, /update public\.family_interviews[\s\S]*scenario_match_status = 'matched'/);
+  assert.match(migration, /revoke all on function public\.aqoon_approve_scenario_research[\s\S]*from authenticated/);
+});
