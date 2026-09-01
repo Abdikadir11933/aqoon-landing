@@ -4,7 +4,7 @@ const ADMIN='https://qxracwbsyfibcelasxbs.supabase.co/functions/v1/family-leads-
 let loading=false,lastLoaded=0,currentResearchTab='overview';
 
 const WEEKLY={enabled:false,id:'',label:'',values:['Yes','No','Not sure'],city:null};
-const EXCLUSIVE=new Set(['No children','None of these','Not sure','Nothing else now']);
+const EXCLUSIVE=new Set(['No children','No other children','No current goal','None of these','Not sure','Nothing else now']);
 const ALIASES={
   entry_service_awareness:['prior_awareness'],
   entry_service_self_navigation:['self_navigation'],
@@ -33,9 +33,11 @@ function row(key,label,values,{multi=false,note='',group=''}={}){
 }
 function head(title,sub,group=''){const h=document.createElement('div');h.className='question match-extra evidence-section';h.dataset.universalProof='1';if(group)h.dataset.branchGroup=group;h.innerHTML='<label style="font-size:17px">'+esc(title)+'</label><small class="muted" style="display:block;margin-top:5px">'+esc(sub)+'</small>';return h;}
 function city(){return (document.getElementById('dMeta')?.textContent||'').split(' · ')[0].trim();}
+function routeSet(){const meta=document.getElementById('dMeta')?.textContent||'',m=meta.match(/Interview topics:\s*([^·]+)/i);return new Set((m?m[1]:meta).split('+').map(x=>x.trim().toLowerCase()).filter(Boolean));}
+function childCase(){const rs=routeSet();return ['daycare','school_child','hobby'].some(x=>rs.has(x));}
 function selected(key){const r=document.querySelector(ROOT+' .choice-row[data-key="'+key+'"]');if(!r)return[];return [...r.querySelectorAll('.choice.on')].map(b=>b.dataset.value);}
 function showGroup(group,on){document.querySelectorAll(ROOT+' [data-branch-group="'+group+'"]').forEach(el=>{el.style.display=on?'':'none';if(!on){el.querySelectorAll?.('.choice.on').forEach(x=>x.classList.remove('on'));el.querySelectorAll?.('input,textarea,select').forEach(x=>{x.value=''})}});}
-function syncBranches(){const kids=selected('household_children'),hasYoung=kids.includes('Under 3')||kids.includes('Age 3–6'),hasSchool=kids.includes('Grades 1–9'),work=selected('work_interest_gate')[0]||'';showGroup('daycare',hasYoung);showGroup('school',hasSchool);showGroup('vantaa-hobby',hasSchool&&city().toLowerCase()==='vantaa');showGroup('work-proof',work==='Looking for work now'||work==='Likely within 12 months');if(WEEKLY.enabled)showGroup('weekly',!WEEKLY.city||city().toLowerCase()===String(WEEKLY.city).toLowerCase());}
+function syncBranches(){const kids=[...selected('household_children'),...selected('other_children_stages')],hasYoung=kids.includes('Under 3')||kids.includes('Age 3–6'),hasSchool=kids.includes('Grades 1–9'),work=selected('work_interest_gate')[0]||'',caregiver=selected('caregiver_future_goal');showGroup('daycare',hasYoung);showGroup('other-child-daycare',hasYoung);showGroup('school',hasSchool);showGroup('vantaa-hobby',hasSchool&&city().toLowerCase()==='vantaa');showGroup('work-proof',work==='Looking for work now'||work==='Likely within 12 months'||caregiver.some(v=>v==='Work now'||v==='Work within 12 months'));if(WEEKLY.enabled)showGroup('weekly',!WEEKLY.city||city().toLowerCase()===String(WEEKLY.city).toLowerCase());}
 function exists(key){return !!document.querySelector(ROOT+' [data-key="'+key+'"]');}
 function anyExists(keys){return keys.some(exists);}
 function appendIfMissing(wrap,key,node){if(!exists(key))wrap.appendChild(node);}
@@ -46,8 +48,19 @@ function section(){
   if(!anyExists(['entry_service_awareness','prior_awareness']))wrap.appendChild(row('entry_service_awareness','Before AQOON, did they know the exact service/programme/opportunity discussed today existed?',['Yes – knew it','Had heard of it but did not understand it','No','Not sure']));
   if(!anyExists(['entry_service_self_navigation','self_navigation']))wrap.appendChild(row('entry_service_self_navigation','Without AQOON, would they have known what to do next?',['Yes','Partly / maybe','No','Not sure']));
   if(!anyExists(['entry_blockers','access_barriers']))wrap.appendChild(row('entry_blockers','What stopped them from acting before?',['Did not know it existed','Did not understand eligibility','Language','Form / digital system','Thought it cost too much','Did not know where to start','No one to ask','Childcare / timing','Transport','Trust / uncertainty','Other'],{multi:true}));
-  appendIfMissing(wrap,'household_children',row('household_children','Children in the household?',['No children','Under 3','Age 3–6','Grades 1–9','Older children'],{multi:true,note:'Branch gate only — keeps the rest of the call short.'}));
-  appendIfMissing(wrap,'work_interest_gate',row('work_interest_gate','Work situation for future support?',['Looking for work now','Likely within 12 months','Already working / no current need','Not looking for work now','Not sure']));
+  if(childCase()){
+    appendIfMissing(wrap,'other_children_stages',row('other_children_stages','Are there other children in the household?',['No other children','Under 3','Age 3–6','Grades 1–9','Older children'],{multi:true,note:'Age bands only — do not record names here.'}));
+    appendIfMissing(wrap,'caregiver_future_goal',row('caregiver_future_goal','Does the parent / caregiver want help with their own next step?',['Work now','Work within 12 months','Finnish / education now','Finnish / education later','Start a business','No current goal','Not sure'],{multi:true}));
+    appendIfMissing(wrap,'child_activity_interest',row('child_activity_interest','Could this child or another child want a hobby / activity?',['Yes – wants help now','Maybe later','No','Not sure']));
+  }else{
+    appendIfMissing(wrap,'household_children',row('household_children','Children in the household?',['No children','Under 3','Age 3–6','Grades 1–9','Older children'],{multi:true,note:'Branch gate only — keeps the rest of the call short.'}));
+    appendIfMissing(wrap,'work_interest_gate',row('work_interest_gate','Work situation for future support?',['Looking for work now','Likely within 12 months','Already working / no current need','Not looking for work now','Not sure']));
+  }
+
+  wrap.appendChild(head('Three quick system questions','Ask every adult / caregiver. These measure the wider access gap, not eligibility for today’s route.'));
+  appendIfMissing(wrap,'system_navigation_confidence',row('system_navigation_confidence','How confident are they finding the correct Finnish service or programme?',['Usually can find it','Can find some things with help','Often do not know where to start','Not sure']));
+  appendIfMissing(wrap,'digital_application_independence',row('digital_application_independence','Could they complete an official online application without help?',['Yes, usually','With a little help','No, needs hands-on help','Depends on the application','Not sure']));
+  appendIfMissing(wrap,'official_service_connections',row('official_service_connections','Which systems are they currently connected to?',['Kela','Employment services / Työmarkkinatori','School / education','Municipal integration services','Daycare / school as a parent','Other authority','None of these','Not sure'],{multi:true,note:'Current connection only; this is not proof of eligibility or active status.'}));
 
   wrap.appendChild(head('Work-system check','Only when work is relevant.','work-proof'));
   if(!anyExists(['jobseeker','jobseeker_active']))wrap.appendChild(row('jobseeker','Is job search currently active with employment services?',['Yes','No','Not sure'],{group:'work-proof'}));
@@ -59,6 +72,7 @@ function section(){
   appendIfMissing(wrap,'daycare_possible_need_all',row('daycare_possible_need_all','Any daycare need now or coming up?',['Yes – now','Within 6 months','Later / when work or studies start','No','Not sure'],{group:'daycare'}));
   appendIfMissing(wrap,'daycare_application_awareness_all',row('daycare_application_awareness_all','Would they know where/how to apply without help?',['Yes','Partly','No','Not sure'],{group:'daycare'}));
   appendIfMissing(wrap,'daycare_future_reminder',row('daycare_future_reminder','Would a reminder before the next likely application need be useful?',['Yes','Maybe','No'],{group:'daycare'}));
+  appendIfMissing(wrap,'other_child_daycare_timing',row('other_child_daycare_timing','For another child, when might daycare / esiopetus help be needed?',['Now','Within 6 months','Within 12 months','Later / when plans change','No current need','Not sure'],{group:'other-child-daycare'}));
 
   wrap.appendChild(head('School / hobby cross-check','Only when there is a child in grades 1–9.','school'));
   appendIfMissing(wrap,'school_help_possible',row('school_help_possible','Any school / Wilma / support issue they may want help with?',['Yes – now','Maybe later','No','Not sure'],{group:'school'}));
@@ -121,7 +135,11 @@ async function load(force){
         question('Knew the service / programme',aware),
         question('Could navigate without AQOON',navigate),
         question('What blocked action',count(core,'entry_blockers')),
-        question('Children in household',count(core,'household_children'))
+        question('Children in household',count(core,'household_children')),
+        question('Other children in child-led cases',count(core,'other_children_stages')),
+        question('System navigation confidence',count(core,'system_navigation_confidence')),
+        question('Can complete digital applications',count(core,'digital_application_independence')),
+        question('Current official-system connections',count(core,'official_service_connections'))
       ],'Complete a few interviews and the baseline awareness picture will appear here.')+
       pane('work',[
         question('Work situation',count(core,'work_interest_gate')),
@@ -143,6 +161,9 @@ async function load(force){
       ],'No relevant Vantaa school-age family answers yet.')+
       pane('next',[
         question('Other needs uncovered',other),
+        question('Caregiver’s own next goal',count(core,'caregiver_future_goal')),
+        question('Child activity interest',count(core,'child_activity_interest')),
+        question('Another child’s daycare timing',count(core,'other_child_daycare_timing')),
         question('Would return to AQOON',count(core,'aqoon_return_intent')),
         question('Relevant update permission',count(core,'relevant_updates_ok')),
         question('Outcome follow-up okay',count(core,'outcome_followup_ok'))

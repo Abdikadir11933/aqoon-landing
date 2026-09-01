@@ -59,6 +59,12 @@ test('follow-up starts with one canonical decision brief', () => {
   assert.doesNotMatch(queue, /interview-recap-primary/);
 });
 
+test('case-plan controls stay hidden until the first interview is completed', () => {
+  const lifecycle = read('tracker/case-lifecycle.js');
+  assert.match(lifecycle, /lead\?\.interview_status!==['"]completed['"]/);
+  assert.match(lifecycle, /\$\(['"]caseLifecycle['"]\)\?\.remove\(\)/);
+});
+
 test('work interviews branch around the person situation before asking eligibility questions', () => {
   const interview = read('tracker/interview-match.js');
   assert.match(interview, /case_subject/);

@@ -18,7 +18,7 @@ async function loadLifecycle(leadId){
       body:JSON.stringify({action:'list',lead_id:leadId}),
       cache:'no-store'
     }).then(r=>r.json());
-    return {plans:lc.plans||[],events:lc.events||[]};
+    return {plans:lc.plans||[],events:lc.events||[],opportunities:lc.opportunities||[]};
   }catch(e){
     return null;
   }
@@ -132,11 +132,9 @@ function handleAction(action,lead,needs){
       break;
     }
     case 'logNeeds':
-      // sales_opportunities is an organization-level deal record with no
-      // family_lead_id column - there is no "create an opportunity for
-      // this family" feature to link to yet, so this stays a manual
-      // reminder rather than implying a click-through that doesn't exist.
-      alert('Confirmed needs: '+(needs&&needs.length?needs.join(', '):'see the interview answers')+'. Note them in the case plan below - there is no automatic link to a sales opportunity yet.');
+      const opportunities=document.getElementById('householdOpportunities');
+      if(opportunities){opportunities.scrollIntoView({behavior:'smooth',block:'center'});opportunities.classList.add('next-step-highlight');setTimeout(()=>opportunities.classList.remove('next-step-highlight'),1500)}
+      else alert('Confirmed needs: '+(needs&&needs.length?needs.join(', '):'see the interview answers')+'. They will appear as household opportunities after the interview save finishes.');
       break;
     case 'checkResponse': {
       const panel=document.getElementById('caseLifecycle');

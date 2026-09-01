@@ -177,7 +177,7 @@ function simplifyEvidenceFinish(){
   setLabel('aqoon_return_intent','Would they use AQOON again for another Finland question?');
   setLabel('relevant_updates_ok','Can AQOON contact them when a clearly relevant opportunity opens?');
   setLabel('outcome_followup_ok','Can AQOON check later what happened with this issue?');
-  if(child){hide('household_children',true);setLabel('work_interest_gate','Does the parent / caregiver also need work support?');replaceChoices('work_interest_gate',['Looking for work now','Likely within 12 months','Already working / no current need','No work help now','Not sure'])}
+  if(child){hide('household_children',true);hide('work_interest_gate',true);setLabel('other_children_stages','Are there other children in the household?');setLabel('caregiver_future_goal','Does the parent / caregiver want help with their own next step?')}
   if(rs.has('daycare')){hide('daycare_possible_need_all',true);showGroup('daycare',true)}
   if(rs.has('school_child')){hide('school_help_possible',true);showGroup('school',true)}
   if(rs.has('hobby')){hide('vantaa_hobbies_possible_need',true);showGroup('school',true);if(city()==='vantaa')showGroup('vantaa-hobby',true)}

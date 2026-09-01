@@ -19,7 +19,7 @@ test('research briefs reuse interviews, verified route previews, and structured 
   assert.match(match, /CURRENT VERIFIED-ROUTE PREVIEW — generated from knowledge_routes\/criteria\/sources/);
   assert.match(preview, /addEventListener\('aqoon:interview-saved'/);
   assert.match(preview, /action:'match_preview'/);
-  assert.match(lifecycle, /contextForLead:id=>id===leadId\?\{plans:\[\.\.\.plans\],events:\[\.\.\.events\]\}/);
+  assert.match(lifecycle, /contextForLead:id=>id===leadId\?\{plans:\[\.\.\.plans\],events:\[\.\.\.events\],opportunities:\[\.\.\.opportunities\]\}/);
 });
 
 test('scenario matching receives the saved interview id directly instead of racing a delayed list refetch', () => {
