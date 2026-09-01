@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 31.8.2026
+Last compiled: 1.9.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -13,6 +13,13 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Helps with: education and career planning, practical skills, mentoring, networks and experience that can support future applications.
   - Status: free; the next season starts in September 2026 and registration is open. The provider has not published a closing date, so re-check the form and provider page before presenting it as available.
   - Official: https://www.somaliaverkosto.fi/fi/toiminta-suomessa/impact-academy/
+
+- **Nuorten suunta — 21.10.2026 start** — Konepajan aikuislukio / Helsingin kaupunki
+  - Fits: primarily 17–18-year-old young people within compulsory education who need to complete missing comprehensive-school studies. It also offers Finnish-language study for compulsory-school-age young people who completed comprehensive school outside Finland.
+  - Helps with: completing comprehensive school, unfinished basic-education studies, literacy/basic-education studies, or Finnish needed for studies after comprehensive school.
+  - Status: application for the 21.10.2026 start opened 1.9.2026 and closes 14.10.2026. Other Nuorten suunta groups can also be approached during the school year through Ohjaamo's compulsory-education team.
+  - Application route: Opintopolku. The application is normally completed with a study/career adviser or supervising teacher; previous school certificates must be attached. A language test may be used when needed.
+  - Official: https://www.hel.fi/fi/kasvatus-ja-koulutus/konepajan-aikuislukio/nuorten-suunta/nuorten-suunnan-hakijalle
 
 ### Vantaa
 
@@ -46,10 +53,10 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: registration opened 24.8.2026.
   - Official: https://www.vantaa.fi/fi/ajankohtaista/uutinen/ilmoittautuminen-koululaisten-maksuttomiin-harrastuksiin-alkaa-248
 
-- **Vantaan nuorten kesätyöseteli** — Vantaan kaupunki
+- **Vantaan nuorten kesätyöseteli 2026** — Vantaan kaupunki
   - Fits: eligible young people in Vantaa.
   - Helps with: first summer job; employer gets support.
-  - Deadline: 31.8.2026. This is still open on the review date; remove/mark closed after the deadline passes.
+  - Status: **closed**. The 2026 application deadline was 31.8.2026. Do not present this as open from 1.9.2026 onward.
   - Official: https://www.vantaa.fi/fi/palveluhakemisto/palvelu/nuorten-kesatyoseteli
 
 ### Helsinki
@@ -179,6 +186,12 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Selection test: 3.9.2026, 13–15 at Sampola; the official page does not currently show a separate clearly open application form, so verify participation with the organiser rather than presenting this as ordinary open enrolment.
   - Official: https://www.tampere.fi/kaupunki-ja-paatoksenteko/organisaatio/arjen-avaimet-maahanmuuttajanaisten-tyollistymista-edistava-koulutus
 
+- **Welcome to Tampere Event** — International House Tampere / City of Tampere
+  - Fits: internationals who are currently living in Tampere or have recently moved there and want practical information about living in the city.
+  - Helps with: low-threshold newcomer orientation and finding relevant local services.
+  - Status: 8.9.2026, 15.00–17.00, International House Tampere, Rautatienkatu 10; free. The official events listing currently presents the event as upcoming.
+  - Official: https://internationalhouse.tampere.fi/en/events/
+
 - **Career Boost Workshop** — International House Tampere
   - Fits: international jobseekers living in Tampere and international students studying in Tampere.
   - Helps with: CV/application, networking, recruiter approach, job-search channels and interview preparation.
@@ -212,7 +225,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 
 ### Finland-wide / case-by-case
 
-- **Työnhakuprofiili — obligation from 1.9.2026**
+- **Työnhakuprofiili — obligation in force from 1.9.2026**
   - Fits: jobseekers for whom the statutory profile obligation applies.
   - Important: a new jobseeker generally has 15 working days after job search starts to publish the profile. For job search that began before 1.9., the obligation normally begins at the next työnhakukeskustelu, followed by 15 working days to publish. Statutory exceptions exist.
   - If the person does not publish in time, the employment authority can publish minimum information. The official guidance says this does not end job search or directly affect unemployment security.
