@@ -1,6 +1,7 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
 import { authenticatedUser, requireOperator } from "../_shared/operator-auth.ts";
 import { evaluateRouteCriteria } from "../_shared/criteria-evaluator.mjs";
+import { needDomainsForLead } from "../_shared/route-domain-selector.mjs";
 const ORIGIN = "https://aqoon.live";
 const CURRENT_FORM_VERSION = "phone-first-v2-multineed";
 const H = () => ({
@@ -72,16 +73,6 @@ function fieldCounts(js: any[], key: string) {
   });
   return o;
 }
-function needDomains(text: string): string[] {
-  const d: string[] = [];
-  if (/daycare|p.v.k|xannaano|esiopetus|varhaiskasvatus/.test(text))
-    d.push("daycare", "family_finances");
-  if (/school|skuul|dugsi|s2|valmistava/.test(text)) d.push("school");
-  if (/hobby|ciyaar|harrastus/.test(text)) d.push("hobby");
-  if (/work|shaq|employment|job/.test(text))
-    d.push("work", "income_and_unemployment");
-  return d;
-}
 const arrJoin = (v: any) => (Array.isArray(v) ? v.join(", ") : v || "");
 // knowledge_criteria.field_key vocabulary was authored independently of the
 // first-interview question keys in interview-match.js (F object). Rather
@@ -107,8 +98,8 @@ const CRITERIA_BRIDGE: Record<string, string[]> = {
     "jobseeker_registration_status",
     "jobseeker_active",
   ],
-  work_status: ["work_status", "main_status", "jobseeker_active"],
-  main_status: ["main_status", "work_status", "jobseeker_active"],
+  work_status: ["work_status", "main_status", "primary_situation"],
+  main_status: ["main_status", "work_status", "primary_situation"],
   right_to_work_known_when_relevant: [
     "right_to_work_known_when_relevant",
     "right_to_work_known",
@@ -322,14 +313,9 @@ Deno.serve(async (req) => {
         JSON.stringify({ error: "first_interview_required" }),
         { status: 409, headers: h },
       );
-    const text = JSON.stringify([
-        lead.main_need,
-        lead.sub_need,
-        lead.additional_needs || [],
-      ]).toLowerCase(),
-      domains = needDomains(text),
+    const answers = b.answers && typeof b.answers === "object" ? b.answers : {},
+      domains = needDomainsForLead(lead, answers),
       now = Date.now(),
-      answers = b.answers && typeof b.answers === "object" ? b.answers : {},
       city = String(lead.city || "").toLowerCase();
     if (!domains.length)
       return new Response(
