@@ -178,6 +178,18 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: 3.9.2026, 12.00–15.00, Sello Library, Leppävaarankatu 9; free. Official event language is Finnish. Employer list is published on the event page and may still be updated.
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagp5lrxn64
 
+- **Ask Recruiters Anything** — City of Espoo / TA Cafe Helsinki / HeRoHub HR Community
+  - Fits: highly educated international professionals who want direct practical feedback from recruiters and career counsellors.
+  - Helps with: CV, cover letter and LinkedIn feedback, understanding recruitment in Finland, questions to recruiters and networking.
+  - Status: 9.9.2026, 17.00–19.30, Haukilahden lukio, Tekniikantie 3, Espoo; English; free. Registration link is published on the official City of Espoo event page.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagp7k2gzvy
+
+- **Career Bootcamp** — Espoo Talent Hub / City of Espoo
+  - Fits: highly educated professionals, especially newcomers and people developing their career in Finland. The official page describes the event as bringing professionals from across Finland; do not add an Espoo-residency requirement unless the organiser publishes one.
+  - Helps with: career tools, working-life knowledge, workshop learning, service-provider contacts and networking.
+  - Status: 29.9.2026, 9.00–16.00, Technopolis Innopoli 2, Tekniikantie 14, Espoo; English; free. The official page currently provides a registration link but no closing date, so re-check availability before presenting a place as confirmed.
+  - Official: https://www.espoo.fi/en/working-life/espoo-talent-hub/career-bootcamp
+
 ### Tampere
 
 - **Arjen avaimet 2026–2027** — Tampereen seudun työväenopisto / Tampereen kaupunki
