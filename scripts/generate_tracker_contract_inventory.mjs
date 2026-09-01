@@ -65,7 +65,7 @@ function edgeFunctionInventory() {
         file: relative(file),
         lines: source.split('\n').length,
         actions: unique([
-          ...matches(source, /action\s*===?\s*['"]([A-Za-z0-9_-]+)['"]/g),
+          ...matches(source, /action\s*(?:===?|!==?)\s*['"]([A-Za-z0-9_-]+)['"]/g),
           ...matches(source, /\[\s*['"]([A-Za-z0-9_-]+)['"](?:\s*,\s*['"][A-Za-z0-9_-]+['"])+\s*\]\.includes\(action\)/g),
         ]),
         tables: matches(source, /\.from\(\s*['"]([A-Za-z0-9_]+)['"]\s*\)/g),

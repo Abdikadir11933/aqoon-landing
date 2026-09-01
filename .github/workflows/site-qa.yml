@@ -21,8 +21,8 @@ jobs:
         run: python scripts/repo_integrity_qa.py
       - name: Check tracker and Supabase collection contract
         run: node scripts/tracker_collection_qa.js
-      - name: Check generated Tracker contract inventory
-        run: node --test tests/tracker-contract-inventory.test.js tests/interview-field-contract.test.js tests/interview-save-contract.test.js tests/canonical-family-graph.test.js
+      - name: Run complete code and system regression suite
+        run: node --test tests/*.test.js
       - name: Check routes, sitemap and architecture guards
         run: python scripts/site_qa.py
       - name: Check static SEO metadata

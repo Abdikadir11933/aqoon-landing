@@ -1303,7 +1303,8 @@
       "actions": [
         "learning_summary",
         "list",
-        "review_feedback"
+        "review_feedback",
+        "save_review"
       ],
       "tables": [
         "family_interviews",

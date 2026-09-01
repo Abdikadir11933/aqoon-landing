@@ -15,7 +15,8 @@ const expected = new Set([
   'family_case_plans', 'family_funnel_events', 'family_future_opportunities',
   'family_intake_contacts', 'family_intake_rate_limits',
   'family_interview_revisions', 'family_interviews', 'family_leads',
-  'family_match_runs', 'family_scenario_research', 'family_scenarios',
+  'family_match_runs', 'family_needs', 'family_partner_handoffs', 'family_people',
+  'family_scenario_research', 'family_scenarios', 'knowledge_feedback_signals',
   'knowledge_routes', 'knowledge_sources', 'operators', 'ops_events',
   'partner_programs', 'sales_activities', 'sales_opportunities'
 ]);
@@ -43,16 +44,24 @@ const errors = [];
 if (unknown.length) errors.push(`Unknown tracker collections: ${unknown.join(', ')}`);
 if (unused.length) errors.push(`Expected but unreferenced collections: ${unused.join(', ')}`);
 
-// High-value browser/server action contracts. These are the actions whose
-// absence can leave a visible control present while the server returns
-// unknown_action. Keep this list intentionally small and operational.
+// High-value browser/server action contracts. A missing entry can leave a
+// visible control present while the server returns unknown_action.
 const requiredActions = {
   'family-leads-admin': [
     'whoami', 'claim_operator', 'ping', 'operators', 'call_log', 'list',
     'match_preview', 'save_interview', 'analytics', 'record_call_outcome', 'update'
   ],
   'family-leads-manage': ['create', 'update', 'move_phase', 'delete'],
-  'family-case-lifecycle-admin': ['batch_list', 'summary', 'get_call_history', 'list', 'select_route', 'save_plan', 'log_event'],
+  'family-case-lifecycle-admin': [
+    'batch_list', 'summary', 'get_call_history', 'list', 'workflow',
+    'transition_plan', 'select_route', 'save_research_evidence',
+    'approve_researched_route', 'reopen_case', 'save_plan', 'log_event',
+    'start_partner_handoff', 'record_partner_handoff_outcome',
+    'withdraw_partner_handoff'
+  ],
+  'family-route-review-admin': ['list', 'save_review', 'learning_summary', 'review_feedback'],
+  'family-scenario-admin': ['match_scenario', 'get_scenario', 'save_research', 'approve_research'],
+  'family-incomplete-admin': ['assign', 'complete', 'log_call', 'delete'],
   'ops-admin': ['operators', 'list', 'save_opportunity', 'delete_opportunity', 'add_activity', 'save_event', 'delete_event']
 };
 for (const [slug, actions] of Object.entries(requiredActions)) {
@@ -63,7 +72,7 @@ for (const [slug, actions] of Object.entries(requiredActions)) {
   }
   const source = fs.readFileSync(file, 'utf8');
   for (const action of actions) {
-    const re = new RegExp(`\\baction\\s*={2,3}\\s*["']${action}["']`);
+    const re = new RegExp(`\\baction\\s*(?:={2,3}|!={1,2})\\s*["']${action}["']`);
     if (!re.test(source)) errors.push(`${slug} is missing required action: ${action}`);
   }
 }
