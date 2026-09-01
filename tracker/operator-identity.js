@@ -32,6 +32,21 @@ async function authRequest(path,body){
 }
 async function authSignIn(email,password){return authRequest('/auth/v1/token?grant_type=password',{email,password})}
 async function authSignUp(email,password){return authRequest('/auth/v1/signup',{email,password})}
+async function authRecover(email){return authRequest('/auth/v1/recover?redirect_to='+encodeURIComponent(location.origin+'/tracker/'),{email})}
+async function authUpdatePassword(token,password){
+  const r=await fetch(SUPABASE_URL+'/auth/v1/user',{method:'PUT',headers:{'Content-Type':'application/json',apikey:ANON_KEY,Authorization:'Bearer '+token},body:JSON.stringify({password})});
+  const d=await r.json().catch(()=>({}));
+  if(!r.ok)throw new Error(d.error_description||d.msg||d.error||'Could not update password');
+  return d;
+}
+function readRecoverySession(){
+  const p=new URLSearchParams(location.hash.replace(/^#/,''));
+  if(p.get('type')!=='recovery'||!p.get('access_token'))return null;
+  const session={access_token:p.get('access_token'),refresh_token:p.get('refresh_token')||''};
+  history.replaceState(null,'',location.pathname+location.search);
+  return session;
+}
+const recoverySession=readRecoverySession();
 function tokenExpiresSoon(token){try{const raw=token.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'),padded=raw+'='.repeat((4-raw.length%4)%4),payload=JSON.parse(atob(padded));return !payload.exp||payload.exp*1000<=Date.now()+60000}catch{return true}}
 async function refreshAuthSession(force=false){
   const current=authToken();
@@ -90,12 +105,24 @@ function ensureAuthUI(){
 function renderAuthUI(){
   const wrap=document.getElementById('operatorAuthWrap');
   if(!wrap)return;
+  if(pickerMode==='recover'){
+    wrap.innerHTML='<form class="operator-auth" id="operatorRecoverForm"><p class="muted">Enter your approved operator email. Supabase will send a private password-reset link.</p><input type="email" id="operatorRecoverEmail" placeholder="Your AQOON email" autocomplete="email" required><div class="operator-error" id="operatorAuthError"></div><button type="submit" class="operator-auth-btn" id="operatorAuthSubmit">Send reset email</button></form><div class="operator-switch"><a id="operatorToSignin">Back to sign in</a></div>';
+    document.getElementById('operatorToSignin').onclick=()=>{pickerMode='signin';renderAuthUI()};
+    document.getElementById('operatorRecoverForm').onsubmit=async e=>{e.preventDefault();const email=document.getElementById('operatorRecoverEmail').value.trim(),errEl=document.getElementById('operatorAuthError'),btn=document.getElementById('operatorAuthSubmit');errEl.textContent='';btn.disabled=true;btn.textContent='Sending…';try{await authRecover(email);errEl.style.color='var(--t,#0c8c80)';errEl.textContent='Reset email sent. Open it on this device, then choose a new password.';}catch(ex){errEl.style.color='';errEl.textContent=ex.message||'Could not send the reset email.';}finally{btn.disabled=false;btn.textContent='Send reset email';}};
+    return;
+  }
+  if(pickerMode==='reset'){
+    wrap.innerHTML='<form class="operator-auth" id="operatorResetForm"><p class="muted">Choose a new password for your AQOON operator account.</p><input type="password" id="operatorNewPassword" placeholder="New password" autocomplete="new-password" minlength="8" required><input type="password" id="operatorConfirmPassword" placeholder="Confirm new password" autocomplete="new-password" minlength="8" required><div class="operator-error" id="operatorAuthError"></div><button type="submit" class="operator-auth-btn" id="operatorAuthSubmit">Save new password</button></form>';
+    document.getElementById('operatorResetForm').onsubmit=async e=>{e.preventDefault();const password=document.getElementById('operatorNewPassword').value,confirmPassword=document.getElementById('operatorConfirmPassword').value,errEl=document.getElementById('operatorAuthError'),btn=document.getElementById('operatorAuthSubmit');errEl.textContent='';if(password!==confirmPassword){errEl.textContent='The passwords do not match.';return}btn.disabled=true;btn.textContent='Saving…';try{await authUpdatePassword(recoverySession.access_token,password);setAuthSession(recoverySession.access_token,recoverySession.refresh_token);const who=await whoami(recoverySession.access_token);if(!who.operator)throw new Error('This account is not an active AQOON operator.');setMe(who.operator.id,who.operator.display_name);unlockWithSession();}catch(ex){errEl.textContent=ex.message||'Could not update the password. Request a new reset email.';}finally{btn.disabled=false;btn.textContent='Save new password';}};
+    return;
+  }
   if(pickerMode==='signin'||pickerMode==='signup'){
     const isSignup=pickerMode==='signup';
-    wrap.innerHTML='<form class="operator-auth" id="operatorAuthForm"><input type="email" id="operatorEmail" placeholder="Your AQOON email" autocomplete="username" required><input type="password" id="operatorPassword" placeholder="Password" autocomplete="'+(isSignup?'new-password':'current-password')+'" minlength="6" required>'+(isSignup?'<div id="operatorSignupOptions" class="operator-options"><p class="muted">Loading…</p></div>':'')+'<div class="operator-error" id="operatorAuthError"></div><button type="submit" class="operator-auth-btn" id="operatorAuthSubmit">'+(isSignup?'Create my account':'Unlock')+'</button></form><div class="operator-switch">'+(isSignup?'Already have an account? <a id="operatorToSignin">Sign in</a>':'New here? <a id="operatorToSignup">Create an account</a>')+'</div>';
+    wrap.innerHTML='<form class="operator-auth" id="operatorAuthForm"><input type="email" id="operatorEmail" placeholder="Your AQOON email" autocomplete="username" required><input type="password" id="operatorPassword" placeholder="Password" autocomplete="'+(isSignup?'new-password':'current-password')+'" minlength="6" required>'+(isSignup?'<div id="operatorSignupOptions" class="operator-options"><p class="muted">Loading…</p></div>':'')+'<div class="operator-error" id="operatorAuthError"></div><button type="submit" class="operator-auth-btn" id="operatorAuthSubmit">'+(isSignup?'Create my account':'Unlock')+'</button></form><div class="operator-switch">'+(isSignup?'Already have an account? <a id="operatorToSignin">Sign in</a>':'<a id="operatorToRecover">Forgot password?</a> · New here? <a id="operatorToSignup">Create an account</a>')+'</div>';
     if(isSignup)document.getElementById('operatorSignupOptions').innerHTML='<p class="muted">Your email must already be approved for an AQOON operator account.</p>';
     document.getElementById('operatorToSignup')?.addEventListener('click',()=>{pickerMode='signup';renderAuthUI()});
     document.getElementById('operatorToSignin')?.addEventListener('click',()=>{pickerMode='signin';renderAuthUI()});
+    document.getElementById('operatorToRecover')?.addEventListener('click',()=>{pickerMode='recover';renderAuthUI()});
     document.getElementById('operatorAuthForm').onsubmit=async e=>{
       e.preventDefault();
       const email=document.getElementById('operatorEmail').value.trim(),password=document.getElementById('operatorPassword').value;
@@ -247,6 +274,7 @@ function showSignIn(){clearMe();renderPill();pickerMode='signin';ensureAuthUI()}
 // #lock is visible from first paint. Wait for app.js's session check before
 // deciding whether to show the account form.
 function decideInitialAuthUI(){
+  if(recoverySession){clearMe();pickerMode='reset';ensureAuthUI();return}
   if(!sessionStorage.getItem('aqoon_auth_token')){showSignIn();return}
   let tries=0;
   const check=()=>{
