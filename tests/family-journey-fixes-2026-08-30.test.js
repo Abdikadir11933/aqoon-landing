@@ -30,7 +30,7 @@ test("human-labels.js never runs a document-wide substring replace with a short,
   // inside unrelated words anywhere on the page).
   assert.match(labels, /const CODES=new Map/);
   assert.match(labels, /const PHRASES=new Map/);
-  assert.match(labels, /PHRASES\.forEach\(\(next,old\)=>\{if\(out\.includes\(old\)\)out=out\.split\(old\)\.join\(next\)\}\)/);
+  assert.match(labels, /PHRASES\.forEach\(\([^)]*old[^)]*\)=>\{if\([^}]*\.includes\(old\)\)[^}]*\.split\(old\)\.join\(/);
   assert.doesNotMatch(labels, /TEXT\.forEach\(\(next,old\)=>\{if\(out\.includes\(old\)\)/);
 });
 

@@ -3,7 +3,7 @@ import { requireOperator } from "../_shared/operator-auth.ts";
 
 const ORIGIN = "https://aqoon.live";
 const PLAN_STATUSES = new Set(["research", "options_ready", "action_in_progress", "awaiting_outcome", "persistence_check", "resolved", "closed_unresolved"]);
-const EVENT_TYPES = new Set(["interview_completed", "research_completed", "options_presented", "plan_selected", "official_action_started", "official_response_received", "persistence_confirmed", "case_resolved", "case_closed_unresolved", "follow_up_attempted"]);
+const EVENT_TYPES = new Set(["interview_completed", "research_completed", "options_presented", "plan_selected", "route_reconsidered", "official_action_started", "official_response_received", "persistence_confirmed", "case_resolved", "case_closed_unresolved", "follow_up_attempted"]);
 const OPPORTUNITY_STATUSES = new Set(["watching", "ready", "offered", "accepted", "not_interested", "expired", "closed"]);
 const CONTACT_PERMISSIONS = new Set(["not_requested", "granted", "declined", "not_needed"]);
 const INTERACTION_TYPES = new Set(["first_interview", "research", "options_call", "follow_up_call", "official_update", "outcome_check"]);
@@ -135,12 +135,43 @@ Deno.serve(async (request) => {
       db.from("family_case_plans").select("*").eq("family_lead_id", leadId).order("updated_at", { ascending: false }),
       db.from("family_case_events").select("*").eq("family_lead_id", leadId).order("occurred_at", { ascending: false }).limit(200),
       db.from("family_future_opportunities").select("*").eq("family_lead_id", leadId).order("earliest_contact_at", { ascending: true, nullsFirst: false }).limit(100),
-      db.from("family_match_runs").select("id,status,match_status,recommended_next_action,created_at,knowledge_routes(route_key,need_domain)").eq("family_lead_id", leadId).in("status", ["ready_for_review", "reviewed", "selected"]).order("created_at", { ascending: false }).limit(50),
+      db.from("family_match_runs").select("id,status,match_status,recommended_next_action,created_at,knowledge_routes(route_key,need_domain)").eq("family_lead_id", leadId).in("status", ["ready_for_review", "reviewed"]).order("created_at", { ascending: false }).limit(50),
       db.from("family_case_interactions").select("*").eq("family_lead_id", leadId).order("created_at", { ascending: false }).limit(100),
     ]);
     const error = plans.error || events.error || opportunities.error || matchRuns.error || interactions.error;
     if (error) return new Response(JSON.stringify({ error: "db_error", detail: error.message }), { status: 500, headers: responseHeaders });
     return new Response(JSON.stringify({ plans: plans.data || [], events: events.data || [], opportunities: opportunities.data || [], match_runs: matchRuns.data || [], interactions: interactions.data || [] }), { headers: responseHeaders });
+  }
+
+  if (action === "transition_plan") {
+    const planId = cleanText(body.case_plan_id, 80);
+    const expectedStatus = cleanText(body.expected_status, 80);
+    const nextStatus = cleanText(body.next_status, 80);
+    const eventType = cleanText(body.event_type, 120);
+    const requestId = cleanText(body.request_id, 80);
+    if (!planId || !expectedStatus || !nextStatus || !eventType || !requestId) {
+      return new Response(JSON.stringify({ error: "missing_transition_fields" }), { status: 400, headers: responseHeaders });
+    }
+    const { data, error } = await db.rpc("aqoon_transition_case_plan", {
+      p_lead_id: leadId,
+      p_plan_id: planId,
+      p_operator_id: operatorId,
+      p_expected_status: expectedStatus,
+      p_next_status: nextStatus,
+      p_event_type: eventType,
+      p_note: cleanText(body.note, 4000),
+      p_event_data: objectOrEmpty(body.event_data),
+      p_next_follow_up_at: isoOrNull(body.next_follow_up_at),
+      p_request_id: requestId,
+      p_clear_selected_option: body.clear_selected_option === true,
+    });
+    if (error) {
+      const known = ["plan_not_found", "lead_not_found", "stale_plan_status", "invalid_plan_transition", "transition_note_required", "idempotency_key_conflict", "invalid_event_data", "missing_request_id"]
+        .find((code) => error.message?.includes(code));
+      const status = known === "plan_not_found" || known === "lead_not_found" ? 404 : known === "stale_plan_status" || known === "idempotency_key_conflict" ? 409 : known ? 400 : 500;
+      return new Response(JSON.stringify({ error: known || "db_error", ...(known ? {} : { detail: error.message }) }), { status, headers: responseHeaders });
+    }
+    return new Response(JSON.stringify(data || {}), { headers: responseHeaders });
   }
 
   if (action === "save_plan") {

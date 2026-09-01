@@ -42,3 +42,17 @@ When adding or renaming a collection or column:
 Do not create a second table because a plan or old prototype used a different
 name. If the live schema and code disagree, stop and resolve the contract
 before changing data.
+
+## Atomic follow-up transitions
+
+Guided follow-up steps call `family-case-lifecycle-admin` action
+`transition_plan`. The Edge Function supplies the authenticated operator and
+calls the service-role-only `aqoon_transition_case_plan` database function.
+One transaction validates the expected current plan state, advances the plan,
+writes the matching `family_case_events` row, and synchronizes the lead state.
+
+Every transition carries a UUID `request_id`, stored on the event. Retrying the
+same request returns the original plan/event instead of writing a duplicate.
+Stale or forbidden transitions fail without any partial write. The older
+`save_plan` and `log_event` actions remain for non-transition edits and rollout
+compatibility; browser workflows must not chain them to represent one action.

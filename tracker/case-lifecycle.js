@@ -7,8 +7,8 @@ const style=document.createElement('style');
 style.textContent='.case-lifecycle{background:#fff;border:1px solid var(--l);border-radius:14px;padding:13px;margin-top:12px}.case-lifecycle h3{font-size:12px;margin:0 0 9px}.case-lifecycle .muted{font-size:11px}.plan-card{background:var(--p);border:1px solid var(--l);border-radius:11px;padding:10px;margin-bottom:9px}.plan-card strong{display:block;font-size:12px}.plan-card small{display:block;color:var(--m);font-size:10px;margin-top:3px}.plan-status{display:inline-block;font-size:9px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--td);background:#eef9f7;border-radius:999px;padding:3px 8px;margin-top:6px}.plan-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}.plan-actions button{border:0;border-radius:9px;background:var(--c);color:var(--n);padding:8px 10px;font-size:10px;font-weight:700}.plan-actions button.primary{background:var(--n);color:#fff}.plan-actions button.danger{background:#fde9e6;color:#92372f}.new-plan-row{display:flex;gap:6px;margin-top:6px}.new-plan-row input{flex:1}.new-plan-row button{border:0;border-radius:9px;background:var(--n);color:#fff;padding:0 13px;font-size:11px;font-weight:700}.case-events{margin-top:9px;font-size:10px;color:var(--m)}.case-events div{padding:4px 0;border-top:1px solid var(--l)}.case-revisions{margin-top:9px}.revision-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 0;border-top:1px solid var(--l);font-size:10px}.revision-row button{border:0;border-radius:8px;background:var(--c);color:var(--n);padding:5px 9px;font-size:9px;font-weight:700}.case-lifecycle-error{color:#92372f;font-size:10px;margin-top:6px}.verified-answer{background:#eef9f7;border:1px solid #cbe7e4;border-radius:11px;padding:10px;margin-top:9px;font-size:11px}.verified-answer strong{display:block;font-size:12px;margin-bottom:4px}.verified-answer ul{margin:6px 0 0;padding-left:16px}.verified-answer li{margin-bottom:2px}.verified-answer small{display:block;color:var(--td);margin-top:6px}.plan-paste{margin-top:9px}.plan-paste summary{cursor:pointer;font-size:11px;font-weight:700;color:var(--td)}.plan-paste textarea{width:100%;min-height:90px;margin-top:7px;font-size:11px;font-family:monospace}.plan-paste button{margin-top:6px;border:0;border-radius:9px;background:var(--n);color:#fff;padding:8px 12px;font-size:10px;font-weight:700}.plan-paste .hint{color:var(--m);font-size:9px;margin:5px 0 0}';
 document.head.appendChild(style);
 const PLAN_LABELS={research:'Researching options',options_ready:'Options ready to present',action_in_progress:'Action in progress',awaiting_outcome:'Waiting on authority/provider decision',persistence_check:'Response received — confirming outcome',resolved:'Resolved',closed_unresolved:'Closed — no resolution'};
-const EVENT_LABELS={interview_completed:'First interview completed',research_completed:'Research completed',options_presented:'Options presented to family',plan_selected:'Plan selected',official_action_started:'Application/registration submitted',official_response_received:'Authority/provider responded',persistence_confirmed:'Outcome confirmed still active',case_resolved:'Case resolved',case_closed_unresolved:'Case closed without resolution',follow_up_attempted:'Follow-up attempted'};
-async function api(url,body){const r=await fetch(url,{method:'POST',headers:window.AqoonAuthHeaders(),body:JSON.stringify(body),cache:'no-store'});let d={};try{d=await r.json()}catch{}if(!r.ok)throw Error(d.detail||d.error||'Request failed');return d}
+const EVENT_LABELS={interview_completed:'First interview completed',research_completed:'Research completed',options_presented:'Options presented to family',plan_selected:'Plan selected',route_reconsidered:'Route reconsidered',official_action_started:'Application/registration submitted',official_response_received:'Authority/provider responded',persistence_confirmed:'Outcome confirmed still active',case_resolved:'Case resolved',case_closed_unresolved:'Case closed without resolution',follow_up_attempted:'Follow-up attempted'};
+async function api(url,body){const r=await fetch(url,{method:'POST',headers:window.AqoonAuthHeaders(),body:JSON.stringify(body),cache:'no-store'});let d={};try{d=await r.json()}catch{}if(!r.ok){const e=Error(d.detail||d.error||'Request failed');e.status=r.status;throw e}return d}
 function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
 function fmt(v){if(!v)return'—';try{return new Intl.DateTimeFormat('fi-FI',{dateStyle:'short',timeStyle:'short'}).format(new Date(v))}catch{return v}}
 // interview-match.js collapses the question list once a lead's interview
@@ -61,10 +61,10 @@ function planCard(plan){
   const status=PLAN_LABELS[plan.plan_status]||plan.plan_status,terminal=plan.plan_status==='resolved'||plan.plan_status==='closed_unresolved';
   const buttons=[];
   if(!terminal){
-    if(plan.plan_status!=='awaiting_outcome'&&plan.plan_status!=='persistence_check')buttons.push('<button type="button" data-lc-action="submitted" data-lc-id="'+esc(plan.id)+'">Submitted — waiting on decision</button>');
+    if(plan.plan_status==='action_in_progress')buttons.push('<button type="button" data-lc-action="submitted" data-lc-id="'+esc(plan.id)+'">Submitted — waiting on decision</button>');
     if(plan.plan_status==='awaiting_outcome')buttons.push('<button type="button" data-lc-action="responded" data-lc-id="'+esc(plan.id)+'">Authority/provider responded</button>');
     if(plan.plan_status==='persistence_check')buttons.push('<button type="button" class="primary" data-lc-action="resolve" data-lc-id="'+esc(plan.id)+'">Resolve after follow-up</button>');
-    buttons.push('<button type="button" class="danger" data-lc-action="close" data-lc-id="'+esc(plan.id)+'">Close — no resolution</button>');
+    if(plan.plan_status==='persistence_check')buttons.push('<button type="button" class="danger" data-lc-action="close" data-lc-id="'+esc(plan.id)+'">Close — no resolution</button>');
   }
   const reason=plan.plan_status==='closed_unresolved'?reasonFor(plan):'';
   return '<article class="plan-card"><strong>'+esc(plan.title||'Case plan')+'</strong>'+(plan.next_action?'<small>'+esc(plan.next_action)+'</small>':'')+(plan.next_follow_up_at?'<small>Next: '+esc(fmt(plan.next_follow_up_at))+'</small>':'')+'<span class="plan-status">'+esc(status)+'</span>'+(reason?'<small><strong>Closed:</strong> '+esc(reason)+'</small>':'')+(buttons.length?'<div class="plan-actions">'+buttons.join('')+'</div>':'')+verifiedAnswerHtml(plan)+pasteRowHtml(plan)+'</article>';
@@ -111,8 +111,9 @@ async function savePastedResearch(planId){
   }catch(error){fail(error.message)}
   finally{busy=false}
 }
-async function submitPlanUpdate(plan,overrides){
-  return api(END_LIFECYCLE,{action:'save_plan',lead_id:leadId,id:plan.id,title:plan.title,official_decision_maker:plan.official_decision_maker,selected_option:plan.selected_option,plan_status:overrides.plan_status||plan.plan_status,next_action:'next_action'in overrides?overrides.next_action:plan.next_action,next_follow_up_at:'next_follow_up_at'in overrides?overrides.next_follow_up_at:plan.next_follow_up_at});
+async function transitionCasePlan(targetLeadId,plan,nextStatus,eventType,options={}){
+  const body={action:'transition_plan',lead_id:targetLeadId,case_plan_id:plan.id,expected_status:plan.plan_status,next_status:nextStatus,event_type:eventType,note:options.note||null,event_data:options.event_data||{},next_follow_up_at:options.next_follow_up_at||null,request_id:crypto.randomUUID()};
+  for(let attempt=0;attempt<2;attempt+=1){try{return await api(END_LIFECYCLE,body)}catch(error){if(attempt||error.status&&error.status<500)throw error}}
 }
 async function runAction(action,planId){
   if(busy)return;
@@ -120,23 +121,21 @@ async function runAction(action,planId){
   busy=true;
   try{
     if(action==='submitted'){
-      await api(END_LIFECYCLE,{action:'log_event',lead_id:leadId,case_plan_id:plan.id,event_type:'official_action_started'});
-      await submitPlanUpdate(plan,{plan_status:'awaiting_outcome'});
+      await transitionCasePlan(leadId,plan,'awaiting_outcome','official_action_started');
     }else if(action==='responded'){
-      await api(END_LIFECYCLE,{action:'log_event',lead_id:leadId,case_plan_id:plan.id,event_type:'official_response_received'});
-      await submitPlanUpdate(plan,{plan_status:'persistence_check'});
+      const note=(prompt('What response or result came back?')||'').trim();
+      if(!note)return;
+      await transitionCasePlan(leadId,plan,'persistence_check','official_response_received',{note});
     }else if(action==='resolve'){
       const note=(prompt('What was the outcome? Include the agreed plan, who confirmed it, and any evidence or follow-up needed.')||'').trim();
       if(!note)return;
       if(!confirm('Mark this case plan resolved and save the outcome note?'))return;
-      await api(END_LIFECYCLE,{action:'log_event',lead_id:leadId,case_plan_id:plan.id,event_type:'case_resolved',note});
-      await submitPlanUpdate(plan,{plan_status:'resolved'});
+      await transitionCasePlan(leadId,plan,'resolved','case_resolved',{note});
     }else if(action==='close'){
       const reason=(prompt('Why is this case plan closing without a resolution? (e.g. family unreachable, withdrew, no longer eligible)')||'').trim();
       if(!reason)return;
       if(!confirm('Close this case plan without a resolution?'))return;
-      await api(END_LIFECYCLE,{action:'log_event',lead_id:leadId,case_plan_id:plan.id,event_type:'case_closed_unresolved',note:reason});
-      await submitPlanUpdate(plan,{plan_status:'closed_unresolved'});
+      await transitionCasePlan(leadId,plan,'closed_unresolved','case_closed_unresolved',{note:reason});
     }
     await load();
   }catch(error){fail(error.message)}
@@ -170,19 +169,15 @@ window.addEventListener('aqoon:interview-saved',event=>{
 // - §5 defect #2: "Resolution bypasses the plan lifecycle"). That queue
 // screen has no plan list of its own to drive the normal resolve button
 // through, so give it this instead: resolve the family's active plan the
-// same way the case-plan panel's own Resolve button does (same log_event +
-// save_plan calls, so family_leads.status is set by the existing atomic
-// fix, not a second bespoke write). If the family never had a plan at all,
-// create a minimal one first rather than resolving nothing - the note still
-// ends up on a real case_resolved event instead of vanishing into a bare
-// notes field no other screen reads.
+// same way the case-plan panel's own Resolve button does: one transactional
+// transition writes the event, plan state and lead state together. A family
+// with no agreed plan cannot be resolved from this shortcut.
 async function resolveActivePlan(leadId,note){
   const data=await api(END_LIFECYCLE,{action:'list',lead_id:leadId});
   let plan=(data.plans||[]).find(p=>p.plan_status!=='resolved'&&p.plan_status!=='closed_unresolved');
   if(!plan){return Promise.reject(new Error('No active case plan is available. Start a plan before resolving this case.'))}
-  if(!['awaiting_outcome','persistence_check'].includes(plan.plan_status))return Promise.reject(new Error('Record the follow-up outcome before resolving this case.'));
-  await api(END_LIFECYCLE,{action:'log_event',lead_id:leadId,case_plan_id:plan.id,event_type:'case_resolved',note});
-  return api(END_LIFECYCLE,{action:'save_plan',lead_id:leadId,id:plan.id,title:plan.title,official_decision_maker:plan.official_decision_maker,selected_option:plan.selected_option,plan_status:'resolved',next_action:plan.next_action,next_follow_up_at:plan.next_follow_up_at});
+  if(plan.plan_status!=='persistence_check')return Promise.reject(new Error('Record the provider result before resolving this case.'));
+  return transitionCasePlan(leadId,plan,'resolved','case_resolved',{note});
 }
 // Reopening a resolved case from the Families queue (crm-queue-navigation.js)
 // used to call log_event directly with no case_plan_id. The backend rejects

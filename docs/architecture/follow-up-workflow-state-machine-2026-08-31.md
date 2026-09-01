@@ -128,8 +128,12 @@ Route review remains in `family_match_runs`. Plans remain in `family_case_plans`
 - result received -> `official_response_received`, plan `persistence_check`;
 - durable result confirmed -> `case_resolved`, plan/lead resolved;
 - result not durable -> continue follow-up;
-- route changed -> return to route review while preserving history;
+- route changed -> `route_reconsidered`, return to route review while preserving history;
 - closed without result -> `case_closed_unresolved`.
+
+From `options_presented` onward, each line above is one atomic, idempotent
+`transition_plan` operation. A plan status and its evidence event must never be
+saved as separate browser requests.
 
 ## Acceptance criteria
 
