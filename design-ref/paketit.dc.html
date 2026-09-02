@@ -8,137 +8,136 @@
 <body>
 <x-dc>
 <helmet>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Paketit, AQOON</title>
-<meta name="description" content="Kolme pakettia: kartoitus, kartoitus ja viesti, tai koko silta. Laajuus sovitaan tilanteen mukaan.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,900;1,9..144,900&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-body{margin:0;background:#FBFAF7;color:#16202E;font-family:Outfit,system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
-a{color:#07706B}a:hover{color:#0E2440}
-:focus-visible{outline:3px solid #0FB5AE;outline-offset:2px;border-radius:4px}
-</style>
+<title>Tavoittaminen ja palveluun ohjaaminen organisaatioille | AQOON</title>
+<meta name="description" content="AQOON aloittaa tutkimuslähtöisellä Vaiheella 1 ja jatkaa tarvittaessa tulosperusteiseen Vaiheeseen 2. Asiakaspolun kehitys tehdään vain todetusta tarpeesta." />
+<link rel="canonical" href="https://aqoon.live/paketit" />
+<meta property="og:title" content="Tavoittaminen ja palveluun ohjaaminen organisaatioille | AQOON" />
+<meta property="og:description" content="Ensin selvitetään, missä polku katkeaa. Sitten sovittu reitti viedään tulokseen asti." />
+<meta property="og:url" content="https://aqoon.live/paketit" />
+<meta name="robots" content="index,follow" />
 </helmet>
-<a href="#sisalto" style="position: absolute; left: -9999px; top: 8px; z-index: 40; background: #0E2440; color: #FBFAF7; padding: 12px 20px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 15px;" style-focus="left: 16px;">Siirry sisältöön</a>
-<header style="position: sticky; top: 0; z-index: 20; background: rgba(251,250,247,0.94); backdrop-filter: blur(8px); border-bottom: 1px solid #E7E3D8;">
-  <div style="max-width: 1140px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap;">
-    <a href="Etusivu.dc.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #0E2440;">
-      <svg width="30" height="30" viewBox="0 0 96 96" fill="none" aria-hidden="true"><path d="M26 74 L48 26 L70 74" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"></path><path d="M37 56 L59 56" stroke="#0FB5AE" stroke-width="9" stroke-linecap="round"></path><circle cx="48" cy="56" r="4.5" fill="#E8A766"></circle></svg>
-      <span style="font-family: Fraunces, Georgia, serif; font-weight: 900; font-size: 20px; letter-spacing: 0.02em;">AQOON</span>
-    </a>
-    <nav aria-label="Päävalikko" style="display: flex; align-items: center; gap: 20px; margin-left: auto; flex-wrap: wrap;">
-      <a href="tapaus.dc.html" style="text-decoration: none; color: #16202E; font-weight: 500; font-size: 15px; padding: 10px 2px;" style-hover="color: #07706B;">Tapaus</a>
-      <a href="menetelma.dc.html" style="text-decoration: none; color: #16202E; font-weight: 500; font-size: 15px; padding: 10px 2px;" style-hover="color: #07706B;">Menetelmä</a>
-      <a href="paketit.dc.html" aria-current="page" style="text-decoration: none; color: #0E2440; font-weight: 700; font-size: 15px; padding: 10px 2px 8px; border-bottom: 2px solid #0FB5AE;">Paketit</a>
-      <a href="https://cal.com/abducadir-abdullahi-aligure-tw1bge/30min" style="display: inline-block; background: #0E2440; color: #FBFAF7; padding: 10px 22px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 15px;" style-hover="background: #0A1A30; color: #FBFAF7;">Varaa puhelu</a>
-    </nav>
-  </div>
-</header>
+<dc-import name="SiteHeader" active="paketit" hint-size="100%,66px"></dc-import>
+<main style="font-family:'Outfit',system-ui,sans-serif;color:#0a0a0a">
 
-<main id="sisalto" tabIndex="-1" style="outline: none;">
-<section data-screen-label="Paketit hero" style="padding: clamp(72px, 11vw, 128px) 24px clamp(40px, 6vw, 64px);">
-  <div style="max-width: 800px; margin: 0 auto;">
-    <h1 style="font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: clamp(2.3rem, 6vw, 4.2rem); line-height: 1.06; letter-spacing: -0.01em; margin: 0;">Kolme pakettia</h1>
-    <p style="font-size: clamp(1.1rem, 2vw, 1.3rem); max-width: 48ch; margin: 28px 0 0; text-wrap: pretty;">Hinta määräytyy laajuuden mukaan. Kertokaa tilanteenne, niin saatte tarjouksen.</p>
-    <p style="font-size: 1.05rem; color: #5C6675; margin: 16px 0 0;">Paketit rakentuvat <a href="menetelma.dc.html" style="color: #07706B;">menetelmän portaista</a>. Voitte ostaa yhden portaan tai koko sillan.</p>
-  </div>
-</section>
+  <section aria-labelledby="h1" style="background:#f8f7f3;padding:clamp(44px,6vw,84px) 20px clamp(44px,5vw,72px);border-bottom:1px solid #c9c8c1">
+    <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(26px,4vw,64px);align-items:end">
+      <div>
+        <p style="margin:0 0 18px;font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#62625d;display:flex;align-items:center;gap:12px"><span style="width:26px;height:2px;background:#079d97;display:inline-block"></span>Palvelut organisaatioille</p>
+        <h1 id="h1" style="margin:0;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(40px,5.4vw,78px);line-height:.95;max-width:20ch">Tutkimuksesta jatkuvaan toteutukseen.</h1>
+      </div>
+      <p style="margin:0;font-size:clamp(16.5px,1.3vw,18.5px);line-height:1.62;max-width:54ch;text-wrap:pretty">Aloitamme rajatulla Vaiheella 1, kun todellista estettä tai toimivaa reittiä ei vielä tunneta. Vaihe 2 jatkaa vain sitä työtä, joka pitää viedä varmennettavaan tulokseen asti.</p>
+    </div>
+  </section>
 
-<section data-screen-label="Paketit" style="padding: clamp(32px, 5vw, 56px) 24px clamp(48px, 8vw, 96px);">
-  <div style="max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-    <div style="background: #F3F0E9; border-radius: 20px; padding: 34px 30px; display: flex; flex-direction: column; gap: 16px;">
-      <span style="align-self: flex-start; background: #0E2440; color: #FBFAF7; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 6px 12px; border-radius: 100px; white-space: nowrap;">Useimmat aloittavat tästä</span>
-      <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: 1.6rem;">Kartoitus</h2>
-      <p style="margin: 0; font-weight: 700; font-size: 1.05rem; color: #0E2440;">Porras 1.</p>
-      <p style="margin: 0; font-size: 15.5px;">Kun ette vielä tiedä miksi perheet eivät tule.</p>
-      <p style="margin: auto 0 0; padding-top: 12px; border-top: 1px solid #E2DDCF; font-size: 15px; color: #5C6675;">Sisältää kenttätyön, asiantuntijahaastattelun ja löydösraportin.</p>
-      <a href="menetelma.dc.html" style="font-size: 14.5px; color: #07706B; font-weight: 600;">Mitä kartoitus sisältää →</a>
+  <section aria-labelledby="h2-research" style="background:#e9e9e6;padding:clamp(44px,5vw,76px) 20px;border-bottom:1px solid #c9c8c1">
+    <div style="max-width:1180px;margin:0 auto">
+      <div style="border:1px solid #c9c8c1;background:#f8f7f3;padding:clamp(26px,3.4vw,44px)">
+        <p style="margin:0 0 12px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#087d78">Vaihe 1 · Rajattu kokonaisuus</p>
+        <h2 id="h2-research" style="margin:0 0 22px;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(30px,3.8vw,52px);line-height:1;max-width:22ch">Tutkimus ja käytännön pilotti</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(24px,3vw,48px)">
+          <div>
+            <p style="margin:0 0 18px;font-size:17px;line-height:1.65;max-width:56ch;text-wrap:pretty">Vaihe 1 selvittää, onko ongelma tunnettuudessa, viestissä, luottamuksessa, hakemisessa, vastuun siirtymisessä vai aloituksen jälkeen. Emme lukitse jatkuvaa toteutusta ennen kuin todellinen katkos on nähty.</p>
+            <p style="margin:0;font-size:15px;line-height:1.62;color:#62625d;max-width:58ch">Vaihe päättyy tiiviiseen havainto- ja päätösraporttiin: mitä opittiin, mitä reittiä testattiin, onko Vaihe 2 perusteltu ja millä rajauksella sitä kannattaa jatkaa.</p>
+          </div>
+          <div>
+            <p style="margin:0 0 12px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#62625d">Vaihe 1 sisältää</p>
+            <ul style="margin:0;padding:0;list-style:none;border-top:1px solid #c9c8c1">
+              <li style="padding:11px 0;border-bottom:1px solid #c9c8c1;font-size:16px;line-height:1.5">Palvelun, kohderyhmän ja nykyisen reitin kartoitus</li>
+              <li style="padding:11px 0;border-bottom:1px solid #c9c8c1;font-size:16px;line-height:1.5">Haastattelut ja jalkautuminen todellisiin ympäristöihin</li>
+              <li style="padding:11px 0;border-bottom:1px solid #c9c8c1;font-size:16px;line-height:1.5">Viestin ja tavoittamiskanavien rajattu testaus</li>
+              <li style="padding:11px 0;border-bottom:1px solid #c9c8c1;font-size:16px;line-height:1.5">Todellisten haku- tai ilmoittautumisreittien läpivienti</li>
+              <li style="padding:11px 0;border-bottom:1px solid #c9c8c1;font-size:16px;line-height:1.5">Putoamiskohtien, vastuiden ja jatkotarpeen määrittely</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-    <div style="background: #F3F0E9; border-radius: 20px; padding: 34px 30px; display: flex; flex-direction: column; gap: 16px;">
-      <span aria-hidden="true" style="display: block; height: 31px; flex-shrink: 0;"></span>
-      <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: 1.6rem;">Kartoitus ja viesti</h2>
-      <p style="margin: 0; font-weight: 700; font-size: 1.05rem; color: #0E2440;">Portaat 1 ja 2.</p>
-      <p style="margin: 0; font-size: 15.5px;">Kun haluatte että viesti menee perille kanavissa joissa perheet ovat.</p>
-      <p style="margin: auto 0 0; padding-top: 12px; border-top: 1px solid #E2DDCF; font-size: 15px; color: #5C6675;">Sisältää edellisen sekä sisällön tuotannon perheiden kielellä.</p>
-      <a href="menetelma.dc.html" style="font-size: 14.5px; color: #07706B; font-weight: 600;">Mitä viesti sisältää →</a>
-    </div>
-    <div style="background: #F3F0E9; border-radius: 20px; padding: 34px 30px; display: flex; flex-direction: column; gap: 16px;">
-      <span aria-hidden="true" style="display: block; height: 31px; flex-shrink: 0;"></span>
-      <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: 1.6rem;">Koko silta</h2>
-      <p style="margin: 0; font-weight: 700; font-size: 1.05rem; color: #0E2440;">Portaat 1–5.</p>
-      <p style="margin: 0; font-size: 15.5px;">Kun haku toistuu joka vuosi ja haluatte että suppilo on valmis joka kerta.</p>
-      <p style="margin: auto 0 0; padding-top: 12px; border-top: 1px solid #E2DDCF; font-size: 15px; color: #5C6675;">Sisältää edellisen, hakemusten läpiviennin, omankielisen tukilinjan ja kuukausiraportoinnin. Halutessanne osa hinnasta sidotaan tulokseen.</p>
-      <a href="menetelma.dc.html" style="font-size: 14.5px; color: #07706B; font-weight: 600;">Mitä koko silta sisältää →</a>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section data-screen-label="Hankinta" style="padding: clamp(48px, 8vw, 96px) 24px;">
-  <div style="max-width: 1140px; margin: 0 auto; background: #0E2440; border-radius: 22px; padding: clamp(36px, 6vw, 72px);">
-    <p style="margin: 0 0 20px; text-transform: uppercase; letter-spacing: 0.12em; font-size: 13px; font-weight: 700; color: #0FB5AE;">Hankinta</p>
-    <p style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #FBFAF7; font-size: clamp(1.4rem, 2.8vw, 2rem); line-height: 1.35; max-width: 44ch; font-variant-numeric: tabular-nums; text-wrap: pretty;">Kaikki paketit jäävät alle julkisten hankintojen <span style="color: #0FB5AE;">60 000 euron</span> kansallisen kynnysarvon. Hankinta voidaan siis tehdä suorahankintana, eikä sitä tarvitse kilpailuttaa.</p>
-  </div>
-</section>
-
-<section data-screen-label="Miten edetään" style="padding: clamp(48px, 8vw, 96px) 24px; background: #F3F0E9;">
-  <div style="max-width: 1140px; margin: 0 auto;">
-    <h2 style="font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: clamp(1.8rem, 3.6vw, 2.6rem); line-height: 1.12; margin: 0 0 40px;">Miten edetään</h2>
-    <ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px;">
-      <li style="background: #FBFAF7; border: 1px solid #E7E3D8; border-radius: 18px; padding: 28px 26px;">
-        <p style="margin: 0 0 12px; font-variant-numeric: tabular-nums; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0A8F89; font-size: 1.35rem;">1</p>
-        <h3 style="margin: 0 0 8px; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: 1.2rem; font-variant-numeric: tabular-nums;">Puhelu, 30 minuuttia</h3>
-        <p style="margin: 0; font-size: 15.5px;">Kerrotte tilanteen, kerromme mikä porras siihen sopii.</p>
-      </li>
-      <li style="background: #FBFAF7; border: 1px solid #E7E3D8; border-radius: 18px; padding: 28px 26px;">
-        <p style="margin: 0 0 12px; font-variant-numeric: tabular-nums; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0A8F89; font-size: 1.35rem;">2</p>
-        <h3 style="margin: 0 0 8px; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: 1.2rem;">Tarjous</h3>
-        <p style="margin: 0; font-size: 15.5px;">Kirjallinen, kiinteä hinta, selkeä laajuus ja aikataulu.</p>
-      </li>
-      <li style="background: #FBFAF7; border: 1px solid #E7E3D8; border-radius: 18px; padding: 28px 26px;">
-        <p style="margin: 0 0 12px; font-variant-numeric: tabular-nums; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0A8F89; font-size: 1.35rem;">3</p>
-        <h3 style="margin: 0 0 8px; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: 1.2rem;">Aloitus</h3>
-        <p style="margin: 0; font-size: 15.5px;">Ensimmäinen porras alkaa kahden viikon sisällä sopimuksesta.</p>
-      </li>
-    </ol>
-    <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 48px;">
-      <a href="https://cal.com/abducadir-abdullahi-aligure-tw1bge/30min" style="display: inline-block; background: #0E2440; color: #FBFAF7; padding: 15px 30px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 17px;" style-hover="background: #0A1A30; color: #FBFAF7;">Varaa 30 minuutin puhelu</a>
-      <a href="mailto:abducadir_abdullahi@aqoon.live" style="display: inline-block; background: transparent; color: #0E2440; padding: 13px 30px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 17px; border: 2px solid #0E2440;" style-hover="background: #0E2440; color: #FBFAF7;">Lähetä viesti</a>
+  <section aria-labelledby="h2-core" style="background:#f8f7f3;padding:clamp(44px,5vw,76px) 20px;border-bottom:1px solid #c9c8c1">
+    <div style="max-width:1180px;margin:0 auto">
+      <div style="background:#fff0df;border:1px solid #0a0a0a;padding:clamp(26px,3.4vw,44px)">
+        <p style="margin:0 0 12px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#087d78">Vaihe 2 · Jatkuva ydinpalvelu</p>
+        <h2 id="h2-core" style="margin:0 0 22px;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(30px,3.8vw,52px);line-height:1;max-width:22ch">Jatkuva tavoittamisen ja palvelun aloituksen toteutus</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(24px,3vw,48px)">
+          <p style="margin:0;font-size:17px;line-height:1.65;max-width:56ch;text-wrap:pretty">Vaihe 2 toteuttaa Vaiheessa 1 rajatun reitin jatkuvasti. AQOON hoitaa tavoittamisen, yhteydenotot, käytännön ohjauksen, sovitun vastuun siirron ja tuloksen varmennuksen. Seuranta jatkuu tarvittaessa ensimmäisiin viikkoihin, jotta aloitus ei jää vain hyväksytyksi hakemukseksi.</p>
+          <div>
+            <p style="margin:0 0 12px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#62625d">Toteutus sisältää</p>
+            <ul style="margin:0;padding:0;list-style:none;border-top:1px solid #c9c8c1">
+              <li style="padding:11px 0;border-bottom:1px solid #c9c8c1;font-size:16px;line-height:1.5">Vaiheessa 1 rajatun kohderyhmän jatkuva tavoittaminen</li>
+              <li style="padding:11px 0;border-bottom:1px solid #c9c8c1;font-size:16px;line-height:1.5">Omakielinen sisältö, kenttätyö, yhteisöt ja sovitut tekijät</li>
+              <li style="padding:11px 0;border-bottom:1px solid #c9c8c1;font-size:16px;line-height:1.5">Yhteydenottoihin vastaaminen ja alkukartoitus</li>
+              <li style="padding:11px 0;border-bottom:1px solid #c9c8c1;font-size:16px;line-height:1.5">Käytännön ohjaus seuraavaan tekoon</li>
+              <li style="padding:11px 0;border-bottom:1px solid #c9c8c1;font-size:16px;line-height:1.5">Vastuun siirto, aloituksen varmennus ja sovittu seuranta</li>
+              <li style="padding:11px 0;border-bottom:1px solid #c9c8c1;font-size:16px;line-height:1.5">Vaihekohtainen raportointi tilaajalle</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div style="margin-left:clamp(20px,5vw,80px);border:1px solid #c9c8c1;border-top:none;background:#f8f7f3;padding:clamp(22px,2.6vw,30px) clamp(22px,2.6vw,32px)">
+        <p style="margin:0 0 10px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#62625d">Ehdollinen lisätyö</p>
+        <h3 style="margin:0 0 12px;font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;font-size:clamp(22px,2.4vw,30px);line-height:1.05">Asiakaspolun ja materiaalien kehitys</h3>
+        <p style="margin:0;font-size:16.5px;line-height:1.62;max-width:60ch">Jos tutkimus tai jatkuva toteutus osoittaa, että este on viestissä, lomakkeessa, hakemisessa, odotuksessa, onboardingissa tai aloituksen materiaaleissa, korjaamme kyseisen kohdan. Lisätyötä ei myydä etukäteen ilman todettua estettä.</p>
+      </div>
     </div>
-  </div>
-</section>
-<section data-screen-label="Mitä jos emme tarvitse kaikkea" style="padding: clamp(48px, 8vw, 96px) 24px;">
-  <div style="max-width: 800px; margin: 0 auto;">
-    <h2 style="font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: clamp(1.8rem, 3.6vw, 2.6rem); line-height: 1.12; margin: 0 0 24px;">Mitä jos emme tarvitse kaikkea</h2>
-    <p style="margin: 0; font-size: 1.1rem; max-width: 60ch; text-wrap: pretty;">Jokainen porras toimii yksin. Useimmat aloittavat kartoituksesta, koska sen jälkeen tiedätte mitä muuta tarvitsette. Emme myy pakettia jota ette tarvitse.</p>
-  </div>
-</section>
+  </section>
+
+  <section aria-labelledby="h2-training" style="background:#e9e9e6;padding:clamp(40px,5vw,64px) 20px;border-bottom:1px solid #c9c8c1">
+    <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(24px,3vw,56px);align-items:center">
+      <div>
+        <p style="margin:0 0 10px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#62625d">Erillinen palvelu</p>
+        <h2 id="h2-training" style="margin:0;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(26px,3vw,38px);line-height:1.03">Henkilöstön valmennus</h2>
+      </div>
+      <p style="margin:0;font-size:16.5px;line-height:1.62;max-width:56ch">Henkilöstö valmistetaan vastaamaan käytännön kysymyksiin ja ottamaan ihmiset vastaan niin, ettei reitti katkea organisaation päässä. Valmennus rakennetaan tutkimuksessa tai toteutuksessa havaituista tilanteista; se ei ole yleinen kulttuuriluento.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="h2-start" style="background:#f8f7f3;padding:clamp(48px,6vw,84px) 20px;border-bottom:1px solid #c9c8c1">
+    <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(30px,4vw,64px);align-items:start">
+      <div>
+        <h2 id="h2-start" style="margin:0 0 20px;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(30px,3.8vw,50px);line-height:1;max-width:16ch">Miten kokonaisuus sovitaan</h2>
+        <p style="margin:0 0 16px;font-size:16.5px;line-height:1.62;max-width:50ch;color:#62625d">Vaihe 1 sovitaan rajattuna tutkimus- ja pilottikokonaisuutena. Vaihe 2:n laajuus perustuu kohderyhmään, alueeseen, kapasiteettiin, palvelutasoon ja varmennettavaan tulokseen.</p>
+        <p style="margin:0;font-size:16.5px;line-height:1.62;max-width:50ch;color:#62625d">Jatkuva toteutus voidaan sopia peruskorvauksen ja selkeästi määritellyn tulospalkkion yhdistelmänä. Julkista hinnastoa ei käytetä, koska vastuu ja todennettava tulos vaihtelevat toimeksiannoittain.</p>
+      </div>
+      <ol style="margin:0;padding:0;list-style:none;border-top:1px solid #c9c8c1;max-width:62ch">
+        <li style="padding:16px 0;border-bottom:1px solid #c9c8c1;font-size:16.5px;line-height:1.55">Vaihe 1:n tutkimuskysymys ja päätöskriteeri Vaiheelle 2</li>
+        <li style="padding:16px 0;border-bottom:1px solid #c9c8c1;font-size:16.5px;line-height:1.55">Yksi palvelu ja yksi sovittu kohderyhmä</li>
+        <li style="padding:16px 0;border-bottom:1px solid #c9c8c1;font-size:16.5px;line-height:1.55">Alue ja kapasiteetti, johon ihmisiä voidaan ohjata</li>
+        <li style="padding:16px 0;border-bottom:1px solid #c9c8c1;font-size:16.5px;line-height:1.55">Varmennettava tulos ja sen tarkistustapa</li>
+        <li style="padding:16px 0;border-bottom:1px solid #c9c8c1;font-size:16.5px;line-height:1.55">Yhteyshenkilö ja vastausaika organisaatiossa</li>
+        <li style="padding:16px 0;border-bottom:1px solid #c9c8c1;font-size:16.5px;line-height:1.55">Vastuun siirron kohta ja tietojen käsittelyn peruste</li>
+        <li style="padding:16px 0;border-bottom:1px solid #c9c8c1;font-size:16.5px;line-height:1.55">Raportoinnin vaiheet ja määritelmät</li>
+      </ol>
+    </div>
+  </section>
+
+  <section aria-label="Rajat ja vastuut" style="background:#0a0a0a;color:#f8f7f3;padding:clamp(44px,5vw,72px) 20px">
+    <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(26px,3.5vw,56px);align-items:start">
+      <div>
+        <h2 style="margin:0 0 18px;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(26px,3vw,40px);line-height:1.03;max-width:16ch">Mitä AQOON ei tee</h2>
+        <p style="margin:0;font-size:16.5px;line-height:1.62;color:#c9c8c1;max-width:52ch">AQOON ei ole viranomainen eikä tee palvelu-, etuus- tai kelpoisuuspäätöksiä. AQOON ei myy yhteystietolistoja eikä lupaa, että jokainen yhteydenotto täyttää palvelun ehdot tai johtaa aloitukseen.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+        <a href="Miten-toimimme.dc.html" style="font-size:16px;font-weight:500;color:#f8f7f3;text-decoration:none;border-bottom:1px solid #079d97;padding-bottom:3px">Katso koko työketju</a>
+        <a href="Tulokset.dc.html" style="font-size:16px;font-weight:500;color:#f8f7f3;text-decoration:none;border-bottom:1px solid #079d97;padding-bottom:3px">Katso, mitä pilotista opittiin</a>
+        <a href="Tietosuoja.dc.html" style="font-size:16px;font-weight:500;color:#f8f7f3;text-decoration:none;border-bottom:1px solid #079d97;padding-bottom:3px">Tietosuoja</a>
+        <a href="Vastuunrajaus.dc.html" style="font-size:16px;font-weight:500;color:#f8f7f3;text-decoration:none;border-bottom:1px solid #079d97;padding-bottom:3px">Vastuunrajaus ja riippumattomuus</a>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="cta-h2" style="background:#fff0df;padding:clamp(44px,5vw,72px) 20px">
+    <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(24px,3vw,48px);align-items:center">
+      <h2 id="cta-h2" style="margin:0;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(28px,3.5vw,46px);line-height:1;max-width:20ch">Mikä pitäisi ensin selvittää?</h2>
+      <div>
+        <p style="margin:0 0 26px;font-size:17px;line-height:1.65;max-width:52ch">Käydään läpi palvelu, kohderyhmä, nykyinen katkos ja tulos, jota mahdollisessa Vaiheessa 2 pitäisi seurata.</p>
+        <a href="https://cal.com/abducadir-abdullahi-aligure-tw1bge/30min" style="display:inline-block;background:#0a0a0a;color:#f8f7f3;text-decoration:none;font-size:16.5px;font-weight:500;padding:17px 28px;border-radius:999px">Varaa 30 minuutin keskustelu</a>
+      </div>
+    </div>
+  </section>
+
 </main>
-
-<footer style="background: #0E2440; color: #C9D2DE; padding: 48px 24px;">
-  <div style="max-width: 1140px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 32px; align-items: center; justify-content: space-between;">
-    <div style="display: flex; align-items: center; gap: 10px; color: #FBFAF7;">
-      <svg width="26" height="26" viewBox="0 0 96 96" fill="none" aria-hidden="true"><path d="M26 74 L48 26 L70 74" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"></path><path d="M37 56 L59 56" stroke="#0FB5AE" stroke-width="9" stroke-linecap="round"></path><circle cx="48" cy="56" r="4.5" fill="#E8A766"></circle></svg>
-      <span style="font-family: Fraunces, Georgia, serif; font-weight: 900; font-size: 18px;">AQOON</span>
-    </div>
-    <nav aria-label="Alavalikko" style="display: flex; flex-wrap: wrap; gap: 22px; font-size: 15px;">
-      <a href="tapaus.dc.html" style="color: #C9D2DE; text-decoration: none;" style-hover="color: #0FB5AE;">Tapaus</a>
-      <a href="menetelma.dc.html" style="color: #C9D2DE; text-decoration: none;" style-hover="color: #0FB5AE;">Menetelmä</a>
-      <a href="paketit.dc.html" style="color: #C9D2DE; text-decoration: none;" style-hover="color: #0FB5AE;">Paketit</a>
-    </nav>
-    <div style="display: flex; flex-wrap: wrap; gap: 24px; font-size: 15px; font-variant-numeric: tabular-nums;">
-      <a href="mailto:abducadir_abdullahi@aqoon.live" style="color: #C9D2DE;" style-hover="color: #0FB5AE;">abducadir_abdullahi@aqoon.live</a>
-      <a href="tel:+358452591438" style="color: #C9D2DE;" style-hover="color: #0FB5AE;">+358 45 259 1438</a>
-      <span>aqoon.live</span>
-    </div>
-  </div>
-</footer>
+<dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
 </x-dc>
-<script type="text/x-dc" data-dc-script>
-class Component extends DCLogic {
-  componentDidMount() { document.documentElement.lang = 'fi'; }
-  renderVals() { return {}; }
-}
-</script>
 </body>
 </html>

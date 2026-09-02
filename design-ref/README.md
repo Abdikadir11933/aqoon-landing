@@ -1,35 +1,30 @@
-# design-ref — uuden sivuston lähdeaineisto
+# design-ref — B2B-sivuston lähdeaineisto
 
-Nämä tiedostot ovat **suunnittelutyökalun vientejä, eivät julkaistavaa koodia.**
-Ne on tallennettu tänne vain siksi, että toteutusvaiheessa on yksi totuuslähde.
+Nämä tiedostot ovat suunnittelutyökalun vientejä, eivät julkaistavaa koodia. Ne säilytetään, jotta B2B-sivuston hyväksytty rakenne, sisältöhierarkia ja mitat ovat jäljitettävissä.
 
-| Tiedosto | Vastaava sivu |
+| Tiedosto | Vastaava tuotantosivu |
 |---|---|
 | `Etusivu.dc.html` | `/` |
 | `tapaus.dc.html` | `/tapaus` |
 | `menetelma.dc.html` | `/menetelma` |
-| `hinnat.dc.html` | `/hinnat` |
-| `perustaja-source.png` | perustajan kuva, 1200x1600 PNG, 1,1 MB |
+| `paketit.dc.html` | `/paketit` |
+| `perustaja-source.png` | perustajan alkuperäinen kuva |
 
-## Miksi näitä ei voi kopioida sellaisenaan
+`Kaksi puolta -vaihtoehdot.dc.html` on aikaisempi luonnos. Sitä ei käytetä sisältö- tai toteutuslähteenä. Etusivun hyväksytty kaksipuolinen kaavio on `Etusivu.dc.html`-tiedostossa.
 
-Vientitiedostot käyttävät suunnittelutyökalun omaa React-ajonaikaa, joka ei kuulu
-tähän repoon eikä toimi Vercelin staattisella hostauksella:
+## Toteutussääntö
 
-- `<x-dc>`, `<helmet>`, `<sc-if value="{{ ... }}">` — omia elementtejä
-- `ref="{{ x }}"`, `onClick="{{ go1 }}"`, `open="{{ true }}"` — ei HTML:ää
-- `style-hover="..."` — ei ole olemassa CSS:ssä
-- `<script type="text/x-dc">` + `class Component extends DCLogic` — vaatii Reactin
-- Kaikki tyylit ovat inline-attribuutteina, ei luokkina
+Vientitiedostot sisältävät suunnittelutyökalun omia elementtejä ja templaatteja, kuten `<x-dc>`, `<helmet>`, `<dc-import>` ja `{{ ... }}`. Niitä ei kopioida tuotantoon sellaisenaan.
 
-Toteutus kirjoitetaan siis uudelleen: **semanttinen HTML + luokat
-`assets/styles.css`:ssä + vanilla JS `assets/main.js`:ssä.** Vientitiedostot
-kertovat rakenteen, sisällön ja mitat. Ne eivät kerro toteutustapaa.
+Tuotantosivut ovat semanttista staattista HTML:ää. Jaettu responsiivinen navigaatio ja mobiilivalikko ovat `assets/site.css`- ja `assets/site.js`-tiedostoissa. Vientien inline-mitat säilytetään silloin, kun ne ovat osa hyväksyttyä visuaalista rakennetta.
 
-## Tunnetut virheet vientitiedostoissa
+## Sisältömalli
 
-- `Etusivu.dc.html:142` — `</ol</ol>` on rikkinäinen sulkutagi
-- `perustaja-source.png` on identtinen zipin `pasted-...png`:n kanssa (sama md5)
+- Etusivun silta: organisaatiolla on palvelu, ihmisellä tarve ja AQOON rakentaa puuttuvan käytännön reitin.
+- Vaihe 1: tutkimus ja rajattu pilotti, joka löytää katkoksen ja määrittää jatkon.
+- Vaihe 2: jatkuva tavoittamisen ja palvelun aloituksen toteutus.
+- Asiakaspolun ja materiaalien kehitys: vain todetusta tarpeesta aktivoitava lisätyö.
+- Henkilöstön valmennus: erillinen, todellisiin tilanteisiin perustuva palvelu.
+- Julkisia euromääräisiä hintoja ei esitetä.
 
-Kun sivut on toteutettu ja hyväksytty, tämä kansio voidaan poistaa.
-**Poisto vaatii omistajan vahvistuksen** (CLAUDE.md).
+Suunnittelulähteiden poistaminen vaatii edelleen omistajan vahvistuksen.

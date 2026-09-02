@@ -8,332 +8,187 @@
 <body>
 <x-dc>
 <helmet>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AQOON, silta instituutioihin</title>
-<meta name="description" content="AQOON rakentaa sillan palvelun ja maahanmuuttajaperheen välille: kartoitus, viesti, sisäänpääsy ja omankielinen tuki.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,900;1,9..144,900&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-html{scroll-behavior:smooth}
-@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
-body{margin:0;background:#FBFAF7;color:#16202E;font-family:Outfit,system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
-a{color:#07706B}a:hover{color:#0E2440}
-:focus-visible{outline:3px solid #0FB5AE;outline-offset:2px;border-radius:4px}
-summary::-webkit-details-marker{display:none}
-summary::marker{content:""}
-details[open] > summary .dets-bar{transform:rotate(90deg)}
-button[aria-expanded="true"] .dets-bar{transform:rotate(90deg)}
-details::details-content{opacity:0;block-size:0;overflow:hidden;transition:content-visibility 0.3s allow-discrete,opacity 0.3s,block-size 0.3s}
-details[open]::details-content{opacity:1;block-size:auto}
-@supports (interpolate-size: allow-keywords){:root{interpolate-size:allow-keywords}}
-@media (prefers-reduced-motion: reduce){details::details-content{transition:none}.dets-bar{transition:none}}
-</style>
+<title>Somalinkielisten perheiden ja aikuisten tavoittaminen | AQOON</title>
+<meta name="description" content="AQOON auttaa organisaatioita tavoittamaan somalinkielisiä perheitä ja aikuisia, vastaamaan etenemistä estäviin kysymyksiin ja tukemaan etenemistä palvelun alkuun asti." />
+<link rel="canonical" href="https://aqoon.live/" />
+<meta property="og:title" content="Somalinkielisten perheiden ja aikuisten tavoittaminen | AQOON" />
+<meta property="og:description" content="Tarve on. Kiinnostus on. Yhteys puuttuu. AQOON rakentaa väliin toimivan reitin." />
+<meta property="og:url" content="https://aqoon.live/" />
+<meta name="robots" content="index,follow" />
 </helmet>
-<a href="#sisalto" style="position: absolute; left: -9999px; top: 8px; z-index: 40; background: #0E2440; color: #FBFAF7; padding: 12px 20px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 15px;" style-focus="left: 16px;">Siirry sisältöön</a>
-<header style="position: sticky; top: 0; z-index: 20; background: rgba(251,250,247,0.94); backdrop-filter: blur(8px); border-bottom: 1px solid #E7E3D8;">
-  <div style="max-width: 1140px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap;">
-    <a href="Etusivu.dc.html" aria-current="page" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #0E2440;">
-      <svg width="30" height="30" viewBox="0 0 96 96" fill="none" aria-hidden="true"><path d="M26 74 L48 26 L70 74" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"></path><path d="M37 56 L59 56" stroke="#0FB5AE" stroke-width="9" stroke-linecap="round"></path><circle cx="48" cy="56" r="4.5" fill="#E8A766"></circle></svg>
-      <span style="font-family: Fraunces, Georgia, serif; font-weight: 900; font-size: 20px; letter-spacing: 0.02em;">AQOON</span>
-    </a>
-    <nav aria-label="Päävalikko" style="display: flex; align-items: center; gap: 20px; margin-left: auto; flex-wrap: wrap;">
-      <a href="tapaus.dc.html" style="text-decoration: none; color: #16202E; font-weight: 500; font-size: 15px; padding: 10px 2px;" style-hover="color: #07706B;">Tapaus</a>
-      <a href="menetelma.dc.html" style="text-decoration: none; color: #16202E; font-weight: 500; font-size: 15px; padding: 10px 2px;" style-hover="color: #07706B;">Menetelmä</a>
-      <a href="paketit.dc.html" style="text-decoration: none; color: #16202E; font-weight: 500; font-size: 15px; padding: 10px 2px;" style-hover="color: #07706B;">Paketit</a>
-      <a href="https://cal.com/abducadir-abdullahi-aligure-tw1bge/30min" style="display: inline-block; background: #0E2440; color: #FBFAF7; padding: 10px 22px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 15px;" style-hover="background: #0A1A30; color: #FBFAF7;">Varaa puhelu</a>
-    </nav>
-  </div>
-</header>
+<dc-import name="SiteHeader" active="" hint-size="100%,66px"></dc-import>
+<main style="font-family:'Outfit',system-ui,sans-serif;color:#0a0a0a">
 
-<main id="sisalto" tabIndex="-1" style="outline: none;">
-<section data-screen-label="Hero" style="position: relative; overflow: hidden; padding: clamp(72px, 12vw, 140px) 24px clamp(48px, 8vw, 88px);">
-  <svg aria-hidden="true" viewBox="0 0 96 96" fill="none" style="position: absolute; right: -4%; bottom: -22%; width: min(58vw, 620px); height: auto; opacity: 0.06; pointer-events: none;"><path d="M26 74 L48 26 L70 74" stroke="#0E2440" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"></path><path d="M37 56 L59 56" stroke="#0FB5AE" stroke-width="9" stroke-linecap="round"></path><circle cx="48" cy="56" r="4.5" fill="#E8A766"></circle></svg>
-  <div style="position: relative; max-width: 1140px; margin: 0 auto;">
-    <h1 style="font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: clamp(2.5rem, 6.5vw, 4.6rem); line-height: 1.06; letter-spacing: -0.01em; margin: 0; max-width: 15ch; text-wrap: pretty;">Apu on jo olemassa. Me viemme sen <em style="color: #0A8F89;">perille.</em></h1>
-    <p style="font-size: clamp(1.1rem, 2vw, 1.35rem); max-width: 46ch; margin: 28px 0 40px; color: #16202E; text-wrap: pretty;">Palvelut, ohjelmat ja tuki on rakennettu maahanmuuttajaperheille, mutta ne eivät tavoita heitä. AQOON on se silta.</p>
-    <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-      <a href="https://cal.com/abducadir-abdullahi-aligure-tw1bge/30min" style="display: inline-block; background: #0E2440; color: #FBFAF7; padding: 15px 30px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 17px;" style-hover="background: #0A1A30; color: #FBFAF7;">Varaa 30 minuutin puhelu</a>
-      <a href="mailto:abducadir_abdullahi@aqoon.live" style="display: inline-block; background: transparent; color: #0E2440; padding: 13px 30px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 17px; border: 2px solid #0E2440;" style-hover="background: #0E2440; color: #FBFAF7;">Lähetä viesti</a>
-    </div>
-  </div>
-</section>
-
-<section data-screen-label="Kaksi totuutta" ref="{{ tW }}" style="padding: clamp(64px, 10vw, 136px) 24px;">
-  <div style="max-width: 1140px; margin: 0 auto;">
-    <div ref="{{ tF }}" style="display: grid; grid-template-columns: 1fr 140px 1fr; align-items: start;">
-      <div ref="{{ tL }}" style="will-change: transform;">
-        <p style="margin: 0 0 20px; text-transform: uppercase; letter-spacing: 0.12em; font-size: 13px; font-weight: 700; color: #07706B;">Mitä instituutio näkee</p>
-        <p style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 900; font-size: clamp(1.3rem, 2.4vw, 1.8rem); line-height: 1.3; color: #0E2440; max-width: 20ch; text-wrap: pretty;">Palvelu on maksuton. Rahoitus on kunnossa. Paikkoja on vapaana.</p>
-        <p style="margin: 26px 0 0; font-family: Fraunces, Georgia, serif; font-weight: 900; font-size: clamp(1.7rem, 3.4vw, 2.5rem); line-height: 1.15; color: #07706B;">Hakemuksia ei tule.</p>
+  <section aria-labelledby="hero-h1" style="background:#f8f7f3;padding:clamp(48px,7vw,96px) 20px clamp(56px,7vw,104px);border-bottom:1px solid #c9c8c1">
+    <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(36px,5vw,72px);align-items:center">
+      <div>
+        <p style="margin:0 0 22px;font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#62625d;display:flex;align-items:center;gap:12px"><span style="width:26px;height:2px;background:#079d97;display:inline-block"></span>Somalinkielisten perheiden ja aikuisten tavoittaminen Suomessa</p>
+        <h1 id="hero-h1" style="margin:0 0 26px;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(46px,6.6vw,86px);line-height:.93;letter-spacing:-.005em">Tarve on.<br />Kiinnostus on.<br />Yhteys puuttuu.</h1>
+        <p style="margin:0 0 32px;font-size:clamp(17px,1.35vw,19.5px);line-height:1.6;max-width:52ch;color:#1a1a18;text-wrap:pretty">AQOON auttaa organisaatioita tavoittamaan somalinkielisiä perheitä ja aikuisia, vastaamaan etenemistä estäviin kysymyksiin ja tukemaan etenemistä palvelun alkuun asti.</p>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px">
+          <a href="https://cal.com/abducadir-abdullahi-aligure-tw1bge/30min" style="background:#0a0a0a;color:#f8f7f3;text-decoration:none;font-size:16px;font-weight:500;padding:16px 26px;border-radius:999px">Varaa 30 minuutin keskustelu</a>
+          <a href="Tulokset.dc.html" style="font-size:16px;color:#087d78;font-weight:500;text-decoration:none;border-bottom:1px solid #c9c8c1;padding-bottom:3px">Katso, mitä pilotista opittiin</a>
+        </div>
       </div>
-      <div></div>
-      <div ref="{{ tR }}" style="will-change: transform;">
-        <p style="margin: 0 0 20px; text-transform: uppercase; letter-spacing: 0.12em; font-size: 13px; font-weight: 700; color: #7A4E1E;">Mitä perheet sanovat</p>
-        <p style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 900; font-size: clamp(1.3rem, 2.4vw, 1.8rem); line-height: 1.3; color: #0E2440; max-width: 22ch; text-wrap: pretty;">Meille ei ole mitään. Kukaan ei ole kertonut mistään, eikä kukaan auta. En ymmärrä mitä minun pitäisi tehdä.</p>
-        <p style="margin: 26px 0 0; font-family: Fraunces, Georgia, serif; font-weight: 900; font-size: clamp(1.7rem, 3.4vw, 2.5rem); line-height: 1.15; color: #7A4E1E;">Voisiko joku auttaa?</p>
+      <div aria-hidden="false" role="img" aria-label="Kaavio: organisaatiolla on palvelu ja ihmisellä tarve. AQOON rakentaa niiden väliin reitin tavoittamisesta varmennettuun aloitukseen." style="border:1px solid #c9c8c1;background:#fff0df;padding:clamp(26px,3vw,40px) clamp(22px,3vw,36px)">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px">
+          <div>
+            <p style="margin:0 0 6px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#62625d">Teillä on ratkaisu</p>
+            <p style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:34px;font-weight:600;text-transform:uppercase;line-height:1">Palvelu</p>
+            <p style="margin:6px 0 0;font-size:13.5px;color:#62625d;max-width:18ch;line-height:1.45">jonka pitäisi löytää oikeat ihmiset</p>
+          </div>
+          <div style="text-align:right">
+            <p style="margin:0 0 6px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#62625d">Ihmisellä on</p>
+            <p style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:34px;font-weight:600;text-transform:uppercase;line-height:1">Tarve</p>
+            <p style="margin:6px 0 0 auto;font-size:13.5px;color:#62625d;max-width:19ch;line-height:1.45">mutta tieto, luottamus tai käytännön reitti puuttuu</p>
+          </div>
+        </div>
+        <div style="margin:26px 0 22px;position:relative;height:2px;background:repeating-linear-gradient(90deg,#c9c8c1 0 8px,transparent 8px 16px)">
+          <span style="position:absolute;left:50%;top:-13px;transform:translateX(-50%);background:#fff0df;padding:0 10px;font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#62625d">Puuttuva reitti</span>
+        </div>
+        <div style="border:1px solid #0a0a0a;background:#f8f7f3;padding:18px 20px">
+          <p style="margin:0 0 10px;font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;line-height:1">AQOON</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px 10px;font-size:13.5px;color:#1a1a18">
+            <span style="border:1px solid #c9c8c1;padding:5px 10px">Tavoittaminen</span>
+            <span style="border:1px solid #c9c8c1;padding:5px 10px">Keskustelu</span>
+            <span style="border:1px solid #c9c8c1;padding:5px 10px">Tuettu teko</span>
+            <span style="border:1px solid #c9c8c1;padding:5px 10px">Vastuun siirto</span>
+          </div>
+        </div>
+        <p style="margin:16px 0 0;font-family:'Caveat',cursive;font-size:21px;color:#087d78">Palvelusta varmennettuun aloitukseen.</p>
       </div>
     </div>
-    <div style="display: flex; align-items: center; gap: 28px; margin-top: clamp(40px, 6vw, 64px);">
-      <span ref="{{ bL }}" aria-hidden="true" style="flex: 1; height: 4px; border-radius: 4px; background: #0A8F89; transform-origin: left center;"></span>
-      <p style="margin: 0; font-size: 14.5px; color: #5C6675; text-align: center; max-width: 34ch;">Molemmat pitävät paikkansa. Väliin ei ole rakennettu mitään.</p>
-      <span ref="{{ bR }}" aria-hidden="true" style="flex: 1; height: 4px; border-radius: 4px; background: #0A8F89; transform-origin: right center;"></span>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section data-screen-label="Ongelma" style="padding: clamp(48px, 8vw, 96px) 24px;">
-  <div style="max-width: 800px; margin: 0 auto;">
-    <h2 style="font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: clamp(1.6rem, 3.2vw, 2.3rem); line-height: 1.15; margin: 0 0 12px; text-wrap: pretty;">Palvelu on olemassa. <em style="color: #0A8F89;">Reitti siihen ei ole.</em></h2>
-    <p style="margin: 0 0 28px; font-size: 1.05rem; color: #5C6675; max-width: 56ch;">Kolme asiaa toistuu joka toimeksiannossa.</p>
-    <ul style="list-style: none; margin: 0; padding: 0;">
-      <li style="padding: 16px 0; border-top: 1px solid #E7E3D8; font-size: 1.05rem;">Tieto julkaistaan kanavissa joita perheet eivät seuraa, kielellä jota he eivät lue</li>
-      <li style="padding: 16px 0; border-top: 1px solid #E7E3D8; font-size: 1.05rem;">Polku katkeaa puoliväliin. Esite on käännetty, mutta linkin takana lomake on suomeksi, ja siitä eteenpäin ollaan yksin</li>
-      <li style="padding: 16px 0; border-top: 1px solid #E7E3D8; border-bottom: 1px solid #E7E3D8; font-size: 1.05rem;">Ratkaisevat kysymykset jäävät vastaamatta: kuulunko minä tähän, mitä se maksaa, ja mitä tapahtuu kun lähetän lomakkeen</li>
-    </ul>
-    <p style="font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: clamp(1.2rem, 2.2vw, 1.5rem); line-height: 1.4; margin: 28px 0 16px; text-wrap: pretty;">Perheet eivät jätä hakematta siksi etteivät haluaisi. He jättävät koska kukaan ei ole kertonut <em style="color: #0A8F89;">pääseekö sinne.</em></p>
-    <a href="menetelma.dc.html" style="color: #07706B; font-weight: 600; font-size: 1.05rem;">Näin polku korjataan →</a>
-  </div>
-</section>
-
-<section data-screen-label="Viisi porrasta" style="padding: clamp(48px, 8vw, 96px) 24px; background: #F3F0E9;">
-  <div style="max-width: 1140px; margin: 0 auto;">
-    <div style="display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap; margin-bottom: 36px;">
-      <h2 style="font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: clamp(1.6rem, 3.2vw, 2.3rem); line-height: 1.15; margin: 0;">Viisi porrasta</h2>
-      <p style="margin: 0; color: #5C6675; font-size: 1rem;">Osta yksi tai kaikki. Jokainen toimii yksin.</p>
-    </div>
-    <ol data-stagger="true" style="list-style: none; margin: 0 0 32px; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px;">
-      <li style="background: #FBFAF7; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 6px;">
-        <span style="font-variant-numeric: tabular-nums; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0A8F89; font-size: 1.2rem;">1</span>
-        <h3 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: 1.1rem;">Kartoitus</h3>
-        <p style="margin: 0; font-size: 14.5px; color: #444d59;">Selvitämme miksi he eivät tule, perheiden omin sanoin</p>
-      </li>
-      <li style="background: #FBFAF7; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 6px;">
-        <span style="font-variant-numeric: tabular-nums; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0A8F89; font-size: 1.2rem;">2</span>
-        <h3 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: 1.1rem;">Viesti</h3>
-        <p style="margin: 0; font-size: 14.5px; color: #444d59;">Korjaamme sen miten heille puhutaan, heidän kielellään</p>
-      </li>
-      <li style="background: #FBFAF7; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 6px;">
-        <span style="font-variant-numeric: tabular-nums; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0A8F89; font-size: 1.2rem;">3</span>
-        <h3 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: 1.1rem;">Sisäänpääsy</h3>
-        <p style="margin: 0; font-size: 14.5px; color: #444d59;">Viemme perheen hakemuksen läpi, vierellä istuen</p>
-      </li>
-      <li style="background: #FBFAF7; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 6px;">
-        <span style="font-variant-numeric: tabular-nums; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0A8F89; font-size: 1.2rem;">4</span>
-        <h3 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: 1.1rem;">Tukilinja</h3>
-        <p style="margin: 0; font-size: 14.5px; color: #444d59;">Olemme paikalla sen jälkeen, omalla kielellä</p>
-      </li>
-      <li style="background: #FBFAF7; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 6px;">
-        <span style="font-variant-numeric: tabular-nums; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0A8F89; font-size: 1.2rem;">5</span>
-        <h3 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: 1.1rem;">Tulos</h3>
-        <p style="margin: 0; font-size: 14.5px; color: #444d59;">Halutessanne maksatte tuloksesta, ette työstä</p>
-      </li>
-    </ol>
-    <a href="menetelma.dc.html" style="color: #07706B; font-weight: 600; font-size: 1.05rem;">Katso menetelmä →</a>
-  </div>
-</section>
-
-<section data-screen-label="Tapaus" style="padding: clamp(56px, 9vw, 104px) 24px; background: #0E2440;">
-  <div style="max-width: 800px; margin: 0 auto;">
-    <h2 style="font-family: Fraunces, Georgia, serif; font-weight: 900; color: #FBFAF7; font-size: clamp(1.7rem, 3.4vw, 2.4rem); line-height: 1.15; margin: 0 0 28px; text-wrap: pretty;">Yksi pilotti, kuusi estettä, yksi <em style="color: #0FB5AE;">rakenteellinen löydös</em></h2>
-    <p style="margin: 0 0 18px; font-size: 1.05rem; max-width: 60ch; color: #E2E7EE;">Valtakunnallinen yksityinen päiväkotiketju kysyi miksi maahanmuuttajaperheet eivät hae heille. Paikkoja oli vapaana ja perheelle hinta olisi ollut nolla euroa kuussa.</p>
-    <p style="margin: 0 0 32px; font-size: 1.05rem; max-width: 60ch; color: #E2E7EE;">Löysimme kuusi estettä ja yhden asian jota kukaan ei ollut sanonut ääneen: yksityinen ei häviä valintatilanteessa, koska se ei ole koskaan mukana siinä.</p>
-    <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-      <a href="tapaus.dc.html" style="display: inline-block; background: #FBFAF7; color: #0E2440; padding: 13px 26px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 15.5px;" style-hover="background: #F3F0E9; color: #0E2440;">Lue koko tapaus →</a>
-      <a href="tapaus.dc.html#luvut" style="display: inline-block; background: transparent; color: #FBFAF7; padding: 11px 26px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 15.5px; border: 2px solid rgba(251,250,247,0.6);" style-hover="border-color: #FBFAF7; background: rgba(251,250,247,0.08); color: #FBFAF7;">Katso luvut →</a>
-    </div>
-  </div>
-</section>
-
-<section data-screen-label="Kenelle" style="padding: clamp(48px, 8vw, 96px) 24px;">
-  <div style="max-width: 800px; margin: 0 auto;">
-    <h2 style="font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: clamp(1.6rem, 3.2vw, 2.3rem); line-height: 1.15; margin: 0 0 28px;">Kenelle tämä on</h2>
-    <ul style="list-style: none; margin: 0; padding: 0;">
-      <li style="padding: 14px 0; border-top: 1px solid #E7E3D8; font-size: 1.05rem;">Yksityiset päiväkotiketjut, joilla on tyhjiä paikkoja</li>
-      <li style="padding: 14px 0; border-top: 1px solid #E7E3D8; font-size: 1.05rem;">Kunnan harrastus- ja nuorisopalvelut, joilla on maksuton ohjelma jota kukaan ei löydä</li>
-      <li style="padding: 14px 0; border-top: 1px solid #E7E3D8; font-size: 1.05rem;">Kuntien kotoutumisyksiköt</li>
-      <li style="padding: 14px 0; border-top: 1px solid #E7E3D8; border-bottom: 1px solid #E7E3D8; font-size: 1.05rem;">Kunnalliset vuokrataloyhtiöt, joilla on tyhjiä isoja asuntoja</li>
-    </ul>
-    <p style="margin: 20px 0 0; font-size: 15px; color: #5C6675;">Sama menetelmä pätee kaikkialla missä palvelu on olemassa eikä yhteisö käytä sitä. Myös yrityksissä.</p>
-  </div>
-</section>
-
-<section data-screen-label="Perustaja" style="padding: clamp(56px, 9vw, 112px) 24px; background: #F3F0E9;">
-  <div style="max-width: 1140px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: clamp(32px, 5vw, 64px); align-items: flex-start;">
-    <div style="flex: 0 1 380px; min-width: 250px;">
-      <div style="position: relative; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 22px;">
-        <img ref="{{ ph }}" src="uploads/photo-1785338473323.png" alt="Abducadir Aligure hymyilee kameralle" loading="lazy" decoding="async" style="position: absolute; width: 150%; left: -7%; top: -10%; display: block;">
+  <section aria-labelledby="gap-h2" style="background:#fff0df;padding:clamp(56px,7vw,96px) 20px;border-bottom:1px solid #c9c8c1">
+    <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(32px,5vw,72px)">
+      <div>
+        <h2 id="gap-h2" style="margin:0;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(36px,4.4vw,58px);line-height:.98;max-width:18ch">Palvelu on olemassa. Polku ei vielä toimi.</h2>
+      </div>
+      <div style="max-width:62ch">
+        <p style="margin:0 0 18px;font-size:17px;line-height:1.65;text-wrap:pretty">Verkkosivu tai käännös kertoo, mitä palvelu tarjoaa. Se ei aina vastaa kysymyksiin, joiden perusteella ihminen uskaltaa toimia: koskeeko tämä minua, mitä tämä maksaa, miten haen ja mitä tapahtuu seuraavaksi.</p>
+        <p style="margin:0 0 26px;font-size:17px;line-height:1.65;text-wrap:pretty">Organisaatio näkee palvelun, joka pitäisi saada käyttöön. Ihminen näkee päätöksen, johon liittyy avoimia kysymyksiä ja riskejä. AQOON rakentaa väliin toimivan reitin.</p>
+        <p style="margin:0 0 20px;padding:20px 22px;background:#f8f7f3;border-left:2px solid #079d97;font-size:16.5px;line-height:1.6">Tavoitamme ihmisiä omissa digikanavissamme, kentällä, yhteisöjen ja luotettujen tekijöiden kautta. Aloitamme ymmärrettävän keskustelun, autamme seuraavaan käytännön tekoon ja seuraamme sovittua tulosta.</p>
+        <p style="margin:0 0 22px;font-size:14.5px;line-height:1.6;color:#62625d">Kenttäymmärrys perustuu äitien ja muiden palvelunkäyttäjien kanssa käytyihin haastatteluihin sekä puhelin- ja kenttäkeskusteluihin.</p>
+        <a href="Miten-toimimme.dc.html" style="font-size:16px;font-weight:500;color:#087d78;text-decoration:none;border-bottom:1px solid #c9c8c1;padding-bottom:3px">Näin työ etenee</a>
       </div>
     </div>
-    <div style="flex: 1 1 320px; min-width: 280px;">
-      <h2 style="font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: clamp(1.9rem, 4vw, 2.8rem); line-height: 1.12; margin: 0 0 8px;">Abducadir Aligure</h2>
-      <p style="margin: 0 0 28px; text-transform: uppercase; letter-spacing: 0.12em; font-size: 13px; font-weight: 700; color: #0E2440;">Perustaja</p>
-      <p style="margin: 0 0 20px; font-size: 1.1rem; line-height: 1.7; max-width: 54ch; text-wrap: pretty;">Näin ongelman rakenteena. Perheeni nuorimpana ja integroituneimpana minusta tuli jo lapsena se silta: se joka selitti viestit, täytti lomakkeet ja soitti puhelut perheelle ja naapureille. Teen sitä yhä tänään.</p>
-      <p style="margin: 0 0 20px; font-size: 1.1rem; line-height: 1.7; max-width: 54ch; text-wrap: pretty;">Taustani on logistiikassa ja hankintainsinöörin työssä. Siellä opin näkemään kotoutumisen logistisena ongelmana. Perheen pitäisi liikkua järjestelmän läpi sujuvasti, mutta matkalla on muuri: linkkejä, byrokratiaa ja tuntematonta.</p>
-      <p style="margin: 0 0 20px; font-size: 1.1rem; line-height: 1.7; max-width: 54ch; text-wrap: pretty;">Hankintainsinöörinä opin että ongelma ei yleensä ole tavarapula vaan rikkinäinen toimitusketju. Sama logiikka pätee kotoutumiseen. Palvelu on olemassa, mutta polku perheelle on katkennut.</p>
-      <p style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: clamp(1.2rem, 2.2vw, 1.5rem); line-height: 1.4; max-width: 46ch; text-wrap: pretty;">Rakastuin tuon muurin purkamiseen. AQOON on sen työn jatke: <em style="color: #0A8F89;">inhimillisen logistiikan korjaamista.</em></p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section data-screen-label="Paketit" style="padding: clamp(24px, 4vw, 48px) 24px clamp(48px, 8vw, 96px);">
-  <div style="max-width: 800px; margin: 0 auto;">
-    <h2 style="font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: clamp(1.6rem, 3.2vw, 2.3rem); line-height: 1.15; margin: 0 0 28px;">Kolme pakettia</h2>
-    <ul style="list-style: none; margin: 0; padding: 0;">
-      <li style="padding: 14px 0; border-top: 1px solid #E7E3D8; font-size: 1.05rem;"><strong>Kartoitus.</strong> Selvitys siitä miksi perheet eivät tule</li>
-      <li style="padding: 14px 0; border-top: 1px solid #E7E3D8; font-size: 1.05rem;"><strong>Kartoitus ja viesti.</strong> Selvitys sekä sisältö perheiden kielellä, kanavissa joita he seuraavat</li>
-      <li style="padding: 14px 0; border-top: 1px solid #E7E3D8; border-bottom: 1px solid #E7E3D8; font-size: 1.05rem;"><strong>Koko silta.</strong> Kartoituksesta sisäänpääsyyn ja tukilinjaan asti</li>
-    </ul>
-    <a href="paketit.dc.html" style="display: inline-block; margin-top: 24px; color: #07706B; font-weight: 600; font-size: 1.05rem;">Katso paketit →</a>
-  </div>
-</section>
-
-<section data-screen-label="Yhteys" style="padding: clamp(64px, 10vw, 128px) 24px; background: #F3F0E9;">
-  <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-    <h2 style="font-family: Fraunces, Georgia, serif; font-weight: 900; color: #0E2440; font-size: clamp(1.9rem, 4.5vw, 3.2rem); line-height: 1.12; margin: 0 0 16px; text-wrap: pretty;">Onko teillä palvelu joka ei tavoita perheitä?</h2>
-    <p style="margin: 0 0 40px; font-size: 1.15rem; color: #16202E;">Otan syksyllä yhden tai kaksi uutta projektia.</p>
-    <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;">
-      <a href="https://cal.com/abducadir-abdullahi-aligure-tw1bge/30min" style="display: inline-block; background: #0E2440; color: #FBFAF7; padding: 15px 30px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 17px;" style-hover="background: #0A1A30; color: #FBFAF7;">Varaa 30 minuutin puhelu</a>
-      <a href="mailto:abducadir_abdullahi@aqoon.live" style="display: inline-block; background: transparent; color: #0E2440; padding: 13px 30px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 17px; border: 2px solid #0E2440;" style-hover="background: #0E2440; color: #FBFAF7;">Lähetä viesti</a>
+  <section aria-labelledby="reach-h2" style="background:#0a0a0a;color:#f8f7f3;padding:clamp(56px,7vw,96px) 20px">
+    <div style="max-width:1180px;margin:0 auto">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(28px,4vw,64px);align-items:start">
+        <h2 id="reach-h2" style="margin:0;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(32px,3.9vw,52px);line-height:1;max-width:20ch">Yksi kanava osoittaa, että oikea viesti löytää yleisön.</h2>
+        <p style="margin:0;font-size:16.5px;line-height:1.65;color:#c9c8c1;max-width:60ch;text-wrap:pretty">TikTok ei ole AQOONin palvelu. Se on yksi todennettu jakelukanava. Käytännöllinen somalinkielinen sisältö on löytänyt Suomessa yleisön erityisesti silloin, kun aiheena ovat oikeudet, palvelut, koulu, päiväkoti tai yksi selkeä seuraava askel.</p>
+      </div>
+      <div style="margin-top:clamp(36px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));border-top:1px solid #2a2a28">
+        <div style="padding:26px 24px 22px;border-bottom:1px solid #2a2a28;border-right:1px solid #2a2a28">
+          <p style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:clamp(42px,5vw,64px);font-weight:600;line-height:1;font-variant-numeric:tabular-nums">123 509</p>
+          <p style="margin:8px 0 0;font-size:14.5px;color:#c9c8c1">videokatselua</p>
+        </div>
+        <div style="padding:26px 24px 22px;border-bottom:1px solid #2a2a28;border-right:1px solid #2a2a28">
+          <p style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:clamp(42px,5vw,64px);font-weight:600;line-height:1;font-variant-numeric:tabular-nums">1 142</p>
+          <p style="margin:8px 0 0;font-size:14.5px;color:#c9c8c1">jakoa</p>
+        </div>
+        <div style="padding:26px 24px 22px;border-bottom:1px solid #2a2a28">
+          <p style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:clamp(42px,5vw,64px);font-weight:600;line-height:1;font-variant-numeric:tabular-nums">84,1 %</p>
+          <p style="margin:8px 0 0;font-size:14.5px;color:#c9c8c1">seuraajista Suomessa</p>
+        </div>
+      </div>
+      <div style="margin-top:22px;display:flex;flex-wrap:wrap;gap:14px 32px;align-items:baseline;justify-content:space-between">
+        <p style="margin:0;font-size:13.5px;line-height:1.6;color:#8a8a84;max-width:66ch">TikTok-tili, 1.9.2025–31.8.2026. Luvut kuvaavat tavoittamista ja jakelua. Ne eivät ole hakemuksia tai palvelun aloituksia.</p>
+        <a href="Havainto-tiktok-analyysi.dc.html" style="font-size:15.5px;font-weight:500;color:#f8f7f3;text-decoration:none;border-bottom:1px solid #079d97;padding-bottom:3px;white-space:nowrap">Lue koko kanava-analyysi</a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <section aria-labelledby="pilot-h2" style="background:#f8f7f3;padding:clamp(56px,7vw,96px) 20px;border-bottom:1px solid #c9c8c1">
+    <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(32px,5vw,64px)">
+      <div>
+        <p style="margin:0 0 18px;font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#62625d;display:flex;align-items:center;gap:12px"><span style="width:26px;height:2px;background:#079d97;display:inline-block"></span>Tutkimuslähtöinen varhaiskasvatuspilotti</p>
+        <h2 id="pilot-h2" style="margin:0 0 26px;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(36px,4.4vw,58px);line-height:.98;max-width:16ch">Vaihe 1 teki katkokset näkyviksi.</h2>
+        <div style="border:1px solid #c9c8c1;background:#e9e9e6">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">
+            <div style="padding:18px 20px;border-right:1px solid #c9c8c1">
+              <p style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:600;line-height:1">Tutki</p>
+              <p style="margin:6px 0 0;font-size:13px;color:#62625d">miksi nykyinen polku ei toimi</p>
+            </div>
+            <div style="padding:18px 20px;border-right:1px solid #c9c8c1">
+              <p style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:600;line-height:1">Testaa</p>
+              <p style="margin:6px 0 0;font-size:13px;color:#62625d">viesti ja todellinen palvelureitti</p>
+            </div>
+            <div style="padding:18px 20px">
+              <p style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:600;line-height:1">Määritä</p>
+              <p style="margin:6px 0 0;font-size:13px;color:#62625d">mitä jatkon pitää omistaa</p>
+            </div>
+          </div>
+          <p style="margin:0;padding:12px 20px;border-top:1px solid #c9c8c1;font-size:13px;color:#62625d">Vaihe 1 tuottaa havainnot, testatun reitin ja päätöksen Vaiheen 2 rajauksesta.</p>
+        </div>
+      </div>
+      <div style="max-width:62ch">
+        <p style="margin:0 0 18px;font-size:17px;line-height:1.65;text-wrap:pretty">Vaihe 1:n tehtävä oli selvittää, miksi somalinkieliset perheet eivät tunteneet yksityistä päiväkotivaihtoehtoa tai edenneet hakemisessa. Tutkimme tunnettuutta, hintakäsityksiä, valintaa, hakemista ja sitä, missä kohdassa epävarmuus pysäytti etenemisen.</p>
+        <p style="margin:0 0 18px;font-size:17px;line-height:1.65;text-wrap:pretty">Haastattelut, kenttätyö, sisältökoe ja todellisten hakureittien läpivienti näyttivät, että tavoittaminen oli vain ensimmäinen katkos. Myös päätöksenteon tuki, hakemukset, odotus ja vastuun siirtyminen tarvitsivat omistajan.</p>
+        <p style="margin:0 0 26px;font-size:17px;line-height:1.65;text-wrap:pretty">Yksi reitti vietiin yhteydenotosta varmennettuun aloitukseen asti. Olennaista ei ollut yksi aloituslukema, vaan se, että koko ketju voitiin todistaa ja samalla nähtiin, mitä jatkuvan Vaiheen 2 pitää korjata.</p>
+        <a href="Tulokset.dc.html" style="font-size:16px;font-weight:500;color:#087d78;text-decoration:none;border-bottom:1px solid #c9c8c1;padding-bottom:3px">Lue, mitä pilotista opittiin</a>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="offer-h2" style="background:#e9e9e6;padding:clamp(56px,7vw,96px) 20px;border-bottom:1px solid #c9c8c1">
+    <div style="max-width:1180px;margin:0 auto">
+      <h2 id="offer-h2" style="margin:0 0 clamp(30px,4vw,48px);font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(34px,4.2vw,56px);line-height:1;max-width:24ch">Ensin selvitetään. Sitten viedään tulokseen asti.</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(28px,4vw,56px);align-items:start">
+        <div>
+          <div style="background:#f8f7f3;border:1px solid #0a0a0a;padding:clamp(24px,3vw,34px)">
+            <p style="margin:0 0 10px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#087d78">Vaihe 1</p>
+            <h3 style="margin:0 0 16px;font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;font-size:clamp(26px,2.6vw,34px);line-height:1.02">Tutkimus ja rajattu pilotti</h3>
+            <p style="margin:0;font-size:16.5px;line-height:1.65;max-width:58ch;text-wrap:pretty">Selvitämme todellisen esteen, testaamme viestin ja palvelureitin sekä määritämme, onko jatkuva toteutus perusteltu ja mitä sen pitää omistaa. Vaihe päättyy havaintoihin, päätökseen ja selkeään rajaukseen.</p>
+          </div>
+          <div style="margin-left:clamp(20px,4vw,56px);border:1px solid #c9c8c1;border-top:none;background:#f8f7f3;padding:20px 24px">
+            <p style="margin:0 0 8px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#62625d">Vaihe 2</p>
+            <p style="margin:0;font-size:16px;line-height:1.6;max-width:58ch"><strong>Jatkuva tavoittamisen ja palvelun aloituksen toteutus.</strong> AQOON vie sovitun kohderyhmän etenemistä yhteydenotosta varmennettuun aloitukseen ja tarvittaessa ensimmäisiin viikkoihin asti.</p>
+          </div>
+        </div>
+        <div>
+          <div style="border-top:2px solid #0a0a0a;padding:22px 0 0">
+            <p style="margin:0 0 8px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#62625d">Vaiheen 2 ehdollinen lisätyö</p>
+            <p style="margin:0 0 18px;font-size:16px;line-height:1.6;max-width:44ch"><strong>Asiakaspolun ja materiaalien kehitys</strong> otetaan mukaan vain, jos tutkimus tai toteutus osoittaa esteen viestissä, hakemisessa tai aloituksessa.</p>
+            <p style="margin:0 0 22px;font-size:16px;line-height:1.6;max-width:44ch"><strong>Henkilöstön valmennus</strong> on erillinen palvelu, joka rakennetaan todellisista asiakastilanteista.</p>
+            <a href="Palvelut.dc.html" style="font-size:16px;font-weight:500;color:#087d78;text-decoration:none;border-bottom:1px solid #c9c8c1;padding-bottom:3px">Tutustu palveluun</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="founder-h2" style="background:#f8f7f3;padding:clamp(56px,7vw,96px) 20px clamp(40px,5vw,64px)">
+    <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:clamp(32px,5vw,64px);align-items:start">
+      <figure style="margin:0">
+        <div style="border:1px solid #c9c8c1;background:repeating-linear-gradient(135deg,#e9e9e6 0 10px,#f8f7f3 10px 20px);aspect-ratio:4/5;overflow:hidden">
+          <img src="https://aqoon.live/assets/perustaja.webp" width="800" height="1000" alt="AQOONin perustaja Abducadir Aligure." style="width:100%;height:100%;object-fit:cover;display:block" />
+        </div>
+        <figcaption style="margin:10px 0 0;font-family:'Caveat',cursive;font-size:20px;color:#087d78">Abducadir Aligure, AQOONin perustaja</figcaption>
+      </figure>
+      <div style="max-width:62ch">
+        <h2 id="founder-h2" style="margin:0 0 24px;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(34px,4.2vw,54px);line-height:.99;max-width:20ch">Yhteys syntyy, kun molemmat puolet tunnetaan.</h2>
+        <p style="margin:0 0 18px;font-size:17px;line-height:1.65;text-wrap:pretty">Olen Abducadir Aligure. Olen kasvanut Suomessa somalitaustaisena. Olen jo nuoresta asti selittänyt palveluja, täyttänyt lomakkeita ja auttanut perheitä asioimaan suomalaisissa järjestelmissä. AQOONissa yhdistän tämän ymmärryksen markkinointiin, pilotointiin ja käytännön toteutukseen.</p>
+        <p style="margin:0 0 20px;font-size:17px;line-height:1.65;text-wrap:pretty">AQOON ei puhu kokonaisen yhteisön puolesta. Jokainen työ alkaa kyseisen palvelun ja sen käyttäjien todellisista kysymyksistä.</p>
+        <p style="margin:0;padding-top:18px;border-top:1px solid #c9c8c1;font-size:14.5px;line-height:1.6;color:#62625d">AQOONin tiimiosaaminen kattaa lisäksi kotoutumisen, koulutuksen, yhteisötyön ja hanketoteutuksen. Toimeksiannon kokoonpano sovitaan aina erikseen.</p>
+      </div>
+    </div>
+    <div id="yhteys" style="max-width:1180px;margin:clamp(44px,6vw,80px) auto 0;background:#0a0a0a;color:#f8f7f3;padding:clamp(32px,4vw,56px)">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(24px,3vw,48px);align-items:center">
+        <h2 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(30px,3.6vw,46px);line-height:1;max-width:22ch">Onko teillä hyvä palvelu, mutta ihmiset eivät löydä perille?</h2>
+        <div>
+          <p style="margin:0 0 26px;font-size:17px;line-height:1.65;color:#c9c8c1;max-width:52ch">Käydään 30 minuutissa läpi yksi palvelu, yksi kohderyhmä ja kohta, jossa eteneminen nyt pysähtyy.</p>
+          <a href="https://cal.com/abducadir-abdullahi-aligure-tw1bge/30min" style="display:inline-block;background:#f8f7f3;color:#0a0a0a;text-decoration:none;font-size:16.5px;font-weight:500;padding:17px 28px;border-radius:999px">Varaa 30 minuutin keskustelu</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
-
-<footer style="background: #0E2440; color: #C9D2DE; padding: 48px 24px;">
-  <div style="max-width: 1140px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 32px; align-items: center; justify-content: space-between;">
-    <div style="display: flex; align-items: center; gap: 10px; color: #FBFAF7;">
-      <svg width="26" height="26" viewBox="0 0 96 96" fill="none" aria-hidden="true"><path d="M26 74 L48 26 L70 74" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"></path><path d="M37 56 L59 56" stroke="#0FB5AE" stroke-width="9" stroke-linecap="round"></path><circle cx="48" cy="56" r="4.5" fill="#E8A766"></circle></svg>
-      <span style="font-family: Fraunces, Georgia, serif; font-weight: 900; font-size: 18px;">AQOON</span>
-    </div>
-    <nav aria-label="Alavalikko" style="display: flex; flex-wrap: wrap; gap: 22px; font-size: 15px;">
-      <a href="tapaus.dc.html" style="color: #C9D2DE; text-decoration: none;" style-hover="color: #0FB5AE;">Tapaus</a>
-      <a href="menetelma.dc.html" style="color: #C9D2DE; text-decoration: none;" style-hover="color: #0FB5AE;">Menetelmä</a>
-      <a href="paketit.dc.html" style="color: #C9D2DE; text-decoration: none;" style-hover="color: #0FB5AE;">Paketit</a>
-    </nav>
-    <div style="display: flex; flex-wrap: wrap; gap: 24px; font-size: 15px; font-variant-numeric: tabular-nums;">
-      <a href="mailto:abducadir_abdullahi@aqoon.live" style="color: #C9D2DE;" style-hover="color: #0FB5AE;">abducadir_abdullahi@aqoon.live</a>
-      <a href="tel:+358452591438" style="color: #C9D2DE;" style-hover="color: #0FB5AE;">+358 45 259 1438</a>
-      <span>aqoon.live</span>
-    </div>
-  </div>
-</footer>
+<dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;liike&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Liike&quot;},&quot;kuvanRajaus&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;puolivartalo&quot;,&quot;kokovartalo&quot;],&quot;default&quot;:&quot;puolivartalo&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Perustajan kuva&quot;}}">
-class Component extends DCLogic {
-  constructor(p) {
-    super(p);
-    this.tL = React.createRef();
-    this.tR = React.createRef();
-    this.tW = React.createRef();
-    this.tF = React.createRef();
-    this.bL = React.createRef();
-    this.bR = React.createRef();
-    this.ph = React.createRef();
-  }
-  componentDidMount() {
-    document.documentElement.lang = 'fi';
-    this.rm = matchMedia('(prefers-reduced-motion: reduce)');
-    this.onScroll = () => {
-      const L = this.tL.current, R = this.tR.current, W = this.tW.current, F = this.tF.current;
-      const bL = this.bL.current, bR = this.bR.current;
-      if (!L || !R || !W) return;
-      const col = innerWidth < 860;
-      if (bL) bL.style.display = col ? 'none' : '';
-      if (bR) bR.style.display = col ? 'none' : '';
-      if (F) {
-        F.style.gridTemplateColumns = col ? '1fr' : '1fr 140px 1fr';
-        F.style.rowGap = col ? '40px' : '0';
-      }
-      const on = (this.props.liike ?? true) && !this.rm.matches && !col;
-      if (!on) {
-        L.style.transform = 'none'; R.style.transform = 'none';
-        if (bL) bL.style.transform = 'none';
-        if (bR) bR.style.transform = 'none';
-        return;
-      }
-      const r = W.getBoundingClientRect();
-      const p = Math.min(1, Math.max(0, (innerHeight * 0.9 - r.top) / (r.height + innerHeight * 0.5)));
-      const s = Math.round(p * 40);
-      L.style.transform = 'translateX(' + s + 'px)';
-      R.style.transform = 'translateX(' + (-s) + 'px)';
-      const g = 0.75 + p * 0.25;
-      if (bL) bL.style.transform = 'scaleX(' + g + ')';
-      if (bR) bR.style.transform = 'scaleX(' + g + ')';
-    };
-    addEventListener('scroll', this.onScroll, { passive: true });
-    addEventListener('resize', this.onScroll, { passive: true });
-    this.applyPhoto();
-    this.onScroll();
-    this.setupReveal();
-  }
-  componentDidUpdate() {
-    this.applyPhoto();
-    this.onScroll();
-    if (!((this.props.liike ?? true) && !this.rm.matches)) this.teardownReveal();
-  }
-  componentWillUnmount() {
-    removeEventListener('scroll', this.onScroll);
-    removeEventListener('resize', this.onScroll);
-    if (this.io) this.io.disconnect();
-  }
-  setupReveal() {
-    if (this.rvEls) return;
-    if (!((this.props.liike ?? true) && !this.rm.matches)) return;
-    const els = [];
-    document.querySelectorAll('main > section').forEach((sec, si) => {
-      if (si === 0) return;
-      if ((sec.getAttribute('data-screen-label') || '') === 'Kaksi totuutta') return;
-      const inner = sec.querySelector(':scope > div');
-      if (!inner) return;
-      Array.from(inner.children).forEach((ch, i) => {
-        if (ch.hasAttribute && ch.hasAttribute('data-stagger')) {
-          Array.from(ch.children).forEach((c2, j) => els.push([c2, j]));
-        } else {
-          els.push([ch, Math.min(i, 4)]);
-        }
-      });
-    });
-    els.forEach(([el, i]) => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(18px)';
-      el.style.transition = 'opacity 0.55s ease ' + (i * 70) + 'ms, transform 0.55s ease ' + (i * 70) + 'ms';
-    });
-    this.io = new IntersectionObserver(ents => {
-      ents.forEach(en => {
-        if (en.isIntersecting) {
-          en.target.style.opacity = '1';
-          en.target.style.transform = 'none';
-          this.io.unobserve(en.target);
-        }
-      });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.01 });
-    els.forEach(([el]) => this.io.observe(el));
-    this.rvEls = els;
-  }
-  teardownReveal() {
-    if (!this.rvEls) return;
-    if (this.io) this.io.disconnect();
-    this.rvEls.forEach(([el]) => {
-      el.style.opacity = '1';
-      el.style.transform = 'none';
-      el.style.transition = 'none';
-    });
-    this.rvEls = null;
-  }
-  applyPhoto() {
-    const el = this.ph.current;
-    if (!el) return;
-    if ((this.props.kuvanRajaus ?? 'puolivartalo') === 'kokovartalo') {
-      el.style.width = '100%'; el.style.left = '0'; el.style.top = '0';
-    } else {
-      el.style.width = '150%'; el.style.left = '-7%'; el.style.top = '-10%';
-    }
-  }
-  renderVals() {
-    return { tL: this.tL, tR: this.tR, tW: this.tW, tF: this.tF, bL: this.bL, bR: this.bR, ph: this.ph };
-  }
-}
-</script>
 </body>
 </html>

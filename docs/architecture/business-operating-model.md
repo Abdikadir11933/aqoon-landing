@@ -1,6 +1,6 @@
 # AQOONin liiketoiminta- ja toimintamalli
 
-Tila: kanoninen suunta 28.8.2026 alkaen. Tämä kuvaa sitä, mitä AQOON rakentaa. Todistetut tulokset ja vielä testaamattomat oletukset pidetään erillään.
+Tila: kanoninen, päivitetty 2.9.2026. Tämä kuvaa sitä, mitä AQOON rakentaa. Todistetut tulokset ja vielä testaamattomat oletukset pidetään erillään.
 
 ## Yksi liiketoiminta
 
@@ -27,23 +27,33 @@ Tavoittaminen on monikanavaista. TikTok ja muu sisältö, AQOONin omat sivut, k�
 
 Omat verkkopinnat ovat tarkoituksella erilliset. `aqoon.live` ja sen vakiintuneet suomenkieliset sivut ovat B2B-pinta valituille ostajille, organisaatioille ja kumppaneille. Niiden SEO vastaa esimerkiksi somalien kotoutumista, luotettavaa tavoittamista, monikielistä palveluohjausta, konversiota, onboardingia ja pysyvyyttä koskeviin ostajakysymyksiin. `aqoon.live/caawi` ja sen alasivut ovat somalinkielinen perhepinta: käytännön tieto, apu ja intake. `/tracker` on yksityinen operatiivinen ydin. Tarkka toimintamalli on `../../workspaces/messaging/references/aqoon-demand-generation-and-content-os.md` ja reittipäätös `../decisions/0004-caawi-family-canonical-home.md`.
 
-## Ostettava kokonaisuus ja tarpeesta aktivoitavat laajennukset
+## Ostettava kokonaisuus: Vaihe 1 ja Vaihe 2
 
-### 1. Jatkuva tavoittamisen ja aloituksen toteutus
+AQOON ei aloita jatkuvaa toteutusta oletuksesta silloin, kun palvelupolun todellista katkoskohtaa ei vielä tunneta. Oletuspolku on tutkimuslähtöinen Vaihe 1, jonka jälkeen tehdään perusteltu päätös Vaiheesta 2.
 
-AQOON tavoittaa sovitun kohderyhmän, aloittaa ymmärrettävän keskustelun, auttaa seuraavaan käytännön tekoon, tekee sovitun vastuun siirron ja varmentaa lopputuloksen. Ennen aloitusta sovitaan kohderyhmä, alue, kapasiteetti, vasteajat, vastuuhenkilöt, päätösvalta ja varmennettava tulos. Raportointi erottaa näkyvyyden, yhteydenotot, kartoitukset, tuetut teot, vastuun siirrot ja varmennetut tulokset.
+### Vaihe 1: tutkimus ja rajattu pilotti
 
-Kesto, kapasiteetti ja hinnoittelu sovitaan toimeksiantokohtaisesti. Yksittäisen kumppanin kaupallisia ehtoja ei käsitellä tässä julkisessa toimintamallissa.
+Vaihe 1 selvittää, onko ongelma tunnettuudessa, viestissä, luottamuksessa, hakemisessa, vastuun siirtymisessä vai aloituksen jälkeen. Työ voi sisältää palveluntarjoajan nykyisen reitin kartoituksen, perhe- tai käyttäjähaastatteluja, kenttätyötä, rajatun sisältö- ja kanavatestin sekä todellisten haku- tai ilmoittautumisreittien läpivientiä.
 
-### 2. Asiakaspolun ja materiaalien kehitys
+Vaihe 1 on rajattu kokonaisuus. Se tuottaa havainto- ja päätösraportin riippumatta siitä, jatketaanko yhteistyötä. Raportti kertoo, mitä todennettiin, mitä ei vielä tiedetä, onko Vaihe 2 perusteltu ja mitä sen pitää omistaa. Vaiheen arvoa ei määritellä yhden näyttökerta- tai aloitusluvun perusteella.
 
-Tarvittaessa aktivoitava lisäosa, joka kohdistuu perheille tarkoitettujen tietojen, hakemis- ja aloitusohjeiden, digitaalisten järjestelmien ohjeiden tai muiden materiaalien kehittämiseen. Lisäosa ei kuulu automaattisesti jatkuvaan toteutukseen, vaan se käynnistetään, jos mitattu polku osoittaa esteen olevan viestissä, materiaalissa tai asiointireitissä.
+### Vaihe 2: jatkuva tavoittamisen ja palvelun aloituksen toteutus
 
-### 3. Henkilöstön valmennus
+Vaihe 2 toteuttaa Vaiheessa 1 rajattua reittiä jatkuvasti. AQOON tavoittaa sovitun kohderyhmän, aloittaa ymmärrettävän keskustelun, auttaa seuraavaan käytännön tekoon, tekee sovitun vastuun siirron ja varmentaa lopputuloksen. Seuranta voi jatkua ensimmäisiin viikkoihin, jos aloituksen jälkeinen pysyvyys kuuluu toimeksiantoon.
 
-Erillinen käytännön kokonaisuus henkilöstölle ja johdolle. Sisältö rakennetaan havaituista tilanteista: ensimmäiset keskustelut, hakeminen ja aloitus, digijärjestelmät, kodin ja palvelun viestintä, ensimmäiset viikot sekä kulttuurisesti ymmärrettävä kohtaaminen. Sisältö, laajuus, valmentajat ja toteutustapa sovitaan toimeksiantokohtaisesti.
+Ennen Vaiheen 2 alkua sovitaan kohderyhmä, alue, kapasiteetti, palvelutaso, vasteajat, vastuuhenkilöt, päätösvalta, tietojen käsittelyn rajat ja varmennettava tulos. Raportointi erottaa tavoittamisen, yhteydenotot, kartoitukset, tuetut teot, vastuun siirrot, varmennetut tulokset ja jatkumisen.
 
-Tämä on AQOONin oletusmalli kumppanuuksissa: yksi päätoteutus, tarvittaessa aktivoitava asiakaspolun ja materiaalien lisäosa sekä erillinen henkilöstön valmennus. Niitä ei esitetä kolmena tasavertaisena pakettina.
+Vaihe 1 sovitaan rajattuna tutkimus- ja pilottikokonaisuutena. Vaihe 2 voidaan sopia peruskorvauksen ja selkeästi määritellyn tulospalkkion yhdistelmänä. Laajuus ja kaupallinen malli määräytyvät palvelun, kohderyhmän, alueen, kapasiteetin, palvelutason ja varmennettavan tuloksen mukaan. Asiakaskohtaisia euromääriä ei julkaista tässä repossa.
+
+### Vaiheen 2 ehdollinen lisätyö: asiakaspolun ja materiaalien kehitys
+
+Tarvittaessa aktivoitava lisäosa kohdistuu perheille tarkoitettujen tietojen, hakemis- ja aloitusohjeiden, digitaalisten järjestelmien ohjeiden tai muiden materiaalien kehittämiseen. Lisäosa ei kuulu automaattisesti Vaiheeseen 2, vaan se käynnistetään, jos tutkimus tai mitattu toteutus osoittaa esteen olevan viestissä, materiaalissa, lomakkeessa, odotuksessa, onboardingissa tai asiointireitissä.
+
+### Erillinen palvelu: henkilöstön valmennus
+
+Henkilöstön ja johdon valmennus rakennetaan havaituista käytännön tilanteista: ensimmäiset keskustelut, hakeminen ja aloitus, digijärjestelmät, kodin ja palvelun viestintä, ensimmäiset viikot sekä kulttuurisesti ymmärrettävä kohtaaminen. Se ei ole yleinen kulttuuriluento. Sisältö, laajuus, valmentajat ja toteutustapa sovitaan toimeksiantokohtaisesti.
+
+Näitä ei esitetä kolmena tai neljänä tasavertaisena pakettina. Hierarkia on: Vaihe 1 tutkii ja rajaa, Vaihe 2 toteuttaa, asiakaspolkutyö aktivoidaan vain todetusta tarpeesta ja henkilöstön valmennus sovitaan erillisenä palveluna.
 
 ## Kaksi toisiaan vahvistavaa arvolupausta
 
@@ -57,9 +67,10 @@ Pilke-vaihe 1 osoitti vähintään yhden kokonaisen ketjun sisällöstä yhteyde
 
 Pilke-työssä nämä kokonaisuudet näkyvät käytännössä näin:
 
-1. **Jatkuva toteutus:** tavoittaminen, kartoitus, hakemiseen eteneminen, Pilkkeelle luovutus ja vahvistettu aloitus.
-2. **Asiakaspolun ja materiaalien lisäosa:** yksikkökohtainen saatavuus, hinta- ja tukitiedot, hakemisen ja aloituksen ohjeet sekä Daisy- ja onboarding-materiaalit, jos niitä tarvitaan.
-3. **Henkilöstön valmennus:** toimeksiantoon valittu käytännön toteutus, joka vahvistaa henkilöstön valmiutta vastata perheiden kysymyksiin ja tukea sujuvaa aloitusta.
+1. **Vaihe 1:** tunnettuuden, hintakäsitysten, valinnan, hakemisen ja vastuun siirtymisen tutkiminen sekä todellisten reittien testaus.
+2. **Vaihe 2:** tavoittaminen, kartoitus, hakemiseen eteneminen, Pilkkeelle luovutus, vahvistettu aloitus ja sovittu alkuvaiheen seuranta.
+3. **Asiakaspolun ja materiaalien lisäosa:** yksikkökohtainen saatavuus, hinta- ja tukitiedot, hakemisen ja aloituksen ohjeet sekä Daisy- ja onboarding-materiaalit, jos havaittu este sitä edellyttää.
+4. **Henkilöstön valmennus:** toimeksiantoon valittu käytännön toteutus, joka vahvistaa henkilöstön valmiutta vastata perheiden kysymyksiin ja tukea sujuvaa aloitusta.
 
 ## Mittaaminen
 

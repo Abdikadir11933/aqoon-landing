@@ -1,220 +1,266 @@
 <!doctype html>
 <html lang="fi">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <script>if(location.hash&&new URLSearchParams(location.hash.slice(1)).get('type')==='recovery')location.replace('/tracker/'+location.hash)</script>
-  <meta name="color-scheme" content="light only">
-  <title>Somalinkielisten asiakkaiden tavoittaminen ja palvelupolku | AQOON</title>
-  <meta name="description" content="AQOON auttaa organisaatioita tavoittamaan somalinkieliset asiakkaat ja viemään polun yhteydenotosta hakemukseen, aloitukseen ja varmennettuun lopputulokseen.">
-  <link rel="canonical" href="https://aqoon.live/">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://aqoon.live/">
-  <meta property="og:title" content="AQOON · Kysynnästä varmennettuun lopputulokseen">
-  <meta property="og:description" content="Luotettava tavoittaminen, käytännön ohjaus ja mitattava palvelupolku samalta kumppanilta.">
-  <meta property="og:locale" content="fi_FI">
-  <meta property="og:image" content="https://aqoon.live/og.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600&family=Caveat:wght@500;600&family=Fraunces:opsz,wght@9..144,900&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/site.css?v=20260902-1">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","@id":"https://aqoon.live/#org","name":"AQOON","url":"https://aqoon.live/","email":"abducadir_abdullahi@aqoon.live","telephone":"+358452591438","description":"AQOON auttaa organisaatioita tavoittamaan somalinkieliset asiakkaat ja viemään palvelupolun yhteydenotosta varmennettuun lopputulokseen.","areaServed":{"@type":"Country","name":"Suomi"},"availableLanguage":["fi","so","en"],"founder":{"@type":"Person","name":"Abducadir Aligure"},"knowsAbout":["somalinkielisten asiakkaiden tavoittaminen","monikielinen palveluohjaus","asiakashankinta","onboarding","palvelupolun mittaaminen"]}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>if(location.hash&&new URLSearchParams(location.hash.slice(1)).get('type')==='recovery')location.replace('/tracker/'+location.hash)</script>
+<title>Somalinkielisten perheiden ja aikuisten tavoittaminen | AQOON</title>
+<meta name="description" content="AQOON auttaa organisaatioita tavoittamaan somalinkielisiä perheitä ja aikuisia, vastaamaan etenemistä estäviin kysymyksiin ja tukemaan etenemistä palvelun alkuun asti." />
+<link rel="canonical" href="https://aqoon.live/" />
+<meta property="og:title" content="Somalinkielisten perheiden ja aikuisten tavoittaminen | AQOON" />
+<meta property="og:description" content="Tarve on. Kiinnostus on. Yhteys puuttuu. AQOON rakentaa väliin toimivan reitin." />
+<meta property="og:url" content="https://aqoon.live/" />
+<meta name="robots" content="index,follow" />
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://aqoon.live/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f8f7f3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&amp;family=Outfit:wght@300;400;500;600&amp;family=Caveat:wght@600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css?v=20260902">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"AQOON","url":"https://aqoon.live/","description":"AQOON auttaa organisaatioita tavoittamaan somalinkielisiä perheitä ja aikuisia, vastaamaan etenemistä estäviin kysymyksiin ja tukemaan etenemistä palvelun alkuun asti.","founder":{"@type":"Person","name":"Abducadir Aligure"}}</script>
 </head>
-<body class="home-v2">
-  <a class="skip" href="#main">Siirry sisältöön</a>
-
-  <header class="site-nav">
-    <div class="nav-inner">
-      <a class="brand" href="/" aria-label="AQOON, etusivu">
-        <svg viewBox="0 0 96 96" fill="none" aria-hidden="true"><path d="M26 74 48 26l22 48" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M37 56h22" stroke="#0FB5AE" stroke-width="9" stroke-linecap="round"/><circle cx="48" cy="56" r="4.5" fill="#E8A766"/></svg>
-        <span>AQOON</span>
-      </a>
-      <nav class="nav-links" data-nav-links aria-label="Päävalikko">
-        <a href="/tapaus">Tulokset</a>
-        <a href="/menetelma">Menetelmä</a>
-        <a href="/paketit">Palvelut</a>
-        <a href="/havainnot">Havainnot</a>
-        <a class="nav-call" href="#yhteys">Kartoita polku</a>
-      </nav>
-      <button class="menu-toggle" data-menu type="button" aria-label="Avaa valikko" aria-expanded="false"><span></span><span></span><span></span></button>
+<body>
+<header class="site-header" style="position:sticky;top:0;z-index:60;background:#f8f7f3;border-bottom:1px solid #c9c8c1">
+  <div style="max-width:1180px;margin:0 auto;padding:0 20px;min-height:66px;display:flex;align-items:center;justify-content:space-between;gap:20px">
+    <a href="/" aria-label="AQOON, etusivu" style="display:flex;align-items:center;gap:9px;text-decoration:none;color:#0a0a0a">
+      <svg viewBox="0 0 96 96" fill="none" aria-hidden="true" width="28" height="28" style="display:block">
+        <path d="M26 74 48 26l22 48" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M37 56h22" stroke="#079d97" stroke-width="9" stroke-linecap="round"></path>
+        <circle cx="48" cy="56" r="4.5" fill="#E8A766"></circle>
+      </svg>
+      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:26px;letter-spacing:.06em;text-transform:uppercase;line-height:1">AQOON</span>
+    </a>
+    <div class="desktop-nav" style="display:flex;align-items:center;gap:30px">
+      <nav aria-label="Päänavigaatio" style="display:flex;align-items:center;gap:26px"><a href="/tapaus" style="font-size:15px;text-decoration:none;color:#0a0a0a;padding:22px 0 20px;border-bottom:2px solid transparent;font-weight:400">Tulokset</a><a href="/menetelma" style="font-size:15px;text-decoration:none;color:#0a0a0a;padding:22px 0 20px;border-bottom:2px solid transparent;font-weight:400">Miten toimimme</a><a href="/paketit" style="font-size:15px;text-decoration:none;color:#0a0a0a;padding:22px 0 20px;border-bottom:2px solid transparent;font-weight:400">Palvelut</a><a href="/havainnot" style="font-size:15px;text-decoration:none;color:#0a0a0a;padding:22px 0 20px;border-bottom:2px solid transparent;font-weight:400">Havainnot</a></nav>
+      <a href="https://cal.com/abducadir-abdullahi-aligure-tw1bge/30min" style="background:#0a0a0a;color:#f8f7f3;text-decoration:none;font-size:14.5px;font-weight:500;padding:12px 20px;border-radius:999px;white-space:nowrap">Varaa 30 minuutin keskustelu</a>
     </div>
-  </header>
+    <button class="menu-toggle" data-menu-toggle type="button" aria-expanded="false" aria-controls="mobile-nav" style="width:44px;height:44px;place-items:center;background:none;border:1px solid #c9c8c1;border-radius:8px;cursor:pointer;color:#0a0a0a">
+      <span style="font-family:'Outfit',system-ui,sans-serif;font-size:13px;font-weight:500">Valikko</span>
+    </button>
+  </div>
+  <nav id="mobile-nav" data-mobile-nav hidden aria-label="Päänavigaatio" style="border-top:1px solid #c9c8c1;background:#f8f7f3;padding:10px 20px 20px;flex-direction:column;gap:2px">
+    <a href="/tapaus" style="font-size:17px;text-decoration:none;color:#0a0a0a;padding:13px 0;border-bottom:1px solid #e9e9e6;min-height:44px">Tulokset</a><a href="/menetelma" style="font-size:17px;text-decoration:none;color:#0a0a0a;padding:13px 0;border-bottom:1px solid #e9e9e6;min-height:44px">Miten toimimme</a><a href="/paketit" style="font-size:17px;text-decoration:none;color:#0a0a0a;padding:13px 0;border-bottom:1px solid #e9e9e6;min-height:44px">Palvelut</a><a href="/havainnot" style="font-size:17px;text-decoration:none;color:#0a0a0a;padding:13px 0;border-bottom:1px solid #e9e9e6;min-height:44px">Havainnot</a>
+    <a href="https://cal.com/abducadir-abdullahi-aligure-tw1bge/30min" style="margin-top:14px;background:#0a0a0a;color:#f8f7f3;text-decoration:none;font-size:16px;font-weight:500;padding:15px 20px;border-radius:999px;text-align:center">Varaa 30 minuutin keskustelu</a>
+  </nav>
+</header>
+<main style="font-family:'Outfit',system-ui,sans-serif;color:#0a0a0a">
 
-  <main id="main">
-    <section class="sales-hero" aria-labelledby="sales-title">
-      <div class="wrap sales-hero-grid">
-        <div class="sales-hero-copy">
-          <p class="sales-kicker"><span></span> AQOON · Kysynnästä lopputulokseen</p>
-          <h1 id="sales-title">Tavoitamme sopivat ihmiset.<em>Viemme polun aloitukseen asti.</em></h1>
-          <p class="sales-lead">AQOON auttaa organisaatioita muuttamaan muuten ohitetun somalinkielisen kysynnän vapaaehtoisiksi yhteydenotoiksi, sovituiksi teoiksi ja varmennetuiksi lopputuloksiksi.</p>
-          <div class="sales-actions">
-            <a class="button" href="https://cal.com/abducadir-abdullahi-aligure-tw1bge/30min">Kartoitetaan yksi puuttuva tulos</a>
-            <a class="text-link" href="/tapaus">Katso todennettu tapaus ↗</a>
+  <section aria-labelledby="hero-h1" style="background:#f8f7f3;padding:clamp(48px,7vw,96px) 20px clamp(56px,7vw,104px);border-bottom:1px solid #c9c8c1">
+    <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(36px,5vw,72px);align-items:center">
+      <div>
+        <p style="margin:0 0 22px;font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#62625d;display:flex;align-items:center;gap:12px"><span style="width:26px;height:2px;background:#079d97;display:inline-block"></span>Somalinkielisten perheiden ja aikuisten tavoittaminen Suomessa</p>
+        <h1 id="hero-h1" style="margin:0 0 26px;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(46px,6.6vw,86px);line-height:.93;letter-spacing:-.005em">Tarve on.<br />Kiinnostus on.<br />Yhteys puuttuu.</h1>
+        <p style="margin:0 0 32px;font-size:clamp(17px,1.35vw,19.5px);line-height:1.6;max-width:52ch;color:#1a1a18;text-wrap:pretty">AQOON auttaa organisaatioita tavoittamaan somalinkielisiä perheitä ja aikuisia, vastaamaan etenemistä estäviin kysymyksiin ja tukemaan etenemistä palvelun alkuun asti.</p>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px">
+          <a href="https://cal.com/abducadir-abdullahi-aligure-tw1bge/30min" style="background:#0a0a0a;color:#f8f7f3;text-decoration:none;font-size:16px;font-weight:500;padding:16px 26px;border-radius:999px">Varaa 30 minuutin keskustelu</a>
+          <a href="/tapaus" style="font-size:16px;color:#087d78;font-weight:500;text-decoration:none;border-bottom:1px solid #c9c8c1;padding-bottom:3px">Katso, mitä pilotista opittiin</a>
+        </div>
+      </div>
+      <div aria-hidden="false" role="img" aria-label="Kaavio: organisaatiolla on palvelu ja ihmisellä tarve. AQOON rakentaa niiden väliin reitin tavoittamisesta varmennettuun aloitukseen." style="border:1px solid #c9c8c1;background:#fff0df;padding:clamp(26px,3vw,40px) clamp(22px,3vw,36px)">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px">
+          <div>
+            <p style="margin:0 0 6px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#62625d">Teillä on ratkaisu</p>
+            <p style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:34px;font-weight:600;text-transform:uppercase;line-height:1">Palvelu</p>
+            <p style="margin:6px 0 0;font-size:13.5px;color:#62625d;max-width:18ch;line-height:1.45">jonka pitäisi löytää oikeat ihmiset</p>
           </div>
-          <p class="sales-fit"><b>Sopii:</b> palveluntuottajille, ohjelmille, työnantajille, kunnille ja kumppaneille, joilla on hyödyllinen palvelu mutta puuttuva yhteys.</p>
-        </div>
-
-        <div class="outcome-machine" aria-label="AQOONin palvelupolku">
-          <div class="machine-head">
-            <p>Teidän palvelunne</p>
-            <span>mitattava työketju</span>
+          <div style="text-align:right">
+            <p style="margin:0 0 6px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#62625d">Ihmisellä on</p>
+            <p style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:34px;font-weight:600;text-transform:uppercase;line-height:1">Tarve</p>
+            <p style="margin:6px 0 0 auto;font-size:13.5px;color:#62625d;max-width:19ch;line-height:1.45">mutta tieto, luottamus tai käytännön reitti puuttuu</p>
           </div>
-          <ol class="machine-steps">
-            <li><span>01</span><div><b>Luotettava tavoittaminen</b><small>Oikea ongelma, kieli ja kanava.</small></div></li>
-            <li><span>02</span><div><b>Vapaaehtoinen yhteydenotto</b><small>Yksi selkeä seuraava askel.</small></div></li>
-            <li><span>03</span><div><b>Haastattelu ja sopiva match</b><small>Tarve, kelpoisuus ja reitti tarkistetaan.</small></div></li>
-            <li><span>04</span><div><b>Autettu teko</b><small>Hakemus, ilmoittautuminen tai muu sovittu toiminta.</small></div></li>
-            <li><span>05</span><div><b>Varmennettu lopputulos</b><small>Aloitus ja jatkaminen mitataan erikseen.</small></div></li>
-          </ol>
-          <div class="machine-foot"><span>AQOON</span><p>Ei yhteystietolistoja. Ei pelkkiä näyttökertoja. Sovittu tulos määritellään ennen työtä.</p></div>
         </div>
+        <div style="margin:26px 0 22px;position:relative;height:2px;background:repeating-linear-gradient(90deg,#c9c8c1 0 8px,transparent 8px 16px)">
+          <span style="position:absolute;left:50%;top:-13px;transform:translateX(-50%);background:#fff0df;padding:0 10px;font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#62625d">Puuttuva reitti</span>
+        </div>
+        <div style="border:1px solid #0a0a0a;background:#f8f7f3;padding:18px 20px">
+          <p style="margin:0 0 10px;font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;line-height:1">AQOON</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px 10px;font-size:13.5px;color:#1a1a18">
+            <span style="border:1px solid #c9c8c1;padding:5px 10px">Tavoittaminen</span>
+            <span style="border:1px solid #c9c8c1;padding:5px 10px">Keskustelu</span>
+            <span style="border:1px solid #c9c8c1;padding:5px 10px">Tuettu teko</span>
+            <span style="border:1px solid #c9c8c1;padding:5px 10px">Vastuun siirto</span>
+          </div>
+        </div>
+        <p style="margin:16px 0 0;font-family:'Caveat',cursive;font-size:21px;color:#087d78">Palvelusta varmennettuun aloitukseen.</p>
       </div>
-    </section>
-
-    <section class="proof-ribbon" aria-labelledby="proof-title">
-      <div class="wrap">
-        <div class="proof-ribbon-head">
-          <p class="eyebrow">Todennettu kysyntä ja tavoittaminen</p>
-          <h2 id="proof-title">Näyttöä kolmesta eri kohdasta.<span>Ei yhtä keinotekoista suppiloa.</span></h2>
-        </div>
-        <div class="proof-facts">
-          <article><strong>123 509</strong><p>videokatselua 365 päivän tilikaudella</p><small>waalidsupport · 1.9.2025–31.8.2026</small></article>
-          <article><strong>84,1 %</strong><p>seuraajista Suomessa</p><small>829 seuraajan yleisökuva · TikTok Studio</small></article>
-          <article><strong>26</strong><p>CRM:ään tallennettua vapaaehtoista avunpyyntöä</p><small>Caawi-lanseeraus · 26.–28.8.2026</small></article>
-          <article><strong>1</strong><p>varmennettu päiväkodin aloitus</p><small>aiempi päästä päähän kulkenut palvelupolku</small></article>
-        </div>
-        <p class="proof-disclosure">Luvut ovat eri ajanjaksoista ja kohorteista. Katselut eivät ole hakemuksia. Avunpyynnöt eivät ole varmennettuja aloituksia. <a href="/havainnot/miten-somalinkielinen-yleiso-loytaa-palvelut">Lue kanava-analyysi ↗</a></p>
-      </div>
-    </section>
-
-    <section class="buyer-problem" aria-labelledby="problem-title">
-      <div class="wrap buyer-problem-grid">
-        <div>
-          <p class="eyebrow">Mikä jää yleensä väliin</p>
-          <h2 class="display" id="problem-title">Palvelu on olemassa.<em>Polku ei vielä toimi.</em></h2>
-        </div>
-        <div class="problem-ledger">
-          <article><span>01</span><h3>Ihminen ei löydä</h3><p>Tieto elää kanavassa, jota tarkoitettu asiakas ei seuraa tai osaa etsiä.</p></article>
-          <article><span>02</span><h3>Viesti ei ratkaise riskiä</h3><p>Käännös kertoo sanat. Se ei vielä vastaa pelkoon, epäilyyn tai käytännön kysymykseen.</p></article>
-          <article><span>03</span><h3>Seuraava teko jää tekemättä</h3><p>Linkki, lomake tai luovutus katkaisee muuten syntyneen kiinnostuksen.</p></article>
-          <article><span>04</span><h3>Lopputulosta ei varmenneta</h3><p>Näyttökerrat näkyvät. Hakemus, aloitus ja jatkaminen jäävät erillisiksi tiedoiksi.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="operating-chain" aria-labelledby="chain-title">
-      <div class="wrap">
-        <div class="chain-head">
-          <p class="eyebrow">AQOONin työketju</p>
-          <h2 class="display" id="chain-title">Yksi yhteinen määritelmä.<em>Yhdeksän mitattavaa vaihetta.</em></h2>
-          <p>Jokaiselle vaiheelle sovitaan tavoite, omistaja ja todiste. Silloin ostaja näkee, missä eteneminen tapahtuu ja missä polku katkeaa.</p>
-        </div>
-        <ol class="chain-grid">
-          <li><span>01</span><b>Luotettava tavoittaminen</b></li>
-          <li><span>02</span><b>Tunnistettava yhteydenotto</b></li>
-          <li><span>03</span><b>Intake</b></li>
-          <li><span>04</span><b>Haastattelu</b></li>
-          <li><span>05</span><b>Varmennettu match</b></li>
-          <li><span>06</span><b>Autettu teko</b></li>
-          <li><span>07</span><b>Kumppanin handoff</b></li>
-          <li><span>08</span><b>Varmennettu tulos</b></li>
-          <li><span>09</span><b>Jatkaminen</b></li>
-        </ol>
-        <a class="text-link" href="/menetelma">Katso miten jokainen vaihe tehdään ↗</a>
-      </div>
-    </section>
-
-    <section class="offer-system" aria-labelledby="offer-title">
-      <div class="wrap">
-        <div class="offer-head">
-          <p class="eyebrow">Mitä voitte ostaa</p>
-          <h2 class="display" id="offer-title">Yksi lopputuloskumppani.<em>Kolme tapaa tehdä työ.</em></h2>
-        </div>
-        <div class="offer-stack">
-          <article class="offer-primary">
-            <div class="offer-number">01 · Ydinpalvelu</div>
-            <div><h3>AQOON Outcomes</h3><p>Hankimme, kvalifioimme, ohjaamme ja varmennamme sovitut hakemukset, aloitukset tai muut lopputulokset.</p></div>
-            <ul><li>Luotettava tavoittaminen</li><li>Haastattelu ja match</li><li>Autettu toiminta</li><li>Tulosraportointi</li></ul>
-            <a href="/paketit">Katso palvelun rajaus ↗</a>
-          </article>
-          <article>
-            <div class="offer-number">02 · Lisäosa</div>
-            <div><h3>AQOON Journey</h3><p>Korjaamme viestin, hakemisen, luovutuksen, onboardingin tai alkuvaiheen pysyvyyden, kun mitattu data näyttää kitkan.</p></div>
-            <a href="/paketit">Milloin Journey tarvitaan ↗</a>
-          </article>
-          <article>
-            <div class="offer-number">03 · Erillinen palvelu</div>
-            <div><h3>AQOON Enablement</h3><p>Käytännön valmennus henkilöstölle ja johdolle. Sisältö sidotaan havaittuihin kysymyksiin, luovutuskatkoksiin ja pysyvyyden riskeihin.</p></div>
-            <a href="/paketit">Kenelle Enablement sopii ↗</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="case-window" aria-labelledby="case-title">
-      <div class="wrap case-window-grid">
-        <div class="case-window-copy">
-          <p class="eyebrow">Todennettu tapaus</p>
-          <h2 class="display" id="case-title">Kiinnostus muuttui<em>oikeaksi aloitukseksi.</em></h2>
-          <p>Aiemmassa päiväkotipolussa yksi perhe eteni ensimmäisestä kontaktista hakemuksiin ja varmennettuun aloitukseen asti. Tapaus osoittaa, että luotettava tavoittaminen, käytännön ohjaus ja seuranta voidaan yhdistää samaan ketjuun.</p>
-          <p class="case-limit"><b>Mitä tämä ei todista:</b> yksi tapaus ei ole vakaa konversioprosentti, hintalupaus tai tae tulevista tuloksista.</p>
-          <a class="button" href="/tapaus">Avaa tapaus ja rajaukset</a>
-        </div>
-        <ol class="case-trace">
-          <li><span>01</span><p><b>Kontakti</b> Perhe tunnisti itselleen relevantin mahdollisuuden.</p></li>
-          <li><span>02</span><p><b>Ohjaus</b> Vaihtoehto ja seuraavat käytännön askeleet käytiin läpi.</p></li>
-          <li><span>03</span><p><b>Hakemukset</b> Perhe sai apua etenemiseen.</p></li>
-          <li><span>04</span><p><b>Aloitus</b> Todellinen päiväkodin aloitus varmennettiin.</p></li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="trust-boundary" aria-labelledby="trust-title">
-      <div class="wrap trust-boundary-grid">
-        <div>
-          <p class="eyebrow">Luottamus on osa tuotetta</p>
-          <h2 class="display" id="trust-title">Mitä AQOON<em>ei myy.</em></h2>
-        </div>
-        <ul>
-          <li><span>Ei</span> perheiden yhteystietolistoja tai tunnistettavia tarinoita ostajalle.</li>
-          <li><span>Ei</span> viranomais-, palvelu-, valinta- tai kelpoisuuspäätöksiä.</li>
-          <li><span>Ei</span> pelkkiä näyttökertoja tuloksena, jos toimeksianto koskee aloituksia.</li>
-          <li><span>Ei</span> piilotettua kaupallista suositusta. Kumppanuus kerrotaan oikeassa kohdassa.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="founder-section founder-v2" aria-labelledby="founder-title">
-      <div class="wrap founder-grid">
-        <figure><img src="/assets/perustaja.webp" width="800" height="1000" alt="AQOONin perustaja Abducadir Aligure"></figure>
-        <div class="founder-copy">
-          <p class="eyebrow">Perustaja ja julkinen yhteyshenkilö</p>
-          <h2 class="display" id="founder-title">Abducadir<em>Aligure.</em></h2>
-          <p>Olen kasvanut Suomessa ja ollut pitkään se ihminen, joka selittää palveluja, selvittää reittejä ja auttaa seuraavan käytännön askeleen kanssa.</p>
-          <p>Rakensin AQOONin, koska sama katkos näkyy myös organisaation puolella. Hyödyllinen palvelu on olemassa, mutta tarkoitettu ihminen ei löydä, luota tai pääse loppuun asti.</p>
-          <p>AQOON ei väitä puhuvansa kokonaisen yhteisön puolesta. Selvitämme aina, mitä juuri kyseisen palvelun käyttäjät tarvitsevat edetäkseen.</p>
-          <a class="text-link" href="/menetelma">Näin työ tehdään käytännössä ↗</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="final-cta final-cta-v2" id="yhteys" aria-labelledby="contact-title">
-      <div class="wrap final-cta-grid">
-        <div><p class="script-note">Aloitetaan yhdestä.</p><h2 class="display" id="contact-title">Mikä tulos teiltä<em>jää nyt puuttumaan?</em></h2></div>
-        <div><p>30 minuutissa rajataan kohderyhmä, katkos ja tulos, joka voidaan oikeasti varmentaa.</p><a class="button button-light" href="https://cal.com/abducadir-abdullahi-aligure-tw1bge/30min">Varaa 30 minuutin keskustelu</a><a class="contact-mail" href="mailto:abducadir_abdullahi@aqoon.live">abducadir_abdullahi@aqoon.live</a></div>
-      </div>
-    </section>
-
-    <section class="aqoon-independence-note" aria-label="AQOONin riippumattomuus"><div class="wrap"><div class="independence-box"><strong>AQOON on itsenäinen palvelunavigointipalvelu.</strong> Emme ole viranomainen emmekä Kelan, Migrin, kuntien, hyvinvointialueiden tai työllisyyspalvelujen edustaja. Emme tee viranomais-, etuus-, lupa-, palvelu- tai valintapäätöksiä emmekä takaa lopputulosta. <a href="/disclaimer">Vastuunrajaus</a> · <a href="/tietosuoja">Tietosuoja</a></div></div></section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="wrap footer-inner">
-      <a class="brand" href="/">AQOON</a>
-      <nav class="footer-links" aria-label="Alavalikko"><a href="/tapaus">Tulokset</a><a href="/menetelma">Menetelmä</a><a href="/paketit">Palvelut</a><a href="/havainnot">Havainnot</a><a href="/sanasto">Sanasto</a><a href="/tietosuoja">Tietosuoja</a></nav>
-      <div class="footer-contact"><a href="mailto:abducadir_abdullahi@aqoon.live">abducadir_abdullahi@aqoon.live</a><a href="tel:+358452591438">+358 45 259 1438</a></div>
     </div>
-  </footer>
-  <script src="/assets/site.js?v=20260902-1"></script>
+  </section>
+
+  <section aria-labelledby="gap-h2" style="background:#fff0df;padding:clamp(56px,7vw,96px) 20px;border-bottom:1px solid #c9c8c1">
+    <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(32px,5vw,72px)">
+      <div>
+        <h2 id="gap-h2" style="margin:0;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(36px,4.4vw,58px);line-height:.98;max-width:18ch">Palvelu on olemassa. Polku ei vielä toimi.</h2>
+      </div>
+      <div style="max-width:62ch">
+        <p style="margin:0 0 18px;font-size:17px;line-height:1.65;text-wrap:pretty">Verkkosivu tai käännös kertoo, mitä palvelu tarjoaa. Se ei aina vastaa kysymyksiin, joiden perusteella ihminen uskaltaa toimia: koskeeko tämä minua, mitä tämä maksaa, miten haen ja mitä tapahtuu seuraavaksi.</p>
+        <p style="margin:0 0 26px;font-size:17px;line-height:1.65;text-wrap:pretty">Organisaatio näkee palvelun, joka pitäisi saada käyttöön. Ihminen näkee päätöksen, johon liittyy avoimia kysymyksiä ja riskejä. AQOON rakentaa väliin toimivan reitin.</p>
+        <p style="margin:0 0 20px;padding:20px 22px;background:#f8f7f3;border-left:2px solid #079d97;font-size:16.5px;line-height:1.6">Tavoitamme ihmisiä omissa digikanavissamme, kentällä, yhteisöjen ja luotettujen tekijöiden kautta. Aloitamme ymmärrettävän keskustelun, autamme seuraavaan käytännön tekoon ja seuraamme sovittua tulosta.</p>
+        <p style="margin:0 0 22px;font-size:14.5px;line-height:1.6;color:#62625d">Kenttäymmärrys perustuu äitien ja muiden palvelunkäyttäjien kanssa käytyihin haastatteluihin sekä puhelin- ja kenttäkeskusteluihin.</p>
+        <a href="/menetelma" style="font-size:16px;font-weight:500;color:#087d78;text-decoration:none;border-bottom:1px solid #c9c8c1;padding-bottom:3px">Näin työ etenee</a>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="reach-h2" style="background:#0a0a0a;color:#f8f7f3;padding:clamp(56px,7vw,96px) 20px">
+    <div style="max-width:1180px;margin:0 auto">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(28px,4vw,64px);align-items:start">
+        <h2 id="reach-h2" style="margin:0;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(32px,3.9vw,52px);line-height:1;max-width:20ch">Yksi kanava osoittaa, että oikea viesti löytää yleisön.</h2>
+        <p style="margin:0;font-size:16.5px;line-height:1.65;color:#c9c8c1;max-width:60ch;text-wrap:pretty">TikTok ei ole AQOONin palvelu. Se on yksi todennettu jakelukanava. Käytännöllinen somalinkielinen sisältö on löytänyt Suomessa yleisön erityisesti silloin, kun aiheena ovat oikeudet, palvelut, koulu, päiväkoti tai yksi selkeä seuraava askel.</p>
+      </div>
+      <div style="margin-top:clamp(36px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));border-top:1px solid #2a2a28">
+        <div style="padding:26px 24px 22px;border-bottom:1px solid #2a2a28;border-right:1px solid #2a2a28">
+          <p style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:clamp(42px,5vw,64px);font-weight:600;line-height:1;font-variant-numeric:tabular-nums">123 509</p>
+          <p style="margin:8px 0 0;font-size:14.5px;color:#c9c8c1">videokatselua</p>
+        </div>
+        <div style="padding:26px 24px 22px;border-bottom:1px solid #2a2a28;border-right:1px solid #2a2a28">
+          <p style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:clamp(42px,5vw,64px);font-weight:600;line-height:1;font-variant-numeric:tabular-nums">1 142</p>
+          <p style="margin:8px 0 0;font-size:14.5px;color:#c9c8c1">jakoa</p>
+        </div>
+        <div style="padding:26px 24px 22px;border-bottom:1px solid #2a2a28">
+          <p style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:clamp(42px,5vw,64px);font-weight:600;line-height:1;font-variant-numeric:tabular-nums">84,1 %</p>
+          <p style="margin:8px 0 0;font-size:14.5px;color:#c9c8c1">seuraajista Suomessa</p>
+        </div>
+      </div>
+      <div style="margin-top:22px;display:flex;flex-wrap:wrap;gap:14px 32px;align-items:baseline;justify-content:space-between">
+        <p style="margin:0;font-size:13.5px;line-height:1.6;color:#8a8a84;max-width:66ch">TikTok-tili, 1.9.2025–31.8.2026. Luvut kuvaavat tavoittamista ja jakelua. Ne eivät ole hakemuksia tai palvelun aloituksia.</p>
+        <a href="/havainnot/miten-somalinkielinen-yleiso-loytaa-palvelut" style="font-size:15.5px;font-weight:500;color:#f8f7f3;text-decoration:none;border-bottom:1px solid #079d97;padding-bottom:3px;white-space:nowrap">Lue koko kanava-analyysi</a>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="pilot-h2" style="background:#f8f7f3;padding:clamp(56px,7vw,96px) 20px;border-bottom:1px solid #c9c8c1">
+    <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(32px,5vw,64px)">
+      <div>
+        <p style="margin:0 0 18px;font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#62625d;display:flex;align-items:center;gap:12px"><span style="width:26px;height:2px;background:#079d97;display:inline-block"></span>Tutkimuslähtöinen varhaiskasvatuspilotti</p>
+        <h2 id="pilot-h2" style="margin:0 0 26px;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(36px,4.4vw,58px);line-height:.98;max-width:16ch">Vaihe 1 teki katkokset näkyviksi.</h2>
+        <div style="border:1px solid #c9c8c1;background:#e9e9e6">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">
+            <div style="padding:18px 20px;border-right:1px solid #c9c8c1">
+              <p style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:600;line-height:1">Tutki</p>
+              <p style="margin:6px 0 0;font-size:13px;color:#62625d">miksi nykyinen polku ei toimi</p>
+            </div>
+            <div style="padding:18px 20px;border-right:1px solid #c9c8c1">
+              <p style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:600;line-height:1">Testaa</p>
+              <p style="margin:6px 0 0;font-size:13px;color:#62625d">viesti ja todellinen palvelureitti</p>
+            </div>
+            <div style="padding:18px 20px">
+              <p style="margin:0;font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:600;line-height:1">Määritä</p>
+              <p style="margin:6px 0 0;font-size:13px;color:#62625d">mitä jatkon pitää omistaa</p>
+            </div>
+          </div>
+          <p style="margin:0;padding:12px 20px;border-top:1px solid #c9c8c1;font-size:13px;color:#62625d">Vaihe 1 tuottaa havainnot, testatun reitin ja päätöksen Vaiheen 2 rajauksesta.</p>
+        </div>
+      </div>
+      <div style="max-width:62ch">
+        <p style="margin:0 0 18px;font-size:17px;line-height:1.65;text-wrap:pretty">Vaihe 1:n tehtävä oli selvittää, miksi somalinkieliset perheet eivät tunteneet yksityistä päiväkotivaihtoehtoa tai edenneet hakemisessa. Tutkimme tunnettuutta, hintakäsityksiä, valintaa, hakemista ja sitä, missä kohdassa epävarmuus pysäytti etenemisen.</p>
+        <p style="margin:0 0 18px;font-size:17px;line-height:1.65;text-wrap:pretty">Haastattelut, kenttätyö, sisältökoe ja todellisten hakureittien läpivienti näyttivät, että tavoittaminen oli vain ensimmäinen katkos. Myös päätöksenteon tuki, hakemukset, odotus ja vastuun siirtyminen tarvitsivat omistajan.</p>
+        <p style="margin:0 0 26px;font-size:17px;line-height:1.65;text-wrap:pretty">Yksi reitti vietiin yhteydenotosta varmennettuun aloitukseen asti. Olennaista ei ollut yksi aloituslukema, vaan se, että koko ketju voitiin todistaa ja samalla nähtiin, mitä jatkuvan Vaiheen 2 pitää korjata.</p>
+        <a href="/tapaus" style="font-size:16px;font-weight:500;color:#087d78;text-decoration:none;border-bottom:1px solid #c9c8c1;padding-bottom:3px">Lue, mitä pilotista opittiin</a>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="offer-h2" style="background:#e9e9e6;padding:clamp(56px,7vw,96px) 20px;border-bottom:1px solid #c9c8c1">
+    <div style="max-width:1180px;margin:0 auto">
+      <h2 id="offer-h2" style="margin:0 0 clamp(30px,4vw,48px);font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(34px,4.2vw,56px);line-height:1;max-width:24ch">Ensin selvitetään. Sitten viedään tulokseen asti.</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(28px,4vw,56px);align-items:start">
+        <div>
+          <div style="background:#f8f7f3;border:1px solid #0a0a0a;padding:clamp(24px,3vw,34px)">
+            <p style="margin:0 0 10px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#087d78">Vaihe 1</p>
+            <h3 style="margin:0 0 16px;font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;font-size:clamp(26px,2.6vw,34px);line-height:1.02">Tutkimus ja rajattu pilotti</h3>
+            <p style="margin:0;font-size:16.5px;line-height:1.65;max-width:58ch;text-wrap:pretty">Selvitämme todellisen esteen, testaamme viestin ja palvelureitin sekä määritämme, onko jatkuva toteutus perusteltu ja mitä sen pitää omistaa. Vaihe päättyy havaintoihin, päätökseen ja selkeään rajaukseen.</p>
+          </div>
+          <div style="margin-left:clamp(20px,4vw,56px);border:1px solid #c9c8c1;border-top:none;background:#f8f7f3;padding:20px 24px">
+            <p style="margin:0 0 8px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#62625d">Vaihe 2</p>
+            <p style="margin:0;font-size:16px;line-height:1.6;max-width:58ch"><strong>Jatkuva tavoittamisen ja palvelun aloituksen toteutus.</strong> AQOON vie sovitun kohderyhmän etenemistä yhteydenotosta varmennettuun aloitukseen ja tarvittaessa ensimmäisiin viikkoihin asti.</p>
+          </div>
+        </div>
+        <div>
+          <div style="border-top:2px solid #0a0a0a;padding:22px 0 0">
+            <p style="margin:0 0 8px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#62625d">Vaiheen 2 ehdollinen lisätyö</p>
+            <p style="margin:0 0 18px;font-size:16px;line-height:1.6;max-width:44ch"><strong>Asiakaspolun ja materiaalien kehitys</strong> otetaan mukaan vain, jos tutkimus tai toteutus osoittaa esteen viestissä, hakemisessa tai aloituksessa.</p>
+            <p style="margin:0 0 22px;font-size:16px;line-height:1.6;max-width:44ch"><strong>Henkilöstön valmennus</strong> on erillinen palvelu, joka rakennetaan todellisista asiakastilanteista.</p>
+            <a href="/paketit" style="font-size:16px;font-weight:500;color:#087d78;text-decoration:none;border-bottom:1px solid #c9c8c1;padding-bottom:3px">Tutustu palveluun</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="founder-h2" style="background:#f8f7f3;padding:clamp(56px,7vw,96px) 20px clamp(40px,5vw,64px)">
+    <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:clamp(32px,5vw,64px);align-items:start">
+      <figure style="margin:0">
+        <div style="border:1px solid #c9c8c1;background:repeating-linear-gradient(135deg,#e9e9e6 0 10px,#f8f7f3 10px 20px);aspect-ratio:4/5;overflow:hidden">
+          <img src="/assets/perustaja.webp" width="800" height="1000" alt="AQOONin perustaja Abducadir Aligure." style="width:100%;height:100%;object-fit:cover;display:block" />
+        </div>
+        <figcaption style="margin:10px 0 0;font-family:'Caveat',cursive;font-size:20px;color:#087d78">Abducadir Aligure, AQOONin perustaja</figcaption>
+      </figure>
+      <div style="max-width:62ch">
+        <h2 id="founder-h2" style="margin:0 0 24px;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(34px,4.2vw,54px);line-height:.99;max-width:20ch">Yhteys syntyy, kun molemmat puolet tunnetaan.</h2>
+        <p style="margin:0 0 18px;font-size:17px;line-height:1.65;text-wrap:pretty">Olen Abducadir Aligure. Olen kasvanut Suomessa somalitaustaisena. Olen jo nuoresta asti selittänyt palveluja, täyttänyt lomakkeita ja auttanut perheitä asioimaan suomalaisissa järjestelmissä. AQOONissa yhdistän tämän ymmärryksen markkinointiin, pilotointiin ja käytännön toteutukseen.</p>
+        <p style="margin:0 0 20px;font-size:17px;line-height:1.65;text-wrap:pretty">AQOON ei puhu kokonaisen yhteisön puolesta. Jokainen työ alkaa kyseisen palvelun ja sen käyttäjien todellisista kysymyksistä.</p>
+        <p style="margin:0;padding-top:18px;border-top:1px solid #c9c8c1;font-size:14.5px;line-height:1.6;color:#62625d">AQOONin tiimiosaaminen kattaa lisäksi kotoutumisen, koulutuksen, yhteisötyön ja hanketoteutuksen. Toimeksiannon kokoonpano sovitaan aina erikseen.</p>
+      </div>
+    </div>
+    <div id="yhteys" style="max-width:1180px;margin:clamp(44px,6vw,80px) auto 0;background:#0a0a0a;color:#f8f7f3;padding:clamp(32px,4vw,56px)">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(24px,3vw,48px);align-items:center">
+        <h2 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(30px,3.6vw,46px);line-height:1;max-width:22ch">Onko teillä hyvä palvelu, mutta ihmiset eivät löydä perille?</h2>
+        <div>
+          <p style="margin:0 0 26px;font-size:17px;line-height:1.65;color:#c9c8c1;max-width:52ch">Käydään 30 minuutissa läpi yksi palvelu, yksi kohderyhmä ja kohta, jossa eteneminen nyt pysähtyy.</p>
+          <a href="https://cal.com/abducadir-abdullahi-aligure-tw1bge/30min" style="display:inline-block;background:#f8f7f3;color:#0a0a0a;text-decoration:none;font-size:16.5px;font-weight:500;padding:17px 28px;border-radius:999px">Varaa 30 minuutin keskustelu</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<footer style="background:#0a0a0a;color:#f8f7f3;padding:64px 20px 40px;font-family:'Outfit',system-ui,sans-serif">
+  <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:44px 40px">
+    <div style="max-width:360px">
+      <div style="display:flex;align-items:center;gap:9px;margin-bottom:16px">
+        <svg viewBox="0 0 96 96" fill="none" aria-hidden="true" width="26" height="26" style="display:block">
+        <path d="M26 74 48 26l22 48" stroke="#f8f7f3" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M37 56h22" stroke="#079d97" stroke-width="9" stroke-linecap="round"></path>
+        <circle cx="48" cy="56" r="4.5" fill="#E8A766"></circle>
+      </svg>
+        <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:25px;letter-spacing:.06em;text-transform:uppercase;line-height:1">AQOON</span>
+      </div>
+      <p style="margin:0;font-size:15px;line-height:1.6;color:#c9c8c1;max-width:34ch">AQOON auttaa organisaatioita tavoittamaan somalinkielisiä perheitä ja aikuisia sekä tukemaan etenemistä palvelun alkuun.</p>
+    </div>
+    <div>
+      <h2 style="margin:0 0 14px;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#079d97">Sivut</h2>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <a href="/tapaus" style="color:#f8f7f3;text-decoration:none;font-size:15px">Tulokset</a>
+        <a href="/menetelma" style="color:#f8f7f3;text-decoration:none;font-size:15px">Miten toimimme</a>
+        <a href="/paketit" style="color:#f8f7f3;text-decoration:none;font-size:15px">Palvelut</a>
+        <a href="/havainnot" style="color:#f8f7f3;text-decoration:none;font-size:15px">Havainnot</a>
+      </div>
+    </div>
+    <div class="aqoon-independence-note">
+      <h2 style="margin:0 0 14px;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#079d97">Määritelmät ja vastuut</h2>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <a href="/sanasto" style="color:#f8f7f3;text-decoration:none;font-size:15px">Sanasto</a>
+        <a href="/tietosuoja" style="color:#f8f7f3;text-decoration:none;font-size:15px">Tietosuoja</a>
+        <a href="/disclaimer" style="color:#f8f7f3;text-decoration:none;font-size:15px">Vastuunrajaus</a>
+      </div>
+    </div>
+    <div>
+      <h2 style="margin:0 0 14px;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#079d97">Yhteys</h2>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <a href="mailto:abducadir_abdullahi@aqoon.live" style="color:#f8f7f3;text-decoration:none;font-size:15px">abducadir_abdullahi@aqoon.live</a>
+        <a href="tel:+358452591438" style="color:#f8f7f3;text-decoration:none;font-size:15px;font-variant-numeric:tabular-nums">+358 45 259 1438</a>
+        <a href="https://cal.com/abducadir-abdullahi-aligure-tw1bge/30min" style="margin-top:6px;display:inline-block;background:#f8f7f3;color:#0a0a0a;text-decoration:none;font-size:14.5px;font-weight:500;padding:12px 18px;border-radius:999px;text-align:center">Varaa 30 minuutin keskustelu</a>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1180px;margin:44px auto 0;padding-top:20px;border-top:1px solid #2a2a28;display:flex;flex-wrap:wrap;gap:8px 22px;font-size:13px;color:#8a8a84">
+    <span>© 2026 AQOON</span>
+    <span>Abducadir Aligure / AQOON-palvelubrändi</span>
+    <span>Perheiden somalinkielinen tieto ja tuki: <a href="/caawi" style="color:#c9c8c1">aqoon.live/caawi</a></span>
+  </div>
+</footer>
+<script src="/assets/site.js?v=20260902" defer></script>
 </body>
 </html>

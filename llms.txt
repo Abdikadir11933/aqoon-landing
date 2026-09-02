@@ -4,6 +4,11 @@ AQOON is a demand-to-outcome company. It helps families and adults understand se
 
 ## Canonical entry points
 
+- Organisation-facing site: https://aqoon.live/
+- Research and pilot evidence: https://aqoon.live/tapaus
+- AQOON method and measured service path: https://aqoon.live/menetelma
+- Phase 1, Phase 2 and service structure: https://aqoon.live/paketit
+- Buyer insights and practical guides: https://aqoon.live/havainnot
 - Somali guided support hub: https://aqoon.live/caawi/xog
 - Free Somali-language help intake: https://aqoon.live/caawi
 - Current active programmes and opportunities: https://aqoon.live/caawi/ajankohtaiset
@@ -69,10 +74,13 @@ Common user problem pattern:
 3. Eligibility, deadlines, rights and official decisions are checked against the responsible authority or municipality.
 4. AQOON can help the person understand the information, find the correct link, and navigate the application or next step.
 
-For organisations, AQOON's current service architecture is:
-1. AQOON Outcomes: acquisition, qualification, assisted action and verification of an agreed outcome.
-2. AQOON Journey: multilingual decision support, application guidance, onboarding and retention improvements tied to measured friction.
-3. AQOON Enablement: practical staff and leadership training tied to real service-path handoffs and customer questions.
+For organisations, AQOON's current service architecture is sequential and hierarchical, not three equal packages:
+1. Phase 1 is a fixed-scope research and practical pilot. It identifies the real service-path break, tests a message and route, and ends with evidence plus a decision on whether and how to continue.
+2. Phase 2 is ongoing reach-to-start execution for one agreed service, cohort, area and verifiable outcome. It can cover trusted reach, direct conversations, qualification, assisted action, consented handoff, verified start and an agreed early-persistence check.
+3. Customer-journey and materials development is an optional Phase 2 add-on activated only when research or measured delivery locates the barrier in messaging, forms, applications, waiting, onboarding or materials.
+4. Practical staff training is a separate service based on observed customer questions and handoff or onboarding situations. It is not a generic cultural-awareness lecture.
+
+Phase 1 is scoped as a defined research/pilot engagement. Phase 2 scope and commercial terms depend on the audience, geography, available capacity, service level and outcome to be verified; it may combine a base fee with a clearly defined outcome fee. Customer-specific prices are not published on the public site.
 
 AQOON does not sell raw family contact lists. A paid provider relationship must be disclosed before a family acts on a commercial recommendation, and help should remain useful when no paid match exists.
 
