@@ -43,7 +43,7 @@
       "destination": "https://aqoon.live/$1",
       "permanent": true
     },
-    { "source": "/palvelut", "destination": "/menetelma", "permanent": true },
+    { "source": "/palvelut", "destination": "/paketit", "permanent": true },
     { "source": "/miksi", "destination": "/menetelma", "permanent": true },
     { "source": "/hinnat", "destination": "/paketit", "permanent": true },
     { "source": "/kenelle", "destination": "/", "permanent": true },
