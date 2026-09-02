@@ -1,8 +1,10 @@
 # 2026 High-impact Change Log
 
-Last verified: 2026-09-01.
+Last verified: 2026-09-02.
 
+- 1.3.2026: job-search validity can end after the first failure to deal with the employment authority in the required way and by its deadline. This is separate from the unemployment-security consequence model: a first qualifying lapse can lead to a seven-day unpaid period; a second or later lapse within 12 months can lead to a six-week work requirement. Source: https://tyomarkkinatori.fi/uutiset/tyollisyyspalveluja_koskevat_lakiuudistukset_vuonna_2026_
 - 1.5.2026: Kela yleistuki replaced labour market subsidy and basic unemployment allowance. Source: https://www.kela.fi/laskurit
+- 1.7.2026: for jobseekers aged 25+, covered open higher-education studies starting on/after 1.7.2026 at an open university, open UAS, `kansalaisopisto` or summer university do not affect unemployment-security entitlement and do not need to be reported for an unemployment-security assessment. Normal job-search duties continue. Under-25 cases and studies outside the rule still require reporting/assessment. Source: https://tyomarkkinatori.fi/uutiset/avoimet-korkeakouluopinnot-eivat-jatkossa-vaikuta-25-vuotta-tayttaneiden-tyottomyysturvaan1
 - 1.8.2026: OPH S2 and preparatory-education curriculum changes took effect. Source: https://www.oph.fi/fi/uutiset/2026/perustemuutokset-voimaan-182026-muutoksilla-edistetaan-maahanmuuttotaustaisten
 - 1.8.2026: additional learning-support/compulsory-education changes also entered into force; treat school-support pages as high-volatility. Source: https://www.oph.fi/fi/uutiset/2026/esi-ja-perusopetus-kaikki-oppimisen-tuen-uudistukseen-liittyvat-lakimuutokset-astuneet
 - 1.9.2026: publishing and keeping a Työnhakuprofiili published becomes generally part of jobseeker obligations where the statutory requirement applies. New jobseekers generally have 15 working days after job search starts. For job searches begun before 1.9., the obligation normally starts at the next työnhakukeskustelu, followed by 15 working days. Statutory exceptions exist. Source: https://tyomarkkinatori.fi/uutiset/tyonhakuprofiilin-julkaisemista-koskeva-lakimuutos-astuu-voimaan-syyskuun-alusta
