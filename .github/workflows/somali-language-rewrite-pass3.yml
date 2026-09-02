@@ -25,6 +25,6 @@ jobs:
           fi
           git config user.name "AQOON language QA"
           git config user.email "actions@users.noreply.github.com"
-          git add so
+          git add caawi
           git commit -m "Polish remaining mixed-language Somali copy"
           git push
