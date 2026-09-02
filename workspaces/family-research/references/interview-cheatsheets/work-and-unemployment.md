@@ -1,6 +1,6 @@
 # Work and unemployment cheat sheet
 
-Updated 2026-09-01. Recheck live Työmarkkinatori/Kela/local employment-service rules before case-specific promises.
+Updated 2026-09-02. Recheck live Työmarkkinatori/Kela/local employment-service rules before case-specific promises.
 
 ## Ilmoittautuminen työttömäksi työnhakijaksi
 **What it is:** Official registration as an unemployed jobseeker with the local employment authority through Työmarkkinatori.
@@ -39,6 +39,30 @@ Updated 2026-09-01. Recheck live Työmarkkinatori/Kela/local employment-service 
 **Watch out:** Do not treat this as only a CV suggestion after 1.9. It can be an actual job-search obligation, but do not incorrectly threaten loss of benefit or job-search status if the profile has not yet been published.
 
 **Verify:** Työmarkkinatori, “Työnhakuprofiilin julkaisemista koskeva lakimuutos astuu voimaan syyskuun alusta” (17.8.2026): https://tyomarkkinatori.fi/uutiset/tyonhakuprofiilin-julkaisemista-koskeva-lakimuutos-astuu-voimaan-syyskuun-alusta
+
+## Missed employment-service deadlines - check job-search validity too
+**Current 2026 rule:** Since 1.3.2026, job search can end already after the first failure to deal with the employment authority in the required way and by the stated deadline. This is separate from the unemployment-security consequence: a first qualifying lapse can lead to a seven-day unpaid period, and a second or later lapse within 12 months can lead to a six-week work requirement.
+
+**Ask:** Onko jokin tapaaminen, asiakirja, selvityspyyntö tai määräaika jäänyt hoitamatta? Näkyykö työnhaku edelleen voimassa Asioinnissa? Onko tullut uusi viesti tai päätös työllisyyspalveluista?
+
+**Next:** If anything was missed, check the person's current Asiointi status/instruction and contact the responsible employment authority quickly. Do not assume that an old registration is still active.
+
+**Watch out:** Do not say “7-day karenssi” is the only possible effect. Job-search validity and benefit consequences are separate questions, and AQOON does not decide either one.
+
+**Verify:** Työmarkkinatori, 2026 employment-service law changes: https://tyomarkkinatori.fi/uutiset/tyollisyyspalveluja_koskevat_lakiuudistukset_vuonna_2026_
+
+## Avoimet korkeakouluopinnot while unemployed - change from 1.7.2026
+**For age 25+:** Covered open higher-education studies that start on or after 1.7.2026 at an open university, open UAS, `kansalaisopisto` or summer university do not affect the right to unemployment security under the published rule, and those covered studies do not need to be reported to the employment authority for an unemployment-security assessment.
+
+**Job-search duties still continue:** the person must still apply for jobs as agreed, be ready for full-time work and participate in agreed employment-promoting services.
+
+**Under 25 / other studies:** Open higher-education studies must still be reported for under-25 jobseekers, and other studies outside the rule must still be reported and assessed. Current Helsinki guidance also says open higher-education studies provided by a `kansanopisto` are not covered by this exception.
+
+**Ask:** Kuinka vanha olet? Mitä opiskelet ja missä? Milloin opinnot alkoivat? Onko kyse avoimesta yliopistosta, avoimesta AMK:sta, kansalaisopistosta tai kesäyliopistosta? Onko työnhaku edelleen voimassa?
+
+**Watch out:** Do not automatically tell a 25+ jobseeker that studying prevents unemployment security. Equally, do not extend this rule to degree studies, studies started before 1.7.2026, under-25 cases or other study types without the authority's assessment.
+
+**Verify:** Työmarkkinatori: https://tyomarkkinatori.fi/uutiset/avoimet-korkeakouluopinnot-eivat-jatkossa-vaikuta-25-vuotta-tayttaneiden-tyottomyysturvaan1
 
 ## Espoo walk-in access from 1.9.2026
 **Official matters without an appointment:** Sello Monday-Friday 9-15; Piispanportti Monday and Friday 9-15.
