@@ -12,12 +12,37 @@ summary::-webkit-details-marker{display:none}
 summary::marker{content:''}
 @media (max-width:900px){
   .desktop-nav{display:none!important}
-  .menu-toggle{display:grid!important}
+  .menu-toggle{display:grid!important;width:auto!important;min-width:76px;padding:0 12px;white-space:nowrap}
   [data-mobile-nav]:not([hidden]){display:flex!important}
 }
 @media (max-width:700px){
   body{font-size:16px}
   a,button,summary{min-height:44px}
   table{display:block;max-width:100%;overflow-x:auto}
+  .home-hero{padding:34px 20px 46px!important}
+  .home-hero__grid{grid-template-columns:minmax(0,1fr)!important;gap:30px!important}
+  .home-hero__eyebrow{margin-bottom:14px!important;font-size:11.5px!important;line-height:1.35}
+  .home-hero__title{margin-bottom:18px!important;font-size:clamp(38px,10.8vw,46px)!important;line-height:.95!important}
+  .home-hero__intro{margin-bottom:24px!important;font-size:16px!important;line-height:1.52!important}
+  .home-hero__actions{gap:11px 18px!important}
+  .home-hero__actions>a:first-child{padding:14px 22px!important;font-size:15.5px!important}
+  .home-bridge{padding:18px!important}
+  .home-bridge__endpoint:first-child{padding-right:14px!important}
+  .home-bridge__endpoint:last-child{padding-left:14px!important}
+  .home-bridge__route{margin-top:16px!important;padding:15px 16px!important}
+  .home-bridge__steps{gap:5px 8px!important;font-size:13px!important}
+  .home-bridge__caption{margin-top:10px!important;font-size:13px!important}
+  .work-chain-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .work-chain-grid>li{padding:18px 14px!important}
+  .work-chain-grid>li>p:first-child{margin-bottom:7px!important}
+  .work-chain-grid>li>h3{font-size:17px!important;line-height:1.18}
+  .work-chain-grid>li>p:last-child{font-size:14px!important;line-height:1.45!important}
+}
+@media (max-width:350px){
+  .home-bridge__pair{grid-template-columns:1fr!important}
+  .home-bridge__endpoint:first-child{padding:0 0 14px!important;border-right:0!important;border-bottom:1px solid #c9c8c1}
+  .home-bridge__endpoint:last-child{padding:14px 0 0!important;text-align:left!important}
+  .home-bridge__endpoint:last-child p:last-child{margin-left:0!important}
+  .work-chain-grid{grid-template-columns:1fr!important}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
