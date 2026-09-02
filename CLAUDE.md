@@ -24,6 +24,7 @@ Before substantive work:
 | Research a family case | `workspaces/family-research/CONTEXT.md` + `family-research` skill |
 | Verify evidence or an external claim | `workspaces/evidence-and-research/CONTEXT.md` |
 | Messaging / website / sales copy | `workspaces/messaging/CONTEXT.md` |
+| Demand generation / social / video / creators / community outreach | `workspaces/messaging/CONTEXT.md` + `aqoon-demand-content` skill |
 | SEO / discoverability / content growth | `seo/CONTEXT.md` + `seo-growth` skill |
 | Site-wide or repository audit | `workspaces/product-qa/CONTEXT.md` + `repository-auditing` skill |
 | Production release / deploy verification | `production-releasing` skill |

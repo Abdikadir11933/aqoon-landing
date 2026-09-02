@@ -39,7 +39,8 @@ Do not move these physical paths just to make the repository visually tidier; th
 
 - `workspaces/family-research/` — case research stages and routing workflow; family PII still stays out of GitHub.
 - `workspaces/evidence-and-research/` — sanitized sources, evidence and verification records.
-- `workspaces/messaging/` — copy/messaging task context.
+- `workspaces/messaging/` — copy/messaging task context. Its canonical acquisition reference is `references/aqoon-demand-generation-and-content-os.md`.
+- `.claude/skills/aqoon-demand-content/` — repeatable workflow for campaigns, videos, scripts, trusted connectors, creators, järjestöt and performance review.
 - `workspaces/product-qa/` — site/repository QA context.
 - `workspaces/ai-coding/` — staged AI-assisted coding workflow with explicit handoffs.
 

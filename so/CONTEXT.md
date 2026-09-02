@@ -2,6 +2,8 @@
 
 Purpose: Somali public guidance for navigating Finnish services.
 
+These guidance pages are an owned acquisition and trust channel inside `../workspaces/messaging/references/aqoon-demand-generation-and-content-os.md`. Topic pages should provide useful standalone help and one clear path to `/caawi` when hands-on support is appropriate.
+
 Language:
 - use `../_core/policies/localization.md`.
 - sound human, modern and clear; do not translate bureaucracy word-for-word.

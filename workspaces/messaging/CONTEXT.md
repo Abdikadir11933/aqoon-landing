@@ -4,13 +4,19 @@ Inputs: audience, intended action, canonical evidence IDs, brand voice and chann
 
 Rules: factual claims must trace to evidence/source IDs; do not turn hypotheses, one-provider observations or stale statistics into universal claims. Private buyer/sales material stays outside public GitHub.
 
+## Canonical demand generation and outreach system
+
+The complete operating model for social content, owned domains, the user-named Yellow Card domain, phone/DM/WhatsApp, fieldwork, trusted mothers and known people, creators, järjestöt, community actors, referrals, paid amplification and buyer outreach is `references/aqoon-demand-generation-and-content-os.md`.
+
+Use `.claude/skills/aqoon-demand-content/SKILL.md` for every video, script, campaign, creator/community distribution plan or acquisition performance review. The exact Yellow Card URL is not yet documented; do not invent it or change routing until confirmed.
+
 ## Current acquisition architecture
 
-AQOON should not lead with a broad list of everything it can help with. The strongest current pattern is:
+AQOON should not lead with a broad list of everything it can help with. TikTok is one proven channel, not the strategy. Every channel uses the same strongest current pattern:
 
 **one concrete problem/opportunity → useful Somali-language explanation → one clear CTA → `/caawi` → phone captured → first interview → verified match/action → follow-up**
 
-The entry problem is the acquisition door, not the permanent definition of the family relationship.
+The entry problem is the acquisition door, not the permanent definition of the family relationship. A family may enter through founder-led content, AQOON/Yellow Card owned pages, private referrals, fieldwork, trusted mothers or known people, a creator, a järjestö or another community actor. The family should still reach AQOON through a voluntary, attributable contact route and the same interview-to-outcome journey.
 
 Examples of entry doors:
 - a free hobby or registration opening;

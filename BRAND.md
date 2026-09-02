@@ -72,6 +72,17 @@ pilke-sivuilla.
 - Kesken oleva luku jätetään tyhjäksi ja merkitään, ei arvata
 - Rehellisyyslaatikko (`.honest`) jokaisella kampanjasivulla
 
+## Sosiaalinen sisältö ja video
+
+- Koko kysynnänluonti-, outreach- ja sisältömalli: `workspaces/messaging/references/aqoon-demand-generation-and-content-os.md`.
+- Abducadir on oletusarvoinen julkinen kasvot ja käyttää omaa ääntään.
+- Perheille suunnattu video on Somali-first, ihmisen puhetta ja ihmisen tarkistamaa. Ei AI-hahmoja, avatar-korvikkeita tai korvaavaa AI-ääntä.
+- Yksi video käsittelee yhtä pääasiaa ja sisältää yhden CTA:n.
+- Pystyvideo voidaan kuvata luontevasti puhelimella. Käytä selkeää CapCut-ruututekstiä ja tekstitystä.
+- Perheiden henkilötietoja, viestejä, lomakkeita tai tunnistettavia tarinoita ei käytetä ilman oikeaa lupaa ja minimointia.
+- Maksettu, lahjottu tai muuten kaupallinen vaikuttajayhteistyö merkitään kulloinkin voimassa olevan KKV-ohjeen mukaisesti.
+- Yleinen elämäntyylisisältö ei kuulu AQOONin sisältöön, ellei se rakenna suoraan luottamusta AQOONin työtapaan tai vastaa todelliseen perhekysymykseen.
+
 ## Kielisäännöt
 
 - **Somalinkielisessä sisällössä** suomalaiset instituutiosanat pysyvät suomeksi:

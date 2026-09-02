@@ -22,7 +22,7 @@ The operating model flows as:
 
 `useful content/free help -> consented contact -> interview/qualification -> verified match -> assisted action -> partner handoff -> verified outcome/persistence -> aggregate learning`
 
-See `docs/architecture/business-operating-model.md` for the canonical business model. Do not duplicate or reinterpret it independently in feature-level files.
+See `docs/architecture/business-operating-model.md` for the canonical business model. The complete multi-channel acquisition, outreach and content workflow lives in `workspaces/messaging/references/aqoon-demand-generation-and-content-os.md`. Do not duplicate or reinterpret either model independently in feature-level files.
 
 ## Canonical truth rules
 

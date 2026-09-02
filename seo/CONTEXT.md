@@ -2,6 +2,8 @@
 
 Purpose: make AQOON easy to discover for real user problems while preserving trust, factual accuracy and conversion quality.
 
+SEO and owned guidance pages are channels inside `../workspaces/messaging/references/aqoon-demand-generation-and-content-os.md`; they do not use a separate lead or funnel definition.
+
 ## Ownership
 
 - Public HTML pages own presentation and page-level metadata.

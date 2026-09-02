@@ -23,6 +23,8 @@ Somalinkielinen yhteisö on AQOONin nykyinen vahvin aloitusmarkkina, ei mallin l
 7. Varmenna toteutunut hakemus, aloitus, asiakkuus tai muu sovittu lopputulos sekä tarvittaessa pysyvyys.
 8. Muuta toistuvat havainnot henkilötiedottomaksi ja varmennetuksi oppimiseksi, joka parantaa seuraavaa sisältöä ja polkua.
 
+Tavoittaminen on monikanavaista. TikTok ja muu sisältö, AQOONin omat sivut ja Somali-opastus, käyttäjän nimeämä Yellow Card -domain, yksityiset puhelin-, DM- ja WhatsApp-reitit, kenttätyö, vaikuttavat äidit ja muut tunnetut luottohenkilöt, järjestöt, yhteisötoimijat, suosittelut ja kumppanikanavat kuuluvat samaan moottoriin. Jokaisella kanavalla on oma tehtävä, vapaaehtoinen yhteydenottoreitti, lähdemittaus, suostumusraja ja vastuullinen jatko. Tarkka toimintamalli on `../../workspaces/messaging/references/aqoon-demand-generation-and-content-os.md`.
+
 ## Kolme ostettavaa kokonaisuutta
 
 ### 1. Jatkuva tavoittamisen ja aloituksen toteutus

@@ -6,6 +6,7 @@ Canonical dependencies:
 - safety/governance: `../_core/`
 - Somali localization: `../_core/policies/localization.md`
 - downstream family research: `../workspaces/family-research/CONTEXT.md`
+- acquisition and CTA contract: `../workspaces/messaging/references/aqoon-demand-generation-and-content-os.md`
 
 Rules:
 - phone/name remain first so a partial intake can still be followed up.
@@ -17,3 +18,4 @@ Rules:
 - consent to contact about the stated problem is separate from consent to share information with a partner, receive unrelated offers or join continuing marketing.
 - when AQOON may be paid by a recommended provider, disclose that relationship before the family acts on the recommendation.
 - intake may capture several confirmed needs, but must not become a long universal questionnaire. Progressive questions belong in the operator interview.
+- campaign links and alternate domains must preserve a working mobile handoff and attributable source/campaign values without putting PII into anonymous analytics.

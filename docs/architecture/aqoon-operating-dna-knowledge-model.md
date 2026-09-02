@@ -17,6 +17,7 @@ The first layer answers *what is currently true outside AQOON*. The second answe
 | --- | --- | --- |
 | Business model, offers, outcome chain and trust boundaries | `business-operating-model.md` | sets the operating objective and prohibited shortcuts |
 | Family and buyer communication rules | `workspaces/messaging/CONTEXT.md` | shapes explanation, CTA and disclosure language |
+| Demand generation, outreach, channel roles and content production | `workspaces/messaging/references/aqoon-demand-generation-and-content-os.md` | governs every campaign, video, script, creator/community collaboration and source-to-outcome measurement |
 | Official sources, services, routes and calculators | `workspaces/evidence-and-research/references/` and protected knowledge tables | determines source-backed options and freshness |
 | Case facts and consent | protected Supabase tables only | determines what can be matched for this family |
 | Case outcomes and repeatable lessons | protected PII-free scenario records | improves questions and follow-up, never overwrites official rules |
