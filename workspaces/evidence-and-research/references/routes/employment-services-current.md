@@ -7,7 +7,7 @@ authority_ids: [authority.employment-area]
 required_inputs: [municipality, jobseeker_status, jobsearch_start_date, employment_status, goal, authentication_or_nationality_barrier]
 source_ids: [src.jobmarket.te24, src.jobmarket.jobseeker-registration, src.jobmarket.employment-plan, src.jobmarket.employment-reforms-2026, src.jobmarket.unemployment-consequences]
 volatility: high
-last_verified_at: 2026-09-01
+last_verified_at: 2026-09-02
 decision_maker: user's municipal employment area / relevant provider
 aqoon_role: [explain, navigate, help_prepare, remind]
 aqoon_must_not: [register_user, decide_unemployment_security, create_authority_plan, determine_statutory_obligations]
@@ -29,9 +29,25 @@ After registration, the authority agrees how the customer's case will proceed. T
 
 ## 2026 interview, search and consequence context
 
-The official 2026 guidance says the initial interview is arranged within ten working days from the start of job search, and job-search discussions continue at three-month intervals. It also says part-time jobseekers generally moved to the same four-job-opportunities-per-month obligation from 1 January 2026. The employment authority records a person's actual obligation and instructions in their plan; AQOON must read the person's own authority instruction rather than apply a generic number.
+The official 2026 guidance says the initial interview is arranged within ten working days from the start of job search. Regular `työnhakukeskustelu` meetings remain part of the service process, while supplementary job-search discussions are arranged according to the person's service need rather than as an automatic fixed extra cadence. The employment authority records the person's actual obligation, meetings and instructions in their plan; AQOON must read the person's own authority instruction rather than apply a generic number.
 
-The current national consequences page describes a two-tier model: a first lapse can result in a seven-day unpaid period, while a repeat lapse within 12 months can suspend unemployment security until a six-week work requirement is met. This is a high-risk, fact-specific authority process. AQOON may explain the published sequence and urge immediate contact with the authority; it must not decide whether a lapse occurred, whether a reason is accepted or whether a consequence is avoided.
+The 1 March 2026 changes also mean that two separate consequences must not be collapsed into one. The **validity of job search can end after the first failure to deal with the employment authority in the required way and by the stated deadline**. Separately, the current unemployment-security consequence model says a first qualifying lapse can lead to a seven-day unpaid period, while a second or later lapse within 12 months can lead to a six-week work requirement. These are high-risk, fact-specific authority processes. AQOON may explain the published sequence, check whether job search still shows as active in Asiointi and urge immediate contact with the authority; it must not decide whether a lapse occurred, whether a reason is accepted, whether job search must be reactivated or whether a benefit consequence applies.
+
+Primary source: https://tyomarkkinatori.fi/uutiset/tyollisyyspalveluja_koskevat_lakiuudistukset_vuonna_2026_
+
+## Open higher-education studies from 1.7.2026
+
+For a jobseeker who is **25 or older**, covered open higher-education studies that start on or after 1 July 2026 at an open university, open university of applied sciences, adult education centre (`kansalaisopisto`) or summer university do not affect the right to unemployment security under the published rule. The person does not need to report those covered studies to the employment authority for an unemployment-security assessment.
+
+The change does **not** remove normal job-search duties. The person must still apply for work as agreed in the employment plan, remain ready to accept full-time work and participate in agreed employment-promoting services. Jobseekers under 25 must still report open higher-education studies and their effect is assessed. Other studies outside this rule must also still be reported and assessed. Helsinki's current guidance additionally warns that open higher-education studies provided by a `kansanopisto` are not covered by this exception.
+
+Open higher-education studies can no longer be separately agreed as unemployment-benefit-supported independent studies under this route; that change also applies to people under 25.
+
+Primary sources:
+- Job Market Finland: https://tyomarkkinatori.fi/uutiset/avoimet-korkeakouluopinnot-eivat-jatkossa-vaikuta-25-vuotta-tayttaneiden-tyottomyysturvaan1
+- City of Helsinki clarification: https://www.hel.fi/fi/uutiset/tyottomana-voi-nyt-opiskella-avoimia-korkeakouluopintoja-menettamatta-tyottomyysetuutta
+
+Operator implication: when a jobseeker says they are studying, do not automatically treat study as incompatible with unemployment security. Ask the person's age, what kind of studies they are, the provider, when the studies started and whether job search is still active. Apply the 25+ open-higher-education rule only when the published conditions fit; otherwise route the case for the authority's study/unemployment-security assessment.
 
 ## Työnhakuprofiili from 1.9.2026
 
