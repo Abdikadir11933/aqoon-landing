@@ -253,6 +253,97 @@ Deno.serve(async (req) => {
       { headers: h },
     );
   }
+  if (action === "save_family_setup") {
+    const leadId = String(b.lead_id || ""),
+      rawChildren = b.children;
+    const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+    if (!uuidPattern.test(leadId) || !Array.isArray(rawChildren) || rawChildren.length > 20)
+      return new Response(JSON.stringify({ error: "invalid_family_setup" }), {
+        status: 400,
+        headers: h,
+      });
+
+    const children: Array<{
+      person_id: string;
+      age_years: number | null;
+      display_label: string;
+      family_need_id: string | null;
+    }> = [];
+    for (let index = 0; index < rawChildren.length; index += 1) {
+      const rawChild = rawChildren[index];
+      if (!rawChild || typeof rawChild !== "object" || Array.isArray(rawChild))
+        return new Response(JSON.stringify({ error: "invalid_child_record", index }), {
+          status: 400,
+          headers: h,
+        });
+
+      const personId = rawChild.person_id === null || rawChild.person_id === undefined || rawChild.person_id === ""
+        ? null
+        : String(rawChild.person_id);
+      const familyNeedId = rawChild.family_need_id === null || rawChild.family_need_id === undefined || rawChild.family_need_id === ""
+        ? null
+        : String(rawChild.family_need_id);
+      if (!personId || !uuidPattern.test(personId) || (familyNeedId && !uuidPattern.test(familyNeedId)))
+        return new Response(JSON.stringify({ error: "invalid_family_setup_id", index }), {
+          status: 400,
+          headers: h,
+        });
+
+      const rawAge = rawChild.age_years;
+      let ageYears: number | null = null;
+      if (rawAge !== null && rawAge !== undefined && rawAge !== "") {
+        if (typeof rawAge === "number") ageYears = rawAge;
+        else if (typeof rawAge === "string" && /^(0|[1-9][0-9]{0,2})$/.test(rawAge.trim()))
+          ageYears = Number(rawAge.trim());
+        else
+          return new Response(JSON.stringify({ error: "invalid_child_age", index }), {
+            status: 400,
+            headers: h,
+          });
+      }
+      if (ageYears !== null && (!Number.isInteger(ageYears) || ageYears < 0 || ageYears > 120))
+        return new Response(JSON.stringify({ error: "invalid_child_age", index }), {
+          status: 400,
+          headers: h,
+        });
+
+      const rawLabel = typeof rawChild.display_label === "string"
+        ? rawChild.display_label.trim()
+        : "";
+      if (rawLabel.length > 80)
+        return new Response(JSON.stringify({ error: "invalid_child_display_label", index }), {
+          status: 400,
+          headers: h,
+        });
+
+      children.push({
+        person_id: personId,
+        age_years: ageYears,
+        display_label: rawLabel || `Child ${index + 1}`,
+        family_need_id: familyNeedId,
+      });
+    }
+
+    const setupResult = await db.rpc("aqoon_save_family_setup", {
+      p_lead_id: leadId,
+      p_children: children,
+      p_operator_id: jwtOperatorId,
+    });
+    if (setupResult.error) {
+      const message = setupResult.error.message;
+      const knownDetail = message.match(/(household_not_found|household_need_not_found|invalid_[a-z_]+|duplicate_[a-z_]+|missing_child_person_id|too_many_children)/)?.[1];
+      const notFound = /not_found/.test(knownDetail || "");
+      const invalid = /invalid_|duplicate_|missing_|too_many_/.test(knownDetail || "");
+      return new Response(JSON.stringify({
+        error: "family_setup_write_failed",
+        ...(knownDetail ? { detail: knownDetail } : {}),
+      }), {
+        status: notFound ? 404 : invalid ? 400 : 500,
+        headers: h,
+      });
+    }
+    return new Response(JSON.stringify(setupResult.data), { headers: h });
+  }
   if (action === "save_household_member") {
     const leadId = String(b.lead_id || ""),
       personId = b.person_id ? String(b.person_id) : null,

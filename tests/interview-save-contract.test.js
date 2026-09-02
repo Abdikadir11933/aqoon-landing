@@ -5,7 +5,7 @@ const path = require('node:path');
 
 const read = file => fs.readFileSync(path.join(__dirname, '..', file), 'utf8');
 
-test('completed v5 work interview requires operational and scenario anchors', async () => {
+test('completed v6 work interview requires operational and scenario anchors', async () => {
   const { validateCompletedInterview, CURRENT_INTERVIEW_SCHEMA } = await import('../supabase/functions/_shared/interview-save-contract.mjs');
   const base = {
     status: 'completed', schemaVersion: CURRENT_INTERVIEW_SCHEMA, interviewType: 'work',
@@ -65,6 +65,15 @@ test('a genuine education intake still requires the education anchor', async () 
 test('drafts remain saveable without pretending to be completed interviews', async () => {
   const { validateCompletedInterview } = await import('../supabase/functions/_shared/interview-save-contract.mjs');
   assert.deepEqual(validateCompletedInterview({ status: 'draft' }), []);
+});
+
+test('the rolling deployment accepts the immediately previous completed schema', async () => {
+  const { validateCompletedInterview } = await import('../supabase/functions/_shared/interview-save-contract.mjs');
+  const errors = validateCompletedInterview({
+    status: 'completed', schemaVersion: 'first-interview-v5', interviewType: 'program',
+    nextAction: 'Review current programmes', answers: { program_reason: 'Need work or training' },
+  });
+  assert.deepEqual(errors, []);
 });
 
 test('historical completed interviews are explicitly marked, never mislabeled as v5', () => {

@@ -46,6 +46,7 @@
       "restore",
       "review_feedback",
       "save_event",
+      "save_family_setup",
       "save_household_member",
       "save_interview",
       "save_opportunity",
@@ -159,6 +160,7 @@
       "aqoon_record_partner_handoff_outcome",
       "aqoon_reopen_family_case",
       "aqoon_review_route_feedback_signal",
+      "aqoon_save_family_setup",
       "aqoon_save_household_member",
       "aqoon_save_research_evidence",
       "aqoon_save_route_review",
@@ -168,7 +170,7 @@
       "aqoon_withdraw_partner_handoff",
       "take_family_intake_rate_limit"
     ],
-    "discovered_answer_keys": 152,
+    "discovered_answer_keys": 154,
     "answer_keys_without_backend_or_migration_reference": [
       "access_barriers",
       "already_tried",
@@ -192,6 +194,8 @@
       "hobby_outcome_stage",
       "hobby_persistence",
       "hobby_registration_help",
+      "household_child_ages",
+      "household_child_count",
       "income_statement_status",
       "issue_context",
       "known_service",
@@ -320,9 +324,9 @@
     },
     {
       "order": 5,
-      "src": "/tracker/interview-contract.js?v=1",
+      "src": "/tracker/interview-contract.js?v=3",
       "file": "tracker/interview-contract.js",
-      "lines": 71,
+      "lines": 77,
       "edge_functions": [],
       "api_actions": [
         "save_interview"
@@ -332,6 +336,8 @@
       "listened_events": [],
       "dispatched_events": [],
       "answer_keys": [
+        "household_child_ages",
+        "household_child_count",
         "main_status",
         "primary_situation"
       ]
@@ -369,7 +375,7 @@
     },
     {
       "order": 8,
-      "src": "/tracker/interview-match.js?v=6",
+      "src": "/tracker/interview-match.js?v=7",
       "file": "tracker/interview-match.js",
       "lines": 135,
       "edge_functions": [
@@ -503,7 +509,7 @@
     },
     {
       "order": 9,
-      "src": "/tracker/interview-match-preview.js?v=4",
+      "src": "/tracker/interview-match-preview.js?v=5",
       "file": "tracker/interview-match-preview.js",
       "lines": 73,
       "edge_functions": [
@@ -675,7 +681,7 @@
     },
     {
       "order": 14,
-      "src": "/tracker/scenario-learning.js?v=4",
+      "src": "/tracker/scenario-learning.js?v=5",
       "file": "tracker/scenario-learning.js",
       "lines": 35,
       "edge_functions": [
@@ -723,7 +729,7 @@
     },
     {
       "order": 16,
-      "src": "/tracker/interview-follow-up-recap.js?v=3",
+      "src": "/tracker/interview-follow-up-recap.js?v=4",
       "file": "tracker/interview-follow-up-recap.js",
       "lines": 167,
       "edge_functions": [
@@ -774,31 +780,40 @@
     },
     {
       "order": 18,
-      "src": "/tracker/household-people.js?v=1",
+      "src": "/tracker/household-people.js?v=2",
       "file": "tracker/household-people.js",
-      "lines": 16,
+      "lines": 396,
       "edge_functions": [
         "family-leads-admin"
       ],
       "api_actions": [
+        "save_family_setup",
         "save_household_member"
       ],
       "window_exports": [
+        "AqoonHouseholdSetup",
         "openInterview"
       ],
       "window_wrappers": [
         "openInterview"
       ],
       "listened_events": [
+        "aqoon:interview-answers-restored",
+        "change",
+        "click",
         "dataUpdated",
-        "submit"
+        "input",
+        "submit",
+        "toggle"
       ],
-      "dispatched_events": [],
+      "dispatched_events": [
+        "input"
+      ],
       "answer_keys": []
     },
     {
       "order": 19,
-      "src": "/tracker/universal-proof-questions.js?v=2",
+      "src": "/tracker/universal-proof-questions.js?v=3",
       "file": "tracker/universal-proof-questions.js",
       "lines": 173,
       "edge_functions": [
@@ -811,7 +826,9 @@
       "window_wrappers": [],
       "listened_events": [
         "DOMContentLoaded",
-        "click"
+        "change",
+        "click",
+        "input"
       ],
       "dispatched_events": [],
       "answer_keys": []
@@ -1009,7 +1026,7 @@
     },
     {
       "order": 28,
-      "src": "/tracker/followup-workflow-v2.js?v=5",
+      "src": "/tracker/followup-workflow-v2.js?v=6",
       "file": "tracker/followup-workflow-v2.js",
       "lines": 66,
       "edge_functions": [
@@ -1254,7 +1271,7 @@
     {
       "slug": "family-leads-admin",
       "file": "supabase/functions/family-leads-admin/index.ts",
-      "lines": 885,
+      "lines": 976,
       "actions": [
         "analytics",
         "call_log",
@@ -1267,6 +1284,7 @@
         "programmes",
         "programs",
         "record_call_outcome",
+        "save_family_setup",
         "save_household_member",
         "save_interview",
         "update",
@@ -1304,6 +1322,7 @@
         "stringify"
       ],
       "rpcs": [
+        "aqoon_save_family_setup",
         "aqoon_save_household_member"
       ],
       "auth_boundary": "operator_jwt_or_repository_fallback_contract"
@@ -1941,6 +1960,7 @@
         "tracker/interview-form-enhancements.js"
       ],
       "tracker_references": [
+        "tracker/household-people.js",
         "tracker/interview-contract.js",
         "tracker/interview-form-enhancements.js",
         "tracker/interview-match.js"
@@ -2502,12 +2522,39 @@
         "tracker/interview-match.js"
       ],
       "tracker_references": [
+        "tracker/household-people.js",
         "tracker/interview-contract.js",
         "tracker/interview-match.js"
       ],
       "backend_references": [
         "supabase/functions/family-scenario-admin/index.ts"
       ],
+      "migration_references": []
+    },
+    {
+      "key": "household_child_ages",
+      "declared_by": [
+        "tracker/interview-contract.js"
+      ],
+      "tracker_references": [
+        "tracker/household-people.js",
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [],
+      "migration_references": []
+    },
+    {
+      "key": "household_child_count",
+      "declared_by": [
+        "tracker/interview-contract.js"
+      ],
+      "tracker_references": [
+        "tracker/household-people.js",
+        "tracker/interview-contract.js",
+        "tracker/interview-match.js"
+      ],
+      "backend_references": [],
       "migration_references": []
     },
     {
@@ -3623,7 +3670,7 @@
     }
   ],
   "migrations": {
-    "count": 47,
+    "count": 48,
     "files": [
       "20260826000000_recovered_operational_baseline.sql",
       "20260827_aqoon_operations_system.sql",
@@ -3671,7 +3718,8 @@
       "20260901235500_harden_shared_security_functions.sql",
       "20260902000500_enforce_service_role_legacy_rpcs.sql",
       "20260902090000_family_intake_consent_and_retention_reconciliation.sql",
-      "20260902091000_cover_remaining_family_foreign_keys.sql"
+      "20260902091000_cover_remaining_family_foreign_keys.sql",
+      "20260902142724_transactional_family_setup.sql"
     ],
     "created_tables": [
       "family_call_log",
@@ -3750,6 +3798,7 @@
       "aqoon_record_partner_handoff_outcome",
       "aqoon_reopen_family_case",
       "aqoon_review_route_feedback_signal",
+      "aqoon_save_family_setup",
       "aqoon_save_household_member",
       "aqoon_save_research_evidence",
       "aqoon_save_route_review",

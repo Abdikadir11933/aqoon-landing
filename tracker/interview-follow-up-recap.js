@@ -111,7 +111,7 @@ function scrapeCurrentAnswers(){
       if(vals.length)out[k]=el.classList.contains('match-multi')?vals:vals[0];
     }
   });
-  return out;
+  return window.AqoonInterviewContract?.normalizeAnswers?.(out)||out;
 }
 
 function toggle(){

@@ -166,7 +166,7 @@ const obs=new MutationObserver(()=>{ensure();document.getElementById('interviewE
 // card that analytics-mobile-v2.css permanently hides (#aqResearchPulse in
 // analytics-mobile-v2.js is the one visible card now) - no longer called, so
 // this file stops fetching/computing an aggregate that's never shown.
-function start(){const r=document.querySelector(ROOT);if(r){obs.observe(r,{childList:true,subtree:true});r.addEventListener('click',event=>{if(event.target.closest('.choice'))setTimeout(syncBranches,0)})}ensure();}
+function start(){const r=document.querySelector(ROOT);if(r){obs.observe(r,{childList:true,subtree:true});r.addEventListener('click',event=>{if(event.target.closest('.choice'))setTimeout(syncBranches,0)});r.addEventListener('input',()=>setTimeout(syncBranches,0));r.addEventListener('change',()=>setTimeout(syncBranches,0))}ensure();}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 document.addEventListener('click',e=>{if(e.target.closest('[data-interview]'))setTimeout(ensure,180)},false);
 })();

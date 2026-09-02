@@ -40,17 +40,20 @@ The target is outcome-based, not a predetermined schema or UI. Any implementatio
 
 **Interview** (see also "First interview architecture" below and `docs/decisions/0002-two-operator-os-interview-and-data-foundation.md` §1–2 and §7 for the field-ID-drift, evidence-layer-duplication and 29 Aug 2026 consolidation history) — `interview-match.js` (route-specific first-interview questions + deep-research prompt builder; explicitly loaded from `index.html`) · `interview-match-preview.js` (explicitly loaded from `index.html`, but server-gated until an interview is completed so raw intake cannot generate a candidate route or eligibility-style preview) · `interview-form-enhancements.js` (older Pilke/hobby depth-evidence layer; as of 29 Aug 2026 its `addCoreEvidence`/`addHobbyEvidence`/`addDaycareEvidence` batteries are gated behind `PILOT_DEPTH_MODULE_ENABLED`, default `false` — off unless deliberately re-enabled as a pilot; `enhanceBarrier`/`addJobSearchProfile`/`addConditionNote` stay always-on since they are not duplicative) · `universal-proof-questions.js` (canonical universal-evidence + branching layer; also renders the "Interview insights" analytics tab) · `interview-smart-notes.js` (suggests structured answers from free-text call notes) · `scenario-learning.js` (PII-free scenario matching + "save verified research").
 
+`household-people.js` owns the short Family basics opening. The contacted person already exists as the household's unique canonical `contact`; the operator must never recreate that person as another adult. The opening records parent/guardian status, child count and one age per explicitly identified child, then links a child-led need only after the operator chooses which child it concerns. Other adults remain an optional disclosure. Child rows are saved atomically with stable IDs before the interview save is replayed; omitted saved children are never silently deleted. Explicit child ages may populate backward-compatible interview age-band answers, but old age-band hints must never create people.
+
 **Sales & analytics** — `operations-system.js` (sales pipeline + agenda, `ops-admin`) · `call-outcomes.js` ("what happened on this call" modal, `record_call_outcome`) · `analytics-mobile-v2.js` (mobile-specific analytics tab enhancements).
 
 **CSS** — one file per matching JS/section: `app.css`, `usability.css`, `workspace-ux.css`, `analytics-actions.css`, `analytics-mobile-v2.css`, `call-outcomes.css`, `crm-manage.css`, `crm-reactive.css`, `operations-system.css`, `research-analytics.css`.
 
 ## First interview architecture
 
-Every first interview has three layers:
+Every first interview has four layers:
 
-1. **Route-specific matching questions** — only the facts needed to solve the presenting problem and build a deep-research brief.
-2. **Universal evidence baseline** — the same core questions across every interview so aggregate claims use a comparable denominator.
-3. **Conditional life-stage packs** — work, daycare, school/hobby and rotating research questions shown only when relevant.
+1. **Family basics** — confirm who is already the primary contact and record only explicit household people without asking the operator to recreate the caller.
+2. **Route-specific matching questions** — only the facts needed to solve the presenting problem and build a deep-research brief.
+3. **Universal evidence baseline** — the same core questions across every interview so aggregate claims use a comparable denominator.
+4. **Conditional life-stage packs** — work, daycare, school/hobby and rotating research questions shown only when relevant.
 
 The first interview is a fact-gathering step, not a match screen. Intake answers select only the conversation topic and the conditional questions to ask; they must not create a candidate route, a benefit preview or an eligibility implication. Only after the first interview is saved with the relevant qualifying facts may an operator build the research brief and investigate current routes. “Possible — must confirm” is reserved for that later researched workflow; it is never a promise, benefit calculation, authority decision or automatic referral.
 
@@ -65,7 +68,7 @@ Ask naturally at the end of every first interview:
 - `entry_service_awareness`: whether the exact entry service/programme/opportunity was known;
 - `entry_service_self_navigation`: whether the person would have known the next step without AQOON;
 - `entry_blockers`: what prevented action;
-- `household_children`: compact household/life-stage gate;
+- `household_children`: backward-compatible compact household/life-stage snapshot, derived only from explicit Family basics child ages or answered directly in historical interviews;
 - `work_interest_gate`: whether employment support is relevant now/soon;
 - `cross_service_needs_all`: other confirmed needs discovered;
 - `aqoon_return_intent`: whether the family would come back with another Finnish-system question;
@@ -110,6 +113,8 @@ Deep hobby cases still receive the fuller Vantaa pilot fields including grades, 
 
 ## Interview design rules
 
+- The primary contact is already a person. Do not ask the operator to add that adult again, and do not assume the person being helped is always the caller.
+- A lower child count is not a deletion instruction. Correct or reassign an existing child explicitly when a saved record is wrong or linked to a need.
 - Keep universal baseline + branching to roughly 1–3 extra minutes in a normal call.
 - Prefer closed response options for anything that must aggregate; use notes only for nuance.
 - Use mutually clear response options and always allow `Not sure` when appropriate.

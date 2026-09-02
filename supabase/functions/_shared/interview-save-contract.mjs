@@ -1,4 +1,5 @@
-export const CURRENT_INTERVIEW_SCHEMA = "first-interview-v5";
+export const CURRENT_INTERVIEW_SCHEMA = "first-interview-v6";
+export const ACCEPTED_INTERVIEW_SCHEMAS = new Set(["first-interview-v5", CURRENT_INTERVIEW_SCHEMA]);
 
 const ALLOWED_TOPICS = new Set([
   "work", "education", "entrepreneurship", "daycare", "hobby",
@@ -23,7 +24,7 @@ const present = value => value !== undefined && value !== null && value !== "" &
 export function validateCompletedInterview(input = {}) {
   if (input.status !== "completed") return [];
   const errors = [];
-  if (input.schemaVersion !== CURRENT_INTERVIEW_SCHEMA) errors.push("interview_schema_version");
+  if (!ACCEPTED_INTERVIEW_SCHEMAS.has(input.schemaVersion)) errors.push("interview_schema_version");
   if (!String(input.nextAction || "").trim()) errors.push("next_action");
   const answers = input.answers && typeof input.answers === "object" && !Array.isArray(input.answers)
     ? input.answers

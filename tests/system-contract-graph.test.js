@@ -109,7 +109,7 @@ test('the recovered baseline precedes migrations that reference its tables', () 
 
 test('the deployed Tracker uses one canonical follow-up owner', () => {
   const html = read('tracker/index.html');
-  assert.match(html, /followup-workflow-v2\.js\?v=5/);
+  assert.match(html, /followup-workflow-v2\.js\?v=6/);
   assert.doesNotMatch(html, /followup-workflow-v1|followup-workflow\.js/);
   assert.equal((html.match(/followup-workflow-v2\.js/g) || []).length, 1);
 });

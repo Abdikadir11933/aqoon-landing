@@ -17,7 +17,8 @@ test('interview-match.js exposes a live "answered / total" completeness badge, n
   // rendered the field that changed.
   assert.match(interview, /function renderCompleteness\(\)\{/);
   assert.match(interview, /total=host\.querySelectorAll\('\.match-extra\[data-match-required="1"\]:not\(\.hidden\)'\)\.length/);
-  assert.match(interview, /total-missing\(collect\(\)\)\.length/);
+  assert.match(interview, /answered=total-missing\(collect\(\)\)\.length/);
+  assert.match(interview, /essential answers completed/);
   assert.match(interview, /\$\('questions'\)\?\.addEventListener\('click',renderCompleteness\)/);
   assert.match(interview, /\$\('questions'\)\?\.addEventListener\('input',renderCompleteness\)/);
   // Must also run once when a lead's fields are first built, not only after

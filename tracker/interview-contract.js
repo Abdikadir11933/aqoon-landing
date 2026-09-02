@@ -1,7 +1,8 @@
 (function(root){'use strict';
-const SCHEMA_VERSION='first-interview-v5';
+const SCHEMA_VERSION='first-interview-v6';
 const groups={
   context:['case_subject','current_situation','immediate_goal','child_stage','household_schedule'],
+  household_profile:['primary_contact_parent_caregiver','household_child_count','household_child_ages'],
   core:['client_age','home_municipality'],
   work:['primary_situation','work_search_scope','work_intent','study_path','qualification_status','work_study_route','training_schedule','jobseeker','jobseeker_active','unemployment_duration','employment_plan','integration_plan','right_to_work_known','palkkatuki','availability','start_when','travel_limit','childcare_limit','student_schedule','study_completion','student_benefit_context','current_work_hours','change_reason','work_tryout','apprenticeship','job_search_profile'],
   entrepreneurship:['business_stage','fulltime_started','business_idea','business_plan','business_numbers','starttiraha','business_start','business_help'],
@@ -21,6 +22,7 @@ const groups={
 };
 const groupPolicy={
   context:{source:'family_answer',purpose:'Identify the person and immediate scenario before route-specific questions.',consumers:['interview_summary','research_brief','operator_follow_up']},
+  household_profile:{source:'family_answer',purpose:'Snapshot the explicitly confirmed household basics used to prepare the interview and preserve who was actually discussed.',consumers:['research_brief','interview_revision','household_analysis']},
   core:{source:'family_answer',purpose:'Provide a minimum identity or municipality criterion used across adult routes.',consumers:['route_match','research_brief','case_plan']},
   work:{source:'family_answer',purpose:'Decide work, job-search and work-linked education criteria for the active need.',consumers:['route_match','research_brief','case_plan']},
   entrepreneurship:{source:'family_answer',purpose:'Decide the active entrepreneurship guidance route and its timing gates.',consumers:['route_match','research_brief','case_plan']},
@@ -51,6 +53,10 @@ function normalizeAnswers(input){
   const answers={...(input&&typeof input==='object'&&!Array.isArray(input)?input:{})};
   for(const [target,sources] of Object.entries(aliases)){if(answers[target]!==undefined)continue;for(const source of sources)if(answers[source]!==undefined){answers[target]=answers[source];break;}}
   if(answers.primary_situation&&!answers.main_status)answers.main_status=answers.primary_situation;
+  if(typeof answers.household_child_count==='string'&&/^\d+$/.test(answers.household_child_count.trim()))answers.household_child_count=Number(answers.household_child_count.trim());
+  if(typeof answers.household_child_ages==='string'){
+    try{const ages=JSON.parse(answers.household_child_ages);if(Array.isArray(ages))answers.household_child_ages=ages}catch{}
+  }
   return answers;
 }
 function researchTopics(routeTopics,answers){

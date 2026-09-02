@@ -74,8 +74,27 @@ test('canonical payload owns route topics, notes, next action and schema version
     followUp: '2026-09-08T10:00:00.000Z',
     urgency: 'normal',
   });
-  assert.equal(payload.interview_schema_version, 'first-interview-v5');
+  assert.equal(payload.interview_schema_version, 'first-interview-v6');
   assert.equal(payload.interview_type, 'work');
   assert.equal(payload.answers.main_status, 'Studying');
   assert.equal(payload.next_action, 'Call with work options');
+});
+
+test('v6 registers the family-basics snapshot without treating device retry ids as interview data', () => {
+  assert.equal(contract.fields.primary_contact_parent_caregiver.group, 'household_profile');
+  assert.equal(contract.fields.household_child_count.group, 'household_profile');
+  assert.equal(contract.fields.household_child_ages.group, 'household_profile');
+  assert.equal(contract.fields.household_child_record_ids, undefined);
+});
+
+test('family snapshot types normalize consistently for every downstream consumer', () => {
+  const contract = read('tracker/interview-contract.js');
+  for (const consumer of [
+    'tracker/followup-workflow-v2.js',
+    'tracker/interview-match-preview.js',
+    'tracker/interview-follow-up-recap.js',
+    'tracker/scenario-learning.js',
+  ]) assert.match(read(consumer), /AqoonInterviewContract\?\.normalizeAnswers/);
+  assert.match(contract, /household_child_count===['"]string['"]/);
+  assert.match(contract, /JSON\.parse\(answers\.household_child_ages\)/);
 });
