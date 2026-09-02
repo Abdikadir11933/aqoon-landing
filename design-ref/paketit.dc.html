@@ -4,110 +4,116 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
+<style>
+@media(max-width:900px){.services-flow{grid-template-columns:minmax(0,1fr)!important}.service-decision{padding:18px 20px!important}.services-training__grid{grid-template-columns:minmax(0,1fr)!important}}
+@media(max-width:700px){.services-hero{padding:24px 20px 28px!important}.services-hero__grid{grid-template-columns:minmax(0,1fr)!important;gap:16px!important}.services-hero__title{font-size:clamp(36px,10.2vw,43px)!important}.services-flow-section{padding:28px 20px!important}.service-addon{grid-template-columns:minmax(0,1fr)!important;margin:0 10px!important}.services-training{padding:32px 20px!important}.training-examples{grid-template-columns:minmax(0,1fr)!important}.services-agreement{padding:30px 20px!important}.services-agreement__heading{grid-template-columns:minmax(0,1fr)!important}.services-agreement__grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:350px){.services-agreement__grid{grid-template-columns:minmax(0,1fr)!important}}
+</style>
 </head>
 <body>
 <x-dc>
 <helmet>
 <title>Tavoittaminen ja palveluun ohjaaminen organisaatioille | AQOON</title>
-<meta name="description" content="AQOON aloittaa tutkimuslähtöisellä Vaiheella 1 ja jatkaa tarvittaessa tulosperusteiseen Vaiheeseen 2. Asiakaspolun kehitys tehdään vain todetusta tarpeesta." />
+<meta name="description" content="AQOON selvittää ja testaa ensin, missä palvelupolku katkeaa. Vaihe 2 jatkaa toimivaksi rajattua reittiä, ja henkilöstökoulutukset rakennetaan todellisista työtilanteista." />
 <link rel="canonical" href="https://aqoon.live/paketit" />
 <meta property="og:title" content="Tavoittaminen ja palveluun ohjaaminen organisaatioille | AQOON" />
-<meta property="og:description" content="Ensin selvitetään, missä polku katkeaa. Sitten sovittu reitti viedään tulokseen asti." />
+<meta property="og:description" content="Vaihe 1 tutkii ja rajaa. Päätöspisteen jälkeen Vaihe 2 toteuttaa sovittua reittiä jatkuvasti." />
 <meta property="og:url" content="https://aqoon.live/paketit" />
 <meta name="robots" content="index,follow" />
 </helmet>
 <dc-import name="SiteHeader" active="paketit" hint-size="100%,66px"></dc-import>
 <main style="font-family:'Outfit',system-ui,sans-serif;color:#0a0a0a">
 
-  <section aria-labelledby="h1" style="background:#f8f7f3;padding:clamp(44px,6vw,84px) 20px clamp(44px,5vw,72px);border-bottom:1px solid #c9c8c1">
-    <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(26px,4vw,64px);align-items:end">
+  <section class="services-hero" aria-labelledby="h1" style="background:#f8f7f3;padding:clamp(34px,4.5vw,58px) 20px clamp(34px,4vw,52px);border-bottom:1px solid #c9c8c1">
+    <div class="services-hero__grid" style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(20px,3vw,48px);align-items:end">
       <div>
-        <p style="margin:0 0 18px;font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#62625d;display:flex;align-items:center;gap:12px"><span style="width:26px;height:2px;background:#079d97;display:inline-block"></span>Palvelut organisaatioille</p>
-        <h1 id="h1" style="margin:0;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(40px,5.4vw,78px);line-height:.95;max-width:20ch">Tutkimuksesta jatkuvaan toteutukseen.</h1>
+        <p class="services-hero__eyebrow" style="margin:0 0 14px;font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#62625d;display:flex;align-items:center;gap:12px"><span style="width:26px;height:2px;background:#079d97;display:inline-block"></span>Palvelut organisaatioille</p>
+        <h1 class="services-hero__title" id="h1" style="margin:0;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(40px,5vw,68px);line-height:.95;max-width:18ch">Ensin selvitetään. Sitten toteutetaan.</h1>
       </div>
-      <p style="margin:0;font-size:clamp(16.5px,1.3vw,18.5px);line-height:1.62;max-width:54ch;text-wrap:pretty">Aloitamme rajatulla Vaiheella 1, kun todellista estettä tai toimivaa reittiä ei vielä tunneta. Vaihe 2 jatkaa vain sitä työtä, joka pitää viedä varmennettavaan tulokseen asti.</p>
+      <p class="services-hero__intro" style="margin:0;font-size:clamp(16px,1.2vw,18px);line-height:1.58;max-width:54ch;text-wrap:pretty">Vaihe 1 selvittää ja testaa, missä palvelupolku katkeaa. Sen perusteella päätetään, tarvitaanko Vaihe 2 ja mitä jatkuvassa toteutuksessa tehdään.</p>
     </div>
   </section>
 
-  <section aria-labelledby="h2-research" style="background:#e9e9e6;padding:clamp(44px,5vw,76px) 20px;border-bottom:1px solid #c9c8c1">
+  <section class="services-flow-section" aria-label="Palvelun kaksi vaihetta" style="background:#e9e9e6;padding:clamp(36px,4.5vw,62px) 20px;border-bottom:1px solid #c9c8c1">
     <div style="max-width:1180px;margin:0 auto">
-      <div style="border:1px solid #c9c8c1;background:#f8f7f3;padding:clamp(26px,3.4vw,44px)">
-        <p style="margin:0 0 12px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#087d78">Vaihe 1 · Rajattu kokonaisuus</p>
-        <h2 id="h2-research" style="margin:0 0 22px;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(30px,3.8vw,52px);line-height:1;max-width:22ch">Tutkimus ja käytännön pilotti</h2>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(24px,3vw,48px)">
-          <div>
-            <p style="margin:0 0 18px;font-size:17px;line-height:1.65;max-width:56ch;text-wrap:pretty">Vaihe 1 selvittää, onko ongelma tunnettuudessa, viestissä, luottamuksessa, hakemisessa, vastuun siirtymisessä vai aloituksen jälkeen. Emme lukitse jatkuvaa toteutusta ennen kuin todellinen katkos on nähty.</p>
-            <p style="margin:0;font-size:15px;line-height:1.62;color:#62625d;max-width:58ch">Vaihe päättyy tiiviiseen havainto- ja päätösraporttiin: mitä opittiin, mitä reittiä testattiin, onko Vaihe 2 perusteltu ja millä rajauksella sitä kannattaa jatkaa.</p>
-          </div>
-          <div>
-            <p style="margin:0 0 12px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#62625d">Vaihe 1 sisältää</p>
-            <ul style="margin:0;padding:0;list-style:none;border-top:1px solid #c9c8c1">
-              <li style="padding:11px 0;border-bottom:1px solid #c9c8c1;font-size:16px;line-height:1.5">Palvelun, kohderyhmän ja nykyisen reitin kartoitus</li>
-              <li style="padding:11px 0;border-bottom:1px solid #c9c8c1;font-size:16px;line-height:1.5">Haastattelut ja jalkautuminen todellisiin ympäristöihin</li>
-              <li style="padding:11px 0;border-bottom:1px solid #c9c8c1;font-size:16px;line-height:1.5">Viestin ja tavoittamiskanavien rajattu testaus</li>
-              <li style="padding:11px 0;border-bottom:1px solid #c9c8c1;font-size:16px;line-height:1.5">Todellisten haku- tai ilmoittautumisreittien läpivienti</li>
-              <li style="padding:11px 0;border-bottom:1px solid #c9c8c1;font-size:16px;line-height:1.5">Putoamiskohtien, vastuiden ja jatkotarpeen määrittely</li>
-            </ul>
-          </div>
+      <div class="services-flow" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(150px,.38fr) minmax(0,1fr);align-items:stretch">
+        <article class="service-phase service-phase--one" style="border:1px solid #c9c8c1;background:#f8f7f3;padding:clamp(24px,2.8vw,34px)">
+          <p style="margin:0 0 10px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#087d78">Vaihe 1 · Tutkimus</p>
+          <h2 id="h2-research" style="margin:0 0 16px;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(28px,3vw,40px);line-height:1;max-width:18ch">Tutkimus ja käytännön pilotti</h2>
+          <p style="margin:0 0 18px;font-size:16.5px;line-height:1.58;max-width:48ch">Muodostamme todennetun tilannekuvan ja testaamme käytännössä, mikä auttaa ihmistä etenemään.</p>
+          <ul class="service-phase__list" style="margin:0;padding:0;list-style:none;border-top:1px solid #c9c8c1">
+            <li style="padding:10px 0;border-bottom:1px solid #c9c8c1;font-size:15.5px;line-height:1.45">Palvelun, kohderyhmän ja nykyisen reitin kartoitus</li>
+            <li style="padding:10px 0;border-bottom:1px solid #c9c8c1;font-size:15.5px;line-height:1.45">Haastattelut, kenttätyö ja rajatut käytännön kokeet</li>
+            <li style="padding:10px 0;border-bottom:1px solid #c9c8c1;font-size:15.5px;line-height:1.45">Putoamiskohtien ja jatkopäätöksen raportointi</li>
+          </ul>
+          <p class="service-phase__outcome" style="margin:18px 0 0;padding-top:14px;border-top:2px solid #0a0a0a;font-size:14.5px;line-height:1.5;color:#62625d"><strong style="color:#0a0a0a">Tuotos:</strong> tilannekuva, testattu reitti ja suositus jatkosta.</p>
+        </article>
+
+        <div class="service-decision" aria-label="Päätöspiste Vaiheen 1 ja Vaiheen 2 välillä" style="background:#0a0a0a;color:#f8f7f3;padding:24px 18px;display:flex;flex-direction:column;justify-content:center;text-align:center">
+          <p style="margin:0 0 10px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#079d97">Päätöspiste</p>
+          <p class="service-decision__question" style="margin:0 0 10px;font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;font-size:25px;line-height:1.02">Jatketaanko toteutukseen?</p>
+          <p style="margin:0;font-size:13.5px;line-height:1.5;color:#c9c8c1">Vaihe 2 käynnistyy vain todetulla tarpeella ja selkeällä rajauksella.</p>
         </div>
+
+        <article class="service-phase service-phase--two" style="border:1px solid #0a0a0a;background:#fff0df;padding:clamp(24px,2.8vw,34px)">
+          <p style="margin:0 0 10px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#087d78">Vaihe 2 · Jatkuva toteutus</p>
+          <h2 id="h2-core" style="margin:0 0 16px;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(28px,3vw,40px);line-height:1;max-width:19ch">Tavoittamisesta varmennettuun aloitukseen</h2>
+          <p style="margin:0 0 18px;font-size:16.5px;line-height:1.58;max-width:48ch">Toteutamme Vaiheessa 1 rajattua reittiä yhteydenotosta sovittuun aloitukseen ja seurantaan.</p>
+          <ul class="service-phase__list" style="margin:0;padding:0;list-style:none;border-top:1px solid #c9c8c1">
+            <li style="padding:10px 0;border-bottom:1px solid #c9c8c1;font-size:15.5px;line-height:1.45">Kohdennettu tavoittaminen verkossa, yhteisöissä ja kentällä</li>
+            <li style="padding:10px 0;border-bottom:1px solid #c9c8c1;font-size:15.5px;line-height:1.45">Yhteydenottoihin vastaaminen ja etenemisen käytännön tuki</li>
+            <li style="padding:10px 0;border-bottom:1px solid #c9c8c1;font-size:15.5px;line-height:1.45">Vastuun siirto, tuloksen varmennus ja raportointi</li>
+          </ul>
+          <p class="service-phase__outcome" style="margin:18px 0 0;padding-top:14px;border-top:2px solid #0a0a0a;font-size:14.5px;line-height:1.5;color:#62625d"><strong style="color:#0a0a0a">Tulos:</strong> sovittu tapahtuma varmennetaan, eikä työ pääty näkyvyyteen.</p>
+        </article>
       </div>
+      <aside class="service-addon" style="margin:0 clamp(16px,4vw,56px);border:1px solid #c9c8c1;border-top:none;background:#f8f7f3;padding:clamp(18px,2.2vw,24px) clamp(20px,2.6vw,30px);display:grid;grid-template-columns:minmax(190px,.65fr) minmax(0,1.35fr);gap:12px clamp(22px,3vw,40px);align-items:center">
+        <div>
+          <p style="margin:0 0 7px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#62625d">Ehdollinen lisätyö</p>
+          <h3 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;font-size:clamp(22px,2.2vw,28px);line-height:1.04">Asiakaspolun ja materiaalien kehitys</h3>
+        </div>
+        <p style="margin:0;font-size:15.5px;line-height:1.55;max-width:62ch">Jos havaittu este on viestissä, lomakkeessa, hakuohjeessa tai aloitusmateriaalissa, korjaamme kyseisen kohdan erillisenä lisätyönä.</p>
+      </aside>
     </div>
   </section>
 
-  <section aria-labelledby="h2-core" style="background:#f8f7f3;padding:clamp(44px,5vw,76px) 20px;border-bottom:1px solid #c9c8c1">
-    <div style="max-width:1180px;margin:0 auto">
-      <div style="background:#fff0df;border:1px solid #0a0a0a;padding:clamp(26px,3.4vw,44px)">
-        <p style="margin:0 0 12px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#087d78">Vaihe 2 · Jatkuva ydinpalvelu</p>
-        <h2 id="h2-core" style="margin:0 0 22px;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(30px,3.8vw,52px);line-height:1;max-width:22ch">Jatkuva tavoittamisen ja palvelun aloituksen toteutus</h2>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(24px,3vw,48px)">
-          <p style="margin:0;font-size:17px;line-height:1.65;max-width:56ch;text-wrap:pretty">Vaihe 2 toteuttaa Vaiheessa 1 rajatun reitin jatkuvasti. AQOON hoitaa tavoittamisen, yhteydenotot, käytännön ohjauksen, sovitun vastuun siirron ja tuloksen varmennuksen. Seuranta jatkuu tarvittaessa ensimmäisiin viikkoihin, jotta aloitus ei jää vain hyväksytyksi hakemukseksi.</p>
-          <div>
-            <p style="margin:0 0 12px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#62625d">Toteutus sisältää</p>
-            <ul style="margin:0;padding:0;list-style:none;border-top:1px solid #c9c8c1">
-              <li style="padding:11px 0;border-bottom:1px solid #c9c8c1;font-size:16px;line-height:1.5">Vaiheessa 1 rajatun kohderyhmän jatkuva tavoittaminen</li>
-              <li style="padding:11px 0;border-bottom:1px solid #c9c8c1;font-size:16px;line-height:1.5">Omakielinen sisältö, kenttätyö, yhteisöt ja sovitut tekijät</li>
-              <li style="padding:11px 0;border-bottom:1px solid #c9c8c1;font-size:16px;line-height:1.5">Yhteydenottoihin vastaaminen ja alkukartoitus</li>
-              <li style="padding:11px 0;border-bottom:1px solid #c9c8c1;font-size:16px;line-height:1.5">Käytännön ohjaus seuraavaan tekoon</li>
-              <li style="padding:11px 0;border-bottom:1px solid #c9c8c1;font-size:16px;line-height:1.5">Vastuun siirto, aloituksen varmennus ja sovittu seuranta</li>
-              <li style="padding:11px 0;border-bottom:1px solid #c9c8c1;font-size:16px;line-height:1.5">Vaihekohtainen raportointi tilaajalle</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div style="margin-left:clamp(20px,5vw,80px);border:1px solid #c9c8c1;border-top:none;background:#f8f7f3;padding:clamp(22px,2.6vw,30px) clamp(22px,2.6vw,32px)">
-        <p style="margin:0 0 10px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#62625d">Ehdollinen lisätyö</p>
-        <h3 style="margin:0 0 12px;font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;font-size:clamp(22px,2.4vw,30px);line-height:1.05">Asiakaspolun ja materiaalien kehitys</h3>
-        <p style="margin:0;font-size:16.5px;line-height:1.62;max-width:60ch">Jos tutkimus tai jatkuva toteutus osoittaa, että este on viestissä, lomakkeessa, hakemisessa, odotuksessa, onboardingissa tai aloituksen materiaaleissa, korjaamme kyseisen kohdan. Lisätyötä ei myydä etukäteen ilman todettua estettä.</p>
-      </div>
-    </div>
-  </section>
-
-  <section aria-labelledby="h2-training" style="background:#e9e9e6;padding:clamp(40px,5vw,64px) 20px;border-bottom:1px solid #c9c8c1">
-    <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(24px,3vw,56px);align-items:center">
+  <section class="services-training" aria-labelledby="h2-training" style="background:#f8f7f3;padding:clamp(38px,4.5vw,60px) 20px;border-bottom:1px solid #c9c8c1">
+    <div class="services-training__grid" style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(230px,.65fr) minmax(0,1.35fr);gap:clamp(24px,4vw,58px);align-items:start">
       <div>
         <p style="margin:0 0 10px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#62625d">Erillinen palvelu</p>
-        <h2 id="h2-training" style="margin:0;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(26px,3vw,38px);line-height:1.03">Henkilöstön valmennus</h2>
+        <h2 id="h2-training" style="margin:0 0 14px;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(28px,3.4vw,44px);line-height:1">Henkilöstökoulutukset</h2>
+        <p style="margin:0;font-size:15.5px;line-height:1.55;color:#62625d;max-width:38ch">Koulutus voidaan tilata erillisenä palveluna tai rakentaa Vaiheissa 1 ja 2 havaituista tilanteista.</p>
       </div>
-      <p style="margin:0;font-size:16.5px;line-height:1.62;max-width:56ch">Henkilöstö valmistetaan vastaamaan käytännön kysymyksiin ja ottamaan ihmiset vastaan niin, ettei reitti katkea organisaation päässä. Valmennus rakennetaan tutkimuksessa tai toteutuksessa havaituista tilanteista; se ei ole yleinen kulttuuriluento.</p>
+      <div>
+        <div class="training-examples" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid #c9c8c1;border-left:1px solid #c9c8c1">
+          <article class="training-example" style="padding:20px;border-right:1px solid #c9c8c1;border-bottom:1px solid #c9c8c1;background:#e9e9e6">
+            <p style="margin:0 0 8px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#087d78">Esimerkki 1</p>
+            <h3 style="margin:0 0 10px;font-size:18px;line-height:1.25;font-weight:600">Palvelupolku ja sujuva aloitus</h3>
+            <p style="margin:0;font-size:15px;line-height:1.52;color:#62625d">Esimerkiksi varhaiskasvatuksessa työpaja voidaan rakentaa pilotissa ja perhekontakteissa havaituista tilanteista. Teemoja voivat olla hinnan ja tukien selittäminen, hakeminen, Daisy-järjestelmä, hoitoajat sekä kodin ja päiväkodin viestintä. Koulutukseen voidaan liittää organisaatiolle räätälöity vastausopas ja materiaalit.</p>
+          </article>
+          <article class="training-example" style="padding:20px;border-right:1px solid #c9c8c1;border-bottom:1px solid #c9c8c1;background:#fff0df">
+            <p style="margin:0 0 8px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#087d78">Esimerkki 2</p>
+            <h3 style="margin:0 0 10px;font-size:18px;line-height:1.25;font-weight:600">Kulttuurikoulutus: kohtaaminen ja viestintä</h3>
+            <p style="margin:0;font-size:15px;line-height:1.52;color:#62625d">Koulutus avaa, miten kieli, arki, uskonto ja aiemmat kokemukset palveluista voivat vaikuttaa luottamukseen ja asiointiin. Sisältö sidotaan henkilöstön todellisiin työtilanteisiin, jotta ymmärrys, kohtaaminen ja viestintä vahvistuvat.</p>
+          </article>
+        </div>
+        <p style="margin:14px 0 0;font-size:14px;line-height:1.55;color:#62625d">Tarkka tavoite, sisältö, osallistujat, kesto, toteutustapa ja materiaalit määritellään toimeksiannon tarpeiden mukaan.</p>
+      </div>
     </div>
   </section>
 
-  <section aria-labelledby="h2-start" style="background:#f8f7f3;padding:clamp(48px,6vw,84px) 20px;border-bottom:1px solid #c9c8c1">
-    <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(30px,4vw,64px);align-items:start">
-      <div>
-        <h2 id="h2-start" style="margin:0 0 20px;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(30px,3.8vw,50px);line-height:1;max-width:16ch">Miten kokonaisuus sovitaan</h2>
-        <p style="margin:0 0 16px;font-size:16.5px;line-height:1.62;max-width:50ch;color:#62625d">Vaihe 1 sovitaan rajattuna tutkimus- ja pilottikokonaisuutena. Vaihe 2:n laajuus perustuu kohderyhmään, alueeseen, kapasiteettiin, palvelutasoon ja varmennettavaan tulokseen.</p>
-        <p style="margin:0;font-size:16.5px;line-height:1.62;max-width:50ch;color:#62625d">Jatkuva toteutus voidaan sopia peruskorvauksen ja selkeästi määritellyn tulospalkkion yhdistelmänä. Julkista hinnastoa ei käytetä, koska vastuu ja todennettava tulos vaihtelevat toimeksiannoittain.</p>
+  <section class="services-agreement" aria-labelledby="h2-start" style="background:#e9e9e6;padding:clamp(36px,4.5vw,58px) 20px;border-bottom:1px solid #c9c8c1">
+    <div style="max-width:1180px;margin:0 auto">
+      <div class="services-agreement__heading" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px clamp(28px,4vw,56px);align-items:end;margin-bottom:24px">
+        <h2 id="h2-start" style="margin:0;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(30px,3.6vw,46px);line-height:1;max-width:17ch">Toimeksiannon rajaus</h2>
+        <p style="margin:0;font-size:15.5px;line-height:1.55;color:#62625d;max-width:56ch">Vaihe 1 rajataan työn alussa. Vaihe 2:n laajuus ja kaupallinen malli määritellään vasta tutkimuksen päätöspisteessä.</p>
       </div>
-      <ol style="margin:0;padding:0;list-style:none;border-top:1px solid #c9c8c1;max-width:62ch">
-        <li style="padding:16px 0;border-bottom:1px solid #c9c8c1;font-size:16.5px;line-height:1.55">Vaihe 1:n tutkimuskysymys ja päätöskriteeri Vaiheelle 2</li>
-        <li style="padding:16px 0;border-bottom:1px solid #c9c8c1;font-size:16.5px;line-height:1.55">Yksi palvelu ja yksi sovittu kohderyhmä</li>
-        <li style="padding:16px 0;border-bottom:1px solid #c9c8c1;font-size:16.5px;line-height:1.55">Alue ja kapasiteetti, johon ihmisiä voidaan ohjata</li>
-        <li style="padding:16px 0;border-bottom:1px solid #c9c8c1;font-size:16.5px;line-height:1.55">Varmennettava tulos ja sen tarkistustapa</li>
-        <li style="padding:16px 0;border-bottom:1px solid #c9c8c1;font-size:16.5px;line-height:1.55">Yhteyshenkilö ja vastausaika organisaatiossa</li>
-        <li style="padding:16px 0;border-bottom:1px solid #c9c8c1;font-size:16.5px;line-height:1.55">Vastuun siirron kohta ja tietojen käsittelyn peruste</li>
-        <li style="padding:16px 0;border-bottom:1px solid #c9c8c1;font-size:16.5px;line-height:1.55">Raportoinnin vaiheet ja määritelmät</li>
-      </ol>
+      <div class="services-agreement__grid" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:#c9c8c1;border:1px solid #c9c8c1">
+        <div style="background:#f8f7f3;padding:18px"><p style="margin:0 0 7px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#087d78">Tehtävä</p><p style="margin:0;font-size:15.5px;line-height:1.48">Palvelu, kohderyhmä, alue ja käytettävissä oleva kapasiteetti</p></div>
+        <div style="background:#f8f7f3;padding:18px"><p style="margin:0 0 7px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#087d78">Työnjako</p><p style="margin:0;font-size:15.5px;line-height:1.48">Yhteyshenkilöt, vasteajat ja vastuun siirtymisen kohta</p></div>
+        <div style="background:#f8f7f3;padding:18px"><p style="margin:0 0 7px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#087d78">Tulos</p><p style="margin:0;font-size:15.5px;line-height:1.48">Varmennettava tapahtuma ja sovittu seuranta</p></div>
+        <div style="background:#f8f7f3;padding:18px"><p style="margin:0 0 7px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#087d78">Sopimusehdot</p><p style="margin:0;font-size:15.5px;line-height:1.48">Tietojen käsittely, raportointi ja korvausmalli</p></div>
+      </div>
     </div>
   </section>
 
@@ -115,7 +121,7 @@
     <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(26px,3.5vw,56px);align-items:start">
       <div>
         <h2 style="margin:0 0 18px;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(26px,3vw,40px);line-height:1.03;max-width:16ch">Mitä AQOON ei tee</h2>
-        <p style="margin:0;font-size:16.5px;line-height:1.62;color:#c9c8c1;max-width:52ch">AQOON ei ole viranomainen eikä tee palvelu-, etuus- tai kelpoisuuspäätöksiä. AQOON ei myy yhteystietolistoja eikä lupaa, että jokainen yhteydenotto täyttää palvelun ehdot tai johtaa aloitukseen.</p>
+        <p style="margin:0;font-size:16.5px;line-height:1.62;color:#c9c8c1;max-width:52ch">AQOON ei ole viranomainen eikä tee palveluun pääsyä, etuuksia tai kelpoisuutta koskevia päätöksiä. Tilaaja vastaa palvelupäätöksistä ja omista prosesseistaan. AQOON ei myy yhteystietorekistereitä eikä takaa, että jokainen yhteydenotto täyttää palvelun ehdot tai johtaa aloitukseen.</p>
       </div>
       <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start">
         <a href="Miten-toimimme.dc.html" style="font-size:16px;font-weight:500;color:#f8f7f3;text-decoration:none;border-bottom:1px solid #079d97;padding-bottom:3px">Katso koko työketju</a>

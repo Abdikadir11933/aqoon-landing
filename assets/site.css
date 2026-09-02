@@ -14,6 +14,10 @@ summary::marker{content:''}
   .desktop-nav{display:none!important}
   .menu-toggle{display:grid!important;width:auto!important;min-width:76px;padding:0 12px;white-space:nowrap}
   [data-mobile-nav]:not([hidden]){display:flex!important}
+  .services-flow{grid-template-columns:minmax(0,1fr)!important}
+  .service-decision{padding:18px 20px!important}
+  .service-decision__question{font-size:23px!important}
+  .services-training__grid{grid-template-columns:minmax(0,1fr)!important}
 }
 @media (max-width:700px){
   body{font-size:16px}
@@ -37,6 +41,21 @@ summary::marker{content:''}
   .work-chain-grid>li>p:first-child{margin-bottom:7px!important}
   .work-chain-grid>li>h3{font-size:17px!important;line-height:1.18}
   .work-chain-grid>li>p:last-child{font-size:14px!important;line-height:1.45!important}
+  .services-hero{padding:24px 20px 28px!important}
+  .services-hero__grid{grid-template-columns:minmax(0,1fr)!important;gap:16px!important}
+  .services-hero__eyebrow{margin-bottom:10px!important;font-size:11.5px!important;line-height:1.35}
+  .services-hero__title{font-size:clamp(36px,10.2vw,43px)!important;line-height:.95!important}
+  .services-hero__intro{font-size:15.5px!important;line-height:1.5!important}
+  .services-flow-section{padding:28px 20px!important}
+  .service-phase{padding:21px 19px!important}
+  .service-phase__outcome{margin-top:15px!important;padding-top:12px!important}
+  .service-addon{grid-template-columns:minmax(0,1fr)!important;margin:0 10px!important;padding:18px!important}
+  .services-training{padding:32px 20px!important}
+  .training-examples{grid-template-columns:minmax(0,1fr)!important}
+  .training-example{padding:18px!important}
+  .services-agreement{padding:30px 20px!important}
+  .services-agreement__heading{grid-template-columns:minmax(0,1fr)!important;margin-bottom:19px!important}
+  .services-agreement__grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
 }
 @media (max-width:350px){
   .home-bridge__pair{grid-template-columns:1fr!important}
@@ -44,5 +63,6 @@ summary::marker{content:''}
   .home-bridge__endpoint:last-child{padding:14px 0 0!important;text-align:left!important}
   .home-bridge__endpoint:last-child p:last-child{margin-left:0!important}
   .work-chain-grid{grid-template-columns:1fr!important}
+  .services-agreement__grid{grid-template-columns:minmax(0,1fr)!important}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
