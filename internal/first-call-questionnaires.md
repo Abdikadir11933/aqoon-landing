@@ -304,7 +304,7 @@ Possible routing:
 - Kielituettu ryhmävalmennus
 - Osaamiskeskus Vantaa
 - OSKE Espoo
-- other current `/so/ajankohtaiset` programmes
+- other current `/caawi/ajankohtaiset` programmes
 
 ## C. Palkkatuki
 

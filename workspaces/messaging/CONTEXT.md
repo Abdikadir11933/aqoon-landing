@@ -51,11 +51,13 @@ Buyer-facing:
 
 ## Canonical buyer proposition
 
-AQOON is not positioned as a translation agency, a generic marketing agency or three unrelated consultancies. It is one demand-to-outcome operating partner. The shared engine is offered through one core outcome offer, an optional journey-conversion add-on and a separate enablement offer:
+AQOON is not positioned as a translation agency, a generic marketing agency or three unrelated consultancies. It is one demand-to-outcome operating partner. Use the approved Finnish offer hierarchy everywhere:
 
-1. **AQOON Outcomes** - the core offer: acquire, qualify, guide and verify applications, starts or other agreed outcomes. A sensible commercial structure to test is a base retainer plus a clearly defined outcome fee; pricing is not yet canonical.
-2. **AQOON Journey** - an optional add-on activated when the measured funnel shows friction. It improves multilingual messages, decision support, application instructions, onboarding materials and early retention. This is journey conversion, not word-for-word translation.
-3. **AQOON Enablement** - a separate practical Mustafe-led training offer for frontline staff, unit leaders and management, tied to observed family questions, handoff failures and retention risks rather than a generic culture lecture.
+1. **Jatkuva tavoittamisen ja palvelun aloituksen toteutus** — the core implementation: reach the agreed audience, start a direct conversation, guide the next practical action, hand over appropriately and verify the agreed outcome.
+2. **Asiakaspolun ja materiaalien kehitys** — an optional add-on activated only when observed friction is in the route, messages or materials. It is journey conversion, not word-for-word translation.
+3. **Henkilöstön valmennus** — a separate practical offer for frontline staff and leaders, tied to observed questions, handoff failures and early-retention risks.
+
+Do not publish generic prices or imply a fixed delivery team. Scope, capacity, responsibilities, specialists, trainers and pricing are agreed per engagement. Abducadir is the current named public face; describe other capability collectively unless a later approved source explicitly changes that rule.
 
 The shared moat is the consented relationship, verified route knowledge and aggregate learning across the journey. Raw family identities and contact lists are not a buyer product.
 

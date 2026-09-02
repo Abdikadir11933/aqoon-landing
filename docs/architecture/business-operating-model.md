@@ -27,23 +27,23 @@ Tavoittaminen on monikanavaista. TikTok ja muu sisältö, AQOONin omat sivut, k�
 
 Omat verkkopinnat ovat tarkoituksella erilliset. `aqoon.live` ja sen vakiintuneet suomenkieliset sivut ovat B2B-pinta valituille ostajille, organisaatioille ja kumppaneille. Niiden SEO vastaa esimerkiksi somalien kotoutumista, luotettavaa tavoittamista, monikielistä palveluohjausta, konversiota, onboardingia ja pysyvyyttä koskeviin ostajakysymyksiin. `aqoon.live/caawi` ja sen alasivut ovat somalinkielinen perhepinta: käytännön tieto, apu ja intake. `/tracker` on yksityinen operatiivinen ydin. Tarkka toimintamalli on `../../workspaces/messaging/references/aqoon-demand-generation-and-content-os.md` ja reittipäätös `../decisions/0004-caawi-family-canonical-home.md`.
 
-## Kolme ostettavaa kokonaisuutta
+## Ostettava kokonaisuus ja tarpeesta aktivoitavat laajennukset
 
 ### 1. Jatkuva tavoittamisen ja aloituksen toteutus
 
-AQOON auttaa sovittuja Pilkkeen yksiköitä tavoittamaan sopivia perheitä, ohjaa heitä tiedon ja hakemisen läpi ja tukee etenemistä vahvistettuun aloitukseen. Pilkkeen kanssa sovitaan yksiköt, ikäryhmät, kapasiteettitieto, aloitusajankohta ja nimetty yhteyshenkilö.
+AQOON tavoittaa sovitun kohderyhmän, aloittaa ymmärrettävän keskustelun, auttaa seuraavaan käytännön tekoon, tekee sovitun vastuun siirron ja varmentaa lopputuloksen. Ennen aloitusta sovitaan kohderyhmä, alue, kapasiteetti, vasteajat, vastuuhenkilöt, päätösvalta ja varmennettava tulos. Raportointi erottaa näkyvyyden, yhteydenotot, kartoitukset, tuetut teot, vastuun siirrot ja varmennetut tulokset.
 
-Pilken nykyinen kaupallinen malli on 90 päivän vähimmäiskestoinen toteutus: 2 000 € + alv kuukaudessa sekä 750 € + alv lapsesta, joka aloittaa sovitussa yksikössä ja jonka hoitosuhde on voimassa 30 päivää aloituksesta. Kuukausiraportti erottaa kiinnostuneet, sopivat perheet, hakemiseen edenneet, Pilkkeelle luovutetut ja vahvistetut aloitukset sekä keskeiset esteet.
+Kesto, kapasiteetti ja hinnoittelu sovitaan toimeksiantokohtaisesti. Yksittäisen kumppanin kaupallisia ehtoja ei käsitellä tässä julkisessa toimintamallissa.
 
 ### 2. Asiakaspolun ja materiaalien kehitys
 
-Tarvittaessa aktivoitava lisäosa, jonka hinta on 2 900 € + alv. Se kohdistuu perheille tarkoitettujen tietojen, hakemis- ja aloitusohjeiden, Daisy-ohjeistuksen tai muiden materiaalien kehittämiseen. Lisäosa ei kuulu automaattisesti jatkuvaan toteutukseen, vaan se käynnistetään, jos polun tai aloituksen tarkastelu osoittaa sille tarpeen.
+Tarvittaessa aktivoitava lisäosa, joka kohdistuu perheille tarkoitettujen tietojen, hakemis- ja aloitusohjeiden, digitaalisten järjestelmien ohjeiden tai muiden materiaalien kehittämiseen. Lisäosa ei kuulu automaattisesti jatkuvaan toteutukseen, vaan se käynnistetään, jos mitattu polku osoittaa esteen olevan viestissä, materiaalissa tai asiointireitissä.
 
-### 3. Henkilöstön koulutus ja sujuvan aloituksen kehittäminen
+### 3. Henkilöstön valmennus
 
-Erillinen kokonaisuus, jonka hinta on 2 200 € + alv / koulutus. Kolmen tunnin työpajassa, enintään 20–25 osallistujalle, käsitellään käytännön tilanteita: hinta, tuet, hakeminen ja aloitus, Daisy ja hoitoaikojen ilmoittaminen, kodin ja päiväkodin viestintä, ensimmäiset viikot sekä kulttuurisensitiivinen kohtaaminen. Koulutukseen kuuluu Pilkkeelle mukautettu tiivis vastaus- ja materiaalipohja. Mustafe ja Abducadir toteuttavat koulutuksen yhdessä.
+Erillinen käytännön kokonaisuus henkilöstölle ja johdolle. Sisältö rakennetaan havaituista tilanteista: ensimmäiset keskustelut, hakeminen ja aloitus, digijärjestelmät, kodin ja palvelun viestintä, ensimmäiset viikot sekä kulttuurisesti ymmärrettävä kohtaaminen. Sisältö, laajuus, valmentajat ja toteutustapa sovitaan toimeksiantokohtaisesti.
 
-Tämä on AQOONin oletusmalli kumppanuuksissa: jatkuva toteutus, tarvittaessa aktivoitava asiakaspolun ja materiaalien lisäosa sekä erillinen henkilöstön koulutus. Tarkka sisältö sovitaan kumppanin tilanteen ja tavoitteen mukaan.
+Tämä on AQOONin oletusmalli kumppanuuksissa: yksi päätoteutus, tarvittaessa aktivoitava asiakaspolun ja materiaalien lisäosa sekä erillinen henkilöstön valmennus. Niitä ei esitetä kolmena tasavertaisena pakettina.
 
 ## Kaksi toisiaan vahvistavaa arvolupausta
 
@@ -59,7 +59,7 @@ Pilke-työssä nämä kokonaisuudet näkyvät käytännössä näin:
 
 1. **Jatkuva toteutus:** tavoittaminen, kartoitus, hakemiseen eteneminen, Pilkkeelle luovutus ja vahvistettu aloitus.
 2. **Asiakaspolun ja materiaalien lisäosa:** yksikkökohtainen saatavuus, hinta- ja tukitiedot, hakemisen ja aloituksen ohjeet sekä Daisy- ja onboarding-materiaalit, jos niitä tarvitaan.
-3. **Henkilöstön koulutus:** Mustafen ja Abducadirin vetämä käytännön työpaja, joka vahvistaa henkilöstön valmiutta vastata perheiden kysymyksiin ja tukea sujuvaa aloitusta.
+3. **Henkilöstön valmennus:** toimeksiantoon valittu käytännön toteutus, joka vahvistaa henkilöstön valmiutta vastata perheiden kysymyksiin ja tukea sujuvaa aloitusta.
 
 ## Mittaaminen
 

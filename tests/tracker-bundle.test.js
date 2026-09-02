@@ -11,10 +11,6 @@ test('tracker CSS bundle and explicit JavaScript loading order match their sourc
   assert.equal(checkedInCss, css, 'tracker/bundle.css is stale - run `node scripts/build_tracker_bundle.js`');
   assert.equal(checkedInJs, js, 'tracker/bundle.js is stale - run `node scripts/build_tracker_bundle.js`');
   const html = fs.readFileSync(path.join(__dirname, '..', 'tracker', 'index.html'), 'utf8');
-  let previous = -1;
-  for (const file of JS_FILES) {
-    const position = html.indexOf('/tracker/' + file);
-    assert.ok(position > previous, `tracker/index.html must load ${file} in the declared order`);
-    previous = position;
-  }
+  const loaded = [...html.matchAll(/<script\s+src="\/tracker\/([^"?]+)(?:\?[^"?]*)?"\s+defer><\/script>/g)].map(match => match[1]);
+  assert.deepEqual(loaded, JS_FILES, 'tracker/index.html must load exactly the declared scripts in the declared order');
 });

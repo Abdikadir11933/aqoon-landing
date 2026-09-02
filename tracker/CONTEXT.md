@@ -30,9 +30,9 @@ Evolve the tracker into a company operating system in which Abducadir and Mustaf
 
 The target is outcome-based, not a predetermined schema or UI. Any implementation must first map the current runtime, database, Edge Functions, automations and real workflow, then choose the smallest safe architecture that achieves the goal.
 
-## File map (27 flat asset files, added 28 Aug 2026 for navigability)
+## Runtime asset map
 
-`tracker/` has no subfolders — every JS/CSS file sits flat next to `index.html`. Deliberately not reorganized into subfolders (would require rewriting every `<script>`/`<link>` path in `index.html` with real risk of silently breaking a live feature, including login, with no way to test the result end-to-end from an agent session — see `docs/qa/full-repository-audit-2026-08-28.md`). This map exists instead, so grouping is visible without opening every file. **A prior audit session missed several of these files entirely** because a truncated directory listing hid them in the flat structure — read this map, or `git ls-files tracker/`, never a truncated `ls`.
+`tracker/` has no subfolders: JS and CSS assets sit next to `index.html`. Do not rely on a fixed prose file count. The current HTML loads 31 deferred JavaScript sources explicitly; `scripts/build_tracker_bundle.js` owns the exact ordered manifest and `tests/tracker-bundle.test.js` rejects missing, extra or reordered scripts. Before changing the tracker, derive the runtime inventory from `tracker/index.html`, compare it with `git ls-files tracker/`, and run both the bundle test and `node scripts/tracker_collection_qa.js`. A source file is not proven active merely because it exists, and an empty compatibility stylesheet is not automatically a defect.
 
 **Bootstrap / identity** — `operator-identity.js` (sign-in/sign-up, JWT attribution, ownership badges) · `crm-reactive.js` (small live-state strip on the analytics tab; as of 29 Aug 2026 it no longer injects `interview-match.js` dynamically — that file is a normal static `<script defer>` tag in `index.html` now, see the interview note below) · `multineed-adapter.js` (patches `list` API responses to surface `additional_needs` in lead-card notes).
 

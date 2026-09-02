@@ -24,12 +24,15 @@ const CSS_FILES = [
 
 const JS_FILES = [
   'operator-identity.js', 'crm-call-history.js', 'multineed-adapter.js', 'app.js',
+  'interview-contract.js',
   'visual-v3.js', 'crm-reactive.js', 'interview-match.js', 'interview-match-preview.js', 'interview-form-enhancements.js',
   'interview-smart-notes.js', 'interview-answers-restore.js', 'case-lifecycle.js',
   'scenario-learning.js', 'interview-context.js', 'interview-follow-up-recap.js',
-  'interview-next-steps.js', 'universal-proof-questions.js', 'incomplete-intake.js',
+  'interview-next-steps.js', 'household-people.js', 'universal-proof-questions.js', 'incomplete-intake.js',
   'human-labels.js', 'analytics-mobile-v2.js', 'crm-manage.js', 'operations-system.js',
-  'call-outcomes.js', 'crm-queue-navigation.js'
+  'call-outcomes.js', 'crm-queue-navigation.js', 'interview-ux-v4.js',
+  'followup-workflow-v2.js', 'followup-panel-v2.js', 'followup-plan-confirm-v1.js',
+  'phase-controls-v1.js'
 ];
 
 function concat(files, commentPrefix) {

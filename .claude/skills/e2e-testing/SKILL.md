@@ -1,274 +1,69 @@
-# End-to-End System Testing Skill
+# AQOON family-system end-to-end testing
 
-## Purpose
-Systematic testing of the AQOON Family CRM tracker through complete user journeys. Ensures data flows correctly from intake → CRM → lifecycle management → analytics, and validates UX across all phases.
+Use this skill for `/caawi`, family intake, private `/tracker`, family Edge Functions and their connected Supabase data flows. It does not authorise production mutations, creation of real-looking test people or access beyond the current operator's permissions.
 
-## What This Tests
-- **Intake Flow:** Family enters data through public form
-- **CRM Processing:** Data appears in tracker with correct classification
-- **Phase Navigation:** Families move through 6 lifecycle phases correctly  
-- **Context Panel:** Family details, call history, timeline render correctly
-- **Data Integrity:** Info from intake matches tracker display
-- **Operator Workflow:** Scoped views work (All/Assigned/Unassigned)
-- **UX Quality:** Questions make sense, UI is clear, flow is logical
+## Current boundaries
 
-## Testing Levels
+- `/caawi` is the canonical Somali family surface; `/so/*` is redirect compatibility only.
+- `/tracker` uses Supabase Auth email and password linked to an active, approved `operators` row. There is no shared password or fallback.
+- Anonymous funnel events and identifiable CRM records are different datasets and must not be treated as one cohort without an explicit join contract.
+- The public journey and the more granular internal workflow must be mapped explicitly. Never call a view, click, share, saved phone number or interview an outcome.
+- Use synthetic records only in an authorised non-production environment. If production testing is explicitly authorised, use an unmistakable `TEST-` label, a reserved test contact method and a documented cleanup plan. Never invent a plausible Finnish phone number.
 
-### Level 1: Smoke Test (15 min)
-- [x] Page loads without JS errors
-- [x] Login works
-- [x] Dashboard appears
-- [x] Can navigate tabs (Dashboard, CRM, Analytics, Sales)
+## Before testing
 
-### Level 2: Data Flow Test (30 min)
-- [ ] Create test family via intake form
-- [ ] Verify data appears in CRM within 5 seconds
-- [ ] Data has correct status/needs classification
-- [ ] Can click family to open context panel
-- [ ] Call history shows (or "no calls" if new)
-- [ ] Timeline shows intake event
+1. Read root `CLAUDE.md` and `CONTEXT.md`, then `caawi/CONTEXT.md`, `tracker/CONTEXT.md`, `workspaces/product-qa/CONTEXT.md` and the relevant Edge Function source.
+2. Inspect `git status`, deployment configuration and the actual scripts loaded by `tracker/index.html`.
+3. Run the static baseline:
+   - `python scripts/repo_integrity_qa.py`
+   - `python scripts/site_qa.py`
+   - `python scripts/check_seo_metadata.py`
+   - `python scripts/usability_qa.py`
+   - `python scripts/legal_trust_qa.py`
+   - `node --test tests/*.test.js`
+   - `node scripts/tracker_collection_qa.js`
+4. Record environment, commit, timestamp and whether the test is read-only or mutating.
 
-### Level 3: Phase Navigation Test (20 min)
-- [ ] 6 phases display with correct counts
-- [ ] Operator scope selector works (All/Assigned/Unassigned)
-- [ ] Filtering by phase shows only correct families
-- [ ] Phase counts update when family status changes
+## Journey checks
 
-### Level 4: Context Panel Deep Dive (25 min)
-- [ ] Family info displays completely
-- [ ] Can scroll through sections
-- [ ] Close button works
-- [ ] Overlay click closes panel
-- [ ] Multiple opens/closes work
-- [ ] Different families show different data
+### Family discovery and intake
 
-### Level 5: Interview & Follow-up Flow (30 min)
-- [ ] Start first interview (if available)
-- [ ] Questions match family needs
-- [ ] Save interview
-- [ ] Family moves to "First Interview" phase
-- [ ] Timeline shows interview event
-- [ ] Can schedule follow-up
+- Canonical `/caawi` and topic pages load without console errors or broken internal links.
+- Somali title, description, canonical URL, language, source/date and CTA are correct.
+- Name/phone-first recovery, consent choices and the `Maya` path are understandable and keyboard accessible.
+- `referrer_host`, `utm_source`, `utm_medium` and `utm_campaign` preserve supplied attribution without inventing missing values.
+- Analytics fires only with the required consent; PII never enters analytics payloads or URLs.
+- Retries are idempotent and do not create duplicate leads or events.
 
-### Level 6: Analytics & Metrics (15 min)
-- [ ] Dashboard pulse metrics match phase counts
-- [ ] Analytics tab shows correct funnel
-- [ ] Operator scope filters apply to analytics
-- [ ] SLA clock shows correctly
+### Intake to CRM
 
-### Level 7: Edge Cases (20 min)
-- [ ] No calls recorded (timeline/call history graceful)
-- [ ] Multiple rapid opens of context panel
-- [ ] Network failure handling
-- [ ] Very long names/notes truncate correctly
+- A valid intake creates the intended contact/lead records and a traceable event once.
+- Partial intake remains recoverable under the documented retention rules.
+- Category, municipality, language, source and consent values survive the API/database/UI round trip exactly.
+- Error responses are safe, specific enough for the family, and do not expose database or function internals.
 
-## Test Data Profiles
+### Operator workflow
 
-### Profile A: New Family (Testing "Unfinished Intake")
-```
-Name: Ahmed Family
-Phone: +358 50 123 4567
-Needs: School information, language help
-City: Helsinki
-```
+- Login requires a valid Supabase Auth user linked to an active operator.
+- Expired sessions refresh safely; unauthorized requests fail closed.
+- Ownership, reassignment, call history, follow-up, interview, research review, handoff and outcome actions retain the acting operator and timestamp.
+- Questions branch from stated facts; unanswered facts remain unknown. Intake alone must not create an eligibility or match claim.
+- One completed interview event is written; browser and database triggers must not duplicate it.
+- Pending research cannot become canonical or matched until an operator verifies official sources and approves it.
 
-### Profile B: Contacted (Testing "First Interview")  
-```
-Name: Maria Silva
-Phone: +358 40 234 5678
-Needs: Daycare options
-City: Vantaa
-Status: Contacted (ready for interview)
-```
+### Reporting
 
-### Profile C: Active Case (Testing "Active Cases")
-```
-Name: Laura Kowalski
-Phone: +358 44 345 6789
-Needs: Employment support, relocation
-City: Espoo
-Case plan: Options ready
-```
+- Reconcile UI counts against read-only database aggregates for the same filters and dates.
+- Keep reach, identifiable contact, completed intake, interview, researched route, assisted action, handoff, verified outcome and persistence separate.
+- Use eligible/relevant denominators for branching questions rather than all families.
+- Verify source and cohort filters do not silently include records outside their definitions.
 
-### Profile D: Awaiting Decision
-```
-Name: Fatima Hassan
-Phone: +358 45 456 7890
-Needs: Housing assistance
-City: Helsinki
-Case plan status: Awaiting outcome
-```
+## Accessibility and resilience
 
-## Test Execution Checklist
+Test keyboard order, visible focus, labels, error association, 44px targets, reduced motion, mobile overflow, slow network, duplicate submission, offline/retry behaviour, long but valid text, missing optional data and denied consent. Do not use screenshots alone as proof of behaviour.
 
-### Before Testing
-- [ ] Fresh browser session (clear cache)
-- [ ] Localhost or staging (not production)
-- [ ] Test Supabase DB (or mock data)
-- [ ] Screenshot tool ready
-- [ ] Note-taking tool open
+## Evidence and cleanup
 
-### During Each Test
-- [ ] Record what you do (step by step)
-- [ ] Take screenshot at key moments
-- [ ] Note any unexpected behavior
-- [ ] Check browser console for errors
-- [ ] Verify data matches between forms
+For every finding record: severity, exact route/component, reproduction, expected behaviour, observed behaviour, evidence, likely owner and verification status. After an authorised mutation, remove the test record through the supported workflow and verify dependent records/events were handled as intended. Never delete ambiguous or real family data.
 
-### After Each Test
-- [ ] Save screenshots with descriptive names
-- [ ] Document results in test log
-- [ ] List any bugs found
-- [ ] Note UX issues or confusing flows
-- [ ] Suggest improvements
-
-## Data Flow Mapping
-
-### Intake → CRM
-```
-Family submits intake form
-     ↓
-Data saved to family_leads (status='partial')
-     ↓
-CRM lists new family as "Unfinished Intake"
-     ↓
-Operator clicks family
-     ↓
-Context panel shows family details
-```
-
-### First Interview → Lifecycle
-```
-Operator starts interview
-     ↓
-Questions presented based on family needs
-     ↓
-Interview saved to family_interviews (status='completed')
-     ↓
-family_leads.status updated to 'contacted'
-     ↓
-Timeline shows "First Interview" event
-     ↓
-Family moves to "First Interview" phase in CRM
-```
-
-### Case Plan → Phases
-```
-Operator creates case plan
-     ↓
-Saved to family_case_plans (plan_status='options_ready')
-     ↓
-family_lifecycle_data enriches lead with _case_plan_status
-     ↓
-CRM phase filters recognize "Awaiting Outcome"
-     ↓
-Family moves to "Awaiting Outcome" phase
-```
-
-### Call → History & Timeline
-```
-Operator records call outcome
-     ↓
-Saved to family_call_log
-     ↓
-Call history module fetches via get_call_history action
-     ↓
-Displays in context panel with outcome badge
-     ↓
-Timeline shows "Call Completed"/"Call No Answer" event
-```
-
-## Known Issues to Test For
-
-1. **Field Name Mismatch (FIXED)** - Was using plan.status instead of plan.plan_status
-2. **Function Arguments Bug (FIXED)** - $ function was using ...arguments incorrectly
-3. **Cache Expiry (FIXED)** - Now tracks per-lead TTL
-4. **Error Display (FIXED)** - Now shows error message if API fails
-
-## What to Look For
-
-### UX Quality
-- [ ] Is wording clear and natural?
-- [ ] Do questions make sense for this family?
-- [ ] Are buttons/links easy to find?
-- [ ] Can you complete flow without confusion?
-- [ ] Are icons/colors intuitive?
-
-### Data Accuracy
-- [ ] Does entered data appear correctly in tracker?
-- [ ] Are dates formatted consistently?
-- [ ] Are phone numbers masked appropriately?
-- [ ] Do calculations (SLA, cycle time) seem right?
-
-### Performance
-- [ ] Pages load within 2 seconds?
-- [ ] Phase filters respond instantly?
-- [ ] Context panel opens smoothly?
-- [ ] No "freezing" or lag?
-
-### Error Handling
-- [ ] Bad network shows error message (not blank)?
-- [ ] Can recover from errors?
-- [ ] Are error messages helpful?
-- [ ] No 500 errors without message?
-
-## Audit Storage
-
-Test results are stored in `/workspaces/audits/e2e-testing/` with format:
-```
-YYYY-MM-DD_test-name_profile-a.md
-├─ Test date & tester name
-├─ Profile tested
-├─ Steps executed
-├─ Screenshots
-├─ Bugs found
-├─ UX observations
-└─ Data flow verified
-```
-
-## Pass/Fail Criteria
-
-### Must Pass (MVP)
-- ✓ No JavaScript errors on page load
-- ✓ Login/unlock works
-- ✓ Family data appears in CRM
-- ✓ Context panel opens and shows data
-- ✓ Phase navigation displays
-- ✓ Operator scope filtering works
-- ✓ Call history renders (or shows empty gracefully)
-- ✓ Timeline shows events
-
-### Nice to Have (Polish)
-- Loading states while fetching
-- Smooth animations
-- Keyboard navigation
-- Responsive on all screen sizes
-- Accessibility features work
-
-## Running Tests
-
-```bash
-# Start local server
-python3 -m http.server 8000
-
-# In browser:
-# 1. Navigate to http://localhost:8000/tracker
-# 2. Log in with test password
-# 3. Follow test scripts from TESTING.md
-# 4. Document results
-```
-
-## Continuous Improvement
-
-After each test run:
-1. Update this file with any new findings
-2. Archive test results (screenshots + notes)
-3. Note patterns in bug reports
-4. Suggest improvements for next phase
-5. Add new test cases if gaps found
-
----
-
-**Last Updated:** 2026-08-29  
-**Bugs Fixed:** 8 (critical field names, cache, error display)  
-**Ready for Testing:** YES
+Historical audit reports remain evidence of their date, not current instructions. If they mention six phases, `unlockme`, a shared password or fixed fake family profiles, treat those details as superseded.

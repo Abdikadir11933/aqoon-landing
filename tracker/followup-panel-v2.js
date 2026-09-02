@@ -18,5 +18,3 @@ function apply(){if(!selectedLeadId)return;const lead=(window.AqoonApp?.leads||[
 const obs=new MutationObserver(()=>setTimeout(apply,0));function start(){const panel=document.getElementById('panelContent');if(panel)obs.observe(panel,{childList:true});document.addEventListener('click',e=>{const item=e.target.closest('.family-item[data-phase="in_progress"]');if(item){selectedLeadId=item.dataset.leadId||'';setTimeout(apply,100)}},true)}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
-(()=>{if(document.querySelector('script[data-followup-confirm]'))return;const s=document.createElement('script');s.src='/tracker/followup-plan-confirm-v1.js?v=1';s.defer=true;s.dataset.followupConfirm='1';document.head.appendChild(s)})();
-(()=>{if(document.querySelector('script[data-phase-controls]'))return;const s=document.createElement('script');s.src='/tracker/phase-controls-v1.js?v=1';s.defer=true;s.dataset.phaseControls='1';document.head.appendChild(s)})();

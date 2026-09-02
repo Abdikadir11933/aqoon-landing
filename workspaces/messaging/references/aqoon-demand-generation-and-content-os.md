@@ -32,7 +32,7 @@ Promise: useful, free, low-friction help to understand an option, find the right
 
 ### Buyer or partner
 
-Promise: measurable acquisition, qualification, conversion, onboarding, persistence and aggregate learning through AQOON Outcomes, AQOON Journey and AQOON Enablement.
+Promise: measurable acquisition, qualification, conversion, onboarding, persistence and aggregate learning through one core implementation (**Jatkuva tavoittamisen ja palvelun aloituksen toteutus**), the optional **Asiakaspolun ja materiaalien kehitys** add-on and the separate **Henkilöstön valmennus** offer.
 
 - Sell outcomes, an operated journey, training and PII-free evidence.
 - Do not sell raw family identities, phone lists or undisclosed access to a community.

@@ -1,5 +1,7 @@
 # AQOON System Audits & Testing Archive
 
+> **Archive notice (2 Sep 2026):** reports below preserve what was observed on their stated date. They are not current operating instructions. In particular, the shared-password, six-phase, fixed test-profile and fixed asset-count material is superseded by `.claude/skills/e2e-testing/SKILL.md`, `tracker/CONTEXT.md` and the newest dated audit in `docs/qa/`.
+
 ## Purpose
 Central repository for all system testing, audits, and quality assurance work. Prevents duplicate testing and ensures comprehensive coverage of all features.
 

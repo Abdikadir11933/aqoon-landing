@@ -3,7 +3,7 @@
   "contract_version": 1,
   "tracker_entrypoint": "tracker/index.html",
   "summary": {
-    "tracker_scripts": 29,
+    "tracker_scripts": 31,
     "scripts_wrapping_fetch": 2,
     "scripts_wrapping_open_interview": 10,
     "edge_functions": 13,
@@ -35,6 +35,7 @@
       "log_event",
       "match_preview",
       "match_scenario",
+      "move_phase",
       "operators",
       "ping",
       "prepareFollowUp",
@@ -1050,12 +1051,55 @@
       "order": 29,
       "src": "/tracker/followup-panel-v2.js?v=1",
       "file": "tracker/followup-panel-v2.js",
-      "lines": 23,
+      "lines": 21,
       "edge_functions": [
         "family-case-lifecycle-admin"
       ],
       "api_actions": [
         "save_plan"
+      ],
+      "window_exports": [],
+      "window_wrappers": [],
+      "listened_events": [
+        "DOMContentLoaded",
+        "click"
+      ],
+      "dispatched_events": [],
+      "answer_keys": []
+    },
+    {
+      "order": 30,
+      "src": "/tracker/followup-plan-confirm-v1.js?v=1",
+      "file": "tracker/followup-plan-confirm-v1.js",
+      "lines": 31,
+      "edge_functions": [
+        "family-case-lifecycle-admin"
+      ],
+      "api_actions": [
+        "list",
+        "save_plan"
+      ],
+      "window_exports": [],
+      "window_wrappers": [],
+      "listened_events": [
+        "DOMContentLoaded"
+      ],
+      "dispatched_events": [
+        "dataUpdated"
+      ],
+      "answer_keys": []
+    },
+    {
+      "order": 31,
+      "src": "/tracker/phase-controls-v1.js?v=1",
+      "file": "tracker/phase-controls-v1.js",
+      "lines": 31,
+      "edge_functions": [
+        "family-leads-manage"
+      ],
+      "api_actions": [
+        "move_phase",
+        "update"
       ],
       "window_exports": [],
       "window_wrappers": [],
@@ -1129,13 +1173,15 @@
     {
       "slug": "family-funnel-track",
       "file": "supabase/functions/family-funnel-track/index.ts",
-      "lines": 15,
+      "lines": 16,
       "actions": [],
       "tables": [
         "family_funnel_events"
       ],
       "embedded_relation_tables": [],
-      "rpcs": [],
+      "rpcs": [
+        "take_family_intake_rate_limit"
+      ],
       "auth_boundary": "public_or_self_validated"
     },
     {
@@ -2235,6 +2281,7 @@
         "tracker/case-lifecycle.js",
         "tracker/crm-queue-navigation.js",
         "tracker/followup-panel-v2.js",
+        "tracker/followup-plan-confirm-v1.js",
         "tracker/followup-workflow-v2.js",
         "tracker/household-people.js",
         "tracker/interview-answers-restore.js",
@@ -2243,6 +2290,7 @@
         "tracker/interview-next-steps.js",
         "tracker/interview-smart-notes.js",
         "tracker/operations-system.js",
+        "tracker/phase-controls-v1.js",
         "tracker/universal-proof-questions.js"
       ],
       "backend_references": [
@@ -3575,7 +3623,7 @@
     }
   ],
   "migrations": {
-    "count": 45,
+    "count": 47,
     "files": [
       "20260826000000_recovered_operational_baseline.sql",
       "20260827_aqoon_operations_system.sql",
@@ -3621,7 +3669,9 @@
       "20260901233000_tag_legacy_unversioned_interviews.sql",
       "20260901234500_drop_orphan_contact_starts_trigger.sql",
       "20260901235500_harden_shared_security_functions.sql",
-      "20260902000500_enforce_service_role_legacy_rpcs.sql"
+      "20260902000500_enforce_service_role_legacy_rpcs.sql",
+      "20260902090000_family_intake_consent_and_retention_reconciliation.sql",
+      "20260902091000_cover_remaining_family_foreign_keys.sql"
     ],
     "created_tables": [
       "family_call_log",
@@ -3711,6 +3761,9 @@
       "aqoon_transition_case_plan",
       "aqoon_withdraw_partner_handoff",
       "capture_family_interview_revision",
+      "cleanup_family_intake_data",
+      "cleanup_old_interaction_events",
+      "cleanup_pending_erasure_users",
       "family_interview_opportunity_signals",
       "log_completed_interview_case_event",
       "sync_family_interview_future_opportunities",

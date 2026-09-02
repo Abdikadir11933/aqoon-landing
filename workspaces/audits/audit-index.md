@@ -1,5 +1,7 @@
 # Master Audit Index
 
+> **Historical index:** checklist wording records the August 2026 system and must not be reused as the current test contract. Use `.claude/skills/e2e-testing/SKILL.md` and the newest `docs/qa/` audit for current authentication, lifecycle and data-safety rules.
+
 ## Quick Reference: What's Been Tested
 
 | Date | Test Name | Profile | Status | Results | Bugs Found |

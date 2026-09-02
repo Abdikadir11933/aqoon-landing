@@ -1,9 +1,11 @@
 # AQOON OS V2 - käynnistysbriefi tekoälyagentille
 
-> **Tilapäivitys 28.8.2026 (lue tämä ennen loppua): tämä brief on alkuperäinen tehtävänanto, ei nykytila.** Sen jälkeen kun tämä kirjoitettiin, seuraavat vaiheet on jo hyväksytty ja osittain toteutettu:
+> **Tilapäivitys 2.9.2026 (lue tämä ennen loppua): tämä brief on alkuperäinen tehtävänanto, ei nykytila.** Tracker käyttää nyt vain Supabase Auth -kirjautumista, joka linkittyy aktiiviseen ja hyväksyttyyn `operators`-riviin. Jaettua salasanaa tai fallbackia ei ole. Operaattorin token-refresh ja yhden luvattoman pyynnön hallittu uusinta on toteutettu. Tarkista muu nykytila `tracker/CONTEXT.md`:stä, Edge Functionien lähdekoodista ja uusimmasta `docs/qa/`-auditista.
+>
+> **Historiallinen 28.8.2026 etenemä:** sen jälkeen kun tämä kirjoitettiin, seuraavat vaiheet hyväksyttiin ja osittain toteutettiin:
 > - Vaihe 1 (nykytilakartta): valmis, ks. `docs/qa/current-state-audit-2026-08-28.md`.
 > - Vaihe 3 (operaattori-identiteetin arkkitehtuurivalinta): tehty — Abducadir hyväksyi Supabase Auth -pohjaisen ratkaisun suoraan, ei väliaikaista kevyttä tokenmallia. Ks. `docs/decisions/0002-two-operator-os-interview-and-data-foundation.md` §6.
-> - Vaihe 4 (inkrementaalinen toteutus): käynnissä. Toteutettu: omistajuus-/audit trail -sarakkeet, puheluhistoria (`family_call_log`), suostumussarakkeet, kaikkien 5 Edge Functionin operaattoriautentikointi, tracker-kirjautuminen yhdeksi vaiheeksi (jaettu salasana toimii yhä varajärjestelmänä). **Ei vielä tehty**: puheluhistorian ja suostumuksen näyttäminen tracker-UI:ssa, haastattelusisällön lyhentäminen/kerrosten yhdistäminen (odottaa Abducadirin/Mustafen sisältöpäätöstä), token-refresh.
+> - Vaihe 4 (inkrementaalinen toteutus): tämän briefin jälkeisessä työssä toteutettiin omistajuus-/audit trail -sarakkeet, puheluhistoria (`family_call_log`), suostumussarakkeet, Edge Functionien operaattoriautentikointi ja tracker-kirjautuminen. Tämän rivin alkuperäiset puutteet ja auth-kuvaus eivät enää kuvaa nykytilaa; tarkista nykytila edellä mainituista lähteistä.
 > - Laajempi, myöhempi koko-repo-auditointi (CI-aukot, indeksoimattomat FK:t, saavutettavuus, orpo dokumentaatio): `docs/qa/full-repository-audit-2026-08-28.md` — luettu tämän jälkeen, korjaa mm. kohdan alla mainitun `internal/first-call-questionnaires.md`-viittauksen ajantasaisuuden.
 >
 > Alla oleva "Nykytila, joka sinun pitää itse varmistaa" -osio on kirjoitettu ennen näitä muutoksia äläkä luota siihen ilman yllä olevien dokumenttien tarkistusta.

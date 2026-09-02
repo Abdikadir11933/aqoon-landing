@@ -62,6 +62,7 @@ test('multi-need payload keeps one primary lead and attaches extra needs', () =>
   assert.equal(payload.additional_needs[0].main_need, 'Waxbarasho');
   assert.equal(payload.additional_needs[1].main_need, 'Wax kale');
   assert.equal(payload.form_version, 'phone-first-v2-multineed');
+  assert.equal(payload.contact_consent, true);
 });
 
 test('up to four distinct help categories can stay in one request', () => {
@@ -178,6 +179,22 @@ test('sending the request requires an explicit consent checkbox, checked before 
   assert.match(html, /id="contactConsent"[^>]*type="checkbox"|type="checkbox"[^>]*id="contactConsent"/);
   assert.match(html, /id="sendRequestBtn"[^>]*disabled/);
   assert.match(js, /contactConsent.*checked/);
+});
+
+test('analytics acceptance persists the consented visitor id for cross-page continuity', () => {
+  const js = fs.readFileSync('caawi/app.js', 'utf8');
+  assert.match(js, /analyticsAccept\.onclick=function\(\)\{[^}]*set\('aqoon_visitor_id',ids\.visitor,local\)/);
+});
+
+test('family form errors and the leave dialog expose accessible state', () => {
+  const html = fs.readFileSync('caawi/index.html', 'utf8');
+  const js = fs.readFileSync('caawi/app.js', 'utf8');
+  assert.match(html, /id="contactError"[^>]*role="alert"[^>]*aria-live="assertive"/);
+  assert.match(html, /id="finishError"[^>]*role="alert"[^>]*aria-live="assertive"/);
+  assert.match(html, /id="phone"[^>]*aria-describedby="phoneHelp contactError"[^>]*aria-invalid="false"/);
+  assert.match(html, /id="leaveModal"[^>]*aria-describedby="leaveDescription"/);
+  assert.match(js, /function trapLeave\(e\)/);
+  assert.match(js, /setAttribute\('aria-invalid'/);
 });
 
 test('intake never asks a detailed eligibility/status question - that belongs in the first interview', () => {
