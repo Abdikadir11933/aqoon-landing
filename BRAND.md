@@ -75,6 +75,7 @@ pilke-sivuilla.
 ## Sosiaalinen sisältö ja video
 
 - Koko kysynnänluonti-, outreach- ja sisältömalli: `workspaces/messaging/references/aqoon-demand-generation-and-content-os.md`.
+- Perheille suunnattu sisältö ja somalinkielinen SEO ohjaavat `aqoon.live/caawi`-pintaan. Ostajille suunnattu sisältö ja B2B-SEO ohjaavat `aqoon.live`-pääsivuston tarkoituksenmukaiselle yrityssivulle. Näitä yleisöjä tai CTA:ita ei yhdistetä samaan materiaaliin.
 - Abducadir on oletusarvoinen julkinen kasvot ja käyttää omaa ääntään.
 - Perheille suunnattu video on Somali-first, ihmisen puhetta ja ihmisen tarkistamaa. Ei AI-hahmoja, avatar-korvikkeita tai korvaavaa AI-ääntä.
 - Yksi video käsittelee yhtä pääasiaa ja sisältää yhden CTA:n.

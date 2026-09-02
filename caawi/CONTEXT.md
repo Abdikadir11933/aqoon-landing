@@ -1,12 +1,13 @@
-# /caawi Context
+# Caawi family-site context
 
-Purpose: fast parent/family intake that captures contact details and enough structured need information for follow-up.
+Purpose: the canonical Somali-first family website at `aqoon.live/caawi`. The root is the fast intake; `/caawi/xog` and `/caawi/<topic>` provide useful guidance and SEO discovery that lead naturally to the same intake.
 
 Canonical dependencies:
 - safety/governance: `../_core/`
 - Somali localization: `../_core/policies/localization.md`
 - downstream family research: `../workspaces/family-research/CONTEXT.md`
 - acquisition and CTA contract: `../workspaces/messaging/references/aqoon-demand-generation-and-content-os.md`
+- canonical route decision: `../docs/decisions/0004-caawi-family-canonical-home.md`
 
 Rules:
 - phone/name remain first so a partial intake can still be followed up.
@@ -19,3 +20,7 @@ Rules:
 - when AQOON may be paid by a recommended provider, disclose that relationship before the family acts on the recommendation.
 - intake may capture several confirmed needs, but must not become a long universal questionnaire. Progressive questions belong in the operator interview.
 - campaign links and alternate domains must preserve a working mobile handoff and attributable source/campaign values without putting PII into anonymous analytics.
+- every family guidance page uses a self-referencing `/caawi/...` canonical and one clear route to the `/caawi` intake.
+- `/so/*` is a permanent legacy redirect namespace. Do not create new `/so` pages, links, canonicals or sitemap entries.
+- the B2B root is not the default destination for family content, search or community distribution.
+- current attribution fields are `referrer_host`, `utm_source`, `utm_medium` and `utm_campaign`. Same-site guidance-to-intake visits default to `utm_source=caawi_seo` only when no explicit source was supplied.

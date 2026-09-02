@@ -34,14 +34,6 @@
         { "key": "Pragma", "value": "no-cache" },
         { "key": "Expires", "value": "0" }
       ]
-    },
-    {
-      "source": "/caawi/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "no-store, no-cache, max-age=0, must-revalidate, proxy-revalidate" },
-        { "key": "Pragma", "value": "no-cache" },
-        { "key": "Expires", "value": "0" }
-      ]
     }
   ],
   "redirects": [
@@ -58,15 +50,17 @@
     { "source": "/yhteys", "destination": "/#yhteys", "permanent": true },
     { "source": "/pilke_landing.html", "destination": "/pilke", "permanent": true },
     { "source": "/pilke_landing_so.html", "destination": "/pilke/so", "permanent": true },
-    { "source": "/so/suomen-kurssi", "destination": "/so/finnish-course", "permanent": true },
-    { "source": "/so/takaisin-kouluun", "destination": "/so/dib-ugu-noqo-dugsi", "permanent": true },
-    { "source": "/so/ammattikoulu", "destination": "/so/ammatillinen-koulutus", "permanent": true },
-    { "source": "/so/paivakoti-hakemus", "destination": "/so/paivakoti-codsi", "permanent": true },
-    { "source": "/so/ilmainen-harrastus", "destination": "/so/harrastus-ilmainen", "permanent": true },
-    { "source": "/so/palveluseteli-paivakoti", "destination": "/so/palveluseteli", "permanent": true },
-    { "source": "/so/paivakoti-vantaa", "destination": "/so/vantaa-paivakoti", "permanent": true },
-    { "source": "/so/paivakoti-helsinki", "destination": "/so/helsinki-paivakoti", "permanent": true },
-    { "source": "/so/paivakoti-espoo", "destination": "/so/espoo-paivakoti", "permanent": true },
-    { "source": "/so/paivakoti-tampere", "destination": "/so/tampere-paivakoti", "permanent": true }
+    { "source": "/so/suomen-kurssi", "destination": "/caawi/finnish-course", "permanent": true },
+    { "source": "/so/takaisin-kouluun", "destination": "/caawi/dib-ugu-noqo-dugsi", "permanent": true },
+    { "source": "/so/ammattikoulu", "destination": "/caawi/ammatillinen-koulutus", "permanent": true },
+    { "source": "/so/paivakoti-hakemus", "destination": "/caawi/paivakoti-codsi", "permanent": true },
+    { "source": "/so/ilmainen-harrastus", "destination": "/caawi/harrastus-ilmainen", "permanent": true },
+    { "source": "/so/palveluseteli-paivakoti", "destination": "/caawi/palveluseteli", "permanent": true },
+    { "source": "/so/paivakoti-vantaa", "destination": "/caawi/vantaa-paivakoti", "permanent": true },
+    { "source": "/so/paivakoti-helsinki", "destination": "/caawi/helsinki-paivakoti", "permanent": true },
+    { "source": "/so/paivakoti-espoo", "destination": "/caawi/espoo-paivakoti", "permanent": true },
+    { "source": "/so/paivakoti-tampere", "destination": "/caawi/tampere-paivakoti", "permanent": true },
+    { "source": "/so", "destination": "/caawi/xog", "permanent": true },
+    { "source": "/so/(.*)", "destination": "/caawi/$1", "permanent": true }
   ]
 }

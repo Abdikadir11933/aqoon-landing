@@ -1,16 +1,16 @@
 from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 REPL = {
-"so/ammatillinen-koulutus/index.html": {
+"caawi/ammatillinen-koulutus/index.html": {
     "Vocational education-ka Finland waxaa jira shahaados iyo habab codsi oo kala duwan": "Finland waxaa ka jira noocyo kala duwan oo ammatillinen koulutus ah, shahaadooyin iyo habab codsi oo kala duwan",
     "application-ka": "codsiga",
 },
-"so/linkit/index.html": {
+"caawi/linkit/index.html": {
     "material Af-Soomaali ah": "macluumaad Af-Soomaali ah",
     "application-ka": "codsiga",
     "Finnish course ku habboon": "koorso Finnish ah oo ku habboon",
 },
-"so/palveluseteli/index.html": {
+"caawi/palveluseteli/index.html": {
     "private early childhood education": "private päiväkoti ama varhaiskasvatus",
     "xaqa voucher": "xaqa palveluseteli",
     "Palveluseteli / palveluseteli": "Palveluseteli",
@@ -18,7 +18,7 @@ REPL = {
     "palveluseteli arrangements": "nidaamka palveluseteli",
     "Details-ku magaalada ayay ku xiran yihiin": "Faahfaahintu magaalada ayay ku xiran tahay",
 },
-"so/tyoton-tyonhakija/index.html": {
+"caawi/tyoton-tyonhakija/index.html": {
     "Employment services-ka Finland waxay isticmaalaan Job Market Finland (Työmarkkinatori) adeegyo badan.": "Adeegyada työllisyyspalvelut ee Finland waxay wax badan ku qabtaan Työmarkkinatori.",
     "Helidda Job Market Finland.": "Helidda Työmarkkinatori.",
 },

@@ -1,6 +1,6 @@
 # AQOON ICM / Knowledge Governance Architecture
 
-The repository is organised as a context router around existing production routes. The architecture deliberately does not move `/caawi`, `/tracker`, `/so` or `/pilke` simply for folder aesthetics.
+The repository is organised as a context router around existing production routes. The architecture deliberately does not move `/caawi`, `/tracker` or `/pilke` simply for folder aesthetics. ADR 0004 is the explicit, redirect-preserving migration that consolidated Somali family guidance from `/so/*` into the canonical `/caawi/*` family surface.
 
 Knowledge flow is one-way:
 

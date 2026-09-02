@@ -3,7 +3,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 REPL = {
-"so/ajankohtaiset/index.html": {
+"caawi/ajankohtaiset/index.html": {
     "workshops": "kulan-tababbarro",
     "openings vary": "waqtiga codsigu wuu is beddelaa",
     "Finnish & koulutus": "Finnish & waxbarasho",
@@ -12,7 +12,7 @@ REPL = {
     "Haku 7.9.2026 asti": "Codsigu wuxuu furan yahay ilaa 7.9.2026",
     "Koulutus-ku": "Koulutus-kan",
 },
-"so/ammatillinen-koulutus/index.html": {
+"caawi/ammatillinen-koulutus/index.html": {
     "barnaamijyo-ka": "barnaamijyada",
     "application period-ka": "waqtiga codsiga",
     "application dates": "taariikhaha codsiga",
@@ -22,12 +22,12 @@ REPL = {
     "school-ka": "dugsiga",
     "qualification": "shahaado",
 },
-"so/dib-ugu-noqo-dugsi/index.html": {
+"caawi/dib-ugu-noqo-dugsi/index.html": {
     "Studyinfo application iyo application periods": "codsiga Opintopolku / Studyinfo iyo waqtiyada codsiga",
     "application periods": "waqtiyada codsiga",
     "application": "codsi",
 },
-"so/esiopetus/index.html": {
+"caawi/esiopetus/index.html": {
     "registration period-ka": "waqtiga isdiiwaangelinta",
     "esiopetus registration-ka": "isdiiwaangelinta esiopetus",
     "paper form": "foom warqad ah",
@@ -35,14 +35,14 @@ REPL = {
     "preparatory teaching ama language support": "valmistava opetus ama taageerada luqadda",
     "annual registration period": "waqtiga isdiiwaangelinta sannadlaha ah",
 },
-"so/harrastus-ilmainen/index.html": {
+"caawi/harrastus-ilmainen/index.html": {
     "registration-ku": "isdiiwaangelintu",
     "registration link-ka": "linkiga isdiiwaangelinta",
     "Sports, art, music iyo clubs": "Ciyaaro, farshaxan, muusig iyo kooxo",
     "Youth services iyo activities": "Adeegyada dhalinyarada iyo hawlo",
     "Programmes gaar ah": "Barnaamijyo gaar ah",
 },
-"so/helsinki-paivakoti/index.html": {
+"caawi/helsinki-paivakoti/index.html": {
     "Primary online service-ku waa Edlevo, waxaana jira paper route haddii online-ku suurtagal ahayn.": "Adeegga ugu weyn ee online-ka waa Edlevo. Haddii online-ku kuu suurtageli waayo, waxaad isticmaali kartaa foom warqad ah.",
     "AQOON ma go'aaminayo urgent status ama placement-ka": "AQOON ma go'aamiyo haddii codsigaagu degdeg yahay ama ilmaha meel loo qoondeeyo",
     "official instructions": "tilmaamaha rasmiga ah",
@@ -51,14 +51,14 @@ REPL = {
     "Application preferences iyo start date": "Doorashooyinka codsiga iyo taariikhda bilowga",
     "early childhood service guidance": "hagidda varhaiskasvatus",
 },
-"so/koulu-tuki/index.html": {
+"caawi/koulu-tuki/index.html": {
     "Tukiopetus ama extra teaching sidee looga hadlaa school-ka?": "Tukiopetus ama caawimaad dheeraad ah sidee dugsiga loogala hadlaa?",
     "Special support ama other learning support yaa laga waydiiyaa?": "Taageerada waxbarashada ee dheeraadka ah yaa dugsiga laga waydiiyaa?",
     "Wilma message maxay ka dhigan tahay?": "Fariinta Wilma maxay ka dhigan tahay?",
     "Hobby ama after-school activity": "Hobby ama hawl dugsiga ka dib",
     "school-ka": "dugsiga",
 },
-"so/linkit/index.html": {
+"caawi/linkit/index.html": {
     "“Official”": "“Rasmi”",
     "“Helpful”": "“Waxtar leh”",
     "resource wax ku ool ah": "il waxtar leh",
@@ -84,52 +84,52 @@ REPL = {
     "Phone / internet contract": "Qandaraaska telefoonka / internetka",
     "Contract or consumer problem": "Dhibaato qandaraas ama arrin macmiil",
 },
-"so/maxaan-codsan-karaa/index.html": {
+"caawi/maxaan-codsan-karaa/index.html": {
     "Jobseeker registration iyo jidka rasmiga ah.": "Työnhakijaksi ilmoittautuminen iyo meesha rasmiga ah ee laga bilaabo.",
     "CV, työhakemus iyo job search.": "CV, työhakemus iyo shaqo raadinta.",
     "Faham test-ka iyo registration-ka rasmiga ah.": "Faham imtixaanka iyo isdiiwaangelinta YKI.",
     "official application": "codsiga rasmiga ah",
     "Eeg links-ka": "Eeg linkiyada",
 },
-"so/paivakoti-codsi/index.html": {
+"caawi/paivakoti-codsi/index.html": {
     "e-service-ka": "adeegga online-ka",
     "application preferences iyo start date": "doorashooyinka codsiga iyo taariikhda bilowga",
     "online ku codsan karin, helidda paper form ama service guidance": "online ku codsan karin, helidda foom warqad ah ama hagidda adeegga",
 },
-"so/palveluseteli/index.html": {
+"caawi/palveluseteli/index.html": {
     "Päiväkoti options": "Ikhtiyaarrada päiväkoti",
     "service voucher": "palveluseteli",
     "Service voucher": "Palveluseteli",
     "Municipal vs private päiväkoti": "Päiväkoti magaalada iyo private päiväkoti",
     "Fee information": "Xogta kharashka",
 },
-"so/shaqo/index.html": {
+"caawi/shaqo/index.html": {
     "Deadline dhow": "Codsigu dhowaan ayuu xirmayaa",
 },
-"so/tampere-paivakoti/index.html": {
+"caawi/tampere-paivakoti/index.html": {
     "early childhood education application": "codsiga päiväkoti / varhaiskasvatus",
     "urgent shuruudaha": "shuruudaha codsiga degdegga ah",
     "official instructions-ka": "tilmaamaha rasmiga ah",
     "Application timing iyo start date": "Waqtiga codsiga iyo taariikhda bilowga",
     "Service voucher haddii aad eegayso private option": "Palveluseteli haddii aad eegayso private päiväkoti",
 },
-"so/vantaa-paivakoti/index.html": {
+"caawi/vantaa-paivakoti/index.html": {
     "early childhood education application": "codsiga päiväkoti / varhaiskasvatus",
     "VaSa service iyo login": "VaSa iyo gelitaanka adeegga",
     "Municipal vs private/service voucher": "Päiväkoti magaalada, private päiväkoti iyo palveluseteli",
     "Application preferences iyo start date": "Doorashooyinka codsiga iyo taariikhda bilowga",
 },
-"so/tyonhakijaksi/index.html": {
+"caawi/tyonhakijaksi/index.html": {
     "unemployment benefit": "taageerada Kela marka aad shaqo la'aan tahay",
 },
-"so/tyoton-tyonhakija/index.html": {
+"caawi/tyoton-tyonhakija/index.html": {
     "benefit-kaaga": "taageerada Kela ee aad heli karto",
     "register as a jobseeker": "työnhakijaksi ilmoittautuminen",
     "employment services": "työllisyyspalvelut",
     "employment services-ka": "työllisyyspalvelut",
     "shaqo-doon active ah": "shaqo-doon firfircoon",
 },
-"so/yaan-nahay/index.html": {
+"caawi/yaan-nahay/index.html": {
     "Official information, barnaamij, service, company ama qofka saxda ah.": "Xogta rasmiga ah, barnaamijka, adeegga, shirkadda ama qofka saxda ah.",
 },
 }

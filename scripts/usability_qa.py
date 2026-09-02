@@ -25,7 +25,7 @@ for path in ROOT.rglob("*.html"):
             errors.append(f"{rel}: viewport blocks user zoom")
 
     lang = re.search(r'<html[^>]*\blang=["\']([^"\']+)', text, re.I)
-    if rel == "so/index.html" or rel.startswith("so/"):
+    if rel == "caawi/xog/index.html" or rel.startswith("caawi/"):
         if not lang or not lang.group(1).lower().startswith("so"):
             errors.append(f"{rel}: Somali route missing lang=so")
 

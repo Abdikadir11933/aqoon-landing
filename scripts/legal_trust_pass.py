@@ -1,8 +1,8 @@
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SO = ROOT / 'so'
-DISCLAIMER = '''<aside class="aqoon-legal-note" style="margin:28px 0 0;padding:15px 16px;border:1px solid #e4dfd3;border-radius:16px;background:#fff;color:#55606d;font-size:13px;line-height:1.55"><strong style="color:#0E2440">AQOON waa adeeg madax-bannaan.</strong> Ma nihin Kela, Migri, kunta, työllisyyspalvelut ama hay’ad kale oo rasmi ah, mana gaarno päätös ama dammaanad qaadno tuki, paikka, lupa ama natiijo. Hay’adda ama adeegga mas’uulka ka ah ayaa xaqiijiya shuruudaha iyo go’aanka. <a href="/so/disclaimer" style="color:#08736e;font-weight:700">Faahfaahin</a> · <a href="/so/tietosuoja" style="color:#08736e;font-weight:700">Tietosuoja</a></aside>'''
+CAAWI = ROOT / 'caawi'
+DISCLAIMER = '''<aside class="aqoon-legal-note" style="margin:28px 0 0;padding:15px 16px;border:1px solid #e4dfd3;border-radius:16px;background:#fff;color:#55606d;font-size:13px;line-height:1.55"><strong style="color:#0E2440">AQOON waa adeeg madax-bannaan.</strong> Ma nihin Kela, Migri, kunta, työllisyyspalvelut ama hay’ad kale oo rasmi ah, mana gaarno päätös ama dammaanad qaadno tuki, paikka, lupa ama natiijo. Hay’adda ama adeegga mas’uulka ka ah ayaa xaqiijiya shuruudaha iyo go’aanka. <a href="/caawi/disclaimer" style="color:#08736e;font-weight:700">Faahfaahin</a> · <a href="/caawi/tietosuoja" style="color:#08736e;font-weight:700">Tietosuoja</a></aside>'''
 
 # Conservative trust-language corrections. Official service names are intentionally preserved.
 REPL = {
@@ -16,9 +16,9 @@ REPL = {
     'service guidance': 'hagidda adeegga',
 }
 
-for p in SO.rglob('index.html'):
+for p in CAAWI.rglob('index.html'):
     rel = p.relative_to(ROOT).as_posix()
-    if '/pilke/' in rel or rel.startswith('pilke/') or rel in {'so/disclaimer/index.html','so/tietosuoja/index.html'}:
+    if '/pilke/' in rel or rel.startswith('pilke/') or rel in {'caawi/index.html','caawi/disclaimer/index.html','caawi/tietosuoja/index.html'}:
         continue
     text = p.read_text(encoding='utf-8')
     old = text
@@ -35,10 +35,10 @@ text = p.read_text(encoding='utf-8')
 text = text.replace('Finland joogtaa oo ma hubtid waxa aad xaq u leedahay ama sida loo codsado?', 'Finland joogtaa oo ma hubtid fursadaha kuu jira, shuruudahooda ama sida loo codsado?')
 text = text.replace('Faham fursadaha kuu jira, waxa aad xaq u leedahay iyo sida loo codsado.', 'Faham fursadaha kuu jira, shuruudahooda iyo sida loo codsado.')
 text = text.replace('Waxaan kaa caawinayaa inaad fahanto fursadaha kuu jira, waxa aad xaq u leedahay, sida loo helo iyo sida loo codsado. Af-Soomaali, bilaash.', 'Waxaan kaa caawinayaa inaad fahanto fursadaha kuu jira, shuruudahooda, meesha saxda ah ee laga hubiyo iyo sida loo codsado. Af-Soomaali, bilaash.')
-text = text.replace('<div class="privacy">Lambarkaaga iyo magacaaga waxaa loo isticmaalaa oo keliya in AQOON kula soo xiriiro arrinta aad caawimaadda uga baahan tahay.</div>', '<div class="privacy">Lambarkaaga iyo magacaaga waxaa loo isticmaalaa si aan uga jawaabno codsigaaga oo aan ula soconno caawimaadda aad naga codsatay. Ha ku qorin foomka henkilötunnus ama dokumentiyo xasaasi ah. <a href="/so/tietosuoja">Tietosuoja</a>.</div>')
+text = text.replace('<div class="privacy">Lambarkaaga iyo magacaaga waxaa loo isticmaalaa oo keliya in AQOON kula soo xiriiro arrinta aad caawimaadda uga baahan tahay.</div>', '<div class="privacy">Lambarkaaga iyo magacaaga waxaa loo isticmaalaa si aan uga jawaabno codsigaaga oo aan ula soconno caawimaadda aad naga codsatay. Ha ku qorin foomka henkilötunnus ama dokumentiyo xasaasi ah. <a href="/caawi/tietosuoja">Tietosuoja</a>.</div>')
 if 'id="analyticsChoice"' not in text:
-    consent = '''<div class="analytics-choice" id="analyticsChoice" hidden role="dialog" aria-live="polite" style="position:fixed;left:12px;right:12px;bottom:12px;z-index:80;max-width:520px;margin:auto;background:#fff;border:1px solid #ddd6c8;border-radius:18px;padding:16px;box-shadow:0 12px 34px rgba(14,36,64,.18)"><strong style="display:block;color:#0E2440;margin-bottom:5px">Analytics-ka ma oggolaanaysaa?</strong><span style="display:block;color:#596471;font-size:14px;line-height:1.45;margin-bottom:12px">Foomku wuu shaqaynayaa xitaa haddii aad diido. Haddii aad oggolaato, waxaan kaydinaynaa xog farsamo si aan u fahanno halka foomku ka adkaado. Magaca iyo telefoonka laguma diro funnel analytics-ka.</span><div style="display:flex;gap:8px"><button type="button" id="analyticsDecline" class="reset" style="flex:1">Maya</button><button type="button" id="analyticsAccept" class="primary teal" style="flex:1;margin:0">Haa</button></div><a href="/so/tietosuoja" style="display:block;text-align:center;margin-top:9px;color:#08736e;font-size:13px;font-weight:700">Akhri tietosuoja</a></div>'''
-    text = text.replace('<script src="/caawi/app.js?v=3" defer></script>', consent + '<div style="max-width:520px;margin:18px auto 28px;padding:0 18px;text-align:center;color:#69737f;font:13px/1.5 system-ui"><a href="/so/disclaimer" style="color:#08736e;font-weight:700">AQOON ma aha hay’ad rasmi ah</a> · <a href="/so/tietosuoja" style="color:#08736e;font-weight:700">Tietosuoja</a></div><script src="/caawi/app.js?v=4" defer></script>')
+    consent = '''<div class="analytics-choice" id="analyticsChoice" hidden role="dialog" aria-live="polite" style="position:fixed;left:12px;right:12px;bottom:12px;z-index:80;max-width:520px;margin:auto;background:#fff;border:1px solid #ddd6c8;border-radius:18px;padding:16px;box-shadow:0 12px 34px rgba(14,36,64,.18)"><strong style="display:block;color:#0E2440;margin-bottom:5px">Analytics-ka ma oggolaanaysaa?</strong><span style="display:block;color:#596471;font-size:14px;line-height:1.45;margin-bottom:12px">Foomku wuu shaqaynayaa xitaa haddii aad diido. Haddii aad oggolaato, waxaan kaydinaynaa xog farsamo si aan u fahanno halka foomku ka adkaado. Magaca iyo telefoonka laguma diro funnel analytics-ka.</span><div style="display:flex;gap:8px"><button type="button" id="analyticsDecline" class="reset" style="flex:1">Maya</button><button type="button" id="analyticsAccept" class="primary teal" style="flex:1;margin:0">Haa</button></div><a href="/caawi/tietosuoja" style="display:block;text-align:center;margin-top:9px;color:#08736e;font-size:13px;font-weight:700">Akhri tietosuoja</a></div>'''
+    text = text.replace('<script src="/caawi/app.js?v=3" defer></script>', consent + '<div style="max-width:520px;margin:18px auto 28px;padding:0 18px;text-align:center;color:#69737f;font:13px/1.5 system-ui"><a href="/caawi/disclaimer" style="color:#08736e;font-weight:700">AQOON ma aha hay’ad rasmi ah</a> · <a href="/caawi/tietosuoja" style="color:#08736e;font-weight:700">Tietosuoja</a></div><script src="/caawi/app.js?v=4" defer></script>')
 p.write_text(text, encoding='utf-8')
 
 p = ROOT / 'caawi' / 'app.js'

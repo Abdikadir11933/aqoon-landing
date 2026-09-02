@@ -26,6 +26,7 @@ For a claim about a current service, deadline, criterion, fee, capacity or publi
 Every deliverable must make clear:
 
 - primary audience: family/adult, buyer/partner or community connector;
+- canonical surface: `aqoon.live/caawi` for families or the `aqoon.live` B2B site for buyers;
 - concrete entry problem/opportunity and funnel stage;
 - evidence/source and verification date when the claim can change;
 - one useful reward and one next action;
@@ -36,7 +37,11 @@ Every deliverable must make clear:
 
 Abducadir is the default public face. Family-facing video uses his own Somali voice, native human delivery and human-reviewed Somali. Do not introduce AI characters, replacement voices, generic lifestyle content, hidden partner steering, several competing CTAs or unsupported eligibility/outcome promises.
 
-Use `/caawi` as the default family handoff unless another private contact route is deliberately selected, staffed and attributed. TikTok, the Yellow Card domain, AQOON guidance/SEO, DMs, WhatsApp, phone, fieldwork, trusted mothers/known people, järjestöt, community actors, referrals, paid promotion and buyer outreach are channels inside one engine, not separate strategies.
+Use `/caawi` as the default family handoff unless another private contact route is deliberately selected, staffed and attributed. Family SEO and Somali help pages live under `/caawi/<topic>`. Buyer SEO lives on the B2B root and established B2B pages and targets organisation problems such as Somali integration, trusted reach, service navigation, conversion, onboarding and persistence. Never mix the two search intents or CTAs.
+
+TikTok, the Yellow Card domain, Caawi SEO, B2B SEO, DMs, WhatsApp, phone, fieldwork, trusted mothers/known people, järjestöt, community actors, referrals, paid promotion and buyer outreach are channels inside one engine, not separate businesses. `/so/*` is redirect-only and must not be used in new assets.
+
+For family attribution, use only the runtime fields that exist: `referrer_host`, `utm_source`, `utm_medium` and `utm_campaign`. Use a non-PII `utm_campaign` ID to map an asset or connector in the governed campaign record; do not claim `source_asset` or `source_actor` are live schema fields.
 
 Do not publish, contact external people, alter live routing or start paid promotion unless the user explicitly authorises that external action. Producing or updating the approved repository strategy does not itself authorise distribution.
 

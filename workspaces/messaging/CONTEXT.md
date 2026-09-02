@@ -27,6 +27,13 @@ Examples of entry doors:
 
 The CTA should normally promise the next useful action, not advertise AQOON abstractly: fill the short form, AQOON gets in touch, and the person receives help with the specific next step.
 
+## Two SEO lanes
+
+- **AQOON B2B SEO:** `aqoon.live` and its established Finnish B2B pages help selected organisations and buyers find AQOON when they search for Somali integration, trusted community reach, multilingual service navigation, conversion, onboarding, retention or missed demand. The CTA is a scoped business conversation.
+- **Caawi family SEO:** `aqoon.live/caawi/<topic>` helps Somali-speaking people find practical guidance about Finnish services and then enter the `/caawi` intake. The CTA is useful help, not a buyer meeting.
+
+The `/so/*` namespace is permanent-redirect compatibility only. Do not mix buyer and family search intent, page promises, analytics or CTAs.
+
 ## Message hierarchy
 
 Family-facing:

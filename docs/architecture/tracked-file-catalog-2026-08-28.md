@@ -1,6 +1,8 @@
 # Tracked file catalogue — 2026-08-28
 
 > This is the exhaustive index of the 240 files tracked on `master` at commit `9a51b8e`. It is a navigation catalogue, not a second source of truth: runtime behavior remains defined by the deployed code, Supabase functions/schema, and the nearest `CONTEXT.md`.
+>
+> Historical route note: this snapshot predates ADR 0004. Its `so/` entries describe commit `9a51b8e`; current canonical family guidance lives under `caawi/`, and `/so/*` now redirects permanently.
 
 ## Current system in one view
 
@@ -313,4 +315,3 @@ Files in this group share the role named above.
 2. For a runtime change, inspect the entry HTML, every loaded or dynamically injected script, its Edge Function contract, relevant migration and test before editing.
 3. Treat `docs/qa/current-state-audit-2026-08-28.md`, `docs/decisions/0002-two-operator-os-interview-and-data-foundation.md`, and `docs/qa/full-repository-audit-2026-08-28.md` as the ordered current-state handover.
 4. Keep PII and credentials out of Git; never mistake this public catalogue for live family records.
-

@@ -12,14 +12,14 @@ The goal is progressive disclosure: an agent should not need the entire reposito
 
 | Path/folder | Role | Local contract |
 |---|---|---|
-| `/` + `tapaus/`, `menetelma/`, `paketit/`, `havainnot/`, `sanasto/` | Public AQOON organisation/content site | root context + `BRAND.md` for UI |
-| `caawi/` | Public family intake | `caawi/CONTEXT.md` |
+| `/` + `tapaus/`, `menetelma/`, `paketit/`, `havainnot/`, `sanasto/` | Public B2B site for selected buyers, organisations and partners | root context + `BRAND.md` for UI |
+| `caawi/` | Canonical Somali-first family site: intake at `/caawi`, guidance/SEO at `/caawi/<topic>`, hub at `/caawi/xog` | `caawi/CONTEXT.md` |
 | `tracker/` | Private operator CRM/research command center | `tracker/CONTEXT.md` |
-| `so/` | Somali public guidance | `so/CONTEXT.md` |
+| `/so/*` | Legacy permanent redirects to the matching `/caawi/*` route; no canonical files | ADR 0004 + `vercel.json` |
 | `pilke/` | Protected campaign pages | explicit owner instruction required |
 | `assets/` | Shared public-site assets | root/brand contracts |
 
-Do not move these physical paths just to make the repository visually tidier; they are production route contracts.
+Do not move these physical paths just to make the repository visually tidier; they are production route contracts. The `/so` to `/caawi` migration is the explicit, redirect-preserving exception recorded in ADR 0004.
 
 ## Agent/governance layer
 
@@ -70,3 +70,5 @@ The canonical business model is `docs/architecture/business-operating-model.md`.
 The tracker-to-database collection contract is `docs/architecture/tracker-supabase-data-contract.md`; it is checked statically by `scripts/tracker_collection_qa.js`, while database changes still require live schema verification.
 
 Vercel hosts the public/static application. A Git commit is not equivalent to a production release; the intended commit must be deployed and READY before it is described as live.
+
+The canonical public-surface boundary is recorded in `docs/decisions/0004-caawi-family-canonical-home.md`.

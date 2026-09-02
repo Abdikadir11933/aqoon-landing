@@ -14,7 +14,7 @@ AQOON finds a real need or opportunity that people are missing, explains it thro
 
 The content funnel and the family journey are connected, but they are not the same thing. Public content may create attention and a request for help. Qualification, matching, application support, handoff and outcome follow-up are operational work.
 
-The system is not strictly linear. A person with an urgent, clear need may move directly from first exposure to `/caawi` or a private call. Funnel stages describe the job to be done, not gates the family must be forced through.
+The system is not strictly linear. A person with an urgent, clear need may move directly from first exposure to `aqoon.live/caawi` or a private call. Funnel stages describe the job to be done, not gates the family must be forced through.
 
 ## 2. Two audiences, two promises
 
@@ -41,6 +41,17 @@ Promise: measurable acquisition, qualification, conversion, onboarding, persiste
 
 Community connectors, järjestöt and creators can help AQOON reach people. They are not automatically buyers, referrers or representatives of the whole community.
 
+### Surface rule
+
+The audiences share one business engine but never share an undifferentiated landing surface:
+
+| Audience | Canonical owned surface | Search intent | Default conversion |
+| --- | --- | --- | --- |
+| Family/adult | `aqoon.live/caawi` and `aqoon.live/caawi/<topic>` | practical Somali help with work, education, children, Kela, contracts and Finnish services | topic page or social/community entry -> `/caawi` intake -> private follow-up |
+| Buyer/partner | `aqoon.live` and the established Finnish B2B pages | how to reach, serve, integrate, convert, onboard and retain Somali-speaking or otherwise missed communities | relevant B2B evidence/method page -> scoped buyer conversation |
+
+Do not route family search traffic to the B2B root by default. Do not route buyer-intent search traffic into the family intake. `/so/*` is a legacy redirect namespace, not a third surface.
+
 ## 3. What a lead means
 
 Do not collapse these levels into one number:
@@ -66,7 +77,9 @@ AQOON uses the channel that already has the relevant person's attention and trus
 | Channel family | AQOON examples | Primary job | Default handoff | Main proof |
 | --- | --- | --- | --- | --- |
 | Founder-led social | `@waalidsupport`, TikTok, selectively cross-posted Reels or Shorts | discovery, relevance, explanation and founder trust | `/caawi` or one intentionally selected private contact route | new viewers, shares, identifiable contacts and completed intakes by asset |
-| Owned evergreen | `aqoon.live`, Somali guidance pages, SEO pages and the user-named Yellow Card domain | high-intent discovery, durable explanation and route clarity | topic-specific page -> `/caawi` | search/entry page, contact and downstream outcome |
+| Caawi family SEO | `aqoon.live/caawi/<topic>` | high-intent Somali discovery, useful explanation and route clarity | topic page -> `/caawi` intake | search entry, intake and downstream outcome |
+| AQOON B2B SEO | `aqoon.live`, `havainnot/`, `menetelma/`, `tapaus/` and other established B2B routes | help buyers find AQOON when searching for Somali integration, trusted reach, multilingual navigation, conversion, onboarding or persistence | relevant proof/method page -> scoped buyer conversation | qualified buyer visit, conversation, proposal and decision |
+| Other owned/campaign entry | the user-named Yellow Card domain once its exact role is documented | campaign-specific discovery or routing | audience-appropriate Caawi or B2B destination | attributable movement for the defined campaign |
 | Private relationship | phone, DM and WhatsApp conversation | trust, clarification, recovery and follow-up | intake/interview or next agreed action | identifiable contact, response time and progression |
 | Trusted community connectors | impactful mothers, known Somali people in Finland and other trusted individuals | warm introduction, relevance and social proof | family contacts AQOON directly through a tagged link/route | source-attributed contacts, interviews and outcomes |
 | Järjestöt and community actors | associations, community organisations, hosts and other already trusted/reachable actors | distribution, hosting, explanation and referral | co-branded or AQOON-owned contact route with clear responsibility | cohort reach, contact, progression and aggregate barriers |
@@ -75,7 +88,7 @@ AQOON uses the channel that already has the relevant person's attention and trus
 | Buyer-facing distribution | B2B website, direct outreach, meetings, proposals and professional content | convert evidence into a scoped partnership | defined business conversation | qualified buyer conversation, proposal and decision |
 | Paid amplification | paid promotion of an already useful, proven message | reach more of the right cohort | the same tested landing/contact route | spend and attributable stage movement within one named cohort |
 
-The exact Yellow Card URL, ownership and redirect role are not currently documented in the repository. Use `yellow_card_domain` as the source label, but do not invent a URL or change routing until the owner confirms it.
+The exact Yellow Card URL, ownership and redirect role are not currently documented in the repository. Use `yellow_card_domain` only as an attribution label where that source is genuinely used; do not invent a URL, treat it as the Caawi canonical home or change routing until the owner confirms it.
 
 ### Channel selection rule
 
@@ -99,6 +112,18 @@ Do not add a channel because it is fashionable. Add it because it improves reach
 | **Outcome and learning** | "Did it work and continue?" | verify the result, preserve the relationship and learn without exposing the person | outcome call, persistence check, anonymised story with the right permission, updated FAQ or route content | verified outcome, persistence, repeat contact and new PII-free learning |
 
 The operating constraint determines the next content priority. If AQOON has more contacts than it can call or interview, more TOF reach is not the priority. Fix response capacity and use MOF/BOF material to help existing families progress. If qualified people are not entering, improve the entry problem, channel, hook and CTA. If applications stall, improve the route and operational follow-up rather than blaming content.
+
+### B2B search and content funnel
+
+The buyer funnel uses the same TOF/MOF/BOF logic with a different promise and destination:
+
+| Stage | Buyer question | Content job | Best owned destination | Proof |
+| --- | --- | --- | --- | --- |
+| TOF | "Why are relevant Somali-speaking people not finding, trusting or completing our service?" | name the missed-demand or broken-journey problem in buyer language | a focused B2B insight page on `aqoon.live` | qualified search visibility and engaged buyer visits |
+| MOF | "Can AQOON diagnose and operate this better?" | show method, measured stages, barriers and anonymised evidence | `havainnot/`, `menetelma/` or `tapaus/` | evidence-page depth, return visits and qualified conversations |
+| BOF | "What exactly would we buy and how would it work?" | define scope, responsibilities, measurement, privacy and next decision | `paketit/` or a scoped contact/booking route | qualified meeting, proposal and decision |
+
+B2B SEO topics include Somali integration and service reach only when AQOON can connect the query to a real buyer problem and a truthful capability. They must not stereotype Somalis, imply that a community is inventory or expose family data.
 
 ## 6. Content pillars
 
@@ -202,7 +227,7 @@ This adapts Hook-Story-Offer and Hook-Retain-Reward for AQOON. The final element
 
 The CTA promises the next useful action, not AQOON in the abstract.
 
-- **Default family CTA:** the topic-specific route to `/caawi`, where the person gives name/phone first and receives a callback.
+- **Default family CTA:** `aqoon.live/caawi` or the relevant `/caawi/<topic>` page followed by the `/caawi` intake, where the person gives name/phone first and receives a callback.
 - **DM, WhatsApp or phone CTA:** use only when that private route is intentionally selected, staffed and attributed. Existing evidence indicates many families prefer a private phone route over a public group.
 - **Community CTA:** the family contacts AQOON directly. A connector does not send family identities unless the person has given the correct separate permission.
 - **Buyer CTA:** one scoped conversation about the missing outcome or broken journey.
@@ -270,14 +295,14 @@ Do not launch demand without a named follow-up owner and realistic response capa
 
 ## 13. Measurement and attribution
 
-Every campaign or asset should be attributable, where practical, with:
+The current Caawi runtime stores `referrer_host`, `utm_source`, `utm_medium` and `utm_campaign`. Use them consistently:
 
-- `source_channel` such as `tiktok`, `yellow_card_domain`, `aqoon_seo`, `whatsapp`, `phone_referral`, `field`, `jarjesto`, `trusted_connector` or `partner`;
-- `source_actor` or organisation when appropriate and lawful;
-- `source_asset` or content ID;
-- `campaign_id` and cohort;
-- `entry_problem`;
-- first known source and the final contact route kept separate.
+- `utm_source`: origin such as `tiktok`, `caawi_seo`, `yellow_card_domain`, `whatsapp`, `phone_referral`, `field`, `jarjesto`, `trusted_connector` or `partner`;
+- `utm_medium`: delivery type such as `organic`, `social`, `creator`, `community`, `referral`, `field`, `paid` or `partner`;
+- `utm_campaign`: a governed, non-PII campaign or asset ID that can be mapped to the internal campaign record;
+- `referrer_host`: captured automatically where available.
+
+The schema does not currently have first-class `source_actor`, `source_asset`, `campaign_id` or `entry_problem` fields. Keep those in the governed campaign record and map them through `utm_campaign` until an explicit runtime migration is implemented. Never place a person's name, phone number or case detail in a URL or UTM value. Keep first known source and final contact route conceptually separate; do not infer missing attribution.
 
 The core scorecard is:
 
@@ -318,6 +343,7 @@ Use this before writing a script:
 
 ```text
 Audience/cohort:
+Surface: Caawi family / AQOON B2B
 Entry problem or opportunity:
 Evidence/source and verified date:
 Current funnel bottleneck:
@@ -327,7 +353,7 @@ One thing the person should understand:
 Main misunderstanding/barrier:
 One next action:
 CTA and landing/contact route:
-Tracking values:
+Tracking values: referrer_host / utm_source / utm_medium / utm_campaign
 Follow-up owner/capacity:
 Consent/privacy/disclosure notes:
 Success measure beyond views:

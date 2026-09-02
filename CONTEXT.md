@@ -59,11 +59,13 @@ AQOON may explain, navigate, compare, prepare, remind and help with applications
 
 ## Production areas
 
-- `caawi/` parent-facing intake
-- `tracker/` private CRM/command center
-- `so/` Somali public guidance
+- `/` and the established Finnish route folders: B2B site for selected buyers, organisations and partners
+- `caawi/`: canonical Somali-first family website, guidance/SEO pages and intake at `aqoon.live/caawi`
+- `tracker/`: private operational core for intake follow-up, interviews, action and outcomes
+- `/so/*`: permanent legacy redirects to `/caawi/*`, never a canonical content home
 - `pilke/` protected campaign pages
-- B2B public pages at repository root and established route folders
+
+The canonical public/private route decision is `docs/decisions/0004-caawi-family-canonical-home.md`.
 
 ## Shared knowledge
 

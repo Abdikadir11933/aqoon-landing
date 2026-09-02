@@ -15,9 +15,9 @@ Do not duplicate mutable implementation details here. The current code, database
 ## Stable runtime map
 
 - `/` plus `tapaus/`, `menetelma/`, `paketit/`, `havainnot/`, `sanasto/` — public organisation/content site
-- `/caawi` — public family intake; see `caawi/CONTEXT.md`
+- `/caawi` — canonical Somali-first family site and intake; guidance lives at `/caawi/<topic>`; see `caawi/CONTEXT.md`
 - `/tracker` — private operator command center; see `tracker/CONTEXT.md`
-- `/so` — Somali public guidance; see `so/CONTEXT.md`
+- `/so` — legacy redirect namespace only; never use it for new links, canonicals or content
 - `/pilke` and `/pilke/so` — protected campaign pages; do not modify without explicit instruction
 
 ## Stable private-data boundary

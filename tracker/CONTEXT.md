@@ -133,7 +133,7 @@ For deep daycare cases, capture current care state, prior awareness of private d
 
 This is an evidence refresh, not a scripted sales qualification. It tests whether the original Pilke findings continue to appear in new families and makes later claims auditable.
 
-Acquisition channel roles, source labels and the content-to-outcome contract live in `../workspaces/messaging/references/aqoon-demand-generation-and-content-os.md`. Tracker analytics should preserve first known source, final contact route, source asset/campaign and entry problem separately where the data contract supports them; do not infer missing attribution.
+Acquisition channel roles, source labels and the content-to-outcome contract live in `../workspaces/messaging/references/aqoon-demand-generation-and-content-os.md`. The current runtime stores `referrer_host`, `utm_source`, `utm_medium` and `utm_campaign`; it does not yet have first-class `source_actor`, `source_asset`, `campaign_id` or `entry_problem` fields. Preserve first known source and final contact route separately where the data contract supports them, use a governed non-PII `utm_campaign` ID for campaign/asset mapping, and never infer missing attribution.
 
 ## Funnel claim discipline
 

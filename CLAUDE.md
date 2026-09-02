@@ -18,14 +18,14 @@ Before substantive work:
 
 | Task | Go to |
 |---|---|
-| Parent-facing intake | `caawi/CONTEXT.md` |
+| Family-facing intake, Somali guidance or family SEO | `caawi/CONTEXT.md` |
 | Family CRM / tracker | `tracker/CONTEXT.md` |
-| Somali public guidance | `so/CONTEXT.md` |
 | Research a family case | `workspaces/family-research/CONTEXT.md` + `family-research` skill |
 | Verify evidence or an external claim | `workspaces/evidence-and-research/CONTEXT.md` |
 | Messaging / website / sales copy | `workspaces/messaging/CONTEXT.md` |
 | Demand generation / social / video / creators / community outreach | `workspaces/messaging/CONTEXT.md` + `aqoon-demand-content` skill |
-| SEO / discoverability / content growth | `seo/CONTEXT.md` + `seo-growth` skill |
+| B2B SEO / buyer discoverability | `seo/CONTEXT.md` + `seo-growth` skill |
+| Caawi family SEO / Somali guidance discoverability | `caawi/CONTEXT.md` + `seo-growth` skill |
 | Site-wide or repository audit | `workspaces/product-qa/CONTEXT.md` + `repository-auditing` skill |
 | Production release / deploy verification | `production-releasing` skill |
 | Shared rules and schemas | `_core/CONVENTIONS.md` |
@@ -46,7 +46,7 @@ Before substantive work:
 
 ## Production-route safety
 
-Do not move production routes merely to make the repository look cleaner. `/caawi`, `/tracker`, `/so`, `/pilke` and the current B2B pages keep their physical paths unless a route migration is explicitly planned and tested.
+Do not move production routes merely to make the repository look cleaner. `/caawi`, `/tracker`, `/pilke` and the current B2B pages keep their physical paths unless a route migration is explicitly planned and tested. `/so` is a legacy redirect namespace governed by ADR 0004; never restore it as a second canonical family surface.
 
 ## UI changes
 

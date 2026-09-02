@@ -40,7 +40,7 @@ def meta_content(html, name):
 
 required = [
     "index.html", "caawi/index.html", "caawi/app.css", "caawi/app.js",
-    "so/index.html", "tracker/index.html", "tracker/app.css", "tracker/app.js",
+    "caawi/xog/index.html", "tracker/index.html", "tracker/app.css", "tracker/app.js",
     "tests/caawi.test.js", "robots.txt", "sitemap.xml", "llms.txt", "vercel.json",
 ]
 for path in required:
@@ -89,6 +89,8 @@ if 'rel="canonical" href="https://aqoon.live/caawi"' not in caawi:
     fail("caawi canonical URL is missing or changed")
 if "index,follow" not in caawi.replace(" ", "").lower():
     fail("caawi should remain index,follow")
+if "caawi_seo" not in caawi_js:
+    fail("caawi/app.js is missing same-site Caawi SEO attribution")
 
 # Sitemap: unique, local routes resolve to real files, tracker excluded.
 try:
@@ -103,6 +105,8 @@ if len(locs) != len(set(locs)):
     fail("sitemap.xml contains duplicate URLs")
 if any(urlparse(u).path.startswith("/tracker") for u in locs):
     fail("tracker must never appear in sitemap.xml")
+if any(urlparse(u).path == "/so" or urlparse(u).path.startswith("/so/") for u in locs):
+    fail("legacy /so routes must never appear in sitemap.xml")
 
 sitemap_paths = {urlparse(u).path.rstrip("/") or "/" for u in locs if urlparse(u).netloc == "aqoon.live"}
 
@@ -117,37 +121,37 @@ for route in sorted(sitemap_paths):
     if not p.exists():
         fail(f"Sitemap route has no matching page: {route} -> {p.relative_to(ROOT)}")
 
-# Every Somali public page must be discoverable and carry basic crawl/UX metadata.
-so_pages = sorted((ROOT / "so").rglob("index.html"))
+# Every Caawi family page must be discoverable and carry basic crawl/UX metadata.
+caawi_pages = sorted((ROOT / "caawi").rglob("index.html"))
 seen_titles = {}
-for p in so_pages:
+for p in caawi_pages:
     rel = p.parent.relative_to(ROOT).as_posix()
     route = "/" + rel
     clean_route = route.rstrip("/")
     if clean_route not in sitemap_paths:
-        fail(f"Somali page missing from sitemap: {route}")
+        fail(f"Caawi page missing from sitemap: {route}")
 
     html = p.read_text(encoding="utf-8")
     low = html.lower()
     if not re.search(r'<html[^>]+lang=["\']so(?:-[^"\']+)?["\']', html, re.I):
-        fail(f"Somali page missing lang=so: {p.relative_to(ROOT)}")
+        fail(f"Caawi page missing lang=so: {p.relative_to(ROOT)}")
     title_match = re.search(r"<title>(.*?)</title>", html, re.I | re.S)
     if not title_match or not title_match.group(1).strip():
-        fail(f"Somali page missing title: {p.relative_to(ROOT)}")
+        fail(f"Caawi page missing title: {p.relative_to(ROOT)}")
     else:
         title = re.sub(r"\s+", " ", title_match.group(1)).strip()
         seen_titles.setdefault(title, []).append(clean_route)
     description = meta_content(html, "description")
     if not description or len(description) < 40:
-        fail(f"Somali page missing useful meta description: {p.relative_to(ROOT)}")
+        fail(f"Caawi page missing useful meta description: {p.relative_to(ROOT)}")
     expected = f"https://aqoon.live{clean_route}"
     canonical = re.search(r'<link[^>]+rel=["\']canonical["\'][^>]+href=["\']([^"\']+)["\']', html, re.I)
     if not canonical or canonical.group(1).rstrip("/") != expected.rstrip("/"):
-        fail(f"Somali page canonical mismatch: {p.relative_to(ROOT)} expected {expected}")
+        fail(f"Caawi page canonical mismatch: {p.relative_to(ROOT)} expected {expected}")
     if "noindex" in low:
-        fail(f"Public Somali page is noindex: {p.relative_to(ROOT)}")
-    if clean_route != "/so" and 'href="/caawi"' not in html and "href='/caawi'" not in html:
-        warn(f"Somali topic page has no direct /caawi help CTA: {p.relative_to(ROOT)}")
+        fail(f"Public Caawi page is noindex: {p.relative_to(ROOT)}")
+    if clean_route != "/caawi" and 'href="/caawi"' not in html and "href='/caawi'" not in html:
+        warn(f"Caawi topic page has no direct /caawi help CTA: {p.relative_to(ROOT)}")
 
 for title, routes in seen_titles.items():
     if len(routes) > 1:
@@ -174,4 +178,4 @@ if errors:
         print(f"- {e}")
     sys.exit(1)
 
-print(f"AQOON site QA passed. Checked {len(sitemap_paths)} sitemap routes and {len(so_pages)} Somali topic pages.")
+print(f"AQOON site QA passed. Checked {len(sitemap_paths)} sitemap routes and {len(caawi_pages)} Caawi family pages.")

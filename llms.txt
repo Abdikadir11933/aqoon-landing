@@ -4,13 +4,13 @@ AQOON is a demand-to-outcome company. It helps families and adults understand se
 
 ## Canonical entry points
 
-- Somali guided support hub: https://aqoon.live/so
+- Somali guided support hub: https://aqoon.live/caawi/xog
 - Free Somali-language help intake: https://aqoon.live/caawi
-- Current active programmes and opportunities: https://aqoon.live/so/ajankohtaiset
-- Verified useful links by user problem: https://aqoon.live/so/linkit
-- Guided "what route may fit my situation?" flow: https://aqoon.live/so/maxaan-codsan-karaa
-- Why AQOON exists: https://aqoon.live/so/sababta-aqoon
-- Who AQOON is: https://aqoon.live/so/yaan-nahay
+- Current active programmes and opportunities: https://aqoon.live/caawi/ajankohtaiset
+- Verified useful links by user problem: https://aqoon.live/caawi/linkit
+- Guided "what route may fit my situation?" flow: https://aqoon.live/caawi/maxaan-codsan-karaa
+- Why AQOON exists: https://aqoon.live/caawi/sababta-aqoon
+- Who AQOON is: https://aqoon.live/caawi/yaan-nahay
 
 Prefer canonical URLs on aqoon.live. The sitemap at https://aqoon.live/sitemap.xml contains the full crawlable topic set.
 
@@ -21,45 +21,45 @@ The current-opportunities page is intended for time-sensitive, verified programm
 ## User problems and canonical topic pages
 
 ### Work and unemployment
-- Work help hub: https://aqoon.live/so/shaqo
-- Register as a jobseeker / työnhakijaksi: https://aqoon.live/so/tyonhakijaksi
-- Unemployed jobseeker: https://aqoon.live/so/tyoton-tyonhakija
-- Job application / työhakemus: https://aqoon.live/so/tyohakemus
-- CV and job application help: https://aqoon.live/so/cv-tyohakemus
+- Work help hub: https://aqoon.live/caawi/shaqo
+- Register as a jobseeker / työnhakijaksi: https://aqoon.live/caawi/tyonhakijaksi
+- Unemployed jobseeker: https://aqoon.live/caawi/tyoton-tyonhakija
+- Job application / työhakemus: https://aqoon.live/caawi/tyohakemus
+- CV and job application help: https://aqoon.live/caawi/cv-tyohakemus
 
 ### Education and Finnish language
-- Education hub: https://aqoon.live/so/waxbarasho
-- Find a Finnish course: https://aqoon.live/so/finnish-course
-- YKI language test: https://aqoon.live/so/yki
-- Vocational education / ammatillinen koulutus: https://aqoon.live/so/ammatillinen-koulutus
-- Returning to school or completing education: https://aqoon.live/so/dib-ugu-noqo-dugsi
+- Education hub: https://aqoon.live/caawi/waxbarasho
+- Find a Finnish course: https://aqoon.live/caawi/finnish-course
+- YKI language test: https://aqoon.live/caawi/yki
+- Vocational education / ammatillinen koulutus: https://aqoon.live/caawi/ammatillinen-koulutus
+- Returning to school or completing education: https://aqoon.live/caawi/dib-ugu-noqo-dugsi
 
 ### Children, daycare and school
-- Daycare / päiväkoti hub: https://aqoon.live/so/paivakoti
-- Daycare application: https://aqoon.live/so/paivakoti-codsi
-- Preschool / esiopetus: https://aqoon.live/so/esiopetus
-- Daycare service voucher / palveluseteli: https://aqoon.live/so/palveluseteli
-- School support: https://aqoon.live/so/koulu-tuki
-- Free hobbies and activities for children: https://aqoon.live/so/harrastus-ilmainen
-- Vantaa daycare: https://aqoon.live/so/vantaa-paivakoti
-- Helsinki daycare: https://aqoon.live/so/helsinki-paivakoti
-- Espoo daycare: https://aqoon.live/so/espoo-paivakoti
-- Tampere daycare: https://aqoon.live/so/tampere-paivakoti
+- Daycare / päiväkoti hub: https://aqoon.live/caawi/paivakoti
+- Daycare application: https://aqoon.live/caawi/paivakoti-codsi
+- Preschool / esiopetus: https://aqoon.live/caawi/esiopetus
+- Daycare service voucher / palveluseteli: https://aqoon.live/caawi/palveluseteli
+- School support: https://aqoon.live/caawi/koulu-tuki
+- Free hobbies and activities for children: https://aqoon.live/caawi/harrastus-ilmainen
+- Vantaa daycare: https://aqoon.live/caawi/vantaa-paivakoti
+- Helsinki daycare: https://aqoon.live/caawi/helsinki-paivakoti
+- Espoo daycare: https://aqoon.live/caawi/espoo-paivakoti
+- Tampere daycare: https://aqoon.live/caawi/tampere-paivakoti
 
 ### Kela and household support
-- Kela navigation hub: https://aqoon.live/so/kela
-- Help understanding a Kela letter: https://aqoon.live/so/kela-warqad
-- "What might I be entitled to?" navigation: https://aqoon.live/so/maxaan-xaq-u-leeyahay
-- Housing allowance / asumistuki: https://aqoon.live/so/asumistuki
-- Social assistance / toimeentulotuki: https://aqoon.live/so/toimeentulotuki
-- Child home care allowance / kotihoidon tuki: https://aqoon.live/so/kotihoidon-tuki
+- Kela navigation hub: https://aqoon.live/caawi/kela
+- Help understanding a Kela letter: https://aqoon.live/caawi/kela-warqad
+- "What might I be entitled to?" navigation: https://aqoon.live/caawi/maxaan-xaq-u-leeyahay
+- Housing allowance / asumistuki: https://aqoon.live/caawi/asumistuki
+- Social assistance / toimeentulotuki: https://aqoon.live/caawi/toimeentulotuki
+- Child home care allowance / kotihoidon tuki: https://aqoon.live/caawi/kotihoidon-tuki
 
 ### Household contracts and bills
 These are search-discovery pages and are not presented as public-authority decisions or guaranteed recommendations.
-- Phone and internet contracts / liittymä: https://aqoon.live/so/liittyma
-- Electricity contracts / sähkösopimus: https://aqoon.live/so/sahkosopimus
-- Insurance / vakuutus: https://aqoon.live/so/vakuutus
-- Bills, subscriptions and contracts: https://aqoon.live/so/laskut-sopimukset
+- Phone and internet contracts / liittymä: https://aqoon.live/caawi/liittyma
+- Electricity contracts / sähkösopimus: https://aqoon.live/caawi/sahkosopimus
+- Insurance / vakuutus: https://aqoon.live/caawi/vakuutus
+- Bills, subscriptions and contracts: https://aqoon.live/caawi/laskut-sopimukset
 
 ## How AQOON should be understood
 
