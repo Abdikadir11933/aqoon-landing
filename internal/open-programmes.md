@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 1.9.2026
+Last compiled: 2.9.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -26,7 +26,8 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Vanhemmat mukaan (VAMU)** — Vantaan kaupunki
   - Fits: immigrant parents in Vantaa with a valid residence permit and Finnish at about A1–A2.2; literacy is not required and a small child can come along.
   - Helps with: Finnish, integration, understanding school/daycare, path toward studies/work.
-  - Status: Myyrmäki group running from 4.8.; Koivukylä starts 1.9.; Hakunila ended 21.8. and no longer accepts registrations.
+  - Status: Myyrmäki group is running from 4.8.; Koivukylä group is now running from 1.9.; Hakunila ended 21.8. and no longer accepts registrations. Autumn groups run three days a week, three hours at a time, and participation is free.
+  - Registration: join at the announced group time, use the Webropol registration form, contact your employment/integration worker, or email vamu@vantaa.fi.
   - Official: https://www.vantaa.fi/fi/hankkeet/hanke/vanhemmat-mukaan
 
 - **Osaamiskeskus Vantaa** — Vantaan kaupunki
@@ -58,6 +59,12 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Helps with: first summer job; employer gets support.
   - Status: **closed**. The 2026 application deadline was 31.8.2026. Do not present this as open from 1.9.2026 onward.
   - Official: https://www.vantaa.fi/fi/palveluhakemisto/palvelu/nuorten-kesatyoseteli
+
+- **Vantaan Megarekry 2026** — Vantaan kaupunki / Vantaan työllisyyspalvelut
+  - Fits: jobseekers from different backgrounds and language groups; the official page does not state a Vantaa-residency restriction for attendance.
+  - Helps with: meeting dozens of employers and educational institutions, discussing open jobs, traineeships, training places and other concrete employment routes.
+  - Status: upcoming 29.10.2026, 10.00–15.00, Kauppakeskus Myyrmanni; free for jobseekers. Jobseeker registration is not yet open and will open closer to the event; registration is described as non-binding. Exhibitor applications are open until 18.9.2026 at 16.00.
+  - Official: https://www.vantaa.fi/fi/tyonhaku-ja-tyollistaminen/vantaan-megarekry
 
 ### Helsinki
 
@@ -154,10 +161,17 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: Mondays 31.8.–21.12.2026, 17.30–19.00, Kajuutta, Espoonlahdenkatu 8; free, no advance registration.
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagp5x5bnxy
 
+- **Neighbourhood Mothers cooking club Lippulaiva** — City of Espoo / Elinvoima / Naapuriäidit
+  - Fits: all women; children may attend with a parent or guardian. The official event page does not state an Espoo-residency restriction.
+  - Helps with: low-threshold social participation, meeting other women, sharing cultures and practising spoken Finnish through cooking and everyday conversation.
+  - Status: free recurring club Wednesdays 15.00–18.00 at Lippulaiva Library Community Kitchen, Espoonlahdenkatu 8. Autumn dates include 2.9., 9.9., 16.9., 23.9., 30.9., 7.10., 21.10., 4.11., 11.11., 18.11. and 25.11.2026. Languages listed are Finnish, Dari and Farsi. Group size is max 10 per session.
+  - Registration/contact: advance registration required; call or message the publicly listed facilitator Fatemeh at +358 46 611 5126 or use the WhatsApp group linked on the official event page.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagpwlettny
+
 - **Entresse Library Finnish Language Café** — Finnish Red Cross / Espoo libraries
   - Fits: anyone who wants to practise spoken Finnish; no advance registration.
   - Helps with: free, low-threshold Finnish conversation practice with native speakers and volunteers.
-  - Status: Tuesdays 18.8.–8.12.2026, 18.00–19.30, Entresse Library, Siltakatu 11; free. No session 13.10.2026. Next session after this review: 1.9.2026.
+  - Status: Tuesdays 18.8.–8.12.2026, 18.00–19.30, Entresse Library, Siltakatu 11; free. No session 13.10.2026. Next session after this review: 8.9.2026.
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagpmwgiskm
 
 - **Entresse Library Finnish Language Café on Fridays** — Finnish Red Cross / Espoo libraries
@@ -197,6 +211,12 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Helps with: Finnish, job search, society, digital skills, personal finances.
   - Selection test: 3.9.2026, 13–15 at Sampola; the official page does not currently show a separate clearly open application form, so verify participation with the organiser rather than presenting this as ordinary open enrolment.
   - Official: https://www.tampere.fi/kaupunki-ja-paatoksenteko/organisaatio/arjen-avaimet-maahanmuuttajanaisten-tyollistymista-edistava-koulutus
+
+- **Tampere family clubs / open early childhood education** — City of Tampere
+  - Fits: families with children; the official page says family clubs are open to everyone and does not publish a Tampere-residency restriction for drop-in participation.
+  - Helps with: free low-threshold family activities, peer support, play, singing and guided activities, including opportunities to meet other families with babies and young children.
+  - Status: autumn family-club activities resumed 1.9.2026 in Henneri, Huusholli, Linnainmaa and Tesoma. Participation is free and no advance registration is required; families can drop in. Current schedules vary by location and are published on the official page.
+  - Official: https://www.tampere.fi/en/early-childhood-education-and-pre-primary-education/early-childhood-education/open-early-childhood-education-and-care
 
 - **Welcome to Tampere Event** — International House Tampere / City of Tampere
   - Fits: internationals who are currently living in Tampere or have recently moved there and want practical information about living in the city.
