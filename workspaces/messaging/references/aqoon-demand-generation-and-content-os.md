@@ -165,6 +165,8 @@ The content queue is fed by evidence, not brainstorming alone. Prioritise:
 7. questions received through trusted mothers, known people, järjestöt and fieldwork;
 8. PII-free outcome learning.
 
+The current reviewed TikTok performance input is `../../evidence-and-research/references/tiktok-analytics-2026-09-01.md`. It is a source for content-performance hypotheses, not proof that an older service claim is still current and not a replacement for CRM or outcome evidence.
+
 Before production, every topic receives:
 
 - primary audience and municipality/cohort;

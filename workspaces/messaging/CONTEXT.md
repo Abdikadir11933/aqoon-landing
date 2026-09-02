@@ -65,6 +65,8 @@ Current evidence source: `../evidence-and-research/references/aqoon-funnel-evide
 
 Latest operational snapshot: `../evidence-and-research/references/aqoon-funnel-evidence-2026-08-28.md`. Pilke follow-up learning: `../evidence-and-research/references/pilke-phase-1-follow-up-2026-08-28.md`.
 
+Latest TikTok account and per-video performance snapshot: `../evidence-and-research/references/tiktok-analytics-2026-09-01.md`. Use it for current reach, audience and content-pattern claims. Continue to use the dated funnel snapshots for identifiable contacts and downstream progression.
+
 ## Claim language
 
 Safe now:
