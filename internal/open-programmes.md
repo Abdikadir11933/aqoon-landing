@@ -166,7 +166,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Helps with: low-threshold social participation, meeting other women, sharing cultures and practising spoken Finnish through cooking and everyday conversation.
   - Status: free recurring club Wednesdays 15.00–18.00 at Lippulaiva Library Community Kitchen, Espoonlahdenkatu 8. Autumn dates include 2.9., 9.9., 16.9., 23.9., 30.9., 7.10., 21.10., 4.11., 11.11., 18.11. and 25.11.2026. Languages listed are Finnish, Dari and Farsi. Group size is max 10 per session.
   - Registration/contact: advance registration required; call or message the publicly listed facilitator Fatemeh at +358 46 611 5126 or use the WhatsApp group linked on the official event page.
-  - Official: https://www.espoo.fi/en/events/espooevents%3Aagpwlettny
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagpwlettwm
 
 - **Entresse Library Finnish Language Café** — Finnish Red Cross / Espoo libraries
   - Fits: anyone who wants to practise spoken Finnish; no advance registration.
@@ -256,6 +256,12 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://internationalhouse.tampere.fi/en/studying/counselling-on-higher-education-studies/
 
 ### Finland-wide / case-by-case
+
+- **Work in Lapland — online recruitment event 2.9.2026** — EURES / Job Market Finland / northern employment areas
+  - Fits: jobseekers in Finland and Europe interested in work in Northern Finland, especially tourism, accommodation and restaurant sectors.
+  - Helps with: direct online employer contacts, vacancies, chat/interview opportunities and information about living and working in Northern Finland.
+  - Status: **today 2.9.2026, 12.00–15.00 Finnish time**, online, English and free. Registration is open on the European Job Days platform.
+  - Official: https://tyomarkkinatori.fi/en/events/work-in-lapland
 
 - **Työnhakuprofiili — obligation in force from 1.9.2026**
   - Fits: jobseekers for whom the statutory profile obligation applies.
