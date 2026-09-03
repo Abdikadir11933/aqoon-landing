@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 2.9.2026
+Last compiled: 3.9.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -79,6 +79,18 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Helps with: Finnish/Swedish, integration plan, orientation, groups and other integration support.
   - Status: active.
   - Official: https://www.hel.fi/en/business-and-work/jobseekers/if-you-become-unemployed/when-you-have-moved-to-finland/integration-services-for-those-who-are-not-jobseekers
+
+- **Tervetuloa perheet (Welcome Families), autumn 2026** — City of Helsinki
+  - Fits: families with children in preparatory education and recently moved immigrant families in Kannelmäki, Malmi and Mellunkylä.
+  - Helps with: learning about Helsinki services, local family activities and meeting other immigrant families.
+  - Status: autumn 2026 activities are current in the three districts. The official page links district-specific schedules; re-check the relevant district schedule before quoting a date or time.
+  - Official: https://www.hel.fi/en/childhood-and-education/welcome-families
+
+- **Welcome Day Malmitalo & Kanneltalo** — City of Helsinki
+  - Fits: international newcomers and other residents interested in local services and opportunities; the official page says everyone is welcome.
+  - Helps with: meeting city and local organisations, learning about local services and opportunities, and all-ages activities.
+  - Status: Malmitalo 10.9.2026, 17.00–20.00, Ala-Malmin tori 1; Kanneltalo 16.9.2026, 16.00–19.00, Klaneettitie 5. Free and no advance registration. Events are mainly in English, but multilingual staff/materials are available and no Finnish, Swedish or English is required to participate.
+  - Official: https://www.hel.fi/en/decision-making/information-on-helsinki/internationality-and-new-residents/welcome-day-events
 
 - **Stadin AO työvoimakoulutukset maahanmuuttajille**
   - Fits: immigrant unemployed jobseekers or people at risk of unemployment.
@@ -209,7 +221,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Arjen avaimet 2026–2027** — Tampereen seudun työväenopisto / Tampereen kaupunki
   - Fits: immigrant women outside work, in work but needing stronger Finnish, beyond the integration period, and some spouses of workers/students.
   - Helps with: Finnish, job search, society, digital skills, personal finances.
-  - Selection test: 3.9.2026, 13–15 at Sampola; the official page does not currently show a separate clearly open application form, so verify participation with the organiser rather than presenting this as ordinary open enrolment.
+  - Selection test: 3.9.2026, 13–15 at Sampola; it checks approximately A1.3 Finnish and motivation. The official page now publishes a registration link for the selection test. Because the test is today and the linked form's live acceptance could not be independently verified, check that registration still accepts submissions before presenting a place as available.
   - Official: https://www.tampere.fi/kaupunki-ja-paatoksenteko/organisaatio/arjen-avaimet-maahanmuuttajanaisten-tyollistymista-edistava-koulutus
 
 - **Tampere family clubs / open early childhood education** — City of Tampere
@@ -260,7 +272,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Work in Lapland — online recruitment event 2.9.2026** — EURES / Job Market Finland / northern employment areas
   - Fits: jobseekers in Finland and Europe interested in work in Northern Finland, especially tourism, accommodation and restaurant sectors.
   - Helps with: direct online employer contacts, vacancies, chat/interview opportunities and information about living and working in Northern Finland.
-  - Status: **today 2.9.2026, 12.00–15.00 Finnish time**, online, English and free. Registration is open on the European Job Days platform.
+  - Status: **closed/passed**. The event took place 2.9.2026, 12.00–15.00 Finnish time. Do not present it as a current opportunity from 3.9.2026 onward.
   - Official: https://tyomarkkinatori.fi/en/events/work-in-lapland
 
 - **Työnhakuprofiili — obligation in force from 1.9.2026**
