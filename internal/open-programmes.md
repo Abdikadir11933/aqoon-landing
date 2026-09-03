@@ -230,6 +230,12 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: autumn family-club activities resumed 1.9.2026 in Henneri, Huusholli, Linnainmaa and Tesoma. Participation is free and no advance registration is required; families can drop in. Current schedules vary by location and are published on the official page.
   - Official: https://www.tampere.fi/en/early-childhood-education-and-pre-primary-education/early-childhood-education/open-early-childhood-education-and-care
 
+- **Rullan monikulttuurinen perhekerho** — Lastenkulttuurikeskus Rulla / City of Tampere
+  - Fits: whole families interested in a multilingual, multicultural family-club setting.
+  - Helps with: low-threshold family participation, music, play, art, stories, cultural exchange and meeting other families.
+  - Status: Wednesdays 2.9.–9.12.2026, 10.00–12.00, Rulla, Keskustori 4, Tampere; no session during autumn-break week 42. Current guiding languages are plain Finnish, English and Russian. Advance registration is required with the cultural instructor listed on the official page.
+  - Official: https://www.tampere.fi/lastenkulttuurikeskus-rulla/rullan-kerhot-ja-kurssit
+
 - **Welcome to Tampere Event** — International House Tampere / City of Tampere
   - Fits: internationals who are currently living in Tampere or have recently moved there and want practical information about living in the city.
   - Helps with: low-threshold newcomer orientation and finding relevant local services.
