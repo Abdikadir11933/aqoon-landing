@@ -56,6 +56,14 @@ summary::marker{content:''}
   .services-agreement{padding:30px 20px!important}
   .services-agreement__heading{grid-template-columns:minmax(0,1fr)!important;margin-bottom:19px!important}
   .services-agreement__grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .case-learning-section{padding:36px 20px 42px!important}
+  .case-learning-heading{grid-template-columns:minmax(0,1fr)!important;gap:14px!important;margin-bottom:24px!important}
+  .case-learning-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .case-learning-card{min-width:0;padding:16px 14px 18px!important}
+  .case-learning-card>p:first-child{margin-bottom:8px!important}
+  .case-learning-card>h3{margin-bottom:8px!important;font-size:16px!important;line-height:1.2!important}
+  .case-learning-card>p:last-child{font-size:15px!important;line-height:1.45!important}
+  .case-learning-summary{margin-top:22px!important;font-size:16px!important;line-height:1.5!important}
 }
 @media (max-width:350px){
   .home-bridge__pair{grid-template-columns:1fr!important}
