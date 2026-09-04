@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 3.9.2026
+Last compiled: 4.9.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -54,6 +54,12 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: registration opened 24.8.2026.
   - Official: https://www.vantaa.fi/fi/ajankohtaista/uutinen/ilmoittautuminen-koululaisten-maksuttomiin-harrastuksiin-alkaa-248
 
+- **Kolibrí Festival — Vantaa 26.9.2026** — Vantaan kaupunki / children's cultural services
+  - Fits: families and children looking for a free multicultural cultural day.
+  - Helps with: low-threshold family activities and multilingual cultural participation.
+  - Status: Saturday 26.9.2026 in Vantaa; free. The City of Vantaa says activities include Spanish, Swahili, Portuguese and Italian, and all activities can also be enjoyed in Finnish or English. Re-check the linked Vantaa event/calendar information for the exact programme before promising a specific workshop or time.
+  - Official: https://www.vantaa.fi/en/topical/news/childrens-culture-across-vantaa-explore-fall-2026-program-children-and-young
+
 - **Vantaan nuorten kesätyöseteli 2026** — Vantaan kaupunki
   - Fits: eligible young people in Vantaa.
   - Helps with: first summer job; employer gets support.
@@ -95,7 +101,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Stadin AO työvoimakoulutukset maahanmuuttajille**
   - Fits: immigrant unemployed jobseekers or people at risk of unemployment.
   - Helps with: profession + S2 support + route to work.
-  - Current known deadline: 7.9.2026; individual programmes can close earlier.
+  - Current known deadline: 7.9.2026; individual programmes can close earlier. The S2-supported security-sector route closes 4.9.2026.
   - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/koulutukset-ja-palvelut-maahanmuuttajille/tyovoimakoulutukset-maahanmuuttajille/
 
 - **Sosiaali- ja terveysalan koulutus** — Stadin AO / Helsinki employment services
@@ -123,9 +129,17 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/koulutukset-ja-palvelut-maahanmuuttajille/kielituettu-ryhmavalmennus/
 
 - **Kohti työelämää — kitchen & cleaning short training** — Stadin AO / Helsinki employment services
-  - Fits: Helsinki employment-service clients.
-  - Helps with: short training and possible route to school/daycare kitchen or cleaning work.
-  - Recruitment event: 21.9.2026.
+  - Fits: unemployed Helsinki employment-service clients interested in food-service and cleaning work; Finnish at least A2.2 plus suitable health, physical fitness and interaction skills are required.
+  - Helps with: short targeted training and a possible route through Seure to multi-service work combining kitchen and cleaning duties in schools/daycare.
+  - Status: recruitment event 21.9.2026 at Helsinki Employment Services, Malminkatu 34; the employer interviews applicants and selects participants. Training is 28.9.–9.10.2026, weekdays 9–14, service-kitchen content at Stadin AO Prinsessantie 2, followed by 12.–16.10.2026, weekdays 9–14, maintenance-cleaning content at Stadin AO Holkkitie 5. Free for Helsinki employment-services clients.
+  - Important: a selected participant needs the health clearance described by the provider before training; if they do not already have a hygiene passport, Stadin AO says it will be trained separately. Do not promise selection or employment.
+  - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/lupa-ja-korttikoulutukset/
+
+- **Kohti työelämää — tyre fitter short training** — Stadin AO / Helsinki employment services
+  - Fits: primarily unemployed Helsinki employment-service clients with active job search who are genuinely motivated for automotive work. Requires a valid category B driving licence, functional Finnish at B1.1, suitable health/physical fitness and interaction skills.
+  - Helps with: targeted tyre-fitting skills and a possible route through Eezy to seasonal tyre-fitting work in the capital region.
+  - Status: recruitment information 15.9.2026, 12–15, Helsinki Employment Services, Malminkatu 34; vocational content 21.–25.9.2026, 9–14, Stadin AO Ilkantie 3. Free for Helsinki employment-services clients.
+  - Application caution: the current official page publishes the dates and criteria but the captured primary-source page does not show a clear direct registration route for this training. Verify the route with Helsinki employment services/Stadin AO before telling a family that a seat can be applied for directly.
   - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/lupa-ja-korttikoulutukset/
 
 - **Maahan muuttaneiden opettajien polku** — Stadin AO
@@ -198,11 +212,17 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: Thursdays 10.00–11.00 through 17.12.2026 at Sello Library, Leppävaarankatu 9; free and open to everyone.
   - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagp6xm5ujq
 
-- **Työnantajatreffit recruitment event** — Espoo Employment Services
+- **Työnantajatreffit recruitment event — Sello 3.9.2026** — Espoo Employment Services
   - Fits: all jobseekers.
-  - Helps with: meeting employers that are currently recruiting across several sectors.
-  - Status: 3.9.2026, 12.00–15.00, Sello Library, Leppävaarankatu 9; free. Official event language is Finnish. Employer list is published on the event page and may still be updated.
+  - Helps with: meeting employers that were recruiting across several sectors.
+  - Status: **closed/passed**. The event took place 3.9.2026, 12.00–15.00, Sello Library. Do not present it as current from 4.9.2026 onward.
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagp5lrxn64
+
+- **Työnantajatreffit — Kaveriontti** — Espoo Employment Services
+  - Fits: event entry is free and open to all jobseekers. Kaveriontti is recruiting 30 tyre fitters for the Espoo/Helsinki/Vantaa tyre season and 10 shelf-stockers in Espoo; the job-specific experience/fitness requirements are on the official page.
+  - Helps with: direct employer presentation and interviews for currently advertised seasonal roles.
+  - Status: 10.9.2026, 12.00–15.00, Sello Library, Leppävaarankatu 9; Finnish; free. The organiser recommends arriving at 12.00 for the job presentation, after which interested people are interviewed; the event can end before 15.00 once interviews are complete.
+  - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqcgejlni
 
 - **Ask Recruiters Anything** — City of Espoo / TA Cafe Helsinki / HeRoHub HR Community
   - Fits: highly educated international professionals who want direct practical feedback from recruiters and career counsellors.
@@ -221,7 +241,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Arjen avaimet 2026–2027** — Tampereen seudun työväenopisto / Tampereen kaupunki
   - Fits: immigrant women outside work, in work but needing stronger Finnish, beyond the integration period, and some spouses of workers/students.
   - Helps with: Finnish, job search, society, digital skills, personal finances.
-  - Selection test: 3.9.2026, 13–15 at Sampola; it checks approximately A1.3 Finnish and motivation. The official page now publishes a registration link for the selection test. Because the test is today and the linked form's live acceptance could not be independently verified, check that registration still accepts submissions before presenting a place as available.
+  - Status: the published selection test took place 3.9.2026, 13–15 at Sampola and has now passed. The first training group is expected to begin in October, but do not present this as a currently open family application unless the organiser publishes a new intake or participation route.
   - Official: https://www.tampere.fi/kaupunki-ja-paatoksenteko/organisaatio/arjen-avaimet-maahanmuuttajanaisten-tyollistymista-edistava-koulutus
 
 - **Tampere family clubs / open early childhood education** — City of Tampere
