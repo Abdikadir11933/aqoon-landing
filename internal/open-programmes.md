@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 4.9.2026
+Last compiled: 5.9.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -60,6 +60,13 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: Saturday 26.9.2026 in Vantaa; free. The City of Vantaa says activities include Spanish, Swahili, Portuguese and Italian, and all activities can also be enjoyed in Finnish or English. Re-check the linked Vantaa event/calendar information for the exact programme before promising a specific workshop or time.
   - Official: https://www.vantaa.fi/en/topical/news/childrens-culture-across-vantaa-explore-fall-2026-program-children-and-young
 
+- **Mahdollisuuksien tori — Tikkurila 5.9.2026** — Vantaan kaupunki / local organisations
+  - Fits: whole families and residents interested in an international, multicultural outdoor event.
+  - Helps with: low-threshold family participation, meeting organisations, music, dance and workshops for children and adults.
+  - Status: **today only**, Saturday 5.9.2026, 12.00–17.00, Asematie/Asemakuja area in Tikkurila. The City of Vantaa describes the event as a whole-family outdoor event with international performances and workshops. The source mentions food and handicrafts being sold; do not label the event itself as free unless an official event-calendar entry explicitly confirms that.
+  - Public-listing rule: remove/mark passed after 5.9.2026.
+  - Official: https://www.vantaa.fi/fi/ajankohtaista/uutinen/mahdollisuuksien-tori-lauantaina-592026-tikkurilassa
+
 - **Vantaan nuorten kesätyöseteli 2026** — Vantaan kaupunki
   - Fits: eligible young people in Vantaa.
   - Helps with: first summer job; employer gets support.
@@ -101,7 +108,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Stadin AO työvoimakoulutukset maahanmuuttajille**
   - Fits: immigrant unemployed jobseekers or people at risk of unemployment.
   - Helps with: profession + S2 support + route to work.
-  - Current known deadline: 7.9.2026; individual programmes can close earlier. The S2-supported security-sector route closes 4.9.2026.
+  - Status: the **Turvallisuusala + S2-tuki** route closed on 4.9.2026 and must not be presented as open from 5.9. onward. The currently listed **Elintarvikeala + kielituki** route remains open through 7.9.2026. Stadin AO says future trainings will be added to the page as they become available, so re-check rather than carrying an old deadline forward.
   - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/koulutukset-ja-palvelut-maahanmuuttajille/tyovoimakoulutukset-maahanmuuttajille/
 
 - **Sosiaali- ja terveysalan koulutus** — Stadin AO / Helsinki employment services
@@ -160,6 +167,13 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagpr2irxsi
 
 ### Espoo
+
+- **Ohjaamotalo's Starttipiste — Lippulaiva Library** — City of Espoo
+  - Fits: young people under 30 living in Espoo or Kauniainen; the event listing labels the target audience 15–30, while the service page states the service is for residents under 30, so use 15–29 in family-facing wording.
+  - Helps with: job search, career choices, studies, housing, income/financial matters, wellbeing and other current life questions; no appointment is required.
+  - Status: Lippulaiva service resumes 8.9.2026 and is listed every Tuesday 15.00–18.00 at Lippulaiva Library, Espoonlahdenkatu 8. Free; languages listed are Finnish, Swedish and English.
+  - Official event: https://www.espoo.fi/en/events/espooevents%3Aagpqhf4slq
+  - Official service page: https://www.espoo.fi/en/units/ohjaamotalo-starttipiste-lippulaiva-library
 
 - **Omnian osaamiskeskus maahanmuuttajille (OSKE)** — Omnia / Espoo employment services
   - Fits: adult immigrants in Espoo.
