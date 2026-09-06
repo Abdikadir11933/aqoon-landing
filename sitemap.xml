@@ -73,4 +73,5 @@
   <url><loc>https://aqoon.live/disclaimer</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
   <url><loc>https://aqoon.live/pilke</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aqoon.live/pilke/so</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aqoon.live/meista</loc><lastmod>2026-09-06</lastmod></url>
 </urlset>
