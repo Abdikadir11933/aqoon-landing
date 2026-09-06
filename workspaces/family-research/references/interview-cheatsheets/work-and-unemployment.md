@@ -1,6 +1,6 @@
 # Work and unemployment cheat sheet
 
-Updated 2026-09-02. Recheck live Työmarkkinatori/Kela/local employment-service rules before case-specific promises.
+Updated 2026-09-06. Recheck live Työmarkkinatori/Kela/local employment-service rules before case-specific promises.
 
 ## Ilmoittautuminen työttömäksi työnhakijaksi
 **What it is:** Official registration as an unemployed jobseeker with the local employment authority through Työmarkkinatori.
@@ -26,19 +26,23 @@ Updated 2026-09-02. Recheck live Työmarkkinatori/Kela/local employment-service 
 
 **For job search started before 1.9.2026:** The obligation normally starts when the person next has a `työnhakukeskustelu`. After that discussion, the person generally has 15 working days to complete and publish the profile. They may publish it earlier voluntarily.
 
+**Six-month publication window:** A published profile is valid for a maximum of six months at a time. If job search continues and the obligation applies, the profile must remain published, so the person needs to republish it when the current publication period expires. Job Market Finland currently reminds users to republish at least every six months.
+
 **Exceptions:** The law contains situations where the profile does not have to be published, including examples such as full-time work, full-time study or entrepreneurship, or when the employment authority assesses that the person cannot independently use the profile in job search. Verify the person's own instructions rather than assuming the exception applies.
 
 **If the deadline is missed:** Current official guidance says the employment authority can publish the minimum profile information. The profile-publication issue itself does not end the person's job search or directly affect unemployment security.
 
 **Paid?** No. This is a job-search obligation/tool, not a benefit.
 
-**How to do it:** Työmarkkinatori -> create/update Työnhakuprofiili -> publish it and keep it published while job search remains active when required.
+**How to do it:** Työmarkkinatori -> create/update Työnhakuprofiili -> publish it and keep it published while job search remains active when required. Recheck the publication date before six months have passed.
 
-**Ask from September onward:** Onko Työnhakuprofiili julkaistu? Milloin työnhaku alkoi? Jos työnhaku alkoi ennen 1.9., onko sinulla ollut työnhakukeskustelu 1.9. jälkeen? Mikä määräpäivä näkyy omissa ohjeissasi? Tarvitsetko apua profiilin tekemiseen?
+**Ask from September onward:** Onko Työnhakuprofiili julkaistu? Milloin työnhaku alkoi? Jos työnhaku alkoi ennen 1.9., onko sinulla ollut työnhakukeskustelu 1.9. jälkeen? Milloin profiili viimeksi julkaistiin / milloin nykyinen julkaisu päättyy? Mikä määräpäivä näkyy omissa ohjeissasi? Tarvitsetko apua profiilin tekemiseen tai uudelleenjulkaisuun?
 
 **Watch out:** Do not treat this as only a CV suggestion after 1.9. It can be an actual job-search obligation, but do not incorrectly threaten loss of benefit or job-search status if the profile has not yet been published.
 
-**Verify:** Työmarkkinatori, “Työnhakuprofiilin julkaisemista koskeva lakimuutos astuu voimaan syyskuun alusta” (17.8.2026): https://tyomarkkinatori.fi/uutiset/tyonhakuprofiilin-julkaisemista-koskeva-lakimuutos-astuu-voimaan-syyskuun-alusta
+**Verify:**
+- Työmarkkinatori, September obligation: https://tyomarkkinatori.fi/uutiset/tyonhakuprofiili-tulee-osaksi-tyonhakua-1-9-alkaen
+- Job Market Finland, six-month publication window: https://tyomarkkinatori.fi/en/employment-and-statistics/job-market-finland-in-numbers
 
 ## Missed employment-service deadlines - check job-search validity too
 **Current 2026 rule:** Since 1.3.2026, job search can end already after the first failure to deal with the employment authority in the required way and by the stated deadline. This is separate from the unemployment-security consequence: a first qualifying lapse can lead to a seven-day unpaid period, and a second or later lapse within 12 months can lead to a six-week work requirement.

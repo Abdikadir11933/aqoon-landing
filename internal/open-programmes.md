@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 5.9.2026
+Last compiled: 6.9.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -63,8 +63,8 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Mahdollisuuksien tori — Tikkurila 5.9.2026** — Vantaan kaupunki / local organisations
   - Fits: whole families and residents interested in an international, multicultural outdoor event.
   - Helps with: low-threshold family participation, meeting organisations, music, dance and workshops for children and adults.
-  - Status: **today only**, Saturday 5.9.2026, 12.00–17.00, Asematie/Asemakuja area in Tikkurila. The City of Vantaa describes the event as a whole-family outdoor event with international performances and workshops. The source mentions food and handicrafts being sold; do not label the event itself as free unless an official event-calendar entry explicitly confirms that.
-  - Public-listing rule: remove/mark passed after 5.9.2026.
+  - Status: **closed/passed**. The event took place Saturday 5.9.2026, 12.00–17.00, in the Asematie/Asemakuja area in Tikkurila.
+  - Public-listing rule: do not present as current from 6.9.2026 onward.
   - Official: https://www.vantaa.fi/fi/ajankohtaista/uutinen/mahdollisuuksien-tori-lauantaina-592026-tikkurilassa
 
 - **Vantaan nuorten kesätyöseteli 2026** — Vantaan kaupunki
@@ -126,7 +126,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Aikuisten TUVA** — Stadin AO
   - Fits: adults over 18 who want to strengthen Finnish through S2 teaching and prepare for further study.
   - Helps with: Finnish, basic study skills, guidance and transition toward vocational or upper-secondary studies.
-  - Status: application open through 9.9.2026 for studies starting 30.9.; selection result 21.9. Current page says places for adults are specifically for applicants who want to develop Finnish through S2 teaching.
+  - Status: application open through 9.9.2026 for studies starting 30.9.; selection result 21.9. Current page says places for adults are specifically for applicants who want to develop Finnish through S2 teaching. A new application period is already published for 10.9.–4.11.2026, with studies starting 25.11.2026, so update the public card after the current round closes rather than marking TUVA unavailable.
   - Official: https://stadinao.hel.fi/hae-opiskelemaan/tuva/
 
 - **Kielituettu ryhmävalmennus** — Stadin AO / Helsinki employment services
@@ -226,6 +226,12 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: Thursdays 10.00–11.00 through 17.12.2026 at Sello Library, Leppävaarankatu 9; free and open to everyone.
   - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagp6xm5ujq
 
+- **Kielitupa — guidance and tips for Finnish studies** — City of Espoo / Espoo adult education centre
+  - Fits: people who need help choosing a suitable Finnish-language course.
+  - Helps with: study counselling and finding the right Finnish course with a teacher rather than only practising conversation.
+  - Status: Thursdays 14.00–16.00 through 17.12.2026 at Sello Library, Leppävaarankatu 9; free. The official event page lists Finnish as the service language. Do not claim another service language or no-registration policy unless the organiser publishes it.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagplk4v2yi
+
 - **Työnantajatreffit recruitment event — Sello 3.9.2026** — Espoo Employment Services
   - Fits: all jobseekers.
   - Helps with: meeting employers that were recruiting across several sectors.
@@ -317,9 +323,10 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 
 - **Työnhakuprofiili — obligation in force from 1.9.2026**
   - Fits: jobseekers for whom the statutory profile obligation applies.
-  - Important: a new jobseeker generally has 15 working days after job search starts to publish the profile. For job search that began before 1.9., the obligation normally begins at the next työnhakukeskustelu, followed by 15 working days to publish. Statutory exceptions exist.
+  - Important: a new jobseeker generally has 15 working days after job search starts to publish the profile. For job search that began before 1.9., the obligation normally begins at the next työnhakukeskustelu, followed by 15 working days to publish. A published profile remains valid for a maximum of six months at a time; if job search continues, the profile must be republished so it remains published when required. Statutory exceptions exist.
   - If the person does not publish in time, the employment authority can publish minimum information. The official guidance says this does not end job search or directly affect unemployment security.
-  - Official: https://tyomarkkinatori.fi/uutiset/tyonhakuprofiilin-julkaisemista-koskeva-lakimuutos-astuu-voimaan-syyskuun-alusta
+  - Official: https://tyomarkkinatori.fi/uutiset/tyonhakuprofiili-tulee-osaksi-tyonhakua-1-9-alkaen
+  - Six-month publication source: https://tyomarkkinatori.fi/en/employment-and-statistics/job-market-finland-in-numbers
 
 - **Palkkatuki**
   - Fits: some unemployed jobseekers where employment services assess that wage subsidy may help employment.
