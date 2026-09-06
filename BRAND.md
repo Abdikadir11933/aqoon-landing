@@ -65,6 +65,14 @@ Yhdellä näkymällä on yksi selvä ensisijainen toiminto. B2B-sivujen CTA ohja
 - Etusivulla palvelut esitellään lyhyesti. Vaiheiden tarkat sisällöt kuuluvat palvelusivulle.
 - Otsikot ovat lyhyitä ja konkreettisia. Vältä pitkiä yhdyssanoja kapeissa sarakkeissa, mielivaltaista sanankatkaisua ja korkeita sisäkkäisiä kortteja.
 
+## Miksi AQOON tarvitaan
+
+- Aloita tarpeen ja palvelun välisestä tiedon ja luottamuksen erosta. Ihminen voi tuntea tarpeensa tuntematta palvelun nimeä tai hakureittiä.
+- Näytä erityisyys konkreettisesti: yhteisön arjen tuntemus, suomalaisen palvelutiedon tarkistus, tutut kanavat, ihmisen omat kysymykset ja apu sovittuun seuraavaan tekoon.
+- Yhteinen kieli ja kokemus voivat avata keskustelun. Luottamus ansaitaan hyödyllisillä vastauksilla ja sovitulla jatkolla; sitä ei oleteta taustan perusteella.
+- Kuvaa palvelureitin katkos, älä väitä viranomaisten tai sosiaalityön yleisesti epäonnistuvan. AQOON täydentää olemassa olevaa työtä sovituissa kohdissa.
+- Yhteydenottojen näyttö ei ole kontrolloitu vertailu muihin palveluihin eikä todista yksittäistä syytä luottamukselle.
+
 ## Äänensävy
 
 - Selkeä, suora ja käytännöllinen. Yksi kappale tekee yhden työn.
