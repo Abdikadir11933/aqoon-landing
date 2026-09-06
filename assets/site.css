@@ -82,7 +82,7 @@ summary::marker{content:''}
 /* Shared B2B reading system: words wrap naturally; essential content stays visible. */
 .b2b-site {overflow-wrap:normal}
 .b2b-site main {font-size:1rem;line-height:1.6}
-.b2b-site main :is(h1,h2,h3){overflow-wrap:normal;word-break:normal;hyphens:auto;text-wrap:balance;line-height:1.08!important;max-width:100%!important}
+.b2b-site main :is(h1,h2,h3){overflow-wrap:break-word;word-break:normal;hyphens:auto;text-wrap:balance;line-height:1.08!important;max-width:100%!important}
 .b2b-site main :is(p,li,dd){text-wrap:pretty}
 .b2b-site :is(a,td,dd){overflow-wrap:break-word}
 .b2b-site a[href^="mailto:"]{overflow-wrap:anywhere}
@@ -170,4 +170,4 @@ summary::marker{content:''}
  .article-page main p{font-size:16px!important;line-height:1.6!important}
  .detail-page main>section{padding:32px 20px!important}
 }
-@media(max-width:350px){.b2b-site .offer-summary,.b2b-site .phase-comparison{gap:12px}.b2b-site .founder-grid{grid-template-columns:minmax(0,1fr)}.b2b-site .home-hero__actions>a{flex:1 1 100%}}
+@media(max-width:350px){.b2b-site .offer-summary,.b2b-site .phase-comparison{gap:12px}.b2b-site .founder-grid{grid-template-columns:minmax(0,1fr)}.b2b-site .home-hero__actions{gap:8px!important}.b2b-site .home-hero__actions>a:first-child{padding:12px 10px!important}}
