@@ -57,6 +57,14 @@ Yhdellä näkymällä on yksi selvä ensisijainen toiminto. B2B-sivujen CTA ohja
 - Käytä `font-variant-numeric: tabular-nums` mitatuissa luvuissa.
 - Suomenkielinen tuhaterotin on välilyönti: `123 509`, ei `123,509`.
 
+## B2B-pääviesti ja mobiililuettavuus
+
+- AQOON auttaa maahanmuuttajaperheitä ja aikuisia löytämään palvelut, ymmärtämään vaihtoehdot, hakemaan ja pääsemään alkuun. Tavoittaminen on työn alku.
+- Somalinkieliset perheet ja aikuiset ovat ensimmäinen kohderyhmä ja nykyisen näytön perusta. Muiden kieliryhmien toteutusta ei esitetä jo todennettuna.
+- Sisältökeskuksen nimi on Opit ja artikkelit. Se kokoaa oppaat, kenttähavainnot ja analyysit. Asiakastapaus kuvaa toteutettua työtä.
+- Etusivulla palvelut esitellään lyhyesti. Vaiheiden tarkat sisällöt kuuluvat palvelusivulle.
+- Otsikot ovat lyhyitä ja konkreettisia. Vältä pitkiä yhdyssanoja kapeissa sarakkeissa, mielivaltaista sanankatkaisua ja korkeita sisäkkäisiä kortteja.
+
 ## Äänensävy
 
 - Selkeä, suora ja käytännöllinen. Yksi kappale tekee yhden työn.
