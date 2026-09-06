@@ -17,6 +17,17 @@ Updated 2026-09-06. Recheck live Työmarkkinatori/Kela/local employment-service 
 
 **Watch out:** Registration is a key first door, not a guarantee of benefit.
 
+## 2026 job-search obligations — part-time work and authority-indicated jobs
+**Part-time jobseeker:** Current 2026 official guidance says part-time workers are generally subject to the job-search obligation and generally apply for four job opportunities per month, unless the authority reduces or removes the obligation under the statutory rules.
+
+**Authority-indicated vacancy:** If employment services specifically indicate a suitable vacancy for the person to apply for, that task is more binding than an ordinary self-chosen application. Having already met the monthly application count or publishing a Työnhakuprofiili does not replace the indicated-job task.
+
+**Ask:** Teetkö osa-aikatyötä? Montako hakua omassa suunnitelmassasi on sovittu? Onko Asioinnissa erikseen osoitettu työpaikka, johon sinun pitää hakea? Mikä määräpäivä siinä näkyy?
+
+**Watch out:** Never infer the person's exact monthly number from this cheat sheet. Read their current employment plan and Asiointi tasks; the authority can reduce or remove obligations when the legal conditions fit.
+
+**Verify:** Työmarkkinatori, 2026 employment-service law changes: https://tyomarkkinatori.fi/en/news/tyollisyyspalveluja_koskevat_lakiuudistukset_vuonna_2026_
+
 ## Työnhakuprofiili - new obligation from 1.9.2026
 **What it is:** A usually anonymous Job Market Finland profile containing the jobseeker's education, work experience, skills and job wishes. It can also include a short introduction and external links such as LinkedIn.
 
@@ -24,9 +35,9 @@ Updated 2026-09-06. Recheck live Työmarkkinatori/Kela/local employment-service 
 
 **For a new jobseeker:** Current official guidance says the person generally gets 15 working days from the start of job search to complete and publish the profile.
 
-**For job search started before 1.9.2026:** The obligation normally starts when the person next has a `työnhakukeskustelu`. After that discussion, the person generally has 15 working days to complete and publish the profile. They may publish it earlier voluntarily.
+**For job search started before 1.9.2026:** The obligation or an applicable exemption is set during the next `työnhakukeskustelu` or when the person's plan is prepared. Current official guidance says that when the next job-search discussion triggers the obligation, there are generally 15 working days after that discussion to complete and publish the profile. Check the person's own plan/instruction for the actual deadline.
 
-**Six-month publication window:** A published profile is valid for a maximum of six months at a time. If job search continues and the obligation applies, the profile must remain published, so the person needs to republish it when the current publication period expires. Job Market Finland currently reminds users to republish at least every six months.
+**Six-month publication window:** A published profile is valid for a maximum of six months at a time. If job search continues and the obligation applies, the profile must remain published, so the person needs to renew publication when the current period expires. Job Market Finland provides a “Continue publishing for 6 months” action.
 
 **Exceptions:** The law contains situations where the profile does not have to be published, including examples such as full-time work, full-time study or entrepreneurship, or when the employment authority assesses that the person cannot independently use the profile in job search. Verify the person's own instructions rather than assuming the exception applies.
 
@@ -36,13 +47,30 @@ Updated 2026-09-06. Recheck live Työmarkkinatori/Kela/local employment-service 
 
 **How to do it:** Työmarkkinatori -> create/update Työnhakuprofiili -> publish it and keep it published while job search remains active when required. Recheck the publication date before six months have passed.
 
-**Ask from September onward:** Onko Työnhakuprofiili julkaistu? Milloin työnhaku alkoi? Jos työnhaku alkoi ennen 1.9., onko sinulla ollut työnhakukeskustelu 1.9. jälkeen? Milloin profiili viimeksi julkaistiin / milloin nykyinen julkaisu päättyy? Mikä määräpäivä näkyy omissa ohjeissasi? Tarvitsetko apua profiilin tekemiseen tai uudelleenjulkaisuun?
+**Ask from September onward:** Onko Työnhakuprofiili julkaistu? Milloin työnhaku alkoi? Jos työnhaku alkoi ennen 1.9., onko sinulla ollut työnhakukeskustelu tai onko suunnitelmasi laadittu/päivitetty 1.9. jälkeen? Milloin profiili viimeksi julkaistiin / milloin nykyinen julkaisu päättyy? Mikä määräpäivä näkyy omissa ohjeissasi? Tarvitsetko apua profiilin tekemiseen tai uudelleenjulkaisuun?
 
 **Watch out:** Do not treat this as only a CV suggestion after 1.9. It can be an actual job-search obligation, but do not incorrectly threaten loss of benefit or job-search status if the profile has not yet been published.
 
 **Verify:**
 - Työmarkkinatori, September obligation: https://tyomarkkinatori.fi/uutiset/tyonhakuprofiili-tulee-osaksi-tyonhakua-1-9-alkaen
-- Job Market Finland, six-month publication window: https://tyomarkkinatori.fi/en/employment-and-statistics/job-market-finland-in-numbers
+- Job Market Finland, current instructions / six-month renewal: https://tyomarkkinatori.fi/en/instructions-and-support/personal-customers/instructions-for-the-my-job-path-section/independent-job-search/how-to-fill-in-your-job-applicant-profile
+
+## Under 25 without vocational qualification — education application obligation
+**Who to screen:** Jobseeker under 25 who does not have vocational education after comprehensive school or upper-secondary school. Their unemployment-security rules include a separate obligation to apply to education.
+
+**General rule:** Official guidance says the person generally needs to apply for at least two suitable study places starting the following autumn for which they meet the admission conditions. The employment plan can in some circumstances agree specified alternative routes, and health, learning difficulties or language can affect how the obligation is fulfilled.
+
+**2026 checkpoint:** For education starting autumn 2026, the published application deadline was 31.8.2026. If the person was still an unemployed jobseeker on 1.9., employment services can ask what education they applied to. Missing the obligation, causing non-selection, refusing a place or not starting can affect unemployment security if there is no accepted reason.
+
+**Ask now:** Oletko alle 25-vuotias? Onko sinulla ammatillinen tutkinto tai korkeakoulututkinto? Mihin koulutuksiin hait ennen 31.8.? Oliko suunnitelmassasi sovittu jokin muu tapa täyttää hakuvelvollisuus? Saitko opiskelupaikan? Näkyykö Asioinnissa selvityspyyntöä tai viestiä tästä?
+
+**Next:** If the deadline was missed or the person is unsure what counted, check their employment plan and current Asiointi messages and contact the responsible employment authority. Do not decide that benefit has automatically ended.
+
+**Watch out:** This is not the same as the 25+ open-higher-education rule below. Do not tell an under-25 client that a random course or labour-market training automatically fulfilled the education application obligation; the official rules and any agreed alternative in the plan control.
+
+**Verify:**
+- Työmarkkinatori, under-25 unemployment security: https://tyomarkkinatori.fi/henkiloasiakkaat/tietoa-tyoelamasta/tyottomyysturva/alle-25-vuotiaan-tyottomyysturva
+- Työmarkkinatori, autumn 2026 application deadline/context: https://tyomarkkinatori.fi/uutiset/yhteishaku-2026-ja-koulutushaun-vaikutukset-tyottomyysturvaan
 
 ## Missed employment-service deadlines - check job-search validity too
 **Current 2026 rule:** Since 1.3.2026, job search can end already after the first failure to deal with the employment authority in the required way and by the stated deadline. This is separate from the unemployment-security consequence: a first qualifying lapse can lead to a seven-day unpaid period, and a second or later lapse within 12 months can lead to a six-week work requirement.
