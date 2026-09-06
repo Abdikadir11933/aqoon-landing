@@ -74,3 +74,7 @@ summary::marker{content:''}
   .services-agreement__grid{grid-template-columns:minmax(0,1fr)!important}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+
+/* B2B reading and navigation at narrow widths. */
+@media(min-width:901px){.desktop-nav{gap:20px!important}.desktop-nav nav{gap:18px!important}}
+@media(max-width:700px){main>section>div[style*="grid"]{grid-template-columns:minmax(0,1fr)!important}}
