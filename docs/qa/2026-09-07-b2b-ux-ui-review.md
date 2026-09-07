@@ -1,6 +1,6 @@
 # AQOON public B2B UX/UI review, 2026-09-07
 
-Status: implementation and local review complete; preview and production identifiers are added in the final verification section after deployment.
+Status: implementation and preview review complete; production identifiers are added after deployment.
 
 Scope: the public organisation-buyer website at `https://aqoon.live`, with the family-facing `/caawi` surface checked only as a boundary. Authenticated `/tracker` and protected `/pilke` functionality were not audited or changed.
 
@@ -373,4 +373,24 @@ Responsive complete-page inspection covered `/`, `/paketit`, `/menetelma`, `/tap
 
 ## Verification record
 
-The pre-deployment verification record will be completed after the clean preview pass. Production commit, GitHub Actions and Vercel exact-deployment identifiers will then be recorded here or in the release handoff without implying that a Git commit alone is live.
+### Local and preview verification
+
+- The new regression test was proved with a controlled failure: temporarily restoring the legacy global link colour caused the expected contract test to fail. Restoring `#066C68` returned the focused suite to four passing tests.
+- Complete local regression result: 219 tests passed, zero failed.
+- Repository/context integrity, tracker collection contract, site structure, internal routes, sitemap, static SEO, mobile usability and legal/trust QA passed.
+- All JavaScript syntax commands used by the site QA workflow passed.
+- `git diff --check`, Vercel JSON validation and relevant Python compilation passed.
+- One pre-existing `pkv-treeni/index.html` possible-label warning remains outside the B2B audit scope.
+- Functional teal measured 5.84:1 on paper, 5.60:1 on cream and 5.15:1 on fog. Paper text on black measured 18.47:1.
+- Preview source commit `afcca95d22e56c6bc4c3853ed0f7dee0bf739fc8` reached Vercel READY at deployment `dpl_7zbhRwvNMP8nstnhKVgwWvBGvMo5`.
+- The preview-only responsive fixture commit `021e0eff07e188bd4d24e6a5f1839d47762f3a2d` reached Vercel READY at `dpl_4LiSZcLkJWjTiThkgpo4mZGgKxko`. The fixture is intentionally absent from the production branch.
+- Final responsive matrix: nine key routes at 320, 390, 768, 1024 and 1280 px, 45 page-width combinations, zero horizontal-overflow or missing-H1 results. The B2B menu was present at 320 through 1024 px and desktop navigation at 1280 px. `/caawi/xog` retained its separate navigation.
+- Mobile menu opened with `aria-expanded=true`, exposed “Palvelut” first, closed with Escape and returned to `aria-expanded=false`.
+- Keyboard verification found the skip link first, with computed focus colour `rgb(6, 108, 104)`. Activating it focused `main` at the 67 px header boundary, not underneath the sticky header.
+- The first visual preview exposed an overly broad link selector that recoloured the black hero booking button. The selector was narrowed to exclude Cal.com CTAs, the contract test was strengthened and the corrected white-on-black button was verified visually before merge.
+- The branded 404 rendered with site navigation, a single H1, home/services recovery choices, email and the separate `/caawi` link. Its vertical layout was adjusted after full-page inspection to fill the viewport cleanly.
+- Browser logs showed repeated errors from the controlled Chrome extension only. No site-origin console error was observed.
+
+### Production verification
+
+Pending merge. The final handoff must identify the resulting `master` commit, exact-commit GitHub Actions status, READY production deployment and a final live critical-path check. A Git commit alone is not treated as a live release.
