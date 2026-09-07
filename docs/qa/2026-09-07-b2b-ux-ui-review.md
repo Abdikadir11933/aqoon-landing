@@ -1,6 +1,6 @@
 # AQOON public B2B UX/UI review, 2026-09-07
 
-Status: implementation and preview review complete; production identifiers are added after deployment.
+Status: complete. Implementation, preview verification, GitHub Actions and production deployment were verified on 2026-09-07 UTC.
 
 Scope: the public organisation-buyer website at `https://aqoon.live`, with the family-facing `/caawi` surface checked only as a boundary. Authenticated `/tracker` and protected `/pilke` functionality were not audited or changed.
 
@@ -393,4 +393,16 @@ Responsive complete-page inspection covered `/`, `/paketit`, `/menetelma`, `/tap
 
 ### Production verification
 
-Pending merge. The final handoff must identify the resulting `master` commit, exact-commit GitHub Actions status, READY production deployment and a final live critical-path check. A Git commit alone is not treated as a live release.
+- Pull request: `https://github.com/Abdikadir11933/aqoon-landing/pull/32`.
+- UI and audit release commit on `master`: `5c450689a4b11611e9ea9a0ed9b77d877a994252`.
+- GitHub Actions for that exact SHA all completed successfully:
+  - AQOON site QA, run `34129336408`.
+  - Verify site quality, run `34129336412`.
+  - Somali language QA, run `34129336413`.
+- Vercel production deployment: `dpl_AvwhW8mqoREkjzVFjFuww8j8VT5q`, READY, target `production`, Git ref `master`, exact Git SHA `5c450689a4b11611e9ea9a0ed9b77d877a994252`.
+- Live homepage `https://aqoon.live/` rendered the intended buyer headline and booking action.
+- Live `/menetelma` rendered the standard buyer question and email alternative and no longer contained “Vaihdetaan kokemuksia”.
+- A live unknown URL rendered the branded recovery page and returned HTTP 404 with `text/html; charset=utf-8`, preserving correct error semantics.
+- Live shared CSS exposed the final `#066C68` link/focus rules and the narrowed selector that leaves Cal.com booking-button foreground colours intact.
+
+The later documentation-only release-record commit does not change the verified UI tree. Its final `master` SHA and deployment status are reported in the delivery handoff.
