@@ -12,6 +12,9 @@
 CLAUDE.local.md
 .claude/settings.local.json
 
+# Temporary task state only; confidential work belongs in a private workspace
+_local/
+
 # Dependencies, caches and generated noise
 node_modules/
 __pycache__/

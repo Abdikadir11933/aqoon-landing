@@ -22,7 +22,7 @@ Do not collapse these levels. A view is not a lead. A saved phone is not a compl
 
 The dated launch snapshots are `references/aqoon-funnel-evidence-2026-08-27.md` and `references/aqoon-funnel-evidence-2026-08-28.md`. They are cohort snapshots, not permanent benchmarks. Create a new dated snapshot when the observation window or denominator changes; never silently replace an older denominator.
 
-The latest account and per-video TikTok performance record is `references/tiktok-analytics-2026-09-01.md`. It describes reach, profile activity, engagement, followers, audience and content performance. It does not replace the launch-funnel snapshots or prove identifiable contacts and outcomes by itself.
+Use `references/aqoon-evidence-index.md` to select current demand, TikTok analytics, founder clarifications and historical observations. Reach and per-video analytics do not prove identifiable contacts or outcomes. Unmaintained CRM follow-up dates and statuses cannot establish missed activity; use reconciled records or explicit confirmation for that question.
 
 Interview evidence needed to validate the wider AQOON thesis is defined in `/tracker/CONTEXT.md`. In particular, track prior awareness, ability to self-navigate, barriers, additional needs discovered and later outcomes. This allows the business to test whether a specific entry problem creates a broader ongoing navigation relationship.
 

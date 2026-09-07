@@ -7,6 +7,8 @@ description: Audit and harden the AQOON repository end to end. Use for full audi
 
 Audit in this order so fixes address root causes rather than symptoms.
 
+First select the requested scope. For context/instruction architecture, inspect inventory, routing, canonical ownership, skill discovery, conflicting instructions and privacy boundaries; run `python scripts/context_qa.py`, `python scripts/repo_integrity_qa.py` and `git diff --check`. Do not turn that task into a runtime redesign. For a full site/runtime audit, use all relevant sections below. For a buyer-facing website critique, use the `website-review` skill.
+
 ## 1. Inventory and ownership
 
 - Read `docs/architecture/repo-map.md` and compare it with the actual Git tree.
@@ -52,7 +54,7 @@ Audit in this order so fixes address root causes rather than symptoms.
 
 Prefer scripts and CI over prose reminders. Ensure new production JS is syntax-checked and new critical files are included in repository-integrity tests.
 
-Minimum audit commands:
+Full site/runtime audit commands:
 
 - `python scripts/repo_integrity_qa.py`
 - `python scripts/site_qa.py`
@@ -63,6 +65,6 @@ Minimum audit commands:
 
 ## 8. Release verification
 
-Inspect the final diff, then verify CI and the exact deployed commit. If Vercel is rate-limited or not READY, say the code is committed but not live.
+Inspect the final diff and relevant CI. Verify the exact deployed commit when a production release is in scope. Context-only commits do not require claiming a deployment; report commit and push status separately.
 
 Fix high-confidence bugs found during the audit. Document unresolved external blockers separately from code defects.

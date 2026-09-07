@@ -51,11 +51,7 @@ Buyer-facing:
 
 ## Canonical buyer proposition
 
-AQOON is not positioned as a translation agency, a generic marketing agency or three unrelated consultancies. It is one demand-to-outcome operating partner. Use the approved Finnish offer hierarchy everywhere:
-
-1. **Jatkuva tavoittamisen ja palvelun aloituksen toteutus** — the core implementation: reach the agreed audience, start a direct conversation, guide the next practical action, hand over appropriately and verify the agreed outcome.
-2. **Asiakaspolun ja materiaalien kehitys** — an optional add-on activated only when observed friction is in the route, messages or materials. It is journey conversion, not word-for-word translation.
-3. **Henkilöstön valmennus** — a separate practical offer for frontline staff and leaders, tied to observed questions, handoff failures and early-retention risks.
+Use the approved offer in `docs/architecture/business-operating-model.md`: Phase 1 research and a bounded pilot inform the decision on Phase 2 operated delivery; journey/material work is conditional and training is separate. Link to that canonical model instead of maintaining a competing package hierarchy here. Proposed new business models belong in `workspaces/strategy/CONTEXT.md` until chosen.
 
 Do not publish generic prices or imply a fixed delivery team. Scope, capacity, responsibilities, specialists, trainers and pricing are agreed per engagement. Abducadir is the current named public face; describe other capability collectively unless a later approved source explicitly changes that rule.
 
@@ -63,11 +59,7 @@ The shared moat is the consented relationship, verified route knowledge and aggr
 
 When a free family-side service can lead to a paid partner offer, disclose the commercial relationship clearly before the recommendation or handoff. Help must remain useful even when no paid match exists.
 
-Current evidence source: `../evidence-and-research/references/aqoon-funnel-evidence-2026-08-27.md`.
-
-Latest operational snapshot: `../evidence-and-research/references/aqoon-funnel-evidence-2026-08-28.md`. Pilke follow-up learning: `../evidence-and-research/references/pilke-phase-1-follow-up-2026-08-28.md`.
-
-Latest TikTok account and per-video performance snapshot: `../evidence-and-research/references/tiktok-analytics-2026-09-01.md`. Use it for current reach, audience and content-pattern claims. Continue to use the dated funnel snapshots for identifiable contacts and downstream progression. Do not combine these sources as one conversion cohort.
+Select current and historical observations through `../evidence-and-research/references/aqoon-evidence-index.md`. Preserve each source's dates, denominator and reliability. Faceless explainers are supported; the production method is governed by the content OS. Follow-up dates and statuses cannot by themselves establish operational failures.
 
 ## Claim language
 

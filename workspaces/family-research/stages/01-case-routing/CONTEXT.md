@@ -1,7 +1,13 @@
 # 01 Case Routing
 
-Input: structured interview facts.
+## Inputs
 
-Process: identify applicable need/routes; determine which canonical reference IDs are relevant; identify missing facts that block research.
+Structured interview facts in the authorized private task record.
 
-Output: routes, relevant reference files/IDs, missing blocking criteria. Do not recommend a service yet.
+## Process
+
+Identify applicable needs/routes, relevant canonical reference IDs and missing facts that block research.
+
+## Outputs
+
+Routes, relevant reference files/IDs and missing blocking criteria. Do not recommend a service yet.

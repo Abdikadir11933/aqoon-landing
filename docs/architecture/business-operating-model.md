@@ -1,6 +1,6 @@
 # AQOONin liiketoiminta- ja toimintamalli
 
-Tila: kanoninen, päivitetty 2.9.2026. Tämä kuvaa sitä, mitä AQOON rakentaa. Todistetut tulokset ja vielä testaamattomat oletukset pidetään erillään.
+Tila: kanoninen, päivitetty 7.9.2026. Tämä kuvaa sitä, mitä AQOON rakentaa. Todistetut tulokset ja vielä testaamattomat oletukset pidetään erillään.
 
 ## Yksi liiketoiminta
 
@@ -14,6 +14,8 @@ Somalinkielinen yhteisö on AQOONin nykyinen vahvin aloitusmarkkina, ei mallin l
 
 ## Yksi moottori
 
+Keskeinen tutkittava oletus on, että tarvetta on, mutta oikea kieli, kanava, selittäjä, luottamus ja ymmärrettävä seuraava teko ratkaisevat, muuttuuko tarve osallistumiseksi. Kasvottomat selitysvideot ovat toimiva kokeilumuoto; perustajan kasvojen näyttäminen ei ole menetelmän edellytys. Nykyinen näyttö tukee yhteydenottojen syntymistä, mutta ei yksin osoita kotoutumisen valtakunnallisia vaikutuksia tai skaalautuvaa kannattavuutta.
+
 1. Julkaise konkreettiseen ongelmaan tai mahdollisuuteen liittyvää aidosti hyödyllistä sisältöä.
 2. Tarjoa yksi helppo ja vapaaehtoinen tapa pyytää apua.
 3. Ymmärrä tilanne lyhyessä, haarautuvassa haastattelussa.
@@ -24,6 +26,8 @@ Somalinkielinen yhteisö on AQOONin nykyinen vahvin aloitusmarkkina, ei mallin l
 8. Muuta toistuvat havainnot henkilötiedottomaksi ja varmennetuksi oppimiseksi, joka parantaa seuraavaa sisältöä ja polkua.
 
 Tavoittaminen on monikanavaista. TikTok ja muu sisältö, AQOONin omat sivut, käyttäjän nimeämä Yellow Card -domain, yksityiset puhelin-, DM- ja WhatsApp-reitit, kenttätyö, vaikuttavat äidit ja muut tunnetut luottohenkilöt, järjestöt, yhteisötoimijat, suosittelut ja kumppanikanavat kuuluvat samaan moottoriin. Jokaisella kanavalla on oma tehtävä, vapaaehtoinen yhteydenottoreitti, lähdemittaus, suostumusraja ja vastuullinen jatko.
+
+Tämä on kanavamalli, ei väite kaikkien kanavien toteutumisesta. Järjestelmällinen luottohenkilö- ja vaikuttajaverkosto on suunniteltua laajennusta. Ajantasaiset havainnot ja perustajan täsmennykset löytyvät tiedostosta `workspaces/evidence-and-research/references/aqoon-evidence-index.md`.
 
 Omat verkkopinnat ovat tarkoituksella erilliset. `aqoon.live` ja sen vakiintuneet suomenkieliset sivut ovat B2B-pinta valituille ostajille, organisaatioille ja kumppaneille. Niiden SEO vastaa esimerkiksi somalien kotoutumista, luotettavaa tavoittamista, monikielistä palveluohjausta, konversiota, onboardingia ja pysyvyyttä koskeviin ostajakysymyksiin. `aqoon.live/caawi` ja sen alasivut ovat somalinkielinen perhepinta: käytännön tieto, apu ja intake. `/tracker` on yksityinen operatiivinen ydin. Tarkka toimintamalli on `../../workspaces/messaging/references/aqoon-demand-generation-and-content-os.md` ja reittipäätös `../decisions/0004-caawi-family-canonical-home.md`.
 
@@ -79,6 +83,8 @@ Yhteinen tapahtumaketju erottaa vähintään:
 `reach -> identifiable contact -> completed intake -> first interview -> verified match -> assisted action -> partner handoff -> verified outcome -> persistence`
 
 Analytiikan tulee pystyä tarkastelemaan lähdettä, kohorttia, tarvetta, kuntaa, kumppania, omistavaa operaattoria, vaihetta, putoamista ja vaiheiden välistä aikaa. Näyttökertoja, tallennettuja puhelinnumeroita, hakemuksia ja toteutuneita aloituksia ei koskaan nimetä samaksi asiaksi.
+
+Tämä on tavoiteltu mittausmalli. Nykyisiä seuraavan yhteydenoton päivämääriä ja tilakenttiä ei ole ylläpidetty kattavasti, joten niistä ei päätellä myöhästyneitä yhteydenottoja tai tekemättömiä haastatteluja. Kysynnän arvioinnissa painotetaan todettuja tarpeita, aiheita, alueita ja yhteydenottokanavia. Toteutuksen pullonkaulat varmennetaan erikseen luotettavasta toimintahistoriasta tai perustajan vahvistamista tehtävistä.
 
 ## Luottamusrajat
 

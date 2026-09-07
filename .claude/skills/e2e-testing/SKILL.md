@@ -1,3 +1,8 @@
+---
+name: e2e-testing
+description: Verify AQOON Caawi intake, authenticated tracker and connected Edge Function flows end to end. Use for family-system runtime regression or integration checks; not for context-only edits or unauthorized production test records.
+---
+
 # AQOON family-system end-to-end testing
 
 Use this skill for `/caawi`, family intake, private `/tracker`, family Edge Functions and their connected Supabase data flows. It does not authorise production mutations, creation of real-looking test people or access beyond the current operator's permissions.

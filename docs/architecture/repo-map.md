@@ -6,13 +6,17 @@ This map explains ownership. It does not authorize moving production routes.
 
 `CLAUDE.md` → `CONTEXT.md` → nearest local/workspace context → matching `.claude/skills/` procedure → current source/data contract.
 
+Human entry: `README.md`. Instruction scope, canonical ownership and update/handoff rules: `docs/architecture/context-workflow.md`. The current Git tree is the file inventory: run `git ls-files`, then `rg --files <task-folder>` for focused discovery. Generated inventories and dated audits do not override that tree.
+
 The goal is progressive disclosure: an agent should not need the entire repository in context to do one task.
 
 ## Runtime surfaces
 
 | Path/folder | Role | Local contract |
 |---|---|---|
-| `/` + `tapaus/`, `menetelma/`, `paketit/`, `havainnot/`, `sanasto/` | Public B2B site for selected buyers, organisations and partners | root context + `BRAND.md` for UI |
+| `/` + `tapaus/`, `menetelma/`, `paketit/`, `havainnot/`, `sanasto/`, `meista/` | Public B2B site for selected buyers, organisations and partners | root context + `BRAND.md` for UI |
+| `disclaimer/`, `tietosuoja/` | Public legal and privacy pages | root boundaries + legal/trust QA |
+| `pkv-treeni/` | Existing training route | inspect current route before changes |
 | `caawi/` | Canonical Somali-first family site: intake at `/caawi`, guidance/SEO at `/caawi/<topic>`, hub at `/caawi/xog` | `caawi/CONTEXT.md` |
 | `tracker/` | Private operator CRM/research command center | `tracker/CONTEXT.md` |
 | `/so/*` | Legacy permanent redirects to the matching `/caawi/*` route; no canonical files | ADR 0004 + `vercel.json` |
@@ -29,6 +33,7 @@ Do not move these physical paths just to make the repository visually tidier; th
 | `CONTEXT.md` | Stable repository-wide truth/safety context |
 | `AGENTS.md` | Compatibility router only; must not become a second handbook |
 | `.claude/skills/` | Repeatable procedures loaded on demand |
+| `.agents/skills/` | Codex discovery symlinks to canonical `.claude/skills/` folders; never edit a second copy |
 | `_core/` | Shared conventions, policies, schemas and QA rules |
 | `docs/architecture/` | Architecture maps and rationale |
 | `docs/decisions/` | Durable architecture decisions |
@@ -39,10 +44,14 @@ Do not move these physical paths just to make the repository visually tidier; th
 
 - `workspaces/family-research/` — case research stages and routing workflow; family PII still stays out of GitHub.
 - `workspaces/evidence-and-research/` — sanitized sources, evidence and verification records.
-- `workspaces/messaging/` — copy/messaging task context. Its canonical acquisition reference is `references/aqoon-demand-generation-and-content-os.md`.
+- `workspaces/messaging/` — copy/messaging task context. Its canonical acquisition reference is `workspaces/messaging/references/aqoon-demand-generation-and-content-os.md`.
 - `.claude/skills/aqoon-demand-content/` — repeatable workflow for campaigns, videos, scripts, trusted connectors, creators, järjestöt and performance review.
 - `workspaces/product-qa/` — site/repository QA context.
 - `workspaces/ai-coding/` — staged AI-assisted coding workflow with explicit handoffs.
+- `workspaces/strategy/` — method for business assessment and experiments; confidential inputs and conclusions stay private.
+- `design-ref/` — design reference material; not the current runtime or authority for business facts.
+
+Current source selection is owned by `workspaces/evidence-and-research/references/aqoon-evidence-index.md`. Historical snapshots remain dated. Dated briefs and audits describe planned or observed state, not timeless instructions.
 
 `internal/` is a historical name, not a security boundary. This repository is public; anything under `internal/` must still be safe for public GitHub.
 
@@ -59,12 +68,13 @@ Do not move these physical paths just to make the repository visually tidier; th
 - `scripts/` contains deterministic QA, legal/trust, SEO, route, language and usability checks.
 - `.github/workflows/` runs those checks and scheduled link verification.
 - `tests/` contains regression tests for critical runtime flows.
+- `scripts/context_qa.py` checks maintained context targets, stage contracts and skill discovery; `scripts/repo_integrity_qa.py` checks skill metadata and established runtime guards.
 
 Prefer adding a deterministic check when a rule can be tested automatically; prose reminders are the fallback.
 
 ## Private operational systems
 
-Supabase is the source of truth for family operational data. Personal interviews remain private. Reusable scenario knowledge is generalized and PII-free. Browser code must not contain service-role credentials or expose family data through unauthenticated reads.
+`supabase/` owns migrations, Edge Functions and related implementation. Supabase is the source of recorded family data; unmaintained statuses do not prove actual activity or missed follow-ups. Personal interviews remain private. Reusable scenario knowledge is generalized and PII-free. Browser code must not contain service-role credentials or expose family data through unauthenticated reads.
 
 The canonical business model is `docs/architecture/business-operating-model.md`. The current two-operator evolution brief is `docs/briefs/aqoon-two-operator-os-v2-fast-start.md`. The concrete field-by-field inventory of the public intake and first interview, and how each currently-seeded verified route resolves its required facts against them, is `docs/architecture/interview-and-intake-field-reference.md`. Neither file overrides runtime truth: tracker behaviour is what the deployed code, Edge Functions and production schema actually implement.
 The tracker-to-database collection contract is `docs/architecture/tracker-supabase-data-contract.md`; it is checked statically by `scripts/tracker_collection_qa.js`, while database changes still require live schema verification.

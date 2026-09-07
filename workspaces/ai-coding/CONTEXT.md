@@ -20,17 +20,21 @@ root router directly.
 5. `stages/05-evidence-review/CONTEXT.md` — inspect the diff and runtime evidence.
 6. `stages/06-human-handoff/CONTEXT.md` — record what changed and what remains.
 
-Each stage must state Inputs, Process and Outputs. A stage may stop for human
-review; later stages must not be implied to have happened.
+Each stage must state Inputs, Process and Outputs. Continue through authorized
+work; stage folders do not impose approval pauses. Later stages must not be
+implied to have happened. Use `docs/architecture/context-workflow.md` and its
+single task record for continuity, output locations and material decisions.
 
 ## AQOON-specific rules
 
 - Keep family PII and private sales material out of GitHub.
-- Treat Supabase as operational truth for tracker data.
+- Treat Supabase as the source for recorded tracker data; do not infer actual
+  activity or overdue work from unmaintained dates/statuses.
 - For tracker changes, verify the browser-to-Edge-Function path and the live
   collection contract; do not invent a parallel local collection.
-- Use `apply_patch` for edits and regenerate `tracker/bundle.*` when source
-  tracker assets change.
+- Use `apply_patch` for edits. Tracker JavaScript loads explicitly from
+  `tracker/index.html`; do not create or load `tracker/bundle.js`. Regenerate
+  `tracker/bundle.css` with `scripts/build_tracker_bundle.js` when its source CSS changes.
 - Never call a change deployed until the intended production commit is READY.
 - One canonical home per rule; link to it instead of copying mutable policy.
 

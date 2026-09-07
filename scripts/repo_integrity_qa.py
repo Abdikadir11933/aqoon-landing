@@ -26,6 +26,9 @@ required = [
     "CONTEXT.md",
     "AGENTS.md",
     "BRAND.md",
+    "README.md",
+    "docs/architecture/context-workflow.md",
+    "workspaces/evidence-and-research/references/aqoon-evidence-index.md",
     "docs/architecture/repo-map.md",
     "seo/CONTEXT.md",
     "scripts/site_qa.py",
@@ -67,8 +70,12 @@ expected_skills = {
     "seo-growth",
     "family-research",
     "production-releasing",
+    "aqoon-demand-content",
+    "e2e-testing",
+    "website-review",
 }
-for name in expected_skills:
+discovered_skills = {p.name for p in skills_root.iterdir() if p.is_dir()}
+for name in sorted(expected_skills | discovered_skills):
     skill = skills_root / name / "SKILL.md"
     if not skill.is_file():
         fail(f"Missing required Claude skill: {name}")
@@ -174,4 +181,4 @@ if errors:
         print(f"- {error}")
     sys.exit(1)
 
-print(f"AQOON repository integrity QA passed. Validated {len(expected_skills)} skills and core architecture guards.")
+print(f"AQOON repository integrity QA passed. Validated {len(discovered_skills)} skills and core architecture guards.")

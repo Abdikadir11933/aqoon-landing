@@ -22,6 +22,9 @@ Before substantive work:
 | Family CRM / tracker | `tracker/CONTEXT.md` |
 | Research a family case | `workspaces/family-research/CONTEXT.md` + `family-research` skill |
 | Verify evidence or an external claim | `workspaces/evidence-and-research/CONTEXT.md` |
+| Current AQOON evidence / founder corrections | `workspaces/evidence-and-research/references/aqoon-evidence-index.md` |
+| Business assessment / opportunities / money model / pivot | `workspaces/strategy/CONTEXT.md` |
+| Homepage / buyer journey / UX critique | `workspaces/product-qa/CONTEXT.md` + `website-review` skill |
 | Messaging / website / sales copy | `workspaces/messaging/CONTEXT.md` |
 | Demand generation / social / video / creators / community outreach | `workspaces/messaging/CONTEXT.md` + `aqoon-demand-content` skill |
 | B2B SEO / buyer discoverability | `seo/CONTEXT.md` + `seo-growth` skill |
@@ -31,6 +34,7 @@ Before substantive work:
 | Shared rules and schemas | `_core/CONVENTIONS.md` |
 | AI-assisted code or data change | `workspaces/ai-coding/CONTEXT.md` |
 | Repository map | `docs/architecture/repo-map.md` |
+| Context updates / instructions / handoff | `docs/architecture/context-workflow.md` |
 | Pilke campaign | PROTECTED — only when explicitly requested |
 
 ## Non-negotiable boundaries
@@ -53,5 +57,7 @@ Do not move production routes merely to make the repository look cleaner. `/caaw
 Read `BRAND.md` before visual changes. Preserve accessibility, mobile behavior, interaction contracts and existing working flows. Prefer additive, isolated changes over broad rewrites.
 
 ## Verification contract
+
+Respect the instruction and source distinction in `docs/architecture/context-workflow.md`. Existing user authorization carries through stages; a numbered folder is not an approval gate. Context-only work uses context/integrity checks and diff review. Runtime changes use the checks for the affected behavior and required CI gates.
 
 A change is not complete because it compiles or commits. Run the relevant deterministic checks, inspect failures, and verify the deployed commit when deployment is part of the task. Never call a change “live” until the intended Vercel deployment is READY. For Supabase changes, verify RLS/auth boundaries and the deployed Edge Function or migration state.

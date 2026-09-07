@@ -51,6 +51,8 @@ Keep outside public GitHub:
 
 Family operational data belongs in Supabase/private systems.
 
+Database records describe what was recorded, not necessarily all work that happened. Follow-up dates and workflow statuses are not reliable evidence of missed actions without reconciliation. For current demand, audience, founder clarifications and measurement limitations, start with `workspaces/evidence-and-research/references/aqoon-evidence-index.md`.
+
 AQOON does not sell family contact lists. Commercial relationships and paid recommendations must be disclosed to the family at the relevant decision point. Consent to receive help is not consent to share data with a buyer or to market unrelated products.
 
 ## Safety model

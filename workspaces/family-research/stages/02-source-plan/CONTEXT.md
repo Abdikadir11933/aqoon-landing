@@ -1,7 +1,13 @@
 # 02 Source Plan
 
-Input: routes + known criteria.
+## Inputs
 
-Process: map each question to the competent official/provider source; apply volatility and freshness rules; explicitly exclude obsolete/irrelevant routes.
+Routes and known criteria from case routing.
 
-Output: source search plan, freshness requirements, exclusions.
+## Process
+
+Map each question to the competent official/provider source; apply volatility and freshness rules; explicitly exclude obsolete or irrelevant routes.
+
+## Outputs
+
+Source search plan, freshness requirements and exclusions.

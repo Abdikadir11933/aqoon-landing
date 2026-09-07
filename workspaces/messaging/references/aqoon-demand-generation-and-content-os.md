@@ -1,6 +1,6 @@
 # AQOON demand generation, outreach and content operating system
 
-Status: canonical operating model from 2 September 2026.
+Status: canonical content method, updated 7 September 2026. Current approved offers are owned by `docs/architecture/business-operating-model.md`; performance evidence is routed through the evidence index.
 
 Use this document for every acquisition campaign, outreach partnership, public guide, social post, video idea, script, creator collaboration, community distribution plan and performance review. It governs family-facing demand generation and the separate buyer-facing evidence path.
 
@@ -28,11 +28,11 @@ Promise: useful, free, low-friction help to understand an option, find the right
 - Give useful help even when no paid partner match exists.
 - Never imply eligibility, approval, a place, a benefit, a job or another authority/provider decision.
 - Disclose a paid provider relationship before a recommendation or handoff.
-- Abducadir is the public founder and principal face. Team capability may be described without making another team member a public face by default.
+- Abducadir is the named public founder. On-camera appearance is optional; faceless explanation is an established format. Team capability may be described without making another person a public representative by default.
 
 ### Buyer or partner
 
-Promise: measurable acquisition, qualification, conversion, onboarding, persistence and aggregate learning through one core implementation (**Jatkuva tavoittamisen ja palvelun aloituksen toteutus**), the optional **Asiakaspolun ja materiaalien kehitys** add-on and the separate **Henkilöstön valmennus** offer.
+Promise: a researched and operated path toward agreed outcomes. Use the Phase 1 / Phase 2 hierarchy, conditional journey/material work and separate training defined in `docs/architecture/business-operating-model.md`. Do not silently replace the approved offer with a content campaign or a proposed pivot.
 
 - Sell outcomes, an operated journey, training and PII-free evidence.
 - Do not sell raw family identities, phone lists or undisclosed access to a community.
@@ -74,6 +74,8 @@ A person is never a "lead magnet." The useful answer, opportunity, checklist, ex
 
 AQOON uses the channel that already has the relevant person's attention and trust. TikTok is one proven channel, not the offer and not the whole distribution system.
 
+The table is a channel design, not proof that every channel is operating. TikTok and direct contact have observed evidence; the founder reports face-to-face activity. Systematic trusted-mother/creator distribution is planned. Verify campaign-specific activity before describing execution as complete.
+
 | Channel family | AQOON examples | Primary job | Default handoff | Main proof |
 | --- | --- | --- | --- | --- |
 | Founder-led social | `@waalidsupport`, TikTok, selectively cross-posted Reels or Shorts | discovery, relevance, explanation and founder trust | `/caawi` or one intentionally selected private contact route | new viewers, shares, identifiable contacts and completed intakes by asset |
@@ -111,7 +113,7 @@ Do not add a channel because it is fashionable. Add it because it improves reach
 | **BOF - Ask and act** | "How do I actually do this?" | make the next step safe, specific and easy | application or registration demonstration, checklist, documents/timeline, private call, interview and personalised follow-up | interview, verified match, assisted action and handoff |
 | **Outcome and learning** | "Did it work and continue?" | verify the result, preserve the relationship and learn without exposing the person | outcome call, persistence check, anonymised story with the right permission, updated FAQ or route content | verified outcome, persistence, repeat contact and new PII-free learning |
 
-The operating constraint determines the next content priority. If AQOON has more contacts than it can call or interview, more TOF reach is not the priority. Fix response capacity and use MOF/BOF material to help existing families progress. If qualified people are not entering, improve the entry problem, channel, hook and CTA. If applications stall, improve the route and operational follow-up rather than blaming content.
+Establish the operating constraint from reliable activity evidence, current capacity and explicit founder confirmation. Unmaintained CRM statuses or follow-up dates do not prove a backlog. For business learning, first assess what the needs, topics, cities and audience reveal about demand and possible buyers. When capacity or stalled actions are actually confirmed, adjust content and delivery accordingly; do not automatically prescribe more reach or less reach from incomplete records.
 
 ### B2B search and content funnel
 
@@ -165,7 +167,7 @@ The content queue is fed by evidence, not brainstorming alone. Prioritise:
 7. questions received through trusted mothers, known people, järjestöt and fieldwork;
 8. PII-free outcome learning.
 
-The current reviewed TikTok performance input is `../../evidence-and-research/references/tiktok-analytics-2026-09-01.md`. It is a source for content-performance hypotheses, not proof that an older service claim is still current and not a replacement for CRM or outcome evidence.
+Select reviewed TikTok and demand observations through `../../evidence-and-research/references/aqoon-evidence-index.md`. They support content-performance hypotheses, not proof that an older service claim is still current. Account windows, video totals and intake records are not automatically one cohort.
 
 Before production, every topic receives:
 
@@ -217,7 +219,8 @@ This adapts Hook-Story-Offer and Hook-Retain-Reward for AQOON. The final element
 ### Production rules
 
 - Family-facing video is Somali-first and sounds like a real person, not translated institutional copy.
-- Abducadir uses his own voice. Do not use AI characters, AI avatars or a replacement AI voice.
+- Choose faceless explanation, screen demonstration, a human presenter or field footage according to the topic and trust needs. Familiar language, useful explanation and a clear next step matter more than showing the founder's face.
+- Historical audio production is not established by the current review. If proposing synthetic voice or imagery, identify that choice, preserve human language review, avoid impersonation or fabricated testimonials, and verify applicable disclosure requirements before publication.
 - Use native vertical phone video when appropriate, with clear CapCut on-screen text and subtitles.
 - Keep Finnish institution and system terms such as `Kela`, `päiväkoti`, `palveluseteli` and `Työmarkkinatori` in Finnish when that is what the family must recognise.
 - One video, one main idea, one CTA.
@@ -323,6 +326,8 @@ The core scorecard is:
 
 Views, saves and followers diagnose distribution. They are not family outcomes. Do not divide blended organic and paid reach into a paid cost-per-lead claim. Use matched campaign spend and attributable conversions from the same cohort.
 
+The scorecard is a measurement design, not a claim that every field is maintained. Reconcile activity and timing before reporting missed actions, stage delays or execution bottlenecks. Use the evidence index for current reliability notes.
+
 ## 14. Pre-publication gate
 
 Do not publish or distribute until all critical items are true:
@@ -381,7 +386,7 @@ Tracking link/source code:
 
 - generic "we help with everything" acquisition messages;
 - unrelated viral or lifestyle content for reach alone;
-- AI characters or replacement voices in family-facing content;
+- misleading synthetic presenters, impersonation or fabricated testimonials;
 - fear, shame, fake urgency or fabricated scarcity;
 - hidden paid recommendations or disguised influencer marketing;
 - eligibility promises or stale public-service instructions;

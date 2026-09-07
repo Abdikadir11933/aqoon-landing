@@ -2,7 +2,8 @@
 
 ## Inputs
 
-The approved task brief and impact map.
+The task brief reflecting the user's authorized scope and the impact map.
+An additional approval is not required merely to enter this stage.
 
 ## Process
 

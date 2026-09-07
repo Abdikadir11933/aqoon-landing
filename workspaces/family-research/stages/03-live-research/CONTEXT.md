@@ -1,7 +1,13 @@
 # 03 Live Research
 
-Input: source plan.
+## Inputs
 
-Process: inspect current official/provider pages and, for live items, current availability/deadline information. Record exact source and verification time.
+Source plan from the preceding stage.
 
-Output: current candidates, criteria, deadlines, sources, contradictions and unknowns. A search result snippet alone is not final evidence when the source page can be checked.
+## Process
+
+Inspect current official/provider pages and, for live items, current availability and deadline information. Record exact source and verification time.
+
+## Outputs
+
+Current candidates, criteria, deadlines, sources, contradictions and unknowns. A search result snippet alone is not final evidence when the source page can be checked.
