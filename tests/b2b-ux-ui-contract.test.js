@@ -12,7 +12,8 @@ test('B2B links and focus use the accessible functional teal', () => {
 
   assert.match(css, /a\{color:#066c68;/);
   assert.match(css, /:focus-visible\{outline:2px solid #066c68;/);
-  assert.match(css, /\.b2b-site main a:not\(\.button-link\)\{color:#066c68!important\}/);
+  assert.match(css, /\.b2b-site main a:not\(\.button-link\):not\(\[href\*="cal\.com"\]\)\{color:#066c68!important\}/);
+  assert.doesNotMatch(css, /\.b2b-site main a:not\(\.button-link\)\{color:#066c68!important\}/);
   assert.match(css, /\.b2b-site main \.tone-dark a:not\(\.button-link\)\{color:#f8f7f3!important\}/);
   assert.match(brand, /`--link` \| `#066C68`/);
   assert.match(brand, /1100 px leveydestä alaspäin/);
