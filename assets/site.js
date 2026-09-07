@@ -12,5 +12,5 @@
   button.addEventListener('click',function(){setOpen(button.getAttribute('aria-expanded')!=='true');});
   nav.querySelectorAll('a').forEach(function(link){link.addEventListener('click',function(){setOpen(false);});});
   document.addEventListener('keydown',function(event){if(event.key==='Escape'&&button.getAttribute('aria-expanded')==='true'){setOpen(false);button.focus();}});
-  window.matchMedia('(min-width:901px)').addEventListener('change',function(event){if(event.matches)setOpen(false);});
+  window.matchMedia('(min-width:1101px)').addEventListener('change',function(event){if(event.matches)setOpen(false);});
 })();
