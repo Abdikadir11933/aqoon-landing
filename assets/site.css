@@ -176,7 +176,7 @@ summary::marker{content:''}
 .b2b-site .skip-link{position:fixed;left:16px;top:8px;z-index:1000;transform:translateY(-150%);padding:12px 18px;background:#0a0a0a;color:#f8f7f3;border-radius:6px}
 .b2b-site .skip-link:focus{transform:translateY(0)}
 .b2b-site .home-bridge__caption{color:#066c68!important}
-.b2b-site main a:not(.button-link){color:#066c68!important}
+.b2b-site main a:not(.button-link):not([href*="cal.com"]){color:#066c68!important}
 .b2b-site main .tone-dark a:not(.button-link){color:#f8f7f3!important}
 .b2b-site main summary[style*="color:#087d78"]{color:#066c68!important}
 .b2b-site .case-learning-card>p:first-child{color:#066c68!important}
