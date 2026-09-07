@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 6.9.2026
+Last compiled: 7.9.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -108,8 +108,8 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Stadin AO työvoimakoulutukset maahanmuuttajille**
   - Fits: immigrant unemployed jobseekers or people at risk of unemployment.
   - Helps with: profession + S2 support + route to work.
-  - Status: the **Turvallisuusala + S2-tuki** route closed on 4.9.2026 and must not be presented as open from 5.9. onward. The currently listed **Elintarvikeala + kielituki** route remains open through 7.9.2026. Stadin AO says future trainings will be added to the page as they become available, so re-check rather than carrying an old deadline forward.
-  - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/koulutukset-ja-palvelut-maahanmuuttajille/tyovoimakoulutukset-maahanmuuttajille/
+  - Status: the **Turvallisuusala + S2-tuki** route closed on 4.9.2026. The **Elintarvikealan avustaviin tehtäviin, kielituettu koulutus maahan muuttaneille** route closes **today 7.9.2026**; its training period is 13.10.2026–18.6.2027. Do not present this route as open from 8.9. onward unless the official page changes. Stadin AO says future trainings will be added during autumn and application dates announced later.
+  - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/tyovoimakoulutukset/
 
 - **Sosiaali- ja terveysalan koulutus** — Stadin AO / Helsinki employment services
   - Fits: primarily unemployed jobseekers or jobseekers at risk of unemployment who are suitable for the training.
@@ -167,6 +167,12 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagpr2irxsi
 
 ### Espoo
+
+- **Nuorten avoin työpaja — Sello Library** — Valo-Valmennusyhdistys / City of Espoo event calendar
+  - Fits: 15–29-year-olds.
+  - Helps with: low-threshold discussion and guidance around studies, job seeking, future plans, everyday challenges or other issues on the young person's mind.
+  - Status: Mondays 7.9.–28.12.2026, 14.00–16.00, Sellon kirjaston Paja, Leppävaarankatu 9; free. The official listing states Finnish as the language.
+  - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqfzpufda
 
 - **Ohjaamotalo's Starttipiste — Lippulaiva Library** — City of Espoo
   - Fits: young people under 30 living in Espoo or Kauniainen; the event listing labels the target audience 15–30, while the service page states the service is for residents under 30, so use 15–29 in family-facing wording.
@@ -323,10 +329,10 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 
 - **Työnhakuprofiili — obligation in force from 1.9.2026**
   - Fits: jobseekers for whom the statutory profile obligation applies.
-  - Important: a new jobseeker generally has 15 working days after job search starts to publish the profile. For job search that began before 1.9., the obligation normally begins at the next työnhakukeskustelu, followed by 15 working days to publish. A published profile remains valid for a maximum of six months at a time; if job search continues, the profile must be republished so it remains published when required. Statutory exceptions exist.
+  - Important: a new jobseeker generally has 15 working days after job search starts to publish the profile. For job search begun before 1.9., the obligation or an applicable exemption is set at the next `työnhakukeskustelu` or when the person's plan is prepared. When the next job-search discussion triggers the obligation, current guidance gives generally 15 working days after that discussion; check the person's own instruction for the actual deadline. A published profile can be published for a maximum of six months at a time; if job search continues, publication must be renewed so it remains published when required.
   - If the person does not publish in time, the employment authority can publish minimum information. The official guidance says this does not end job search or directly affect unemployment security.
-  - Official: https://tyomarkkinatori.fi/uutiset/tyonhakuprofiili-tulee-osaksi-tyonhakua-1-9-alkaen
-  - Six-month publication source: https://tyomarkkinatori.fi/en/employment-and-statistics/job-market-finland-in-numbers
+  - Official obligation: https://tyomarkkinatori.fi/uutiset/tyonhakuprofiili-tulee-osaksi-tyonhakua-1-9-alkaen
+  - Current instructions / six-month renewal: https://tyomarkkinatori.fi/ohjeet-ja-tuki/henkiloasiakkaat/oma-tyopolku-osion-ohjeet/omatoiminen-tyonhaku/nain-taytat-tyonhakuprofiilin
 
 - **Palkkatuki**
   - Fits: some unemployed jobseekers where employment services assess that wage subsidy may help employment.
