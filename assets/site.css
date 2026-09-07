@@ -2,10 +2,10 @@
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{margin:0;background:#f8f7f3;color:#0a0a0a;font-family:'Outfit',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-wrap:anywhere}
 img{max-width:100%}
-a{color:#087d78;text-decoration-thickness:1px;text-underline-offset:3px}
+a{color:#066c68;text-decoration-thickness:1px;text-underline-offset:3px}
 a:hover{color:#0a0a0a}
 button,a{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
-:focus-visible{outline:2px solid #079d97;outline-offset:3px}
+:focus-visible{outline:2px solid #066c68;outline-offset:3px}
 .menu-toggle{display:none}
 [data-mobile-nav][hidden]{display:none!important}
 summary::-webkit-details-marker{display:none}
@@ -176,8 +176,17 @@ summary::marker{content:''}
 .b2b-site .skip-link{position:fixed;left:16px;top:8px;z-index:1000;transform:translateY(-150%);padding:12px 18px;background:#0a0a0a;color:#f8f7f3;border-radius:6px}
 .b2b-site .skip-link:focus{transform:translateY(0)}
 .b2b-site .home-bridge__caption{color:#066c68!important}
-.b2b-site .tone-cream a{color:#066c68}
+.b2b-site main a:not(.button-link):not([href*="cal.com"]){color:#066c68!important}
+.b2b-site main .tone-dark a:not(.button-link){color:#f8f7f3!important}
+.b2b-site main summary[style*="color:#087d78"]{color:#066c68!important}
+.b2b-site .case-learning-card>p:first-child{color:#066c68!important}
+.b2b-site main dt>span[aria-hidden="true"]{color:#066c68!important}
+.b2b-site .disclosure summary:after{color:#066c68}
 .b2b-site #main-content{scroll-margin-top:88px}
+@media(hover:hover){
+ .b2b-site .desktop-nav nav a:hover{border-bottom-color:#066c68!important}
+ .b2b-site a[href*="cal.com"]:hover{box-shadow:0 0 0 3px rgba(6,108,104,.28)}
+}
 @media(max-width:480px){.b2b-site .offer-summary,.b2b-site .phase-comparison{grid-template-columns:minmax(0,1fr)}}
 /* Longer, explicit booking label needs the mobile menu earlier. */
 @media(min-width:901px) and (max-width:1100px){.b2b-site .desktop-nav{display:none!important}.b2b-site .menu-toggle{display:grid!important;width:auto!important;min-width:76px;padding:0 12px}.b2b-site [data-mobile-nav]:not([hidden]){display:flex!important}}

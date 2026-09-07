@@ -15,8 +15,8 @@ Tämä tiedosto määrittää `aqoon.live`-B2B-sivuston ilmeen ja äänensävyn.
 | `--dark-line` | `#2A2A28` | Jakoviivat mustalla taustalla |
 | `--muted` | `#62625D` | Toissijainen teksti ja kuvatekstit |
 | `--muted-dark` | `#8A8A84` | Toissijainen teksti mustalla taustalla |
-| `--teal` | `#079D97` | Aksenttiviiva, aktiivinen navigaatio ja fokus |
-| `--link` | `#087D78` | Tekstilinkit vaalealla taustalla |
+| `--teal` | `#079D97` | Aksenttiviivat ja aktiivinen navigaatio. Ei pienessä tekstissä tai fokuksessa vaalealla taustalla |
+| `--link` | `#066C68` | Tekstilinkit ja fokus vaalealla taustalla |
 | `--sand` | `#E8A766` | Logon piste |
 | `--wa` | `#1FAF5A` | Vain suojattujen Pilke-sivujen liittymis- ja lähetystoiminnot |
 
@@ -44,8 +44,8 @@ Yhdellä näkymällä on yksi selvä ensisijainen toiminto. B2B-sivujen CTA ohja
 - Sisältökortit ja tietolaatikot ovat pääosin suorakulmaisia. Niissä ei käytetä koristeellista varjoa tai turhaa pyöristystä.
 - CTA-napit ovat täysiä pill-muotoja. Mobiilivalikon painikkeessa käytetään 8 px pyöristystä.
 - Navigaatio on sticky, 66 px korkea ja `--paper`-taustainen. Aktiivinen sivu: paino 600 ja 2 px `--teal`-alaviiva.
-- Hampurilaisvalikko tulee käyttöön 900 px leveydestä alaspäin.
-- Fokus: `outline: 2px solid var(--teal); outline-offset: 3px`.
+- Hampurilaisvalikko tulee käyttöön 1100 px leveydestä alaspäin, jotta pitkä varauspainike ja navigaatio eivät törmää.
+- Fokus: `outline: 2px solid var(--link); outline-offset: 3px`.
 - B2B-sivujen pääkontti on enintään 1180 px. Leipätekstin luettava leveys on noin 52–62ch.
 
 ## Typografia
