@@ -1,0 +1,30 @@
+name: Refresh verified programmes 2026-09-08
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'scripts/refresh_verified_programmes_2026_09_08.py'
+      - '.github/workflows/refresh-verified-programmes-2026-09-08.yml'
+permissions:
+  contents: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apply verified programme and employment updates
+        run: python scripts/refresh_verified_programmes_2026_09_08.py
+      - name: Commit verified updates
+        run: |
+          if git diff --quiet; then
+            echo "No verified changes needed"
+            exit 0
+          fi
+          git config user.name "AQOON programme registry"
+          git config user.email "actions@users.noreply.github.com"
+          git add caawi/ajankohtaiset/index.html internal/open-programmes.md workspaces/evidence-and-research/references/routes/employment-services-current.md workspaces/family-research/references/interview-cheatsheets/work-and-unemployment.md
+          git commit -m "Refresh verified programmes and employment guidance for 8 Sep"
+          git push
