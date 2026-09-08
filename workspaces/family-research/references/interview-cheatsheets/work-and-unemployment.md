@@ -1,6 +1,6 @@
 # Work and unemployment cheat sheet
 
-Updated 2026-09-06. Recheck live Työmarkkinatori/Kela/local employment-service rules before case-specific promises.
+Updated 2026-09-08. Recheck live Työmarkkinatori/Kela/local employment-service rules before case-specific promises.
 
 ## Ilmoittautuminen työttömäksi työnhakijaksi
 **What it is:** Official registration as an unemployed jobseeker with the local employment authority through Työmarkkinatori.
@@ -108,6 +108,27 @@ Updated 2026-09-06. Recheck live Työmarkkinatori/Kela/local employment-service 
 **Watch out:** Do not send someone to Piispanportti for a Tuesday-Thursday walk-in official matter based on old hours. Recheck same-day hours before promising access.
 
 **Verify:** City of Espoo, change effective 1.9.2026: https://www.espoo.fi/en/news/2026/08/changes-opening-hours-jobseekers-advisory-services-1-september-2026
+
+## Local recruitment subsidies — useful hiring lever, not money for the client
+**When to screen:** A young unemployed jobseeker in Helsinki/Espoo/Vantaa is talking with an employer, or an unemployed foreign-language Espoo client has a prospective employer.
+
+**Nuorten rekrytointituki:** Helsinki and Espoo/Kauniainen currently use an under-30 criterion; Vantaa's current route is for unemployed 18–29-year-old Vantaa jobseekers. Current city pages publish employer support of 50% of wage costs, max EUR 1,500/month, generally for 3–6 months. Municipality-specific conditions still control.
+
+**Espoon rekrytointituki:** A separate Espoo route can pay a private/third-sector employer a discretionary EUR 5,000 when hiring an unemployed Espoo resident who is under 30 **or foreign-language**, has at least three months of unemployment and has upper-secondary or higher education. The job must last at least 12 months at at least 80% working time.
+
+**Who applies / gets the money?** The employer. The client does not receive the subsidy directly, and the support agreement/decision must be in place before the job starts.
+
+**Ask:** Missä kunnassa asut? Kuinka vanha olet? Oletko nyt työtön työnhakija ja kuinka kauan? Onko sinulla toisen asteen tai korkeakoulututkinto? Onko työnantaja jo tiedossa? Onko työsuhteen kesto ja työaika sovittu? Onko työ jo alkanut? Onko työnantajalle kerrottu rekrytointituesta?
+
+**Next:** If the route looks relevant, give the employer the correct city link and have the client/employer verify eligibility with the local employment service before the employment starts.
+
+**Watch out:** Do not call this `palkkatuki`, do not promise that a client “has” the subsidy, and do not present EUR 1,500/month or EUR 5,000 as money paid to the jobseeker. These are separate local, discretionary employer supports with different conditions.
+
+**Verify:**
+- Helsinki: https://www.hel.fi/en/business-and-work/jobseekers/start-your-job-search/recruitment-subsidy-for-young-people
+- Espoo youth subsidy: https://www.espoo.fi/fi/nuorten-rekrytointituki
+- Vantaa: https://www.vantaa.fi/fi/tyonhaku-ja-tyollistaminen/tyonantajapalvelut/rekrytoinnin-tuet-ja-etuudet/nuorten-tyontekijoiden-rekrytoinnin-tuet
+- Espoo EUR 5,000 subsidy: https://www.espoo.fi/en/rekrytointituki
 
 ## Yleistuki
 **What it is:** Kela unemployment support from 1 May 2026, replacing Kela’s old työmarkkinatuki and peruspäiväraha.

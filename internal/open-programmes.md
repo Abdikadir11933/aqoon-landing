@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 7.9.2026
+Last compiled: 8.9.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -108,7 +108,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Stadin AO työvoimakoulutukset maahanmuuttajille**
   - Fits: immigrant unemployed jobseekers or people at risk of unemployment.
   - Helps with: profession + S2 support + route to work.
-  - Status: the **Turvallisuusala + S2-tuki** route closed on 4.9.2026. The **Elintarvikealan avustaviin tehtäviin, kielituettu koulutus maahan muuttaneille** route closes **today 7.9.2026**; its training period is 13.10.2026–18.6.2027. Do not present this route as open from 8.9. onward unless the official page changes. Stadin AO says future trainings will be added during autumn and application dates announced later.
+  - Status: the **Turvallisuusala + S2-tuki** route closed on 4.9.2026. The **Elintarvikealan avustaviin tehtäviin, kielituettu koulutus maahan muuttaneille** route is now **closed/passed**; its official application deadline was 7.9.2026 and the training period is 13.10.2026–18.6.2027. Do not present either route as open from 8.9. onward unless the official page changes. Stadin AO says future trainings will be added during autumn and application dates announced later.
   - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/tyovoimakoulutukset/
 
 - **Sosiaali- ja terveysalan koulutus** — Stadin AO / Helsinki employment services
@@ -193,6 +193,13 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: active/open.
   - Official: https://www.espoo.fi/fi/tyoelama/tyollisyyspalvelut/keinoja-paasta-tyoelamaan
 
+- **Espoon rekrytointituki** — City of Espoo
+  - Fits: an unemployed Espoo jobseeker who is under 30 **or** foreign-language, has been unemployed for at least three months and has upper-secondary or higher education; the hiring employer must be private-sector or third-sector.
+  - Helps with: a concrete hiring incentive that the jobseeker can flag to a prospective employer. The City can pay the employer a discretionary €5,000 one-off subsidy.
+  - Status: current; applications have been open since 3.2.2026. The employment relationship must last at least 12 months at at least 80% working time, and it must not start before the subsidy is granted.
+  - Important: the money is paid to the employer, not the jobseeker. AQOON must not promise that an employer or jobseeker qualifies; Espoo Employment Services makes the decision.
+  - Official: https://www.espoo.fi/en/rekrytointituki
+
 - **Kotivanhempien suomen kielen kurssit** — Koto-Espoo / Omnia / Espoon avoin varhaiskasvatus
   - Fits: Espoo residents outside the workforce, especially immigrant stay-at-home parents.
   - Helps with: Finnish while childcare is provided for children over 1 who are not in daycare; separate A2 baby groups allow participation with a child under 1.
@@ -213,6 +220,13 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: free recurring club Wednesdays 15.00–18.00 at Lippulaiva Library Community Kitchen, Espoonlahdenkatu 8. Autumn dates include 2.9., 9.9., 16.9., 23.9., 30.9., 7.10., 21.10., 4.11., 11.11., 18.11. and 25.11.2026. Languages listed are Finnish, Dari and Farsi. Group size is max 10 per session.
   - Registration/contact: advance registration required; call or message the publicly listed facilitator Fatemeh at +358 46 611 5126 or use the WhatsApp group linked on the official event page.
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagpwlettwm
+
+- **Ison Omenan kirjaston suomenkielinen kielikahvila** — City of Espoo / Elinvoima
+  - Fits: people who want to practise spoken Finnish in a relaxed conversation group.
+  - Helps with: free, low-threshold spoken-Finnish practice.
+  - Status: Tuesdays 17.00–18.30 through 15.12.2026 at Iso Omena Library, Suomenlahdentie 1, Espoo; free. The City of Espoo's current library guidance says library language cafés do not require advance registration.
+  - Official event: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagnsn7bfei
+  - Official library overview: https://www.espoo.fi/fi/kulttuuri-ja-vapaa-aika/kirjastot/kielikahvilat-espoon-kaupunginkirjastossa
 
 - **Entresse Library Finnish Language Café** — Finnish Red Cross / Espoo libraries
   - Fits: anyone who wants to practise spoken Finnish; no advance registration.
@@ -333,6 +347,14 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - If the person does not publish in time, the employment authority can publish minimum information. The official guidance says this does not end job search or directly affect unemployment security.
   - Official obligation: https://tyomarkkinatori.fi/uutiset/tyonhakuprofiili-tulee-osaksi-tyonhakua-1-9-alkaen
   - Current instructions / six-month renewal: https://tyomarkkinatori.fi/ohjeet-ja-tuki/henkiloasiakkaat/oma-tyopolku-osion-ohjeet/omatoiminen-tyonhaku/nain-taytat-tyonhakuprofiilin
+
+- **Nuorten rekrytointituki — local 2026 hiring subsidy** — Helsinki / Espoo / Vantaa employment services
+  - Fits: local unemployed young jobseekers; Helsinki and Espoo/Kauniainen use an under-30 criterion, while Vantaa's current route is for unemployed 18–29-year-old Vantaa jobseekers. Always verify municipality-specific conditions.
+  - Helps with: lowering an employer's hiring cost. Current city pages publish support equal to 50% of wage costs, up to €1,500/month, generally for 3–6 months.
+  - Important: the employer applies and receives the money; it is not a payment to the jobseeker. The support agreement/decision must be in place before the employment starts. It is discretionary and local conditions differ.
+  - Helsinki: https://www.hel.fi/en/business-and-work/jobseekers/start-your-job-search/recruitment-subsidy-for-young-people
+  - Espoo: https://www.espoo.fi/fi/nuorten-rekrytointituki
+  - Vantaa: https://www.vantaa.fi/fi/tyonhaku-ja-tyollistaminen/tyonantajapalvelut/rekrytoinnin-tuet-ja-etuudet/nuorten-tyontekijoiden-rekrytoinnin-tuet
 
 - **Palkkatuki**
   - Fits: some unemployed jobseekers where employment services assess that wage subsidy may help employment.

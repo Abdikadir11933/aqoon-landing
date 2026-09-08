@@ -7,7 +7,7 @@ authority_ids: [authority.employment-area]
 required_inputs: [municipality, jobseeker_status, jobsearch_start_date, employment_status, goal, authentication_or_nationality_barrier]
 source_ids: [src.jobmarket.te24, src.jobmarket.jobseeker-registration, src.jobmarket.employment-plan, src.jobmarket.employment-reforms-2026, src.jobmarket.unemployment-consequences]
 volatility: high
-last_verified_at: 2026-09-06
+last_verified_at: 2026-09-08
 decision_maker: user's municipal employment area / relevant provider
 aqoon_role: [explain, navigate, help_prepare, remind]
 aqoon_must_not: [register_user, decide_unemployment_security, create_authority_plan, determine_statutory_obligations]
@@ -78,6 +78,23 @@ Primary sources:
 - Job Market Finland, current profile instructions and six-month renewal: https://tyomarkkinatori.fi/en/instructions-and-support/personal-customers/instructions-for-the-my-job-path-section/independent-job-search/how-to-fill-in-your-job-applicant-profile
 
 Operator implication: from September onward, when work is relevant, ask whether job search is active, when it started, whether a post-1.9 `työnhakukeskustelu` or plan preparation has happened for an older job search, whether Työnhakuprofiili is published, when the current publication expires/was last republished, and what deadline/instruction appears in the person's own Työmarkkinatori account. Do not frame the profile as only an optional CV tip, and do not incorrectly threaten loss of benefit or job-search status.
+
+## Local recruitment subsidies for young and foreign-language jobseekers — 2026
+
+Several municipal employment areas currently have employer-paid recruitment subsidies that can be a useful hiring lever for an eligible jobseeker. These are **local, discretionary employer subsidies**, not benefits paid to the jobseeker, and they do not replace the ordinary job-search or unemployment-security rules.
+
+- **Helsinki Nuorten rekrytointituki:** for an unemployed Helsinki jobseeker under 30. Current city guidance says an employer can receive 50% of wage costs, up to EUR 1,500/month, for 3–6 months. The jobseeker can tell a prospective employer about the route, but the employer makes the application/agreement with Helsinki Employment Services before the employment begins. The temporary scheme can currently be applied for through 31.5.2027 and granted through 30.6.2027.
+- **Espoo/Kauniainen Nuorten rekrytointituki:** current terms from 1.7.2026 cover an unemployed Espoo or Kauniainen jobseeker under 30. The private- or third-sector employer can receive 50% of wage costs, up to EUR 1,500/month, for 3–6 months. The employment can be part-time or full-time and fixed-term or permanent; the employer must secure the support before the employment begins.
+- **Vantaa Nuorten rekrytointituki:** current Vantaa guidance covers an unemployed 18–29-year-old Vantaa jobseeker. A private- or third-sector employer can receive 50% of gross wage costs, up to EUR 1,500/month, for 3–6 months, including part-time or full-time work. Vantaa instructs the young person to contact their responsible employment-services official as part of the employer's application process, and the employment must not start before the support agreement.
+- **Espoon rekrytointituki:** separate from the youth subsidy. Espoo can pay a private- or third-sector employer a discretionary EUR 5,000 one-off subsidy for hiring an unemployed Espoo resident who is **under 30 or foreign-language**, has been unemployed for at least three months and has upper-secondary or higher education. The employment must last at least 12 months at at least 80% working time and cannot start before the subsidy is granted.
+
+Primary sources:
+- Helsinki, jobseeker-facing youth subsidy: https://www.hel.fi/en/business-and-work/jobseekers/start-your-job-search/recruitment-subsidy-for-young-people
+- Espoo, youth subsidy: https://www.espoo.fi/fi/nuorten-rekrytointituki
+- Vantaa, youth recruitment support: https://www.vantaa.fi/fi/tyonhaku-ja-tyollistaminen/tyonantajapalvelut/rekrytoinnin-tuet-ja-etuudet/nuorten-tyontekijoiden-rekrytoinnin-tuet
+- Espoo, EUR 5,000 recruitment subsidy: https://www.espoo.fi/en/rekrytointituki
+
+Operator implication: when a young unemployed client in Helsinki/Espoo/Vantaa, or a foreign-language unemployed Espoo client, is actively talking to an employer, ask municipality, age, current unemployment status/duration, education, employer type, proposed contract length/hours and whether work has already started. Explain that the employer—not the jobseeker—applies for and receives the support. Never tell a family or employer that the subsidy is guaranteed; route them to the relevant local employment service before the start date.
 
 ## Espoo service-access change from 1.9.2026
 
