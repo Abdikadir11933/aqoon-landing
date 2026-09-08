@@ -177,8 +177,8 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Ohjaamotalo's Starttipiste — Lippulaiva Library** — City of Espoo
   - Fits: young people under 30 living in Espoo or Kauniainen; the event listing labels the target audience 15–30, while the service page states the service is for residents under 30, so use 15–29 in family-facing wording.
   - Helps with: job search, career choices, studies, housing, income/financial matters, wellbeing and other current life questions; no appointment is required.
-  - Status: Lippulaiva service resumes 8.9.2026 and is listed every Tuesday 15.00–18.00 at Lippulaiva Library, Espoonlahdenkatu 8. Free; languages listed are Finnish, Swedish and English.
-  - Official event: https://www.espoo.fi/en/events/espooevents%3Aagpqhf4slq
+  - Status: the current event series runs 8.9.–24.11.2026, every Tuesday 15.00–18.00 at Lippulaiva Library, Espoonlahdenkatu 8. Free; languages listed are Finnish, Swedish and English. The permanent service page also lists Tuesday opening hours, but use the dated event series for public event wording and re-check after 24.11.
+  - Official event series: https://www.espoo.fi/en/events/espooevents%3Aagpqhf4miu
   - Official service page: https://www.espoo.fi/en/units/ohjaamotalo-starttipiste-lippulaiva-library
 
 - **Omnian osaamiskeskus maahanmuuttajille (OSKE)** — Omnia / Espoo employment services
@@ -199,6 +199,18 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: current; applications have been open since 3.2.2026. The employment relationship must last at least 12 months at at least 80% working time, and it must not start before the subsidy is granted.
   - Important: the money is paid to the employer, not the jobseeker. AQOON must not promise that an employer or jobseeker qualifies; Espoo Employment Services makes the decision.
   - Official: https://www.espoo.fi/en/rekrytointituki
+
+- **Mobile Espoo Info — Kohtaamispaikka Askel** — City of Espoo / Espoo Info
+  - Fits: Espoo residents who need low-threshold help finding or using public services or online services; advice is listed in Finnish, Swedish and English.
+  - Helps with: City of Espoo public-service advice, partner-service information including HSL, Kela and Western Uusimaa Wellbeing Services County, and digital support for online services.
+  - Status: current event series 8.9.–8.12.2026 at Kannusillankatu 8, Espoo; free. The official series currently lists visits on 8.9., 6.10. and 10.11. at 10.00–11.00. Do not infer a weekly schedule or promise an unlisted date; re-check the event series for the next visit.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagqhvp6tem
+
+- **Workshop for Families — Entresse Library** — City of Espoo
+  - Fits: families of any age looking for a free low-threshold activity; languages listed are Finnish, English and Arabic.
+  - Helps with: shared art and crafts at Entresse Library's Paja workshop.
+  - Status: Tuesdays 16.00–17.30, 4.8.–15.12.2026, Siltakatu 11, Espoo; free and no advance registration required.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagphfqw7ne
 
 - **Kotivanhempien suomen kielen kurssit** — Koto-Espoo / Omnia / Espoon avoin varhaiskasvatus
   - Fits: Espoo residents outside the workforce, especially immigrant stay-at-home parents.
