@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 8.9.2026
+Last compiled: 9.9.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -99,6 +99,14 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: autumn 2026 activities are current in the three districts. The official page links district-specific schedules; re-check the relevant district schedule before quoting a date or time.
   - Official: https://www.hel.fi/en/childhood-and-education/welcome-families
 
+- **Tänään tavataan -kahvilat** — City of Helsinki playgrounds and family houses
+  - Fits: baby and child families; current City event listings explicitly include families with children, families with babies and immigrant families among the target groups.
+  - Helps with: low-threshold family contact, children learning Finnish through stories, songs, rhymes and play, and adults practising Finnish and meeting other families.
+  - Status: free recurring meetings at multiple Helsinki playgrounds and family houses. The current City schedule lists, among others, Brahe and Iso-Antti on Mondays 10–11; Sahrami on Wednesdays 13.30–14.30; and Kipinäpuisto, Mellunmäki, Pihlajisto, Ida and Strömberg on Thursdays 10–11. Current dated event entries also confirm Mellunmäki and Kipinäpuisto on 10.9.2026 and later recurring sessions.
+  - Registration/caution: the checked City schedule and event pages do not publish a general advance-registration route. Re-check the chosen location's current calendar before routing a family because individual location schedules can change.
+  - Official schedule: https://www.hel.fi/fi/kasvatus-ja-koulutus/leikkipuisto-ja-perhetalotoiminta/mita-leikkipuistoissa-tehdaan
+  - Official dated example: https://tapahtumat.hel.fi/fi/tapahtumat/helsinki%3Aagqcgyddbi
+
 - **Welcome Day Malmitalo & Kanneltalo** — City of Helsinki
   - Fits: international newcomers and other residents interested in local services and opportunities; the official page says everyone is welcome.
   - Helps with: meeting city and local organisations, learning about local services and opportunities, and all-ages activities.
@@ -126,7 +134,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Aikuisten TUVA** — Stadin AO
   - Fits: adults over 18 who want to strengthen Finnish through S2 teaching and prepare for further study.
   - Helps with: Finnish, basic study skills, guidance and transition toward vocational or upper-secondary studies.
-  - Status: application open through 9.9.2026 for studies starting 30.9.; selection result 21.9. Current page says places for adults are specifically for applicants who want to develop Finnish through S2 teaching. A new application period is already published for 10.9.–4.11.2026, with studies starting 25.11.2026, so update the public card after the current round closes rather than marking TUVA unavailable.
+  - Status: the current round closes 9.9.2026 for studies starting 30.9.; selection result 21.9. Current page says places for adults are specifically for applicants who want to develop Finnish through S2 teaching. A new application period is already published for 10.9.–4.11.2026, with studies starting 25.11.2026 and selection result 16.11.2026, so do not mark TUVA unavailable after 9.9.
   - Official: https://stadinao.hel.fi/hae-opiskelemaan/tuva/
 
 - **Kielituettu ryhmävalmennus** — Stadin AO / Helsinki employment services
@@ -308,10 +316,10 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: Wednesdays 2.9.–9.12.2026, 10.00–12.00, Rulla, Keskustori 4, Tampere; no session during autumn-break week 42. Current guiding languages are plain Finnish, English and Russian. Advance registration is required with the cultural instructor listed on the official page.
   - Official: https://www.tampere.fi/lastenkulttuurikeskus-rulla/rullan-kerhot-ja-kurssit
 
-- **Welcome to Tampere Event** — International House Tampere / City of Tampere
-  - Fits: internationals who are currently living in Tampere or have recently moved there and want practical information about living in the city.
+- **Welcome to Tampere Event — 8.9.2026** — International House Tampere / City of Tampere
+  - Fits: internationals who are currently living in Tampere or have recently moved there and wanted practical information about living in the city.
   - Helps with: low-threshold newcomer orientation and finding relevant local services.
-  - Status: 8.9.2026, 15.00–17.00, International House Tampere, Rautatienkatu 10; free. The official events listing currently presents the event as upcoming.
+  - Status: **closed/passed**. The event took place 8.9.2026, 15.00–17.00, International House Tampere, Rautatienkatu 10. Do not present it as a current family opportunity from 9.9.2026 onward.
   - Official: https://internationalhouse.tampere.fi/en/events/
 
 - **Career Boost Workshop** — International House Tampere
