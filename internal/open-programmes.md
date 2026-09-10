@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 9.9.2026
+Last compiled: 10.9.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -59,6 +59,14 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Helps with: low-threshold family activities and multilingual cultural participation.
   - Status: Saturday 26.9.2026 in Vantaa; free. The City of Vantaa says activities include Spanish, Swahili, Portuguese and Italian, and all activities can also be enjoyed in Finnish or English. Re-check the linked Vantaa event/calendar information for the exact programme before promising a specific workshop or time.
   - Official: https://www.vantaa.fi/en/topical/news/childrens-culture-across-vantaa-explore-fall-2026-program-children-and-young
+
+- **Lasten liikunnalliset syysloman päiväleirit — week 42** — Vantaan kaupunki / sports services
+  - Fits: children in grades 1–4. The checked autumn sources do not state a separate Vantaa-residency restriction, so do not infer one.
+  - Helps with: five-day supervised sports/activity day camps during the school autumn break at several Vantaa locations.
+  - Status: registration opens Tuesday 15.9.2026 at 08.00 in Vantaaliikunta and places are filled in registration order. Camps are Finnish-language and cost €45/child/week, including possible excursion fees.
+  - Conditions/caution: child must be able to participate in a group of 20 and follow shared rules; no prior sports experience is required. No hot meal is served, so the family must provide meals/snacks. The service page also describes a phone-registration route.
+  - Official news: https://www.vantaa.fi/fi/ajankohtaista/uutinen/ilmoita-lapsesi-syysloman-paivaleirille-ilmoittautuminen-alkaa-159
+  - Official service: https://www.vantaa.fi/fi/palveluhakemisto/palvelu/lasten-liikunnalliset-paivaleirit
 
 - **Mahdollisuuksien tori — Tikkurila 5.9.2026** — Vantaan kaupunki / local organisations
   - Fits: whole families and residents interested in an international, multicultural outdoor event.
@@ -134,8 +142,35 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Aikuisten TUVA** — Stadin AO
   - Fits: adults over 18 who want to strengthen Finnish through S2 teaching and prepare for further study.
   - Helps with: Finnish, basic study skills, guidance and transition toward vocational or upper-secondary studies.
-  - Status: the current round closes 9.9.2026 for studies starting 30.9.; selection result 21.9. Current page says places for adults are specifically for applicants who want to develop Finnish through S2 teaching. A new application period is already published for 10.9.–4.11.2026, with studies starting 25.11.2026 and selection result 16.11.2026, so do not mark TUVA unavailable after 9.9.
+  - Status: **open 10.9.–4.11.2026** for studies starting 25.11.2026; selection result 16.11. Adult places are specifically for applicants over 18 who want to develop Finnish through S2 teaching. Application starts through the `Täytä hakemus` route on the official TUVA page (Stadin Wilma).
+  - General TUVA context: full-time studies, maximum 38 weeks. Do not infer a separate Helsinki-residency condition or universal participant cost from the checked page; verify support/cost questions case by case.
   - Official: https://stadinao.hel.fi/hae-opiskelemaan/tuva/
+
+- **Stadin Futura** — Stadin AO / Helsinki Employment Services
+  - Fits: Helsinki residents aged 18–29 who need support choosing a field, applying to studies, identifying their strengths or building study/work readiness. Finnish at least A2.1.
+  - Helps with: career/education direction, visits to study fields, recognising skills, study readiness, work-life readiness and a next-step plan.
+  - Status: next group 15.9.–7.10.2026, Tuesdays–Wednesdays 9–12 at Teollisuuskatu. Later groups are 13.10.–4.11. and 10.11.–2.12.2026. No separate public application deadline is stated on the checked page.
+  - Route: the responsible expert in Helsinki Employment Services enrols the participant in Wilma under `Työllisyydenhoito`; after enrolment the teacher contacts the participant for an initial interview.
+  - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/ohjausta-omalle-uralle/
+
+- **Oppisopimusvalmennus** — Stadin AO / Helsinki Employment Services
+  - Fits: Helsinki jobseekers who need support finding an apprenticeship place and whose Finnish/study readiness is sufficient for the intended qualification.
+  - Helps with: apprenticeship rules and study route, qualification planning, job search, finding a work-trial/apprenticeship place, group/individual guidance and, when needed, a guided work trial.
+  - Status: non-stop / can be referred throughout the year; duration about one month. Group meets 2–3 times per week for about three hours at Teollisuuskatu.
+  - Route/caution: the referring employment-services expert enrols the client in Wilma. The checked page does not state a participant fee, so do not promise free participation without separate verification.
+  - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/ohjausta-omalle-uralle/
+
+- **Ammattitaitokartoitus 55+** — Stadin AO / Helsinki Employment Services
+  - Fits: primarily Helsinki Employment Services clients over 55 who have a qualification or prior studies and are considering changing field. Service is in Finnish and fluent Finnish is required.
+  - Helps with: mapping vocational skills and identifying possible next study/work routes.
+  - Status: 1–3 individual meetings at Malminkatu 34; no published deadline. Responsible employment-services expert refers through Wilma.
+  - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/ohjausta-omalle-uralle/
+
+- **Osaamisvalmennus — autumn 2026** — Stadin AO / Helsinki Employment Services
+  - Fits: Helsinki Employment Services clients who can participate in fluent Finnish.
+  - Helps with: identifying and describing skills for work/study planning.
+  - Status: second autumn Teams round is open until 21.10.2026; sessions 26.10., 2.11. and 9.11. at 13.00. Registration is through Wilma; the teacher contacts the applicant after application.
+  - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/ohjausta-omalle-uralle/
 
 - **Kielituettu ryhmävalmennus** — Stadin AO / Helsinki employment services
   - Fits: unemployed Helsinki residents whose work/study direction is unclear.
@@ -272,6 +307,13 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: Thursdays 14.00–16.00 through 17.12.2026 at Sello Library, Leppävaarankatu 9; free. The official event page lists Finnish as the service language. Do not claim another service language or no-registration policy unless the organiser publishes it.
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagplk4v2yi
 
+- **Roda ry — Guidance on job search** — Roda ry / City of Espoo event calendar
+  - Fits: people needing practical low-threshold job-search support. Languages listed are Finnish, English, Kurdish and Persian.
+  - Helps with: writing/editing job applications and CVs, interview coaching, job-search questions and guidance on everyday matters.
+  - Status: free recurring series at Sello Library Paja, Leppävaarankatu 9, 3.9.–17.12.2026. The series description says Thursdays 16.30–18.30; the dated 10.9 entry is 16.00–18.30, so re-check the chosen dated event before giving a time.
+  - Registration/caution: the checked event page does not publish an advance-registration route or residency restriction; do not invent either.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagpkl62joa
+
 - **Työnantajatreffit recruitment event — Sello 3.9.2026** — Espoo Employment Services
   - Fits: all jobseekers.
   - Helps with: meeting employers that were recruiting across several sectors.
@@ -285,9 +327,9 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqcgejlni
 
 - **Ask Recruiters Anything** — City of Espoo / TA Cafe Helsinki / HeRoHub HR Community
-  - Fits: highly educated international professionals who want direct practical feedback from recruiters and career counsellors.
+  - Fits: highly educated international professionals who wanted direct practical feedback from recruiters and career counsellors.
   - Helps with: CV, cover letter and LinkedIn feedback, understanding recruitment in Finland, questions to recruiters and networking.
-  - Status: 9.9.2026, 17.00–19.30, Haukilahden lukio, Tekniikantie 3, Espoo; English; free. Registration link is published on the official City of Espoo event page.
+  - Status: **closed/passed**. The event took place 9.9.2026, 17.00–19.30, Haukilahden lukio, Tekniikantie 3, Espoo. Do not present it as current from 10.9.2026 onward.
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagp7k2gzvy
 
 - **Career Bootcamp** — Espoo Talent Hub / City of Espoo
@@ -394,6 +436,13 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: active EU-funded development pilot announced 27.8.2026; the published page describes the target group and co-development approach but does not yet provide an individual public enrolment route.
   - Use: strategic AQOON partnership/contact opportunity around multilingual, client-led orientation; do not list as an open family programme until a direct participation route is published.
   - Official: https://internationalhouse.tampere.fi/uutinen/uutta-suuntaa-yhteiskuntaorientaatioihin-asiakaslahtoisen-pilotin-avulla/
+
+- **Vantaa 2027 youth/community grant route and 17.9 grant event** — Vantaan kaupunki
+  - Audience/use: AQOON partnership/funding intelligence. City grant conditions changed from 1.7.2026; affected streams include youth activities, local civic activity and wellbeing/health promotion. The 2027 youth operating-grant round is announced to open in October 2026, but the exact dates must be rechecked before application.
+  - Eligibility context: City grants can go to Vantaa associations/communities and also to non-Vantaa applicants where the funded activity targets Vantaa residents.
+  - Event: grant-information/networking event is listed for 17.9.2026 at Vernissa.
+  - Public-listing rule: do **not** list this grant/event as a family-facing opportunity; it is for organisation/partnership work unless the City separately publishes a resident-facing participation route.
+  - Official: https://www.vantaa.fi/fi/kaupunki-ja-paatoksenteko/talous-ja-strategia/avustukset-ja-apurahat/hae-avustusta-tai-apurahaa
 
 ## Partnership / outreach priorities
 
