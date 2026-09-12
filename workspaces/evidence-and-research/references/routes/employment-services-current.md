@@ -7,7 +7,7 @@ authority_ids: [authority.employment-area]
 required_inputs: [municipality, jobseeker_status, jobsearch_start_date, employment_status, goal, authentication_or_nationality_barrier]
 source_ids: [src.jobmarket.te24, src.jobmarket.jobseeker-registration, src.jobmarket.employment-plan, src.jobmarket.employment-reforms-2026, src.jobmarket.unemployment-consequences]
 volatility: high
-last_verified_at: 2026-09-08
+last_verified_at: 2026-09-12
 decision_maker: user's municipal employment area / relevant provider
 aqoon_role: [explain, navigate, help_prepare, remind]
 aqoon_must_not: [register_user, decide_unemployment_security, create_authority_plan, determine_statutory_obligations]
@@ -26,6 +26,14 @@ Terminology: use `työllisyyspalvelut` / employment area as the current default.
 Someone who is becoming unemployed or laid off can register through Työmarkkinatori's Asiointi service before the change, and should do so no later than their first unemployment day if they intend to seek unemployment security. The person needs to use their own authentication; where the official service says online authentication or nationality conditions prevent that, the local employment-services office is the official alternative. Registration does **not** establish a right to a benefit: the employment authority's statement and the paying institution's own decision remain separate.
 
 After registration, the authority agrees how the customer's case will proceed. The person can see agreed tasks, messages, requests for clarification and employment-plan items in their own Asiointi account. AQOON can help the person understand an official instruction, prepare for the first discussion and set reminders. It must never register on their behalf, guess a deadline that is not visible in the authority's instruction, or represent a benefit decision as confirmed.
+
+## Proof of active job search from 8.9.2026
+
+From 8 September 2026, a jobseeker who needs to prove that their job search is valid can obtain a certificate directly from Työmarkkinatori's Asiointi service. The official route is `Asiointitiedot` → `Tulosteet ja todistukset` → `Lataa todistus (PDF)`. The person can alternatively open the certificate in Asiointi on a mobile device and show it from the screen.
+
+This is evidence of **job-search validity**. It is not by itself a decision that the person is entitled to unemployment benefit; labour-policy assessment and the benefit payer's decision remain separate. AQOON can help a client find and show/download the certificate when another service asks for proof, but must not turn the certificate into a benefit-eligibility promise.
+
+Primary source: https://tyomarkkinatori.fi/ohjeet-ja-tuki/henkiloasiakkaat/asiointi-osion-ohjeet/todistus-tyonhaun-voimassaolosta
 
 ## 2026 interview, search and consequence context
 
