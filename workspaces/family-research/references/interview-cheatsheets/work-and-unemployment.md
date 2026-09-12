@@ -1,6 +1,6 @@
 # Work and unemployment cheat sheet
 
-Updated 2026-09-08. Recheck live Työmarkkinatori/Kela/local employment-service rules before case-specific promises.
+Updated 2026-09-12. Recheck live Työmarkkinatori/Kela/local employment-service rules before case-specific promises.
 
 ## Ilmoittautuminen työttömäksi työnhakijaksi
 **What it is:** Official registration as an unemployed jobseeker with the local employment authority through Työmarkkinatori.
@@ -16,6 +16,19 @@ Updated 2026-09-08. Recheck live Työmarkkinatori/Kela/local employment-service 
 **Ask:** Onko työnhaku juuri nyt voimassa? Milloin se alkoi? Onko tullut tehtäviä tai viestejä Työmarkkinatorille?
 
 **Watch out:** Registration is a key first door, not a guarantee of benefit.
+
+## Todistus työnhaun voimassaolosta — available from Asiointi
+**What it is:** A downloadable PDF certificate from Työmarkkinatori that proves the person's job search is valid at the time the certificate is obtained.
+
+**How to get it:** Työmarkkinatori -> Asiointi -> Asiointitiedot -> Tulosteet ja todistukset -> Lataa todistus (PDF). The official instructions also say the person can open the certificate in Asiointi on a mobile device and show it from the screen.
+
+**When useful:** When another service or organisation asks the person to prove that their job search is currently active.
+
+**Ask:** Tarvitsetko toiselle palvelulle todistuksen siitä, että työnhakusi on voimassa? Pääsetkö kirjautumaan Asiointiin?
+
+**Watch out:** This proves current job-search validity. It is not by itself a decision that the person is entitled to unemployment benefit; labour-policy assessment and the benefit payer's decision remain separate.
+
+**Verify:** Työmarkkinatori: https://tyomarkkinatori.fi/ohjeet-ja-tuki/henkiloasiakkaat/asiointi-osion-ohjeet/todistus-tyonhaun-voimassaolosta
 
 ## 2026 job-search obligations — part-time work and authority-indicated jobs
 **Part-time jobseeker:** Current 2026 official guidance says part-time workers are generally subject to the job-search obligation and generally apply for four job opportunities per month, unless the authority reduces or removes the obligation under the statutory rules.
