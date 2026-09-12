@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 10.9.2026
+Last compiled: 12.9.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -68,6 +68,21 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official news: https://www.vantaa.fi/fi/ajankohtaista/uutinen/ilmoita-lapsesi-syysloman-paivaleirille-ilmoittautuminen-alkaa-159
   - Official service: https://www.vantaa.fi/fi/palveluhakemisto/palvelu/lasten-liikunnalliset-paivaleirit
 
+- **Varian rakennusalan työvoimakoulutus** — Vantaan ammattiopisto Varia
+  - Fits: people interested in construction who are unemployed or at risk of unemployment, whose job search is active and who need stronger skills to enter the field. Finnish at least A2.2.
+  - Helps with: completing units from the construction-sector vocational qualification or further vocational qualification, depending on prior experience, and improving employability in construction.
+  - Status: application 26.8.–5.10.2026 through Työmarkkinatori; next start 2.11.2026; duration up to one year.
+  - Caution: do not use the separate `Toimitilahuoltaja` dates from the same page as a 2026 opening without clarification; the page currently displays a 2027 application year that does not match the January–May 2027 study period cleanly enough to publish as a current route.
+  - Official: https://varia.vantaa.fi/fi/koulutukset/varian-tyovoimakoulutus
+
+- **Lukukamut — volunteer reading in Vantaa daycares** — Vantaan varhaiskasvatus
+  - Fits: adults interested in flexible volunteer reading with daycare children; prior experience is not required.
+  - Helps with: community participation and supporting children's interest in reading. This is volunteer activity, not paid employment or a daycare-place application.
+  - Status: registration is open until 15.9.2026 or until available places fill. The pilot runs during autumn 2026 and spring 2027 at the daycares currently listed by Vantaa. The volunteer can agree the frequency and duration with the daycare.
+  - Language: reading can be in Finnish or another language used in the daycare.
+  - Public-listing caution: if surfaced to families, label it clearly as **unpaid volunteering for an adult**, not a job or a service received by the child.
+  - Official: https://www.vantaa.fi/fi/tule-vapaaehtoiseksi-lukemaan-paivakotiin
+
 - **Mahdollisuuksien tori — Tikkurila 5.9.2026** — Vantaan kaupunki / local organisations
   - Fits: whole families and residents interested in an international, multicultural outdoor event.
   - Helps with: low-threshold family participation, meeting organisations, music, dance and workshops for children and adults.
@@ -115,10 +130,10 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official schedule: https://www.hel.fi/fi/kasvatus-ja-koulutus/leikkipuisto-ja-perhetalotoiminta/mita-leikkipuistoissa-tehdaan
   - Official dated example: https://tapahtumat.hel.fi/fi/tapahtumat/helsinki%3Aagqcgyddbi
 
-- **Welcome Day Malmitalo & Kanneltalo** — City of Helsinki
+- **Welcome Day — Kanneltalo 16.9.2026** — City of Helsinki
   - Fits: international newcomers and other residents interested in local services and opportunities; the official page says everyone is welcome.
   - Helps with: meeting city and local organisations, learning about local services and opportunities, and all-ages activities.
-  - Status: Malmitalo 10.9.2026, 17.00–20.00, Ala-Malmin tori 1; Kanneltalo 16.9.2026, 16.00–19.00, Klaneettitie 5. Free and no advance registration. Events are mainly in English, but multilingual staff/materials are available and no Finnish, Swedish or English is required to participate.
+  - Status: **Kanneltalo remains current:** Wednesday 16.9.2026, 16.00–19.00, Klaneettitie 5; free and no advance registration. **Malmitalo is closed/passed:** its event was 10.9.2026, 17.00–20.00 and must no longer be presented as upcoming.
   - Official: https://www.hel.fi/en/decision-making/information-on-helsinki/internationality-and-new-residents/welcome-day-events
 
 - **Stadin AO työvoimakoulutukset maahanmuuttajille**
@@ -255,6 +270,24 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: Tuesdays 16.00–17.30, 4.8.–15.12.2026, Siltakatu 11, Espoo; free and no advance registration required.
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagphfqw7ne
 
+- **Safety Circle for kids — English group** — Kids Global Safety Hub / City of Espoo event calendar
+  - Fits: children and families looking for an English-language, low-threshold skills activity. The checked event page does not publish a specific child age range, so do not invent one.
+  - Helps with: interactive learning around safety, identity, confidence, healthy boundaries and year-long skill development.
+  - Status: free English-language series at Iso Omena Library, Suomenlahdentie 1. The event series is listed 12.9.–19.12.2026; the first session is 12.9.2026, 14.00–16.00. Re-check the series for the next exact date before routing a family.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagqgv66fvu
+
+- **Youth Football** — Roda ry / City of Espoo event calendar
+  - Fits: ages 13–20; no previous football experience required.
+  - Helps with: free physical activity, football skills, wellbeing, community and friendships in a low-threshold setting.
+  - Status: Saturdays 19.00–20.00 through 12.12.2026; free. The current event series lists 12.9 and later Saturdays as upcoming. Re-check the dated event for location details before giving directions.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagpytx7gdu
+
+- **Ukulele — 7- to 12-year-olds** — City of Espoo / Sello Library
+  - Fits: children aged 7–12 interested in learning ukulele; languages listed are Finnish and English.
+  - Helps with: basic music theory, melody/harmony and playing familiar songs in a group.
+  - Status: Thursdays 17.45–18.30, 10.9.–3.12.2026, Sello Library Jaminurkka, Leppävaarankatu 9; free. Advance registration is required through the official event page.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagp7j5rzpq
+
 - **Kotivanhempien suomen kielen kurssit** — Koto-Espoo / Omnia / Espoon avoin varhaiskasvatus
   - Fits: Espoo residents outside the workforce, especially immigrant stay-at-home parents.
   - Helps with: Finnish while childcare is provided for children over 1 who are not in daycare; separate A2 baby groups allow participation with a child under 1.
@@ -321,9 +354,10 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagp5lrxn64
 
 - **Työnantajatreffit — Kaveriontti** — Espoo Employment Services
-  - Fits: event entry is free and open to all jobseekers. Kaveriontti is recruiting 30 tyre fitters for the Espoo/Helsinki/Vantaa tyre season and 10 shelf-stockers in Espoo; the job-specific experience/fitness requirements are on the official page.
-  - Helps with: direct employer presentation and interviews for currently advertised seasonal roles.
-  - Status: 10.9.2026, 12.00–15.00, Sello Library, Leppävaarankatu 9; Finnish; free. The organiser recommends arriving at 12.00 for the job presentation, after which interested people are interviewed; the event can end before 15.00 once interviews are complete.
+  - Fits: event entry was free and open to all jobseekers. Kaveriontti recruited tyre fitters for the Espoo/Helsinki/Vantaa tyre season and shelf-stockers in Espoo.
+  - Helps with: direct employer presentation and interviews for the advertised seasonal roles.
+  - Status: **closed/passed**. The event took place 10.9.2026, 12.00–15.00, Sello Library, Leppävaarankatu 9. Do not present it as current from 11.9.2026 onward.
+  - Public-listing rule: remove the card after the event rather than leaving a stale recruitment opportunity visible.
   - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqcgejlni
 
 - **Ask Recruiters Anything** — City of Espoo / TA Cafe Helsinki / HeRoHub HR Community
@@ -409,6 +443,12 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - If the person does not publish in time, the employment authority can publish minimum information. The official guidance says this does not end job search or directly affect unemployment security.
   - Official obligation: https://tyomarkkinatori.fi/uutiset/tyonhakuprofiili-tulee-osaksi-tyonhakua-1-9-alkaen
   - Current instructions / six-month renewal: https://tyomarkkinatori.fi/ohjeet-ja-tuki/henkiloasiakkaat/oma-tyopolku-osion-ohjeet/omatoiminen-tyonhaku/nain-taytat-tyonhakuprofiilin
+
+- **Todistus työnhaun voimassaolosta — available in Asiointi from 8.9.2026**
+  - Fits: a jobseeker who needs to prove that their job search is currently valid.
+  - Route: Työmarkkinatori `Asiointi` → `Asiointitiedot` → `Tulosteet ja todistukset` → `Lataa todistus (PDF)`. The person can alternatively open the certificate in Asiointi on a mobile device and show it from the screen.
+  - Important: use this as proof of job-search validity. Do not present it as a decision that the person is entitled to unemployment benefit; benefit entitlement remains a separate authority/payer question.
+  - Official: https://tyomarkkinatori.fi/ohjeet-ja-tuki/henkiloasiakkaat/asiointi-osion-ohjeet/todistus-tyonhaun-voimassaolosta
 
 - **Nuorten rekrytointituki — local 2026 hiring subsidy** — Helsinki / Espoo / Vantaa employment services
   - Fits: local unemployed young jobseekers; Helsinki and Espoo/Kauniainen use an under-30 criterion, while Vantaa's current route is for unemployed 18–29-year-old Vantaa jobseekers. Always verify municipality-specific conditions.
