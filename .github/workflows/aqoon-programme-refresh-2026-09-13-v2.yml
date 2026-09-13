@@ -1,0 +1,96 @@
+name: AQOON verified programme refresh 2026-09-13 v2
+on:
+  push:
+    branches: [master]
+    paths:
+      - '.github/workflows/aqoon-programme-refresh-2026-09-13-v2.yml'
+permissions:
+  contents: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply verified 13 September programme updates
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64
+          changes = [
+              ('caawi/ajankohtaiset/index.html', 'PGRpdiBjbGFzcz0ibm90ZSI+PHN0cm9uZz5MYSB4YXFpaWppeWV5IDEyLjkuMjAyNi48L3N0cm9uZz4=', 'PGRpdiBjbGFzcz0ibm90ZSI+PHN0cm9uZz5MYSB4YXFpaWppeWV5IDEzLjkuMjAyNi48L3N0cm9uZz4=', 'public verification date'),
+              ('caawi/ajankohtaiset/index.html', 'PGFydGljbGUgY2xhc3M9ImNhcmQiPjxkaXYgY2xhc3M9Im1ldGEgdXJnZW50Ij5CaWxhYWJtYSAxNC45LjIwMjY8L2Rpdj48aDM+TXVuIHN1dW5uYXQsIG11biBwb2x1dDwvaDM+PHA+V2F4YWEgbG9vZ3UgdGFsYWdhbGF5IDE14oCTMjkgamlyIGRvb25heWEgaW51dSBmYWhtbyBhd29vZGloaWlzYSBvbyB1dSBjYWRkZWV5byBqaWRrYSB3YXhiYXJhc2hvIGFtYSBzaGFxby4gV2F4YWEgamlyYSBhZmFyIGt1bGFuLCBob3JheW5hIGxvb21hIGlzZGlpd2FhbmdlbGl5by48L3A+PGEgaHJlZj0iaHR0cHM6Ly9udW9ydGVuLmhlbC5maS90YXBhaHR1bWEvP2V2ZW50X2lkPWhlbHNpbmtpJTNBYWdwcjJpcnhzaSI+T2hqYWFtbywgcmFzbWkg4oaXPC9hPjwvYXJ0aWNsZT4=', 'PGFydGljbGUgY2xhc3M9ImNhcmQiPjxkaXYgY2xhc3M9Im1ldGEgdXJnZW50Ij5IZWxzaW5raSDCtyAxNeKAkzI5IGppciDCtyAyOS45LjIwMjYgc2FhY2FkYWhhIDEz4oCTMTYgwrcgYmlsYWFzaCDCtyBFbmdsaXNoIHNpZG9vIGthbGU8L2Rpdj48aDM+VHnDtm5hbnRhamEgTWVldCAmIEdyZWV0PC9oMz48cD5PaGphYW1vIEhlbHNpbmtpIHdheGFhZCBqYXdpIGRlZ2dhbiBrdWxhIGt1bG1pIGthcnRhYSBMaWRsLCBQb3N0aSBpeW8gTm9yZGpvYmIgb28gYWFkIGthbGEgaGFkbGkga2FydGFhIGZ1cnNhZGFoYSBzaGFxby4gV2F4YWEga2FsZSBvbyBqaXJhIHRhbG8gQ1YsIGNvZHNpIGl5byB3YXJleXNpLCBDVi1zYXdpciBpeW8gaGFnaWQga3Ugc2FhYnNhbiB5cml0dMOkanl5cy1rYSBkaGFsaW55YXJhZGEuIEJvZ2dhIHJhc21pZ2EgYWhpIHd1eHV1IHNpIGNhZCB1IHNoZWVnYXlhYSBpbiBkYWRrYSBFbmdsaXNoIGt1IGhhZGxhIHNpZG9vIGthbGUgbGEgc29vIGRob3dleW5heW8uIEdvb2J0YTogRnJlZHJpa2lua2F0dSA0OC48L3A+PGEgaHJlZj0iaHR0cHM6Ly9udW9ydGVuLmhlbC5maS90YXBhaHR1bWEvP2V2ZW50X2lkPWhlbHNpbmtpJTNBYWdwN3ViZDJlZSI+T2hqYWFtbywgcmFzbWkg4oaXPC9hPjwvYXJ0aWNsZT4KPGFydGljbGUgY2xhc3M9ImNhcmQiPjxkaXYgY2xhc3M9Im1ldGEgdXJnZW50Ij5IZWxzaW5raSDCtyAxNeKAkzI5IGppciDCtyAxNC45LuKAkzUuMTAuMjAyNiDCtyBJc25paW4gMTPigJMxNSDCtyBiaWxhYXNoPC9kaXY+PGgzPk11biBzdXVubmF0LCBtdW4gcG9sdXQ8L2gzPjxwPktvb3hkYW4gT2hqYWFtbyB3YXhhYWQgc2kgaGFnaWQgYWggdWdhIGZpa2lyYXlzYWEgYXdvb2RhaGFhZ2EsIGRhbmFoYWFnYSBpeW8gamlka2Egd2F4YmFyYXNobyBhbWEgc2hhcW8uIEFmYXJ0YSBrdWxhbiB3YWEgMTQuOS4sIDIxLjkuLCAyOC45LiBpeW8gNS4xMC4gc2FhY2FkYWhhIDEz4oCTMTUsIE9oamFhbW8gSGVsc2lua2ksIEZyZWRyaWtpbmthdHUgNDguIEhvcmF5IGxvb21hIGlzZGlpd2FhbmdlbGl5bzsgd2F4YWEga3UgZmlsYW4gaW5hYWQgdGltYWFkZG8ga3VsYW5rYSBrb293YWFkLjwvcD48YSBocmVmPSJodHRwczovL251b3J0ZW4uaGVsLmZpL3RhcGFodHVtYS8/ZXZlbnRfaWQ9aGVsc2lua2klM0FhZ3ByMmlyeHNpIj5PaGphYW1vLCByYXNtaSDihpc8L2E+PC9hcnRpY2xlPg==', 'public youth cards'),
+              ('caawi/ajankohtaiset/index.html', 'PGFydGljbGUgY2xhc3M9ImNhcmQiPjxkaXYgY2xhc3M9Im1ldGEgdXJnZW50Ij5Fc3BvbyDCtyBtYWFudGEgMTIuOS4gc2FhY2FkYWhhIDE04oCTMTYgwrcgdGF4YW5lIGlsYWEgMTkuMTIuMjAyNiDCtyBFbmdsaXNoIMK3IGJpbGFhc2g8L2Rpdj48aDM+U2FmZXR5IENpcmNsZSBmb3Iga2lkczwvaDM+', 'PGFydGljbGUgY2xhc3M9ImNhcmQiPjxkaXYgY2xhc3M9Im1ldGEgdXJnZW50Ij5Fc3BvbyDCtyBtYWFudGEgMTMuOS4yMDI2IHNhYWNhZGFoYSAxM+KAkzE2IMK3IDPigJM2IGppciArIHFvZiB3ZXluIMK3IGJpbGFhc2g8L2Rpdj48aDM+S29rbyBwZXJoZWVuIExlcHBpcyBwb3AtdXAgKyBrZXJobzwvaDM+PHA+RW50cmVzc2VuIGtpcmphc3RvbiBsYXN0ZW5vc2FzdG8sIFNpbHRha2F0dSAxMSwgd2F4YWEgbWFhbnRhIGthIGppcmEgY2l5YWFyIGl5byBkaGFxZGhhcWFhcSBxb3lzYXNrYSBvbyBsYWd1IHNhaG1pbmF5byB4aXNhYWJ0YSBzaSBmdWR1ZC4gV2F4YWEgbG9vZ3UgdGFsYWdhbGF5IDPigJM2IGppciBvbyBsYSBzb2NkYSBodW9sdGFqYSBhbWEgcW9mIHdleW4sIGthIHFheWJnYWxrYSBwb3AtdXAta3VuYSBhcW9vbiBsdXFhZGVlZCB1bWEgYmFhaG5hLiBTYXR1dHVva2lvdCB3YWEgMTMuMzAsIDE0LjMwIGl5byAxNS4zMC4gS2FkaWIgcG9wLXVwLWthIHdheGFhIDEuMTAuIGJpbGFhYm1heWEga2VyaG8gYmlsYWFzaCBhaCBvbyBzaGFuIHRvZGRvYmFhZCBzb2NvbmF5YTsga2VyaG8tZ2EgaG9yYXkgYXlhYSBsb28gaXNkaWl3YWFuZ2VsaXlhYS48L3A+PGEgaHJlZj0iaHR0cHM6Ly93d3cuZXNwb28uZmkvZmkvdGFwYWh0dW1hdC9lc3Bvb2V2ZW50cyUzQWFncWZxZGh5enkiPkVzcG9vLCByYXNtaSAmIGtlcmhvLWdhIOKGlzwvYT48L2FydGljbGU+CjxhcnRpY2xlIGNsYXNzPSJjYXJkIj48ZGl2IGNsYXNzPSJtZXRhIHVyZ2VudCI+RXNwb28gwrcga3VsYW5rYSB4aWdhIDEwLjEwLjIwMjYgc2FhY2FkYWhhIDE04oCTMTYgwrcgdGF4YW5lIGlsYWEgMTkuMTIuIMK3IEVuZ2xpc2ggwrcgYmlsYWFzaDwvZGl2PjxoMz5TYWZldHkgQ2lyY2xlIGZvciBraWRzPC9oMz4=', 'public family hobby insertion/status'),
+              ('caawi/ajankohtaiset/index.html', 'PHA+V2FhIGJhcm5hYW1paiBjYXJydXVydGEgbG9vZ3UgdGFsYWdhbGF5IG9vIGxhZ3UgYmFyYW5heW8gYmFkYmFhZG8sIGthbHNvb25pLCB4dWR1dWRvIGNhYWZpbWFhZCBsZWggaXlvIHhpcmZhZG8ga2FsYSBkdXdhbi4gVGF4YW5haGEgRW5nbGlzaC1rYSBhaCB3dXh1dSBrYSBkaGFjYWEgSXNvbiBPbWVuYW4ga2lyamFzdG8sIFN1b21lbmxhaGRlbnRpZSAxLCB3dXh1dW5hIGJpbGFhYm1hYSBtYWFudGEgMTIuOS4gc2FhY2FkYWhhIDE04oCTMTYuIEJvZ2dhIHJhc21pZ2EgYWggd3V4dXUgdGF4YW5haGEgdSBxb3JheWFhIDEyLjku4oCTMTkuMTIuMjAyNjsga2EgaHViaSB0YWFyaWlraGRhIGt1bGFua2EgeGlnYSBoYWxrYWFzLjwvcD4=', 'PHA+V2FhIGJhcm5hYW1paiBjYXJydXVydGEgbG9vZ3UgdGFsYWdhbGF5IG9vIGxhZ3UgYmFyYW5heW8gYmFkYmFhZG8sIGthbHNvb25pLCB4dWR1dWRvIGNhYWZpbWFhZCBsZWggaXlvIHhpcmZhZG8ga2FsYSBkdXdhbi4gS3VsYW5raWkgMTIuOS4gd3V1IGRoYWNheTsgYm9nZ2EgdGF4YW5haGEgaGFkZGEgd3V4dXUgbXV1amluYXlhYSAxMC4xMC4gc2FhY2FkYWhhIDE04oCTMTYgaW51dSB5YWhheSBrdWxhbmthIHhpZ2EsIGthZGlibmEgMTQuMTEuLCB0YXhhbnVodW5hIHd1eHV1IHNvY2RhYSBpbGFhIDE5LjEyLiBJc29uIE9tZW5hbiBraXJqYXN0bywgU3VvbWVubGFoZGVudGllIDEuIEthIGh1YmkgYm9nZ2EgcmFzbWlnYSBhaCB0YWFyaWlraGRhIHhpZ3RhIGthIGhvciBpbnRhYWRhbiB0ZWdpbi48L3A+', 'public Safety Circle body'),
+              ('caawi/ajankohtaiset/index.html', 'aHJlZj0iaHR0cHM6Ly93d3cuZXNwb28uZmkvZW4vZXZlbnRzL2VzcG9vZXZlbnRzJTNBYWdxZ3Y2NmZ2dSI+RXNwb28sIHJhc21pIOKGlzwvYT4=', 'aHJlZj0iaHR0cHM6Ly93d3cuZXNwb28uZmkvZW4vZXZlbnRzL2VzcG9vZXZlbnRzJTNBYWdxZ3Y2NmFpeSI+RXNwb28sIHJhc21pIOKGlzwvYT4=', 'public Safety Circle source link'),
+              ('internal/open-programmes.md', 'TGFzdCBjb21waWxlZDogMTIuOS4yMDI2', 'TGFzdCBjb21waWxlZDogMTMuOS4yMDI2', 'registry compiled date'),
+              ('internal/open-programmes.md', 'LSAqKk11biBzdXVubmF0LCBtdW4gcG9sdXQqKiDigJQgT2hqYWFtbyBIZWxzaW5raQogIC0gRml0czogYWdlcyAxNeKAkzI5IHdobyBkbyBub3Qga25vdyB0aGVpciBzdHVkeS93b3JrIGRpcmVjdGlvbi4KICAtIFN0YXJ0czogMTQuOS4yMDI2LgogIC0gT2ZmaWNpYWw6IGh0dHBzOi8vbnVvcnRlbi5oZWwuZmkvdGFwYWh0dW1hLz9ldmVudF9pZD1oZWxzaW5raSUzQWFncHIyaXJ4c2k=', 'LSAqKk11biBzdXVubmF0LCBtdW4gcG9sdXQqKiDigJQgT2hqYWFtbyBIZWxzaW5raQogIC0gRml0czogYWdlcyAxNeKAkzI5IHdobyB3YW50IHRvIGlkZW50aWZ5IHRoZWlyIHN0cmVuZ3RocyBhbmQgaW50ZXJlc3RzIGFuZCBjbGFyaWZ5IGEgc3R1ZHkvd29yayBkaXJlY3Rpb24uCiAgLSBIZWxwcyB3aXRoOiBndWlkZWQgcmVmbGVjdGlvbiB3aXRoIGFuIE9oamFhbW8gc3R1ZHkgYWR2aXNlciBhbmQgY2FyZWVyLWd1aWRhbmNlIHBzeWNob2xvZ2lzdHMuCiAgLSBTdGF0dXM6IGZvdXIgY29uc2VjdXRpdmUgTW9uZGF5cyDigJQgMTQuOS4sIDIxLjkuLCAyOC45LiBhbmQgNS4xMC4yMDI2LCAxMy4wMOKAkzE1LjAwIOKAlCBhdCBPaGphYW1vIEhlbHNpbmtpLCBGcmVkcmlraW5rYXR1IDQ4OyBmcmVlLiBObyBhZHZhbmNlIHJlZ2lzdHJhdGlvbiBpcyByZXF1aXJlZDsgdGhlIHBhcnRpY2lwYW50IHNob3VsZCBhdHRlbmQgdGhlIGZpcnN0IHNlc3Npb24uCiAgLSBPZmZpY2lhbDogaHR0cHM6Ly9udW9ydGVuLmhlbC5maS90YXBhaHR1bWEvP2V2ZW50X2lkPWhlbHNpbmtpJTNBYWdwcjJpcnhzaQoKLSAqKlR5w7ZuYW50YWphIE1lZXQgJiBHcmVldCDigJQgMjkuOS4yMDI2Kiog4oCUIE9oamFhbW8gSGVsc2lua2kKICAtIEZpdHM6IEhlbHNpbmtpIHlvdW5nIHBlb3BsZSB1c2luZyB0aGUgMTXigJMyOS15ZWFyLW9sZCBPaGphYW1vIHNlcnZpY2U7IHRoZSBldmVudCBleHBsaWNpdGx5IHdlbGNvbWVzIEVuZ2xpc2ggc3BlYWtlcnMgdG9vLgogIC0gSGVscHMgd2l0aDogbWVldGluZyBMaWRsLCBQb3N0aSBhbmQgTm9yZGpvYmI7IGRpc2N1c3NpbmcgY3VycmVudCB3b3JrIHBvc3NpYmlsaXRpZXM7IENWL2FwcGxpY2F0aW9uL2ludGVydmlldyB0aXBzOyBDViBwaG90b2dyYXBoeTsgYW5kIHlvdXRoIGVudHJlcHJlbmV1cnNoaXAgZ3VpZGFuY2UuCiAgLSBTdGF0dXM6IFR1ZXNkYXkgMjkuOS4yMDI2LCAxMy4wMOKAkzE2LjAwLCBPaGphYW1vIEhlbHNpbmtpLCBGcmVkcmlraW5rYXR1IDQ4OyBmcmVlLiBDdXJyZW50IGV4YW1wbGVzIGluY2x1ZGUgTGlkbCBzaG9wL3dhcmVob3VzZSB3b3JrLCBQb3N0aSBkZWxpdmVyeS9zb3J0aW5nL3Byb2R1Y3Rpb24gd29yayBhbmQgTm9yZGpvYmIgc2Vhc29uYWwgcm91dGVzIGluIGFub3RoZXIgTm9yZGljIGNvdW50cnkuIERvIG5vdCBwcm9taXNlIGEgdmFjYW5jeSwgaW50ZXJ2aWV3IG9yIHNlbGVjdGlvbjsgdmVyaWZ5IHRoZSBldmVudCBwYWdlIGFnYWluIGNsb3NlIHRvIHRoZSBkYXRlIGJlY2F1c2UgcGFydGljaXBhdGluZyBlbXBsb3llcnMgY2FuIGNoYW5nZS4KICAtIE9mZmljaWFsOiBodHRwczovL251b3J0ZW4uaGVsLmZpL3RhcGFodHVtYS8/ZXZlbnRfaWQ9aGVsc2lua2klM0FhZ3A3dWJkMmVl', 'registry Helsinki youth entries'),
+              ('internal/open-programmes.md', 'LSAqKlNhZmV0eSBDaXJjbGUgZm9yIGtpZHMg4oCUIEVuZ2xpc2ggZ3JvdXAqKiDigJQgS2lkcyBHbG9iYWwgU2FmZXR5IEh1YiAvIENpdHkgb2YgRXNwb28gZXZlbnQgY2FsZW5kYXIKICAtIEZpdHM6IGNoaWxkcmVuIGFuZCBmYW1pbGllcyBsb29raW5nIGZvciBhbiBFbmdsaXNoLWxhbmd1YWdlLCBsb3ctdGhyZXNob2xkIHNraWxscyBhY3Rpdml0eS4gVGhlIGNoZWNrZWQgZXZlbnQgcGFnZSBkb2VzIG5vdCBwdWJsaXNoIGEgc3BlY2lmaWMgY2hpbGQgYWdlIHJhbmdlLCBzbyBkbyBub3QgaW52ZW50IG9uZS4KICAtIEhlbHBzIHdpdGg6IGludGVyYWN0aXZlIGxlYXJuaW5nIGFyb3VuZCBzYWZldHksIGlkZW50aXR5LCBjb25maWRlbmNlLCBoZWFsdGh5IGJvdW5kYXJpZXMgYW5kIHllYXItbG9uZyBza2lsbCBkZXZlbG9wbWVudC4KICAtIFN0YXR1czogZnJlZSBFbmdsaXNoLWxhbmd1YWdlIHNlcmllcyBhdCBJc28gT21lbmEgTGlicmFyeSwgU3VvbWVubGFoZGVudGllIDEuIFRoZSBldmVudCBzZXJpZXMgaXMgbGlzdGVkIDEyLjku4oCTMTkuMTIuMjAyNjsgdGhlIGZpcnN0IHNlc3Npb24gaXMgMTIuOS4yMDI2LCAxNC4wMOKAkzE2LjAwLiBSZS1jaGVjayB0aGUgc2VyaWVzIGZvciB0aGUgbmV4dCBleGFjdCBkYXRlIGJlZm9yZSByb3V0aW5nIGEgZmFtaWx5LgogIC0gT2ZmaWNpYWw6IGh0dHBzOi8vd3d3LmVzcG9vLmZpL2VuL2V2ZW50cy9lc3Bvb2V2ZW50cyUzQWFncWd2NjZmdnU=', 'LSAqKktva28gcGVyaGVlbiBMZXBwaXMgcG9wLXVwICsgTGVwcGlzIGtlcmhvdCoqIOKAlCBDaXR5IG9mIEVzcG9vIC8gTUFPTAogIC0gRml0czogZmFtaWxpZXMgd2l0aCBjaGlsZHJlbiBhZ2VkIDPigJM2OyBhIGd1YXJkaWFuL2FkdWx0IHBhcnRpY2lwYXRlcyB3aXRoIHRoZSBjaGlsZC4gVGhlIHBvcC11cCBkb2VzIG5vdCByZXF1aXJlIGxhbmd1YWdlIHNraWxscy4KICAtIEhlbHBzIHdpdGg6IGxvdy10aHJlc2hvbGQgcGxheSwgbW92ZW1lbnQgYW5kIGV4cGxvcmluZyBtYXRoZW1hdGljcyB0b2dldGhlcjsgdGhlIHBvcC11cCBhbHNvIGhhcyBjaGlsZHJlbidzIHN0b3J5IHRpbWVzLgogIC0gU3RhdHVzOiBwb3AtdXAgU3VuZGF5IDEzLjkuMjAyNiwgMTMuMDDigJMxNi4wMCwgRW50cmVzc2UgTGlicmFyeSBjaGlsZHJlbidzIGRlcGFydG1lbnQsIFNpbHRha2F0dSAxMTsgZnJlZS4gU3RvcnkgdGltZXMgYXJlIDEzLjMwLCAxNC4zMCBhbmQgMTUuMzAuIEFmdGVyIHRoZSBvbmUtZGF5IHBvcC11cCwgYSBmcmVlIGZpdmUtd2VlayBMZXBwaXMgY2x1YiBzdGFydHMgVGh1cnNkYXkgMS4xMC4yMDI2OiBhZ2VzIDPigJM0IGF0IDE3LjAw4oCTMTcuNDUgYW5kIGFnZXMgNeKAkzYgYXQgMTguMDDigJMxOC40NS4gQWR2YW5jZSByZWdpc3RyYXRpb24gaXMgcmVxdWlyZWQgZm9yIHRoZSBjbHViIHRocm91Z2ggdGhlIG9mZmljaWFsIHBhZ2UuIE1hcmsgdGhlIHBvcC11cCBwYXNzZWQgZnJvbSAxNC45LiwgYnV0IHRoZSBjbHViIHJvdXRlIHJlbWFpbnMgcmVsZXZhbnQgd2hpbGUgcmVnaXN0cmF0aW9uL3BsYWNlcyBhcmUgYXZhaWxhYmxlLgogIC0gT2ZmaWNpYWw6IGh0dHBzOi8vd3d3LmVzcG9vLmZpL2ZpL3RhcGFodHVtYXQvZXNwb29ldmVudHMlM0FhZ3FmcWRoeXp5CgotICoqU2FmZXR5IENpcmNsZSBmb3Iga2lkcyDigJQgRW5nbGlzaCBncm91cCoqIOKAlCBLaWRzIEdsb2JhbCBTYWZldHkgSHViIC8gQ2l0eSBvZiBFc3BvbyBldmVudCBjYWxlbmRhcgogIC0gRml0czogY2hpbGRyZW4gYW5kIGZhbWlsaWVzIGxvb2tpbmcgZm9yIGFuIEVuZ2xpc2gtbGFuZ3VhZ2UsIGxvdy10aHJlc2hvbGQgc2tpbGxzIGFjdGl2aXR5LiBUaGUgY2hlY2tlZCBldmVudCBwYWdlIGRvZXMgbm90IHB1Ymxpc2ggYSBzcGVjaWZpYyBjaGlsZCBhZ2UgcmFuZ2UsIHNvIGRvIG5vdCBpbnZlbnQgb25lLgogIC0gSGVscHMgd2l0aDogaW50ZXJhY3RpdmUgbGVhcm5pbmcgYXJvdW5kIHNhZmV0eSwgaWRlbnRpdHksIGNvbmZpZGVuY2UsIGhlYWx0aHkgYm91bmRhcmllcyBhbmQgeWVhci1sb25nIHNraWxsIGRldmVsb3BtZW50LgogIC0gU3RhdHVzOiBmcmVlIEVuZ2xpc2gtbGFuZ3VhZ2Ugc2VyaWVzIGF0IElzbyBPbWVuYSBMaWJyYXJ5LCBTdW9tZW5sYWhkZW50aWUgMSwgbGlzdGVkIDEyLjku4oCTMTkuMTIuMjAyNi4gVGhlIDEyLjkgbGF1bmNoIGhhcyBwYXNzZWQ7IHRoZSBzZXJpZXMgcGFnZSBjdXJyZW50bHkgbGlzdHMgMTAuMTAuMjAyNiwgMTQuMDDigJMxNi4wMCBhcyB0aGUgbmV4dCBkYXRlIGFuZCAxNC4xMS4gYXMgYSBsYXRlciBkYXRlLiBSZS1jaGVjayB0aGUgc2VyaWVzIGJlZm9yZSByb3V0aW5nIGEgZmFtaWx5IGJlY2F1c2UgbGF0ZXIgZGF0ZXMgY2FuIGJlIGV4cGFuZGVkIG9yIGNoYW5nZWQuCiAgLSBPZmZpY2lhbDogaHR0cHM6Ly93d3cuZXNwb28uZmkvZW4vZXZlbnRzL2VzcG9vZXZlbnRzJTNBYWdxZ3Y2NmFpeQ==', 'registry Espoo family entries'),
+          ]
+          for path, old_b64, new_b64, label in changes:
+              p = Path(path)
+              text = p.read_text(encoding='utf-8')
+              old = base64.b64decode(old_b64).decode('utf-8')
+              new = base64.b64decode(new_b64).decode('utf-8')
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f'{label}: expected exactly one anchor, found {count}')
+              p.write_text(text.replace(old, new, 1), encoding='utf-8')
+          PY
+          git rm .github/workflows/aqoon-programme-refresh-2026-09-13.yml .github/workflows/aqoon-programme-refresh-2026-09-13-v2.yml
+          python - <<'PY'
+          import subprocess
+          allowed = {'caawi/ajankohtaiset/index.html', 'internal/open-programmes.md', '.github/workflows/aqoon-programme-refresh-2026-09-13.yml', '.github/workflows/aqoon-programme-refresh-2026-09-13-v2.yml'}
+          out = subprocess.check_output(['git', 'status', '--porcelain'], text=True)
+          changed = set()
+          for line in out.splitlines():
+              path = line[3:]
+              if ' -> ' in path:
+                  path = path.split(' -> ', 1)[1]
+              changed.add(path)
+          unexpected = changed - allowed
+          if unexpected:
+              raise SystemExit(f'Unexpected paths changed: {sorted(unexpected)}')
+          if not {'caawi/ajankohtaiset/index.html', 'internal/open-programmes.md'} <= changed:
+              raise SystemExit(f'Expected content files not both changed: {sorted(changed)}')
+          if any('pilke' in p.lower() for p in changed):
+              raise SystemExit('Pilke path changed unexpectedly')
+          PY
+      - name: Run repository and site QA on final working tree
+        shell: bash
+        run: |
+          python scripts/context_qa.py
+          python scripts/repo_integrity_qa.py
+          node scripts/tracker_collection_qa.js
+          node --test tests/*.test.js
+          python scripts/site_qa.py
+          python scripts/check_seo_metadata.py
+          python scripts/usability_qa.py
+          python scripts/legal_trust_qa.py
+          node --check tracker/app.js && node --check tracker/interview-contract.js && node --check tracker/visual-v3.js && node --check tracker/crm-reactive.js && node --check tracker/operations-system.js && node --check tracker/interview-smart-notes.js && node --check tracker/incomplete-intake.js && node --check tracker/interview-follow-up-recap.js && node --check tracker/interview-next-steps.js
+          node --check tracker/multineed-adapter.js && node --check tracker/interview-match.js && node --check tracker/interview-match-preview.js && node --check tracker/scenario-learning.js && node --check tracker/interview-form-enhancements.js && node --check tracker/interview-context.js && node --check tracker/crm-call-history.js && node --check tracker/crm-queue-navigation.js
+          node --check tracker/universal-proof-questions.js && node --check tracker/human-labels.js && node --check tracker/analytics-mobile-v2.js && node --check tracker/call-outcomes.js && node --check tracker/crm-manage.js && node --check tracker/operator-identity.js && node --check tracker/case-lifecycle.js && node --check tracker/interview-answers-restore.js
+          node --check tracker/interview-ux-v4.js && node --check tracker/followup-workflow-v2.js && node --check tracker/followup-panel-v2.js && node --check tracker/followup-plan-confirm-v1.js && node --check tracker/phase-controls-v1.js
+          node --check assets/main.js && node --check assets/site.js && node --check caawi/app.js
+          node --test tests/caawi.test.js
+          node --test tests/call-outcomes.test.js
+          python scripts/somali_language_qa.py
+          git diff --check
+      - name: Commit verified updates
+        shell: bash
+        run: |
+          git config user.name "AQOON programme updater"
+          git config user.email "actions@users.noreply.github.com"
+          git add caawi/ajankohtaiset/index.html internal/open-programmes.md
+          git diff --cached --check
+          git diff --cached --name-only
+          git commit -m "programmes: refresh verified opportunities for 13 Sep"
+          git push origin HEAD:master
