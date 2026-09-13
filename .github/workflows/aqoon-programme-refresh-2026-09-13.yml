@@ -1,0 +1,152 @@
+name: AQOON verified programme refresh 2026-09-13
+on:
+  push:
+    branches: [master]
+    paths:
+      - '.github/workflows/aqoon-programme-refresh-2026-09-13.yml'
+permissions:
+  contents: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply verified 13 September programme updates
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          def replace_once(path, old, new, label):
+              p = Path(path)
+              text = p.read_text(encoding='utf-8')
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f'{label}: expected exactly one anchor, found {count}')
+              p.write_text(text.replace(old, new, 1), encoding='utf-8')
+
+          public = 'caawi/ajankohtaiset/index.html'
+          registry = 'internal/open-programmes.md'
+
+          replace_once(
+              public,
+              '<div class="note"><strong>La xaqiijiyey 12.9.2026.</strong>',
+              '<div class="note"><strong>La xaqiijiyey 13.9.2026.</strong>',
+              'public verification date',
+          )
+
+          old_mun = '''<article class="card"><div class="meta urgent">Bilaabma 14.9.2026</div><h3>Mun suunnat, mun polut</h3><p>Waxaa loogu talagalay 15–29 jir doonaya inuu fahmo awoodihiisa oo uu caddeeyo jidka waxbarasho ama shaqo. Waxaa jira afar kulan, horayna looma isdiiwaangeliyo.</p><a href="https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagpr2irxsi">Ohjaamo, rasmi ↗</a></article>'''
+          new_youth = '''<article class="card"><div class="meta urgent">Helsinki · 15–29 jir · 29.9.2026 saacadaha 13–16 · bilaash · English sidoo kale</div><h3>Työnantaja Meet & Greet</h3><p>Ohjaamo Helsinki waxaad jawi deggan kula kulmi kartaa Lidl, Posti iyo Nordjobb oo aad kala hadli kartaa fursadaha shaqo. Waxaa kale oo jira talo CV, codsi iyo wareysi, CV-sawir iyo hagid ku saabsan yrittäjyys-ka dhalinyarada. Bogga rasmiga ahi wuxuu si cad u sheegayaa in dadka English ku hadla sidoo kale la soo dhoweynayo. Goobta: Fredrikinkatu 48.</p><a href="https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagp7ubd2ee">Ohjaamo, rasmi ↗</a></article>
+<article class="card"><div class="meta urgent">Helsinki · 15–29 jir · 14.9.–5.10.2026 · Isniin 13–15 · bilaash</div><h3>Mun suunnat, mun polut</h3><p>Kooxdan Ohjaamo waxaad si hagid ah uga fikiraysaa awoodahaaga, danahaaga iyo jidka waxbarasho ama shaqo. Afarta kulan waa 14.9., 21.9., 28.9. iyo 5.10. saacadaha 13–15, Ohjaamo Helsinki, Fredrikinkatu 48. Horay looma isdiiwaangeliyo; waxaa ku filan inaad timaaddo kulanka koowaad.</p><a href="https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagpr2irxsi">Ohjaamo, rasmi ↗</a></article>'''
+          replace_once(public, old_mun, new_youth, 'public youth cards')
+
+          old_safety = '''<article class="card"><div class="meta urgent">Espoo · maanta 12.9. saacadaha 14–16 · taxane ilaa 19.12.2026 · English · bilaash</div><h3>Safety Circle for kids</h3><p>Waa barnaamij carruurta loogu talagalay oo lagu baranayo badbaado, kalsooni, xuduudo caafimaad leh iyo xirfado kala duwan. Taxanaha English-ka ah wuxuu ka dhacaa Ison Omenan kirjasto, Suomenlahdentie 1, wuxuuna bilaabmaa maanta 12.9. saacadaha 14–16. Bogga rasmiga ah wuxuu taxanaha u qorayaa 12.9.–19.12.2026; ka hubi taariikhda kulanka xiga halkaas.</p><a href="https://www.espoo.fi/en/events/espooevents%3Aagqgv66fvu">Espoo, rasmi ↗</a></article>'''
+          new_hobby = '''<article class="card"><div class="meta urgent">Espoo · maanta 13.9.2026 saacadaha 13–16 · 3–6 jir + qof weyn · bilaash</div><h3>Koko perheen Leppis pop-up + kerho</h3><p>Entressen kirjaston lastenosasto, Siltakatu 11, waxaa maanta ka jira ciyaar iyo dhaqdhaqaaq qoysaska oo lagu sahminayo xisaabta si fudud. Waxaa loogu talagalay 3–6 jir oo la socda huoltaja ama qof weyn, ka qaybgalka pop-up-kuna aqoon luqadeed uma baahna. Satutuokiot waa 13.30, 14.30 iyo 15.30. Kadib pop-up-ka waxaa 1.10. bilaabmaya kerho bilaash ah oo shan toddobaad soconaya; kerho-ga horay ayaa loo isdiiwaangeliyaa.</p><a href="https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqfqdhyzy">Espoo, rasmi & kerho-ga ↗</a></article>
+<article class="card"><div class="meta urgent">Espoo · kulanka xiga 10.10.2026 saacadaha 14–16 · taxane ilaa 19.12. · English · bilaash</div><h3>Safety Circle for kids</h3><p>Waa barnaamij carruurta loogu talagalay oo lagu baranayo badbaado, kalsooni, xuduudo caafimaad leh iyo xirfado kala duwan. Kulankii 12.9. wuu dhacay; bogga taxanaha hadda wuxuu muujinayaa 10.10. saacadaha 14–16 inuu yahay kulanka xiga, kadibna 14.11., taxanuhuna wuxuu socdaa ilaa 19.12. Ison Omenan kirjasto, Suomenlahdentie 1. Ka hubi bogga rasmiga ah taariikhda xigta ka hor intaadan tegin.</p><a href="https://www.espoo.fi/en/events/espooevents%3Aagqgv66aiy">Espoo, rasmi ↗</a></article>'''
+          replace_once(public, old_safety, new_hobby, 'public family hobby cards')
+
+          replace_once(
+              registry,
+              'Last compiled: 12.9.2026',
+              'Last compiled: 13.9.2026',
+              'registry compiled date',
+          )
+
+          old_registry_mun = '''- **Mun suunnat, mun polut** — Ohjaamo Helsinki
+  - Fits: ages 15–29 who do not know their study/work direction.
+  - Starts: 14.9.2026.
+  - Official: https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagpr2irxsi'''
+          new_registry_mun = '''- **Mun suunnat, mun polut** — Ohjaamo Helsinki
+  - Fits: ages 15–29 who want to identify their strengths and interests and clarify a study/work direction.
+  - Helps with: guided reflection with an Ohjaamo study adviser and career-guidance psychologists.
+  - Status: four consecutive Mondays — 14.9., 21.9., 28.9. and 5.10.2026, 13.00–15.00 — at Ohjaamo Helsinki, Fredrikinkatu 48; free. No advance registration is required; the participant should attend the first session.
+  - Official: https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagpr2irxsi
+
+- **Työnantaja Meet & Greet — 29.9.2026** — Ohjaamo Helsinki
+  - Fits: Helsinki young people using the 15–29-year-old Ohjaamo service; the event explicitly welcomes English speakers too.
+  - Helps with: meeting Lidl, Posti and Nordjobb; discussing current work possibilities; CV/application/interview tips; CV photography; and youth entrepreneurship guidance.
+  - Status: Tuesday 29.9.2026, 13.00–16.00, Ohjaamo Helsinki, Fredrikinkatu 48; free. Current examples include Lidl shop/warehouse work, Posti delivery/sorting/production work and Nordjobb seasonal routes in another Nordic country. Do not promise a vacancy, interview or selection; verify the event page again close to the date because participating employers can change.
+  - Official: https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagp7ubd2ee'''
+          replace_once(registry, old_registry_mun, new_registry_mun, 'registry Helsinki youth entries')
+
+          old_registry_safety = '''- **Safety Circle for kids — English group** — Kids Global Safety Hub / City of Espoo event calendar
+  - Fits: children and families looking for an English-language, low-threshold skills activity. The checked event page does not publish a specific child age range, so do not invent one.
+  - Helps with: interactive learning around safety, identity, confidence, healthy boundaries and year-long skill development.
+  - Status: free English-language series at Iso Omena Library, Suomenlahdentie 1. The event series is listed 12.9.–19.12.2026; the first session is 12.9.2026, 14.00–16.00. Re-check the series for the next exact date before routing a family.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagqgv66fvu'''
+          new_registry_safety = '''- **Koko perheen Leppis pop-up + Leppis kerhot** — City of Espoo / MAOL
+  - Fits: families with children aged 3–6; a guardian/adult participates with the child. The pop-up does not require language skills.
+  - Helps with: low-threshold play, movement and exploring mathematics together; the pop-up also has children's story times.
+  - Status: pop-up Sunday 13.9.2026, 13.00–16.00, Entresse Library children's department, Siltakatu 11; free. Story times are 13.30, 14.30 and 15.30. After the one-day pop-up, a free five-week Leppis club starts Thursday 1.10.2026: ages 3–4 at 17.00–17.45 and ages 5–6 at 18.00–18.45. Advance registration is required for the club through the official page. Mark the pop-up passed from 14.9., but the club route remains relevant while registration/places are available.
+  - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqfqdhyzy
+
+- **Safety Circle for kids — English group** — Kids Global Safety Hub / City of Espoo event calendar
+  - Fits: children and families looking for an English-language, low-threshold skills activity. The checked event page does not publish a specific child age range, so do not invent one.
+  - Helps with: interactive learning around safety, identity, confidence, healthy boundaries and year-long skill development.
+  - Status: free English-language series at Iso Omena Library, Suomenlahdentie 1, listed 12.9.–19.12.2026. The 12.9 launch has passed; the series page currently lists 10.10.2026, 14.00–16.00 as the next date and 14.11. as a later date. Re-check the series before routing a family because later dates can be expanded or changed.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagqgv66aiy'''
+          replace_once(registry, old_registry_safety, new_registry_safety, 'registry Espoo family entries')
+          PY
+
+          git rm .github/workflows/aqoon-programme-refresh-2026-09-13.yml
+
+          python - <<'PY'
+          import subprocess
+          allowed = {
+              'caawi/ajankohtaiset/index.html',
+              'internal/open-programmes.md',
+              '.github/workflows/aqoon-programme-refresh-2026-09-13.yml',
+          }
+          out = subprocess.check_output(['git', 'status', '--porcelain'], text=True)
+          changed = set()
+          for line in out.splitlines():
+              path = line[3:]
+              if ' -> ' in path:
+                  path = path.split(' -> ', 1)[1]
+              changed.add(path)
+          unexpected = changed - allowed
+          if unexpected:
+              raise SystemExit(f'Unexpected paths changed: {sorted(unexpected)}')
+          if 'caawi/ajankohtaiset/index.html' not in changed or 'internal/open-programmes.md' not in changed:
+              raise SystemExit(f'Expected content files not both changed: {sorted(changed)}')
+          if any('pilke' in p.lower() for p in changed):
+              raise SystemExit('Pilke path changed unexpectedly')
+          PY
+      - name: Run repository and site QA on final working tree
+        shell: bash
+        run: |
+          python scripts/context_qa.py
+          python scripts/repo_integrity_qa.py
+          node scripts/tracker_collection_qa.js
+          node --test tests/*.test.js
+          python scripts/site_qa.py
+          python scripts/check_seo_metadata.py
+          python scripts/usability_qa.py
+          python scripts/legal_trust_qa.py
+          node --check tracker/app.js && node --check tracker/interview-contract.js && node --check tracker/visual-v3.js && node --check tracker/crm-reactive.js && node --check tracker/operations-system.js && node --check tracker/interview-smart-notes.js && node --check tracker/incomplete-intake.js && node --check tracker/interview-follow-up-recap.js && node --check tracker/interview-next-steps.js
+          node --check tracker/multineed-adapter.js && node --check tracker/interview-match.js && node --check tracker/interview-match-preview.js && node --check tracker/scenario-learning.js && node --check tracker/interview-form-enhancements.js && node --check tracker/interview-context.js && node --check tracker/crm-call-history.js && node --check tracker/crm-queue-navigation.js
+          node --check tracker/universal-proof-questions.js && node --check tracker/human-labels.js && node --check tracker/analytics-mobile-v2.js && node --check tracker/call-outcomes.js && node --check tracker/crm-manage.js && node --check tracker/operator-identity.js && node --check tracker/case-lifecycle.js && node --check tracker/interview-answers-restore.js
+          node --check tracker/interview-ux-v4.js && node --check tracker/followup-workflow-v2.js && node --check tracker/followup-panel-v2.js && node --check tracker/followup-plan-confirm-v1.js && node --check tracker/phase-controls-v1.js
+          node --check assets/main.js && node --check assets/site.js && node --check caawi/app.js
+          node --test tests/caawi.test.js
+          node --test tests/call-outcomes.test.js
+          python scripts/somali_language_qa.py
+          git diff --check
+      - name: Commit verified updates
+        shell: bash
+        run: |
+          git config user.name "AQOON programme updater"
+          git config user.email "actions@users.noreply.github.com"
+          git add caawi/ajankohtaiset/index.html internal/open-programmes.md
+          git diff --cached --check
+          git diff --cached --name-only
+          git commit -m "programmes: refresh verified opportunities for 13 Sep"
+          git push origin HEAD:master
