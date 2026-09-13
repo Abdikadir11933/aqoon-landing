@@ -277,6 +277,12 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: Tuesdays 16.00–17.30, 4.8.–15.12.2026, Siltakatu 11, Espoo; free and no advance registration required.
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagphfqw7ne
 
+- **Töpinät — 13.9.2026** — Esbo IF / City of Espoo event calendar
+  - Fits: children aged 2–8 with a parent/adult; an adult must remain with the child throughout the activity.
+  - Helps with: free low-threshold indoor physical activity using varied equipment; movement is self-directed rather than instructor-led.
+  - Status: Sunday 13.9.2026, 10.00–12.00, Puistotie 13, 02760 Espoo; entrance C4 on the Heinäväentie side, ring the doorbell for access. Free; no registration required. Participate only when healthy. Mark this dated event passed from 14.9. unless a new dated event in the series is separately verified.
+  - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagpnhy72rq
+
 - **Koko perheen Leppis pop-up + Leppis kerhot** — City of Espoo / MAOL
   - Fits: families with children aged 3–6; a guardian/adult participates with the child. The pop-up does not require language skills.
   - Helps with: low-threshold play, movement and exploring mathematics together; the pop-up also has children's story times.
