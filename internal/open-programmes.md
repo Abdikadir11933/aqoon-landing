@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 12.9.2026
+Last compiled: 13.9.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -220,9 +220,16 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://nuorten.hel.fi/en/things-to-do-and-places/free-of-charge-leisure-activities-for-pupils-in-grades-3-9/
 
 - **Mun suunnat, mun polut** — Ohjaamo Helsinki
-  - Fits: ages 15–29 who do not know their study/work direction.
-  - Starts: 14.9.2026.
+  - Fits: ages 15–29 who want to identify their strengths and interests and clarify a study/work direction.
+  - Helps with: guided reflection with an Ohjaamo study adviser and career-guidance psychologists.
+  - Status: four consecutive Mondays — 14.9., 21.9., 28.9. and 5.10.2026, 13.00–15.00 — at Ohjaamo Helsinki, Fredrikinkatu 48; free. No advance registration is required; the participant should attend the first session.
   - Official: https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagpr2irxsi
+
+- **Työnantaja Meet & Greet — 29.9.2026** — Ohjaamo Helsinki
+  - Fits: Helsinki young people using the 15–29-year-old Ohjaamo service; the event explicitly welcomes English speakers too.
+  - Helps with: meeting Lidl, Posti and Nordjobb; discussing current work possibilities; CV/application/interview tips; CV photography; and youth entrepreneurship guidance.
+  - Status: Tuesday 29.9.2026, 13.00–16.00, Ohjaamo Helsinki, Fredrikinkatu 48; free. Current examples include Lidl shop/warehouse work, Posti delivery/sorting/production work and Nordjobb seasonal routes in another Nordic country. Do not promise a vacancy, interview or selection; verify the event page again close to the date because participating employers can change.
+  - Official: https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagp7ubd2ee
 
 ### Espoo
 
@@ -270,11 +277,17 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: Tuesdays 16.00–17.30, 4.8.–15.12.2026, Siltakatu 11, Espoo; free and no advance registration required.
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagphfqw7ne
 
+- **Koko perheen Leppis pop-up + Leppis kerhot** — City of Espoo / MAOL
+  - Fits: families with children aged 3–6; a guardian/adult participates with the child. The pop-up does not require language skills.
+  - Helps with: low-threshold play, movement and exploring mathematics together; the pop-up also has children's story times.
+  - Status: pop-up Sunday 13.9.2026, 13.00–16.00, Entresse Library children's department, Siltakatu 11; free. Story times are 13.30, 14.30 and 15.30. After the one-day pop-up, a free five-week Leppis club starts Thursday 1.10.2026: ages 3–4 at 17.00–17.45 and ages 5–6 at 18.00–18.45. Advance registration is required for the club through the official page. Mark the pop-up passed from 14.9., but the club route remains relevant while registration/places are available.
+  - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqfqdhyzy
+
 - **Safety Circle for kids — English group** — Kids Global Safety Hub / City of Espoo event calendar
   - Fits: children and families looking for an English-language, low-threshold skills activity. The checked event page does not publish a specific child age range, so do not invent one.
   - Helps with: interactive learning around safety, identity, confidence, healthy boundaries and year-long skill development.
-  - Status: free English-language series at Iso Omena Library, Suomenlahdentie 1. The event series is listed 12.9.–19.12.2026; the first session is 12.9.2026, 14.00–16.00. Re-check the series for the next exact date before routing a family.
-  - Official: https://www.espoo.fi/en/events/espooevents%3Aagqgv66fvu
+  - Status: free English-language series at Iso Omena Library, Suomenlahdentie 1, listed 12.9.–19.12.2026. The 12.9 launch has passed; the series page currently lists 10.10.2026, 14.00–16.00 as the next date and 14.11. as a later date. Re-check the series before routing a family because later dates can be expanded or changed.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagqgv66aiy
 
 - **Youth Football** — Roda ry / City of Espoo event calendar
   - Fits: ages 13–20; no previous football experience required.
