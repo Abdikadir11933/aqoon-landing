@@ -24,87 +24,29 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-
-          def replace_once(path, old, new, label):
+          import base64
+          changes = [
+              ('caawi/ajankohtaiset/index.html', 'PGRpdiBjbGFzcz0ibm90ZSI+PHN0cm9uZz5MYSB4YXFpaWppeWV5IDEyLjkuMjAyNi48L3N0cm9uZz4=', 'PGRpdiBjbGFzcz0ibm90ZSI+PHN0cm9uZz5MYSB4YXFpaWppeWV5IDEzLjkuMjAyNi48L3N0cm9uZz4=', 'public verification date'),
+              ('caawi/ajankohtaiset/index.html', 'PGFydGljbGUgY2xhc3M9ImNhcmQiPjxkaXYgY2xhc3M9Im1ldGEgdXJnZW50Ij5CaWxhYWJtYSAxNC45LjIwMjY8L2Rpdj48aDM+TXVuIHN1dW5uYXQsIG11biBwb2x1dDwvaDM+PHA+V2F4YWEgbG9vZ3UgdGFsYWdhbGF5IDE14oCTMjkgamlyIGRvb25heWEgaW51dSBmYWhtbyBhd29vZGloaWlzYSBvbyB1dSBjYWRkZWV5byBqaWRrYSB3YXhiYXJhc2hvIGFtYSBzaGFxby4gV2F4YWEgamlyYSBhZmFyIGt1bGFuLCBob3JheW5hIGxvb21hIGlzZGlpd2FhbmdlbGl5by48L3A+PGEgaHJlZj0iaHR0cHM6Ly9udW9ydGVuLmhlbC5maS90YXBhaHR1bWEvP2V2ZW50X2lkPWhlbHNpbmtpJTNBYWdwcjJpcnhzaSI+T2hqYWFtbywgcmFzbWkg4oaXPC9hPjwvYXJ0aWNsZT4=', 'PGFydGljbGUgY2xhc3M9ImNhcmQiPjxkaXYgY2xhc3M9Im1ldGEgdXJnZW50Ij5IZWxzaW5raSDCtyAxNeKAkzI5IGppciDCtyAyOS45LjIwMjYgc2FhY2FkYWhhIDEz4oCTMTYgwrcgYmlsYWFzaCDCtyBFbmdsaXNoIHNpZG9vIGthbGU8L2Rpdj48aDM+VHnDtm5hbnRhamEgTWVldCAmIEdyZWV0PC9oMz48cD5PaGphYW1vIEhlbHNpbmtpIHdheGFhZCBqYXdpIGRlZ2dhbiBrdWxhIGt1bG1pIGthcnRhYSBMaWRsLCBQb3N0aSBpeW8gTm9yZGpvYmIgb28gYWFkIGthbGEgaGFkbGkga2FydGFhIGZ1cnNhZGFoYSBzaGFxby4gV2F4YWEga2FsZSBvbyBqaXJhIHRhbG8gQ1YsIGNvZHNpIGl5byB3YXJleXNpLCBDVi1zYXdpciBpeW8gaGFnaWQga3Ugc2FhYnNhbiB5cml0dMOkanl5cy1rYSBkaGFsaW55YXJhZGEuIEJvZ2dhIHJhc21pZ2EgYWhpIHd1eHV1IHNpIGNhZCB1IHNoZWVnYXlhYSBpbiBkYWRrYSBFbmdsaXNoIGt1IGhhZGxhIHNpZG9vIGthbGUgbGEgc29vIGRob3dleW5heW8uIEdvb2J0YTogRnJlZHJpa2lua2F0dSA0OC48L3A+PGEgaHJlZj0iaHR0cHM6Ly9udW9ydGVuLmhlbC5maS90YXBhaHR1bWEvP2V2ZW50X2lkPWhlbHNpbmtpJTNBYWdwN3ViZDJlZSI+T2hqYWFtbywgcmFzbWkg4oaXPC9hPjwvYXJ0aWNsZT4KPGFydGljbGUgY2xhc3M9ImNhcmQiPjxkaXYgY2xhc3M9Im1ldGEgdXJnZW50Ij5IZWxzaW5raSDCtyAxNeKAkzI5IGppciDCtyAxNC45LuKAkzUuMTAuMjAyNiDCtyBJc25paW4gMTPigJMxNSDCtyBiaWxhYXNoPC9kaXY+PGgzPk11biBzdXVubmF0LCBtdW4gcG9sdXQ8L2gzPjxwPktvb3hkYW4gT2hqYWFtbyB3YXhhYWQgc2kgaGFnaWQgYWggdWdhIGZpa2lyYXlzYWEgYXdvb2RhaGFhZ2EsIGRhbmFoYWFnYSBpeW8gamlka2Egd2F4YmFyYXNobyBhbWEgc2hhcW8uIEFmYXJ0YSBrdWxhbiB3YWEgMTQuOS4sIDIxLjkuLCAyOC45LiBpeW8gNS4xMC4gc2FhY2FkYWhhIDEz4oCTMTUsIE9oamFhbW8gSGVsc2lua2ksIEZyZWRyaWtpbmthdHUgNDguIEhvcmF5IGxvb21hIGlzZGlpd2FhbmdlbGl5bzsgd2F4YWEga3UgZmlsYW4gaW5hYWQgdGltYWFkZG8ga3VsYW5rYSBrb293YWFkLjwvcD48YSBocmVmPSJodHRwczovL251b3J0ZW4uaGVsLmZpL3RhcGFodHVtYS8/ZXZlbnRfaWQ9aGVsc2lua2klM0FhZ3ByMmlyeHNpIj5PaGphYW1vLCByYXNtaSDihpc8L2E+PC9hcnRpY2xlPg==', 'public youth cards'),
+              ('caawi/ajankohtaiset/index.html', 'PGFydGljbGUgY2xhc3M9ImNhcmQiPjxkaXYgY2xhc3M9Im1ldGEgdXJnZW50Ij5Fc3BvbyDCtyBtYWFudGEgMTIuOS4gc2FhY2FkYWhhIDE04oCTMTYgwrcgdGF4YW5lIGlsYWEgMTkuMTIuMjAyNiDCtyBFbmdsaXNoIMK3IGJpbGFhc2g8L2Rpdj48aDM+U2FmZXR5IENpcmNsZSBmb3Iga2lkczwvaDM+PHA+V2FhIGJhcm5hYW1paiBjYXJydXVydGEgbG9vZ3UgdGFsYWdhbGF5IG9vIGxhZ3UgYmFyYW5heW8gYmFkYmFhZG8sIGthbHNvb25pLCB4dWR1dWRvIGNhYWZpbWFhZCBsZWggaXlvIHhpcmZhZG8ga2FsYSBkdXdhbi4gVGF4YW5haGEgRW5nbGlzaC1rYSBhaCB3dXh1dSBrYSBkaGFjYWEgSXNvbiBPbWVuYW4ga2lyamFzdG8sIFN1b21lbmxhaGRlbnRpZSAxLCB3dXh1dW5hIGJpbGFhYm1hYSBtYWFudGEgMTIuOS4gc2FhY2FkYWhhIDE04oCTMTYuIEJvZ2dhIHJhc21pZ2EgYWggd3V4dXUgdGF4YW5haGEgdSBxb3JheWFhIDEyLjku4oCTMTkuMTIuMjAyNjsga2EgaHViaSB0YWFyaWtoZGEga3VsYW5rYSB4aWdhIGhhbGthYXMuPC9wPjxhIGhyZWY9Imh0dHBzOi8vd3d3LmVzcG9vLmZpL2VuL2V2ZW50cy9lc3Bvb2V2ZW50cyUzQWFncWd2NjZmdnUiPkVzcG9vLCByYXNtaSDihpc8L2E+PC9hcnRpY2xlPg==', 'PGFydGljbGUgY2xhc3M9ImNhcmQiPjxkaXYgY2xhc3M9Im1ldGEgdXJnZW50Ij5Fc3BvbyDCtyBtYWFudGEgMTMuOS4yMDI2IHNhYWNhZGFoYSAxM+KAkzE2IMK3IDPigJM2IGppciArIHFvZiB3ZXluIMK3IGJpbGFhc2g8L2Rpdj48aDM+S29rbyBwZXJoZWVuIExlcHBpcyBwb3AtdXAgKyBrZXJobzwvaDM+PHA+RW50cmVzc2VuIGtpcmphc3RvbiBsYXN0ZW5vc2FzdG8sIFNpbHRha2F0dSAxMSwgd2F4YWEgbWFhbnRhIGthIGppcmEgY2l5YWFyIGl5byBkaGFxZGhhcWFhcSBxb3lzYXNrYSBvbyBsYWd1IHNhaG1pbmF5byB4aXNhYWJ0YSBzaSBmdWR1ZC4gV2F4YWEgbG9vZ3UgdGFsYWdhbGF5IDPigJM2IGppciBvbyBsYSBzb2NkYSBodW9sdGFqYSBhbWEgcW9mIHdleW4sIGthIHFheWJnYWxrYSBwb3AtdXAta3VuYSBhcW9vbiBsdXFhZGVlZCB1bWEgYmFhaG5hLiBTYXR1dHVva2lvdCB3YWEgMTMuMzAsIDE0LjMwIGl5byAxNS4zMC4gS2FkaWIgcG9wLXVwLWthIHdheGFhIDEuMTAuIGJpbGFhYm1heWEga2VyaG8gYmlsYWFzaCBhaCBvbyBzaGFuIHRvZGRvYmFhZCBzb2NvbmF5YTsga2VyaG8tZ2EgaG9yYXkgYXlhYSBsb28gaXNkaWl3YWFuZ2VsaXlhYS48L3A+PGEgaHJlZj0iaHR0cHM6Ly93d3cuZXNwb28uZmkvZmkvdGFwYWh0dW1hdC9lc3Bvb2V2ZW50cyUzQWFncWZxZGh5enkiPkVzcG9vLCByYXNtaSAmIGtlcmhvLWdhIOKGlzwvYT48L2FydGljbGU+CjxhcnRpY2xlIGNsYXNzPSJjYXJkIj48ZGl2IGNsYXNzPSJtZXRhIHVyZ2VudCI+RXNwb28gwrcga3VsYW5rYSB4aWdhIDEwLjEwLjIwMjYgc2FhY2FkYWhhIDE04oCTMTYgwrcgdGF4YW5lIGlsYWEgMTkuMTIuIMK3IEVuZ2xpc2ggwrcgYmlsYWFzaDwvZGl2PjxoMz5TYWZldHkgQ2lyY2xlIGZvciBraWRzPC9oMz48cD5XYWEgYmFybmFhbWlqIGNhcnJ1dXJ0YSBsb29ndSB0YWxhZ2FsYXkgb28gbGFndSBiYXJhbmF5byBiYWRiYWFkbywga2Fsc29vbmksIHh1ZHV1ZG8gY2FhZmltYWFkIGxlaCBpeW8geGlyZmFkbyBrYWxhIGR1d2FuLiBLdWxhbmtpaSAxMi45LiB3dXUgZGhhY2F5OyBib2dnYSB0YXhhbmFoYSBoYWRkYSB3dXh1dSBtdXVqaW5heWFhIDEwLjEwLiBzYWFjYWRhaGEgMTTigJMxNiBpbnV1IHlhaGF5IGt1bGFua2EgeGlnYSwga2FkaWJuYSAxNC4xMS4sIHRheGFudWh1bmEgd3V4dXUgc29jZGFhIGlsYWEgMTkuMTIuIElzb24gT21lbmFuIGtpcmphc3RvLCBTdW9tZW5sYWhkZW50aWUgMS4gS2EgaHViaSBib2dnYSByYXNtaWdhIGFoIHRhYXJpaWtoZGEgeGlndGEga2Fob3IgaW50YWFkYW4gdGVnaW4uPC9wPjxhIGhyZWY9Imh0dHBzOi8vd3d3LmVzcG9vLmZpL2VuL2V2ZW50cy9lc3Bvb2V2ZW50cyUzQWFncWd2NjZhaXkiPkVzcG9vLCByYXNtaSDihpc8L2E+PC9hcnRpY2xlPg==', 'public family hobby cards'),
+              ('internal/open-programmes.md', 'TGFzdCBjb21waWxlZDogMTIuOS4yMDI2', 'TGFzdCBjb21waWxlZDogMTMuOS4yMDI2', 'registry compiled date'),
+              ('internal/open-programmes.md', 'LSAqKk11biBzdXVubmF0LCBtdW4gcG9sdXQqKiDigJQgT2hqYWFtbyBIZWxzaW5raQogIC0gRml0czogYWdlcyAxNeKAkzI5IHdobyBkbyBub3Qga25vdyB0aGVpciBzdHVkeS93b3JrIGRpcmVjdGlvbi4KICAtIFN0YXJ0czogMTQuOS4yMDI2LgogIC0gT2ZmaWNpYWw6IGh0dHBzOi8vbnVvcnRlbi5oZWwuZmkvdGFwYWh0dW1hLz9ldmVudF9pZD1oZWxzaW5raSUzQWFncHIyaXJ4c2k=', 'LSAqKk11biBzdXVubmF0LCBtdW4gcG9sdXQqKiDigJQgT2hqYWFtbyBIZWxzaW5raQogIC0gRml0czogYWdlcyAxNeKAkzI5IHdobyB3YW50IHRvIGlkZW50aWZ5IHRoZWlyIHN0cmVuZ3RocyBhbmQgaW50ZXJlc3RzIGFuZCBjbGFyaWZ5IGEgc3R1ZHkvd29yayBkaXJlY3Rpb24uCiAgLSBIZWxwcyB3aXRoOiBndWlkZWQgcmVmbGVjdGlvbiB3aXRoIGFuIE9oamFhbW8gc3R1ZHkgYWR2aXNlciBhbmQgY2FyZWVyLWd1aWRhbmNlIHBzeWNob2xvZ2lzdHMuCiAgLSBTdGF0dXM6IGZvdXIgY29uc2VjdXRpdmUgTW9uZGF5cyDigJQgMTQuOS4sIDIxLjkuLCAyOC45LiBhbmQgNS4xMC4yMDI2LCAxMy4wMOKAkzE1LjAwIOKAlCBhdCBPaGphYW1vIEhlbHNpbmtpLCBGcmVkcmlraW5rYXR1IDQ4OyBmcmVlLiBObyBhZHZhbmNlIHJlZ2lzdHJhdGlvbiBpcyByZXF1aXJlZDsgdGhlIHBhcnRpY2lwYW50IHNob3VsZCBhdHRlbmQgdGhlIGZpcnN0IHNlc3Npb24uCiAgLSBPZmZpY2lhbDogaHR0cHM6Ly9udW9ydGVuLmhlbC5maS90YXBhaHR1bWEvP2V2ZW50X2lkPWhlbHNpbmtpJTNBYWdwcjJpcnhzaQoKLSAqKlR5w7ZuYW50YWphIE1lZXQgJiBHcmVldCDigJQgMjkuOS4yMDI2Kiog4oCUIE9oamFhbW8gSGVsc2lua2kKICAtIEZpdHM6IEhlbHNpbmtpIHlvdW5nIHBlb3BsZSB1c2luZyB0aGUgMTXigJMyOS15ZWFyLW9sZCBPaGphYW1vIHNlcnZpY2U7IHRoZSBldmVudCBleHBsaWNpdGx5IHdlbGNvbWVzIEVuZ2xpc2ggc3BlYWtlcnMgdG9vLgogIC0gSGVscHMgd2l0aDogbWVldGluZyBMaWRsLCBQb3N0aSBhbmQgTm9yZGpvYmI7IGRpc2N1c3NpbmcgY3VycmVudCB3b3JrIHBvc3NpYmlsaXRpZXM7IENWL2FwcGxpY2F0aW9uL2ludGVydmlldyB0aXBzOyBDViBwaG90b2dyYXBoeTsgYW5kIHlvdXRoIGVudHJlcHJlbmV1cnNoaXAgZ3VpZGFuY2UuCiAgLSBTdGF0dXM6IFR1ZXNkYXkgMjkuOS4yMDI2LCAxMy4wMOKAkzE2LjAwLCBPaGphYW1vIEhlbHNpbmtpLCBGcmVkcmlraW5rYXR1IDQ4OyBmcmVlLiBDdXJyZW50IGV4YW1wbGVzIGluY2x1ZGUgTGlkbCBzaG9wL3dhcmVob3VzZSB3b3JrLCBQb3N0aSBkZWxpdmVyeS9zb3J0aW5nL3Byb2R1Y3Rpb24gd29yayBhbmQgTm9yZGpvYmIgc2Vhc29uYWwgcm91dGVzIGluIGFub3RoZXIgTm9yZGljIGNvdW50cnkuIERvIG5vdCBwcm9taXNlIGEgdmFjYW5jeSwgaW50ZXJ2aWV3IG9yIHNlbGVjdGlvbjsgdmVyaWZ5IHRoZSBldmVudCBwYWdlIGFnYWluIGNsb3NlIHRvIHRoZSBkYXRlIGJlY2F1c2UgcGFydGljaXBhdGluZyBlbXBsb3llcnMgY2FuIGNoYW5nZS4KICAtIE9mZmljaWFsOiBodHRwczovL251b3J0ZW4uaGVsLmZpL3RhcGFodHVtYS8/ZXZlbnRfaWQ9aGVsc2lua2klM0FhZ3A3dWJkMmVl', 'registry Helsinki youth entries'),
+              ('internal/open-programmes.md', 'LSAqKlNhZmV0eSBDaXJjbGUgZm9yIGtpZHMg4oCUIEVuZ2xpc2ggZ3JvdXAqKiDigJQgS2lkcyBHbG9iYWwgU2FmZXR5IEh1YiAvIENpdHkgb2YgRXNwb28gZXZlbnQgY2FsZW5kYXIKICAtIEZpdHM6IGNoaWxkcmVuIGFuZCBmYW1pbGllcyBsb29raW5nIGZvciBhbiBFbmdsaXNoLWxhbmd1YWdlLCBsb3ctdGhyZXNob2xkIHNraWxscyBhY3Rpdml0eS4gVGhlIGNoZWNrZWQgZXZlbnQgcGFnZSBkb2VzIG5vdCBwdWJsaXNoIGEgc3BlY2lmaWMgY2hpbGQgYWdlIHJhbmdlLCBzbyBkbyBub3QgaW52ZW50IG9uZS4KICAtIEhlbHBzIHdpdGg6IGludGVyYWN0aXZlIGxlYXJuaW5nIGFyb3VuZCBzYWZldHksIGlkZW50aXR5LCBjb25maWRlbmNlLCBoZWFsdGh5IGJvdW5kYXJpZXMgYW5kIHllYXItbG9uZyBza2lsbCBkZXZlbG9wbWVudC4KICAtIFN0YXR1czogZnJlZSBFbmdsaXNoLWxhbmd1YWdlIHNlcmllcyBhdCBJc28gT21lbmEgTGlicmFyeSwgU3VvbWVubGFoZGVudGllIDEuIFRoZSBldmVudCBzZXJpZXMgaXMgbGlzdGVkIDEyLjku4oCTMTkuMTIuMjAyNjsgdGhlIGZpcnN0IHNlc3Npb24gaXMgMTIuOS4yMDI2LCAxNC4wMOKAkzE2LjAwLiBSZS1jaGVjayB0aGUgc2VyaWVzIGZvciB0aGUgbmV4dCBleGFjdCBkYXRlIGJlZm9yZSByb3V0aW5nIGEgZmFtaWx5LgogIC0gT2ZmaWNpYWw6IGh0dHBzOi8vd3d3LmVzcG9vLmZpL2VuL2V2ZW50cy9lc3Bvb2V2ZW50cyUzQWFncWd2NjZmdnU=', 'LSAqKktva28gcGVyaGVlbiBMZXBwaXMgcG9wLXVwICsgTGVwcGlzIGtlcmhvdCoqIOKAlCBDaXR5IG9mIEVzcG9vIC8gTUFPTAogIC0gRml0czogZmFtaWxpZXMgd2l0aCBjaGlsZHJlbiBhZ2VkIDPigJM2OyBhIGd1YXJkaWFuL2FkdWx0IHBhcnRpY2lwYXRlcyB3aXRoIHRoZSBjaGlsZC4gVGhlIHBvcC11cCBkb2VzIG5vdCByZXF1aXJlIGxhbmd1YWdlIHNraWxscy4KICAtIEhlbHBzIHdpdGg6IGxvdy10aHJlc2hvbGQgcGxheSwgbW92ZW1lbnQgYW5kIGV4cGxvcmluZyBtYXRoZW1hdGljcyB0b2dldGhlcjsgdGhlIHBvcC11cCBhbHNvIGhhcyBjaGlsZHJlbidzIHN0b3J5IHRpbWVzLgogIC0gU3RhdHVzOiBwb3AtdXAgU3VuZGF5IDEzLjkuMjAyNiwgMTMuMDDigJMxNi4wMCwgRW50cmVzc2UgTGlicmFyeSBjaGlsZHJlbidzIGRlcGFydG1lbnQsIFNpbHRha2F0dSAxMTsgZnJlZS4gU3RvcnkgdGltZXMgYXJlIDEzLjMwLCAxNC4zMCBhbmQgMTUuMzAuIEFmdGVyIHRoZSBvbmUtZGF5IHBvcC11cCwgYSBmcmVlIGZpdmUtd2VlayBMZXBwaXMgY2x1YiBzdGFydHMgVGh1cnNkYXkgMS4xMC4yMDI2OiBhZ2VzIDPigJM0IGF0IDE3LjAw4oCTMTcuNDUgYW5kIGFnZXMgNeKAkzYgYXQgMTguMDDigJMxOC40NS4gQWR2YW5jZSByZWdpc3RyYXRpb24gaXMgcmVxdWlyZWQgZm9yIHRoZSBjbHViIHRocm91Z2ggdGhlIG9mZmljaWFsIHBhZ2UuIE1hcmsgdGhlIHBvcC11cCBwYXNzZWQgZnJvbSAxNC45LiwgYnV0IHRoZSBjbHViIHJvdXRlIHJlbWFpbnMgcmVsZXZhbnQgd2hpbGUgcmVnaXN0cmF0aW9uL3BsYWNlcyBhcmUgYXZhaWxhYmxlLgogIC0gT2ZmaWNpYWw6IGh0dHBzOi8vd3d3LmVzcG9vLmZpL2ZpL3RhcGFodHVtYXQvZXNwb29ldmVudHMlM0FhZ3FmcWRoeXp5CgotICoqU2FmZXR5IENpcmNsZSBmb3Iga2lkcyDigJQgRW5nbGlzaCBncm91cCoqIOKAlCBLaWRzIEdsb2JhbCBTYWZldHkgSHViIC8gQ2l0eSBvZiBFc3BvbyBldmVudCBjYWxlbmRhcgogIC0gRml0czogY2hpbGRyZW4gYW5kIGZhbWlsaWVzIGxvb2tpbmcgZm9yIGFuIEVuZ2xpc2gtbGFuZ3VhZ2UsIGxvdy10aHJlc2hvbGQgc2tpbGxzIGFjdGl2aXR5LiBUaGUgY2hlY2tlZCBldmVudCBwYWdlIGRvZXMgbm90IHB1Ymxpc2ggYSBzcGVjaWZpYyBjaGlsZCBhZ2UgcmFuZ2UsIHNvIGRvIG5vdCBpbnZlbnQgb25lLgogIC0gSGVscHMgd2l0aDogaW50ZXJhY3RpdmUgbGVhcm5pbmcgYXJvdW5kIHNhZmV0eSwgaWRlbnRpdHksIGNvbmZpZGVuY2UsIGhlYWx0aHkgYm91bmRhcmllcyBhbmQgeWVhci1sb25nIHNraWxsIGRldmVsb3BtZW50LgogIC0gU3RhdHVzOiBmcmVlIEVuZ2xpc2gtbGFuZ3VhZ2Ugc2VyaWVzIGF0IElzbyBPbWVuYSBMaWJyYXJ5LCBTdW9tZW5sYWhkZW50aWUgMSwgbGlzdGVkIDEyLjku4oCTMTkuMTIuMjAyNi4gVGhlIDEyLjkgbGF1bmNoIGhhcyBwYXNzZWQ7IHRoZSBzZXJpZXMgcGFnZSBjdXJyZW50bHkgbGlzdHMgMTAuMTAuMjAyNiwgMTQuMDDigJMxNi4wMCBhcyB0aGUgbmV4dCBkYXRlIGFuZCAxNC4xMS4gYXMgYSBsYXRlciBkYXRlLiBSZS1jaGVjayB0aGUgc2VyaWVzIGJlZm9yZSByb3V0aW5nIGEgZmFtaWx5IGJlY2F1c2UgbGF0ZXIgZGF0ZXMgY2FuIGJlIGV4cGFuZGVkIG9yIGNoYW5nZWQuCiAgLSBPZmZpY2lhbDogaHR0cHM6Ly93d3cuZXNwb28uZmkvZW4vZXZlbnRzL2VzcG9vZXZlbnRzJTNBYWdxZ3Y2NmFpeQ==', 'registry Espoo family entries'),
+          ]
+          for path, old_b64, new_b64, label in changes:
               p = Path(path)
               text = p.read_text(encoding='utf-8')
+              old = base64.b64decode(old_b64).decode('utf-8')
+              new = base64.b64decode(new_b64).decode('utf-8')
               count = text.count(old)
               if count != 1:
                   raise SystemExit(f'{label}: expected exactly one anchor, found {count}')
               p.write_text(text.replace(old, new, 1), encoding='utf-8')
-
-          public = 'caawi/ajankohtaiset/index.html'
-          registry = 'internal/open-programmes.md'
-
-          replace_once(
-              public,
-              '<div class="note"><strong>La xaqiijiyey 12.9.2026.</strong>',
-              '<div class="note"><strong>La xaqiijiyey 13.9.2026.</strong>',
-              'public verification date',
-          )
-
-          old_mun = '''<article class="card"><div class="meta urgent">Bilaabma 14.9.2026</div><h3>Mun suunnat, mun polut</h3><p>Waxaa loogu talagalay 15–29 jir doonaya inuu fahmo awoodihiisa oo uu caddeeyo jidka waxbarasho ama shaqo. Waxaa jira afar kulan, horayna looma isdiiwaangeliyo.</p><a href="https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagpr2irxsi">Ohjaamo, rasmi ↗</a></article>'''
-          new_youth = '''<article class="card"><div class="meta urgent">Helsinki · 15–29 jir · 29.9.2026 saacadaha 13–16 · bilaash · English sidoo kale</div><h3>Työnantaja Meet & Greet</h3><p>Ohjaamo Helsinki waxaad jawi deggan kula kulmi kartaa Lidl, Posti iyo Nordjobb oo aad kala hadli kartaa fursadaha shaqo. Waxaa kale oo jira talo CV, codsi iyo wareysi, CV-sawir iyo hagid ku saabsan yrittäjyys-ka dhalinyarada. Bogga rasmiga ahi wuxuu si cad u sheegayaa in dadka English ku hadla sidoo kale la soo dhoweynayo. Goobta: Fredrikinkatu 48.</p><a href="https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagp7ubd2ee">Ohjaamo, rasmi ↗</a></article>
-<article class="card"><div class="meta urgent">Helsinki · 15–29 jir · 14.9.–5.10.2026 · Isniin 13–15 · bilaash</div><h3>Mun suunnat, mun polut</h3><p>Kooxdan Ohjaamo waxaad si hagid ah uga fikiraysaa awoodahaaga, danahaaga iyo jidka waxbarasho ama shaqo. Afarta kulan waa 14.9., 21.9., 28.9. iyo 5.10. saacadaha 13–15, Ohjaamo Helsinki, Fredrikinkatu 48. Horay looma isdiiwaangeliyo; waxaa ku filan inaad timaaddo kulanka koowaad.</p><a href="https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagpr2irxsi">Ohjaamo, rasmi ↗</a></article>'''
-          replace_once(public, old_mun, new_youth, 'public youth cards')
-
-          old_safety = '''<article class="card"><div class="meta urgent">Espoo · maanta 12.9. saacadaha 14–16 · taxane ilaa 19.12.2026 · English · bilaash</div><h3>Safety Circle for kids</h3><p>Waa barnaamij carruurta loogu talagalay oo lagu baranayo badbaado, kalsooni, xuduudo caafimaad leh iyo xirfado kala duwan. Taxanaha English-ka ah wuxuu ka dhacaa Ison Omenan kirjasto, Suomenlahdentie 1, wuxuuna bilaabmaa maanta 12.9. saacadaha 14–16. Bogga rasmiga ah wuxuu taxanaha u qorayaa 12.9.–19.12.2026; ka hubi taariikhda kulanka xiga halkaas.</p><a href="https://www.espoo.fi/en/events/espooevents%3Aagqgv66fvu">Espoo, rasmi ↗</a></article>'''
-          new_hobby = '''<article class="card"><div class="meta urgent">Espoo · maanta 13.9.2026 saacadaha 13–16 · 3–6 jir + qof weyn · bilaash</div><h3>Koko perheen Leppis pop-up + kerho</h3><p>Entressen kirjaston lastenosasto, Siltakatu 11, waxaa maanta ka jira ciyaar iyo dhaqdhaqaaq qoysaska oo lagu sahminayo xisaabta si fudud. Waxaa loogu talagalay 3–6 jir oo la socda huoltaja ama qof weyn, ka qaybgalka pop-up-kuna aqoon luqadeed uma baahna. Satutuokiot waa 13.30, 14.30 iyo 15.30. Kadib pop-up-ka waxaa 1.10. bilaabmaya kerho bilaash ah oo shan toddobaad soconaya; kerho-ga horay ayaa loo isdiiwaangeliyaa.</p><a href="https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqfqdhyzy">Espoo, rasmi & kerho-ga ↗</a></article>
-<article class="card"><div class="meta urgent">Espoo · kulanka xiga 10.10.2026 saacadaha 14–16 · taxane ilaa 19.12. · English · bilaash</div><h3>Safety Circle for kids</h3><p>Waa barnaamij carruurta loogu talagalay oo lagu baranayo badbaado, kalsooni, xuduudo caafimaad leh iyo xirfado kala duwan. Kulankii 12.9. wuu dhacay; bogga taxanaha hadda wuxuu muujinayaa 10.10. saacadaha 14–16 inuu yahay kulanka xiga, kadibna 14.11., taxanuhuna wuxuu socdaa ilaa 19.12. Ison Omenan kirjasto, Suomenlahdentie 1. Ka hubi bogga rasmiga ah taariikhda xigta ka hor intaadan tegin.</p><a href="https://www.espoo.fi/en/events/espooevents%3Aagqgv66aiy">Espoo, rasmi ↗</a></article>'''
-          replace_once(public, old_safety, new_hobby, 'public family hobby cards')
-
-          replace_once(
-              registry,
-              'Last compiled: 12.9.2026',
-              'Last compiled: 13.9.2026',
-              'registry compiled date',
-          )
-
-          old_registry_mun = '''- **Mun suunnat, mun polut** — Ohjaamo Helsinki
-  - Fits: ages 15–29 who do not know their study/work direction.
-  - Starts: 14.9.2026.
-  - Official: https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagpr2irxsi'''
-          new_registry_mun = '''- **Mun suunnat, mun polut** — Ohjaamo Helsinki
-  - Fits: ages 15–29 who want to identify their strengths and interests and clarify a study/work direction.
-  - Helps with: guided reflection with an Ohjaamo study adviser and career-guidance psychologists.
-  - Status: four consecutive Mondays — 14.9., 21.9., 28.9. and 5.10.2026, 13.00–15.00 — at Ohjaamo Helsinki, Fredrikinkatu 48; free. No advance registration is required; the participant should attend the first session.
-  - Official: https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagpr2irxsi
-
-- **Työnantaja Meet & Greet — 29.9.2026** — Ohjaamo Helsinki
-  - Fits: Helsinki young people using the 15–29-year-old Ohjaamo service; the event explicitly welcomes English speakers too.
-  - Helps with: meeting Lidl, Posti and Nordjobb; discussing current work possibilities; CV/application/interview tips; CV photography; and youth entrepreneurship guidance.
-  - Status: Tuesday 29.9.2026, 13.00–16.00, Ohjaamo Helsinki, Fredrikinkatu 48; free. Current examples include Lidl shop/warehouse work, Posti delivery/sorting/production work and Nordjobb seasonal routes in another Nordic country. Do not promise a vacancy, interview or selection; verify the event page again close to the date because participating employers can change.
-  - Official: https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagp7ubd2ee'''
-          replace_once(registry, old_registry_mun, new_registry_mun, 'registry Helsinki youth entries')
-
-          old_registry_safety = '''- **Safety Circle for kids — English group** — Kids Global Safety Hub / City of Espoo event calendar
-  - Fits: children and families looking for an English-language, low-threshold skills activity. The checked event page does not publish a specific child age range, so do not invent one.
-  - Helps with: interactive learning around safety, identity, confidence, healthy boundaries and year-long skill development.
-  - Status: free English-language series at Iso Omena Library, Suomenlahdentie 1. The event series is listed 12.9.–19.12.2026; the first session is 12.9.2026, 14.00–16.00. Re-check the series for the next exact date before routing a family.
-  - Official: https://www.espoo.fi/en/events/espooevents%3Aagqgv66fvu'''
-          new_registry_safety = '''- **Koko perheen Leppis pop-up + Leppis kerhot** — City of Espoo / MAOL
-  - Fits: families with children aged 3–6; a guardian/adult participates with the child. The pop-up does not require language skills.
-  - Helps with: low-threshold play, movement and exploring mathematics together; the pop-up also has children's story times.
-  - Status: pop-up Sunday 13.9.2026, 13.00–16.00, Entresse Library children's department, Siltakatu 11; free. Story times are 13.30, 14.30 and 15.30. After the one-day pop-up, a free five-week Leppis club starts Thursday 1.10.2026: ages 3–4 at 17.00–17.45 and ages 5–6 at 18.00–18.45. Advance registration is required for the club through the official page. Mark the pop-up passed from 14.9., but the club route remains relevant while registration/places are available.
-  - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqfqdhyzy
-
-- **Safety Circle for kids — English group** — Kids Global Safety Hub / City of Espoo event calendar
-  - Fits: children and families looking for an English-language, low-threshold skills activity. The checked event page does not publish a specific child age range, so do not invent one.
-  - Helps with: interactive learning around safety, identity, confidence, healthy boundaries and year-long skill development.
-  - Status: free English-language series at Iso Omena Library, Suomenlahdentie 1, listed 12.9.–19.12.2026. The 12.9 launch has passed; the series page currently lists 10.10.2026, 14.00–16.00 as the next date and 14.11. as a later date. Re-check the series before routing a family because later dates can be expanded or changed.
-  - Official: https://www.espoo.fi/en/events/espooevents%3Aagqgv66aiy'''
-          replace_once(registry, old_registry_safety, new_registry_safety, 'registry Espoo family entries')
           PY
-
           git rm .github/workflows/aqoon-programme-refresh-2026-09-13.yml
-
           python - <<'PY'
           import subprocess
-          allowed = {
-              'caawi/ajankohtaiset/index.html',
-              'internal/open-programmes.md',
-              '.github/workflows/aqoon-programme-refresh-2026-09-13.yml',
-          }
+          allowed = {'caawi/ajankohtaiset/index.html', 'internal/open-programmes.md', '.github/workflows/aqoon-programme-refresh-2026-09-13.yml'}
           out = subprocess.check_output(['git', 'status', '--porcelain'], text=True)
           changed = set()
           for line in out.splitlines():
@@ -115,7 +57,7 @@ jobs:
           unexpected = changed - allowed
           if unexpected:
               raise SystemExit(f'Unexpected paths changed: {sorted(unexpected)}')
-          if 'caawi/ajankohtaiset/index.html' not in changed or 'internal/open-programmes.md' not in changed:
+          if not {'caawi/ajankohtaiset/index.html', 'internal/open-programmes.md'} <= changed:
               raise SystemExit(f'Expected content files not both changed: {sorted(changed)}')
           if any('pilke' in p.lower() for p in changed):
               raise SystemExit('Pilke path changed unexpectedly')
