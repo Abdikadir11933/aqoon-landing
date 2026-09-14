@@ -1,0 +1,49 @@
+name: AQOON source-conflict correction 2026-09-14
+on:
+  push:
+    branches: [master]
+    paths:
+      - '.github/workflows/aqoon-source-conflict-fix-20260914.yml'
+permissions:
+  contents: write
+jobs:
+  correct:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Correct Tasty Snack timing wording
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          public_path = Path('caawi/ajankohtaiset/index.html')
+          public = public_path.read_text(encoding='utf-8')
+          old = '''<article class="card"><div class="meta urgent">Espoo · 3.–9. luokkalaiset / 9–15 jir · Isniin 15–16.30 · Finnish/English · bilaash · isdiiwaangelin</div><h3>Tasty Snack – Entressen kirjasto</h3><p>Espoon harrastuspolku waxay Entressen kirjasto ku leedahay koox bilaash ah oo carruurta iyo dhalinyarada lagu sameeyo cunto fudud, snacks iyo cuntooyin sahlan. Kooxdu waxay kulantaa Isniin kasta 15–16.30 sannad-dugsiyedka oo dhan marka laga reebo fasaxyada dugsiga, haddii aan si kale loo sheegin. Bogga rasmiga ahi wuxuu sheegayaa Finnish iyo English, waxaana loo baahan yahay isdiiwaangelin; kooxda waa la tijaabin karaa ka hor isdiiwaangelinta.</p><a href="https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqfyuh7xi">Espoo, rasmi & isdiiwaangelin ↗</a></article>'''
+          new = '''<article class="card"><div class="meta urgent">Espoo · 3.–9. luokkalaiset / 9–15 jir · Isniin · Finnish/English · bilaash · isdiiwaangelin · waqtiga hubi</div><h3>Tasty Snack – Entressen kirjasto</h3><p>Espoon harrastuspolku waxay Entressen kirjasto ku leedahay koox bilaash ah oo carruurta iyo dhalinyarada lagu sameeyo cunto fudud, snacks iyo cuntooyin sahlan. Bogga rasmiga ah ee dhacdada 14.9. wuxuu qorayaa 15–16.30, laakiin liiska Entressen kirjasto wuxuu isla maalintaas muujinayaa laba Tasty Snack: fasallada 3–6 saacadaha 15–16.30 iyo fasallada 3–9 saacadaha 16.30–18. Sidaa darteed waqtiga saxda ah ka xaqiiji bogga rasmiga ah ama isdiiwaangelinta ka hor intaadan tegin. Xogta la xaqiijiyey waa fasallada 3–9 / 9–15 jir, Finnish iyo English, bilaash iyo isdiiwaangelin; kooxaha harrastuspolku waxay socdaan sannad-dugsiyeedka marka laga reebo fasaxyada dugsiga.</p><a href="https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqfyuh7xi">Espoo, rasmi & isdiiwaangelin ↗</a></article>'''
+          if public.count(old) != 1:
+              raise SystemExit(f'public Tasty Snack block count={public.count(old)}')
+          public_path.write_text(public.replace(old, new, 1), encoding='utf-8')
+
+          registry_path = Path('internal/open-programmes.md')
+          registry = registry_path.read_text(encoding='utf-8')
+          old_r = '''  - Status: current school-year group at Entresse Library, Siltakatu 11, Mondays 15.00–16.30. The official material says hobby groups run weekly through the school year unless otherwise stated and do not meet during school holidays. Registration is available from the official event page; the group can also be tried before signing up.\n'''
+          new_r = '''  - Status: current school-year route at Entresse Library, Siltakatu 11. The official dated event page for 14.9 lists 15.00–16.30, while Entresse Library's current event list shows a separate grades 3–6 Tasty Snack at 15.00–16.30 and a grades 3–9 Tasty Snack at 16.30–18.00 on the same day. Treat the exact time as conflicting official data and re-check the event/registration before routing; do not state a single confirmed time until Espoo's pages align. Verified facts: grades 3–9 / age 9–15, Finnish and English, free, registration available, and hobby groups run through the school year except school holidays unless otherwise stated.\n'''
+          if registry.count(old_r) != 1:
+              raise SystemExit(f'registry Tasty Snack status count={registry.count(old_r)}')
+          registry_path.write_text(registry.replace(old_r, new_r, 1), encoding='utf-8')
+          PY
+          git diff --check
+          changed="$(git diff --name-only)"
+          test "$changed" = $'caawi/ajankohtaiset/index.html\ninternal/open-programmes.md' || { echo "Unexpected files: $changed" >&2; exit 1; }
+          if printf '%s\n' "$changed" | grep -i pilke; then exit 1; fi
+      - name: Commit correction
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add caawi/ajankohtaiset/index.html internal/open-programmes.md
+          git commit -m 'AQOON: clarify conflicting official Tasty Snack times'
+          git push origin HEAD:master
