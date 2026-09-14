@@ -6,7 +6,7 @@ This map explains ownership. It does not authorize moving production routes.
 
 `CLAUDE.md` → `CONTEXT.md` → nearest local/workspace context → matching `.claude/skills/` procedure → current source/data contract.
 
-Human entry: `README.md`. Instruction scope, canonical ownership and update/handoff rules: `docs/architecture/context-workflow.md`. The current Git tree is the file inventory: run `git ls-files`, then `rg --files <task-folder>` for focused discovery. Generated inventories and dated audits do not override that tree.
+Human entry: `README.md`. The public project showcase is `docs/showcase.md`, with a fictional workflow illustration in `docs/showcase-workflow.svg`; these explain the project and link to implementation evidence without becoming new runtime or business contracts. Instruction scope, canonical ownership and update/handoff rules: `docs/architecture/context-workflow.md`. The current Git tree is the file inventory: run `git ls-files`, then `rg --files <task-folder>` for focused discovery. Generated inventories and dated audits do not override that tree.
 
 The goal is progressive disclosure: an agent should not need the entire repository in context to do one task.
 

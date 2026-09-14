@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="890" viewBox="0 0 1000 890" role="img" aria-labelledby="title description">
+  <title id="title">AQOON: a fictional request-to-outcome walkthrough</title>
+  <desc id="description">An invented adult asks for help finding a Finnish course. Five steps show intake, interview, a verified next action, follow-up and a recorded outcome. This is an explanatory diagram, not a screenshot or a real customer result.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M1 1 L7 4 L1 7" fill="none" stroke="#066C68" stroke-width="1.5"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="890" fill="#F8F7F3"/>
+  <g font-family="Outfit, Arial, sans-serif" fill="#1A1A18">
+    <text x="48" y="42" font-size="15" font-weight="700" letter-spacing="2" fill="#066C68">AQOON / PROJECT WALKTHROUGH</text>
+    <text x="48" y="82" font-size="31" font-weight="700">From a request to a useful next step</text>
+    <text x="48" y="109" font-size="17" fill="#62625D">Fictional scenario: an adult wants help finding a Finnish course.</text>
+
+    <g transform="translate(48 134)">
+      <rect width="904" height="116" fill="#FFFFFF" stroke="#C9C8C1"/>
+      <text x="24" y="45" font-size="30" font-weight="700" fill="#066C68">01</text>
+      <text x="92" y="34" font-size="23" font-weight="700">Intake</text>
+      <text x="92" y="63" font-size="18">The person selects education and consents to contact.</text>
+      <text x="92" y="91" font-size="17" fill="#62625D">A short request starts a conversation.</text>
+    </g>
+    <path d="M500 251 V270" stroke="#066C68" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <g transform="translate(48 276)">
+      <rect width="904" height="116" fill="#FFFFFF" stroke="#C9C8C1"/>
+      <text x="24" y="45" font-size="30" font-weight="700" fill="#066C68">02</text>
+      <text x="92" y="34" font-size="23" font-weight="700">Interview</text>
+      <text x="92" y="63" font-size="18">The operator clarifies goals, circumstances and constraints.</text>
+      <text x="92" y="91" font-size="17" fill="#62625D">The conversation establishes what still needs checking.</text>
+    </g>
+    <path d="M500 393 V412" stroke="#066C68" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <g transform="translate(48 418)">
+      <rect width="904" height="116" fill="#FFFFFF" stroke="#C9C8C1"/>
+      <text x="24" y="45" font-size="30" font-weight="700" fill="#066C68">03</text>
+      <text x="92" y="34" font-size="23" font-weight="700">Verified next action</text>
+      <text x="92" y="63" font-size="18">The operator checks a course and agrees on the next step.</text>
+      <text x="92" y="91" font-size="17" fill="#62625D">The provider decides admission; AQOON supports the process.</text>
+    </g>
+    <path d="M500 535 V554" stroke="#066C68" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <g transform="translate(48 560)">
+      <rect width="904" height="116" fill="#FFFFFF" stroke="#C9C8C1"/>
+      <text x="24" y="45" font-size="30" font-weight="700" fill="#066C68">04</text>
+      <text x="92" y="34" font-size="23" font-weight="700">Follow-up</text>
+      <text x="92" y="63" font-size="18">The person is busy, so the operator schedules a callback.</text>
+      <text x="92" y="91" font-size="17" fill="#62625D">A call outcome and a future action remain distinct.</text>
+    </g>
+    <path d="M500 677 V696" stroke="#066C68" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <g transform="translate(48 702)">
+      <rect width="904" height="116" fill="#FFF0DF" stroke="#C9C8C1"/>
+      <text x="24" y="45" font-size="30" font-weight="700" fill="#066C68">05</text>
+      <text x="92" y="34" font-size="23" font-weight="700">Recorded outcome</text>
+      <text x="92" y="63" font-size="18">In this example, the person confirms attending the first class.</text>
+      <text x="92" y="91" font-size="17" fill="#62625D">The operator records the evidence and any remaining follow-up.</text>
+    </g>
+
+    <text x="48" y="855" font-size="16" fill="#62625D">Illustration only. No real family records, live submissions or measured results.</text>
+  </g>
+</svg>
