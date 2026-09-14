@@ -292,7 +292,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Tasty Snack — Entresse Library** — Espoon harrastuspolku / City of Espoo
   - Fits: pupils in grades 3–9; the current event page lists the target age as 9–15. Languages listed are Finnish and English.
   - Helps with: a free after-school cooking/snack hobby where participants prepare simple snacks, treats and meals together.
-  - Status: current school-year group at Entresse Library, Siltakatu 11, Mondays 15.00–16.30. The official material says hobby groups run weekly through the school year unless otherwise stated and do not meet during school holidays. Registration is available from the official event page; the group can also be tried before signing up.
+  - Status: current school-year route at Entresse Library, Siltakatu 11. The official dated event page for 14.9 lists 15.00–16.30, while Entresse Library's current event list shows a separate grades 3–6 Tasty Snack at 15.00–16.30 and a grades 3–9 Tasty Snack at 16.30–18.00 on the same day. Treat the exact time as conflicting official data and re-check the event/registration before routing; do not state a single confirmed time until Espoo's pages align. Verified facts: grades 3–9 / age 9–15, Finnish and English, free, registration available, and hobby groups run through the school year except school holidays unless otherwise stated.
   - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqfyuh7xi
 
 - **Safety Circle for kids — English group** — Kids Global Safety Hub / City of Espoo event calendar
