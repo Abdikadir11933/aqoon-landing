@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 13.9.2026
+Last compiled: 14.9.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -277,17 +277,23 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: Tuesdays 16.00–17.30, 4.8.–15.12.2026, Siltakatu 11, Espoo; free and no advance registration required.
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagphfqw7ne
 
-- **Töpinät — 13.9.2026** — Esbo IF / City of Espoo event calendar
+- **Töpinät — recurring series, next 11.10.2026** — Esbo IF / City of Espoo event calendar
   - Fits: children aged 2–8 with a parent/adult; an adult must remain with the child throughout the activity.
   - Helps with: free low-threshold indoor physical activity using varied equipment; movement is self-directed rather than instructor-led.
-  - Status: Sunday 13.9.2026, 10.00–12.00, Puistotie 13, 02760 Espoo; entrance C4 on the Heinäväentie side, ring the doorbell for access. Free; no registration required. Participate only when healthy. Mark this dated event passed from 14.9. unless a new dated event in the series is separately verified.
-  - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagpnhy72rq
+  - Status: the Puistotie 13 series runs 13.9.2026–4.4.2027. The 13.9 session has passed; the official series currently lists 11.10.2026 and 8.11.2026, 10.00–12.00, as the next dates. Free; no registration required. Re-check the series before quoting a later date because changes are possible.
+  - Official series: https://www.espoo.fi/en/events/espooevents%3Aagpnhy7t2e
 
-- **Koko perheen Leppis pop-up + Leppis kerhot** — City of Espoo / MAOL
-  - Fits: families with children aged 3–6; a guardian/adult participates with the child. The pop-up does not require language skills.
-  - Helps with: low-threshold play, movement and exploring mathematics together; the pop-up also has children's story times.
-  - Status: pop-up Sunday 13.9.2026, 13.00–16.00, Entresse Library children's department, Siltakatu 11; free. Story times are 13.30, 14.30 and 15.30. After the one-day pop-up, a free five-week Leppis club starts Thursday 1.10.2026: ages 3–4 at 17.00–17.45 and ages 5–6 at 18.00–18.45. Advance registration is required for the club through the official page. Mark the pop-up passed from 14.9., but the club route remains relevant while registration/places are available.
+- **Leppis kerhot — Entresse Library, starts 1.10.2026** — City of Espoo / MAOL
+  - Fits: families with children aged 3–6; a guardian/adult participates with the child.
+  - Helps with: free five-week play, movement and mathematics-themed activity after the one-day 13.9 pop-up.
+  - Status: the 13.9.2026 pop-up is closed/passed. The still-relevant route is the free five-week club starting Thursday 1.10.2026: ages 3–4 at 17.00–17.45 and ages 5–6 at 18.00–18.45, Entresse Library, Siltakatu 11. Advance registration is required through the official page; re-check availability before promising a place.
   - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqfqdhyzy
+
+- **Tasty Snack — Entresse Library** — Espoon harrastuspolku / City of Espoo
+  - Fits: pupils in grades 3–9; the current event page lists the target age as 9–15. Languages listed are Finnish and English.
+  - Helps with: a free after-school cooking/snack hobby where participants prepare simple snacks, treats and meals together.
+  - Status: current school-year group at Entresse Library, Siltakatu 11, Mondays 15.00–16.30. The official material says hobby groups run weekly through the school year unless otherwise stated and do not meet during school holidays. Registration is available from the official event page; the group can also be tried before signing up.
+  - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqfyuh7xi
 
 - **Safety Circle for kids — English group** — Kids Global Safety Hub / City of Espoo event calendar
   - Fits: children and families looking for an English-language, low-threshold skills activity. The checked event page does not publish a specific child age range, so do not invent one.
