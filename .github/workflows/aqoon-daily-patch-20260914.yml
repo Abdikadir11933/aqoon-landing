@@ -1,0 +1,136 @@
+name: AQOON verified programme refresh 2026-09-14
+on:
+  push:
+    branches: [master]
+permissions:
+  contents: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply verified 14 September opportunity refresh
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          public_path = Path('caawi/ajankohtaiset/index.html')
+          public = public_path.read_text(encoding='utf-8')
+
+          old = '<div class="note"><strong>La xaqiijiyey 13.9.2026.</strong>'
+          new = '<div class="note"><strong>La xaqiijiyey 14.9.2026.</strong>'
+          assert public.count(old) == 1, f'verification marker count={public.count(old)}'
+          public = public.replace(old, new, 1)
+
+          topinat_old = '''<article class="card"><div class="meta urgent">Espoo · maanta 13.9.2026 saacadaha 10–12 · 2–8 jir + qof weyn · bilaash · isdiiwaangelin looma baahna</div><h3>Töpinät</h3><p>Puistotie 13, Espoo, carruurta 2–8 jir iyo waalidkood/qof weyn ayaa maanta wada dhaqdhaqaaqi kara iyagoo adeegsanaya qalab kala duwan. Dhaqdhaqaaqu waa iskiis, qof weynna waa inuu mar walba ilmaha la socdaa. Soo gal albaabka C4 ee dhinaca Heinäväentie; albaabka waxaa ku yaal gambaleel. Kaalay oo keliya adigoo caafimaad qaba.</p><a href="https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagpnhy72rq">Espoo, rasmi ↗</a></article>'''
+          topinat_new = '''<article class="card"><div class="meta urgent">Espoo · kulanka xiga 11.10.2026 saacadaha 10–12 · 2–8 jir + qof weyn · bilaash · isdiiwaangelin looma baahna</div><h3>Töpinät</h3><p>Töpinät waa taxane carruurta 2–8 jir iyo waalidkood/qof weyn ay si wadajir ah ugu dhaqdhaqaaqaan qalab kala duwan. Taxanaha Puistotie 13 wuxuu socdaa 13.9.2026–4.4.2027; kulankii 13.9. wuu dhacay, bogga rasmiga ahna wuxuu hadda muujinayaa 11.10. iyo 8.11. inay yihiin kulamada xiga. Dhaqdhaqaaqu waa iskiis, qof weynna waa inuu mar walba ilmaha la socdaa. Gelitaanku waa bilaash, isdiiwaangelinna looma baahna.</p><a href="https://www.espoo.fi/en/events/espooevents%3Aagpnhy7t2e">Espoo, taxanaha rasmiga ah ↗</a></article>'''
+          assert public.count(topinat_old) == 1, f'Töpinät card count={public.count(topinat_old)}'
+          public = public.replace(topinat_old, topinat_new, 1)
+
+          leppis_old = '''<article class="card"><div class="meta urgent">Espoo · maanta 13.9.2026 saacadaha 13–16 · 3–6 jir + qof weyn · bilaash</div><h3>Koko perheen Leppis pop-up + kerho</h3><p>Entressen kirjaston lastenosasto, Siltakatu 11, waxaa maanta ka jira ciyaar iyo dhaqdhaqaaq qoysaska oo lagu sahminayo xisaabta si fudud. Waxaa loogu talagalay 3–6 jir oo la socda huoltaja ama qof weyn, ka qaybgalka pop-up-kuna aqoon luqadeed uma baahna. Satutuokiot waa 13.30, 14.30 iyo 15.30. Kadib pop-up-ka waxaa 1.10. bilaabmaya kerho bilaash ah oo shan toddobaad soconaya; kerho-ga horay ayaa loo isdiiwaangeliyaa.</p><a href="https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqfqdhyzy">Espoo, rasmi & kerho-ga ↗</a></article>'''
+          leppis_new = '''<article class="card"><div class="meta urgent">Espoo · 3–6 jir + qof weyn · bilaabma 1.10.2026 · 5 toddobaad · bilaash · isdiiwaangelin</div><h3>Leppis kerho – Entressen kirjasto</h3><p>Pop-up-kii 13.9. wuu dhacay, laakiin waddada qoysaska wali way furan tahay: 1.10. waxaa bilaabmaya kerho bilaash ah oo shan toddobaad soconaya Entressen kirjasto, Siltakatu 11. Ilmuhu waa inuu la yimaadaa huoltaja ama qof weyn. Kooxda 3–4 jir waa 17–17.45, kooxda 5–6 jirna waa 18–18.45. Kerho-ga horay ayaa loo isdiiwaangeliyaa bogga rasmiga ah.</p><a href="https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqfqdhyzy">Espoo, rasmi & isdiiwaangelin ↗</a></article>'''
+          assert public.count(leppis_old) == 1, f'Leppis card count={public.count(leppis_old)}'
+          public = public.replace(leppis_old, leppis_new, 1)
+
+          tasty = '''\n<article class="card"><div class="meta urgent">Espoo · 3.–9. luokkalaiset / 9–15 jir · Isniin 15–16.30 · Finnish/English · bilaash · isdiiwaangelin</div><h3>Tasty Snack – Entressen kirjasto</h3><p>Espoon harrastuspolku waxay Entressen kirjasto ku leedahay koox bilaash ah oo carruurta iyo dhalinyarada lagu sameeyo cunto fudud, snacks iyo cuntooyin sahlan. Kooxdu waxay kulantaa Isniin kasta 15–16.30 sannad-dugsiyeedka oo dhan marka laga reebo fasaxyada dugsiga, haddii aan si kale loo sheegin. Bogga rasmiga ahi wuxuu sheegayaa Finnish iyo English, waxaana loo baahan yahay isdiiwaangelin; kooxda waa la tijaabin karaa ka hor isdiiwaangelinta.</p><a href="https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqfyuh7xi">Espoo, rasmi & isdiiwaangelin ↗</a></article>'''
+          assert 'Tasty Snack – Entressen kirjasto' not in public
+          public = public.replace(leppis_new, leppis_new + tasty, 1)
+          public_path.write_text(public, encoding='utf-8')
+
+          registry_path = Path('internal/open-programmes.md')
+          registry = registry_path.read_text(encoding='utf-8')
+          assert registry.count('Last compiled: 13.9.2026') == 1
+          registry = registry.replace('Last compiled: 13.9.2026', 'Last compiled: 14.9.2026', 1)
+
+          topinat_pattern = re.compile(r'- \*\*Töpinät — 13\.9\.2026\*\* — Esbo IF / City of Espoo event calendar\n(?:  - .*\n)+?  - Official: https://www\.espoo\.fi/fi/tapahtumat/espooevents%3Aagpnhy72rq\n', re.M)
+          topinat_registry = '''- **Töpinät — recurring series, next 11.10.2026** — Esbo IF / City of Espoo event calendar
+  - Fits: children aged 2–8 with a parent/adult; an adult must remain with the child throughout the activity.
+  - Helps with: free low-threshold indoor physical activity using varied equipment; movement is self-directed rather than instructor-led.
+  - Status: the Puistotie 13 series runs 13.9.2026–4.4.2027. The 13.9 session has passed; the official series currently lists 11.10.2026 and 8.11.2026, 10.00–12.00, as the next dates. Free; no registration required. Re-check the series before quoting a later date because changes are possible.
+  - Official series: https://www.espoo.fi/en/events/espooevents%3Aagpnhy7t2e
+'''
+          registry, n = topinat_pattern.subn(topinat_registry, registry, count=1)
+          assert n == 1, f'Töpinät registry replacements={n}'
+
+          leppis_pattern = re.compile(r'- \*\*Koko perheen Leppis pop-up \+ Leppis kerhot\*\* — City of Espoo / MAOL\n(?:  - .*\n)+?  - Official: https://www\.espoo\.fi/fi/tapahtumat/espooevents%3Aagqfqdhyzy\n', re.M)
+          leppis_registry = '''- **Leppis kerhot — Entresse Library, starts 1.10.2026** — City of Espoo / MAOL
+  - Fits: families with children aged 3–6; a guardian/adult participates with the child.
+  - Helps with: free five-week play, movement and mathematics-themed activity after the one-day 13.9 pop-up.
+  - Status: the 13.9.2026 pop-up is closed/passed. The still-relevant route is the free five-week club starting Thursday 1.10.2026: ages 3–4 at 17.00–17.45 and ages 5–6 at 18.00–18.45, Entresse Library, Siltakatu 11. Advance registration is required through the official page; re-check availability before promising a place.
+  - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqfqdhyzy
+
+- **Tasty Snack — Entresse Library** — Espoon harrastuspolku / City of Espoo
+  - Fits: pupils in grades 3–9; the current event page lists the target age as 9–15. Languages listed are Finnish and English.
+  - Helps with: a free after-school cooking/snack hobby where participants prepare simple snacks, treats and meals together.
+  - Status: current school-year group at Entresse Library, Siltakatu 11, Mondays 15.00–16.30. The official material says hobby groups run weekly through the school year unless otherwise stated and do not meet during school holidays. Registration is available from the official event page; the group can also be tried before signing up.
+  - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqfyuh7xi
+'''
+          registry, n = leppis_pattern.subn(leppis_registry, registry, count=1)
+          assert n == 1, f'Leppis registry replacements={n}'
+          registry_path.write_text(registry, encoding='utf-8')
+          PY
+          rm .github/workflows/aqoon-daily-patch-20260914.yml
+      - name: Guard intended scope
+        shell: bash
+        run: |
+          git diff --check
+          changed="$(git diff --name-only)"
+          printf '%s\n' "$changed"
+          test "$changed" = $'caawi/ajankohtaiset/index.html\ninternal/open-programmes.md\n.github/workflows/aqoon-daily-patch-20260914.yml' || {
+            echo 'Unexpected changed-file set' >&2
+            exit 1
+          }
+          if printf '%s\n' "$changed" | grep -E '(^|/)pilke(/|$)'; then
+            echo 'Pilke must not be touched' >&2
+            exit 1
+          fi
+      - name: Check repository context, skills and file integrity
+        run: |
+          python scripts/context_qa.py
+          python scripts/repo_integrity_qa.py
+      - name: Check tracker and Supabase collection contract
+        run: node scripts/tracker_collection_qa.js
+      - name: Run complete code and system regression suite
+        run: node --test tests/*.test.js
+      - name: Check routes, sitemap and architecture guards
+        run: python scripts/site_qa.py
+      - name: Check static SEO metadata
+        run: python scripts/check_seo_metadata.py
+      - name: Check mobile usability and accessibility guards
+        run: python scripts/usability_qa.py
+      - name: Check legal, independence and privacy guards
+        run: python scripts/legal_trust_qa.py
+      - name: Check tracker core JavaScript syntax
+        run: node --check tracker/app.js && node --check tracker/interview-contract.js && node --check tracker/visual-v3.js && node --check tracker/crm-reactive.js && node --check tracker/operations-system.js && node --check tracker/interview-smart-notes.js && node --check tracker/incomplete-intake.js && node --check tracker/interview-follow-up-recap.js && node --check tracker/interview-next-steps.js
+      - name: Check tracker adapters, matching and scenario learning syntax
+        run: node --check tracker/multineed-adapter.js && node --check tracker/interview-match.js && node --check tracker/interview-match-preview.js && node --check tracker/scenario-learning.js && node --check tracker/interview-form-enhancements.js && node --check tracker/interview-context.js && node --check tracker/crm-call-history.js && node --check tracker/crm-queue-navigation.js
+      - name: Check tracker evidence, CRM management and identity syntax
+        run: node --check tracker/universal-proof-questions.js && node --check tracker/human-labels.js && node --check tracker/analytics-mobile-v2.js && node --check tracker/call-outcomes.js && node --check tracker/crm-manage.js && node --check tracker/operator-identity.js && node --check tracker/case-lifecycle.js && node --check tracker/interview-answers-restore.js
+      - name: Check active interview and follow-up workflow layers
+        run: node --check tracker/interview-ux-v4.js && node --check tracker/followup-workflow-v2.js && node --check tracker/followup-panel-v2.js && node --check tracker/followup-plan-confirm-v1.js && node --check tracker/phase-controls-v1.js
+      - name: Check public site JavaScript syntax
+        run: node --check assets/main.js && node --check assets/site.js && node --check caawi/app.js
+      - name: Run caawi regression tests
+        run: node --test tests/caawi.test.js
+      - name: Run call outcome regression tests
+        run: node --test tests/call-outcomes.test.js
+      - name: Run Somali language QA
+        run: python scripts/somali_language_qa.py
+      - name: Commit verified refresh and remove temporary workflow
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add caawi/ajankohtaiset/index.html internal/open-programmes.md .github/workflows/aqoon-daily-patch-20260914.yml
+          git commit -m 'AQOON: refresh verified opportunities for 14 Sep'
+          git push origin HEAD:master
