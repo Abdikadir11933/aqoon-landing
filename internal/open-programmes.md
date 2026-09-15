@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 14.9.2026
+Last compiled: 15.9.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -54,6 +54,12 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: registration opened 24.8.2026.
   - Official: https://www.vantaa.fi/fi/ajankohtaista/uutinen/ilmoittautuminen-koululaisten-maksuttomiin-harrastuksiin-alkaa-248
 
+- **Harrastushulinat — Vantaan Energia Areena 19.9.2026** — Vantaan kaupunki
+  - Fits: children and young people with disabilities or special support needs, and their families; the hobby try-outs are especially suitable for age 7+.
+  - Helps with: low-threshold trials of sports and cultural hobbies in a supportive setting.
+  - Status: Saturday 19.9.2026, 12.00–15.00, Vantaan Energia Areena; free. No previous experience or skills are required.
+  - Official: https://www.vantaa.fi/fi/ajankohtaista/uutinen/erityislasten-ja-nuorten-harrastushulinat-kutsuu-kokeilemaan-uusia-harrastuksia-vantaan-energia-areenalle
+
 - **Kolibrí Festival — Vantaa 26.9.2026** — Vantaan kaupunki / children's cultural services
   - Fits: families and children looking for a free multicultural cultural day.
   - Helps with: low-threshold family activities and multilingual cultural participation.
@@ -63,7 +69,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Lasten liikunnalliset syysloman päiväleirit — week 42** — Vantaan kaupunki / sports services
   - Fits: children in grades 1–4. The checked autumn sources do not state a separate Vantaa-residency restriction, so do not infer one.
   - Helps with: five-day supervised sports/activity day camps during the school autumn break at several Vantaa locations.
-  - Status: registration opens Tuesday 15.9.2026 at 08.00 in Vantaaliikunta and places are filled in registration order. Camps are Finnish-language and cost €45/child/week, including possible excursion fees.
+  - Status: registration opened Tuesday 15.9.2026 at 08.00 in Vantaaliikunta and places are filled in registration order. Camps are Finnish-language and cost €45/child/week, including possible excursion fees. Re-check Vantaaliikunta before routing because the source does not guarantee that places remain available after opening.
   - Conditions/caution: child must be able to participate in a group of 20 and follow shared rules; no prior sports experience is required. No hot meal is served, so the family must provide meals/snacks. The service page also describes a phone-registration route.
   - Official news: https://www.vantaa.fi/fi/ajankohtaista/uutinen/ilmoita-lapsesi-syysloman-paivaleirille-ilmoittautuminen-alkaa-159
   - Official service: https://www.vantaa.fi/fi/palveluhakemisto/palvelu/lasten-liikunnalliset-paivaleirit
@@ -78,7 +84,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Lukukamut — volunteer reading in Vantaa daycares** — Vantaan varhaiskasvatus
   - Fits: adults interested in flexible volunteer reading with daycare children; prior experience is not required.
   - Helps with: community participation and supporting children's interest in reading. This is volunteer activity, not paid employment or a daycare-place application.
-  - Status: registration is open until 15.9.2026 or until available places fill. The pilot runs during autumn 2026 and spring 2027 at the daycares currently listed by Vantaa. The volunteer can agree the frequency and duration with the daycare.
+  - Status: the published deadline is today, 15.9.2026, or earlier if available places fill; the source does not state a closing clock time, so re-check the form before routing. The pilot runs from September 2026 to June 2027 at the daycares currently listed by Vantaa. The volunteer can agree the frequency and duration with the daycare.
   - Language: reading can be in Finnish or another language used in the daycare.
   - Public-listing caution: if surfaced to families, label it clearly as **unpaid volunteering for an adult**, not a job or a service received by the child.
   - Official: https://www.vantaa.fi/fi/tule-vapaaehtoiseksi-lukemaan-paivakotiin
@@ -130,6 +136,12 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official schedule: https://www.hel.fi/fi/kasvatus-ja-koulutus/leikkipuisto-ja-perhetalotoiminta/mita-leikkipuistoissa-tehdaan
   - Official dated example: https://tapahtumat.hel.fi/fi/tapahtumat/helsinki%3Aagqcgyddbi
 
+- **Kolibrí Festival Family Day — Caisa 20.9.2026** — City of Helsinki / Kulttuurikeskus Ninho ry
+  - Fits: children and families looking for a free multilingual cultural day.
+  - Helps with: artistic workshops, music and dance, multilingual storytelling, a children's book fair and low-threshold family participation.
+  - Status: Sunday 20.9.2026, 11.00–17.00, Cultural Centre Caisa, Kaikukatu 4; free entry and no registration required.
+  - Official: https://tapahtumat.hel.fi/en/events/kulke%3A68785
+
 - **Welcome Day — Kanneltalo 16.9.2026** — City of Helsinki
   - Fits: international newcomers and other residents interested in local services and opportunities; the official page says everyone is welcome.
   - Helps with: meeting city and local organisations, learning about local services and opportunities, and all-ages activities.
@@ -139,7 +151,25 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Stadin AO työvoimakoulutukset maahanmuuttajille**
   - Fits: immigrant unemployed jobseekers or people at risk of unemployment.
   - Helps with: profession + S2 support + route to work.
-  - Status: the **Turvallisuusala + S2-tuki** route closed on 4.9.2026. The **Elintarvikealan avustaviin tehtäviin, kielituettu koulutus maahan muuttaneille** route is now **closed/passed**; its official application deadline was 7.9.2026 and the training period is 13.10.2026–18.6.2027. Do not present either route as open from 8.9. onward unless the official page changes. Stadin AO says future trainings will be added during autumn and application dates announced later.
+  - Status: the older **Turvallisuusala + S2-tuki** and **Elintarvikealan avustaviin tehtäviin** rounds are closed. Newly published open migrant routes are **Hoivapolku maahan muuttaneille (A1.3)** through 11.10.2026, training 7.1.–17.6.2027, and **Varastopolku maahan muuttaneille (A2.1)** through 30.10.2026, training 7.1.–28.5.2027. Do not infer additional eligibility beyond the official labour-market-training criteria and the published language levels.
+  - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/tyovoimakoulutukset/
+
+- **Hoivapolku maahan muuttaneille** — Stadin AO
+  - Fits: immigrant jobseekers for whom labour-market training is appropriate; the published Finnish level is A1.3. Labour-market training is primarily for unemployed jobseekers or people at risk of unemployment.
+  - Helps with: an employment-oriented care-sector path with language level stated by the provider. Do not infer a guaranteed qualification or job outcome from the listing.
+  - Status: application open until 11.10.2026; training 7.1.–17.6.2027.
+  - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/tyovoimakoulutukset/
+
+- **Varastopolku maahan muuttaneille** — Stadin AO
+  - Fits: immigrant jobseekers for whom labour-market training is appropriate; the published Finnish level is A2.1. Labour-market training is primarily for unemployed jobseekers or people at risk of unemployment.
+  - Helps with: an employment-oriented warehouse/logistics path. Do not infer a guaranteed qualification or job outcome from the listing.
+  - Status: application open until 30.10.2026; training 7.1.–28.5.2027.
+  - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/tyovoimakoulutukset/
+
+- **Kosmetiikkamyynnin osaaja** — Stadin AO
+  - Fits: jobseekers for whom labour-market training is appropriate; the checked listing does not state a migrant-only target group or a language level, so do not add either claim.
+  - Helps with: employment-oriented cosmetics sales training.
+  - Status: application open until 11.11.2026; training 11.1.–16.6.2027.
   - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/tyovoimakoulutukset/
 
 - **Sosiaali- ja terveysalan koulutus** — Stadin AO / Helsinki employment services
@@ -164,7 +194,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Stadin Futura** — Stadin AO / Helsinki Employment Services
   - Fits: Helsinki residents aged 18–29 who need support choosing a field, applying to studies, identifying their strengths or building study/work readiness. Finnish at least A2.1.
   - Helps with: career/education direction, visits to study fields, recognising skills, study readiness, work-life readiness and a next-step plan.
-  - Status: next group 15.9.–7.10.2026, Tuesdays–Wednesdays 9–12 at Teollisuuskatu. Later groups are 13.10.–4.11. and 10.11.–2.12.2026. No separate public application deadline is stated on the checked page.
+  - Status: the published group 15.9.–7.10.2026 starts today and runs Tuesdays–Wednesdays 9–12 at Teollisuuskatu. Later groups are 13.10.–4.11. and 10.11.–2.12.2026. No separate public application deadline is stated; because entry is through the employment-services referral and initial interview, check with the responsible expert before promising late entry to a group that has already started.
   - Route: the responsible expert in Helsinki Employment Services enrols the participant in Wilma under `Työllisyydenhoito`; after enrolment the teacher contacts the participant for an initial interview.
   - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/ohjausta-omalle-uralle/
 
@@ -292,8 +322,8 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Tasty Snack — Entresse Library** — Espoon harrastuspolku / City of Espoo
   - Fits: pupils in grades 3–9; the current event page lists the target age as 9–15. Languages listed are Finnish and English.
   - Helps with: a free after-school cooking/snack hobby where participants prepare simple snacks, treats and meals together.
-  - Status: current school-year route at Entresse Library, Siltakatu 11. The official dated event page for 14.9 lists 15.00–16.30, while Entresse Library's current event list shows a separate grades 3–6 Tasty Snack at 15.00–16.30 and a grades 3–9 Tasty Snack at 16.30–18.00 on the same day. Treat the exact time as conflicting official data and re-check the event/registration before routing; do not state a single confirmed time until Espoo's pages align. Verified facts: grades 3–9 / age 9–15, Finnish and English, free, registration available, and hobby groups run through the school year except school holidays unless otherwise stated.
-  - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqfyuh7xi
+  - Status: current series at Entresse Library, Siltakatu 11, 7.9.2026–10.5.2027, Mondays 16.30–18.00 except school holidays; the current Espoo listings now align on 16.30–18.00 for the grades 3–9 group. The next listed session is 21.9.2026. Free; registration is available.
+  - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqfy2b5p4
 
 - **Safety Circle for kids — English group** — Kids Global Safety Hub / City of Espoo event calendar
   - Fits: children and families looking for an English-language, low-threshold skills activity. The checked event page does not publish a specific child age range, so do not invent one.
@@ -492,7 +522,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 
 - **Integration 2026** — Vantaan kaupunki / KEHA-keskus
   - Audience: integration professionals, authorities, educators, organisations, companies and other integration actors.
-  - Event: 28.–29.10.2026 at Clarion Hotel Helsinki Airport; registration window is listed as 31.8.–14.9.2026.
+  - Event: 28.–29.10.2026 at Clarion Hotel Helsinki Airport. The published remote-registration and in-person application window 31.8.–14.9.2026 is now closed/passed; in-person confirmations or waiting-list notices are expected 15.–17.9.2026.
   - Use: AQOON partner/networking opportunity, not a family-facing programme card.
   - Official: https://www.vantaa.fi/fi/hankkeet/hanke/integration-2026-hanke
 
