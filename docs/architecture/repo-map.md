@@ -22,6 +22,7 @@ The goal is progressive disclosure: an agent should not need the entire reposito
 | `/so/*` | Legacy permanent redirects to the matching `/caawi/*` route; no canonical files | ADR 0004 + `vercel.json` |
 | `pilke/` | Protected campaign pages | explicit owner instruction required |
 | `assets/` | Shared public-site assets | root/brand contracts |
+| `portfolio/` | Abducadir Aligure's personal job-search portfolio at `/portfolio` | `portfolio/CONTEXT.md`; independent portfolio design and canonical source |
 
 Do not move these physical paths just to make the repository visually tidier; they are production route contracts. The `/so` to `/caawi` migration is the explicit, redirect-preserving exception recorded in ADR 0004.
 
