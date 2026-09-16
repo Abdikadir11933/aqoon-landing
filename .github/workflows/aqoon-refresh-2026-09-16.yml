@@ -30,3 +30,4 @@ jobs:
           fi
           git commit -m "chore: refresh verified opportunities for 2026-09-16"
           git push origin HEAD:master
+# retry after exact registry-match correction
