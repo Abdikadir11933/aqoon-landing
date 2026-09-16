@@ -10,8 +10,21 @@ def replace_once(path, old, new):
     p.write_text(text.replace(old, new, 1))
 
 
+def replace_section(path, start_marker, end_marker, replacement):
+    p = Path(path)
+    text = p.read_text()
+    start = text.find(start_marker)
+    if start == -1:
+        raise SystemExit(f"{path}: start marker not found: {start_marker!r}")
+    end = text.find(end_marker, start + len(start_marker))
+    if end == -1:
+        raise SystemExit(f"{path}: end marker not found: {end_marker!r}")
+    p.write_text(text[:start] + replacement + "\n\n" + text[end:])
+
+
 public = "caawi/ajankohtaiset/index.html"
 registry = "internal/open-programmes.md"
+
 replace_once(public, "<strong>La xaqiijiyey 15.9.2026.</strong>", "<strong>La xaqiijiyey 16.9.2026.</strong>")
 replace_once(registry, "Last compiled: 15.9.2026", "Last compiled: 16.9.2026")
 
@@ -22,31 +35,26 @@ replace_once(public, old_mun, new_mun)
 replace_once(public, '<section id="hobby"><h2>⚽ Hiwaayadaha carruurta ee bilaashka ah</h2>', '<section id="hobby"><h2>⚽ Hiwaayadaha carruurta</h2>')
 
 old_hulinat = '''<article class="card"><div class="meta urgent">Vantaa · 19.9.2026 saacadaha 12–15 · carruurta/dhalinyarada u baahan taageero gaar ah + qoysaskooda · bilaash</div><h3>Harrastushulinat – Vantaan Energia Areena</h3><p>Carruurta iyo dhalinyarada naafada ah ama u baahan taageero gaar ah, iyo qoysaskooda, waxay si bilaash ah u tijaabin karaan hiwaayado kala duwan jawi deggan oo taageero leh. Tijaabooyinka waxaa si gaar ah loogu talagalay 7 jir iyo ka weyn, khibrad ama xirfad horena looma baahna. Munaasabadda: Sabti 19.9. saacadaha 12–15, Vantaan Energia Areena.</p><a href="https://www.vantaa.fi/fi/ajankohtaista/uutinen/erityislasten-ja-nuorten-harrastushulinat-kutsuu-kokeilemaan-uusia-harrastuksia-vantaan-energia-areenalle">Vantaa, rasmi ↗</a></article>'''
-new_hulinat = old_hulinat + '''
+art_card = '''
 <article class="card"><div class="meta urgent">Vantaa · carruur & dhalinyaro · codsiga ilaa 9.10.2026 · lacag ayaa jirta</div><h3>Vantaan kuvataidekoulu – meelo bannaan dayrta</h3><p>Vantaan kuvataidekoulu wuxuu leeyahay meelo bannaan kooxaha farshaxanka ee dayrta 2026. Liiska hadda jira waxaa ku jira kooxo carruur iyo dhalinyaro ah oo da'doodu kala duwan tahay, goobahana waxaa ka mid ah Kartanonkoski, Kivistö, Korso, Myyrmäki iyo Tikkurila. Waxaa la codsan karaa ilaa <strong>9.10.2026</strong>. Tani <strong>ma aha hiwaayad bilaash ah</strong>: waxbarashadu waa lukukausimaksullinen, sidaas darteed ka hubi kooxda, da'da iyo kharashka bogga rasmiga ah ka hor codsiga.</p><a href="https://kuvataidekoulu.vantaa.fi/fi/ajankohtaista/uutinen/inspiroidu-kokeile-ja-luo-vapaita-paikkoja-vantaan-kuvataidekoulun-lasten-ja-nuorten-taideryhmissa">Vantaa, rasmi ↗</a></article>'''
-replace_once(public, old_hulinat, new_hulinat)
+replace_once(public, old_hulinat, old_hulinat + art_card)
 
 replace_once(registry, "  - Status: the published deadline is today, 15.9.2026, or earlier if available places fill; the source does not state a closing clock time, so re-check the form before routing. The pilot runs from September 2026 to June 2027 at the daycares currently listed by Vantaa. The volunteer can agree the frequency and duration with the daycare.", "  - Status (16.9.2026): the published application window ended **15.9.2026** (or earlier if available places filled). Keep this as a closed unpaid volunteer route unless Vantaa publishes a new application round. The pilot itself runs from September 2026 to June 2027 at the daycares listed by Vantaa.")
 replace_once(registry, "  - Status: the published group 15.9.–7.10.2026 starts today and runs Tuesdays–Wednesdays 9–12 at Teollisuuskatu. Later groups are 13.10.–4.11. and 10.11.–2.12.2026. No separate public application deadline is stated; because entry is through the employment-services referral and initial interview, check with the responsible expert before promising late entry to a group that has already started.", "  - Status (16.9.2026): the published group **15.9.–7.10.2026** has started and runs Tuesdays–Wednesdays 9–12 at Teollisuuskatu. Later groups are 13.10.–4.11. and 10.11.–2.12.2026. No separate public application deadline is stated; because entry is through the employment-services referral and initial interview, check with the responsible expert before promising late entry to a group that has already started.")
 replace_once(registry, "  - Status: recruitment information 15.9.2026, 12–15, Helsinki Employment Services, Malminkatu 34; vocational content 21.–25.9.2026, 9–14, Stadin AO Ilkantie 3. Free for Helsinki employment-services clients.", "  - Status (16.9.2026): the recruitment information session on **15.9.2026, 12–15** at Helsinki Employment Services, Malminkatu 34 has passed; vocational content **21.–25.9.2026, 9–14**, Stadin AO Ilkantie 3 remains upcoming. Free for Helsinki employment-services clients. The checked source does not establish a new direct application route.")
 
-old_reg_mun = '''- **Mun suunnat, mun polut** — Ohjaamo Helsinki
-  - Fits: Helsinki young people aged **15–29**.
-  - Helps with: direction for work, education choices and future planning in a short group format.
-  - Status: four consecutive Mondays — **14.9, 21.9, 28.9 and 5.10.2026**, all **13:00–15:00**, at Ohjaamo Helsinki, Fredrikinkatu 48. **Free**; no advance registration is required; the participant should attend the first session.
-  - Official: https://nuorten.hel.fi/tapahtumat/mun-suunnat-mun-polut-ryhma/?event_id=agprq4vzau'''
 new_reg_mun = '''- **Mun suunnat, mun polut** — Ohjaamo Helsinki
-  - Fits: Helsinki young people aged **15–29**.
-  - Helps with: direction for work, education choices and future planning in a short group format.
-  - Status (16.9.2026): the first meeting on **14.9** has passed, but the current official page explicitly says people who missed it can still join on **Monday 21.9.2026**. Remaining meetings are **21.9, 28.9 and 5.10.2026**, all **13:00–15:00**, at Ohjaamo Helsinki, Fredrikinkatu 48. **Free**; no advance registration.
+  - Fits: ages 15–29 who want to identify their strengths and interests and clarify a study/work direction.
+  - Helps with: guided reflection with an Ohjaamo study adviser and career-guidance psychologists.
+  - Status (16.9.2026): the first meeting on **14.9** has passed, but the current official page explicitly says people who missed it can still join on **Monday 21.9.2026**. Remaining meetings are **21.9., 28.9. and 5.10.2026**, all **13.00–15.00**, at Ohjaamo Helsinki, Fredrikinkatu 48; **free**, no advance registration.
   - Official: https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagqkhq7eyi
 
-- **Harrastusilta — Ohjaamo Helsinki (30.9)**
-  - Fits: Helsinki young people aged **18–29** looking for free-time, hobby or community options.
+- **Harrastusilta — Ohjaamo Helsinki (30.9.2026)**
+  - Fits: Helsinki young adults aged **18–29** looking for free-time, hobby or community options.
   - Helps with: information about free-time opportunities, hobbies and meeting places for young adults, plus shared tips and experiences.
-  - Status: **30.9.2026, 16:30–18:30**, Ohjaamo Helsinki, Fredrikinkatu 48. **Free**; no advance registration.
+  - Status: **30.9.2026, 16.30–18.30**, Ohjaamo Helsinki, Fredrikinkatu 48. **Free**; no advance registration.
   - Official: https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagqfsu5otm'''
-replace_once(registry, old_reg_mun, new_reg_mun)
+replace_section(registry, "- **Mun suunnat, mun polut** — Ohjaamo Helsinki", "- **Työnantaja Meet & Greet — 29.9.2026**", new_reg_mun)
 
 p = Path(registry)
 text = p.read_text()
