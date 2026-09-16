@@ -58,24 +58,24 @@ replace_section(registry, "- **Mun suunnat, mun polut** — Ohjaamo Helsinki", "
 
 p = Path(registry)
 text = p.read_text()
-if "#### Vantaan kuvataidekoulu — open autumn 2026 places" not in text:
-    marker = "#### Harrastushulinat — Vantaan Energia Areena"
+if "- **Vantaan kuvataidekoulu — open autumn 2026 places" not in text:
+    marker = "- **Harrastushulinat — Vantaan Energia Areena 19.9.2026** — Vantaan kaupunki"
     start = text.find(marker)
     if start == -1:
-        raise SystemExit("registry: Harrastushulinat heading not found")
-    nxt = text.find("\n#### ", start + len(marker))
+        raise SystemExit("registry: Harrastushulinat entry not found")
+    nxt = text.find("\n- **", start + len(marker))
     if nxt == -1:
         nxt = text.find("\n## ", start + len(marker))
     if nxt == -1:
-        raise SystemExit("registry: could not find section boundary after Harrastushulinat")
+        raise SystemExit("registry: could not find entry boundary after Harrastushulinat")
     art = '''
 
-#### Vantaan kuvataidekoulu — open autumn 2026 places (children/youth)
-- **What:** Open places in Vantaa Art School visual-arts groups for autumn 2026.
-- **Audience:** The current open-group list includes children and young people, with groups spanning ages from early childhood through age 20.
-- **Locations:** Kartanonkoski, Kivistö, Korso, Myyrmäki and Tikkurila.
-- **Registration:** through **9.10.2026** via the school’s current application/open-group route; places are group-specific.
-- **Cost:** **Fee-based (lukukausimaksu)**. Do not describe this route as free; verify the applicable fee and any fee-relief rules before promising cost.
-- **Official source:** https://kuvataidekoulu.vantaa.fi/fi/ajankohtaista/uutinen/inspiroidu-kokeile-ja-luo-vapaita-paikkoja-vantaan-kuvataidekoulun-lasten-ja-nuorten-taideryhmissa
-- **Checked:** 16.9.2026.'''
+- **Vantaan kuvataidekoulu — open autumn 2026 places** — Vantaan kuvataidekoulu
+  - Fits: children and young people; the current open-group list includes ages from **5–6 through 20**, depending on group.
+  - Helps with: weekly visual-arts teaching including drawing, painting, clay, construction, mixed media and digital tools.
+  - Locations: Kartanonkoski, Kivistö, Korso, Myyrmäki and Tikkurila.
+  - Status: open places for autumn 2026; applications are accepted through **9.10.2026** via the currently open application form. Places are group-specific.
+  - Cost caution: teaching is **fee-based (lukukausimaksullinen)**. Do not describe this route as free; verify the group fee and any current fee-relief rules before promising cost.
+  - Official: https://kuvataidekoulu.vantaa.fi/fi/ajankohtaista/uutinen/inspiroidu-kokeile-ja-luo-vapaita-paikkoja-vantaan-kuvataidekoulun-lasten-ja-nuorten-taideryhmissa
+  - Checked: 16.9.2026.'''
     p.write_text(text[:nxt] + art + text[nxt:])
