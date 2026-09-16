@@ -3,34 +3,32 @@ on:
   push:
     branches: [master]
     paths:
-      - ".github/workflows/temp-content-update-20260916.yml"
+      - .github/workflows/temp-content-update-20260916.yml
 permissions:
   contents: write
 jobs:
   update:
-    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Update verified programme content
+        shell: bash
         run: |
           python - <<'PY'
           from pathlib import Path
-          import re
 
           def replace_once(path, old, new):
               p = Path(path)
               text = p.read_text()
               count = text.count(old)
               if count != 1:
-                  raise SystemExit(f"{path}: expected exactly one match, got {count}: {old[:120]!r}")
+                  raise SystemExit(f"{path}: expected exactly one match, got {count}: {old[:100]!r}")
               p.write_text(text.replace(old, new, 1))
 
           public = "caawi/ajankohtaiset/index.html"
           registry = "internal/open-programmes.md"
-
           replace_once(public, "<strong>La xaqiijiyey 15.9.2026.</strong>", "<strong>La xaqiijiyey 16.9.2026.</strong>")
           replace_once(registry, "Last compiled: 15.9.2026", "Last compiled: 16.9.2026")
 
@@ -41,22 +39,13 @@ jobs:
           replace_once(public, '<section id="hobby"><h2>⚽ Hiwaayadaha carruurta ee bilaashka ah</h2>', '<section id="hobby"><h2>⚽ Hiwaayadaha carruurta</h2>')
 
           old_hulinat = '''<article class="card"><div class="meta urgent">Vantaa · 19.9.2026 saacadaha 12–15 · carruurta/dhalinyarada u baahan taageero gaar ah + qoysaskooda · bilaash</div><h3>Harrastushulinat – Vantaan Energia Areena</h3><p>Carruurta iyo dhalinyarada naafada ah ama u baahan taageero gaar ah, iyo qoysaskooda, waxay si bilaash ah u tijaabin karaan hiwaayado kala duwan jawi deggan oo taageero leh. Tijaabooyinka waxaa si gaar ah loogu talagalay 7 jir iyo ka weyn, khibrad ama xirfad horena looma baahna. Munaasabadda: Sabti 19.9. saacadaha 12–15, Vantaan Energia Areena.</p><a href="https://www.vantaa.fi/fi/ajankohtaista/uutinen/erityislasten-ja-nuorten-harrastushulinat-kutsuu-kokeilemaan-uusia-harrastuksia-vantaan-energia-areenalle">Vantaa, rasmi ↗</a></article>'''
-          new_hulinat = old_hulinat + '''\n<article class="card"><div class="meta urgent">Vantaa · carruur & dhalinyaro · codsiga ilaa 9.10.2026 · lacag ayaa jirta</div><h3>Vantaan kuvataidekoulu – meelo bannaan dayrta</h3><p>Vantaan kuvataidekoulu wuxuu leeyahay meelo bannaan kooxaha farshaxanka ee dayrta 2026. Liiska hadda jira waxaa ku jira kooxo carruur iyo dhalinyaro ah oo da'doodu kala duwan tahay, goobahana waxaa ka mid ah Kartanonkoski, Kivistö, Korso, Myyrmäki iyo Tikkurila. Waxaa la codsan karaa ilaa <strong>9.10.2026</strong>. Tani <strong>ma aha hiwaayad bilaash ah</strong>: waxbarashadu waa lukukausimaksullinen, sidaas darteed ka hubi kooxda, da'da iyo kharashka bogga rasmiga ah ka hor codsiga.</p><a href="https://kuvataidekoulu.vantaa.fi/fi/ajankohtaista/uutinen/inspiroidu-kokeile-ja-luo-vapaita-paikkoja-vantaan-kuvataidekoulun-lasten-ja-nuorten-taideryhmissa">Vantaa, rasmi ↗</a></article>'''
+          new_hulinat = old_hulinat + '''
+<article class="card"><div class="meta urgent">Vantaa · carruur & dhalinyaro · codsiga ilaa 9.10.2026 · lacag ayaa jirta</div><h3>Vantaan kuvataidekoulu – meelo bannaan dayrta</h3><p>Vantaan kuvataidekoulu wuxuu leeyahay meelo bannaan kooxaha farshaxanka ee dayrta 2026. Liiska hadda jira waxaa ku jira kooxo carruur iyo dhalinyaro ah oo da'doodu kala duwan tahay, goobahana waxaa ka mid ah Kartanonkoski, Kivistö, Korso, Myyrmäki iyo Tikkurila. Waxaa la codsan karaa ilaa <strong>9.10.2026</strong>. Tani <strong>ma aha hiwaayad bilaash ah</strong>: waxbarashadu waa lukukausimaksullinen, sidaas darteed ka hubi kooxda, da'da iyo kharashka bogga rasmiga ah ka hor codsiga.</p><a href="https://kuvataidekoulu.vantaa.fi/fi/ajankohtaista/uutinen/inspiroidu-kokeile-ja-luo-vapaita-paikkoja-vantaan-kuvataidekoulun-lasten-ja-nuorten-taideryhmissa">Vantaa, rasmi ↗</a></article>'''
           replace_once(public, old_hulinat, new_hulinat)
 
-          # Registry status cleanups.
-          replace_once(registry,
-              "  - Status: the published deadline is today, 15.9.2026, or earlier if available places fill; the source does not state a closing clock time, so re-check the form before routing. The pilot runs from September 2026 to June 2027 at the daycares currently listed by Vantaa. The volunteer can agree the frequency and duration with the daycare.",
-              "  - Status (16.9.2026): the published application window ended **15.9.2026** (or earlier if available places filled). Keep this as a closed unpaid volunteer route unless Vantaa publishes a new application round. The pilot itself runs from September 2026 to June 2027 at the daycares listed by Vantaa."
-          )
-          replace_once(registry,
-              "  - Status: the published group 15.9.–7.10.2026 starts today and runs Tuesdays–Wednesdays 9–12 at Teollisuuskatu. Later groups are 13.10.–4.11. and 10.11.–2.12.2026. No separate public application deadline is stated; because entry is through the employment-services referral and initial interview, check with the responsible expert before promising late entry to a group that has already started.",
-              "  - Status (16.9.2026): the published group **15.9.–7.10.2026** has started and runs Tuesdays–Wednesdays 9–12 at Teollisuuskatu. Later groups are 13.10.–4.11. and 10.11.–2.12.2026. No separate public application deadline is stated; because entry is through the employment-services referral and initial interview, check with the responsible expert before promising late entry to a group that has already started."
-          )
-          replace_once(registry,
-              "  - Status: recruitment information 15.9.2026, 12–15, Helsinki Employment Services, Malminkatu 34; vocational content 21.–25.9.2026, 9–14, Stadin AO Ilkantie 3. Free for Helsinki employment-services clients.",
-              "  - Status (16.9.2026): the recruitment information session on **15.9.2026, 12–15** at Helsinki Employment Services, Malminkatu 34 has passed; vocational content **21.–25.9.2026, 9–14**, Stadin AO Ilkantie 3 remains upcoming. Free for Helsinki employment-services clients. The checked source does not establish a new direct application route."
-          )
+          replace_once(registry, "  - Status: the published deadline is today, 15.9.2026, or earlier if available places fill; the source does not state a closing clock time, so re-check the form before routing. The pilot runs from September 2026 to June 2027 at the daycares currently listed by Vantaa. The volunteer can agree the frequency and duration with the daycare.", "  - Status (16.9.2026): the published application window ended **15.9.2026** (or earlier if available places filled). Keep this as a closed unpaid volunteer route unless Vantaa publishes a new application round. The pilot itself runs from September 2026 to June 2027 at the daycares listed by Vantaa.")
+          replace_once(registry, "  - Status: the published group 15.9.–7.10.2026 starts today and runs Tuesdays–Wednesdays 9–12 at Teollisuuskatu. Later groups are 13.10.–4.11. and 10.11.–2.12.2026. No separate public application deadline is stated; because entry is through the employment-services referral and initial interview, check with the responsible expert before promising late entry to a group that has already started.", "  - Status (16.9.2026): the published group **15.9.–7.10.2026** has started and runs Tuesdays–Wednesdays 9–12 at Teollisuuskatu. Later groups are 13.10.–4.11. and 10.11.–2.12.2026. No separate public application deadline is stated; because entry is through the employment-services referral and initial interview, check with the responsible expert before promising late entry to a group that has already started.")
+          replace_once(registry, "  - Status: recruitment information 15.9.2026, 12–15, Helsinki Employment Services, Malminkatu 34; vocational content 21.–25.9.2026, 9–14, Stadin AO Ilkantie 3. Free for Helsinki employment-services clients.", "  - Status (16.9.2026): the recruitment information session on **15.9.2026, 12–15** at Helsinki Employment Services, Malminkatu 34 has passed; vocational content **21.–25.9.2026, 9–14**, Stadin AO Ilkantie 3 remains upcoming. Free for Helsinki employment-services clients. The checked source does not establish a new direct application route.")
 
           old_reg_mun = '''- **Mun suunnat, mun polut** — Ohjaamo Helsinki
   - Fits: Helsinki young people aged **15–29**.
@@ -76,7 +65,6 @@ jobs:
   - Official: https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagqfsu5otm'''
           replace_once(registry, old_reg_mun, new_reg_mun)
 
-          # Insert Vantaa Art School after the Harrastushulinat registry block without disturbing neighbouring sections.
           p = Path(registry)
           text = p.read_text()
           if "#### Vantaan kuvataidekoulu — open autumn 2026 places" not in text:
@@ -89,7 +77,9 @@ jobs:
                   nxt = text.find("\n## ", start + len(marker))
               if nxt == -1:
                   raise SystemExit("registry: could not find section boundary after Harrastushulinat")
-              art = '''\n\n#### Vantaan kuvataidekoulu — open autumn 2026 places (children/youth)
+              art = '''
+
+#### Vantaan kuvataidekoulu — open autumn 2026 places (children/youth)
 - **What:** Open places in Vantaa Art School visual-arts groups for autumn 2026.
 - **Audience:** The current open-group list includes children and young people, with groups spanning ages from early childhood through age 20.
 - **Locations:** Kartanonkoski, Kivistö, Korso, Myyrmäki and Tikkurila.
@@ -97,17 +87,14 @@ jobs:
 - **Cost:** **Fee-based (lukukausimaksu)**. Do not describe this route as free; verify the applicable fee and any fee-relief rules before promising cost.
 - **Official source:** https://kuvataidekoulu.vantaa.fi/fi/ajankohtaista/uutinen/inspiroidu-kokeile-ja-luo-vapaita-paikkoja-vantaan-kuvataidekoulun-lasten-ja-nuorten-taideryhmissa
 - **Checked:** 16.9.2026.'''
-              text = text[:nxt] + art + text[nxt:]
-              p.write_text(text)
+              p.write_text(text[:nxt] + art + text[nxt:])
           PY
       - name: Commit and push
+        shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add caawi/ajankohtaiset/index.html internal/open-programmes.md
-          if git diff --cached --quiet; then
-            echo "No content changes"
-            exit 0
-          fi
+          if git diff --cached --quiet; then exit 0; fi
           git commit -m "chore: refresh verified opportunities for 2026-09-16"
           git push
