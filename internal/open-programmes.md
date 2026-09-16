@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 15.9.2026
+Last compiled: 16.9.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -60,6 +60,15 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: Saturday 19.9.2026, 12.00–15.00, Vantaan Energia Areena; free. No previous experience or skills are required.
   - Official: https://www.vantaa.fi/fi/ajankohtaista/uutinen/erityislasten-ja-nuorten-harrastushulinat-kutsuu-kokeilemaan-uusia-harrastuksia-vantaan-energia-areenalle
 
+
+- **Vantaan kuvataidekoulu — open autumn 2026 places** — Vantaan kuvataidekoulu
+  - Fits: children and young people; the current open-group list includes ages from **5–6 through 20**, depending on group.
+  - Helps with: weekly visual-arts teaching including drawing, painting, clay, construction, mixed media and digital tools.
+  - Locations: Kartanonkoski, Kivistö, Korso, Myyrmäki and Tikkurila.
+  - Status: open places for autumn 2026; applications are accepted through **9.10.2026** via the currently open application form. Places are group-specific.
+  - Cost caution: teaching is **fee-based (lukukausimaksullinen)**. Do not describe this route as free; verify the group fee and any current fee-relief rules before promising cost.
+  - Official: https://kuvataidekoulu.vantaa.fi/fi/ajankohtaista/uutinen/inspiroidu-kokeile-ja-luo-vapaita-paikkoja-vantaan-kuvataidekoulun-lasten-ja-nuorten-taideryhmissa
+  - Checked: 16.9.2026.
 - **Kolibrí Festival — Vantaa 26.9.2026** — Vantaan kaupunki / children's cultural services
   - Fits: families and children looking for a free multicultural cultural day.
   - Helps with: low-threshold family activities and multilingual cultural participation.
@@ -84,7 +93,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Lukukamut — volunteer reading in Vantaa daycares** — Vantaan varhaiskasvatus
   - Fits: adults interested in flexible volunteer reading with daycare children; prior experience is not required.
   - Helps with: community participation and supporting children's interest in reading. This is volunteer activity, not paid employment or a daycare-place application.
-  - Status: the published deadline is today, 15.9.2026, or earlier if available places fill; the source does not state a closing clock time, so re-check the form before routing. The pilot runs from September 2026 to June 2027 at the daycares currently listed by Vantaa. The volunteer can agree the frequency and duration with the daycare.
+  - Status (16.9.2026): the published application window ended **15.9.2026** (or earlier if available places filled). Keep this as a closed unpaid volunteer route unless Vantaa publishes a new application round. The pilot itself runs from September 2026 to June 2027 at the daycares listed by Vantaa.
   - Language: reading can be in Finnish or another language used in the daycare.
   - Public-listing caution: if surfaced to families, label it clearly as **unpaid volunteering for an adult**, not a job or a service received by the child.
   - Official: https://www.vantaa.fi/fi/tule-vapaaehtoiseksi-lukemaan-paivakotiin
@@ -194,7 +203,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Stadin Futura** — Stadin AO / Helsinki Employment Services
   - Fits: Helsinki residents aged 18–29 who need support choosing a field, applying to studies, identifying their strengths or building study/work readiness. Finnish at least A2.1.
   - Helps with: career/education direction, visits to study fields, recognising skills, study readiness, work-life readiness and a next-step plan.
-  - Status: the published group 15.9.–7.10.2026 starts today and runs Tuesdays–Wednesdays 9–12 at Teollisuuskatu. Later groups are 13.10.–4.11. and 10.11.–2.12.2026. No separate public application deadline is stated; because entry is through the employment-services referral and initial interview, check with the responsible expert before promising late entry to a group that has already started.
+  - Status (16.9.2026): the published group **15.9.–7.10.2026** has started and runs Tuesdays–Wednesdays 9–12 at Teollisuuskatu. Later groups are 13.10.–4.11. and 10.11.–2.12.2026. No separate public application deadline is stated; because entry is through the employment-services referral and initial interview, check with the responsible expert before promising late entry to a group that has already started.
   - Route: the responsible expert in Helsinki Employment Services enrols the participant in Wilma under `Työllisyydenhoito`; after enrolment the teacher contacts the participant for an initial interview.
   - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/ohjausta-omalle-uralle/
 
@@ -233,7 +242,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Kohti työelämää — tyre fitter short training** — Stadin AO / Helsinki employment services
   - Fits: primarily unemployed Helsinki employment-service clients with active job search who are genuinely motivated for automotive work. Requires a valid category B driving licence, functional Finnish at B1.1, suitable health/physical fitness and interaction skills.
   - Helps with: targeted tyre-fitting skills and a possible route through Eezy to seasonal tyre-fitting work in the capital region.
-  - Status: recruitment information 15.9.2026, 12–15, Helsinki Employment Services, Malminkatu 34; vocational content 21.–25.9.2026, 9–14, Stadin AO Ilkantie 3. Free for Helsinki employment-services clients.
+  - Status (16.9.2026): the recruitment information session on **15.9.2026, 12–15** at Helsinki Employment Services, Malminkatu 34 has passed; vocational content **21.–25.9.2026, 9–14**, Stadin AO Ilkantie 3 remains upcoming. Free for Helsinki employment-services clients. The checked source does not establish a new direct application route.
   - Application caution: the current official page publishes the dates and criteria but the captured primary-source page does not show a clear direct registration route for this training. Verify the route with Helsinki employment services/Stadin AO before telling a family that a seat can be applied for directly.
   - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/lupa-ja-korttikoulutukset/
 
@@ -252,8 +261,14 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Mun suunnat, mun polut** — Ohjaamo Helsinki
   - Fits: ages 15–29 who want to identify their strengths and interests and clarify a study/work direction.
   - Helps with: guided reflection with an Ohjaamo study adviser and career-guidance psychologists.
-  - Status: four consecutive Mondays — 14.9., 21.9., 28.9. and 5.10.2026, 13.00–15.00 — at Ohjaamo Helsinki, Fredrikinkatu 48; free. No advance registration is required; the participant should attend the first session.
-  - Official: https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagpr2irxsi
+  - Status (16.9.2026): the first meeting on **14.9** has passed, but the current official page explicitly says people who missed it can still join on **Monday 21.9.2026**. Remaining meetings are **21.9., 28.9. and 5.10.2026**, all **13.00–15.00**, at Ohjaamo Helsinki, Fredrikinkatu 48; **free**, no advance registration.
+  - Official: https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagqkhq7eyi
+
+- **Harrastusilta — Ohjaamo Helsinki (30.9.2026)**
+  - Fits: Helsinki young adults aged **18–29** looking for free-time, hobby or community options.
+  - Helps with: information about free-time opportunities, hobbies and meeting places for young adults, plus shared tips and experiences.
+  - Status: **30.9.2026, 16.30–18.30**, Ohjaamo Helsinki, Fredrikinkatu 48. **Free**; no advance registration.
+  - Official: https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagqfsu5otm
 
 - **Työnantaja Meet & Greet — 29.9.2026** — Ohjaamo Helsinki
   - Fits: Helsinki young people using the 15–29-year-old Ohjaamo service; the event explicitly welcomes English speakers too.
