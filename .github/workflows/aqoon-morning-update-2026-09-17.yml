@@ -1,0 +1,135 @@
+name: AQOON morning programme update 2026-09-17
+on:
+  push:
+    paths:
+      - '.github/workflows/aqoon-morning-update-2026-09-17.yml'
+permissions:
+  contents: write
+  actions: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply verified 17 September programme changes
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          public_path = Path('caawi/ajankohtaiset/index.html')
+          registry_path = Path('internal/open-programmes.md')
+          public = public_path.read_text(encoding='utf-8')
+          registry = registry_path.read_text(encoding='utf-8')
+
+          def replace_once(text, old, new, label):
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f'{label}: expected exactly one match, found {count}')
+              return text.replace(old, new, 1)
+
+          public = replace_once(
+              public,
+              '<div class="note"><strong>La xaqiijiyey 16.9.2026.</strong>',
+              '<div class="note"><strong>La xaqiijiyey 17.9.2026.</strong>',
+              'public verification date',
+          )
+
+          public, n = re.subn(
+              r'<article class="card"><div class="meta urgent">Helsinki · Kannelmäki · 16\.9\.2026[^\n]*<h3>Welcome Day Kanneltalo</h3>[^\n]*</article>\n',
+              '',
+              public,
+              count=1,
+          )
+          if n != 1:
+              raise SystemExit(f'Welcome Day public removal: expected one match, found {n}')
+
+          finnish_card = '<article class="card"><div class="meta urgent">Espoo · Sello · Khamiis kasta 10–12.30 · ilaa 17.12.2026 · bilaash</div><h3>Suomen kielen perusteet – Sello</h3><p>Sellon kirjastossa waxaa ka socda taxane lagu barto aasaaska Finnish-ka. Kulamadu waa Khamiis kasta saacadaha 10–12.30 ilaa 17.12.2026, Leppävaarankatu 9. Bogga rasmiga ahi wuxuu luqadda ku sheegay Finnish, gelitaankuna waa bilaash. Ka hubi taariikhda xigta bogga rasmiga ah ka hor intaadan tegin.</p><a href="https://www.espoo.fi/en/events/espooevents%3Aagpbmaj6se">Espoo, rasmi ↗</a></article>\n'
+          edu_anchor = '<section id="edu"><h2>🎓 Finnish & waxbarasho</h2><div class="grid">\n'
+          if 'Suomen kielen perusteet – Sello' in public:
+              raise SystemExit('Finnish basics card already exists unexpectedly')
+          public = replace_once(public, edu_anchor, edu_anchor + finnish_card, 'education section anchor')
+
+          pingpong_card = '<article class="card"><div class="meta urgent">Espoo · Entressen kirjasto · 10–15 jir · Khamiis kasta 17–18.30 · English · bilaash</div><h3>Pingpong for youth</h3><p>Entressen kirjasto Kibe waxaa ka socda pingpong-ka dhalinyarada 10–15 jir Khamiis kasta saacadaha 17–18.30. Haguhu wuxuu barayaa farsamooyinka iyo sida ciyaarta loo ciyaaro. Bogga rasmiga ahi wuxuu luqadda ku sheegay English, gelitaankuna waa bilaash. Goobta: Siltakatu 11. Ka hubi kulanka xiga bogga rasmiga ah ka hor intaadan tegin.</p><a href="https://www.espoo.fi/en/events/espooevents%3Aagqixqnrme">Espoo, rasmi ↗</a></article>\n'
+          hobby_anchor = '<section id="hobby"><h2>⚽ Hiwaayadaha carruurta</h2><div class="grid">\n'
+          if '<h3>Pingpong for youth</h3>' in public:
+              raise SystemExit('Pingpong card already exists unexpectedly')
+          public = replace_once(public, hobby_anchor, hobby_anchor + pingpong_card, 'hobby section anchor')
+
+          registry = replace_once(registry, 'Last compiled: 16.9.2026', 'Last compiled: 17.9.2026', 'registry compilation date')
+          registry, n = re.subn(
+              r'  - Status: \*\*Kanneltalo remains current:\*\* Wednesday 16\.9\.2026, 16\.00–19\.00, Klaneettitie 5; free and no advance registration\. \*\*Malmitalo is closed/passed:\*\* its event was 10\.9\.2026, 17\.00–20\.00 and must no longer be presented as upcoming\.',
+              '  - Status: **closed/passed.** Kanneltalo took place Wednesday 16.9.2026, 16.00–19.00, and Malmitalo took place 10.9.2026, 17.00–20.00. Do not present either as an upcoming family opportunity from 17.9.2026 onward.',
+              registry,
+              count=1,
+          )
+          if n != 1:
+              raise SystemExit(f'Welcome Day registry status: expected one match, found {n}')
+
+          esp_entry = '''- **Welcome to learn the basics of Finnish — Sello** — City of Espoo / event calendar
+  - Fits: adults who want low-threshold practice with basic Finnish; the official listing states Finnish as the event language.
+  - Helps with: practising the basics of Finnish in a recurring, free group setting.
+  - Status: Thursdays 10.00–12.30, 13.8.–17.12.2026, Leppävaarankatu 9 (Sello Library); free. The current dated listing confirms the 17.9.2026 session. The checked source does not state a general advance-registration requirement, so do not invent one; re-check the dated event before routing.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagpbmaj6se
+  - Checked: 17.9.2026.
+
+- **Pingpong for youth — Entresse Library** — City of Espoo
+  - Fits: 10–15-year-olds; the official listing states English as the activity language.
+  - Helps with: free, low-threshold table-tennis practice and learning techniques/gameplay with an instructor.
+  - Status: Thursdays 17.00–18.30 at Entresse Library Kibe, Siltakatu 11; free. The official series says the club runs every Thursday and the current dated listing confirms 17.9.2026. The checked page does not publish a series end date, so do not invent one; re-check the dated event before routing.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagqixqnrme
+  - Checked: 17.9.2026.
+
+'''
+          if 'Welcome to learn the basics of Finnish — Sello' in registry or 'Pingpong for youth — Entresse Library' in registry:
+              raise SystemExit('One of the new Espoo registry entries already exists unexpectedly')
+          registry = replace_once(registry, '### Espoo\n\n', '### Espoo\n\n' + esp_entry, 'Espoo registry section anchor')
+
+          public_path.write_text(public, encoding='utf-8')
+          registry_path.write_text(registry, encoding='utf-8')
+          PY
+
+          git diff --check
+          git diff -- caawi/ajankohtaiset/index.html internal/open-programmes.md
+      - name: Run repository and content QA before commit
+        run: |
+          python scripts/context_qa.py
+          python scripts/repo_integrity_qa.py
+          node scripts/tracker_collection_qa.js
+          node --test tests/*.test.js
+          python scripts/site_qa.py
+          python scripts/check_seo_metadata.py
+          python scripts/usability_qa.py
+          python scripts/legal_trust_qa.py
+          node --check assets/main.js
+          node --check assets/site.js
+          node --check caawi/app.js
+          node --test tests/caawi.test.js
+          node --test tests/call-outcomes.test.js
+          python scripts/somali_language_qa.py
+      - name: Commit only verified content changes and remove this helper
+        shell: bash
+        run: |
+          rm .github/workflows/aqoon-morning-update-2026-09-17.yml
+          git add caawi/ajankohtaiset/index.html internal/open-programmes.md .github/workflows/aqoon-morning-update-2026-09-17.yml
+          git diff --cached --check
+          git config user.name 'AQOON programme verifier'
+          git config user.email 'actions@users.noreply.github.com'
+          git commit -m 'content: refresh verified programmes for 2026-09-17'
+          git push origin HEAD:master
+      - name: Dispatch canonical QA on final master
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run site-qa.yml --ref master
+          gh workflow run somali-language-qa.yml --ref master
