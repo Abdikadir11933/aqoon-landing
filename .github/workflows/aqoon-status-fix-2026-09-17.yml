@@ -25,18 +25,27 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-          import re
 
           public_path = Path('caawi/ajankohtaiset/index.html')
           registry_path = Path('internal/open-programmes.md')
           public = public_path.read_text(encoding='utf-8')
           registry = registry_path.read_text(encoding='utf-8')
 
+          old_title = '<h3>Aloittavan yrittäjän valmennus nuorille</h3>'
+          if public.count(old_title) != 1:
+              raise SystemExit(f'public entrepreneurship title: expected one match, found {public.count(old_title)}')
+          title_at = public.index(old_title)
+          start = public.rfind('<article class="card">', 0, title_at)
+          end_at = public.find('</article>', title_at)
+          if start < 0 or end_at < 0:
+              raise SystemExit('could not locate entrepreneurship article boundaries')
+          end = end_at + len('</article>')
+          old_article = public[start:end]
+          if '16., 17., 23. & 24.9.' not in old_article:
+              raise SystemExit('entrepreneurship article no longer has the expected September schedule')
+
           new_card = '<article class="card"><div class="meta urgent">Helsinki · ka yar 30 sano · bilaash · kooxda xigta 21., 22., 28. & 29.10.2026</div><h3>Aloittavan yrittäjän valmennus nuorille – lokakuu</h3><p>Kooxdii Sebtembar waxay bilaabatay 16.9., sidaas darteed hadda looma soo bandhigayo sidii bilow cusub. Kooxda xigta ee rasmiga ah waa afar galabood: 21.10., 22.10., 28.10. iyo 29.10. saacadaha 13–16, Helsingin työllisyyspalvelut, Malminkatu 34. Waxaa loogu talagalay dadka Helsinki jooga ee ka yar 30 sano ee ka fikiraya yrittäjyys ama bilaabaya ganacsi, xaalad kasta oo nololeedna way ku habboon tahay. Valmennus-ku waa bilaash oo Finnish ayaa lagu qabtaa. Bogga rasmiga ahi hadda wuxuu leeyahay link isdiiwaangelin; ka hubi booska ka hor intaadan ballan qaadin.</p><a href="https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagqkhr56iy">Helsinki, rasmi & isdiiwaangelin ↗</a></article>'
-          pattern = r'<article class="card"><div class="meta urgent">Helsinki · ka yar 30 sano · bilaash · 16\., 17\., 23\. & 24\.9\.</div><h3>Aloittavan yrittäjän valmennus nuorille</h3>.*?</article>'
-          public, n = re.subn(pattern, new_card, public, count=1)
-          if n != 1:
-              raise SystemExit(f'public entrepreneurship card: expected one match, found {n}')
+          public = public[:start] + new_card + public[end:]
 
           entry = (
               '- **Aloittavan yrittäjän valmennus nuorille — October 2026** — Helsinki Employment Services / Ohjaamo Helsinki\n'
@@ -46,12 +55,12 @@ jobs:
               '  - Official: https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagqkhr56iy\n'
               '  - Checked: 17.9.2026.\n\n'
           )
-          anchor = '### Helsinki\n\n- **Ohjaamo Helsinki** — Helsingin kaupunki\n'
+          ohjaamo = '- **Ohjaamo Helsinki** — Helsingin kaupunki\n'
           if 'Aloittavan yrittäjän valmennus nuorille — October 2026' in registry:
               raise SystemExit('registry entrepreneurship entry already exists unexpectedly')
-          if registry.count(anchor) != 1:
-              raise SystemExit(f'registry Helsinki anchor: expected one match, found {registry.count(anchor)}')
-          registry = registry.replace(anchor, '### Helsinki\n\n' + entry + '- **Ohjaamo Helsinki** — Helsingin kaupunki\n', 1)
+          if registry.count(ohjaamo) != 1:
+              raise SystemExit(f'registry Ohjaamo anchor: expected one match, found {registry.count(ohjaamo)}')
+          registry = registry.replace(ohjaamo, entry + ohjaamo, 1)
 
           public_path.write_text(public, encoding='utf-8')
           registry_path.write_text(registry, encoding='utf-8')
@@ -90,4 +99,4 @@ jobs:
         run: |
           gh workflow run site-qa.yml --ref master
           gh workflow run somali-language-qa.yml --ref master
-# trigger
+# robust trigger
