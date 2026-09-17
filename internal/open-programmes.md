@@ -119,6 +119,13 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 
 ### Helsinki
 
+- **Aloittavan yrittäjän valmennus nuorille — October 2026** — Helsinki Employment Services / Ohjaamo Helsinki
+  - Fits: Helsinki residents under 30 who are considering entrepreneurship or starting a business; the official page says the course is open regardless of whether the person is unemployed, employed or a student. The course is in Finnish.
+  - Helps with: clarifying a business idea, drafting an initial business plan and calculations, and understanding basics such as taxation, company forms and start-up grant.
+  - Status: the September four-afternoon course started 16.9.2026, so do not route it as a fresh start from 17.9 onward. The next published course is 21.10., 22.10., 28.10. and 29.10.2026, 13.00–16.00, at Helsinki Employment Services, Malminkatu 34; free. The official page currently provides a registration link; re-check capacity before promising a place.
+  - Official: https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagqkhr56iy
+  - Checked: 17.9.2026.
+
 - **Ohjaamo Helsinki** — Helsingin kaupunki
   - Fits: Helsinki residents aged 15–29.
   - Helps with: work, school, CV, housing, money, wellbeing, immigration questions.
