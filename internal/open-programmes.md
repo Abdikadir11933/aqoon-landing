@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 16.9.2026
+Last compiled: 17.9.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -154,7 +154,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Welcome Day — Kanneltalo 16.9.2026** — City of Helsinki
   - Fits: international newcomers and other residents interested in local services and opportunities; the official page says everyone is welcome.
   - Helps with: meeting city and local organisations, learning about local services and opportunities, and all-ages activities.
-  - Status: **Kanneltalo remains current:** Wednesday 16.9.2026, 16.00–19.00, Klaneettitie 5; free and no advance registration. **Malmitalo is closed/passed:** its event was 10.9.2026, 17.00–20.00 and must no longer be presented as upcoming.
+  - Status: **closed/passed.** Kanneltalo took place Wednesday 16.9.2026, 16.00–19.00, and Malmitalo took place 10.9.2026, 17.00–20.00. Do not present either as an upcoming family opportunity from 17.9.2026 onward.
   - Official: https://www.hel.fi/en/decision-making/information-on-helsinki/internationality-and-new-residents/welcome-day-events
 
 - **Stadin AO työvoimakoulutukset maahanmuuttajille**
@@ -277,6 +277,20 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagp7ubd2ee
 
 ### Espoo
+
+- **Welcome to learn the basics of Finnish — Sello** — City of Espoo / event calendar
+  - Fits: adults who want low-threshold practice with basic Finnish; the official listing states Finnish as the event language.
+  - Helps with: practising the basics of Finnish in a recurring, free group setting.
+  - Status: Thursdays 10.00–12.30, 13.8.–17.12.2026, Leppävaarankatu 9 (Sello Library); free. The current dated listing confirms the 17.9.2026 session. The checked source does not state a general advance-registration requirement, so do not invent one; re-check the dated event before routing.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagpbmaj6se
+  - Checked: 17.9.2026.
+
+- **Pingpong for youth — Entresse Library** — City of Espoo
+  - Fits: 10–15-year-olds; the official listing states English as the activity language.
+  - Helps with: free, low-threshold table-tennis practice and learning techniques/gameplay with an instructor.
+  - Status: Thursdays 17.00–18.30 at Entresse Library Kibe, Siltakatu 11; free. The official series says the club runs every Thursday and the current dated listing confirms 17.9.2026. The checked page does not publish a series end date, so do not invent one; re-check the dated event before routing.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagqixqnrme
+  - Checked: 17.9.2026.
 
 - **Nuorten avoin työpaja — Sello Library** — Valo-Valmennusyhdistys / City of Espoo event calendar
   - Fits: 15–29-year-olds.
