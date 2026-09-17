@@ -1,26 +1,26 @@
 window.PORTFOLIO = {
   "name": "Abducadir Aligure",
   "date": "September 2026",
-  "headline": "Learning by doing.",
-  "intro": "I'm Abducadir, a Purchasing and Logistics Engineering student in Helsinki, with only my bachelor's thesis left. I'm looking for an entry-level role at a startup where I can contribute, take responsibility and learn from the people around me.",
-  "positioning": "I bring over five years of customer-facing experience and a year and a half of building software with AI. These projects show how I approach a problem, what I've tried and what I've learned along the way.",
-  "selectedIntro": "Five projects, from customer work to software MVPs. Each started with a problem I wanted to understand better.",
+  "headline": "I like making things easier.",
+  "intro": "I'm Abducadir, based in Helsinki and finishing my Purchasing and Logistics Engineering degree at JAMK. Only my thesis remains. I'm an outgoing, easy-going person who enjoys meeting people, being useful and learning on the job.",
+  "positioning": "I bring over five years of customer-facing experience, hands-on responsibility from co-founding AQOON, and a year and a half of building software with AI. I'm looking for full-time work in customer support, coordination, operations or a junior startup role.",
+  "selectedIntro": "Five projects, led by real customer work at AQOON, followed by software MVPs and the lessons behind them.",
   "projects": [
     {
       "id": "aqoon",
       "title": "AQOON",
-      "category": "Services and operations",
-      "stage": "Live service platform",
-      "summary": "Helping Somali families find services in Finland and work through the steps to access them.",
-      "subtitle": "The gap between a service being available and a family being able to use it.",
-      "steps": "Listen / Guide / Follow up",
-      "role": "Community research, client outreach, service delivery and development",
+      "category": "Customer service and operations",
+      "stage": "Live service / paid projects",
+      "summary": "Co-founding a service that connects Somali families with opportunities in Finland, and turning that work into paid organisational projects.",
+      "subtitle": "From community conversations to paying clients and hands-on service delivery.",
+      "steps": "Reach / Support / Follow through",
+      "role": "Co-founder / customer support, partnerships and operations",
       "tools": [
         "HTML, CSS and JavaScript",
         "Supabase",
         "Vercel"
       ],
-      "sourceNote": "The service website and its source are public. The enquiry and follow-up tools are used privately.",
+      "sourceNote": "Client organisations are anonymised and family records remain private. The view count is account-wide video views, not unique people or completed service outcomes (TikTok export, 1 September 2025 to 31 August 2026).",
       "links": [
         [
           "Visit AQOON",
@@ -37,24 +37,28 @@ window.PORTFOLIO = {
       ],
       "blocks": [
         {
-          "heading": "The problem",
-          "text": "I kept seeing two sides of the same problem. Institutions had programmes with places to fill, while Somali families who could benefit from them often did not know they existed. In conversations with families, I found that the barrier could be language, trust, an unfamiliar application or simply not knowing whom to ask."
+          "heading": "Where it started",
+          "text": "I kept seeing two sides of the same problem: organisations had services and places available, while families who could benefit did not always know about them or know how to apply. I co-founded AQOON to connect those two sides through practical, Somali-language support. The help is free for families; organisations pay for agreed projects."
         },
         {
-          "heading": "What I did",
-          "text": "I spent several weeks speaking with families, then approached institutions with an offer to help bridge that gap. The work means reaching people in their own language, listening to what is blocking them, helping with enrolment and following up. I also built the AQOON website, enquiry forms and a private tracker with Claude Code to support that work."
+          "heading": "My responsibility",
+          "text": "I work with both families and service providers. I approach potential partners, prepare proposals, agree practical deliverables and stay in touch during delivery. With families, I listen to what they need, research suitable options, help with applications and follow up. It is hands-on customer work as well as running a small service."
         },
         {
-          "heading": "How the tools help",
-          "text": "The tracker keeps requests, conversation notes and next actions together, so I can see what still needs attention. I separated initial contact, application progress and a confirmed service start. That helps me follow up on what a family actually needs next, instead of treating every enquiry as a completed outcome."
+          "heading": "Reaching people",
+          "text": "I create plain-Somali videos that explain a useful service and show the next step. That leads into conversations by phone, WhatsApp and in person. The community TikTok channel used for this outreach recorded 123,509 video views across the year ending August 2026."
         },
         {
-          "heading": "What came from it",
-          "text": "First client project (a national private daycare chain) delivered and paid 2026, second project agreed with a city hobby program in Uusimaa."
+          "heading": "The day-to-day system",
+          "text": "I built the website, enquiry forms and private customer tracker with Claude Code. The tracker brings together requests, interview notes, call history and next actions. Building around the work I was actually doing helped me connect customer conversations with a practical follow-up process, rather than just make another website."
+        },
+        {
+          "heading": "What we have delivered",
+          "text": "Two organisations have paid for client projects in 2026: a national private daycare chain and a city hobby programme in Uusimaa. This gave me experience in winning work, coordinating delivery and communicating with paying clients. The daycare pilot also produced a documented service start."
         },
         {
           "heading": "What I learned",
-          "text": "I learned that explaining a service is often only the first step. Someone may understand it and still need help with a form or a conversation before they can move forward. Doing the work myself helped me decide which parts needed a tool and which parts needed a person to stay in touch."
+          "text": "Being easy to talk to matters, but so does keeping track of the details. I learned to turn a useful explanation into a practical next step, and to keep enquiries, applications and confirmed starts separate when reviewing what happened."
         }
       ]
     },
@@ -293,13 +297,13 @@ window.PORTFOLIO = {
   ],
   "about": {
     "title": "A little about me.",
-    "intro": "I'm finishing my bachelor's degree in Purchasing and Logistics Engineering at JAMK, with only my thesis remaining. I enjoy talking to people, understanding what makes their work difficult and trying something that might help.",
-    "approach": "I use Codex and Claude Code every day to build and work through code. I work on the screens, data and application logic, then test whether they work as intended. These projects are how I practise turning an idea into something useful and discover what I need to learn next.",
+    "intro": "I'm an outgoing, easy-going person who likes meeting people and helping things move forward. I take the work seriously without making every conversation formal. I'm finishing my Purchasing and Logistics Engineering degree at JAMK, with only my thesis remaining.",
+    "approach": "I like to understand the person and the practical problem first. Sometimes that means a phone call, a clearer explanation or getting the details organised. Sometimes a tool helps. I use Codex and Claude Code daily to build and test software, and I ask questions when something is new to me.",
     "experience": [
       {
-        "title": "AQOON",
-        "period": "2026 / Community work and service delivery",
-        "text": "I speak with families, help them navigate unfamiliar services and build tools for the enquiries and follow-up around that work."
+        "title": "AQOON / Co-founder",
+        "period": "2026 to present / Customer support, partnerships and operations",
+        "text": "I help families navigate services, handle enquiries and applications, coordinate follow-up and develop our customer tools. I also work on partner outreach, proposals and delivery. We have completed paid client work with a private daycare chain and a city hobby programme."
       },
       {
         "title": "Witas Agile Experiments Incubator",
@@ -313,7 +317,7 @@ window.PORTFOLIO = {
       }
     ],
     "education": "I'm completing my bachelor's degree in Purchasing and Logistics Engineering at JAMK. Only my thesis remains. During my exchange at HAN in the Netherlands, I studied Data-Driven Decision Making, which helped me connect my interest in operations with data and software.",
-    "lookingFor": "I'm looking for a full-time, entry-level role at a startup in Finland or elsewhere in Europe, and I'm open to remote work. Customer success, implementation and operations interest me because they combine helping people with figuring out how a product works. I'd like to contribute to a team, learn from experienced people and grow into more responsibility. In the longer term, I hope to lead a startup of my own.",
+    "lookingFor": "I'm looking for full-time work in customer support, office coordination or operations. I'm also interested in junior startup roles where I can combine helping people with practical problem-solving. I'm based in Helsinki and open to opportunities elsewhere in Europe or remotely. I want to join a team, be someone colleagues can rely on and keep learning.",
     "facts": [
       [
         "Based in",
@@ -329,7 +333,7 @@ window.PORTFOLIO = {
       ],
       [
         "Languages",
-        "Somali, Finnish and English"
+        "Finnish and English (fluent); Somali (native)."
       ],
       [
         "Daily tools",
@@ -337,7 +341,7 @@ window.PORTFOLIO = {
       ],
       [
         "Looking for",
-        "Full-time, entry-level startup roles. Finland, Europe or remote."
+        "Full-time customer support, coordination, operations or junior startup roles."
       ]
     ],
     "links": [
@@ -353,27 +357,27 @@ window.PORTFOLIO = {
   },
   "processes": {
     "aqoon": {
-      "title": "From a first conversation to the next step",
+      "title": "From first contact to practical follow-through",
       "steps": [
         [
+          "Reach",
+          "Make the opportunity understandable",
+          "I use plain-Somali content and community outreach to explain a service and give people a clear way to ask for help."
+        ],
+        [
           "Listen",
-          "Understand the barrier",
-          "I speak with families about what they need and where they are getting stuck. That gives me a starting point for the practical help."
+          "Understand and organise the request",
+          "I speak with the family, clarify what they need and record the relevant details and next actions in our private tracker."
         ],
         [
-          "Organise",
-          "Keep the details together",
-          "The website collects enquiries. The tracker brings requests, interviews and call notes together so I can follow the conversation."
-        ],
-        [
-          "Guide",
-          "Agree on a next action",
-          "That might mean working through an application, gathering information or finding the right person to contact. I record the next action."
+          "Support",
+          "Help with the actual next step",
+          "I research suitable options, help with forms and applications, and contact a provider when the situation needs clarification."
         ],
         [
           "Follow up",
-          "Find out what happened",
-          "I keep contact, application and confirmed service start separate. That helps me see what still needs attention."
+          "Check progress without overstating it",
+          "I follow up on the agreed action and distinguish an enquiry, an application and a confirmed start. Those are different stages of the work."
         ]
       ]
     },
