@@ -1,3 +1,4 @@
+# one-run helper; remove after successful refresh
 name: AQOON one-run refresh 2026-09-18
 
 on:
