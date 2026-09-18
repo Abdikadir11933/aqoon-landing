@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 17.9.2026
+Last compiled: 18.9.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -292,6 +292,14 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagpbmaj6se
   - Checked: 17.9.2026.
 
+- **Minecraft seikkailijat — Entresse Library / Espoo Hobby Path** — City of Espoo / Xroc
+  - Fits: children aged 9–12 / grades 3–6; the official listings state Finnish and English.
+  - Helps with: a free weekly gaming hobby built around cooperative Minecraft play. The organiser says children are welcome regardless of language skills, functional capacity or prior hobby background; support needs can be shared during registration.
+  - Status: two Friday groups at Entresse Library Kibe, Siltakatu 11: 15.00–16.00 and 16.00–17.00. The published series runs 11.9.2026–14.5.2027 and does not meet during school holidays. Free; registration is required through the official event/sign-up route.
+  - Official 15–16 group: https://www.espoo.fi/en/events/espooevents%3Aagqgv7vgvi
+  - Official 16–17 group: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqgwbzwni
+  - Checked: 18.9.2026.
+
 - **Pingpong for youth — Entresse Library** — City of Espoo
   - Fits: 10–15-year-olds; the official listing states English as the activity language.
   - Helps with: free, low-threshold table-tennis practice and learning techniques/gameplay with an instructor.
@@ -336,6 +344,13 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Helps with: City of Espoo public-service advice, partner-service information including HSL, Kela and Western Uusimaa Wellbeing Services County, and digital support for online services.
   - Status: current event series 8.9.–8.12.2026 at Kannusillankatu 8, Espoo; free. The official series currently lists visits on 8.9., 6.10. and 10.11. at 10.00–11.00. Do not infer a weekly schedule or promise an unlisted date; re-check the event series for the next visit.
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagqhvp6tem
+
+- **Vauvan päivä Lippulaivan kirjastossa — 25.9.2026** — CultureEspoo / City of Espoo
+  - Fits: families with babies and small children; the official listing marks the event as all-ages.
+  - Helps with: free family cultural participation, including baby/toddler-suitable concerts, a light bath, a poetry spa and ideas for creative activities at home and through Espoo cultural services.
+  - Status: Friday 25.9.2026, 10.00–12.00, Lippulaiva Library, Espoonlahdenkatu 8; free entry. The checked primary source does not state a separate advance-registration requirement, so do not invent one; re-check the event page before routing close to the date.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagp76j6oeu
+  - Checked: 18.9.2026.
 
 - **Workshop for Families — Entresse Library** — City of Espoo
   - Fits: families of any age looking for a free low-threshold activity; languages listed are Finnish, English and Arabic.
