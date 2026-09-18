@@ -1,9 +1,9 @@
-name: Apply AQOON 18 Sep refresh
+name: Apply Somali language rewrite
 on:
   push:
     branches: [master]
     paths:
-      - 'scripts/tmp_aqoon_refresh_2026_09_18.py'
+      - 'scripts/somali_language_rewrite.py'
       - '.github/workflows/somali-language-rewrite.yml'
 permissions:
   contents: write
@@ -15,20 +15,16 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Apply verified programme refresh
-        run: python scripts/tmp_aqoon_refresh_2026_09_18.py
-      - name: Validate scope and commit refresh
+      - name: Rewrite Somali-facing copy
+        run: python scripts/somali_language_rewrite.py
+      - name: Commit rewritten copy
         run: |
-          git diff --check
-          changed="$(git diff --name-only)"
-          printf '%s\n' "$changed"
-          test "$changed" = $'caawi/ajankohtaiset/index.html\ninternal/open-programmes.md'
-          if printf '%s\n' "$changed" | grep -qi pilke; then
-            echo "Pilke scope violation" >&2
-            exit 1
+          if git diff --quiet; then
+            echo "No copy changes needed"
+            exit 0
           fi
-          git config user.name "AQOON programme refresh"
+          git config user.name "AQOON language QA"
           git config user.email "actions@users.noreply.github.com"
-          git add caawi/ajankohtaiset/index.html internal/open-programmes.md
-          git commit -m "Update verified AQOON opportunities for 18 Sep"
+          git add caawi
+          git commit -m "Polish Somali copy across family-facing pages"
           git push
