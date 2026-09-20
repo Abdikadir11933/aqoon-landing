@@ -1,17 +1,15 @@
 name: AQOON verified programme refresh 2026-09-20
 
 on:
-  workflow_run:
-    workflows: ["AQOON site QA"]
-    types: [completed]
+  issues:
+    types: [opened]
 
 permissions:
   contents: write
-  actions: write
 
 jobs:
   refresh:
-    if: github.event.workflow_run.head_branch == 'master' && github.event.workflow_run.conclusion == 'success'
+    if: github.event.issue.title == 'AQOON refresh trigger 2026-09-20'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -95,10 +93,7 @@ jobs:
           git diff --check
           changed="$(git status --short | awk '{print $2}' | sort | tr '\n' ' ')"
           test "$changed" = "caawi/ajankohtaiset/index.html internal/open-programmes.md "
-          git diff --quiet -- . ':(exclude)caawi/ajankohtaiset/index.html' ':(exclude)internal/open-programmes.md'
-      - name: Commit, remove one-run workflow, push and dispatch final QA
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: Commit verified update and remove one-run workflow
         shell: bash
         run: |
           rm .github/workflows/aqoon-daily-update-20260920.yml
@@ -107,5 +102,3 @@ jobs:
           git add caawi/ajankohtaiset/index.html internal/open-programmes.md .github/workflows/aqoon-daily-update-20260920.yml
           git commit -m "Update verified AQOON opportunities for 20 Sep"
           git push origin HEAD:master
-          gh workflow run site-qa.yml --ref master
-          gh workflow run somali-language-qa.yml --ref master
