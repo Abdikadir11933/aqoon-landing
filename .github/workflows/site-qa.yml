@@ -52,10 +52,8 @@ jobs:
         run: |
           python .github/aqoon-update-20260920.py
           git diff --check
-          rm .github/aqoon-update-20260920.py
-          git show HEAD^:.github/workflows/site-qa.yml > .github/workflows/site-qa.yml
           git config user.name "Abdikadir11933"
           git config user.email "ad0298@student.jamk.fi"
-          git add .github/workflows/site-qa.yml .github/aqoon-update-20260920.py caawi/ajankohtaiset/index.html internal/open-programmes.md
+          git add caawi/ajankohtaiset/index.html internal/open-programmes.md
           git commit -m "Update verified AQOON opportunities for 20 Sep"
           git push origin HEAD:master
