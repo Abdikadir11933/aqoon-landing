@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 18.9.2026
+Last compiled: 20.9.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -55,10 +55,11 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://www.vantaa.fi/fi/ajankohtaista/uutinen/ilmoittautuminen-koululaisten-maksuttomiin-harrastuksiin-alkaa-248
 
 - **Harrastushulinat — Vantaan Energia Areena 19.9.2026** — Vantaan kaupunki
-  - Fits: children and young people with disabilities or special support needs, and their families; the hobby try-outs are especially suitable for age 7+.
+  - Fits: children and young people with disabilities or special support needs, and their families; the hobby try-outs were especially suitable for age 7+.
   - Helps with: low-threshold trials of sports and cultural hobbies in a supportive setting.
-  - Status: Saturday 19.9.2026, 12.00–15.00, Vantaan Energia Areena; free. No previous experience or skills are required.
+  - Status: passed/closed — the one-day event took place Saturday 19.9.2026, 12.00–15.00. Do not route families to it as a current opportunity unless Vantaa publishes a new date.
   - Official: https://www.vantaa.fi/fi/ajankohtaista/uutinen/erityislasten-ja-nuorten-harrastushulinat-kutsuu-kokeilemaan-uusia-harrastuksia-vantaan-energia-areenalle
+  - Checked: 20.9.2026.
 
 
 - **Vantaan kuvataidekoulu — open autumn 2026 places** — Vantaan kuvataidekoulu
@@ -114,7 +115,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Vantaan Megarekry 2026** — Vantaan kaupunki / Vantaan työllisyyspalvelut
   - Fits: jobseekers from different backgrounds and language groups; the official page does not state a Vantaa-residency restriction for attendance.
   - Helps with: meeting dozens of employers and educational institutions, discussing open jobs, traineeships, training places and other concrete employment routes.
-  - Status: upcoming 29.10.2026, 10.00–15.00, Kauppakeskus Myyrmanni; free for jobseekers. Jobseeker registration is not yet open and will open closer to the event; registration is described as non-binding. Exhibitor applications are open until 18.9.2026 at 16.00.
+  - Status: upcoming 29.10.2026, 10.00–15.00, Kauppakeskus Myyrmanni; free for jobseekers. Jobseeker registration is not yet open and will open closer to the event; registration is described as non-binding. Exhibitor applications are open until 25.9.2026 at 16.00.
   - Official: https://www.vantaa.fi/fi/tyonhaku-ja-tyollistaminen/vantaan-megarekry
 
 ### Helsinki
@@ -291,6 +292,27 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: Thursdays 10.00–12.30, 13.8.–17.12.2026, Leppävaarankatu 9 (Sello Library); free. The current dated listing confirms the 17.9.2026 session. The checked source does not state a general advance-registration requirement, so do not invent one; re-check the dated event before routing.
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagpbmaj6se
   - Checked: 17.9.2026.
+
+- **Jumppi Easy Hockey — Matinkylä** — City of Espoo / Kiekko-Espoo
+  - Fits: children and young people aged 7–17; the official listing states Finnish and English.
+  - Helps with: free, low-threshold ice hockey in a relaxed environment without competitive games; suitable for trying the sport and enjoying hockey recreationally.
+  - Status: Sundays 14.15–15.15, 6.9.2026–25.4.2027, Matinkartanontie 9–11, Espoo; free. Registration is required through the official sign-up route. Re-check the dated listing before routing close to a school-holiday period.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagqd672yf4
+  - Checked: 20.9.2026.
+
+- **Jumppi Ringette — Matinkylä** — City of Espoo / Kiekko-Espoo
+  - Fits: children and young people aged 7–17; the official listing states Finnish and English.
+  - Helps with: free ringette for fun, trying the sport and getting acquainted with it without league games.
+  - Status: Sundays 15.45–16.45, 6.9.2026–25.4.2027, Matinkartanontie 9–11, Espoo; free. Registration is required through the official sign-up route. Re-check the dated listing before routing close to a school-holiday period.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagqd4vh3ci
+  - Checked: 20.9.2026.
+
+- **Beginner Swimming schools for girls and women — Keski-Espoo swimming hall** — City of Espoo / Cetus ry
+  - Fits: girls aged 7–15 and women aged 15+ who do not know how to swim; official languages include Finnish, easy Finnish and English.
+  - Helps with: beginner swimming instruction during women-only hours, with an all-women setting for the swimming facilities during those hours.
+  - Status: Sundays, 6.9.–18.10.2026, Keski-Espoo swimming hall, Kaivomestarinniitty 2. Girls 7–15: 09.15–09.45; women 15+: 09.45–10.15. Classes are free, but the normal swimming-hall entrance fee applies. Separate registration is required for the girls' and women's swimming schools.
+  - Official: https://www.espoo.fi/en/news/2026/08/beginner-swimming-schools-girls-and-women-and-women-only-gym-sessions-are-starting-september
+  - Checked: 20.9.2026.
 
 - **Minecraft seikkailijat — Entresse Library / Espoo Hobby Path** — City of Espoo / Xroc
   - Fits: children aged 9–12 / grades 3–6; the official listings state Finnish and English.
