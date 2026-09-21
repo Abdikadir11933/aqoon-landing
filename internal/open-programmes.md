@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 20.9.2026
+Last compiled: 21.9.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -156,7 +156,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Kolibrí Festival Family Day — Caisa 20.9.2026** — City of Helsinki / Kulttuurikeskus Ninho ry
   - Fits: children and families looking for a free multilingual cultural day.
   - Helps with: artistic workshops, music and dance, multilingual storytelling, a children's book fair and low-threshold family participation.
-  - Status: Sunday 20.9.2026, 11.00–17.00, Cultural Centre Caisa, Kaikukatu 4; free entry and no registration required.
+  - Status: **passed/closed** — the one-day event took place Sunday 20.9.2026, 11.00–17.00, Cultural Centre Caisa, Kaikukatu 4; free entry and no registration was required. Removed from the current family-facing page on 21.9.2026.
   - Official: https://tapahtumat.hel.fi/en/events/kulke%3A68785
 
 - **Welcome Day — Kanneltalo 16.9.2026** — City of Helsinki
@@ -285,6 +285,35 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagp7ubd2ee
 
 ### Espoo
+
+- **Career Bootcamp — 29.9.2026** — Espoo Talent Hub
+  - Fits: highly educated professionals who want career-development support and professional networking; the official event is in English and does not state an Espoo-residency restriction.
+  - Helps with: career development, meeting service providers, networking and a workshop programme.
+  - Status: Tuesday 29.9.2026, 09.00–16.00, Technopolis Innopoli 2, Tekniikantie 14, Espoo; free. Registration is available through the official event route. The published programme is subject to change.
+  - Caution: do not promise a vacancy, interview or selection; this is a career-development event.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagp7vb2gqu
+  - Checked: 21.9.2026.
+  - Public family page: yes, work/career section.
+
+- **Vauvamuskari / Baby music group — autumn 2026** — City of Espoo
+  - Fits: families with children aged 3 months–3 years.
+  - Helps with: low-threshold shared music, singing, instruments and musical games for a child and parent/guardian; no previous music experience is needed.
+  - Upcoming sessions checked 21.9.: 22.9. 11.00–11.30 Kauklahti Library; 30.9. 10.30–11.00 Iso Omena Library (VOX); 6.10. 11.00–11.30 Sello Library (Jaminurkka).
+  - Cost / registration: free; advance registration is required through the official sign-up route.
+  - Language/access: event language Finnish. Espoo explicitly says everyone is welcome regardless of language skills or musical background.
+  - Status: upcoming; re-check capacity before promising a place.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagp7ljerbq
+  - Checked: 21.9.2026.
+  - Public family page: yes.
+
+- **E-urheilun harrastuspolku — autumn 2026** — City of Espoo
+  - Fits: secondary-school pupils / yläkoululaiset interested in a free esports hobby.
+  - Helps with: free organised gaming activities through Espoo's esports hobby path.
+  - Status: the current autumn activities run 10.9.–11.12.2026. Published options include Star Stable online via Discord Thursdays 17.00–18.00; Counter-Strike 2 at Otahalli Tuesdays 16.30–18.30; Fortnite junior tournaments at Otahalli on the first Thursday of each month 18.00–21.00; girls' gaming evenings on the second Thursday 18.00–21.00; family gaming evenings on alternating Tuesdays 18.30–20.30; and esports community evenings twice a month on a Friday or Saturday 18.00–21.00.
+  - Cost / registration: every listed activity is free; group details and registration are through Espoo's Hobby Search service. Re-check capacity before promising a place.
+  - Official: https://www.espoo.fi/en/culture-and-leisure/espoo-hobby-path/esports-hobby-path-project-espoo
+  - Checked: 21.9.2026.
+  - Public family page: yes.
 
 - **Welcome to learn the basics of Finnish — Sello** — City of Espoo / event calendar
   - Fits: adults who want low-threshold practice with basic Finnish; the official listing states Finnish as the event language.
