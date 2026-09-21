@@ -135,3 +135,4 @@ REGISTRY.write_text(registry, encoding="utf-8")
 
 print("Updated:", PAGE)
 print("Updated:", REGISTRY)
+# Trigger the corrected owner-authorized temporary workflow.
