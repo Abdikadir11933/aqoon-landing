@@ -286,15 +286,6 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 
 ### Espoo
 
-- **Career Bootcamp — 29.9.2026** — Espoo Talent Hub
-  - Fits: highly educated professionals who want career-development support and professional networking; the official event is in English and does not state an Espoo-residency restriction.
-  - Helps with: career development, meeting service providers, networking and a workshop programme.
-  - Status: Tuesday 29.9.2026, 09.00–16.00, Technopolis Innopoli 2, Tekniikantie 14, Espoo; free. Registration is available through the official event route. The published programme is subject to change.
-  - Caution: do not promise a vacancy, interview or selection; this is a career-development event.
-  - Official: https://www.espoo.fi/en/events/espooevents%3Aagp7vb2gqu
-  - Checked: 21.9.2026.
-  - Public family page: yes, work/career section.
-
 - **Vauvamuskari / Baby music group — autumn 2026** — City of Espoo
   - Fits: families with children aged 3 months–3 years.
   - Helps with: low-threshold shared music, singing, instruments and musical games for a child and parent/guardian; no previous music experience is needed.
