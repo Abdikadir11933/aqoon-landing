@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 21.9.2026
+Last compiled: 25.9.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -70,6 +70,14 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Cost caution: teaching is **fee-based (lukukausimaksullinen)**. Do not describe this route as free; verify the group fee and any current fee-relief rules before promising cost.
   - Official: https://kuvataidekoulu.vantaa.fi/fi/ajankohtaista/uutinen/inspiroidu-kokeile-ja-luo-vapaita-paikkoja-vantaan-kuvataidekoulun-lasten-ja-nuorten-taideryhmissa
   - Checked: 16.9.2026.
+- **Vantaan kuvataidekoulu — autumn 2026 family short courses** — Vantaan kuvataidekoulu
+  - Fits: families, children and young people looking for low-threshold visual-arts short courses. The provider says previous art experience is not required.
+  - Helps with: short family/young-person art activities; the currently advertised offer includes courses in Tikkurila, Kivistö, Korso and Kartanonkoski.
+  - Status: the 22.9.2026 provider update says the listed courses still had places and registration is through Eepos. Dates, ages and fees vary by course, with family courses continuing through autumn 2026.
+  - Cost caution: these are **paid** courses; materials are included in the course fee. Re-check current capacity and the exact age/date/fee before routing a family.
+  - Official: https://kuvataidekoulu.vantaa.fi/fi/ajankohtaista/uutinen/paasta-luovuutesi-valloilleen-vantaan-kuvataidekoulun-syksyn-2026-lyhytkursseilla
+  - Checked: 25.9.2026.
+
 - **Kolibrí Festival — Vantaa 26.9.2026** — Vantaan kaupunki / children's cultural services
   - Fits: families and children looking for a free multicultural cultural day.
   - Helps with: low-threshold family activities and multilingual cultural participation.
@@ -183,6 +191,20 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: application open until 30.10.2026; training 7.1.–28.5.2027.
   - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/tyovoimakoulutukset/
 
+- **Ruokapolku maahan muuttaneille** — Stadin AO
+  - Fits: immigrant jobseekers for whom labour-market training is appropriate. The checked listing does not publish a specific Finnish-language threshold, so do not invent one.
+  - Helps with: an employment-oriented route toward food-sector work.
+  - Status: application open until 2.11.2026; training 12.1.–11.6.2027.
+  - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/tyovoimakoulutukset/
+  - Checked: 25.9.2026.
+
+- **Trukinkuljettajan ja varastoalan koulutus** — Stadin AO
+  - Fits: jobseekers for whom labour-market training is appropriate. The checked listing does not publish a specific Finnish-language threshold, so do not invent one.
+  - Helps with: an employment-oriented route toward forklift-driving and warehouse work.
+  - Status: application open until 20.11.2026; training 7.1.–28.5.2027.
+  - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/tyovoimakoulutukset/
+  - Checked: 25.9.2026.
+
 - **Kosmetiikkamyynnin osaaja** — Stadin AO
   - Fits: jobseekers for whom labour-market training is appropriate; the checked listing does not state a migrant-only target group or a language level, so do not add either claim.
   - Helps with: employment-oriented cosmetics sales training.
@@ -192,14 +214,22 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Sosiaali- ja terveysalan koulutus** — Stadin AO / Helsinki employment services
   - Fits: primarily unemployed jobseekers or jobseekers at risk of unemployment who are suitable for the training.
   - Helps with: employment-oriented social and health care training; do not infer a specific qualification from the listing without checking the application details.
-  - Status: application open until 24.9.2026; training 1.12.2026–31.3.2027. Selection is made jointly by Stadin AO and Helsinki employment services.
+  - Status: **application closed/passed** after 24.9.2026; training is scheduled for 1.12.2026–31.3.2027. Do not present this round as open unless Stadin AO publishes a new intake. Selection is made jointly by Stadin AO and Helsinki employment services.
   - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/tyovoimakoulutukset/
 
 - **Lähihoitaja, jatkuva haku** — Stadin AO
   - Fits: applicants seeking the social and health care vocational qualification who meet the current language/admission requirements.
   - Helps with: vocational route to a lähihoitaja qualification.
-  - Status: current application round 24.8.–23.9.2026; Finnish at least A2.2; studies begin September–November depending on available places. Stadin AO states that tuition fees from 1.8.2026 can apply to upper-secondary students coming from third countries, so do not describe this as universally free without checking the applicant's status.
+  - Status: **application closed/passed** after 23.9.2026. The checked round required Finnish at least A2.2 and had studies beginning September–November depending on available places. Do not present this round as open unless Stadin AO publishes a new intake. Stadin AO states that tuition fees from 1.8.2026 can apply to upper-secondary students coming from third countries.
   - Official: https://stadinao.hel.fi/hae-opiskelemaan/jatkuva-haku/
+
+- **Perustason ensihoito** — Stadin AO
+  - Fits: applicants who meet the admission criteria for the emergency-care competence area; the published Finnish requirement is at least B2.1.
+  - Helps with: the social and health care vocational qualification route in basic-level emergency care.
+  - Status: application 21.9.–3.11.2026; studies begin in spring 2027 at Roihupelto. Stadin AO publishes a multi-stage selection process. A manual-transmission category B driving licence is required by the time the emergency-care study unit begins, about six months after study start.
+  - Cost caution: tuition fees can apply to upper-secondary studies started from 1.8.2026 for students arriving from outside the EU/EEA/Switzerland; verify applicant status rather than assuming a fee.
+  - Official: https://stadinao.hel.fi/hae-opiskelemaan/jatkuva-haku/perustason-ensihoidon-koulutus/
+  - Checked: 25.9.2026.
 
 - **Aikuisten TUVA** — Stadin AO
   - Fits: adults over 18 who want to strengthen Finnish through S2 teaching and prepare for further study.
@@ -392,7 +422,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Helps with: free family cultural participation, including baby/toddler-suitable concerts, a light bath, a poetry spa and ideas for creative activities at home and through Espoo cultural services.
   - Status: Friday 25.9.2026, 10.00–12.00, Lippulaiva Library, Espoonlahdenkatu 8; free entry. The checked primary source does not state a separate advance-registration requirement, so do not invent one; re-check the event page before routing close to the date.
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagp76j6oeu
-  - Checked: 18.9.2026.
+  - Checked: 25.9.2026.
 
 - **Workshop for Families — Entresse Library** — City of Espoo
   - Fits: families of any age looking for a free low-threshold activity; languages listed are Finnish, English and Arabic.
@@ -415,7 +445,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Tasty Snack — Entresse Library** — Espoon harrastuspolku / City of Espoo
   - Fits: pupils in grades 3–9; the current event page lists the target age as 9–15. Languages listed are Finnish and English.
   - Helps with: a free after-school cooking/snack hobby where participants prepare simple snacks, treats and meals together.
-  - Status: current series at Entresse Library, Siltakatu 11, 7.9.2026–10.5.2027, Mondays 16.30–18.00 except school holidays; the current Espoo listings now align on 16.30–18.00 for the grades 3–9 group. The next listed session is 21.9.2026. Free; registration is available.
+  - Status: current series at Entresse Library, Siltakatu 11, 7.9.2026–10.5.2027, Mondays 16.30–18.00 except school holidays; the current Espoo listings now align on 16.30–18.00 for the grades 3–9 group. The next listed session after this review is 28.9.2026. Free; registration is available.
   - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqfy2b5p4
 
 - **Safety Circle for kids — English group** — Kids Global Safety Hub / City of Espoo event calendar
@@ -549,13 +579,13 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Career Boost Workshop** — International House Tampere
   - Fits: international jobseekers living in Tampere and international students studying in Tampere.
   - Helps with: CV/application, networking, recruiter approach, job-search channels and interview preparation.
-  - Status: free, max 30; remaining autumn dates are 25.9. and 30.10.2026, 12–16. Register by email to iht.talentadvisor@tampere.fi; one-time participation only.
+  - Status: free, max 30; the currently published remaining autumn dates are 30.10., 27.11. and 14.12.2026, 12–16, at International House Tampere, Rautatienkatu 10. Register by email to iht.talentadvisor@tampere.fi; one-time participation only.
   - Official: https://internationalhouse.tampere.fi/en/working/career-boost-workshop/
 
 - **Job Fair Tampere 2026** — International House Tampere / City of Tampere
   - Fits: all jobseekers; especially useful for international jobseekers and students.
   - Helps with: meeting employers, recruitment and networking, with particular focus on roles that may not require Finnish.
-  - Status: 22.9.2026, 12–16, Tampere-talo; free and held in English. Do not imply every attending company has an open vacancy.
+  - Status: **closed/passed**. The event took place 22.9.2026, 12–16, Tampere-talo; it was free and held in English. Do not present it as a current opportunity from 23.9.2026 onward.
   - Official: https://internationalhouse.tampere.fi/en/job-fair/
 
 - **Pulla Perjantai Networking Event** — International House Tampere / Tampere Talent Ambassadors
@@ -574,7 +604,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **SIMHE counselling** — Tampere University of Applied Sciences / International House Tampere
   - Fits: people already living in Finland who have completed upper-secondary education, studied in higher education or completed a higher-education degree.
   - Helps with: higher-education options, applications, recognising prior learning and career direction.
-  - Status: free upcoming walk-ins 18.9., 25.9., 2.10., 23.10., 13.11., 20.11. and 4.12.2026, 13–15; appointments also available via simhe@tuni.fi. The 28.8. session has passed and is no longer presented as an upcoming date.
+  - Status: free upcoming walk-ins 25.9., 2.10., 23.10., 13.11., 20.11. and 4.12.2026, 13–15 at International House Tampere, Rautatienkatu 10; appointments also available via simhe@tuni.fi. The 28.8. and 18.9. sessions have passed.
   - Official: https://internationalhouse.tampere.fi/en/studying/counselling-on-higher-education-studies/
 
 ### Finland-wide / case-by-case
