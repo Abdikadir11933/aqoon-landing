@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 25.9.2026
+Last compiled: 26.9.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -123,7 +123,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Vantaan Megarekry 2026** — Vantaan kaupunki / Vantaan työllisyyspalvelut
   - Fits: jobseekers from different backgrounds and language groups; the official page does not state a Vantaa-residency restriction for attendance.
   - Helps with: meeting dozens of employers and educational institutions, discussing open jobs, traineeships, training places and other concrete employment routes.
-  - Status: upcoming 29.10.2026, 10.00–15.00, Kauppakeskus Myyrmanni; free for jobseekers. Jobseeker registration is not yet open and will open closer to the event; registration is described as non-binding. Exhibitor applications are open until 25.9.2026 at 16.00.
+  - Status: upcoming 29.10.2026, 10.00–15.00, Kauppakeskus Myyrmanni; free for jobseekers. Jobseeker registration is not yet open and will open closer to the event; registration is described as non-binding. The exhibitor application deadline 25.9.2026 at 16.00 has passed.
   - Official: https://www.vantaa.fi/fi/tyonhaku-ja-tyollistaminen/vantaan-megarekry
 
 ### Helsinki
@@ -278,10 +278,10 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/lupa-ja-korttikoulutukset/
 
 - **Kohti työelämää — tyre fitter short training** — Stadin AO / Helsinki employment services
-  - Fits: primarily unemployed Helsinki employment-service clients with active job search who are genuinely motivated for automotive work. Requires a valid category B driving licence, functional Finnish at B1.1, suitable health/physical fitness and interaction skills.
+  - Fits: primarily unemployed Helsinki employment-service clients with active job search who were genuinely motivated for automotive work. The published route required a valid category B driving licence, functional Finnish at B1.1, suitable health/physical fitness and interaction skills.
   - Helps with: targeted tyre-fitting skills and a possible route through Eezy to seasonal tyre-fitting work in the capital region.
-  - Status (16.9.2026): the recruitment information session on **15.9.2026, 12–15** at Helsinki Employment Services, Malminkatu 34 has passed; vocational content **21.–25.9.2026, 9–14**, Stadin AO Ilkantie 3 remains upcoming. Free for Helsinki employment-services clients. The checked source does not establish a new direct application route.
-  - Application caution: the current official page publishes the dates and criteria but the captured primary-source page does not show a clear direct registration route for this training. Verify the route with Helsinki employment services/Stadin AO before telling a family that a seat can be applied for directly.
+  - Status: **closed/passed for this published round**. The recruitment information session was 15.9.2026 and the vocational content ran 21.–25.9.2026. Do not present this round as a current application opportunity from 26.9.2026 onward.
+  - Future-route caution: re-check Helsinki employment services/Stadin AO for a newly published round before routing a family; do not infer that this past round remains open.
   - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/lupa-ja-korttikoulutukset/
 
 - **Maahan muuttaneiden opettajien polku** — Stadin AO
@@ -308,6 +308,22 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: **30.9.2026, 16.30–18.30**, Ohjaamo Helsinki, Fredrikinkatu 48. **Free**; no advance registration.
   - Official: https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagqfsu5otm
 
+- **Nezumicon — 26.9.2026** — City of Helsinki / Youth Helsinki / Operaatio Pulssi! Pohjoinen
+  - Fits: young people interested in cosplay, manga and anime; the official Nezumicon page says the event is aimed at young people but does not publish a narrower age range, so do not invent one.
+  - Helps with: free youth-led cultural participation, programme activities and an Artist Alley in a substance-free event environment.
+  - Status: Saturday 26.9.2026, 10.00–18.00, Cultural Centre Malmitalo, Ala-Malmin tori 1, Helsinki; free. Re-check the official page for the day's programme before routing.
+  - Official: https://nuorten.hel.fi/en/general/nezumicon/
+  - Checked: 26.9.2026.
+  - Public family page: yes.
+
+- **Girls’ horse evenings — Fallkulla** — City of Helsinki / Youth Helsinki / Operaatio Pulssi! Pohjoinen
+  - Fits: girls aged 12–17 and young people who identify as girls who are beginners in horse care; no previous experience is required.
+  - Helps with: learning horse care and the daily routines of a stable in a low-threshold group.
+  - Status: Mondays 28.9., 5.10. and 19.10.2026, 15.30–17.30, Fallkulla Domestic Animal Farm, Malminkaari 24, Helsinki; free. Registration opened 24.8.2026, so re-check current capacity before promising a place.
+  - Official: https://nuorten.hel.fi/en/events/?event_id=helsinki%3Aagpf5hb2ee
+  - Checked: 26.9.2026.
+  - Public family page: yes.
+
 - **Työnantaja Meet & Greet — 29.9.2026** — Ohjaamo Helsinki
   - Fits: Helsinki young people using the 15–29-year-old Ohjaamo service; the event explicitly welcomes English speakers too.
   - Helps with: meeting Lidl, Posti and Nordjobb; discussing current work possibilities; CV/application/interview tips; CV photography; and youth entrepreneurship guidance.
@@ -319,12 +335,12 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Vauvamuskari / Baby music group — autumn 2026** — City of Espoo
   - Fits: families with children aged 3 months–3 years.
   - Helps with: low-threshold shared music, singing, instruments and musical games for a child and parent/guardian; no previous music experience is needed.
-  - Upcoming sessions checked 21.9.: 22.9. 11.00–11.30 Kauklahti Library; 30.9. 10.30–11.00 Iso Omena Library (VOX); 6.10. 11.00–11.30 Sello Library (Jaminurkka).
+  - Upcoming sessions checked 26.9.: 30.9. 10.30–11.00 Iso Omena Library (VOX); 6.10. 11.00–11.30 Sello Library (Jaminurkka). The 22.9 Kauklahti session has passed.
   - Cost / registration: free; advance registration is required through the official sign-up route.
   - Language/access: event language Finnish. Espoo explicitly says everyone is welcome regardless of language skills or musical background.
   - Status: upcoming; re-check capacity before promising a place.
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagp7ljerbq
-  - Checked: 21.9.2026.
+  - Checked: 26.9.2026.
   - Public family page: yes.
 
 - **E-urheilun harrastuspolku — autumn 2026** — City of Espoo
@@ -418,11 +434,11 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagqhvp6tem
 
 - **Vauvan päivä Lippulaivan kirjastossa — 25.9.2026** — CultureEspoo / City of Espoo
-  - Fits: families with babies and small children; the official listing marks the event as all-ages.
+  - Fits: families with babies and small children; the official listing marked the event as all-ages.
   - Helps with: free family cultural participation, including baby/toddler-suitable concerts, a light bath, a poetry spa and ideas for creative activities at home and through Espoo cultural services.
-  - Status: Friday 25.9.2026, 10.00–12.00, Lippulaiva Library, Espoonlahdenkatu 8; free entry. The checked primary source does not state a separate advance-registration requirement, so do not invent one; re-check the event page before routing close to the date.
+  - Status: **closed/passed**. The event took place Friday 25.9.2026, 10.00–12.00, Lippulaiva Library, Espoonlahdenkatu 8. Do not present this one-day event as current from 26.9.2026 onward.
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagp76j6oeu
-  - Checked: 25.9.2026.
+  - Checked: 26.9.2026.
 
 - **Workshop for Families — Entresse Library** — City of Espoo
   - Fits: families of any age looking for a free low-threshold activity; languages listed are Finnish, English and Arabic.
@@ -589,11 +605,10 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://internationalhouse.tampere.fi/en/job-fair/
 
 - **Pulla Perjantai Networking Event** — International House Tampere / Tampere Talent Ambassadors
-  - Fits: international residents and jobseekers who want to understand Finnish companies, hiring processes and workplace culture; the 25.9. event features WordDive.
-  - Helps with: low-threshold employer networking, understanding recruitment and work culture, and making company contacts. It is not a recruitment event.
-  - Status: 25.9.2026, 10–12, Tampere; free. Registration is required and places are limited; participants are selected first-come-first-served and based on interest in the featured company.
-  - Contact: iht.events@tampere.fi if no selection message has arrived two days before the event.
-  - Official/sign-up: https://internationalhouse.tampere.fi/en/event/?date=25.09.2026&event-id=6a8e930ee977800007512a80&time=10.00+-+12.00
+  - Fits: international residents and jobseekers who wanted to understand Finnish companies, hiring processes and workplace culture; the 25.9. event featured WordDive.
+  - Helps with: low-threshold employer networking, understanding recruitment and work culture, and making company contacts. It was not a recruitment event.
+  - Status: **closed/passed**. The event took place 25.9.2026, 10–12, Tampere. Do not present this dated session as current from 26.9.2026 onward; re-check the provider for a separately published future Pulla Perjantai.
+  - Official: https://internationalhouse.tampere.fi/en/event/?date=25.09.2026&event-id=6a8e930ee977800007512a80&time=10.00+-+12.00
 
 - **Information session on Entrepreneurship with Ensimetri** — International House Tampere / Ensimetri
   - Fits: international residents considering starting a business in Finland.
@@ -604,7 +619,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **SIMHE counselling** — Tampere University of Applied Sciences / International House Tampere
   - Fits: people already living in Finland who have completed upper-secondary education, studied in higher education or completed a higher-education degree.
   - Helps with: higher-education options, applications, recognising prior learning and career direction.
-  - Status: free upcoming walk-ins 25.9., 2.10., 23.10., 13.11., 20.11. and 4.12.2026, 13–15 at International House Tampere, Rautatienkatu 10; appointments also available via simhe@tuni.fi. The 28.8. and 18.9. sessions have passed.
+  - Status: free upcoming walk-ins 2.10., 23.10., 13.11., 20.11. and 4.12.2026, 13–15 at International House Tampere, Rautatienkatu 10; appointments also available via simhe@tuni.fi. The 28.8., 18.9. and 25.9. sessions have passed.
   - Official: https://internationalhouse.tampere.fi/en/studying/counselling-on-higher-education-studies/
 
 ### Finland-wide / case-by-case
