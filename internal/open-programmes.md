@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 26.9.2026
+Last compiled: 27.9.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -81,7 +81,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Kolibrí Festival — Vantaa 26.9.2026** — Vantaan kaupunki / children's cultural services
   - Fits: families and children looking for a free multicultural cultural day.
   - Helps with: low-threshold family activities and multilingual cultural participation.
-  - Status: Saturday 26.9.2026 in Vantaa; free. The City of Vantaa says activities include Spanish, Swahili, Portuguese and Italian, and all activities can also be enjoyed in Finnish or English. Re-check the linked Vantaa event/calendar information for the exact programme before promising a specific workshop or time.
+  - Status: **closed/passed**. The Vantaa festival day took place Saturday 26.9.2026. Do not present it as a current family opportunity from 27.9.2026 onward.
   - Official: https://www.vantaa.fi/en/topical/news/childrens-culture-across-vantaa-explore-fall-2026-program-children-and-young
 
 - **Lasten liikunnalliset syysloman päiväleirit — week 42** — Vantaan kaupunki / sports services
@@ -311,7 +311,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Nezumicon — 26.9.2026** — City of Helsinki / Youth Helsinki / Operaatio Pulssi! Pohjoinen
   - Fits: young people interested in cosplay, manga and anime; the official Nezumicon page says the event is aimed at young people but does not publish a narrower age range, so do not invent one.
   - Helps with: free youth-led cultural participation, programme activities and an Artist Alley in a substance-free event environment.
-  - Status: Saturday 26.9.2026, 10.00–18.00, Cultural Centre Malmitalo, Ala-Malmin tori 1, Helsinki; free. Re-check the official page for the day's programme before routing.
+  - Status: **closed/passed**. The event took place Saturday 26.9.2026, 10.00–18.00 at Malmitalo. Do not present it as current from 27.9.2026 onward.
   - Official: https://nuorten.hel.fi/en/general/nezumicon/
   - Checked: 26.9.2026.
   - Public family page: yes.
@@ -446,11 +446,12 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: Tuesdays 16.00–17.30, 4.8.–15.12.2026, Siltakatu 11, Espoo; free and no advance registration required.
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagphfqw7ne
 
-- **Töpinät — recurring series, next 11.10.2026** — Esbo IF / City of Espoo event calendar
+- **Töpinät — current Espoo sessions** — City of Espoo event calendar / partner organisers
   - Fits: children aged 2–8 with a parent/adult; an adult must remain with the child throughout the activity.
   - Helps with: free low-threshold indoor physical activity using varied equipment; movement is self-directed rather than instructor-led.
-  - Status: the Puistotie 13 series runs 13.9.2026–4.4.2027. The 13.9 session has passed; the official series currently lists 11.10.2026 and 8.11.2026, 10.00–12.00, as the next dates. Free; no registration required. Re-check the series before quoting a later date because changes are possible.
-  - Official series: https://www.espoo.fi/en/events/espooevents%3Aagpnhy7t2e
+  - Status: 27.9.2026, 10.00–12.00 at Kulloonmäentie 20, Espoo; Finnish and English; free; no registration. The separate Puistotie 13 series currently lists 11.10.2026 and 8.11.2026, 10.00–12.00, as upcoming dates. Re-check the chosen event before routing because changes are possible.
+  - Official 27.9 event: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagpnclmd2q
+  - Official Puistotie series: https://www.espoo.fi/en/events/espooevents%3Aagpnhy7t2e
 
 - **Leppis kerhot — Entresse Library, starts 1.10.2026** — City of Espoo / MAOL
   - Fits: families with children aged 3–6; a guardian/adult participates with the child.
