@@ -451,8 +451,9 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Töpinät — current Espoo sessions** — City of Espoo event calendar / partner organisers
   - Fits: children aged 2–8 with a parent/adult; an adult must remain with the child throughout the activity.
   - Helps with: free low-threshold indoor physical activity using varied equipment; movement is self-directed rather than instructor-led.
-  - Status: 27.9.2026, 10.00–12.00 at Kulloonmäentie 20, Espoo; Finnish and English; free; no registration. The separate Puistotie 13 series currently lists 11.10.2026 and 8.11.2026, 10.00–12.00, as upcoming dates. Re-check the chosen event before routing because changes are possible.
-  - Official 27.9 event: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagpnclmd2q
+  - Status: 27.9.2026, 10.00–12.00 at two currently listed Espoo locations: Kulloonmäentie 20 (Finnish/English, Esport Oilers) and Karhuniitynkuja 3 (Finnish/Swedish/English, Litta ry). Both are free and require no registration. The separate Puistotie 13 series currently lists 11.10.2026 and 8.11.2026, 10.00–12.00, as upcoming dates. Re-check the chosen event before routing because changes are possible.
+  - Official 27.9 Kulloonmäentie event: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagpnclmd2q
+  - Official 27.9 Karhuniitynkuja event: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagppgbe2m4
   - Official Puistotie series: https://www.espoo.fi/en/events/espooevents%3Aagpnhy7t2e
   - Checked: 27.9.2026.
   - Public family page: yes.
