@@ -83,6 +83,8 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Helps with: low-threshold family activities and multilingual cultural participation.
   - Status: **closed/passed**. The Vantaa festival day took place Saturday 26.9.2026. Do not present it as a current family opportunity from 27.9.2026 onward.
   - Official: https://www.vantaa.fi/en/topical/news/childrens-culture-across-vantaa-explore-fall-2026-program-children-and-young
+  - Checked: 27.9.2026.
+  - Public family page: no.
 
 - **Lasten liikunnalliset syysloman päiväleirit — week 42** — Vantaan kaupunki / sports services
   - Fits: children in grades 1–4. The checked autumn sources do not state a separate Vantaa-residency restriction, so do not infer one.
@@ -313,8 +315,8 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Helps with: free youth-led cultural participation, programme activities and an Artist Alley in a substance-free event environment.
   - Status: **closed/passed**. The event took place Saturday 26.9.2026, 10.00–18.00 at Malmitalo. Do not present it as current from 27.9.2026 onward.
   - Official: https://nuorten.hel.fi/en/general/nezumicon/
-  - Checked: 26.9.2026.
-  - Public family page: yes.
+  - Checked: 27.9.2026.
+  - Public family page: no.
 
 - **Girls’ horse evenings — Fallkulla** — City of Helsinki / Youth Helsinki / Operaatio Pulssi! Pohjoinen
   - Fits: girls aged 12–17 and young people who identify as girls who are beginners in horse care; no previous experience is required.
@@ -452,6 +454,8 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: 27.9.2026, 10.00–12.00 at Kulloonmäentie 20, Espoo; Finnish and English; free; no registration. The separate Puistotie 13 series currently lists 11.10.2026 and 8.11.2026, 10.00–12.00, as upcoming dates. Re-check the chosen event before routing because changes are possible.
   - Official 27.9 event: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagpnclmd2q
   - Official Puistotie series: https://www.espoo.fi/en/events/espooevents%3Aagpnhy7t2e
+  - Checked: 27.9.2026.
+  - Public family page: yes.
 
 - **Leppis kerhot — Entresse Library, starts 1.10.2026** — City of Espoo / MAOL
   - Fits: families with children aged 3–6; a guardian/adult participates with the child.
