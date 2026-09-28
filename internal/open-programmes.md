@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 27.9.2026
+Last compiled: 28.9.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -22,6 +22,15 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://www.hel.fi/fi/kasvatus-ja-koulutus/konepajan-aikuislukio/nuorten-suunta/nuorten-suunnan-hakijalle
 
 ### Vantaa
+
+- **Vantaan Kulttuurilapset** — City of Vantaa
+  - Fits: children living in Vantaa who were born in 2023 or later, together with a parent/guardian.
+  - Helps with: free recurring access to culture, arts, workshops, performances, science and shared family activities across Vantaa.
+  - Status: ongoing. The guardian first registers the child as a Kulttuurilapsi; Vantaa then sends invitations to free events each year until the child turns 7, and the family reserves an event ticket separately. The official page explicitly says the events are suitable for families who speak different languages.
+  - Availability caution: registration to the programme does not guarantee a place at a particular event; reserve the event-specific ticket and re-check capacity.
+  - Official: https://www.vantaa.fi/fi/vapaa-aika-ja-hyvinvointi/kulttuuri-ja-taide/vantaan-kulttuurilapset
+  - Checked: 28.9.2026.
+  - Public family page: yes.
 
 - **Vanhemmat mukaan (VAMU)** — Vantaan kaupunki
   - Fits: immigrant parents in Vantaa with a valid residence permit and Finnish at about A1–A2.2; literacy is not required and a small child can come along.
@@ -334,6 +343,14 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 
 ### Espoo
 
+- **Englanninkielinen pelikerho nuorille — Sello / Pointti** — City of Espoo / Elinvoima
+  - Fits: young people aged 12–20 who want a free English-language social activity.
+  - Helps with: playing board games together in English at the youth space Pointti.
+  - Status: Mondays 16.00–18.00, 21.9.–14.12.2026, Nuorten tila Pointti, Sello Library, Leppävaarankatu 9; English; free entry. The checked official page does not publish a separate advance-registration route, so do not invent one.
+  - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqkjtnicq
+  - Checked: 28.9.2026.
+  - Public family page: yes.
+
 - **Vauvamuskari / Baby music group — autumn 2026** — City of Espoo
   - Fits: families with children aged 3 months–3 years.
   - Helps with: low-threshold shared music, singing, instruments and musical games for a child and parent/guardian; no previous music experience is needed.
@@ -451,11 +468,11 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Töpinät — current Espoo sessions** — City of Espoo event calendar / partner organisers
   - Fits: children aged 2–8 with a parent/adult; an adult must remain with the child throughout the activity.
   - Helps with: free low-threshold indoor physical activity using varied equipment; movement is self-directed rather than instructor-led.
-  - Status: 27.9.2026, 10.00–12.00 at two currently listed Espoo locations: Kulloonmäentie 20 (Finnish/English, Esport Oilers) and Karhuniitynkuja 3 (Finnish/Swedish/English, Litta ry). Both are free and require no registration. The separate Puistotie 13 series currently lists 11.10.2026 and 8.11.2026, 10.00–12.00, as upcoming dates. Re-check the chosen event before routing because changes are possible.
-  - Official 27.9 Kulloonmäentie event: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagpnclmd2q
-  - Official 27.9 Karhuniitynkuja event: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagppgbe2m4
-  - Official Puistotie series: https://www.espoo.fi/en/events/espooevents%3Aagpnhy7t2e
-  - Checked: 27.9.2026.
+  - Status: the two 27.9.2026 locations at Kulloonmäentie 20 and Karhuniitynkuja 3 are **closed/passed**. The current future route is the Puistotie 13 series; the official page currently lists upcoming dates 11.10., 8.11. and 13.12.2026, all 10.00–12.00. Free; no registration required. Changes are possible, so re-check the chosen date before routing.
+  - Official future series: https://www.espoo.fi/en/events/espooevents%3Aagpnhy7t2e
+  - Historical 27.9 Kulloonmäentie event: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagpnclmd2q
+  - Historical 27.9 Karhuniitynkuja event: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagppgbe2m4
+  - Checked: 28.9.2026.
   - Public family page: yes.
 
 - **Leppis kerhot — Entresse Library, starts 1.10.2026** — City of Espoo / MAOL
@@ -463,6 +480,14 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Helps with: free five-week play, movement and mathematics-themed activity after the one-day 13.9 pop-up.
   - Status: the 13.9.2026 pop-up is closed/passed. The still-relevant route is the free five-week club starting Thursday 1.10.2026: ages 3–4 at 17.00–17.45 and ages 5–6 at 18.00–18.45, Entresse Library, Siltakatu 11. Advance registration is required through the official page; re-check availability before promising a place.
   - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqfqdhyzy
+
+- **Koululaisten käsityöpaja — Kalajärven kirjasto** — City of Espoo / library
+  - Fits: schoolchildren; the checked official page does not publish a narrower age range, so do not invent one.
+  - Helps with: free low-threshold crafts and trying techniques such as macramé and origami.
+  - Status: 28.9., 12.10. and 26.10.2026, 14.00–15.30, Kalajärven kirjasto, Ruskaniitty 4; free entry. The checked page does not publish a separate advance-registration requirement.
+  - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqm3w275u
+  - Checked: 28.9.2026.
+  - Public family page: yes.
 
 - **Tasty Snack — Entresse Library** — Espoon harrastuspolku / City of Espoo
   - Fits: pupils in grades 3–9; the current event page lists the target age as 9–15. Languages listed are Finnish and English.
