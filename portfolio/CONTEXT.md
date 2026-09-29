@@ -4,7 +4,9 @@ Public route: `https://aqoon.live/portfolio`.
 
 This is Abducadir Aligure's job-search portfolio, with its own approved design and English copy. It is separate from AQOON's buyer and family journeys. Keep its design, project hierarchy and first-person student voice when making deployment changes.
 
-The maintained source is the owner's `Abdikadir11933/aligure-portfolio` repository. These files are its deployment export, based on source commit `9af41f581a09696aa5db89970edce36b6cfd6bbc`. Edit the canonical content there and regenerate the website data and PDF before refreshing this folder.
+The maintained source is the owner's `Abdikadir11933/aligure-portfolio` repository. These files are its deployment export, based on source commit `e098bb9608e1b2b3ba3d1cf325f634ad42524855`. Edit the canonical content there and regenerate the website data and PDF before refreshing this folder.
+
+The current selection targets junior analytics, supply-chain technology and implementation roles: SafkaStock, AQOON service tools, Finnish letter assistant and HAN groundwater nitrate coursework. SafkaStock is an active side project; recipe/sales connections remain planned. RideLink and road-accident coursework are short supporting examples. Lead with a graduating logistics student and concrete AI-assisted contributions, not founder or established-developer positioning.
 
 Vercel serves this repository as static files with `trailingSlash: false`. Asset and PDF paths must therefore start with `/portfolio/`, so both `/portfolio` and `/portfolio/` resolve correctly. Keep hash navigation on the current portfolio page; do not set a base URL that moves project links to a different route.
 

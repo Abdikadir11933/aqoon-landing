@@ -40,8 +40,9 @@
       <h2 id="selected-project-title">${esc(p.title)}</h2>
       <p class="project-summary">${esc(p.summary)}</p>
       <dl class="project-facts"><div><dt>My part</dt><dd>${esc(p.role)}</dd></div><div><dt>Where it stands</dt><dd>${esc(p.stage)}</dd></div></dl>
+      ${links(p.links)}
       ${processFigure(p.id, 'overview')}
-      <a class="story-link" href="#project/${esc(p.id)}"><span>The problem, the work and what I learned</span><strong>Read the story <span aria-hidden="true">→</span></strong></a>`;
+      <a class="story-link" href="#project/${esc(p.id)}"><span>Problem, contribution and current scope</span><strong>View project <span aria-hidden="true">→</span></strong></a>`;
   }
 
   function work() {
@@ -49,12 +50,12 @@
     return `<section class="work-layout" aria-label="Introduction and selected work">
       <div class="work-rail">
         <div class="intro"><p class="eyebrow">Helsinki, Finland / Portfolio</p><h1>I'm Abducadir.<br><span>${esc(data.headline)}</span></h1><p>${esc(data.intro)}</p><p class="positioning">${esc(data.positioning)}</p></div>
-        <div class="project-picker"><h2 class="eyebrow" id="work-title">Selected work</h2><div class="project-selector" role="group" aria-labelledby="work-title">${data.projects.map((p, index) => `<button type="button" data-select="${index}" aria-pressed="${index === selected}" aria-controls="project-overview"><span>${number(index)}</span><strong>${esc(p.title)}</strong><span class="select-arrow" aria-hidden="true">↗</span></button>`).join('')}</div></div>
+        <div class="project-picker"><h2 class="eyebrow" id="work-title">Selected work</h2><div class="project-selector" role="group" aria-labelledby="work-title">${data.projects.map((p, index) => `<button type="button" data-select="${index}" aria-pressed="${index === selected}" aria-controls="project-overview"><span>${number(index)}</span><span class="project-label"><strong>${esc(p.title)}</strong><small>${esc(p.category)}</small></span><span class="select-arrow" aria-hidden="true">↗</span></button>`).join('')}</div></div>
         <div class="rail-links"><a class="button" href="#about">About me</a><a class="text-link" href="mailto:aligureabducadir@gmail.com">Get in touch <span aria-hidden="true">↗</span></a></div>
       </div>
       <section class="project-overview" id="project-overview" tabindex="-1" aria-labelledby="selected-project-title">${selectedProject()}</section>
     </section>
-    <section class="closing-strip"><div><h2>More things I've tried.</h2><p>${esc(data.otherIntro)}</p></div><a class="button button-light" href="#other">Browse other work <span aria-hidden="true">→</span></a></section>`;
+    <section class="closing-strip"><div><h2>More project work.</h2><p>${esc(data.otherIntro)}</p></div><a class="button button-light" href="#other">View further examples <span aria-hidden="true">→</span></a></section>`;
   }
 
   function block(b, index) {
@@ -81,7 +82,7 @@
 
   function otherWork() {
     title('Other work');
-    return `<header class="page-intro"><p class="page-label">Other work</p><h1>Smaller ideas.<br>Room to try things.</h1><p>${esc(data.otherIntro)}</p></header>
+    return `<header class="page-intro"><p class="page-label">Other work</p><h1>Further examples.</h1><p>${esc(data.otherIntro)}</p></header>
       ${data.otherGroups.map(group => `<section class="repo-group" aria-labelledby="${esc(group.id)}"><h2 id="${esc(group.id)}">${esc(group.title)}</h2><div class="other-entries">${group.entries.map(entry => `<article class="other-entry" id="other-${esc(entry.id)}"><header><h3>${esc(entry.title)}</h3>${stage(entry)}</header><div><p>${esc(entry.text)}</p>${links(entry.links)}</div></article>`).join('')}</div></section>`).join('')}
       <a class="back-link other-back" href="#work"><span aria-hidden="true">←</span> Back to selected work</a>`;
   }
@@ -110,8 +111,8 @@
       location.replace('#other');
       return;
     }
-    if (['project/aroossync', 'project/oivaguard', 'project/nitrate'].includes(route)) {
-      location.replace('#work');
+    if (['project/aroossync', 'project/oivaguard', 'project/orders', 'project/siteslip', 'project/self-monitoring', 'project/tutoring', 'project/halgan', 'project/football', 'project/logistics-agent'].includes(route)) {
+      location.replace('#other');
       return;
     }
     let nav = 'work';
