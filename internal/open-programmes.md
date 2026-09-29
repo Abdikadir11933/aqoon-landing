@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 28.9.2026
+Last compiled: 29.9.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -330,9 +330,9 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Girls’ horse evenings — Fallkulla** — City of Helsinki / Youth Helsinki / Operaatio Pulssi! Pohjoinen
   - Fits: girls aged 12–17 and young people who identify as girls who are beginners in horse care; no previous experience is required.
   - Helps with: learning horse care and the daily routines of a stable in a low-threshold group.
-  - Status: Mondays 28.9., 5.10. and 19.10.2026, 15.30–17.30, Fallkulla Domestic Animal Farm, Malminkaari 24, Helsinki; free. Registration opened 24.8.2026, so re-check current capacity before promising a place.
+  - Status: the 28.9.2026 session is closed/passed. Upcoming published sessions are Mondays 5.10. and 19.10.2026, 15.30–17.30, Fallkulla Domestic Animal Farm, Malminkaari 24, Helsinki; free. Registration opened 24.8.2026, so re-check current capacity before promising a place.
   - Official: https://nuorten.hel.fi/en/events/?event_id=helsinki%3Aagpf5hb2ee
-  - Checked: 26.9.2026.
+  - Checked: 29.9.2026.
   - Public family page: yes.
 
 - **Työnantaja Meet & Greet — 29.9.2026** — Ohjaamo Helsinki
@@ -341,7 +341,33 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: Tuesday 29.9.2026, 13.00–16.00, Ohjaamo Helsinki, Fredrikinkatu 48; free. Current examples include Lidl shop/warehouse work, Posti delivery/sorting/production work and Nordjobb seasonal routes in another Nordic country. Do not promise a vacancy, interview or selection; verify the event page again close to the date because participating employers can change.
   - Official: https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagp7ubd2ee
 
+- **MLL Perhekahvila — Töölö Library** — MLL / City of Helsinki
+  - Fits: families with children, including baby families; children and their close adults are welcome.
+  - Helps with: a low-threshold family meeting place, peer connection and play.
+  - Status: published meetings 29.9., 27.10., 24.11. and 15.12.2026, 13.30–15.00, Töölö Library, Topeliuksenkatu 6, Helsinki; free.
+  - Official: https://tapahtumat.hel.fi/fi/tapahtumat/helsinki%3Aagqdpomj6m
+  - Checked: 29.9.2026.
+  - Public family page: yes.
+
 ### Espoo
+
+- **Yliruusi writing competition for young people** — City of Espoo / libraries
+  - Fits: 15–20-year-olds who live in Espoo or study in Espoo.
+  - Helps with: youth voice and writing; entrants write a column in Finnish or Swedish on the published theme “Espoo, lasten ja nuorten pääkaupunki”.
+  - Status: competition period 1.9.–31.10.2026. The winner receives EUR 1,000 and 2–4 honourable mentions can receive EUR 250–500.
+  - Important: the official rules say AI-generated text is not allowed. Follow the official submission instructions rather than using AQOON to generate the competition entry.
+  - Official: https://www.espoo.fi/fi/kulttuuri-ja-vapaa-aika/kirjastot/nuorten-kirjasto/yliruusi-kirjoituskilpailu-nuorille
+  - Checked: 29.9.2026.
+  - Public family page: yes.
+
+- **Ohjaamotalo Starttipiste — Lippulaiva** — City of Espoo
+  - Fits: under-30-year-olds in Espoo or Kauniainen who need help finding the right next service or step.
+  - Helps with: work and job search, studies, housing, income and other everyday-life questions.
+  - Status: Lippulaiva Library, Espoonlahdenkatu 8, Tuesdays 15.00–18.00. The current Ohjaamotalo page also lists other Starttipiste locations and hours; re-check the official page before same-day routing.
+  - Official: https://www.espoo.fi/fi/ohjaamotalo-0
+  - Checked: 29.9.2026.
+  - Public family page: yes.
+
 
 - **Englanninkielinen pelikerho nuorille — Sello / Pointti** — City of Espoo / Elinvoima
   - Fits: young people aged 12–20 who want a free English-language social activity.
@@ -484,16 +510,17 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Koululaisten käsityöpaja — Kalajärven kirjasto** — City of Espoo / library
   - Fits: schoolchildren; the checked official page does not publish a narrower age range, so do not invent one.
   - Helps with: free low-threshold crafts and trying techniques such as macramé and origami.
-  - Status: 28.9., 12.10. and 26.10.2026, 14.00–15.30, Kalajärven kirjasto, Ruskaniitty 4; free entry. The checked page does not publish a separate advance-registration requirement.
+  - Status: the 28.9.2026 workshop is closed/passed. Upcoming published workshops are 12.10. and 26.10.2026, 14.00–15.30, Kalajärven kirjasto, Ruskaniitty 4; free entry. The checked page does not publish a separate advance-registration requirement.
   - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqm3w275u
-  - Checked: 28.9.2026.
+  - Checked: 29.9.2026.
   - Public family page: yes.
 
 - **Tasty Snack — Entresse Library** — Espoon harrastuspolku / City of Espoo
   - Fits: pupils in grades 3–9; the current event page lists the target age as 9–15. Languages listed are Finnish and English.
   - Helps with: a free after-school cooking/snack hobby where participants prepare simple snacks, treats and meals together.
-  - Status: current series at Entresse Library, Siltakatu 11, 7.9.2026–10.5.2027, Mondays 16.30–18.00 except school holidays; the current Espoo listings now align on 16.30–18.00 for the grades 3–9 group. The next listed session after this review is 28.9.2026. Free; registration is available.
+  - Status: current series at Entresse Library, Siltakatu 11, 7.9.2026–10.5.2027, Mondays 16.30–18.00 except school holidays; the current Espoo listings now align on 16.30–18.00 for the grades 3–9 group. The next listed session after this review is 5.10.2026. Free; registration is available.
   - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqfy2b5p4
+  - Checked: 29.9.2026.
 
 - **Safety Circle for kids — English group** — Kids Global Safety Hub / City of Espoo event calendar
   - Fits: children and families looking for an English-language, low-threshold skills activity. The checked event page does not publish a specific child age range, so do not invent one.
