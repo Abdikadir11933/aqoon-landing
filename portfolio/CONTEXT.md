@@ -4,7 +4,7 @@ Public route: `https://aqoon.live/portfolio`.
 
 This is Abducadir Aligure's job-search portfolio, with its own approved design and English copy. It is separate from AQOON's buyer and family journeys. Keep its design, project hierarchy and first-person student voice when making deployment changes.
 
-The maintained source is the owner's `Abdikadir11933/aligure-portfolio` repository. These files are its deployment export, based on source commit `e098bb9608e1b2b3ba3d1cf325f634ad42524855`. Edit the canonical content there and regenerate the website data and PDF before refreshing this folder.
+The maintained source is the owner's `Abdikadir11933/aligure-portfolio` repository. These files are its deployment export, based on source commit `225d03d4d500696465b27dd18d1832bb822d3c6b`. Edit the canonical content there and regenerate the website data and PDF before refreshing this folder. The standalone `/portfolio/safkastock` walkthrough is maintained in `dist/safkastock.html` there; its worked example is synthetic and publishes no private source code or customer files.
 
 The current selection targets junior analytics, supply-chain technology and implementation roles: SafkaStock, AQOON service tools, Finnish letter assistant and HAN groundwater nitrate coursework. SafkaStock is an active side project; recipe/sales connections remain planned. RideLink and road-accident coursework are short supporting examples. Lead with a graduating logistics student and concrete AI-assisted contributions, not founder or established-developer positioning.
 

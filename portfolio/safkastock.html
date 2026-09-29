@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="SafkaStock: a side-project walkthrough by Abducadir Aligure. The customer problem, lessons from an early pilot, and explainable purchasing analysis.">
+  <link rel="canonical" href="https://aqoon.live/portfolio/safkastock">
+  <title>SafkaStock walkthrough | Abducadir Aligure</title>
+  <link rel="stylesheet" href="/portfolio/styles.css">
+  <style>
+    .walkthrough { max-width: 860px; margin: auto; padding: 44px var(--gutter) 72px; }
+    .walkthrough h1 { font-size: clamp(2.2rem,6vw,3.6rem); line-height: 1.08; margin: 14px 0 22px; }
+    .walkthrough .lead { font-size: 1.2rem; max-width: 58ch; }
+    .walkthrough section { padding-top: 28px; margin-top: 28px; border-top: 1px solid var(--line); }
+    .walkthrough h2 { font-size: 1.5rem; margin-bottom: 14px; }
+    .walkthrough h3 { font-size: 1.1rem; margin: 18px 0 8px; }
+    .walkthrough p + p { margin-top: 14px; }
+    .walkthrough ul { padding-left: 22px; }
+    .walkthrough li { margin: 8px 0; }
+    .example { padding: 22px; margin-top: 18px; background: var(--surface); border-left: 4px solid var(--accent-fill); }
+    .example dl { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+    .example dt { color: var(--muted); font-size: .9rem; }
+    .example dd { margin: 4px 0 0; font-size: 1.4rem; font-weight: 800; }
+    .walkthrough .note { color: var(--muted); font-size: .9rem; }
+    .walkthrough details { padding: 16px 0; }
+    .walkthrough summary { cursor: pointer; font-weight: 800; }
+    .walkthrough code { overflow-wrap: anywhere; font-size: .9em; }
+    @media (max-width: 420px) { .example { padding: 16px; } .example dl { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to walkthrough</a>
+  <header class="site-header"><div class="header-inner">
+    <a class="identity" href="/portfolio#work"><span class="monogram" aria-hidden="true">AA</span><span>Abducadir Aligure</span></a>
+    <nav aria-label="Main navigation"><a href="/portfolio#project/safka">Portfolio</a><a href="/portfolio#about">About me</a></nav>
+  </div></header>
+  <main id="main" class="walkthrough" tabindex="-1">
+    <p class="eyebrow">SafkaStock / Side project / In development</p>
+    <h1>From scattered purchasing records to a useful answer.</h1>
+    <p class="lead">A restaurant owner's unanswered cost questions led me to build a tool, test it, and rethink where to start.</p>
+    <section aria-labelledby="problem"><h2 id="problem">The problem I saw</h2>
+      <p>A pizzeria owner had supplier records and a till system, but still struggled to work out what a pizza cost to make and whether to raise prices. The information existed in separate places. Connecting it took work he did not have time for.</p>
+      <p>A friend and I built and tested the first version. We tried to cover purchases, stock, sales and waste. Missing product information and manual setup made onboarding too demanding. We were asking small businesses to maintain more data before they could get anything useful back.</p>
+    </section>
+    <section aria-labelledby="changed"><h2 id="changed">What changed</h2>
+      <p>I narrowed the starting point to purchasing: where the money went, what changed, and what needs attention. The current build uses supported Kespro spreadsheets and delivery PDFs. It is a way to work with existing records, rather than replace the owner's till or ERP.</p>
+      <p>There are two useful paths. A spreadsheet can already tell us about spending within its reporting period, without mapping every product. Comparing deliveries needs more context: the product, units and price basis must actually match. Accepted mappings can then be reused.</p>
+      <p>This also means keeping report totals and delivery amounts separate. They can describe the same purchases; adding them together would count the same spending twice.</p>
+    </section>
+    <section aria-labelledby="example"><h2 id="example">One question: did this product become more expensive?</h2>
+      <p>A changed number is not enough. Before showing a price increase, the comparison checks identity, dates, currency, net-price basis and compatible quantities.</p>
+      <div class="example">
+        <p><strong>Worked example · synthetic data</strong></p>
+        <p>Same supplier reference, same product, same 1 kg basis. Both prices exclude VAT; the later record follows the earlier one.</p>
+        <dl><div><dt>Earlier purchase</dt><dd>€10.00 / kg</dd></div><div><dt>Later purchase</dt><dd>€11.00 / kg</dd></div></dl>
+        <p><strong>Comparable increase: €1.00 / kg, or 10%.</strong></p>
+        <p>If the later unit is missing, the comparison is blocked. A missing value is not treated as zero, and a box is not assumed to mean a kilogram.</p>
+        <p class="note">An explanation of the implemented calculation rules, not an application screenshot or a measured customer result.</p>
+      </div>
+      <p style="margin-top:16px">That gives an owner a reason to investigate. It does not by itself establish a change in pizza margins or prove that raising prices is the right decision. Recipe quantities, sales and other relevant costs are still needed.</p>
+    </section>
+    <section aria-labelledby="checks"><h2 id="checks">Making the answer checkable</h2>
+      <p>The owner view can show the retained extracted source rows and calculation inputs behind a delivery comparison. It explains which records support the answer, rather than presenting an unexplained percentage. It does not reopen the original PDF.</p>
+      <p>I have also worked through failed imports and retries: saving a document and finishing its processing are different steps. Recovering from a later failure should not duplicate what was already saved.</p>
+      <details><summary>Implementation behind these examples</summary>
+        <ul>
+          <li><code>packages/purchasing/src/price-change.ts</code> checks whether an authorised pair is comparable. Its tests cover valid increases, missing information and incompatible units.</li>
+          <li><code>packages/purchasing-projection/src/compose-purchasing-evidence.ts</code> keeps report and delivery evidence separate.</li>
+          <li><code>apps/workspace/src/owner-view-service.ts</code> connects scoped evidence to the owner view; <code>apps/workspace/src/onboarding/jobs.ts</code> handles import progress and recovery.</li>
+        </ul>
+        <p class="note">These paths identify code in the private working repository; they are not public download links. This walkthrough reflects the source reviewed on 29 September 2026, not a claim of production deployment or a new test run.</p>
+      </details>
+    </section>
+    <section aria-labelledby="role"><h2 id="role">My part in the project</h2>
+      <p>I bring the customer conversations, decide which problem to work on next, and use Claude and Codex to help implement changes. I break work into smaller tasks, manage it through GitHub, review the output and use source records and tests to check whether it behaves as intended.</p>
+      <p>The project has given me practice with TypeScript, PostgreSQL, Prisma, document imports and the work involved in connecting systems. It has also made me better at questioning an answer: are these really the same units, did we count something twice, and what can we actually conclude?</p>
+    </section>
+    <section aria-labelledby="scope"><h2 id="scope">Where it stands</h2>
+      <p>SafkaStock is an ongoing side project. Purchasing analysis is the active focus. These are file imports, not live Kespro, POS or ERP integrations. Fully automatic onboarding and measured customer savings are not established results.</p>
+      <p>Connecting ingredients, recipes and sales is a later step towards dish margins. Stock and waste need further evidence and workflows. I am keeping those limits clear while making the current purchasing answers useful.</p>
+      <p><a href="/portfolio#about">My background and the work I’m looking for</a></p>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="footer-inner"><p>Abducadir Aligure <span>Helsinki, Finland</span></p><div class="footer-links"><a href="mailto:aligureabducadir@gmail.com">Email</a><a href="/portfolio#work">Selected work</a></div><small>September 2026</small></div></footer>
+</body>
+</html>

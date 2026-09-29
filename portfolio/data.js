@@ -11,7 +11,7 @@ window.PORTFOLIO = {
       "title": "SafkaStock",
       "category": "Supply-chain data and integrations",
       "stage": "Side project / in development",
-      "summary": "Building a reliable data foundation to help food businesses connect supplier costs with what they sell.",
+      "summary": "A side project exploring what supplier records can tell a food business about its spending and changing costs.",
       "subtitle": "A restaurant's unanswered margin questions led me to build, test and rethink a supply-chain tool.",
       "steps": "Import / Match / Compare",
       "role": "Customer discovery, workflow design and AI-assisted development",
@@ -22,7 +22,12 @@ window.PORTFOLIO = {
         "Claude, Codex and GitHub"
       ],
       "sourceNote": "The first version was co-built with a friend. I am continuing the work as a side project. Source code and customer files are private.",
-      "links": [],
+      "links": [
+        [
+          "Project walkthrough",
+          "https://aqoon.live/portfolio/safkastock"
+        ]
+      ],
       "blocks": [
         {
           "heading": "The problem behind it",
@@ -34,15 +39,15 @@ window.PORTFOLIO = {
         },
         {
           "heading": "What I changed",
-          "text": "I shifted the starting point towards businesses that already have supplier records and sales data. I am building around supported Kespro PDFs and spreadsheets, turning them into structured records and mapping products and units before comparing costs. Accepted mappings can be reused, and calculations stay traceable to their source."
+          "text": "I narrowed the starting point to purchasing questions using records a business already has. Supported Kespro spreadsheets can show spending before every product is mapped. Delivery PDFs provide detail for price comparisons, where product identity, units and price basis must agree. Accepted mappings can be reused."
         },
         {
           "heading": "My work and the current scope",
-          "text": "I use Claude and Codex to develop document imports, database workflows and purchasing comparisons, managing changes through GitHub and checking them with reviews and tests. Connecting recipes and sales is the next step towards dish margins; inventory and waste handling remain later work."
+          "text": "I use Claude and Codex to help build imports, database workflows and purchasing comparisons, managing changes through GitHub and checking them against source records and tests. These are file imports, not live POS or ERP integrations. Recipe and sales connections remain planned; dish margins, inventory and waste are later work."
         },
         {
           "heading": "What I learned",
-          "text": "A price comparison is only useful if the products and units really match. Working through messy records has made me more careful about data quality, integrations and what a calculation actually proves. It also changed how I plan the build: solve the foundation first, then add the next useful connection."
+          "text": "A price comparison is only useful if the products and units really match. Working through messy records taught me to ask what the data can support now, what needs more context, and when the honest answer is that a comparison cannot yet be made."
         }
       ]
     },
@@ -60,16 +65,8 @@ window.PORTFOLIO = {
         "Supabase",
         "Vercel"
       ],
-      "sourceNote": "Public website and code walkthrough available. Family records and the operator tracker remain private.",
+      "sourceNote": "The walkthrough connects a customer workflow to real code and tests. Family records and the operator tracker remain private.",
       "links": [
-        [
-          "Visit AQOON",
-          "https://aqoon.live"
-        ],
-        [
-          "View the source",
-          "https://github.com/Abdikadir11933/aqoon-landing"
-        ],
         [
           "Project walkthrough",
           "https://github.com/Abdikadir11933/aqoon-landing/blob/master/docs/showcase.md"
@@ -309,14 +306,14 @@ window.PORTFOLIO = {
           "Import supported PDFs and spreadsheets into structured records, retaining the source behind each calculation."
         ],
         [
-          "Match",
-          "Make products and units comparable",
-          "Resolve product names and units, then reuse accepted mappings instead of repeating the same setup."
+          "Summarise",
+          "Use what the report already establishes",
+          "Show purchasing totals and categories within the selected report's scope. These answers do not require every product to be mapped."
         ],
         [
           "Compare",
           "Check purchasing costs",
-          "Compare compatible purchasing records and investigate changes. Purchases alone do not prove stock levels or dish margins."
+          "Match product identity, units and price basis before comparing delivery records. Reuse accepted mappings. Keep overlapping report and delivery amounts separate."
         ],
         [
           "Next",
