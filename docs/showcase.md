@@ -1,8 +1,8 @@
 # AQOON: from a request to a useful next step
 
-[Back to the project](../README.md) · [Public website](https://aqoon.live) · [Public customer case study](https://aqoon.live/tapaus)
+[Back to my portfolio](https://aqoon.live/portfolio#project/aqoon)
 
-I am Abducadir Aligure. I work directly with families and organisations, and use Claude Code to build the tools that support that work. This page shows the connection between customer needs, workflow decisions and inspectable code.
+I am Abducadir Aligure, a Purchasing and Logistics Engineering student nearing graduation. During summer service-development pilots with Pilke Päiväkodit and the City of Vantaa, I spoke with families, supported applications and coordinated follow-up. I used Claude Code to help build the tools around that work. This walkthrough connects one customer workflow to real implementation and tests.
 
 ## A fictional example
 
@@ -18,7 +18,7 @@ An adult wants help finding a Finnish course but does not know where to begin. T
 | 4. Follow-up | The person is busy when called. The operator records that outcome and chooses a future callback time. | [Call outcome logic](../tracker/call-outcomes.js) and [regression tests](../tests/call-outcomes.test.js) |
 | 5. Recorded outcome | In this fictional scenario, the person later confirms they attended their first class. The operator records what was verified and what still needs follow-up. | [Case lifecycle](../tracker/case-lifecycle.js) and [measurement definitions](../tracker/CONTEXT.md) |
 
-The useful distinction is between asking for help, taking an action and reaching an outcome. A contact, interview or application is not automatically a successful service start. Current public evidence is described in the linked customer case study; the fictional example above makes no claim about actual results or available courses.
+The useful distinction is between asking for help, taking an action and reaching an outcome. A contact, interview or application is not automatically a successful service start. The fictional example above makes no claim about actual results or available courses.
 
 ## Implementation example: protecting a form from repeat submissions
 
@@ -56,8 +56,6 @@ This repository demonstrates a service platform developed with AI assistance. Th
 
 ## Continue exploring
 
-- [Business model](architecture/business-operating-model.md): the service and its intended value.
 - [Repository map](architecture/repo-map.md): where the code and documentation live.
 - [Tests](../tests/) and [CI workflow](../.github/workflows/site-qa.yml): repeatable checks, with current results in GitHub Actions.
 - [Testing guidance](../TESTING-SUMMARY.md): static checks versus authenticated runtime verification.
-- [Public case study](https://aqoon.live/tapaus): observed work and its stated limitations.
