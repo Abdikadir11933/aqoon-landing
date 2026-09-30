@@ -338,6 +338,16 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Checked: 29.9.2026.
   - Public family page: no while full.
 
+
+- **Fallkulla autumn-break animal activities — 12.–17.10.2026** — City of Helsinki / Youth Helsinki
+  - Fits: young people aged 9–17.
+  - Status: activities 12.–15.10. and 17.10.2026, 10.30–15.00; registration opens 30.9. at 17.00.
+  - Helps with: animal care and barn activities at Fallkulla.
+  - Cost/card: free; Helsinki Youth Services' free member card is required.
+  - Availability: re-check capacity before promising a place.
+  - Official: https://nuorten.hel.fi/nuorisotalot/fallkulla/
+  - Checked: 30.9.2026.
+  - Public family page: yes.
 - **Työnantaja Meet & Greet — 29.9.2026** — Ohjaamo Helsinki
   - Fits: Helsinki young people using the 15–29-year-old Ohjaamo service; the event explicitly welcomed English speakers too.
   - Helps with: meeting employers and getting job-search, CV and interview guidance.
@@ -374,6 +384,15 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Checked: 30.9.2026.
   - Public family page: yes.
 
+
+- **Family Day — Entresse Library 10.10.2026** — City of Espoo
+  - Fits: local families with children.
+  - Status: 10.10.2026, 13.00–15.30, Entresse Library, Siltakatu 11; free.
+  - Helps with: family activities and meeting family-support organisations and other families.
+  - Registration: the official page does not state an advance-registration requirement.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagqne54y4i
+  - Checked: 30.9.2026.
+  - Public family page: yes.
 - **Nature and theatre walk in Espoo Central Park — 3.10.2026** — City of Espoo / UUSI KULMA
   - Fits: people with a migrant background living in Espoo; target audience over age 7.
   - Helps with: low-threshold nature and arts participation, including a forest-themed theatre and dance performance.
