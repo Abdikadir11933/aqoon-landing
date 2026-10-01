@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 30.9.2026
+Last compiled: 1.10.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -51,6 +51,14 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: active.
   - Official: https://www.vantaa.fi/fi/tyonhaku-ja-tyollistaminen/olen-muuttanut-suomeen-ja-haluan-toihin
 
+- **Etsivä nuorisotyö — Vantaa / Myyrmäki access from 1.10.2026** — City of Vantaa
+  - Fits: Vantaa young people aged 15–28, especially young people mainly outside education and working life.
+  - Helps with: clarifying life situation and options and finding the right support around education, work, housing, health, money, relationships or free time.
+  - Status: active, voluntary, confidential and free. From **1.10.2026**, walk-in access is available Thursdays 12.00–15.00 at Ohjaamo Myyrmäki / Myyrmäen asukastila, Paalutori 3.
+  - Boundary: do not describe being outside work/education as an absolute eligibility requirement; the provider says the service is primarily aimed at that group.
+  - Official: https://www.vantaa.fi/fi/palveluhakemisto/palvelu/etsiva-nuorisotyo
+  - Checked: 1.10.2026.
+  - Public family page: yes.
 - **Vantaan varhaiskasvatus** — Vantaan kaupunki
   - Fits: Vantaa families needing daycare / early childhood education.
   - Helps with: municipal daycare application and correct route.
@@ -190,6 +198,14 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: the older **Turvallisuusala + S2-tuki** and **Elintarvikealan avustaviin tehtäviin** rounds are closed. Newly published open migrant routes are **Hoivapolku maahan muuttaneille (A1.3)** through 11.10.2026, training 7.1.–17.6.2027, and **Varastopolku maahan muuttaneille (A2.1)** through 30.10.2026, training 7.1.–28.5.2027. Do not infer additional eligibility beyond the official labour-market-training criteria and the published language levels.
   - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/tyovoimakoulutukset/
 
+- **Hoiva-avustajasta lähihoitajaksi** — Stadin AO / Helsinki employment services
+  - Fits: jobseekers for whom the labour-market-training route was appropriate; selection was made jointly by Stadin AO and Helsinki employment services.
+  - Helps with: a care-sector vocational route.
+  - Status: **application closed/passed after 30.9.2026**. The published round had training scheduled for 3.11.2026–30.10.2028. Do not present this round as open unless Stadin AO publishes a new intake.
+  - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/tyovoimakoulutukset/
+  - Checked: 1.10.2026.
+  - Public family page: no.
+
 - **Hoivapolku maahan muuttaneille** — Stadin AO
   - Fits: immigrant jobseekers for whom labour-market training is appropriate; the published Finnish level is A1.3. Labour-market training is primarily for unemployed jobseekers or people at risk of unemployment.
   - Helps with: an employment-oriented care-sector path with language level stated by the provider. Do not infer a guaranteed qualification or job outcome from the listing.
@@ -318,9 +334,10 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Harrastusilta — Ohjaamo Helsinki (30.9.2026)**
   - Fits: Helsinki young adults aged **18–29** looking for free-time, hobby or community options.
   - Helps with: information about free-time opportunities, hobbies and meeting places for young adults, plus shared tips and experiences.
-  - Status: **30.9.2026, 16.30–18.30**, Ohjaamo Helsinki, Fredrikinkatu 48. **Free**; no advance registration.
+  - Status: **closed/passed**. The event took place 30.9.2026, 16.30–18.30, Ohjaamo Helsinki, Fredrikinkatu 48; free and no advance registration was required. Do not present it as current from 1.10.2026 onward.
   - Official: https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagqfsu5otm
-
+  - Checked: 1.10.2026.
+  - Public family page: no.
 - **Nezumicon — 26.9.2026** — City of Helsinki / Youth Helsinki / Operaatio Pulssi! Pohjoinen
   - Fits: young people interested in cosplay, manga and anime; the official Nezumicon page says the event is aimed at young people but does not publish a narrower age range, so do not invent one.
   - Helps with: free youth-led cultural participation, programme activities and an Artist Alley in a substance-free event environment.
@@ -341,12 +358,13 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 
 - **Fallkulla autumn-break animal activities — 12.–17.10.2026** — City of Helsinki / Youth Helsinki
   - Fits: young people aged 9–17.
-  - Status: activities 12.–15.10. and 17.10.2026, 10.30–15.00; registration opens 30.9. at 17.00.
+  - Status: activities 12.–15.10. and 17.10.2026, 10.30–15.00; registration **opened 30.9. at 17.00** through Harrastukset.
   - Helps with: animal care and barn activities at Fallkulla.
   - Cost/card: free; Helsinki Youth Services' free member card is required.
-  - Availability: re-check capacity before promising a place.
-  - Official: https://nuorten.hel.fi/nuorisotalot/fallkulla/
-  - Checked: 30.9.2026.
+  - Availability: the official page does not publish a current remaining-place count. Re-check capacity before promising a place; because of demand, a young person can register for at most two weekday work-assignment days.
+  - Official activity source: https://nuorten.hel.fi/tekemista-ja-paikkoja/9-11-vuotiaiden-toiminta/
+  - Official Fallkulla/card source: https://nuorten.hel.fi/nuorisotalot/fallkulla/
+  - Checked: 1.10.2026.
   - Public family page: yes.
 - **Työnantaja Meet & Greet — 29.9.2026** — Ohjaamo Helsinki
   - Fits: Helsinki young people using the 15–29-year-old Ohjaamo service; the event explicitly welcomed English speakers too.
@@ -396,11 +414,11 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Nature and theatre walk in Espoo Central Park — 3.10.2026** — City of Espoo / UUSI KULMA
   - Fits: people with a migrant background living in Espoo; target audience over age 7.
   - Helps with: low-threshold nature and arts participation, including a forest-themed theatre and dance performance.
-  - Status: Saturday 3.10.2026, 13.00–15.00, Espoo Central Park; free; simple Finnish; advance registration route is published.
-  - Caution: re-check current capacity before promising a place.
+  - Status: event remains scheduled Saturday 3.10.2026, 13.00–15.00, Espoo Central Park; free; simple Finnish. **Registration closed 30.9.2026** and the organiser accepts only 15 participants in registration order.
+  - Routing rule: do not present this as a new open opportunity from 1.10.2026. Only help an already-confirmed participant with event details unless the organiser explicitly reopens registration.
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagqim27cdi
-  - Checked: 30.9.2026.
-  - Public family page: yes.
+  - Checked: 1.10.2026.
+  - Public family page: no.
 - **Englanninkielinen pelikerho nuorille — Sello / Pointti** — City of Espoo / Elinvoima
   - Fits: young people aged 12–20 who want a free English-language social activity.
   - Helps with: playing board games together in English at the youth space Pointti.
@@ -412,14 +430,13 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Vauvamuskari / Baby music group — autumn 2026** — City of Espoo
   - Fits: families with children aged 3 months–3 years.
   - Helps with: low-threshold shared music, singing, instruments and musical games for a child and parent/guardian; no previous music experience is needed.
-  - Upcoming sessions checked 26.9.: 30.9. 10.30–11.00 Iso Omena Library (VOX); 6.10. 11.00–11.30 Sello Library (Jaminurkka). The 22.9 Kauklahti session has passed.
+  - Upcoming session checked 1.10.: **6.10.2026, 11.00–11.30, Sello Library (Jaminurkka)**. The 30.9 Iso Omena session and earlier autumn sessions have passed.
   - Cost / registration: free; advance registration is required through the official sign-up route.
   - Language/access: event language Finnish. Espoo explicitly says everyone is welcome regardless of language skills or musical background.
   - Status: upcoming; re-check capacity before promising a place.
-  - Official: https://www.espoo.fi/en/events/espooevents%3Aagp7ljerbq
-  - Checked: 26.9.2026.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagp7ljrt34
+  - Checked: 1.10.2026.
   - Public family page: yes.
-
 - **E-urheilun harrastuspolku — autumn 2026** — City of Espoo
   - Fits: secondary-school pupils / yläkoululaiset interested in a free esports hobby.
   - Helps with: free organised gaming activities through Espoo's esports hobby path.
@@ -465,6 +482,14 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official 16–17 group: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqgwbzwni
   - Checked: 18.9.2026.
 
+- **Luontoseikkailu — Vanttila / Espoo Hobby Path** — City of Espoo / Espoon Nuoret Ympäristönsuojelijat ry
+  - Fits: grades 3–6 / ages 9–12.
+  - Helps with: a free nature hobby using excursions, small investigations, games, play and crafts.
+  - Status: current series 10.9.2026–13.5.2027, Thursdays 13.30–14.30, Nissintie 2, Vanttila. Free; registration is required through the official event/sign-up route.
+  - Calendar caution: school holidays can interrupt the weekly rhythm; re-check the dated event before routing a family.
+  - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqb3vh2gm
+  - Checked: 1.10.2026.
+  - Public family page: yes.
 - **Pingpong for youth — Entresse Library** — City of Espoo
   - Fits: 10–15-year-olds; the official listing states English as the activity language.
   - Helps with: free, low-threshold table-tennis practice and learning techniques/gameplay with an instructor.
@@ -631,6 +656,15 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: free recurring series at Sello Library Paja, Leppävaarankatu 9, 3.9.–17.12.2026. The series description says Thursdays 16.30–18.30; the dated 10.9 entry is 16.00–18.30, so re-check the chosen dated event before giving a time.
   - Registration/caution: the checked event page does not publish an advance-registration route or residency restriction; do not invent either.
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagpkl62joa
+
+- **Työnantajatreffit recruitment event — Sello 8.10.2026** — Espoo Employment Services
+  - Fits: all jobseekers; the official event is free and open to all jobseekers.
+  - Helps with: meeting employers from several fields that are recruiting now, plus job-search and education counselling. Omnia and Helsingin Maalariammattikoulu are listed as information points.
+  - Status: **upcoming 8.10.2026, 12.00–15.00**, Sello Library, Leppävaarankatu 9, Espoo. Event language listed by Espoo: Finnish.
+  - Registration/caution: the checked official page does not publish an advance-registration requirement; do not invent one.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagqj677ttm
+  - Checked: 1.10.2026.
+  - Public family page: yes.
 
 - **Työnantajatreffit recruitment event — Sello 3.9.2026** — Espoo Employment Services
   - Fits: all jobseekers.
