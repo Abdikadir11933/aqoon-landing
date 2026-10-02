@@ -69,11 +69,13 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Checked: 2.10.2026.
   - Public family page: yes.
 
-- **Tieto- ja viestintätekniikan perustutkinto and IBCP** — Varia
-  - Status: application **22.9.–28.11.2026**; flexible start at Koivukylä; Finnish requirement **B1.1**.
-  - Official: https://varia.vantaa.fi/fi/koulutustarjonta/haussa-olevat-koulutukset
+- **Tieto- ja viestintätekniikan perustutkinto and IBCP — `verification_pending`** — Varia
+  - Source conflict checked 2.10.2026: Varia's current `Haussa olevat koulutukset` overview says application **22.9.–28.11.2026** with a flexible Koivukylä start and Finnish **B1.1**, while the programme-specific page still says **22.9.–27.9.2026**.
+  - Action: do **not** present this route as currently open to families until Varia reconciles the two official pages or the live application route independently confirms the current deadline.
+  - Current overview: https://varia.vantaa.fi/fi/koulutustarjonta/haussa-olevat-koulutukset
+  - Conflicting detail page: https://varia.vantaa.fi/fi/tieto-ja-viestintatekniikan-perustutkinto-ja-ammatillinen-ibcp-koulutus
   - Checked: 2.10.2026.
-  - Public family page: yes.
+  - Public family page: no while verification is pending.
 
 - **Rakennusalan perustutkinto** — Varia
   - Status: application is **open until further notice**; flexible start at Aviapolis; Finnish requirement **B1.1**.
@@ -212,7 +214,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Fits: people interested in construction who are unemployed or at risk of unemployment, whose job search is active and who need stronger skills to enter the field. Finnish at least A2.2.
   - Helps with: completing units from the construction-sector vocational qualification or further vocational qualification, depending on prior experience, and improving employability in construction.
   - Status: application 26.8.–5.10.2026 through Työmarkkinatori; next start 2.11.2026; duration up to one year.
-  - Caution: do not use the separate `Toimitilahuoltaja` dates from the same page as a 2026 opening without clarification; the page currently displays a 2027 application year that does not match the January–May 2027 study period cleanly enough to publish as a current route.
+  - Checked 2.10.2026: Varia's current `Haussa olevat koulutukset` page now clearly lists the separate Toimitilahuoltaja round as application **7.9.–10.11.2026**, start **11.1.2027**, Finnish **A2.2**. The older caution above is superseded by this current provider listing.
   - Official: https://varia.vantaa.fi/fi/koulutukset/varian-tyovoimakoulutus
 
 - **Lukukamut — volunteer reading in Vantaa daycares** — Vantaan varhaiskasvatus
