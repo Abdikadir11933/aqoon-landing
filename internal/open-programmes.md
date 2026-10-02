@@ -48,6 +48,40 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Checked: 2.10.2026.
   - Public family page: yes.
 
+- **Kasvatus- ja ohjausalan perustutkinto** — Varia
+  - Status: application **21.9.–5.11.2026**; studies start **7.1.2027** at Vehkala; Finnish requirement **B1.2**.
+  - Official: https://varia.vantaa.fi/fi/koulutustarjonta/haussa-olevat-koulutukset
+  - Checked: 2.10.2026.
+  - Public family page: yes.
+
+- **Logistiikan perustutkinto** — Varia
+  - Status: application **21.9.–5.11.2026**; studies start **11.1.2027** at Vehkala; Finnish requirement **B1.1**.
+  - Important: Varia publishes separate application tracks for driver training depending on whether the applicant already has a valid Finnish B-category driving entitlement, and for internal logistics; use the correct official application route.
+  - Official: https://varia.vantaa.fi/fi/koulutustarjonta/haussa-olevat-koulutukset
+  - Checked: 2.10.2026.
+  - Public family page: yes.
+
+- **Sosiaali- ja terveysalan perustutkinto — two current routes** — Varia
+  - Status: both current rounds have application **21.9.–5.11.2026** and studies starting **7.1.2027**.
+  - Standard Vehkala route: Finnish **B1.2**.
+  - Finnish-supported Koivukylä route: Finnish **B1.1**.
+  - Official: https://varia.vantaa.fi/fi/koulutustarjonta/haussa-olevat-koulutukset
+  - Checked: 2.10.2026.
+  - Public family page: yes.
+
+- **Tieto- ja viestintätekniikan perustutkinto and IBCP** — Varia
+  - Status: application **22.9.–28.11.2026**; flexible start at Koivukylä; Finnish requirement **B1.1**.
+  - Official: https://varia.vantaa.fi/fi/koulutustarjonta/haussa-olevat-koulutukset
+  - Checked: 2.10.2026.
+  - Public family page: yes.
+
+- **Rakennusalan perustutkinto** — Varia
+  - Status: application is **open until further notice**; flexible start at Aviapolis; Finnish requirement **B1.1**.
+  - Boundary: this qualification route is separate from the current construction labour-market-training round with a 5.10.2026 deadline.
+  - Official: https://varia.vantaa.fi/fi/koulutustarjonta/haussa-olevat-koulutukset
+  - Checked: 2.10.2026.
+  - Public family page: yes.
+
 - **Perustaidot maalarin työhön suomen kielen tuella (S2)** — Varia
   - Status: application **21.9.–26.11.2026**; studies start **7.1.2027**; Finnish **A2.2**.
   - Official: https://varia.vantaa.fi/fi/koulutustarjonta/haussa-olevat-koulutukset
