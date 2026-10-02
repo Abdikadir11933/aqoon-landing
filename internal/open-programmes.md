@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 1.10.2026
+Last compiled: 2.10.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -22,6 +22,69 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://www.hel.fi/fi/kasvatus-ja-koulutus/konepajan-aikuislukio/nuorten-suunta/nuorten-suunnan-hakijalle
 
 ### Vantaa
+
+- **Varia TUVA — new round from 2.10.2026** — Vantaan ammattiopisto Varia
+  - Status: application **2.10.–12.11.2026 at 12.00**; studies start **30.11.2026**; published Finnish requirement **A1.3**.
+  - Important: this is a new round published after the earlier Varia TUVA round closed on 1.10.; provider-specific selection rules control.
+  - Official: https://varia.vantaa.fi/fi/koulutustarjonta/haussa-olevat-koulutukset
+  - Checked: 2.10.2026.
+  - Public family page: yes.
+
+- **Keittiöapulaisen koulutus (S2), työvoimakoulutus** — Varia
+  - Status: application **21.9.–5.11.2026**; studies start **7.1.2027**; Finnish **A1.3**.
+  - Official: https://varia.vantaa.fi/fi/koulutustarjonta/haussa-olevat-koulutukset
+  - Checked: 2.10.2026.
+  - Public family page: yes.
+
+- **Parturi-kampaajan koulutus, suomen kielen tuella** — Varia
+  - Status: application **21.9.–5.11.2026**; studies start **7.1.2027** at Hiekkaharju; Finnish **A2.2**.
+  - Official: https://varia.vantaa.fi/fi/koulutustarjonta/haussa-olevat-koulutukset
+  - Checked: 2.10.2026.
+  - Public family page: yes.
+
+- **Varhaiskasvatuksen avustajan koulutus** — Varia
+  - Status: application **21.9.–5.11.2026**; studies start **18.1.2027** at Koivukylä; Finnish **A1.3**.
+  - Official: https://varia.vantaa.fi/fi/koulutustarjonta/haussa-olevat-koulutukset
+  - Checked: 2.10.2026.
+  - Public family page: yes.
+
+- **Perustaidot maalarin työhön suomen kielen tuella (S2)** — Varia
+  - Status: application **21.9.–26.11.2026**; studies start **7.1.2027**; Finnish **A2.2**.
+  - Official: https://varia.vantaa.fi/fi/koulutustarjonta/haussa-olevat-koulutukset
+  - Checked: 2.10.2026.
+  - Public family page: yes.
+
+- **Toimitilahuoltajan koulutus** — Varia
+  - Status: application **7.9.–10.11.2026**; studies start **11.1.2027**; Finnish **A2.2**.
+  - Official: https://varia.vantaa.fi/fi/koulutustarjonta/haussa-olevat-koulutukset
+  - Checked: 2.10.2026.
+  - Public family page: yes.
+
+- **Väylä turva-alalle — Securitas cooperation** — Varia
+  - Status: application **21.9.–26.11.2026**; studies start **11.1.2027**; Finnish **B2.1**. Provider describes good employment prospects but does not guarantee a job.
+  - Official: https://varia.vantaa.fi/fi/koulutustarjonta/haussa-olevat-koulutukset
+  - Checked: 2.10.2026.
+  - Public family page: yes.
+
+- **Kulttuurikoto — luovan toiminnan perhekahvila** — City of Vantaa
+  - Fits: migrant families with children.
+  - Status: **5.10.2026, 10.00–13.00**, Lastenkulttuurikeskus Pessi, Vernissakatu 4, plus later dates; free.
+  - Official: https://www.vantaa.fi/fi/tervetuloa-vantaalle
+  - Checked: 2.10.2026.
+  - Public family page: yes.
+
+- **Opi suomea leikkien ja laulaen — musiikkileikkihetket** — City of Vantaa
+  - Status: **5.10.2026, 10.30–11.15**, Lastenkulttuurikeskus Pessi, Vernissakatu 4 K-krs, plus later dates; free.
+  - Boundary: do not invent an age limit or registration rule.
+  - Official: https://www.vantaa.fi/fi/tervetuloa-vantaalle
+  - Checked: 2.10.2026.
+  - Public family page: yes.
+
+- **Minirekry — 7.10.2026** — Vantaa / Varia
+  - Status: **7.10.2026, 13.00–14.30**, Virnatie 5 A, Vantaa; free.
+  - Official: https://varia.vantaa.fi/fi
+  - Checked: 2.10.2026.
+  - Public family page: yes.
 
 - **Vantaan Kulttuurilapset** — City of Vantaa
   - Fits: children living in Vantaa who were born in 2023 or later, together with a parent/guardian.
@@ -146,6 +209,16 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://www.vantaa.fi/fi/tyonhaku-ja-tyollistaminen/vantaan-megarekry
 
 ### Helsinki
+
+- **Palkkatuetut hoito- ja vapaa-ajan avustajan tehtävät — deadline 2.10.2026 at 15.00** — City of Helsinki
+  - Status: current checked vacancies close **2.10.2026 at 15.00**; published pay **EUR 2,374.09/month** and duration **7 months**.
+  - Fits: unemployed Helsinki jobseekers who meet the published wage-subsidy conditions; check each vacancy's exact criteria before applying.
+  - Open roles checked: Itäkeskus, Töölö and Myllypuro.
+  - Official: https://www.hel.fi/fi/avoimet-tyopaikat/avoimet-tyopaikat/sotepe-03-391-26
+  - Official: https://www.hel.fi/fi/avoimet-tyopaikat/avoimet-tyopaikat/sotepe-03-405-26
+  - Official: https://www.hel.fi/fi/avoimet-tyopaikat/avoimet-tyopaikat/sotepe-03-403-26
+  - Checked: 2.10.2026.
+  - Public family page: yes.
 
 - **Aloittavan yrittäjän valmennus nuorille — October 2026** — Helsinki Employment Services / Ohjaamo Helsinki
   - Fits: Helsinki residents under 30 who are considering entrepreneurship or starting a business; the official page says the course is open regardless of whether the person is unemployed, employed or a student. The course is in Finnish.
@@ -381,6 +454,28 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Checked: 30.9.2026.
   - Public family page: yes.
 ### Espoo
+
+- **Career Club — Round 13 / spring 2027** — City of Espoo
+  - Fits: Espoo residents with at least about three years of higher-education studies and sufficient English.
+  - Status: application **28.9.–8.11.2026**; next round starts **25.1.2027**; free and in English.
+  - Caution: current Espoo language versions differ on exact programme length/session count, so do not promise an exact count.
+  - Official: https://www.espoo.fi/en/working-life/espoo-talent-hub/career-club
+  - Checked: 2.10.2026.
+  - Public family page: yes.
+
+- **Hilma — guidance for immigrants with disabilities or long-term illnesses** — City of Espoo / Hilma
+  - Status: **2.10.2026, 10.00–15.00**, Entresse Library; series continues every other Friday through **11.12.2026**; free and interpreter support is available when needed.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagptwum6ry
+  - Checked: 2.10.2026.
+  - Public family page: yes.
+
+- **Omnia TUVA — Espoo / Lakelankatu & Tapiola** — Omnia
+  - Status: application **8.9.–31.10.2026 at 23.59**; studies start **2.12.2026**.
+  - Criteria: basic-education completion certificate or equivalent; compulsory-school-age applicants are prioritised. A non-Finnish native speaker must show adequate Finnish with accepted proof or pass Omnia's **A2.2** language test.
+  - Correction: do not describe Omnia as the only still-open alternative after Varia's 1.10 round; Varia opened a new TUVA round on 2.10.
+  - Official: https://www.omnia.fi/koulutukset/hakeutuminen-tuva-koulutukseen/
+  - Checked: 2.10.2026.
+  - Public family page: yes.
 
 - **Yliruusi writing competition for young people** — City of Espoo / libraries
   - Fits: 15–20-year-olds who live in Espoo or study in Espoo.
