@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 2.10.2026
+Last compiled: 3.10.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -61,6 +61,17 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Checked: 2.10.2026.
   - Public family page: yes.
 
+- **Palvelulogistiikkatyöntekijä — suomen kielen tuella** — Varia
+  - Fits: applicants interested in internal logistics; the current programme page says continuous application is open to applicants of all ages regardless of previous education.
+  - Helps with: receiving, storage, picking, packing and dispatch work in internal logistics.
+  - Status: application **2.10.–5.11.2026**; studies start **1.2.2027** at Vehkala; published Finnish requirement **A2.2**.
+  - Study format: approximately 10 months, mainly weekday daytime study.
+  - Source caution: an older Varia legacy page still says the continuous application is not currently open. The current Haussa olevat koulutukset overview and the current programme-specific page both publish the 2.10.–5.11.2026 round, so use those current pages and do not cite the stale legacy page.
+  - Official overview: https://varia.vantaa.fi/fi/koulutustarjonta/haussa-olevat-koulutukset
+  - Official programme page: https://varia.vantaa.fi/fi/koulutustarjonta/tutkinnon-osat-ja-lyhytkoulutukset/palvelulogistiikkatyontekija
+  - Checked: 3.10.2026.
+  - Public family page: yes.
+
 - **Sosiaali- ja terveysalan perustutkinto — two current routes** — Varia
   - Status: both current rounds have application **21.9.–5.11.2026** and studies starting **7.1.2027**.
   - Standard Vehkala route: Finnish **B1.2**.
@@ -70,11 +81,11 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Public family page: yes.
 
 - **Tieto- ja viestintätekniikan perustutkinto and IBCP — `verification_pending`** — Varia
-  - Source conflict checked 2.10.2026: Varia's current `Haussa olevat koulutukset` overview says application **22.9.–28.11.2026** with a flexible Koivukylä start and Finnish **B1.1**, while the programme-specific page still says **22.9.–27.9.2026**.
+  - Source conflict rechecked 3.10.2026: Varia's current `Haussa olevat koulutukset` overview says application **22.9.–28.11.2026** with a flexible Koivukylä start and Finnish **B1.1**, while the programme-specific page still says **22.9.–27.9.2026**.
   - Action: do **not** present this route as currently open to families until Varia reconciles the two official pages or the live application route independently confirms the current deadline.
   - Current overview: https://varia.vantaa.fi/fi/koulutustarjonta/haussa-olevat-koulutukset
   - Conflicting detail page: https://varia.vantaa.fi/fi/tieto-ja-viestintatekniikan-perustutkinto-ja-ammatillinen-ibcp-koulutus
-  - Checked: 2.10.2026.
+  - Checked: 3.10.2026.
   - Public family page: no while verification is pending.
 
 - **Rakennusalan perustutkinto** — Varia
@@ -115,6 +126,15 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://www.vantaa.fi/fi/tervetuloa-vantaalle
   - Checked: 2.10.2026.
   - Public family page: yes.
+
+- **Kirjaston öiset seikkailut — Hakunila & Koivukylä 3.10.2026** — City of Vantaa
+  - Fits: families with children; the theatre programme is recommended for ages 2–8.
+  - Helps with: a free low-threshold family library day with theatre, activity trails and crafts.
+  - Status: **today 3.10.2026 only**. Koivukylä Library: Herra Hakkaraisen yö 10.30–11.00 and activity trail 10.00–16.00. Hakunila Library: show 13.00–13.30, activity trail 10.00–16.00 and Unimaisema craft 13.30–14.30.
+  - Registration: no advance registration required.
+  - Official: https://www.vantaa.fi/fi/ajankohtaista/uutinen/kirjaston-oiset-seikkailut-tapahtumapaivia-lapsiperheille-59-310
+  - Checked: 3.10.2026.
+  - Public family page: yes; remove from the current page after 3.10 unless a new date is published.
 
 - **Minirekry — 7.10.2026** — Vantaa / Varia
   - Status: **7.10.2026, 13.00–14.30**, Virnatie 5 A, Vantaa; free.
@@ -247,14 +267,13 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 ### Helsinki
 
 - **Palkkatuetut hoito- ja vapaa-ajan avustajan tehtävät — deadline 2.10.2026 at 15.00** — City of Helsinki
-  - Status: current checked vacancies close **2.10.2026 at 15.00**; published pay **EUR 2,374.09/month** and duration **7 months**.
-  - Fits: unemployed Helsinki jobseekers who meet the published wage-subsidy conditions; check each vacancy's exact criteria before applying.
-  - Open roles checked: Itäkeskus, Töölö and Myllypuro.
+  - Status: **closed/passed**. The checked Itäkeskus, Töölö and Myllypuro vacancies closed **2.10.2026 at 15.00**. Do not present these specific vacancies as open from 3.10 onward.
+  - Historical details: published pay was **EUR 2,374.09/month** and duration **7 months**; the roles were for unemployed Helsinki jobseekers who met at least one of the vacancy-specific wage-subsidy conditions.
   - Official: https://www.hel.fi/fi/avoimet-tyopaikat/avoimet-tyopaikat/sotepe-03-391-26
   - Official: https://www.hel.fi/fi/avoimet-tyopaikat/avoimet-tyopaikat/sotepe-03-405-26
   - Official: https://www.hel.fi/fi/avoimet-tyopaikat/avoimet-tyopaikat/sotepe-03-403-26
-  - Checked: 2.10.2026.
-  - Public family page: yes.
+  - Checked: 3.10.2026.
+  - Public family page: no.
 
 - **Aloittavan yrittäjän valmennus nuorille — October 2026** — Helsinki Employment Services / Ohjaamo Helsinki
   - Fits: Helsinki residents under 30 who are considering entrepreneurship or starting a business; the official page says the course is open regardless of whether the person is unemployed, employed or a student. The course is in Finnish.
@@ -301,10 +320,11 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: **closed/passed.** Kanneltalo took place Wednesday 16.9.2026, 16.00–19.00, and Malmitalo took place 10.9.2026, 17.00–20.00. Do not present either as an upcoming family opportunity from 17.9.2026 onward.
   - Official: https://www.hel.fi/en/decision-making/information-on-helsinki/internationality-and-new-residents/welcome-day-events
 
-- **Stadin AO työvoimakoulutukset maahanmuuttajille**
-  - Fits: immigrant unemployed jobseekers or people at risk of unemployment.
-  - Helps with: profession + S2 support + route to work.
-  - Status: the older **Turvallisuusala + S2-tuki** and **Elintarvikealan avustaviin tehtäviin** rounds are closed. Newly published open migrant routes are **Hoivapolku maahan muuttaneille (A1.3)** through 11.10.2026, training 7.1.–17.6.2027, and **Varastopolku maahan muuttaneille (A2.1)** through 30.10.2026, training 7.1.–28.5.2027. Do not infer additional eligibility beyond the official labour-market-training criteria and the published language levels.
+- **Stadin AO työvoimakoulutukset — current immigrant-facing routes**
+  - Fits: immigrant unemployed jobseekers or people at risk of unemployment where labour-market training is appropriate.
+  - Helps with: profession-specific routes, Finnish-language support where published, and routes toward employment.
+  - Status checked 3.10.2026: open immigrant-facing routes include **Hoivapolku (A1.3)** through 11.10., **Varastopolku (A2.1)** through 30.10., **Ruokapolku (A1.3)** through 2.11. and **Maahan muuttaneiden opettajien orientaatio perusopetukseen (A2.2)** through 17.11. Other current Stadin AO labour-market-training routes include Trukinkuljettajan ja varastoalan koulutus, Kosmetiikkamyynnin osaaja and Työllisty turvallisuusalalle.
+  - Boundary: do not infer a language level where the current list does not publish one, and do not promise job or qualification outcomes.
   - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/tyovoimakoulutukset/
 
 - **Hoiva-avustajasta lähihoitajaksi** — Stadin AO / Helsinki employment services
@@ -328,11 +348,11 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/tyovoimakoulutukset/
 
 - **Ruokapolku maahan muuttaneille** — Stadin AO
-  - Fits: immigrant jobseekers for whom labour-market training is appropriate. The checked listing does not publish a specific Finnish-language threshold, so do not invent one.
+  - Fits: immigrant jobseekers for whom labour-market training is appropriate; the current official list now publishes Finnish **A1.3**.
   - Helps with: an employment-oriented route toward food-sector work.
-  - Status: application open until 2.11.2026; training 12.1.–11.6.2027.
+  - Status: application open until **2.11.2026**; training **12.1.–11.6.2027**.
   - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/tyovoimakoulutukset/
-  - Checked: 25.9.2026.
+  - Checked: 3.10.2026.
 
 - **Trukinkuljettajan ja varastoalan koulutus** — Stadin AO
   - Fits: jobseekers for whom labour-market training is appropriate. The checked listing does not publish a specific Finnish-language threshold, so do not invent one.
@@ -499,10 +519,28 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Checked: 2.10.2026.
   - Public family page: yes.
 
+- **Maahan muuttaneiden opettajien orientaatio perusopetukseen** — Stadin AO
+  - Fits: immigrant jobseekers for whom the teacher-focused labour-market-training route is appropriate; the current list publishes Finnish **A2.2**.
+  - Helps with: orientation toward Finnish comprehensive-school work and education context.
+  - Status: application open until **17.11.2026**; training **25.1.–28.5.2027**.
+  - Boundary: do not infer degree, professional-recognition or teacher-qualification requirements beyond what the linked application route publishes.
+  - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/tyovoimakoulutukset/
+  - Checked: 3.10.2026.
+  - Public family page: yes.
+
+- **Työllisty turvallisuusalalle** — Stadin AO
+  - Fits: jobseekers for whom the current labour-market-training route is appropriate.
+  - Helps with: an employment-oriented route into the security sector.
+  - Status: application open until **7.12.2026**; training **25.1.–30.4.2027**.
+  - Boundary: the current list does not publish a separate language threshold on this row, so do not invent one or promise employment.
+  - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/tyovoimakoulutukset/
+  - Checked: 3.10.2026.
+  - Public family page: yes.
+
 - **Hilma — guidance for immigrants with disabilities or long-term illnesses** — City of Espoo / Hilma
-  - Status: **2.10.2026, 10.00–15.00**, Entresse Library; series continues every other Friday through **11.12.2026**; free and interpreter support is available when needed.
+  - Status: recurring **every other Friday 10.00–15.00** at Entresse Library through **11.12.2026**; free and interpreter support is available when needed. The 2.10 session has passed, so do not describe it as today's event after that date.
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagptwum6ry
-  - Checked: 2.10.2026.
+  - Checked: 3.10.2026.
   - Public family page: yes.
 
 - **Omnia TUVA — Espoo / Lakelankatu & Tapiola** — Omnia
@@ -531,6 +569,15 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Caution: re-check the event page before routing because the checked listing does not establish guaranteed capacity.
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagqkhjpxmq
   - Checked: 30.9.2026.
+  - Public family page: yes.
+
+- **Hello Espoo — 24.10.2026** — City of Espoo
+  - Fits: new Espoo residents, people considering moving to Espoo and families; the programme is for all ages.
+  - Helps with: learning about city services, hobbies, integration/community routes and family activities in one low-threshold event.
+  - Status: **24.10.2026, 12.00–15.00**, Sello Library, Leppävaarankatu 9; free.
+  - Registration: the City asks visitors to register in advance, with separate individual/family and group forms. The programme is preliminary and may still be supplemented.
+  - Official: https://www.espoo.fi/en/hello-espoo-event
+  - Checked: 3.10.2026.
   - Public family page: yes.
 
 
@@ -679,6 +726,16 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Helps with: shared art and crafts at Entresse Library's Paja workshop.
   - Status: Tuesdays 16.00–17.30, 4.8.–15.12.2026, Siltakatu 11, Espoo; free and no advance registration required.
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagphfqw7ne
+
+- **Autumn-break swimming try-outs for children who cannot swim — 13.–15.10.2026** — City of Espoo
+  - Fits: children aged **5–12** who do not yet know how to swim.
+  - Helps with: a free 30-minute low-threshold swimming trial during autumn break.
+  - Status: **13.10 Espoonlahti**, **14.10 Keski-Espoo** and **15.10 Matinkylä**, all 10.00–12.00; groups are divided into ages 5–7 and 8–12.
+  - Languages: Finnish, Swedish and English.
+  - Registration/support boundary: advance registration is required. The child must be able to participate in the instructor's group and enter the pool without a parent; the parent/guardian is responsible for changing, washing and escort situations.
+  - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqpnl23gy
+  - Checked: 3.10.2026.
+  - Public family page: yes.
 
 - **Töpinät — current Espoo sessions** — City of Espoo event calendar / partner organisers
   - Fits: children aged 2–8 with a parent/adult; an adult must remain with the child throughout the activity.
@@ -876,8 +933,9 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **SIMHE counselling** — Tampere University of Applied Sciences / International House Tampere
   - Fits: people already living in Finland who have completed upper-secondary education, studied in higher education or completed a higher-education degree.
   - Helps with: higher-education options, applications, recognising prior learning and career direction.
-  - Status: free upcoming walk-ins 2.10., 23.10., 13.11., 20.11. and 4.12.2026, 13–15 at International House Tampere, Rautatienkatu 10; appointments also available via simhe@tuni.fi. The 28.8., 18.9. and 25.9. sessions have passed.
+  - Status: free upcoming walk-ins **23.10., 13.11., 20.11. and 4.12.2026**, 13–15 at International House Tampere, Rautatienkatu 10; appointments also available via simhe@tuni.fi. The 2.10 session has now passed.
   - Official: https://internationalhouse.tampere.fi/en/studying/counselling-on-higher-education-studies/
+  - Checked: 3.10.2026.
 
 ### Finland-wide / case-by-case
 
