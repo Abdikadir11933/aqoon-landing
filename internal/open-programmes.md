@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 3.10.2026
+Last compiled: 4.10.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -81,11 +81,11 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Public family page: yes.
 
 - **Tieto- ja viestintätekniikan perustutkinto and IBCP — `verification_pending`** — Varia
-  - Source conflict rechecked 3.10.2026: Varia's current `Haussa olevat koulutukset` overview says application **22.9.–28.11.2026** with a flexible Koivukylä start and Finnish **B1.1**, while the programme-specific page still says **22.9.–27.9.2026**.
+  - Source conflict rechecked 4.10.2026: Varia's current `Haussa olevat koulutukset` overview says application **22.9.–28.11.2026** with a flexible Koivukylä start and Finnish **B1.1**, while the programme-specific page still says **22.9.–27.9.2026**.
   - Action: do **not** present this route as currently open to families until Varia reconciles the two official pages or the live application route independently confirms the current deadline.
   - Current overview: https://varia.vantaa.fi/fi/koulutustarjonta/haussa-olevat-koulutukset
   - Conflicting detail page: https://varia.vantaa.fi/fi/tieto-ja-viestintatekniikan-perustutkinto-ja-ammatillinen-ibcp-koulutus
-  - Checked: 3.10.2026.
+  - Checked: 4.10.2026.
   - Public family page: no while verification is pending.
 
 - **Rakennusalan perustutkinto** — Varia
@@ -94,6 +94,48 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://varia.vantaa.fi/fi/koulutustarjonta/haussa-olevat-koulutukset
   - Checked: 2.10.2026.
   - Public family page: yes.
+
+- **Taideteollisuusalan ammattitutkinto — sisustaja** — Varia
+  - Fits: applicants interested in interior-design planning, implementation, customer service, sales or related entrepreneurship.
+  - Status: application is **open until further notice**; the next published start is **January 2027** at Hiekkaharju; Finnish requirement **B2.1**.
+  - Eligibility caution: the programme page says participation requires a completed vocational qualification, matriculation examination or at least **three years of work experience**. Use the live selection criteria for the individual case.
+  - Study/cost boundary: average duration is 1–2 years based on HOKS. Applicants aged 20+ can have programme-related material/tool costs, and the provider separately flags current tuition-fee rules for some non-EU/EEA students; do not promise cost-free study without checking the person's situation.
+  - Official overview: https://varia.vantaa.fi/fi/koulutustarjonta/haussa-olevat-koulutukset
+  - Official programme page: https://varia.vantaa.fi/fi/palveluhakemisto/palvelu/taideteollisuusalan-ammattitutkinto
+  - Checked: 4.10.2026.
+  - Public family page: yes.
+
+- **Turvallisuusalan osaaja — yritysyhteistyö Reila Palvelut Oy:n kanssa** — Varia
+  - Fits: primarily Vantaa unemployed jobseekers interested in security work; Varia says other applicants who meet the selection criteria may also apply.
+  - Status: application **opens 6.10.2026 and closes 10.12.2026**; training runs **15.2.–30.4.2027** at Aviapolis; Finnish requirement **B2.1**.
+  - Content: includes the guard and security-steward qualification components plus use-of-force equipment training and a one-week workplace-learning period if police approval for guard work is obtained.
+  - Cost boundary: the student pays the authority fees related to the cards, currently stated by Varia as approximately **€200**. Do not label the route completely free.
+  - Employment boundary: the programme's stated goal is employment with Reila Palvelut Oy, but this is **not a guaranteed job** and AQOON must not promise one.
+  - Official overview: https://varia.vantaa.fi/fi/koulutustarjonta/haussa-olevat-koulutukset
+  - Official programme page: https://varia.vantaa.fi/fi/koulutustarjonta/tutkinnon-osat-ja-lyhytkoulutukset/turvallisuusalan-osaaja-lyhytkoulutus
+  - Checked: 4.10.2026.
+  - Public family page: yes as a clearly labelled upcoming application; do not describe the application as open before 6.10.
+
+- **Ravintola- ja cateringalan perustutkinto, suomen kielen tuella — upcoming round** — Varia
+  - Status: application **9.11.2026–7.1.2027**; studies start **15.3.2027** at Hiekkaharju; Finnish requirement **A2.1**.
+  - Boundary: this round is published but **not yet open** on 4.10.2026. Keep it in the registry for planning; do not route a family as though they can submit an application before 9.11.
+  - Official: https://varia.vantaa.fi/fi/koulutustarjonta/haussa-olevat-koulutukset
+  - Checked: 4.10.2026.
+  - Public family page: no until the application opens or there is another immediate reason to surface it.
+
+- **Vocational Qualification in Restaurant and Catering services — upcoming English programme** — Varia
+  - Status: application **9.11.–15.12.2026**; training starts **22.3.2027** at Hiekkaharju; Varia says the programme is delivered in **English**.
+  - Boundary: published upcoming route, not yet open on 4.10.2026.
+  - Official: https://varia.vantaa.fi/fi/koulutustarjonta/haussa-olevat-koulutukset
+  - Checked: 4.10.2026.
+  - Public family page: no until the application opens or the provider publishes a more immediate intake action.
+
+- **Nopea tie tarjoilijaksi — upcoming route for unemployed jobseekers** — Varia
+  - Status: application **9.11.2026–7.1.2027**; studies start **15.3.2027** at Hiekkaharju; Finnish requirement **A1.3**.
+  - Boundary: the overview labels this route as intended for unemployed jobseekers. It is published but **not yet open** on 4.10.2026.
+  - Official: https://varia.vantaa.fi/fi/koulutustarjonta/haussa-olevat-koulutukset
+  - Checked: 4.10.2026.
+  - Public family page: no until the application opens.
 
 - **Perustaidot maalarin työhön suomen kielen tuella (S2)** — Varia
   - Status: application **21.9.–26.11.2026**; studies start **7.1.2027**; Finnish **A2.2**.
@@ -128,13 +170,12 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Public family page: yes.
 
 - **Kirjaston öiset seikkailut — Hakunila & Koivukylä 3.10.2026** — City of Vantaa
-  - Fits: families with children; the theatre programme is recommended for ages 2–8.
-  - Helps with: a free low-threshold family library day with theatre, activity trails and crafts.
-  - Status: **today 3.10.2026 only**. Koivukylä Library: Herra Hakkaraisen yö 10.30–11.00 and activity trail 10.00–16.00. Hakunila Library: show 13.00–13.30, activity trail 10.00–16.00 and Unimaisema craft 13.30–14.30.
-  - Registration: no advance registration required.
+  - Fits: families with children; the theatre programme was recommended for ages 2–8.
+  - Status: **closed/passed**. The autumn series ran 5.9.–3.10.2026 and the final Hakunila/Koivukylä activities took place 3.10. Do not present this series as current from 4.10 onward unless Vantaa publishes a new date.
+  - Historical registration: free and no advance registration was required.
   - Official: https://www.vantaa.fi/fi/ajankohtaista/uutinen/kirjaston-oiset-seikkailut-tapahtumapaivia-lapsiperheille-59-310
-  - Checked: 3.10.2026.
-  - Public family page: yes; remove from the current page after 3.10 unless a new date is published.
+  - Checked: 4.10.2026.
+  - Public family page: no.
 
 - **Minirekry — 7.10.2026** — Vantaa / Varia
   - Status: **7.10.2026, 13.00–14.30**, Virnatie 5 A, Vantaa; free.
@@ -562,13 +603,22 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 
 
 
-- **Duo Living Room family café — 3.10.2026** — Familia ry / City of Espoo event calendar
+- **Duo Living Room family café — autumn 2026 series** — Familia ry / City of Espoo event calendar
   - Fits: intercultural families; parents and children can attend together.
   - Helps with: meeting other families, children's play, peer support and low-threshold community connection.
-  - Status: Saturday 3.10.2026, 12.00–14.00, Iso Omena Library, Paja Lounge, Suomenlahdentie 1; free.
-  - Caution: re-check the event page before routing because the checked listing does not establish guaranteed capacity.
-  - Official: https://www.espoo.fi/en/events/espooevents%3Aagqkhjpxmq
-  - Checked: 30.9.2026.
+  - Status: the 3.10 session has passed, but the official series continues at Iso Omena Library, Paja Lounge, Suomenlahdentie 1. Upcoming published sessions are **17.10., 31.10., 14.11. and 28.11.2026**, all 12.00–14.00; free.
+  - Official series: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqkhjpqpa
+  - Checked: 4.10.2026.
+  - Public family page: yes.
+
+- **Family café — Lippulaiva Library** — City of Espoo / Espoonlahden seurakunta
+  - Fits: families with children.
+  - Helps with: low-threshold peer contact and meeting other local families over coffee.
+  - Status: Mondays **10.00–11.30**, 17.8.–14.12.2026, Lippulaiva Library Kajuutta (3rd floor), Espoonlahdenkatu 8. The next listed meeting after this review is **5.10.2026**.
+  - Languages: Finnish and English. Free entry.
+  - Official event series: https://www.espoo.fi/en/events/espooevents%3Aagppshwv7a
+  - Current library listing: https://www.espoo.fi/en/culture-and-leisure/libraries/lippulaiva-library
+  - Checked: 4.10.2026.
   - Public family page: yes.
 
 - **Hello Espoo — 24.10.2026** — City of Espoo
@@ -740,12 +790,13 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Töpinät — current Espoo sessions** — City of Espoo event calendar / partner organisers
   - Fits: children aged 2–8 with a parent/adult; an adult must remain with the child throughout the activity.
   - Helps with: free low-threshold indoor physical activity using varied equipment; movement is self-directed rather than instructor-led.
-  - Status: the two 27.9.2026 locations at Kulloonmäentie 20 and Karhuniitynkuja 3 are **closed/passed**. The current future route is the Puistotie 13 series; the official page currently lists upcoming dates 11.10., 8.11. and 13.12.2026, all 10.00–12.00. Free; no registration required. Changes are possible, so re-check the chosen date before routing.
-  - Official future series: https://www.espoo.fi/en/events/espooevents%3Aagpnhy7t2e
-  - Historical 27.9 Kulloonmäentie event: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagpnclmd2q
-  - Historical 27.9 Karhuniitynkuja event: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagppgbe2m4
-  - Checked: 28.9.2026.
-  - Public family page: yes.
+  - Current multilingual route: **Mankkaansuo 8**, 4.10., 1.11. and 13.12.2026, all 10.00–12.00; languages Finnish, Swedish and English. Free; no registration required.
+  - Other verified future route: **Puistotie 13**, 11.10., 8.11. and 13.12.2026, all 10.00–12.00; free and no registration required.
+  - Historical boundary: the 27.9 Kulloonmäentie and Karhuniitynkuja sessions are closed/passed. Changes are possible, so re-check the chosen date before routing.
+  - Official Mankkaansuo series: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagpllsbf6e
+  - Official Puistotie series: https://www.espoo.fi/en/events/espooevents%3Aagpnhy7t2e
+  - Checked: 4.10.2026.
+  - Public family page: yes; current public card points to Mankkaansuo because it has a 4.10 session and later dates.
 
 - **Leppis kerhot — Entresse Library, starts 1.10.2026** — City of Espoo / MAOL
   - Fits: families with children aged 3–6; a guardian/adult participates with the child.
