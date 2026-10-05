@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 4.10.2026
+Last compiled: 5.10.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -81,11 +81,11 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Public family page: yes.
 
 - **Tieto- ja viestintätekniikan perustutkinto and IBCP — `verification_pending`** — Varia
-  - Source conflict rechecked 4.10.2026: Varia's current `Haussa olevat koulutukset` overview says application **22.9.–28.11.2026** with a flexible Koivukylä start and Finnish **B1.1**, while the programme-specific page still says **22.9.–27.9.2026**.
+  - Source conflict rechecked 5.10.2026: Varia's current `Haussa olevat koulutukset` overview says application **22.9.–28.11.2026** with a flexible Koivukylä start and Finnish **B1.1**, while the programme-specific page still says **22.9.–27.9.2026**.
   - Action: do **not** present this route as currently open to families until Varia reconciles the two official pages or the live application route independently confirms the current deadline.
   - Current overview: https://varia.vantaa.fi/fi/koulutustarjonta/haussa-olevat-koulutukset
   - Conflicting detail page: https://varia.vantaa.fi/fi/tieto-ja-viestintatekniikan-perustutkinto-ja-ammatillinen-ibcp-koulutus
-  - Checked: 4.10.2026.
+  - Checked: 5.10.2026.
   - Public family page: no while verification is pending.
 
 - **Rakennusalan perustutkinto** — Varia
@@ -167,6 +167,14 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Boundary: do not invent an age limit or registration rule.
   - Official: https://www.vantaa.fi/fi/tervetuloa-vantaalle
   - Checked: 2.10.2026.
+  - Public family page: yes.
+
+- **The Guide to Starting a Business in Finland — 8.10.2026** — Business Vantaa / City of Vantaa
+  - Fits: people interested in an English-language, online entrepreneurship information route; the current listing does not publish a residency restriction, so do not invent one.
+  - Status: **8.10.2026, 9.30–11.00**, virtual, English, free; the current Business Vantaa listing shows two additional dates.
+  - Routing boundary: use the current official event listing for registration/participation details rather than inferring them from older occurrences with the same title.
+  - Official current listing: https://business.vantaa.fi/en/supporting-international-professionals
+  - Checked: 5.10.2026.
   - Public family page: yes.
 
 - **Kirjaston öiset seikkailut — Hakunila & Koivukylä 3.10.2026** — City of Vantaa
@@ -274,9 +282,11 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Varian rakennusalan työvoimakoulutus** — Vantaan ammattiopisto Varia
   - Fits: people interested in construction who are unemployed or at risk of unemployment, whose job search is active and who need stronger skills to enter the field. Finnish at least A2.2.
   - Helps with: completing units from the construction-sector vocational qualification or further vocational qualification, depending on prior experience, and improving employability in construction.
-  - Status: application 26.8.–5.10.2026 through Työmarkkinatori; next start 2.11.2026; duration up to one year.
-  - Checked 2.10.2026: Varia's current `Haussa olevat koulutukset` page now clearly lists the separate Toimitilahuoltaja round as application **7.9.–10.11.2026**, start **11.1.2027**, Finnish **A2.2**. The older caution above is superseded by this current provider listing.
+  - Status: application **26.8.–5.10.2026** through Työmarkkinatori; the published deadline is **today, 5.10.2026**. The next start is 2.11.2026 and duration is up to one year.
+  - Routing boundary: do not present this round as open after 5.10 unless Varia or Työmarkkinatori publishes a reopening/new round.
   - Official: https://varia.vantaa.fi/fi/koulutukset/varian-tyovoimakoulutus
+  - Checked: 5.10.2026.
+  - Public family page: yes.
 
 - **Lukukamut — volunteer reading in Vantaa daycares** — Vantaan varhaiskasvatus
   - Fits: adults interested in flexible volunteer reading with daycare children; prior experience is not required.
@@ -790,19 +800,28 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Töpinät — current Espoo sessions** — City of Espoo event calendar / partner organisers
   - Fits: children aged 2–8 with a parent/adult; an adult must remain with the child throughout the activity.
   - Helps with: free low-threshold indoor physical activity using varied equipment; movement is self-directed rather than instructor-led.
-  - Current multilingual route: **Mankkaansuo 8**, 4.10., 1.11. and 13.12.2026, all 10.00–12.00; languages Finnish, Swedish and English. Free; no registration required.
-  - Other verified future route: **Puistotie 13**, 11.10., 8.11. and 13.12.2026, all 10.00–12.00; free and no registration required.
+  - Next verified route: **Puistotie 13**, 11.10., 8.11. and 13.12.2026, all 10.00–12.00; free and no registration required. The checked official page does not publish a service-language list, so do not promise a language.
+  - Mankkaansuo route: the 4.10 session is **closed/passed**; later verified sessions remain 1.11. and 13.12.2026, 10.00–12.00, with Finnish, Swedish and English listed; free and no registration required.
   - Historical boundary: the 27.9 Kulloonmäentie and Karhuniitynkuja sessions are closed/passed. Changes are possible, so re-check the chosen date before routing.
-  - Official Mankkaansuo series: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagpllsbf6e
   - Official Puistotie series: https://www.espoo.fi/en/events/espooevents%3Aagpnhy7t2e
-  - Checked: 4.10.2026.
-  - Public family page: yes; current public card points to Mankkaansuo because it has a 4.10 session and later dates.
+  - Official Mankkaansuo series: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagpllsbf6e
+  - Checked: 5.10.2026.
+  - Public family page: yes; current public card points to Puistotie because 11.10 is the nearest verified future session.
 
 - **Leppis kerhot — Entresse Library, starts 1.10.2026** — City of Espoo / MAOL
   - Fits: families with children aged 3–6; a guardian/adult participates with the child.
   - Helps with: free five-week play, movement and mathematics-themed activity after the one-day 13.9 pop-up.
   - Status: the 13.9.2026 pop-up is closed/passed. The still-relevant route is the free five-week club starting Thursday 1.10.2026: ages 3–4 at 17.00–17.45 and ages 5–6 at 18.00–18.45, Entresse Library, Siltakatu 11. Advance registration is required through the official page; re-check availability before promising a place.
   - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqfqdhyzy
+
+- **Lasten ja nuorten tarinapajat — Kalajärvi Library** — City of Espoo / Vantaan Sanataidekoulu
+  - Fits: children and young people interested in writing stories; the checked official page does not publish a narrower age range, so do not invent one.
+  - Helps with: low-threshold guided story writing, character creation and simple exercises for getting started.
+  - Status: **5.10., 19.10. and 2.11.2026, 15.00–16.30**, Kalajärvi Library, Ruskaniitty 4; free entry.
+  - Registration/caution: the checked official page does not publish a separate advance-registration requirement.
+  - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqm3v3yna
+  - Checked: 5.10.2026.
+  - Public family page: yes.
 
 - **Koululaisten käsityöpaja — Kalajärven kirjasto** — City of Espoo / library
   - Fits: schoolchildren; the checked official page does not publish a narrower age range, so do not invent one.
