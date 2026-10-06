@@ -87,6 +87,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Conflicting detail page: https://varia.vantaa.fi/fi/tieto-ja-viestintatekniikan-perustutkinto-ja-ammatillinen-ibcp-koulutus
   - Checked: 6.10.2026.
   - Public family page: no while verification is pending.
+
 - **Rakennusalan perustutkinto** — Varia
   - Status: application is **open until further notice**; flexible start at Aviapolis; Finnish requirement **B1.1**.
   - Boundary: this qualification route is separate from the current construction labour-market-training round with a 5.10.2026 deadline.
@@ -114,6 +115,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official programme page: https://varia.vantaa.fi/fi/koulutustarjonta/tutkinnon-osat-ja-lyhytkoulutukset/turvallisuusalan-osaaja-lyhytkoulutus
   - Checked: 6.10.2026.
   - Public family page: yes; application is now open.
+
 - **Ravintola- ja cateringalan perustutkinto, suomen kielen tuella — upcoming round** — Varia
   - Status: application **9.11.2026–7.1.2027**; studies start **15.3.2027** at Hiekkaharju; Finnish requirement **A2.1**.
   - Boundary: this round is published but **not yet open** on 4.10.2026. Keep it in the registry for planning; do not route a family as though they can submit an application before 9.11.
@@ -149,6 +151,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Conflicting generic detail page: https://varia.vantaa.fi/fi/koulutukset/varian-tyovoimakoulutus
   - Checked: 6.10.2026.
   - Public family page: yes, with a live-application recheck before promising availability.
+
 - **Väylä turva-alalle — Securitas cooperation** — Varia
   - Status: Varia's current consolidated `Haussa olevat koulutukset` list says application **21.9.–26.11.2026**; studies start **11.1.2027**; Finnish **B2.1**. Provider describes good employment prospects but does not guarantee a job.
   - Source note (6.10.2026): the separate generic työvoimakoulutus page currently prints the application end year as **2027**, which conflicts with the consolidated current-open list and is chronologically inconsistent with a January 2027 training start.
@@ -157,6 +160,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Conflicting generic detail page: https://varia.vantaa.fi/fi/koulutukset/varian-tyovoimakoulutus
   - Checked: 6.10.2026.
   - Public family page: yes, with a live-application recheck before promising availability.
+
 - **Kulttuurikoto — luovan toiminnan perhekahvila** — City of Vantaa
   - Fits: migrant families with children.
   - Status: the **5.10.2026** occurrence has passed. Vantaa's current page still presents Kulttuurikoto as a multi-date series at Lastenkulttuurikeskus Pessi, Vernissakatu 4, with later occurrences and free entry, but the checked summary view does not expose the next individual date reliably.
@@ -164,12 +168,14 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://www.vantaa.fi/fi/tervetuloa-vantaalle
   - Checked: 6.10.2026.
   - Public family page: yes as a continuing series without a guessed next date.
+
 - **Opi suomea leikkien ja laulaen — musiikkileikkihetket** — City of Vantaa
   - Status: the **5.10.2026** occurrence has passed. Vantaa's current page still presents the activity as a multi-date series at Lastenkulttuurikeskus Pessi, Vernissakatu 4 K-krs, with later occurrences and free entry.
   - Boundary: do not invent the next date, an age limit or a registration rule when the checked view does not expose them; verify the live calendar before routing.
   - Official: https://www.vantaa.fi/fi/tervetuloa-vantaalle
   - Checked: 6.10.2026.
   - Public family page: yes as a continuing series without a guessed next date.
+
 - **Vantaa-infon digituki — Lumon kirjasto** — City of Vantaa / Vantaa-info
   - Fits: residents who need low-threshold help with electronic services, web services, common apps or digital devices.
   - Status: current series **6.10.–15.12.2026**, Lumon kirjasto, Urpiaisentie 14, Vantaa; free. The checked event summary does not expose the individual session times, so do not invent them.
@@ -236,6 +242,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://www.vantaa.fi/fi/palveluhakemisto/palvelu/etsiva-nuorisotyo
   - Checked: 1.10.2026.
   - Public family page: yes.
+
 - **Vantaan varhaiskasvatus** — Vantaan kaupunki
   - Fits: Vantaa families needing daycare / early childhood education.
   - Helps with: municipal daycare application and correct route.
@@ -296,6 +303,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://varia.vantaa.fi/fi/koulutukset/varian-tyovoimakoulutus
   - Checked: 6.10.2026.
   - Public family page: no while this round is closed.
+
 - **Lukukamut — volunteer reading in Vantaa daycares** — Vantaan varhaiskasvatus
   - Fits: adults interested in flexible volunteer reading with daycare children; prior experience is not required.
   - Helps with: community participation and supporting children's interest in reading. This is volunteer activity, not paid employment or a daycare-place application.
@@ -427,6 +435,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/tyovoimakoulutukset/
   - Checked: 30.9.2026.
   - Public family page: yes.
+
 - **Sosiaali- ja terveysalan koulutus** — Stadin AO / Helsinki employment services
   - Fits: primarily unemployed jobseekers or jobseekers at risk of unemployment who are suitable for the training.
   - Helps with: employment-oriented social and health care training; do not infer a specific qualification from the listing without checking the application details.
@@ -519,6 +528,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagqkhq7eyi
   - Checked: 30.9.2026.
   - Public family page: no without a newly verified late-entry route.
+
 - **Harrastusilta — Ohjaamo Helsinki (30.9.2026)**
   - Fits: Helsinki young adults aged **18–29** looking for free-time, hobby or community options.
   - Helps with: information about free-time opportunities, hobbies and meeting places for young adults, plus shared tips and experiences.
@@ -526,6 +536,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagqfsu5otm
   - Checked: 1.10.2026.
   - Public family page: no.
+
 - **Nezumicon — 26.9.2026** — City of Helsinki / Youth Helsinki / Operaatio Pulssi! Pohjoinen
   - Fits: young people interested in cosplay, manga and anime; the official Nezumicon page says the event is aimed at young people but does not publish a narrower age range, so do not invent one.
   - Helps with: free youth-led cultural participation, programme activities and an Artist Alley in a substance-free event environment.
@@ -554,6 +565,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official Fallkulla/card source: https://nuorten.hel.fi/nuorisotalot/fallkulla/
   - Checked: 1.10.2026.
   - Public family page: yes.
+
 - **Työnantaja Meet & Greet — 29.9.2026** — Ohjaamo Helsinki
   - Fits: Helsinki young people using the 15–29-year-old Ohjaamo service; the event explicitly welcomed English speakers too.
   - Helps with: meeting employers and getting job-search, CV and interview guidance.
@@ -561,6 +573,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagp7ubd2ee
   - Checked: 30.9.2026.
   - Public family page: no.
+
 - **MLL Perhekahvila — Töölö Library** — MLL / City of Helsinki
   - Fits: families with children, including baby families; children and their close adults are welcome.
   - Helps with: a low-threshold family meeting place, peer connection and play.
@@ -638,6 +651,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Current library listing: https://www.espoo.fi/en/culture-and-leisure/libraries/lippulaiva-library
   - Checked: 6.10.2026.
   - Public family page: yes.
+
 - **Hello Espoo — 24.10.2026** — City of Espoo
   - Fits: new Espoo residents, people considering moving to Espoo and families; the programme is for all ages.
   - Helps with: learning about city services, hobbies, integration/community routes and family activities in one low-threshold event.
@@ -656,6 +670,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagqne54y4i
   - Checked: 30.9.2026.
   - Public family page: yes.
+
 - **Nature and theatre walk in Espoo Central Park — 3.10.2026** — City of Espoo / UUSI KULMA
   - Fits: people with a migrant background living in Espoo; target audience over age 7.
   - Helps with: low-threshold nature and arts participation, including a forest-themed theatre and dance performance.
@@ -664,6 +679,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagqim27cdi
   - Checked: 1.10.2026.
   - Public family page: no.
+
 - **Englanninkielinen pelikerho nuorille — Sello / Pointti** — City of Espoo / Elinvoima
   - Fits: young people aged 12–20 who want a free English-language social activity.
   - Helps with: playing board games together in English at the youth space Pointti.
@@ -682,6 +698,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagp7ljrt34
   - Checked: 6.10.2026.
   - Public family page: yes.
+
 - **E-urheilun harrastuspolku — autumn 2026** — City of Espoo
   - Fits: secondary-school pupils / yläkoululaiset interested in a free esports hobby.
   - Helps with: free organised gaming activities through Espoo's esports hobby path.
@@ -735,6 +752,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqb3vh2gm
   - Checked: 1.10.2026.
   - Public family page: yes.
+
 - **Pingpong for youth — Entresse Library** — City of Espoo
   - Fits: 10–15-year-olds; the official listing states English as the activity language.
   - Helps with: free, low-threshold table-tennis practice and learning techniques/gameplay with an instructor.
@@ -829,6 +847,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqm3v3yna
   - Checked: 6.10.2026.
   - Public family page: yes.
+
 - **Koululaisten käsityöpaja — Kalajärven kirjasto** — City of Espoo / library
   - Fits: schoolchildren; the checked official page does not publish a narrower age range, so do not invent one.
   - Helps with: free low-threshold crafts and trying techniques such as macramé and origami.
@@ -844,6 +863,8 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Source disambiguation: Espoo currently has another Tasty Snack event series at a different time. Keep this registry record tied to the exact **3.–9.-luokkalaisten / 9–15-year-old** URL below instead of merging similarly named groups.
   - Official linked series: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqfy2b5p4
   - Checked: 6.10.2026.
+  - Public family page: yes.
+
 - **Safety Circle for kids — English group** — Kids Global Safety Hub / City of Espoo event calendar
   - Fits: children and families looking for an English-language, low-threshold skills activity. The checked event page does not publish a specific child age range, so do not invent one.
   - Helps with: interactive learning around safety, identity, confidence, healthy boundaries and year-long skill development.
