@@ -352,13 +352,14 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: upcoming 29.10.2026, 10.00–15.00, Kauppakeskus Myyrmanni; free for jobseekers. Jobseeker registration is not yet open and will open closer to the event; registration is described as non-binding. The exhibitor application deadline 25.9.2026 at 16.00 has passed.
   - Official: https://www.vantaa.fi/fi/tyonhaku-ja-tyollistaminen/vantaan-megarekry
 
-- **Pyykkituvan avoimet ovet — 7.10.2026** — Vantaan lastenkulttuuri
-  - Fits: families/children looking for low-threshold indoor activity; the checked city listing does not publish a numerical age limit.
-  - Helps with: free play plus colouring, crafts and drawing materials at Lastenkulttuurikeskus Pyykkitupa.
-  - Status: **today 7.10.2026, 12.30–16.30**, Kartanontie 1, Vantaa; free; languages listed by Vantaa: Finnish and English.
-  - Official/current area listing: https://www.vantaa.fi/fi/alueet-ja-kaupunginosat/hakunilan-suuralue
+- **Pyykkituvan avoimet ovet — 7.10.2026 — `verification_pending` on time**
+  - Fits: family-facing children's culture/open-house activity at Lastenkulttuurikeskus Pyykkitupa, Kartanontie 1, with free play plus colouring, crafts and drawing materials.
+  - Source conflict checked 7.10.2026: Vantaa's event-calendar venue page shows **06.30–13.30**, while Vantaa's current Hakunila area page shows **12.30–16.30** for the same dated event. The area page also lists Finnish/English and free entry.
+  - Action: do **not** publish or route a family to a specific time until Vantaa reconciles the two official displays or the event is confirmed directly.
+  - Official event-calendar venue page: https://tapahtumat.vantaa.fi/fi-FI/page/60d9c2473d44764e1cd669c1
+  - Official/current Hakunila area listing: https://www.vantaa.fi/fi/alueet-ja-kaupunginosat/hakunilan-suuralue
   - Checked: 7.10.2026.
-  - Public family page: yes.
+  - Public family page: no while the time is unresolved.
 
 ### Helsinki
 
