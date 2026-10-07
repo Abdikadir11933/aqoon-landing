@@ -1,6 +1,6 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 6.10.2026
+Last compiled: 7.10.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
@@ -28,6 +28,15 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Important: this is a new round published after the earlier Varia TUVA round closed on 1.10.; provider-specific selection rules control.
   - Official: https://varia.vantaa.fi/fi/koulutustarjonta/haussa-olevat-koulutukset
   - Checked: 2.10.2026.
+  - Public family page: yes.
+
+- **Asiakaspalvelun koulutus, suomen kielen tuella** — Varia
+  - Fits: applicants interested in customer-service work or a next study/career route; continuous application is open to applicants of all ages regardless of prior education. Published Finnish requirement **A1.3**.
+  - Helps with: practical customer service, workplace readiness, digital/study skills and Finnish; includes the Asiakastyö ammatissa 15 osp qualification unit.
+  - Status: application **5.–16.10.2026 at 12.00** in Opintopolku; studies start **2.11.2026** at Vehkala, Vehkalantie 6. The programme page says studies are mainly daytime Monday-Friday and last about five months depending on HOKS.
+  - Cost caution: books/tools/materials are mainly free until age 20; after that some study-related costs may apply. Varia also publishes second-level tuition-fee rules for some non-EU/EEA students starting studies on/after 1.8.2026. Check the individual case rather than promising no costs.
+  - Official: https://varia.vantaa.fi/fi/koulutustarjonta/tutkinnon-osat-ja-lyhytkoulutukset/asiakaspalvelun-koulutus
+  - Checked: 7.10.2026.
   - Public family page: yes.
 
 - **Keittiöapulaisen koulutus (S2), työvoimakoulutus** — Varia
@@ -80,12 +89,24 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Checked: 2.10.2026.
   - Public family page: yes.
 
+
+- **Hoiva-avustajasta lähihoitajaksi — Varia — `verification_pending` on language threshold**
+  - Fits: Varia describes this route for immigrant-background care assistants who want to qualify as practical nurses after completing `Asiakkaan kohtaaminen ja ohjaaminen` 20 osp and `Hyvinvoinnin ja toimintakyvyn edistäminen` 25 osp.
+  - Verified application status: the current Vantaa/Varia social-and-health qualification page lists a new application window **6.–30.10.2026** for Koivukylä, via Opintopolku.
+  - Verified delivery: mainly daytime Monday-Friday at Koivukylä, Talvikkitie 119; Finnish-language support is included; average duration about 1.5 years, with workplace learning.
+  - Source conflict: the dedicated route page currently says Finnish **B1.2**, while the current Varia hoiva-avustaja page says this continuation route requires **B1.1**. Do not publish or promise either threshold until the live selection criteria / Varia resolve the conflict.
+  - Official application overview: https://www.vantaa.fi/fi/palveluhakemisto/palvelu/sosiaali-ja-terveysalan-perustutkinto
+  - Conflicting Varia route page: https://varia.vantaa.fi/fi/hoiva-avustajasta-lahihoitajaksi
+  - Conflicting Varia hoiva-avustaja page: https://varia.vantaa.fi/fi/hae-opiskelemaan-variaan/tutkinnon-osia/hoiva-avustajan-koulutus
+  - Checked: 7.10.2026.
+  - Public family page: **no while the language requirement is unresolved**.
+
 - **Tieto- ja viestintätekniikan perustutkinto and IBCP — `verification_pending`** — Varia
-  - Source conflict rechecked 6.10.2026: Varia's current `Haussa olevat koulutukset` overview still says application **22.9.–28.11.2026** with a flexible Koivukylä start and Finnish **B1.1**, while the programme-specific page still says **22.9.–27.9.2026**.
+  - Source conflict rechecked 7.10.2026: Varia's current `Haussa olevat koulutukset` overview still says application **22.9.–28.11.2026** with a flexible Koivukylä start and Finnish **B1.1**, while the programme-specific page still says **22.9.–27.9.2026**.
   - Action: do **not** present this route as currently open to families until Varia reconciles the two official pages or the live application route independently confirms the current deadline.
   - Current overview: https://varia.vantaa.fi/fi/koulutustarjonta/haussa-olevat-koulutukset
   - Conflicting detail page: https://varia.vantaa.fi/fi/tieto-ja-viestintatekniikan-perustutkinto-ja-ammatillinen-ibcp-koulutus
-  - Checked: 6.10.2026.
+  - Checked: 7.10.2026.
   - Public family page: no while verification is pending.
 
 - **Rakennusalan perustutkinto** — Varia
@@ -331,6 +352,14 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: upcoming 29.10.2026, 10.00–15.00, Kauppakeskus Myyrmanni; free for jobseekers. Jobseeker registration is not yet open and will open closer to the event; registration is described as non-binding. The exhibitor application deadline 25.9.2026 at 16.00 has passed.
   - Official: https://www.vantaa.fi/fi/tyonhaku-ja-tyollistaminen/vantaan-megarekry
 
+- **Pyykkituvan avoimet ovet — 7.10.2026** — Vantaan lastenkulttuuri
+  - Fits: families/children looking for low-threshold indoor activity; the checked city listing does not publish a numerical age limit.
+  - Helps with: free play plus colouring, crafts and drawing materials at Lastenkulttuurikeskus Pyykkitupa.
+  - Status: **today 7.10.2026, 12.30–16.30**, Kartanontie 1, Vantaa; free; languages listed by Vantaa: Finnish and English.
+  - Official/current area listing: https://www.vantaa.fi/fi/alueet-ja-kaupunginosat/hakunilan-suuralue
+  - Checked: 7.10.2026.
+  - Public family page: yes.
+
 ### Helsinki
 
 - **Palkkatuetut hoito- ja vapaa-ajan avustajan tehtävät — deadline 2.10.2026 at 15.00** — City of Helsinki
@@ -463,10 +492,18 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - General TUVA context: full-time studies, maximum 38 weeks. Do not infer a separate Helsinki-residency condition or universal participant cost from the checked page; verify support/cost questions case by case.
   - Official: https://stadinao.hel.fi/hae-opiskelemaan/tuva/
 
+- **Lastenkirjafestarit! — Annantalo** — City of Helsinki
+  - Fits: children, young people and families looking for culture/reading activities during autumn 2026 and winter 2027.
+  - Helps with: children's-book themed culture and Annantalo activities; Helsinki's autumn-break listing marks the festival and the Annantalo autumn-break programme as free.
+  - Status: festival **7.10.2026–27.2.2027** at Annantalo, Annankatu 30. The published autumn-break programme runs **10.–17.10.2026**. Individual programme items can have their own time, age guidance or registration route, so check the selected item before routing.
+  - Official: https://nuorten.hel.fi/syysloma/
+  - Checked: 7.10.2026.
+  - Public family page: yes.
+
 - **Stadin Futura** — Stadin AO / Helsinki Employment Services
   - Fits: Helsinki residents aged 18–29 who need support choosing a field, applying to studies, identifying their strengths or building study/work readiness. Finnish at least A2.1.
   - Helps with: career/education direction, visits to study fields, recognising skills, study readiness, work-life readiness and a next-step plan.
-  - Status (16.9.2026): the published group **15.9.–7.10.2026** has started and runs Tuesdays–Wednesdays 9–12 at Teollisuuskatu. Later groups are 13.10.–4.11. and 10.11.–2.12.2026. No separate public application deadline is stated; because entry is through the employment-services referral and initial interview, check with the responsible expert before promising late entry to a group that has already started.
+  - Status checked 7.10.2026: the **15.9.–7.10.2026** group ends today. The next published group is **13.10.–4.11.2026**, followed by **10.11.–2.12.2026**, Tuesdays–Wednesdays 9–12 at Teollisuuskatu. No separate public application deadline is stated; entry is through the employment-services referral and initial interview, so check with the responsible expert before promising a place.
   - Route: the responsible expert in Helsinki Employment Services enrols the participant in Wilma under `Työllisyydenhoito`; after enrolment the teacher contacts the participant for an initial interview.
   - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/ohjausta-omalle-uralle/
 
@@ -688,16 +725,24 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Checked: 28.9.2026.
   - Public family page: yes.
 
+- **Perheiden kirjastoaamu — Tapiola** — City of Espoo
+  - Fits: families looking for a free, low-threshold library morning; the checked event page does not publish a numerical child-age limit.
+  - Helps with: shared reading, games, crafts and stories with library staff.
+  - Status: **7.10., 4.11. and 2.12.2026, 10.00–11.00**, Espoon kulttuurikeskus / Tapiola Library, Kulttuuriaukio 2; Finnish; free entry.
+  - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqibxw4pe
+  - Checked: 7.10.2026.
+  - Public family page: yes.
+
 - **Vauvamuskari / Baby music group — autumn 2026** — City of Espoo
   - Fits: families with children aged 3 months–3 years.
   - Helps with: low-threshold shared music, singing, instruments and musical games for a child and parent/guardian; no previous music experience is needed.
-  - Status checked 6.10.: **today 6.10.2026, 11.00–11.30, Sello Library (Jaminurkka)**. The 30.9 Iso Omena session and earlier autumn sessions have passed.
+  - Status checked 7.10.: **closed/passed**. The last published autumn session was 6.10.2026, 11.00–11.30, Sello Library (Jaminurkka); the official series currently lists no later autumn date. Do not present it as current unless Espoo publishes a new session.
   - Cost / registration: free; advance registration is required through the official sign-up route.
   - Language/access: event language Finnish. Espoo explicitly says everyone is welcome regardless of language skills or musical background.
-  - Status: upcoming; re-check capacity before promising a place.
-  - Official: https://www.espoo.fi/en/events/espooevents%3Aagp7ljrt34
-  - Checked: 6.10.2026.
-  - Public family page: yes.
+  - Status: closed/passed.
+  - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagp7ljrt34
+  - Checked: 7.10.2026.
+  - Public family page: no.
 
 - **E-urheilun harrastuspolku — autumn 2026** — City of Espoo
   - Fits: secondary-school pupils / yläkoululaiset interested in a free esports hobby.
@@ -1015,11 +1060,14 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Status: **closed/passed**. The event took place 22.9.2026, 12–16, Tampere-talo; it was free and held in English. Do not present it as a current opportunity from 23.9.2026 onward.
   - Official: https://internationalhouse.tampere.fi/en/job-fair/
 
-- **Pulla Perjantai Networking Event** — International House Tampere / Tampere Talent Ambassadors
-  - Fits: international residents and jobseekers who wanted to understand Finnish companies, hiring processes and workplace culture; the 25.9. event featured WordDive.
-  - Helps with: low-threshold employer networking, understanding recruitment and work culture, and making company contacts. It was not a recruitment event.
-  - Status: **closed/passed**. The event took place 25.9.2026, 10–12, Tampere. Do not present this dated session as current from 26.9.2026 onward; re-check the provider for a separately published future Pulla Perjantai.
-  - Official: https://internationalhouse.tampere.fi/en/event/?date=25.09.2026&event-id=6a8e930ee977800007512a80&time=10.00+-+12.00
+- **Pulla Perjantai Networking Event** — International House Tampere
+  - Fits: international talent and professionals who want to meet companies and learn about company recruitment processes and workplace culture. Do not describe it as a guaranteed recruitment event or job opening.
+  - Helps with: low-threshold company networking, recruitment-process insight and new professional contacts.
+  - Status: **upcoming 23.10.2026, 10.00–12.00, Tampere; free**. The current event listing does not expose a narrower residency requirement in the checked summary, so do not invent one.
+  - Official/current events: https://internationalhouse.tampere.fi/en/news-and-events/
+  - General Pulla Perjantai description: https://internationalhouse.tampere.fi/en/recruiting/
+  - Checked: 7.10.2026.
+  - Public family page: yes.
 
 - **Information session on Entrepreneurship with Ensimetri** — International House Tampere / Ensimetri
   - Fits: international residents considering starting a business in Finland.
@@ -1035,6 +1083,13 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Checked: 3.10.2026.
 
 ### Finland-wide / case-by-case
+
+- **Finland Works — online recruitment event 6.10.2026** — EURES / Job Market Finland
+  - Status: **closed/passed**. The online event took place 6.10.2026, 12.00–15.00. Do not present the dated event as current from 7.10.2026 onward.
+  - Official: https://tyomarkkinatori.fi/tapahtumat/finland_works_poh
+  - Checked: 7.10.2026.
+  - Public family page: no.
+
 
 - **Work in Lapland — online recruitment event 2.9.2026** — EURES / Job Market Finland / northern employment areas
   - Fits: jobseekers in Finland and Europe interested in work in Northern Finland, especially tourism, accommodation and restaurant sectors.
