@@ -1,12 +1,32 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 7.10.2026
+Last compiled: 8.10.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
 ## Priority routes
 
 ### Helsinki
+
+- **Hoitoavustaja, Kontulan seniorikeskus — 4 palkkatuki vacancies** — City of Helsinki
+  - Status: application closes **20.10.2026 at 15.00**; four positions, **EUR 2,426.75/month**, 7-month employment starting subject to the subsidy decision; Kontukuja 5.
+  - Work: socialising and outdoor activities with residents, clothing/kitchen/stock duties; **no nursing care**. Two shifts; satisfactory spoken/written Finnish.
+  - Eligibility: unemployed Helsinki jobseeker meeting at least one published palkkatuki condition; vaccinations/TB clarification/criminal-record extract, check employment authority; no promised selection.
+  - Official: https://www.hel.fi/fi/avoimet-tyopaikat/avoimet-tyopaikat/sotepe-03-414-26
+  - Checked: 8.10.2026. Public family page: yes.
+
+- **Vapaa-ajan avustaja, Koskelan seniorikeskus — palkkatuki vacancy** — City of Helsinki
+  - Status: application closes **21.10.2026 at 15.00**; **EUR 2,426.75/month**, 7 months; Hospitaalinkulku 8.
+  - Work: culture, group activities and outdoor help for elderly; good spoken and satisfactory written Finnish; physical work, vaccination/TB/criminal-record-extract requirements.
+  - Eligibility: unemployed Helsinki jobseeker meeting at least one wage-subsidy condition; three-year waiting period may apply after previous Helsinki subsidised work. Verify with authority; no guarantee.
+  - Official: https://www.hel.fi/fi/avoimet-tyopaikat/avoimet-tyopaikat/sotepe-03-413-26
+  - Checked: 8.10.2026. Public family page: yes.
+
+- **Stadin AO continuous application — current 3.9.–14.10.2026 vocational round** — City of Helsinki / Stadin AO
+  - Status: application open through **14.10.2026**. Examples from live list: Kodinhuoltaja ja toimitilahuoltaja (A2.2, Roihupelto, starts **7.1.2027**), Puuseppä and Maalari (A2.2, Roihupelto, starts **18.11.2026**), Ajoneuvotekniikka and Elintarvikkeiden valmistaja (A2.2, starts **7.1.2027**).
+  - Selection: Finnish tests by **20.10.**, contact by 26.10 and decisions by 5.11. Requirements and possible non-EU/EEA applicant tuition costs must be checked per individual.
+  - Official: https://stadinao.hel.fi/hae-opiskelemaan/jatkuva-haku/
+  - Checked: 8.10.2026. Public family page: yes.
 
 - **Impact Academy, syksy 2026** — Suomen Somalia-verkosto
   - Fits: 16–29-year-olds who want to clarify their study or career direction, build presentation, influencing and leadership skills, gain relevant experience or work with a mentor.
@@ -222,10 +242,10 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Public family page: no.
 
 - **Minirekry — 7.10.2026** — Vantaa / Varia
-  - Status: **7.10.2026, 13.00–14.30**, Virnatie 5 A, Vantaa; free.
+  - Status: **closed/passed 7.10.2026**; event was 13.00–14.30 at Virnatie 5 A, Vantaa; free. Keep for historical reference, do not route as open.
   - Official: https://varia.vantaa.fi/fi
-  - Checked: 2.10.2026.
-  - Public family page: yes.
+  - Checked: 8.10.2026.
+  - Public family page: no.
 
 - **Vantaan Kulttuurilapset** — City of Vantaa
   - Fits: children living in Vantaa who were born in 2023 or later, together with a parent/guardian.
@@ -621,6 +641,18 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Public family page: yes.
 ### Espoo
 
+- **Työnantajatreffit Kierrätyskeskuksessa — 20.10.2026** — Espoo Employment Services / Kierrätyskeskus
+  - Status: 20.10.2026, two Finnish presentations starting **12.00 and 13.00** at Nihtisillan myymälä, Kutojantie 3, free.
+  - Route: fixed-term työkokeilu opportunities and subsidised places for jobseekers 55+, aimed at longer-term jobseekers. Confirm eligibility with employment services before attending; Finnish presentations/interviews (interview at least rudimentary Finnish), no promised position.
+  - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqpmluy6a
+  - Checked: 8.10.2026. Public family page: yes.
+
+- **Hello Espoo Info and Mobile Espoo Info — Entresse Library 8.10.2026** — City of Espoo
+  - Fits: residents needing guidance on public/digital services or local hobbies, without age limit.
+  - Status: **8.10.2026, 14.30–16.30**, Entresse Library Siltakatu 11; free, easy Finnish and English, telephone interpretation available. Do not invent future dates.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagpnjtbqre
+  - Checked: 8.10.2026. Public family page: yes.
+
 - **Career Club — Round 13 / spring 2027** — City of Espoo
   - Fits: Espoo residents with at least about three years of higher-education studies and sufficient English.
   - Status: application **28.9.–8.11.2026**; next round starts **25.1.2027**; free and in English.
@@ -729,7 +761,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Perheiden kirjastoaamu — Tapiola** — City of Espoo
   - Fits: families looking for a free, low-threshold library morning; the checked event page does not publish a numerical child-age limit.
   - Helps with: shared reading, games, crafts and stories with library staff.
-  - Status: **7.10., 4.11. and 2.12.2026, 10.00–11.00**, Espoon kulttuurikeskus / Tapiola Library, Kulttuuriaukio 2; Finnish; free entry.
+  - Status: next verified dates **4.11. and 2.12.2026, 10.00–11.00**, Espoon kulttuurikeskus / Tapiola Library, Kulttuuriaukio 2; Finnish; free entry. The 7.10. meeting has passed.
   - Official: https://www.espoo.fi/fi/tapahtumat/espooevents%3Aagqibxw4pe
   - Checked: 7.10.2026.
   - Public family page: yes.
@@ -1073,7 +1105,8 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Information session on Entrepreneurship with Ensimetri** — International House Tampere / Ensimetri
   - Fits: international residents considering starting a business in Finland.
   - Helps with: company-establishment steps, business forms, taxation, entrepreneur responsibilities and insurance, plus where to get startup guidance.
-  - Status: 7.10.2026, 13.30–16.00, International House Tampere, Rautatienkatu 10; free and held in English. Registration is open via the official event page.
+  - Status: **closed/passed 7.10.2026**; held 13.30–16.00 at International House Tampere, Rautatienkatu 10; free and in English. The old registration route must no longer be presented as open.
+  - Public family page: no; past event.
   - Official/sign-up: https://internationalhouse.tampere.fi/en/event/?date=07.10.2026&event-id=6a859d67e4bdb40007c88f70&time=13.30+-+16.00
 
 - **SIMHE counselling** — Tampere University of Applied Sciences / International House Tampere
