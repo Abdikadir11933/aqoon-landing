@@ -1,12 +1,25 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 8.10.2026
+Last compiled: 9.10.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
 ## Priority routes
 
 ### Helsinki
+
+- **Leikkipuisto Brahe — free autumn-break family activities, 12.–16.10.2026** — City of Helsinki
+  - Fits: families with children and schoolchildren during autumn break; open activities are not a paid camp or a guaranteed excursion.
+  - Status: **12.–16.10.2026, weekdays 9.00–16.00**, Porvoonkatu 4, Helsinki. Free and no registration for open playground activities; arts, storytime, baby gathering, music and play.
+  - Boundary: the organiser marks schoolchildren's organised excursions **FULL**. Do not promise excursion places; distinguish them from open playground activities. Recheck individual programmes.
+  - Official: https://www.hel.fi/fi/kasvatus-ja-koulutus/leikkipuisto-brahe
+  - Checked: 9.10.2026. Public family page: yes.
+
+- **Haaga 4 kotihoito — subsidised Ammattityöntekijä vacancy closed 8.10.2026** — City of Helsinki
+  - Status: **closed/passed**; deadline 8.10.2026 at 15.00, 7-month subsidised work, published salary EUR 2,374.09/month.
+  - Boundary: unemployed Helsinki jobseeker meeting specific wage-subsidy, Finnish and driving-licence conditions; not an open application from 9.10 onward.
+  - Official: https://www.hel.fi/fi/avoimet-tyopaikat/avoimet-tyopaikat/sotepe-03-407-26
+  - Checked: 9.10.2026. Public family page: no (deadline passed).
 
 - **Hoitoavustaja, Kontulan seniorikeskus — 4 palkkatuki vacancies** — City of Helsinki
   - Status: application closes **20.10.2026 at 15.00**; four positions, **EUR 2,426.75/month**, 7-month employment starting subject to the subsidy decision; Kontukuja 5.
@@ -227,11 +240,11 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 
 - **The Guide to Starting a Business in Finland — 8.10.2026** — Business Vantaa / City of Vantaa
   - Fits: people interested in an English-language, online entrepreneurship information route; the current listing does not publish a residency restriction, so do not invent one.
-  - Status: **8.10.2026, 9.30–11.00**, virtual, English, free; the current Business Vantaa listing shows two additional dates.
+  - Status: **passed/closed** on 9.10.2026: the verified 8.10 webinar date is over. The current general Business Vantaa page does not show individually verifiable future dates for this title; do not advertise a new date without a direct listing.
   - Routing boundary: use the current official event listing for registration/participation details rather than inferring them from older occurrences with the same title.
   - Official current listing: https://business.vantaa.fi/en/supporting-international-professionals
-  - Checked: 5.10.2026.
-  - Public family page: yes.
+  - Checked: 9.10.2026.
+  - Public family page: no (past session; future dates unverified).
 
 - **Kirjaston öiset seikkailut — Hakunila & Koivukylä 3.10.2026** — City of Vantaa
   - Fits: families with children; the theatre programme was recommended for ages 2–8.
@@ -308,10 +321,10 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Fits: children and young people; the current open-group list includes ages from **5–6 through 20**, depending on group.
   - Helps with: weekly visual-arts teaching including drawing, painting, clay, construction, mixed media and digital tools.
   - Locations: Kartanonkoski, Kivistö, Korso, Myyrmäki and Tikkurila.
-  - Status: open places for autumn 2026; applications are accepted through **9.10.2026** via the currently open application form. Places are group-specific.
+  - Status: **deadline today, 9.10.2026**, for the autumn 2026 application; do not route as open from 10.10 onward without a new official round. Places are group-specific.
   - Cost caution: teaching is **fee-based (lukukausimaksullinen)**. Do not describe this route as free; verify the group fee and any current fee-relief rules before promising cost.
   - Official: https://kuvataidekoulu.vantaa.fi/fi/ajankohtaista/uutinen/inspiroidu-kokeile-ja-luo-vapaita-paikkoja-vantaan-kuvataidekoulun-lasten-ja-nuorten-taideryhmissa
-  - Checked: 16.9.2026.
+  - Checked: 9.10.2026.
 - **Vantaan kuvataidekoulu — autumn 2026 family short courses** — Vantaan kuvataidekoulu
   - Fits: families, children and young people looking for low-threshold visual-arts short courses. The provider says previous art experience is not required.
   - Helps with: short family/young-person art activities; the currently advertised offer includes courses in Tikkurila, Kivistö, Korso and Kartanonkoski.
@@ -641,6 +654,13 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Public family page: yes.
 ### Espoo
 
+- **Mobile Espoo Info — Sello Library, current October dates** — City of Espoo
+  - Fits: residents needing public-service advice, HSL/Kela-related service navigation and digital support; this is not a recruitment fair.
+  - Status: listed series through **29.12.2026**, Sello Library, Leppävaarankatu 9. Specifically **9.10., 13.10. and 16.10.2026, 14.30–16.30**. Free; Finnish, Swedish, English.
+  - Boundary: the series heading gives Tuesdays, while individual occurrences also include Fridays. Use the provider's exact dated events rather than assuming weekly Friday slots. No eligibility condition inferred.
+  - Official: https://www.espoo.fi/en/events/espooevents%3Aagpwuwwi7i
+  - Checked: 9.10.2026. Public family page: yes.
+
 - **Työnantajatreffit Kierrätyskeskuksessa — 20.10.2026** — Espoo Employment Services / Kierrätyskeskus
   - Status: 20.10.2026, two Finnish presentations starting **12.00 and 13.00** at Nihtisillan myymälä, Kutojantie 3, free.
   - Route: fixed-term työkokeilu opportunities and subsidised places for jobseekers 55+, aimed at longer-term jobseekers. Confirm eligibility with employment services before attending; Finnish presentations/interviews (interview at least rudimentary Finnish), no promised position.
@@ -649,9 +669,9 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 
 - **Hello Espoo Info and Mobile Espoo Info — Entresse Library 8.10.2026** — City of Espoo
   - Fits: residents needing guidance on public/digital services or local hobbies, without age limit.
-  - Status: **8.10.2026, 14.30–16.30**, Entresse Library Siltakatu 11; free, easy Finnish and English, telephone interpretation available. Do not invent future dates.
+  - Status: **passed/closed** (8.10.2026, 14.30–16.30), Entresse Library Siltakatu 11; free, easy Finnish and English, telephone interpretation available. Do not invent future dates.
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagpnjtbqre
-  - Checked: 8.10.2026. Public family page: yes.
+  - Checked: 9.10.2026. Public family page: no (event ended).
 
 - **Career Club — Round 13 / spring 2027** — City of Espoo
   - Fits: Espoo residents with at least about three years of higher-education studies and sufficient English.
@@ -1023,11 +1043,11 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Työnantajatreffit recruitment event — Sello 8.10.2026** — Espoo Employment Services
   - Fits: all jobseekers; the official event is free and open to all jobseekers.
   - Helps with: meeting employers from several fields that are recruiting now, plus job-search and education counselling. Omnia and Helsingin Maalariammattikoulu are listed as information points.
-  - Status: **upcoming 8.10.2026, 12.00–15.00**, Sello Library, Leppävaarankatu 9, Espoo. Event language listed by Espoo: Finnish.
+  - Status: **passed/closed** (8.10.2026, 12.00–15.00), Sello Library, Leppävaarankatu 9, Espoo. Event language listed by Espoo: Finnish.
   - Registration/caution: the checked official page does not publish an advance-registration requirement; do not invent one.
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagqj677ttm
-  - Checked: 1.10.2026.
-  - Public family page: yes.
+  - Checked: 9.10.2026.
+  - Public family page: no (event ended).
 
 - **Työnantajatreffit recruitment event — Sello 3.9.2026** — Espoo Employment Services
   - Fits: all jobseekers.
