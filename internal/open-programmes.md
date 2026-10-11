@@ -1,12 +1,24 @@
 # AQOON — Open programmes & active routes
 
-Last compiled: 9.10.2026
+Last compiled: 11.10.2026
 
 Purpose: quick internal reference for active programmes, hankkeet and services that may fit AQOON leads. Always re-check the official source before promising availability or eligibility.
 
 ## Priority routes
 
 ### Helsinki
+
+- **Kontulan kirjasto — free children's autumn-break craft workshops** — City of Helsinki
+  - Fits: children and families. Free craft activities; no published guaranteed capacity or separate registration rule.
+  - Status: **12.–14.10.2026, Monday–Wednesday 13.00–15.00** at Kontulan kirjasto, Ostostie 4. Drinks and biscuits are mentioned.
+  - Official: https://nuorten.hel.fi/tapahtuma/?event_id=helsinki%3Aagqmhyqfpq
+  - Checked: 11.10.2026. Public family page: yes.
+
+- **Elintarviketyöntekijä — labour-market training** — Stadin AO / City of Helsinki
+  - Fits: primarily unemployed jobseekers or those at risk of unemployment; training provider/employment authority decide selection.
+  - Status: **apply through 7.12.2026**, training **7.1.–11.6.2027**. The current Stadin AO list does not state an item-specific Finnish-language threshold; do not invent one.
+  - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/tyovoimakoulutukset/
+  - Checked: 11.10.2026. Public family page: yes.
 
 - **Leikkipuisto Brahe — free autumn-break family activities, 12.–16.10.2026** — City of Helsinki
   - Fits: families with children and schoolchildren during autumn break; open activities are not a paid camp or a guaranteed excursion.
@@ -55,6 +67,17 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Official: https://www.hel.fi/fi/kasvatus-ja-koulutus/konepajan-aikuislukio/nuorten-suunta/nuorten-suunnan-hakijalle
 
 ### Vantaa
+
+- **Artsi — free autumn-break family art workshops** — City of Vantaa
+  - Status: **13.–15.10.2026, 13.00–15.00** at Vantaan taidemuseo Artsi. Watercolour emotion-monsters and blow painting, free for all ages. Children below school age require an accompanying adult.
+  - Official: https://www.vantaa.fi/fi/ajankohtaista/uutinen/syyslomalla-vantaalla-taiteillaan-temppuillaan-ja-nautitaan-kulttuurista
+  - Checked: 11.10.2026. Public family page: yes.
+
+- **Håkansböle Manor — free outdoor autumn-break programme and Kartanon kekri** — City of Vantaa
+  - Status: **14.–17.10.2026** at Håkansböle, Kartanontie 1, Hakunila. Outdoor games, creative workshops, autumn orienteering. Saturday **17.10., 11.00–18.00** Kartanon kekri; market **11.00–15.00**.
+  - Price boundary: free outdoor family programme must not be confused with the **paid indoor manor museum** (published adult admission EUR 16/8; under 18 free); check bookings, guidance and programme details individually.
+  - Official: https://www.vantaa.fi/fi/ajankohtaista/uutinen/syyslomalla-hakansboleen-valoja-hamaraa-seikkailuja-ja-kekrin-mystiikkaa-museon-pihapiirissa
+  - Checked: 11.10.2026. Public family page: yes.
 
 - **Varia TUVA — new round from 2.10.2026** — Vantaan ammattiopisto Varia
   - Status: application **2.10.–12.11.2026 at 12.00**; studies start **30.11.2026**; published Finnish requirement **A1.3**.
@@ -321,10 +344,10 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
   - Fits: children and young people; the current open-group list includes ages from **5–6 through 20**, depending on group.
   - Helps with: weekly visual-arts teaching including drawing, painting, clay, construction, mixed media and digital tools.
   - Locations: Kartanonkoski, Kivistö, Korso, Myyrmäki and Tikkurila.
-  - Status: **deadline today, 9.10.2026**, for the autumn 2026 application; do not route as open from 10.10 onward without a new official round. Places are group-specific.
+  - Status: **closed/passed (deadline 9.10.2026)**, for the autumn 2026 application; do not route as open from 10.10 onward without a new official round. Places are group-specific.
   - Cost caution: teaching is **fee-based (lukukausimaksullinen)**. Do not describe this route as free; verify the group fee and any current fee-relief rules before promising cost.
   - Official: https://kuvataidekoulu.vantaa.fi/fi/ajankohtaista/uutinen/inspiroidu-kokeile-ja-luo-vapaita-paikkoja-vantaan-kuvataidekoulun-lasten-ja-nuorten-taideryhmissa
-  - Checked: 9.10.2026.
+  - Checked: 11.10.2026. Public family page: no (deadline passed).
 - **Vantaan kuvataidekoulu — autumn 2026 family short courses** — Vantaan kuvataidekoulu
   - Fits: families, children and young people looking for low-threshold visual-arts short courses. The provider says previous art experience is not required.
   - Helps with: short family/young-person art activities; the currently advertised offer includes courses in Tikkurila, Kivistö, Korso and Kartanonkoski.
@@ -468,7 +491,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Hoivapolku maahan muuttaneille** — Stadin AO
   - Fits: immigrant jobseekers for whom labour-market training is appropriate; the published Finnish level is A1.3. Labour-market training is primarily for unemployed jobseekers or people at risk of unemployment.
   - Helps with: an employment-oriented care-sector path with language level stated by the provider. Do not infer a guaranteed qualification or job outcome from the listing.
-  - Status: application open until 11.10.2026; training 7.1.–17.6.2027.
+  - Status: application **closes today 11.10.2026**; re-check the live portal for a late-day application; training 7.1.–17.6.2027.
   - Official: https://stadinao.hel.fi/hae-opiskelemaan/palvelut-tyollistymiseen-ja-opintoihin/tyovoimakoulutukset/
 
 - **Varastopolku maahan muuttaneille** — Stadin AO
@@ -656,10 +679,10 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 
 - **Mobile Espoo Info — Sello Library, current October dates** — City of Espoo
   - Fits: residents needing public-service advice, HSL/Kela-related service navigation and digital support; this is not a recruitment fair.
-  - Status: listed series through **29.12.2026**, Sello Library, Leppävaarankatu 9. Specifically **9.10., 13.10. and 16.10.2026, 14.30–16.30**. Free; Finnish, Swedish, English.
+  - Status: listed series through **29.12.2026**, Sello Library, Leppävaarankatu 9. Specifically **13.10. and 16.10.2026, 14.30–16.30**. Free; Finnish, Swedish, English.
   - Boundary: the series heading gives Tuesdays, while individual occurrences also include Fridays. Use the provider's exact dated events rather than assuming weekly Friday slots. No eligibility condition inferred.
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagpwuwwi7i
-  - Checked: 9.10.2026. Public family page: yes.
+  - Checked: 11.10.2026. Public family page: yes.
 
 - **Työnantajatreffit Kierrätyskeskuksessa — 20.10.2026** — Espoo Employment Services / Kierrätyskeskus
   - Status: 20.10.2026, two Finnish presentations starting **12.00 and 13.00** at Nihtisillan myymälä, Kutojantie 3, free.
@@ -754,12 +777,12 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 
 - **Family Day — Entresse Library 10.10.2026** — City of Espoo
   - Fits: local families with children.
-  - Status: 10.10.2026, 13.00–15.30, Entresse Library, Siltakatu 11; free.
+  - Status: **passed/closed** — 10.10.2026, 13.00–15.30, Entresse Library, Siltakatu 11; free.
   - Helps with: family activities and meeting family-support organisations and other families.
   - Registration: the official page does not state an advance-registration requirement.
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagqne54y4i
   - Checked: 30.9.2026.
-  - Public family page: yes.
+  - Public family page: no (event passed).
 
 - **Nature and theatre walk in Espoo Central Park — 3.10.2026** — City of Espoo / UUSI KULMA
   - Fits: people with a migrant background living in Espoo; target audience over age 7.
@@ -966,7 +989,7 @@ Purpose: quick internal reference for active programmes, hankkeet and services t
 - **Safety Circle for kids — English group** — Kids Global Safety Hub / City of Espoo event calendar
   - Fits: children and families looking for an English-language, low-threshold skills activity. The checked event page does not publish a specific child age range, so do not invent one.
   - Helps with: interactive learning around safety, identity, confidence, healthy boundaries and year-long skill development.
-  - Status: free English-language series at Iso Omena Library, Suomenlahdentie 1, listed 12.9.–19.12.2026. The 12.9 launch has passed; the series page currently lists 10.10.2026, 14.00–16.00 as the next date and 14.11. as a later date. Re-check the series before routing a family because later dates can be expanded or changed.
+  - Status: free English-language series at Iso Omena Library, Suomenlahdentie 1, listed 12.9.–19.12.2026. The 12.9 launch has passed; the series page currently lists 14.11. and 19.12.2026, 14.00–16.00 as the next dates; 10.10. has passed. Re-check the series before routing a family because later dates can be expanded or changed.
   - Official: https://www.espoo.fi/en/events/espooevents%3Aagqgv66aiy
 
 - **Youth Football** — Roda ry / City of Espoo event calendar
